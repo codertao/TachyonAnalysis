@@ -1,0 +1,20 @@
+
+void FUN_00488d90(void)
+
+{
+  if (DAT_005a4b4c != 0) {
+    FUN_00440bd0();
+    return;
+  }
+  FUN_0043ac90(&DAT_00583420);
+  if ((DAT_0056c520 == 0) && (DAT_0056c490 == 0)) {
+    FUN_0048bf30();
+    if (DAT_00564ae4 == 0) {
+      FUN_004e4b29();
+    }
+    FUN_00488c90();
+    return;
+  }
+  return;
+}
+

@@ -1,0 +1,220 @@
+openjdk version "25.0.5" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode)
+INFO  Using log config file: jar:file:/home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /home/matt/.config/ghidra/ghidra_12.1.4_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /home/matt/.config/ghidra/ghidra_12.1.4_PUBLIC/preferences (Preferences)  
+INFO  Loading previous preferences: /home/matt/.config/ghidra/ghidra_12.2_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (854 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (1932 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 59 extension points (20 false positives) (ClassSearcher)  
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldOffset has been called by org.apache.felix.framework.util.SecureAction (file:/home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/Base/lib/org.apache.felix.framework-7.0.5.jar)
+WARNING: Please consider reporting this to the maintainers of class org.apache.felix.framework.util.SecureAction
+WARNING: sun.misc.Unsafe::staticFieldOffset will be removed in a future release
+INFO  HEADLESS Script Paths:
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /home/matt/Tach-play/decomp/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating project: /home/matt/Tach-play/decomp/ghidra_proj/tachyon (HeadlessAnalyzer)  
+INFO  Creating project: /home/matt/Tach-play/decomp/ghidra_proj/tachyon (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /home/matt/Tach-play/decomp/ghidra_proj/tachyon (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///home/matt/Tach-play/GoG/space.exe (HeadlessAnalyzer)  
+INFO  Using Loader: Portable Executable (PE) (ProgramLoader)  
+INFO  Using Language/Compiler: x86:LE:32:default:windows (ProgramLoader)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib64] (ProgramLoader)  
+INFO  Additional info:
+Loading file:///home/matt/Tach-play/GoG/space.exe?MD5=26f4945fc721a8c5ff2b986274788801...
+------------------------------------------------
+
+Searching 8 paths for library DDRAW.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library DINPUT.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library DPLAYX.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library DSOUND.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library GDI32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library IBROWSE.DLL...
+Loading file:///home/matt/Tach-play/GoG/Ibrowse.dll?MD5=42d032f3e350316fbfbcff6fc2e9c5ef...
+Created exports file: /home/matt/.config/ghidra/ghidra_12.1.4_PUBLIC/symbols/win32/ibrowse.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 8 paths for library KERNEL32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library MSACM32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library MSS32.DLL...
+Loading file:///home/matt/Tach-play/GoG/Mss32.dll?MD5=248494ce1c0e740b8cf6bf000f96a7e2...
+Created exports file: /home/matt/.config/ghidra/ghidra_12.1.4_PUBLIC/symbols/win32/mss32.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 8 paths for library NETCOMM.DLL...
+Loading file:///home/matt/Tach-play/GoG/Netcomm.dll?MD5=5f1d70aa8da72fb49c48685b0cfdd37e...
+Created exports file: /home/matt/.config/ghidra/ghidra_12.1.4_PUBLIC/symbols/win32/netcomm.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 8 paths for library NETSOCK.DLL...
+Loading file:///home/matt/Tach-play/GoG/Netsock.dll?MD5=b7fadef8241e2779eea367ad8c6cee2c...
+Created exports file: /home/matt/.config/ghidra/ghidra_12.1.4_PUBLIC/symbols/win32/netsock.exports
+Library not saved to project.
+------------------------------------------------
+
+Searching 8 paths for library OLE32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library USER32.DLL...
+Library not found.
+------------------------------------------------
+
+Searching 8 paths for library WINMM.DLL...
+Library not found.
+------------------------------------------------
+
+Applying cached symbols from NETSOCK.DLL
+Applying cached symbols from MSS32.DLL
+Applying cached symbols from NETCOMM.DLL
+Applying cached symbols from IBROWSE.DLL
+Linking the External Programs of 'space.exe' to imported libraries...
+  [KERNEL32.DLL] -> not found in project
+  [USER32.DLL] -> not found in project
+  [WINMM.DLL] -> not found in project
+  [DDRAW.DLL] -> not found in project
+  [DSOUND.DLL] -> not found in project
+  [DPLAYX.DLL] -> not found in project
+  [NETSOCK.DLL] -> not found in project
+  [MSACM32.DLL] -> not found in project
+  [DINPUT.DLL] -> not found in project
+  [MSS32.DLL] -> not found in project
+  [NETCOMM.DLL] -> not found in project
+  [IBROWSE.DLL] -> not found in project
+  [GDI32.DLL] -> not found in project
+  [OLE32.DLL] -> not found in project
+------------------------------------------------
+
+ (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///home/matt/Tach-play/GoG/space.exe (HeadlessAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___raise_securityfailure' specified in file: /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/Base/data/PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+WARN  Ignoring leading '_' chars on no-return name '___report_rangecheckfailure' specified in file: /home/matt/Downloads/tmp/ghidra_12.1.4_PUBLIC/Ghidra/Features/Base/data/PEFunctionsThatDoNotReturn (NoReturnFunctionAnalyzer)  
+INFO  Skipping PDB processing: missing PDB information in program metadata (PdbUniversalAnalyzer)  
+INFO  Packed database cache: /var/tmp/matt-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  Applied data type archive: windows_vs12_32 (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.486 secs
+    Apply Data Archives                        0.730 secs
+    Call Convention ID                         0.002 secs
+    Call-Fixup Installer                       0.082 secs
+    Create Address Tables                      0.250 secs
+    Create Address Tables - One Time           0.652 secs
+    Create Function                            0.876 secs
+    Data Reference                             0.483 secs
+    Decompiler Switch Analysis                21.715 secs
+    Demangler Microsoft                        0.022 secs
+    Disassemble                                1.370 secs
+    Disassemble Entry Points                   0.687 secs
+    Embedded Media                             0.059 secs
+    External Entry References                  0.001 secs
+    Function ID                                1.015 secs
+    Function Start Pre Search                  0.025 secs
+    Function Start Search                      0.107 secs
+    Function Start Search After Code           0.068 secs
+    Function Start Search After Data           0.055 secs
+    Function Start Search delayed - One Time   0.018 secs
+    Non-Returning Functions - Discovered       0.502 secs
+    Non-Returning Functions - Known            0.015 secs
+    PDB Universal                              0.001 secs
+    Reference                                  0.810 secs
+    Scalar Operand References                  0.877 secs
+    Shared Return Calls                        0.413 secs
+    Stack                                      5.366 secs
+    Subroutine References                      1.849 secs
+    Subroutine References - One Time           0.009 secs
+    WindowsResourceReference                   0.361 secs
+    X86 Function Callee Purge                  0.380 secs
+    x86 Constant Reference Analyzer            5.399 secs
+-----------------------------------------------------
+     Total Time   44 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///home/matt/Tach-play/GoG/space.exe (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: RecoverPtrFuncs.java  (HeadlessAnalyzer)  
+INFO  SCRIPT: /home/matt/Tach-play/decomp/ghidra_scripts/RecoverPtrFuncs.java (HeadlessAnalyzer)  
+INFO  RecoverPtrFuncs.java> RecoverPtrFuncs: scanned=423864 ptr-candidates=1922 alreadyFunc=1145 created=647 (GhidraScript)  
+INFO  RecoverPtrFuncs.java>   0x444eb0 created=true  0x4450b0 created=true (GhidraScript)  
+INFO  RecoverPtrFuncs.java>   total functions now=5305 (GhidraScript)  
+INFO  ANALYZING changes made by post scripts: file:///home/matt/Tach-play/GoG/space.exe (HeadlessAnalyzer)  
+INFO  -----------------------------------------------------
+    Call-Fixup Installer                       0.004 secs
+    Create Function                            0.020 secs
+    Data Reference                             0.000 secs
+    Decompiler Switch Analysis                 1.614 secs
+    Function Start Search                      0.003 secs
+    Function Start Search After Code           0.003 secs
+    Function Start Search After Data           0.000 secs
+    Function Start Search delayed - One Time   0.001 secs
+    Non-Returning Functions - Discovered       0.016 secs
+    Reference                                  0.024 secs
+    Scalar Operand References                  0.030 secs
+    Shared Return Calls                        0.039 secs
+    Stack                                      0.405 secs
+    Subroutine References                      0.032 secs
+    WindowsResourceReference                   0.234 secs
+    X86 Function Callee Purge                  0.038 secs
+    x86 Constant Reference Analyzer            0.225 secs
+-----------------------------------------------------
+     Total Time   2 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Post-analysis succeeded for file: file:///home/matt/Tach-play/GoG/space.exe (HeadlessAnalyzer)  
+INFO  /space.exe: file created (matt) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /space.exe (tachyon:/space.exe) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

@@ -1,0 +1,9 @@
+
+void FUN_0042c8b0(undefined4 param_1,undefined4 param_2)
+
+{
+  DAT_005b0140 = param_1;
+  DAT_005b0144 = param_2;
+  return;
+}
+

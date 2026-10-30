@@ -1,0 +1,94 @@
+
+void FUN_004bdf99(byte *param_1,byte *param_2,undefined1 *param_3,int param_4,undefined1 *param_5)
+
+{
+  byte bVar1;
+  size_t sVar2;
+  byte *pbVar3;
+  uint uVar4;
+  byte *local_8;
+  
+  local_8 = (byte *)0x0;
+  sVar2 = _strlen((char *)param_1);
+  if ((sVar2 == 0) || (param_1[1] != 0x3a)) {
+    if (param_2 != (undefined1 *)0x0) {
+      *param_2 = 0;
+    }
+  }
+  else {
+    if (param_2 != (undefined1 *)0x0) {
+      FUN_004c5474(param_2,param_1,2);
+      param_2[2] = 0;
+    }
+    param_1 = param_1 + 2;
+  }
+  param_2 = (byte *)0x0;
+  pbVar3 = param_1;
+  if (*param_1 != 0) {
+    do {
+      bVar1 = *pbVar3;
+      if ((*(byte *)((int)&DAT_006c9c60 + bVar1 + 1) & 4) == 0) {
+        if ((bVar1 == 0x2f) || (bVar1 == 0x5c)) {
+          param_2 = pbVar3 + 1;
+        }
+        else if (bVar1 == 0x2e) {
+          local_8 = pbVar3;
+        }
+      }
+      else {
+        pbVar3 = pbVar3 + 1;
+      }
+      pbVar3 = pbVar3 + 1;
+    } while (*pbVar3 != 0);
+    if (param_2 != (byte *)0x0) {
+      if (param_3 != (undefined1 *)0x0) {
+        uVar4 = (int)param_2 - (int)param_1;
+        if (0xfe < uVar4) {
+          uVar4 = 0xff;
+        }
+        FUN_004c5474(param_3,param_1,uVar4);
+        param_3[uVar4] = 0;
+      }
+      goto LAB_004be060;
+    }
+  }
+  param_2 = param_1;
+  if (param_3 != (undefined1 *)0x0) {
+    *param_3 = 0;
+  }
+LAB_004be060:
+  param_1 = pbVar3;
+  if ((local_8 == (byte *)0x0) || (local_8 < param_2)) {
+    if (param_4 != 0) {
+      uVar4 = 0xff;
+      if ((uint)((int)param_1 - (int)param_2) < 0xff) {
+        uVar4 = (int)param_1 - (int)param_2;
+      }
+      FUN_004c5474(param_4,param_2,uVar4);
+      *(undefined1 *)(uVar4 + param_4) = 0;
+    }
+    if (param_5 != (undefined1 *)0x0) {
+      *param_5 = 0;
+    }
+  }
+  else {
+    if (param_4 != 0) {
+      uVar4 = (int)local_8 - (int)param_2;
+      if (0xfe < uVar4) {
+        uVar4 = 0xff;
+      }
+      FUN_004c5474(param_4,param_2,uVar4);
+      *(undefined1 *)(uVar4 + param_4) = 0;
+    }
+    if (param_5 != (undefined1 *)0x0) {
+      uVar4 = 0xff;
+      if ((uint)((int)param_1 - (int)local_8) < 0xff) {
+        uVar4 = (int)param_1 - (int)local_8;
+      }
+      FUN_004c5474(param_5,local_8,uVar4);
+      param_5[uVar4] = 0;
+    }
+  }
+  return;
+}
+

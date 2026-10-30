@@ -1,0 +1,47 @@
+
+void FUN_004a3570(byte *param_1,undefined4 *param_2,int param_3)
+
+{
+  byte bVar1;
+  undefined4 uVar2;
+  bool bVar3;
+  uint uVar4;
+  uint uVar5;
+  int iVar6;
+  int iVar7;
+  
+  FUN_004a3ad0();
+  iVar6 = param_3 >> 2;
+  do {
+    while( true ) {
+      bVar1 = *param_1;
+      if (0xbf < bVar1) break;
+      *param_2 = *(undefined4 *)(&DAT_00602a00 + (uint)bVar1 * 4);
+      param_2 = param_2 + 1;
+      iVar7 = iVar6 + -1;
+      bVar3 = iVar6 < 1;
+      iVar6 = iVar7;
+      param_1 = param_1 + 1;
+      if (iVar7 == 0 || bVar3) {
+        return;
+      }
+    }
+    uVar2 = *(undefined4 *)(&DAT_00602a00 + (uint)param_1[1] * 4);
+    uVar4 = (uint)(byte)(bVar1 + 0x40);
+    do {
+      *param_2 = uVar2;
+      param_2 = param_2 + 1;
+      iVar7 = iVar6 + -1;
+      if (iVar7 == 0 || iVar6 < 1) {
+        return;
+      }
+      uVar5 = uVar4 - 1;
+      bVar3 = 0 < (int)uVar4;
+      uVar4 = uVar5;
+      iVar6 = iVar7;
+    } while (uVar5 != 0 && bVar3);
+    param_1 = param_1 + 2;
+  } while (0 < iVar7);
+  return;
+}
+

@@ -1,0 +1,64 @@
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_0048a620(void)
+
+{
+  int iVar1;
+  int iVar2;
+  char *pcVar3;
+  char *pcVar4;
+  char *pcVar5;
+  undefined4 local_8;
+  
+  iVar1 = FUN_0043bf10(&DAT_00583420,s_WING_HIRECOST_005597d4);
+  iVar2 = FUN_0043bf10(&DAT_00583420,s_WING_FEE_005597c8);
+  FUN_0048a5d0();
+  if (DAT_0056c488 == 0) {
+    FUN_0043e6a0(&DAT_00583420,s_TxtWingName_00559778,&DAT_00562b14);
+    FUN_0043e610(&DAT_00583420,s_TxtWingCurrent_00559720,0x10000);
+    DAT_0056c380 = 0;
+  }
+  else {
+    if (iVar2 == 0) {
+      pcVar4 = s__Fee___d_percent_005597b4;
+    }
+    else {
+      pcVar4 = *(char **)(iVar2 + 0x40);
+    }
+    if (iVar1 == 0) {
+      pcVar5 = s__Hire_Cost___d_005597a4;
+    }
+    else {
+      pcVar5 = *(char **)(iVar1 + 0x40);
+    }
+    if (*(undefined4 **)(DAT_0056c488 + 0x74) == (undefined4 *)0x0) {
+      pcVar3 = s__Wingman_Name_00559794;
+    }
+    else {
+      pcVar3 = (char *)**(undefined4 **)(DAT_0056c488 + 0x74);
+    }
+    str_sprintf(&DAT_005a41e0,s__s_c_c_s_c_c_s_00559784,pcVar3,0xd,10,pcVar5,0xd,10,pcVar4);
+    local_8 = (undefined4)(longlong)ROUND(*(float *)(DAT_0056c488 + 0xa4) * _DAT_0052ec38);
+    str_sprintf(&DAT_0056c380,&DAT_005a41e0,*(undefined4 *)(DAT_0056c488 + 0xa0),local_8);
+    if (*(undefined4 **)(DAT_0056c488 + 0x74) == (undefined4 *)0x0) {
+      pcVar4 = s__Wingman_Name_00559794;
+    }
+    else {
+      pcVar4 = (char *)**(undefined4 **)(DAT_0056c488 + 0x74);
+    }
+    FUN_0043e6a0(&DAT_00583420,s_TxtWingName_00559778,pcVar4);
+  }
+  if (DAT_00563e28 == 0) {
+    iVar1 = FUN_00469330();
+    if (iVar1 != 0) {
+      FUN_0043e670(&DAT_00583420,s_TxtWingCurrent_00559720,0x10000);
+    }
+  }
+  else {
+    FUN_0043e610(&DAT_00583420,s_TxtWingCurrent_00559720,0x10000);
+  }
+  FUN_0043e6a0(&DAT_00583420,s_TxtWingData_0055976c,&DAT_0056c380);
+  return;
+}
+

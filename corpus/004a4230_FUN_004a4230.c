@@ -1,0 +1,19 @@
+
+undefined4
+FUN_004a4230(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,int param_5
+            )
+
+{
+  int iVar1;
+  
+  iVar1 = FUN_004a3fd0(param_1,param_5);
+  if (iVar1 == 0) {
+    *(undefined4 *)(param_5 + 0xb4) = 1;
+    return 0xffffffff;
+  }
+  FUN_004a4070(param_3,1,param_5);
+  FUN_004a4040(param_2,param_4,param_5);
+  *(undefined4 *)(param_5 + 0xb4) = 0;
+  return param_4;
+}
+

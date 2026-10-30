@@ -1,0 +1,36 @@
+
+void FUN_00455441(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6)
+
+{
+  uint uVar1;
+  int iVar2;
+  int unaff_ESI;
+  
+  if (*(uint *)(unaff_ESI + 0xf8) < 0x81) {
+    if (0x7f < *(uint *)(unaff_ESI + 0xf8)) {
+      FUN_004231f0(3,0,unaff_ESI + 0x34,0x10000,0);
+      *(uint *)(unaff_ESI + 0x18) = *(uint *)(unaff_ESI + 0x18) | 2;
+    }
+    *(int *)(unaff_ESI + 0x34) = *(int *)(unaff_ESI + 0x34) + *(int *)(unaff_ESI + 0xa0);
+    *(int *)(unaff_ESI + 0x38) = *(int *)(unaff_ESI + 0x38) + *(int *)(unaff_ESI + 0xa4);
+    *(int *)(unaff_ESI + 0x3c) = *(int *)(unaff_ESI + 0x3c) + *(int *)(unaff_ESI + 0xa8);
+    uVar1 = FUN_0048e350();
+    if ((uVar1 & 0x7f) <= (uint)(*(int *)(unaff_ESI + 0xf8) * 2)) {
+      FUN_0052db6a(&stack0x0000001c,*(undefined4 *)(unaff_ESI + 0x4c),
+                   *(undefined4 *)(unaff_ESI + 0x50),*(undefined4 *)(unaff_ESI + 0x54));
+      FUN_0052dbcd(&stack0x0000001c);
+      FUN_004b24d0(&param_1,&param_1);
+      param_4 = param_1 + *(int *)(unaff_ESI + 0x34);
+      param_5 = param_2 + *(int *)(unaff_ESI + 0x38);
+      param_6 = *(int *)(unaff_ESI + 0x3c) + param_3;
+      iVar2 = FUN_004222e0(&param_4,11000,0x20,0x80);
+      if (iVar2 != 0) {
+        *(int *)(iVar2 + 0xa0) = *(int *)(iVar2 + 0xa0) + (*(int *)(unaff_ESI + 0xa0) >> 2);
+        *(int *)(iVar2 + 0xa4) = *(int *)(iVar2 + 0xa4) + (*(int *)(unaff_ESI + 0xa4) >> 2);
+        *(int *)(iVar2 + 0xa8) = *(int *)(iVar2 + 0xa8) + (*(int *)(unaff_ESI + 0xa8) >> 2);
+      }
+    }
+  }
+  return;
+}
+

@@ -1,0 +1,13 @@
+
+void FUN_00414660(void)
+
+{
+  if (DAT_005b9268 != 0) {
+    FUN_00437870(DAT_0058b064,1);
+    FUN_00437940(DAT_005b3300,1);
+    FUN_0042ddb0(s_ENERGY_REPLENISHED_005341b4,0xc);
+    FUN_004525c0(5);
+  }
+  return;
+}
+

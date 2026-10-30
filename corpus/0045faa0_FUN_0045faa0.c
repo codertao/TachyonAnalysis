@@ -1,0 +1,20 @@
+
+void FUN_0045faa0(int param_1,int param_2)
+
+{
+  uint uVar1;
+  int iVar2;
+  undefined1 local_80 [128];
+  
+  if (param_1 != param_2) {
+    uVar1 = FUN_0048e350();
+    iVar2 = FUN_0048e800(DAT_005a6140,(uVar1 & 7) + 0x70);
+    if (iVar2 != 0) {
+      str_sprintf(local_80,iVar2,param_2 + 0xcc,param_1 + 0xcc);
+      FUN_0045d900(local_80,0,0,0,0xffffffff,*(undefined4 *)(*(int *)(param_1 + 200) + 100),
+                   DAT_005a632c & 0xff);
+    }
+  }
+  return;
+}
+

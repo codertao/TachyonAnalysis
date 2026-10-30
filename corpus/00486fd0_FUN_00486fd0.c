@@ -1,0 +1,12 @@
+
+void FUN_00486fd0(void)
+
+{
+  FUN_0049da00(s_PLAYER_BETS_MAX_0055804c,&DAT_005833e0,&DAT_00583498);
+  FUN_00486cb0(1);
+  FUN_00486cb0(1);
+  FUN_00486cb0(1);
+  FUN_00486ed0();
+  return;
+}
+

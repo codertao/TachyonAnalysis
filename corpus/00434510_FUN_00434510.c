@@ -1,0 +1,8 @@
+
+void FUN_00434510(void)
+
+{
+  FUN_00490130(DAT_005a6148,s_MISSION_VARS_0053f8e8);
+  return;
+}
+

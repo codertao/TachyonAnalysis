@@ -1,0 +1,11 @@
+# Tachyon sidecar — canonical local/parameter variable names.
+# Format: funcAddr<TAB>kind<TAB>storage<TAB>pc<TAB>name<TAB>datatype
+#   funcAddr : entry-point hex (0x-prefixed or bare)
+#   kind     : param | local  (informational; matching is by storage then pc)
+#   storage  : VariableStorage key, e.g. Stack[-0x8]:4 or EAX:4  (the match key)
+#   pc       : symbol PC address hex, or - if none (disambiguates reused register storage)
+#   name     : desired variable name
+#   datatype : optional; applied only if resolvable, else existing type is left unchanged
+# Source of truth for variable naming. Apply with ApplyVars.java, then re-run ExportCorpus.java.
+# Back-port GUI edits with DumpVars.java -> vars.export.tsv, then merge the rows you want here.
+

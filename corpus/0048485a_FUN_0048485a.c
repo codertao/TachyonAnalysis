@@ -1,0 +1,76 @@
+
+void __fastcall FUN_0048485a(undefined4 param_1,undefined1 *param_2)
+
+{
+  int iVar1;
+  int iVar2;
+  undefined4 uVar3;
+  int unaff_EBX;
+  uint unaff_EDI;
+  uint uVar4;
+  int in_stack_0000001c;
+  undefined4 in_stack_00000020;
+  undefined4 *puVar5;
+  
+  puVar5 = (undefined4 *)register0x00000010;
+  do {
+    iVar2 = Var_GetInt(param_1,&stack0x000000a4,param_2,puVar5);
+    uVar4 = unaff_EDI;
+    if (iVar2 != 0) {
+      Var_SetInt(g_PlayerVarStore);
+      uVar3 = Var_GetKeyByIndex(in_stack_00000020,in_stack_0000001c);
+      iVar2 = FUN_004690b0(uVar3);
+      if ((iVar2 != 0) && (*(int *)(iVar2 + 0x58) != 0)) {
+        FUN_0046be30();
+      }
+    }
+    do {
+      do {
+        unaff_EDI = uVar4 + 1;
+        if (7 < uVar4) {
+          Var_SetInt(g_PlayerVarStore);
+          Var_SetStr(g_PlayerVarStore,s_PLAYER_MAIN_VARS_00534198,s_CURRENT_SHIP_00534b18,
+                     &DAT_00562b14);
+          *(undefined4 *)(unaff_EBX + 0xf0) = 0;
+          FUN_004699d0(*(undefined4 *)(unaff_EBX + 0xec));
+          FUN_00484230();
+          FUN_00484b20(&DAT_00562b14);
+          FUN_00484a40();
+          FUN_004835c0();
+          Ui_SetButtonFlag(&DAT_00583420,s_BtnSPSell_00557968,0x80000);
+          return;
+        }
+        str_sprintf();
+        iVar2 = Var_GetInt(g_PlayerVarStore,&stack0x000000a4,&stack0x00000024,&stack0x0000001c);
+        if ((iVar2 != 0) && (in_stack_0000001c != 0)) {
+          Var_SetInt(g_PlayerVarStore);
+          uVar3 = Var_GetKeyByIndex();
+          iVar2 = FUN_004690b0(uVar3);
+          if ((iVar2 != 0) && (*(int *)(iVar2 + 0x58) != 0)) {
+            if (*(int *)(*(int *)(iVar2 + 0x58) + 0x9c) == 1) {
+              FUN_0046be30();
+            }
+            else {
+              str_sprintf();
+              iVar1 = Var_GetInt(g_PlayerVarStore,&stack0x000000a4,&stack0x00000024,&stack0x0000001c
+                                );
+              if (iVar1 != 0) {
+                Var_SetInt(g_PlayerVarStore);
+                FUN_0046be30(iVar2 + 0x20,iVar2,in_stack_0000001c);
+              }
+            }
+          }
+        }
+        str_sprintf();
+        iVar2 = Var_GetInt(g_PlayerVarStore,&stack0x000000a4,&stack0x00000024,&stack0x0000001c);
+        uVar4 = unaff_EDI;
+      } while (iVar2 == 0);
+      Var_SetInt(g_PlayerVarStore);
+    } while (in_stack_0000001c == 0);
+    str_sprintf();
+    puVar5 = &stack0x0000001c;
+    param_2 = &stack0x00000024;
+    param_1 = g_PlayerVarStore;
+  } while( true );
+}
+

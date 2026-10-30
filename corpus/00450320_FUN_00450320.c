@@ -1,0 +1,16 @@
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+void FUN_00450320(void)
+
+{
+  FUN_0049e7d0(0xff);
+  FUN_004107b0(0);
+  DAT_005b332c = 1;
+  FUN_004103b0();
+  FUN_004107c0(0,0);
+  FUN_00423e80(DAT_005b3300,_DAT_005b2100 * *(float *)(DAT_005b1f0c + 0xbc));
+  FUN_00430150(&PTR_DAT_0053e600);
+  return;
+}
+

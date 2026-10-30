@@ -1,0 +1,21 @@
+
+void FUN_0041a4a0(void)
+
+{
+  undefined4 uVar1;
+  
+  DAT_005b29a4 = DAT_005b29a4 + 1;
+  if (DAT_005b2984 < DAT_005b29a4) {
+    DAT_005b29a4 = DAT_005b2984;
+    DAT_005b2998 = 1;
+    return;
+  }
+  DAT_005b2c10 = DAT_005b2c10 + 1;
+  DAT_005b2998 = 0;
+  uVar1 = FUN_004900c0(s_PLAYER_MAIN_VARS_00534198,s_CURRENT_COURSE_00534ad0,DAT_005b29a4);
+  uVar1 = FUN_004900a0(s_PLAYER_MAIN_VARS_00534198,uVar1);
+  FUN_00436130(uVar1);
+  DAT_005b2a44 = 1;
+  return;
+}
+

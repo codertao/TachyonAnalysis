@@ -1,0 +1,46 @@
+
+int FUN_0040b0b0(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+                int param_5,undefined1 param_6)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  
+  if (param_1[7] == 0) {
+    if (DAT_005a6730 != 0) {
+      FUN_0040b040(param_4,param_1);
+    }
+    return 0;
+  }
+  iVar1 = DcbPool_Alloc(&DAT_005b3288,0xc,*(undefined4 *)(param_5 + 100));
+  if (iVar1 == 0) {
+    return 0;
+  }
+  *(undefined4 *)(iVar1 + 0x8c) = param_3;
+  *(int *)(iVar1 + 0xdc) = param_5;
+  *(undefined4 *)(iVar1 + 0x58) = *param_1;
+  *(undefined4 *)(iVar1 + 0x18) = 0x10;
+  *(int *)(iVar1 + 0x60) = iVar1;
+  *(undefined4 *)(iVar1 + 0xc4) = 0;
+  *(undefined4 *)(iVar1 + 0x5c) = 0;
+  *(undefined4 *)(iVar1 + 0x1c) = param_1[3];
+  *(undefined1 **)(iVar1 + 0x70) = &LAB_0040acb0;
+  *(undefined1 **)(iVar1 + 0x84) = &LAB_0040b080;
+  param_1[0x1f] = iVar1;
+  *(undefined1 *)(iVar1 + 0xc2) = param_6;
+  *(undefined4 *)(iVar1 + 0xec) = 0xffffffff;
+  FUN_00409e80(iVar1,param_1,0,0);
+  FUN_0040ae80(iVar1,param_1);
+  uVar2 = FUN_0040a610(*(undefined4 *)(param_5 + 0xe8),param_1[0x11]);
+  *(undefined4 *)(iVar1 + 0xe8) = uVar2;
+  if ((g_FlightStateFlags & 4) != 0) {
+    uVar2 = FUN_0045d680(uVar2,*(undefined4 *)(DAT_0058b064 + 100));
+    *(undefined4 *)(iVar1 + 0xf4) = uVar2;
+  }
+  FUN_0041b890(iVar1,&DAT_005b3280);
+  if (*(int *)(iVar1 + 200) != 0) {
+    *(code **)(iVar1 + 0x68) = FUN_00408e20;
+  }
+  return iVar1;
+}
+

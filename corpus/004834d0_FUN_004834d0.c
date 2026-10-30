@@ -1,0 +1,26 @@
+
+void FUN_004834d0(void)
+
+{
+  int *piVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  
+  piVar1 = &DAT_0056f534;
+  iVar2 = 5;
+  do {
+    if (*piVar1 != 0) {
+      FUN_004b1840(*piVar1);
+    }
+    FUN_0043ce50(&DAT_00583420,piVar1 + -0x34,8);
+    piVar1 = piVar1 + 0x52;
+    iVar2 = iVar2 + -1;
+  } while (iVar2 != 0);
+  puVar3 = &DAT_0056f440;
+  for (iVar2 = 0x19a; iVar2 != 0; iVar2 = iVar2 + -1) {
+    *puVar3 = 0;
+    puVar3 = puVar3 + 1;
+  }
+  return;
+}
+

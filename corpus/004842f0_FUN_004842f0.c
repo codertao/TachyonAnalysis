@@ -1,0 +1,88 @@
+
+void FUN_004842f0(int param_1)
+
+{
+  int iVar1;
+  int iVar2;
+  char *pcVar3;
+  uint uVar4;
+  
+  FUN_00484230();
+  if (param_1 < 0) {
+    return;
+  }
+  if (4 < param_1) {
+    return;
+  }
+  DAT_0056f3e4 = &DAT_0056f440 + param_1 * 0x52;
+  iVar1 = Ui_FindButton(&DAT_00583420,&DAT_0056f464 + param_1 * 0x148);
+  if (iVar1 == 0) {
+    FUN_00484230();
+    return;
+  }
+  FUN_0043ce50(&DAT_00583420,DAT_0056f3e4 + 9,0x10);
+  iVar1 = FUN_00483900(DAT_0056f3e4 + 1);
+  if (iVar1 == 0) {
+    return;
+  }
+  if (*(int *)(iVar1 + 0xf0) == 0) {
+    FUN_0043ce50(&DAT_00583420,s_BtnSPSell_00557968,8);
+    Ui_SetButtonFlag(&DAT_00583420,s_BtnSPSell_00557968,0x80000);
+    FUN_0043ce50(&DAT_00583420,s_BtnSPPurchase_00557958,1);
+    FUN_0043c150(&DAT_00583420,s_BtnSPPurchase_00557958,0x80000);
+    FUN_0043ce50(&DAT_00583420,s_BtnSPConfig_00557974,8);
+    FUN_0043ce50(&DAT_00583420,s_BtnSPLaunch_005579e8,8);
+    iVar2 = FUN_0043bf10(&DAT_00583420,s_SHIP_BUY_FOR_005579b4);
+    pcVar3 = *(char **)(iVar2 + 0x40);
+    if (pcVar3 == (char *)0x0) {
+      pcVar3 = s__Buy_for__d_CR__005579a4;
+    }
+    str_sprintf(&DAT_0056f400,pcVar3,*(undefined4 *)(iVar1 + 0xe8));
+    FUN_0043cc80(&DAT_00583420,s_BtnSPPurchase_00557958,&DAT_0056f400);
+    uVar4 = FUN_004699a0();
+    if (*(uint *)(iVar1 + 0xe8) <= uVar4) goto LAB_0048453e;
+    pcVar3 = s_BtnSPPurchase_00557958;
+  }
+  else {
+    FUN_0043ce50(&DAT_00583420,s_BtnSPSell_00557968,1);
+    FUN_0043c150(&DAT_00583420,s_BtnSPSell_00557968,0x80000);
+    FUN_0043ce50(&DAT_00583420,s_BtnSPPurchase_00557958,8);
+    Ui_SetButtonFlag(&DAT_00583420,s_BtnSPPurchase_00557958,0x80000);
+    FUN_0043ce50(&DAT_00583420,s_BtnSPConfig_00557974,1);
+    FUN_0043ce50(&DAT_00583420,s_BtnSPLaunch_005579e8,1);
+    Var_SetStr(g_PlayerVarStore,s_PLAYER_MAIN_VARS_00534198,s_CURRENT_SHIP_00534b18,DAT_0056f3e4 + 1
+              );
+    iVar2 = FUN_0043bf10(&DAT_00583420,s_SHIP_SELL_FOR_005579d8);
+    pcVar3 = *(char **)(iVar2 + 0x40);
+    if (pcVar3 == (char *)0x0) {
+      pcVar3 = s__Sell_for__d_CR__005579c4;
+    }
+    str_sprintf(&DAT_0056f400,pcVar3,*(undefined4 *)(iVar1 + 0xec));
+    FUN_0043cc80(&DAT_00583420,s_BtnSPSell_00557968,&DAT_0056f400);
+    uVar4 = FUN_00483940();
+    if (1 < uVar4) goto LAB_0048453e;
+    pcVar3 = s_BtnSPSell_00557968;
+  }
+  FUN_0043ce50(&DAT_00583420,pcVar3,8);
+LAB_0048453e:
+  iVar2 = FUN_0046f080(iVar1);
+  if ((iVar2 != 0) && (iVar2 = FUN_00469a30(iVar2 + 0x48), iVar2 != 0)) {
+    FUN_0043f840(&DAT_00583420,s_IALineArt_0055794c,0x20000);
+    str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar2 + 0x40);
+    FUN_0043f6e0(&DAT_00583420,s_IALineArt_0055794c,&DAT_005a41e0);
+    FUN_0043f650(&DAT_00583420,s_IALineArt_0055794c,0x18,0xa5);
+  }
+  if (*(undefined4 **)(iVar1 + 0x80) == (undefined4 *)0x0) {
+    pcVar3 = s__No_Description_set_in_shiptext__00557980;
+  }
+  else {
+    pcVar3 = (char *)**(undefined4 **)(iVar1 + 0x80);
+  }
+  FUN_00484b20(pcVar3);
+  FUN_00483150(iVar1);
+  FUN_00484010();
+  FUN_00482a00(1);
+  FUN_00482f30(iVar1 + 0x60);
+  return;
+}
+

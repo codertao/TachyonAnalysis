@@ -1,0 +1,17 @@
+
+void FUN_00435ca0(undefined4 param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = Cbin_Open(param_1);
+  if (iVar1 != 0) {
+    Cbin_GetScalar(s_INGAME_0053486c,s_BASE_QUADRANT_0053f9f0,&DAT_005a5520,0x10,0);
+    Cbin_GetScalar(s_INGAME_0053486c,s_REGION_0053f9e8,&DAT_005a5dd0,0x10,0);
+    Cbin_Close();
+    FUN_00435bf0(&DAT_005a5dd0);
+    DAT_005a5dc8 = FUN_0049df00(&DAT_005a5530,0xd100);
+  }
+  return;
+}
+

@@ -1,0 +1,334 @@
+# Tachyon sidecar — canonical names. Format: <addr-hex>\t<name>\t<comment optional, \n for newline>
+# Source of truth for naming. Apply with ApplyNames.java, then re-run ExportCorpus.java.
+
+# --- entry / lifecycle ---
+0x49fc40	WinMain	Init 3 memory pools, instance+window init, cmdline dispatch, run state machine
+0x49f390	App_InstanceInit
+0x49f400	App_WindowDisplayInit
+0x4334c0	CmdLine_Dispatch	GetCommandLineA; NLSTATS etc.
+0x433420	CmdLine_ParseSwitches	/D /VRULES /VECHO /VLOG /NOHELP
+0x49f6a0	MessagePump_IdleTick	PeekMessageA loop; idle: timed tasks / audio pump / periodic poll; breaks on WM_QUIT
+0x49fd35	Timer_Teardown	timer cleanup (not the main loop)
+
+# --- game-loop / state machine ---
+0x44ec80	StateMachine_Run	runs current mode object; chains next mode via g_NextMode (DAT_00590e28)
+0x44ead0	ModeLoop_FixedStep50Hz	50Hz/0x14ms; drives mode +4 update / +8 render
+0x44ec10	ModeLoop_Variable
+0x590e28	g_NextMode	"next mode" pointer, written at each mode transition (~55 sites)
+
+# --- title / main-menu mode (client shell @0x544408) ---
+0x544408	g_Mode_TitleMenu	mode object: enter/update/render/exit at 0x444eb0/0x4450b0/0x4455c0/0x445600
+0x444eb0	TitleMenu_Enter	builds title window + Login/Multi/Exit buttons, loads mnu(s).bdf, version text
+0x4450b0	TitleMenu_Update	pump messages; tick menu + update window; loop-flag g_TitleMenu_ExitFlag
+0x4455c0	TitleMenu_Render
+0x445600	TitleMenu_Exit
+0x5a3700	g_UiManager	front-end UI manager: windowDefs@+0xc(stride 0x114,count+0x40) textDefs@+0x14(0x130,+0x48) buttonDefs@+0x18(0x23c,+0x4c)
+0x5a384c	g_TitleMenu_ExitFlag	0 = stay in menu mode, nonzero = leave (checked by TitleMenu_Update)
+
+# --- dedicated-server stub mode (@0x533a70) ---
+0x533a70	g_Mode_InFlight	IN-FLIGHT gameplay mode (confirmed live via gdb: active mode object while flying). NOT a server stub (earlier guess wrong)
+0x40ebd0	Flight_Enter	in-flight mode enter
+0x40ebf0	Flight_Update	per-frame in-flight sim tick (mode+4; runs the SPED world/physics) [confirmed via gdb EDI=0x533a70 @ 0x44eb2a]
+0x40ec00	Flight_Render	in-flight 3D render
+0x40ec10	Flight_Exit	in-flight mode exit
+0x4622a0	Flight_Update_Phase1	Flight_Update part 1: tick UI (if not cutscene), frame counter, mission-end check
+0x418220	Flight_UpdateWorld	Flight_Update part 2: world/entity sim; gates player input/control/HUD on !g_CutsceneActive; mission-end conditions
+0x5a6504	g_CutsceneActive	nonzero during a cutscene -> Flight_UpdateWorld skips input/control/HUD (world+camera keep running) [matches runtime: same mode, no control]
+0x5a6500	g_MissionEndFlag	set to leave the in-flight mode (-> g_NextMode = g_ReturnMode)
+0x5a6508	g_MissionEndReason	mission-end reason code (e.g. 9, 3)
+0x590e2c	g_ReturnMode	mode to return to when leaving flight (prev-mode slot; g_NextMode=0x590e28)
+0x5a64fc	g_FlightStateFlags	in-flight gating bits (bit1/bit2 seen)
+
+# --- audio / profile (known from prior analysis) ---
+0x4a90a0	StreamAudio_Refill	16x16KB ring buffer; 16->8-bit; WAV loop at file offset 0x2c
+0x44bd40	Profile_LoadoutInit	default ships BORA_CUTLASS / GALSPAN_ORION when lookup fails
+
+# --- CBIN config format (INI-like: groups>entries>params; used by ~half of Tachyon data files) ---
+0x49acb0	Cbin_LoadFile	read file to buffer; magic 'CBIN' -> Cbin_ParseBinary else Cbin_ParseText; ctx[0x1a]=isBinary
+0x49a980	Cbin_ParseBinary	build string table + group/entry/param tree from decrypted buffer
+0x49a8c0	Cbin_Decrypt	rotate-left-7 XOR of bytes after 20-byte header, using header key (matches TachyonFileFormats cbin.py)
+0x49a750	Cbin_ParseText	plaintext fallback parser (same group/entry/param model)
+0x49ae70	Cbin_Open	close any open ctx, then load into g_CbinCtx
+0x49ad90	Cbin_Open_Inner	-> Cbin_LoadFile(file, &g_CbinCtx)
+0x49ae60	Cbin_Close
+0x49be30	Cbin_GetParam	(key, strOut, strLen, &numOut, type, index1based) on g_CbinCtx; type 1=int 2=float 4=string
+0x49bde0	Cbin_GetParam_Ctx	core: find section then fetch param
+0x49b4f0	Cbin_GetScalar	single int/scalar convenience getter
+0x49b0c0	Cbin_SelectGroup	select group/section by name
+0x49c040	Cbin_CountEntries	count entries of given name within a group
+0x49afe0	Cbin_FindSection
+0x49bbb0	Cbin_FindParam
+0x604080	g_CbinCtx	current CBIN parse context (buffer, size, cursors, isBinary@0x68)
+
+# --- .bdf backdrop-scene loader (CBIN consumer; mnu.bdf = title-screen backdrop) ---
+0x444e60	Bdf_LoadBackdrop	reset scene then load+apply a .bdf (arg = filename)
+0x468180	Bdf_LoadAndApply	load scene struct, apply SPACE_ROT/RGB/lighting, spawn images
+0x4680f0	Bdf_GetOrLoadScene	scene cache lookup / alloc; copy filename; call Bdf_ParseScene
+0x4679f0	Bdf_ParseScene	parse .bdf via Cbin_* into scene struct (SPACE_PAK/SPACE_ROT/IMAGES/LIGHTNING/fog/...)
+0x467840	Bdf_ParseImageEntry	parse one IMAGE/SUN entry into a 0x64-byte record
+
+# --- front-end menu/UI (defs parsed from space.mnu CBIN; see notes/ui.md) ---
+0x43ab80	Ui_FindWindowDef	name-search over windowDefs (stride 0x114) via FUN_004bd3c6
+0x43ae60	Ui_ShowWindow	activate window by name: add its matching buttonDefs/textDefs to screen
+0x43ab00	Ui_BuildWindows	iterate windowDefs calling FUN_0043a990 (realize each) [tentative]
+0x43ce00	Ui_SetButtonFlag	find button by name, OR flag into button+0x204
+0x43cc00	Ui_AddButtonToWindow	bind button to its window; set image count(+0xc8)/frame(+0xcc)/flags(+0x204)
+0x43ca60	Ui_FindButton	find button def by name [inferred from Ui_SetButtonFlag]
+0x43f870	Ui_AddTextToWindow	[inferred from Ui_ShowWindow text loop, stride 0x130]
+0x4397c0	Ui_Update	per-frame UI update/draw (called by TitleMenu_Update) [tentative]
+0x541480	g_UiCallbackRegistry	array of {char name[0x40]; void* func; i32 flag} stride 0x48 (NAME first); resolved by strcmp(name). (earlier 0x5414c0/{func,flag,name} read was off by one entry)
+# menu button handlers (set g_NextMode + g_TitleMenu_ExitFlag to drive the state machine)
+0x445670	cb_MainExit	registry 'cbExit': delete playrtmp.sav; next=g_Mode_Splash(0x5482b0); exit title
+0x445610	cb_MainLogin	registry 'cbLogin' (BtnLogin, single-player): next=g_Mode_Login(0x541170 WndLogin); DAT_00544430=1
+0x445630	cb_MainMultiplayer	registry 'cbMulti' (BtnMulti): next=g_Mode_MPLogin(0x547940 WndMPLogin); DAT_00544430=0
+0x445650	cb_MainCredits	registry 'cbCredits' (BtnCredits): next=g_Mode_Credits(0x53ff08 WndCredits)
+0x4456a0	cb_HoverCursor	hover in/out: adjust g_TitleHoverState, swap Cursor1/Cursor2 [registry name reads cbExit - verify]
+0x5482b0	g_Mode_Splash	splash.pcx/WndSplash -> WndLogin; reached by cbExit
+0x541170	g_Mode_Login	single-player pilot select (WndLogin; Login_SelectSlot+Profile_StartGame); enter 0x443ee0; reached by cbLogin
+0x547940	g_Mode_MPLogin	WndMPLogin multiplayer profile/login select (10 MP slots); enter 0x44acd0
+0x53ff08	g_Mode_Credits	credits screen (WndCredits/credits.bin); enter Credits_Enter 0x440ea0
+0x544430	g_MpModeFlag	1=multiplayer path, 0=single/credits [tentative]
+0x5a3844	g_TitleHoverState	title-screen hover counter (selects Cursor1/Cursor2)
+
+# --- login / profile-select screen (g_Mode_Login mode object @0x5482b0) ---
+0x44e970	Login_Enter	show splash (splash.pcx/WndSplash) w/ 3000-frame timeout -> Login_DismissSplash
+0x44ea10	Login_Update	pump input; countdown; else Ui_Update; exit on flag
+0x44ea60	Login_Render
+0x44e8e0	Login_DismissSplash	dismiss splash, show WndLogin profile list [inferred]
+0x43b100	Ui_RefreshWindow	rebuild/refresh a window by name [tentative]
+# profile system (10 slots)
+0x5a3980	g_ProfileSlots	10 profile slots, stride 0x8c; display name at slot+0x10 ('\0' = empty slot)
+0x5a6660	g_CurrentProfile	current profile working buffer (0xb8 bytes, = .sav blob)
+0x5a6680	g_CurrentSavPath	"player%02d.sav" for current slot
+0x5a6690	g_CurrentCfgPath	"player%02d.cfg" for current slot
+0x5a60b0	g_DefaultCfgPath	non-multiplayer config path [tentative]
+0x5a66a0	g_CurrentProfileSlot	selected slot index (-1 = none)
+0x444690	Profile_Select	load slot into g_CurrentProfile; build sav/cfg paths; set g_CurrentProfileSlot
+0x4447c0	Profile_Delete	clear slot name; delete its .sav and .cfg; clear current
+0x443e40	Profile_SaveAll	iterate 10 slots: save .sav blob, or Profile_Delete if name empty
+0x444760	Login_SelectSlot	slot click (cbLoginSlotN): Profile_Select, create-if-empty, refresh WndLogin
+0x444400	Profile_CreateNew	[tentative] new-profile path when slot empty
+0x482120	PlayerCfg_Save	pick cfg path by g_MpModeFlag, write via PlayerCfg_WriteActions
+0x42e920	PlayerCfg_WriteActions	write player.cfg [ACTIONS] keybindings (fopen "wt+"); maps codes->names
+# generic file I/O layer (VFS: loose file or Tachyon.pff)
+0x4a0dd0	File_Exists	_lopen/_lclose probe
+0x4a0dc0	File_Delete
+0x4a1030	File_ReadAll	open, size via seek-end, read whole into buf; returns size
+0x4a1170	File_WriteAll	open-for-write, write buf[len], close
+0x4bc160	str_sprintf	sprintf into buffer
+0x4bc61a	c_fopen	[tentative]
+0x4bc371	c_fprintf	[tentative]
+0x4bc202	c_fclose	[tentative]
+
+# --- variable-store ("vars") system: section/key/value DB backing player%02d.sav (CBIN) ---
+0x490040	VarStore_Load	load a vars store: defaults from vars.cfg + overlay player .sav path -> handle
+0x490010	VarStore_Close
+0x48f9f0	VarStore_Save	write store back to a path
+0x48f980	VarStore_ParseDefaults	[tentative] parse template (vars.cfg)
+0x48fa20	VarStore_Create	[tentative]
+0x48ff40	VarStore_OverlayFile	[tentative] layer a .sav file onto the store
+0x48fd20	Var_GetInt	(store, section, key, &out)
+0x48fba0	Var_SetInt	(store, section, key, value)
+0x48fc40	Var_SetStr	(store, section, key, strValue)
+0x48f6e0	Var_FindSection	section name -> section object (+0x30 = id)
+0x48fab0	Var_FindKey	(section, key) -> entry (+4 = id)
+0x5635c8	g_PlayerVarStore	current player var-store handle (from g_CurrentSavPath)
+0x444520	Profile_StartGame	on Play: open sav vars, seed INTRO_HAS_PLAYED/CREDITS/CURRENT_JOB, save
+
+# --- campaign / job (mission) system: .JOB files are CBIN; see notes/missions.md ---
+0x46aea0	Job_LoadAll	load <prefix>NN.job (NN 0..99) into array of 0x1b8 job structs
+0x46a7d0	Job_ParseVarDirectives	parse VAR_CHECK/ACCEPT/COMPLETE/RESET/RETURN into campaign-var-set arrays
+0x46a400	Job_ParseBriefingBlock	parse one BLOCK%d briefing step (pak/image/audio/text) [inferred]
+0x469b10	Job_StoreVarValue	store a directive's value (CHECK/COMPLETE) [tentative]
+0x49c000	Cbin_CountEntries_Ctx	count entries of a name (explicit ctx variant)
+0x49b4b0	Cbin_GetField_Ctx	get a key's param into buffer (explicit ctx variant)
+0x49b730	Cbin_GetParamN_Ctx	get Nth param of a key (explicit ctx variant)
+0x49c170	Cbin_CountIndexed_Ctx	count NAME%d entries (e.g. BLOCK%d)
+
+# --- world / flight environment & objects ---
+0x462e60	Object_ParseHardpoints	parse CONNECT group: LAND/SPAWN/DOCK/PICKUP/ENGINE_POINT[] hardpoints
+0x46e740	Ship_GetCurrentModel	CURRENT_SHIP var -> SHIP_TYPE table -> .des model (default claw.des)
+0x47c400	Map_UpdateSectorText	nav-map: highlighted sector name + SECTOR_CONTENTS/QUADRANT text
+0x47bfe0	Nav_SetOverrideSector	region/sector nav; walks region table; sets OVERRIDE_REGION/SECTOR
+0x4755e0	Shipyard_SelectShip	cycle owned PLAYER_SHIPS, set CURRENT_SHIP, read SHIP_%02d_DATA/SLOT_%d
+0x571900	g_GameVarStore	session/mission var store (distinct from g_PlayerVarStore)
+0x571ae4	g_MapUiCtx	galaxy/nav map UI context
+0x48f5e0	Var_GetTable	section name -> table object (for index lookup)
+0x48f6b0	Var_GetKeyByIndex	table + index -> key string
+
+# --- starbase screens & launch flow (front-end mode machine; see notes/flight.md) ---
+0x563640	g_StarbaseScreen	current starbase sub-mode object (copied into g_NextMode to run)
+0x557a30	g_Mode_StarbaseShipyard	hangar/shipyard screen (3D scene); enter 0x485b00
+0x485b00	Shipyard_Enter	build WndStarBaseShipYard + 3D hangar scene (lights/camera)
+0x486050	Shipyard_Update	pump + 3D scene tick + Ui_Update + per-frame hook
+0x54b0b8	g_Mode_StarbaseHub	main starbase hub screen (return target); enter 0x470930
+0x473f50	cb_CFGLaunch	starbase Config "Launch" -> shipyard mode
+0x471120	cb_SPLaunch	space/launch button -> shipyard mode
+0x40be50	Dock_PickRandomScene	pick random DOCK_SCENE/UNDOCK_SCENE (.sen) name into struct
+
+# --- SPED entity system (the in-flight world: ships/objects/stations are "SPED" objects) ---
+0x434fb0	Sped_LoadNameRegistry	load CBIN mapping SPEDNAMES alias -> DES_NAMES (.des model); arrays at DAT_005a5dfc/e00/e04
+0x436320	Sped_FindDef	find SPED def by id in world's two lists (world+0x3c -> {+4 active, +8 template})
+0x4362e0	Sped_FindInList	linear find SPED by id in a list
+0x436680	Sped_Spawn	instantiate a SPED entity via its class vtable (+0x3c create); fire spawn events; set spawned flag +0x2c
+0x436790	Sped_SpawnSimple	Sped_Spawn wrapper (no position override)
+0x4367b0	Sped_SpawnByClass	resolve position (transform vtable +0x30 or default +0x34..0x54) then Sped_Spawn
+0x4368f0	Sped_ProcessSpawnQueue	timed/deferred spawn (delay countdown -> spawn -> advance list; reinforcement waves)
+0x436c00	Sped_DispatchAction	look up SPED by id, run named action on it (logs OBJECT %d ACTION %s)
+0x436b60	Sped_FindById	resolve SPED id -> entity for action dispatch
+0x402170	Gate_SpawnSped	spawn a SPED on gate transit
+0x402130	Sped_LogSpawn	debug: "Spawning alias %s [SPED_OBJ %d]"
+0x436640	Sped_LogAlreadySpawned	debug: SPED already spawned
+0x41dca0	Desc_CreateByType	.des object factory: read DESC_TYPE from CBIN, switch->typed ctor (ship/proj/station/...)
+0x4a2520	Input_PollJoystick	joyGetPosEx wrapper (flight stick)
+
+# --- .des DESC_TYPE entity factory (13 entity classes) ---
+0x41daa0	Desc_ResolveTypeName	DESC_TYPE name -> code via g_DescTypeTable
+0x535130	g_DescTypeTable	{char* name, int code} pairs: SHIP=1 ASTEROID=2 CAPITOL_SHIP=3 HYPER_GATE=4 STARBASE=5 MINE=6 CARGO=7 BEACON=8 SPEED_RING=9 COURSE=0xb MISC_OBJECT=0xc POWERUP=0xd
+0x4656e0	Ent_CreateShip	DESC_TYPE SHIP (1): register SHIP class (entity size 0x6c8, ctor Sped_ConstructEntity, update Ship_Update)
+0x463ef0	Ship_LoadDes	parse SHIP .des CBIN into 0x6c8 ship struct (rotation/speed/shields/hull/weapons/mounts)
+0x405a20	Ship_Update	per-frame ship physics/update (SHIP class update method)
+0x408170	Ent_CreateAsteroid	DESC_TYPE ASTEROID (2)
+0x413700	Ent_CreateCapitalShip	DESC_TYPE CAPITOL_SHIP (3)
+0x426dd0	Ent_CreateHyperGate	DESC_TYPE HYPER_GATE (4)
+0x40c1f0	Ent_CreateStarbase	DESC_TYPE STARBASE (5)
+0x4341e0	Ent_CreateMine	DESC_TYPE MINE (6)
+0x414260	Ent_CreateCargo	DESC_TYPE CARGO (7)
+0x40ea20	Ent_CreateBeacon	DESC_TYPE BEACON (8)
+0x458a60	Ent_CreateSpeedRing	DESC_TYPE SPEED_RING (9)
+0x4939a0	Ent_CreateType0a	DESC_TYPE 0xa (unnamed)
+0x41b570	Ent_CreateCourse	DESC_TYPE COURSE (0xb)
+0x414e20	Ent_CreateMiscObject	DESC_TYPE MISC_OBJECT (0xc)
+0x456fc0	Ent_CreatePowerup	DESC_TYPE POWERUP (0xd)
+
+# --- sector (.SPX / SPD) data ---
+0x401680	Sector_LogMissingSpedData	debug: CANNOT FIND SECTOR DATA FOR SPED OBJECT
+0x401730	Sector_GetSpedRecord	index a SPED's instance data (def+0x8c count, def+0x90 records stride 0x14)
+0x403270	Entity_TurnToward	orientation controller: drives angular velocity +0xac/b0/b4 so orientation (3 Euler angles) +0x4c/50/54 converges to desired orientation (param2, e.g. +0xdc); max turn rate = def+0x84+{0xc,0x1c,0x2c}; angular-accel cap +-0x400/frame; param4&1 = quarter-rate. NOT linear velocity
+0x434870	Sped_GetDefList	return world's SPED list (world+0x3c -> +4 active / +8 template) by flag
+0x434ac0	Sped_ConstructEntity	build live entity from a SPED def: pos+0x34 (def+8/c/10), ORIENTATION euler angles +0x4c (def+0x14/18/1c<<16, NOT velocity), vtable/update+0x68/+0x6c/+0x80, def+0x8c, world+0xd8
+# --- SPX sector load path (resolved 2026-10-29) ---
+0x4355f0	Spx_ReadFile	SPX file reader: alloc 0x1a4, read first_offset(@0,4B), read header block, get size (Fs_GetSize), grow buf, read body after +0x1a4; store reloc base at buf+0x1a0. Uses Fs_ReadRegion/Fs_GetSize (random-access path, NOT whole-file Cbin reader)
+0x4356e0	Spx_LoadSector	sector register/parse(name,ctx): dedupe via Spx_FindLoaded; copy name->galaxy rec+0xc (Main SPX); call Spx_ReadFile; relocate section offsets by +buf+0x1a0; copy BDF name(buf+0x78)->rec+0x1c; construct + recurse sub-sectors via 0x435410
+0x435340	Spx_FindLoaded	look up an already-loaded sector by spx name in the galaxy table (dedupe)
+0x435d80	Spx_LoadSectorTop	LoadSector(name): Spx_LoadSector(name,0) + finalize 0x4355a0; records count into g_SectorCount2 (0x58af70)
+0x4377d0	Sector_Transition	SP sector transition(ctx,spxName): teardown prev (0x435c50), reset galaxy table (0x437520), Spx_LoadSectorTop(spxName), spawn player from PLAYER.SCR (0x41f590)
+0x44fb00	Sector_StartMP	MP/mission sector start: Spx_LoadSectorTop(g_MapSpxName 0x590208) then mode hook
+0x45e090	Sector_LaunchMission	mission/sector launch(desc): Sector_Transition(desc+0x20, desc+0x10=spxName) then create player ship via Desc_CreateByType
+0x45f550	Gate_JumpToSector	in-flight hyper-gate jump: reads gate entity +0xf0->+0x38 (dest spx name) and transitions sector
+0x426400	Gate_SpawnAndPreload	spawn gate entity; preloads linked sector .spx via Spx_LoadSector(def+0x38)
+0x4a18e0	Fs_ReadRegion	mount-aware read-region(name,dst,fileOff,len): disk 0x4a10e0 (_llseek/_lread) or PFF mount 0x4a4230
+0x4a1550	Fs_GetSize	mount-aware file size(name): disk 0x4a0fe0 or PFF mount 0x4a4290
+0x4a1240	Fs_Exists	mount-aware file-exists(name): File_Exists + PFF mounts (used to count %02d.job/.nws/.wng/.mpc)
+0x4a1780	Cbin_ReadWhole	mount-aware whole-file read (Cbin-only); File_ReadAll + PFF mount 0x4a41c0; tag "file:RawLoaderEx"
+0x443090	MP_BuildMapList	scan bw%02d.mpc/dm%02d.mpc; read GAMETYPE/MAIN_SPX/IMAGE_NAME/TITLE/players into 0xb8 records (g_MPGameList 0x562c04)
+0x41c8f0	Sector_DebugOverlay	REGION_DEBUG overlay: render galaxy table (count 0x5a5544, base 0x5a5548, stride 0x44; MainSPX@+0xc, SubSPX@+0x1c)
+# globals: g_SectorCount=0x5a5544 g_SectorTable=0x5a5548 (stride 0x44; MainSPX@+0xc SubSPX@+0x1c) g_CurSectorAlloc=0x5a5dc8 g_MapSpxName=0x590208
+# --- in-flight entity (DCB) system & frame orchestration (resolved 2026-10-29) ---
+# Entities are "DCBs" (Data Control Blocks), pooled by class. Each DCB has a method table:
+#   +0x68 = per-frame think/physics   +0x70 = render   +0x80 = action/fire-control   +0x84 = aux
+# Active client DCBs are chained on g_DcbActiveList (0x5b3280, next@+8). Pools are "Server_*".
+0x418220	Flight_UpdateWorld	Flight_Update part 2: orchestrates client frame: input-binding dispatch, net cycle, camera, HUD, render-prep; applies server DCB snapshots; evaluates mission-end. Does NOT contain the entity think loop directly (see method table +0x68)
+0x42ff90	Flight_InputDispatch	if not paused (0x5affdc==0 && g_NextMode==0) -> Input_DispatchBindings
+0x42fbc0	Input_DispatchBindings	per-frame input binding tree walk + camera-axis input (0x42f730); gated by DAT_0058f1c0 / DAT_005b2cb8 modes
+0x42fca0	Input_WalkBindingTree	walk input binding tree (param=root 0x562bb0); match key/button state (0x49ec30) -> fire bound callback (*(node+0x10))(node+0x14,...)
+0x4104f0	Camera_Update	in-flight camera update: camera DCB 0x5b95e0; call cam method +0x1c (cam[7]); compute view delta + build view matrix (0x52db6a); DAT_005b9600.. = cam pos
+0x4b8f30	Net_CyclePump	per-frame network cycle: frame counter 0x6af5bc++, Net_ReceiveDispatch, hook 0x4b8a60, periodic 0x4b8ef0
+0x4b8d70	Net_ReceiveDispatch	receive loop: pull packets (0x4b9110) and dispatch via 0x4b8c90 handler table
+0x417ce0	Dcb_ApplySnapshot	apply a server->client DCB snapshot packet: param[0]=record count; reset KEPT/NEW counters; iterate Dcb_ApplyRecord
+0x417c00	Dcb_ApplyRecord	apply one DCB record from snapshot: if DCB id exists -> update existing (KEPT++, 0x5b9060), else spawn new (NEW++, 0x5b909c)
+0x415e10	Dcb_FindById	look up active client DCB by id (scans g_DcbActiveList 0x5b3280)
+0x4584d0	Dcb_RenderPass	in-flight render pass: for 3 depth buckets build visible list (Dcb_BuildVisibleList) then call each DCB render method (*(dcb+0x70))(dcb)
+0x458460	Dcb_BuildVisibleList	build/sort visible DCB list into scratch 0x6240e8 (from 0x5b31c0 + g_DcbActiveList 0x5b3280) for a depth bucket
+0x403480	Dcb_SetRangeFlags	set dcb+0xc0 bits 0x40/0x80 by comparing range fields (called by +0x68 think methods)
+0x40e600	Ent_SpawnAiDcb	spawn AI DCB from Server AI pool (0x58af9c): +0x68=0x40a570, +0x80=no-op
+0x412a70	Dcb_SpawnProjectile	spawn projectile/bolt DCB (type 0xd) from client pool 0x5b3288; set methods +0x68/+0x70/+0x80/+0x84; link into g_DcbActiveList
+0x41b7d0	DcbPool_Alloc	pop a DCB from a pool free-list; assign id; dec free count
+0x41b730	DcbPool_Init	init a DCB pool (count,elemsize,name); server pools named Server_*_DCBS
+0x45ee80	Dcb_GC	garbage-collect deferred-free DCBs across AI/DRONE/BASE/COMMON pools
+0x462a10	Server_InitDcbPools	alloc server DCB pools: DRONE(0x58afc4) AI(0x58af9c) BASE/station(0x58afec) ROID/asteroid(0x58b014) COMMON(0x58b03c) player(0x58af74)
+0x462af0	Flight_SceneSetup	Flight_Enter scene setup: init server pools, load vars.cfg, set up world; called by Flight_Enter
+0x41c560	Dcb_DebugOverlay	DCB_DEBUG overlay: NEW/KEPT DCBS, NUM HOSTILES, free counts per pool (Server/Client DRONE/AI/BASE/ROID/COMMON)
+# globals: g_DcbActiveList=0x5b3280 g_DcbActiveList2=0x5b31c0 g_DcbNewCount=0x5b909c g_DcbKeptCount=0x5b9060 g_CameraDcb=0x5b95e0 g_InputBindRoot=0x562bb0
+# DCB pools: DRONE=0x58afc4 AI=0x58af9c BASE=0x58afec ROID=0x58b014 COMMON=0x58b03c player=0x58af74 client=0x5b3288/0x5b32b0
+# --- DCB think/physics internals (resolved 2026-10-29) ---
+# DCB kinematics fields: pos=+0x34/38/3c  ORIENTATION(euler)=+0x4c/50/54  worldPosDelta=+0xa0/a4/a8  angVel=+0xac/b0/b4
+#   desiredOrientation=+0xdc/e0/e4  ctrlFlags=+0x338  turnMag=+0x312  def(class)=+0x8c. Rotation matrix built from +0x4c (0x52db6a). Linear motion = throttle*forward -> +0xa0 (no separate linear-velocity vector)
+0x403820	Dcb_Think_Ship	canonical ship physics think (DCB +0x68): Entity_TurnToward(desiredOrient+0xdc), staggered turn control (0x4241c0, afterburner gate +0x338&1, drain energy +0x124), Dcb_WorldDelta, then integrate orientation+=angVel(+0xac) and pos+=worldPosDelta(+0xa0). Tail entry LAB_004039c0 = integrate-only
+# (0x403270 Entity_TurnToward defined above - orientation controller, not velocity)
+0x4035d0	Dcb_Think_AiShip	AI/drone ship think (DCB +0x68, installed by 0x4036f0): Entity_ApproachVelocity + staggered turn FX + Dcb_WorldDelta + Euler integrate
+0x4111b0	Dcb_Think_MultiPart	multi-part/parented entity think (DCB +0x68, installed by 0x412220): optional hook +0x134, steer toward +0xec, integrate, staggered engine-audio/collision, Dcb_UpdateChildTransforms
+0x4112d0	Dcb_Think_Ordnance	long-life ordnance think (DCB +0x68, installed by 0x411f80): range flags + proximity detonate (0x404c00)
+0x40a250	Dcb_Think_Missile	short-life guided-missile think (DCB +0x68, installed by 0x40a460): advance + proximity detonate
+0x403590	Dcb_WorldDelta	compute world-space position delta +0xa0 from forward speed rotated by orientation +0x4c (staggered gyro via +0xd4) -> 0x424030
+0x424030	Entity_ThrustToWorld	rotate forward speed by the orientation matrix (built from angles +0x4c), accumulate into world posDelta +0xa0/a4/a8, scale by def+0x3c; optional out = speed magnitude. This is the linear-motion step
+0x4241c0	Entity_ApplyTurnControl	turn integrator: advance orientation +0x4c by angular rate (turn magnitude +0x312), honoring handling params def+0x84
+0x403230	Dcb_UpdateEngineAudio	3D positional engine sound: distance to player DCB (0x58b064) -> play at attenuated volume
+0x410f60	Dcb_UpdateChildTransforms	update attached sub-object transforms (child chain via +0xe0); recompute each child world posDelta +0xa0 = newPos-oldPos
+0x404c00	Dcb_Detonate	ordnance proximity detonation / effect spawn
+0x412220	Dcb_InitMultiPart	init multi-part entity DCB: install think 0x4111b0, action +0x80=0x411b70
+0x4036f0	Dcb_InitAiShip	init AI ship DCB: install think 0x4035d0 (when +0xf7!=1)
+0x411f80	Dcb_InitOrdnance	init long-life ordnance DCB (type 0xf, life 50000): think 0x4112d0, action +0x80=0x411af0
+0x40a460	Dcb_InitMissile	init short-life missile DCB (type 0xf, life 5000): think 0x40a250, action +0x80=0x40a1c0
+# --- player input -> ship physics path (resolved 2026-10-29) ---
+# Each frame the player-control DCB's +0x68 think runs: PlayerDcb_Think -> PlayerShip_UpdateKinematics
+#  -> PlayerControl_ProcessInput (stick/throttle -> rates) -> Entity_ApplyTurnControl + Entity_RotateVelToWorld.
+# Raw axes read separately in the input-dispatch step by Flight_ReadControlAxes.
+0x42f730	Flight_ReadControlAxes	poll stick (Input_SampleAxes 0x4a29c0), apply deadzone (+-0x80) to raw axes 0x5640b0/b4/bc, write processed pitch/yaw/roll -> g_AxisPYR 0x5aeea0/a8/b0 and throttle 0x5aeeb8 (unless overridden)
+0x4a29c0	Input_SampleAxes	aggregate joystick (Input_PollJoystick) + other control sources into raw axis globals
+0x4242e0	PlayerControl_ProcessInput	stick/throttle -> control rates: squared (fine-near-center) response, scale by ship response (g_PlayerShip+0x88/98/a8), per-axis max-rate clamp (+0x84/94/a4), frame-rate-compensated inertia smoothing (g_SmoothRatePYR 0x5b1e98/9c/a0); throttle setpoint g_Throttle 0x5b1ee0; sets ship orientation +0x4c directly via rotate (0x48e660) and derives angVel +0xac as the delta (player bypasses Entity_TurnToward)
+0x424b50	PlayerShip_UpdateKinematics	per-frame player ship update: save prev pos(+0xe0)/vel(+0xec), PlayerControl_ProcessInput, afterburner/throttle logic (g_Throttle, energy ship+0x118), Entity_ApplyTurnControl (rotation), Entity_RotateVelToWorld (throttle+facing -> world motion)
+0x4540d0	PlayerDcb_Think	player-control DCB +0x68 think: if +0x10c==0 -> PlayerShip_UpdateKinematics; then 0x454040 (camera/follow)
+0x4541b0	PlayerDcb_InstallThink	install g_PlayerCtrlDcb+0x68 = PlayerDcb_Think
+0x454d00	PlayerDcb_Init	alloc player-control/viewpoint DCB (g_PlayerCtrlDcb 0x5b3300 from client pool 0x5b3288); seed pos +0x34 and vel +0x4c from spawn desc (param+0x18 pos, param+0x24 vel); link to player ship g_PlayerShip (+0x8c); set render +0x70
+0x424170	FlightModel_SolveThrottle	compute throttle/forward-speed setpoint from handling block (ship+0x84) and target
+0x48e660	Vec_RotateByOrientation	rotate a 3-vector by an entity orientation basis (used to map control rates / local vel to world)
+# globals: g_PlayerShip=0x5b1f0c g_PlayerCtrlDcb=0x5b3300 g_Throttle=0x5b1ee0 g_AfterburnerOn=0x5b1ee8 g_SmoothRatePYR=0x5b1e98/9c/a0 g_AxisPYR=0x5aeea0/a8/b0 g_AxisThrottle=0x5aeeb8 g_RawAxes=0x5640b0/b4/bc
+# --- SPX sector parse: decls + placement/spawn (resolved 2026-10-29) ---
+# Spx_LoadSector relocates section ptrs then: Spx_SpawnDecls (name decls) + Spx_ApplyPlacements (x/y/z).
+0x4351a0	Spx_SpawnDecls	iterate SPED decl section (ptr buf+0x10, count buf+0xc, stride buf+0x08=0x24): each = {char alias[0x20]; u32 runtimeEntityPtr}; Spx_ResolveDesName(alias)->.des, Desc_CreateByType stores class/entity back into decl+0x20
+0x435120	Spx_ResolveDesName	map a SPED object alias to its .des file via the desnames.cfg name registry (Sped_LoadNameRegistry); falls back to DEFAULT
+0x4351e0	Spx_ApplyPlacements	iterate placement/def section (ptr buf+0x18, count buf+0x14, VARIABLE stride = u16 at rec+2, SPED index = u32 at rec+4): for index<declCount call Spx_ConstructPlacement(defRec, decl[index].entity) -> spawns entity at def pos
+0x434f80	Spx_ConstructPlacement	dispatch class method +0x2c (= Sped_ConstructEntity) with the placement def record -> build live entity at def pos+0x08/0c/10 and orientation+0x14/18/1c (euler angles, NOT velocity)
+0x435690	Spx_LinkSection	process sector link/nav section (buf+0xe8)
+0x435550	Spx_InitSectionC	post-reloc section init (buf)
+# SPX placement/SPED-def record (variable size): +0x00 u16 KIND tag (editor metadata, NOT read by
+#  load path: 0=null 1=gate 2=roid/debris 3=ship/station 4=MP-pickup; correlates with size family),
+#  +0x02 u16 recSize(stride),
+#  +0x04 u32 SPED-decl index, +0x08/0c/10 s32 pos x/y/z, +0x14/18/1c s32 ORIENTATION euler angles(<<16; NOT velocity),
+#  +0x24 u32 flags, +0x28 runtime entity ptr(0 on disk), +0x2c runtime ctor flag(0), +0x38 u8 team/side,
+#  +0x5c s32 object id(-1=none), tail = per-type params. Index -> decl alias -> desnames.cfg -> .des class.
+# --- .des ship handling block + SPX header sections + orientation unit (resolved 2026-10-29) ---
+0x463a90	ShipDes_ParseRotation	parse .des 'rotation' group into class+0x84 (0x9c bytes): per-axis yaw/pitch/roll {ACCEL, MAX_RATE, DAMPEN}; scaled MAX_YAW/PITCH/ROLL_RATE -> class+0x90/0xa0/0xb0 (read by Entity_TurnToward as param_3+0xc/1c/2c); accel*0052e6d0, rate*0052e544
+0x435410	Spx_SelectSubSector	conditional sub-sector stage loader: for each stage record (buf+0x2c count / +0x30 offset, stride 0x2c) eval a VarStore condition (sect/key@+0x10/14 vs value@+0x18, op@+0x1c, optional 2nd var @+0x20/24/28) and Spx_LoadSector(record=name@+0x0) the first match -> sectors morph by mission vars (bora05A/B)
+0x48dac0	Spx_RelocParamSection	relocate nested param section (buf+0x20 count / +0x24 offset, stride 0x14): fix sub-array ptrs rec+0xc/+0x10 by +buf+0x1a0; sub-entries stride 0x28
+0x52cbe4	g_SinCosTable	trig table used by the Euler->matrix builder: index = angle>>16 (9 bits, 0..511), cos = +0x200 bytes (+128 entries); FULL CIRCLE = 512 units (0.703125 deg/unit); low 16 bits interpolate
+# SPX header directory (buf, pre-reloc file offsets; relocated at load by +*(buf+0x1a0)):
+#  +0x00 first_offset  +0x04 'SPD\x01'  +0x08/0c/10 SPED decl {recSz=0x24,count,off}  +0x14/18 placement {count,off}(var stride)
+#  +0x20/24 nested param section (Spx_RelocParamSection)  +0x2c/30 sub-sector stages {count,off,stride 0x2c}  +0x34 QUAD name
+#  +0x5c/68/74 further relocated section ptrs (partial)  +0x78 BDF name  +0x8c/90 SPED instance data (stride 0x14, sub stride 0x20)
+#  +0xe8/ec link/xref section (var stride)  +0x1a0 runtime reloc base (= buf+0x1a4-first_offset)
+# Placement-record +0x38 is PER-KIND: ships = team/side byte; gates = destination sector .spx name string (Gate ctor Spx_LoadSector(rec+0x38))
+# --- var[0,4] = the sub-sector switch variable (resolved 2026-10-29) ---
+# Spx_SelectSubSector's var[section,key] indexes g_PlayerVarStore. section 0 = player_main_vars
+# (per vars.cfg 'var_categories'); key 4 in player_main_vars = CURRENT_JOB (enum 'jobs'; e.g.
+# BC06=2008). So sub-sectors switch on the player's CURRENT CAMPAIGN JOB. Lifecycle:
+0x4696a0	Job_Complete	on job completion: JOB_COMPLETED := CURRENT_JOB; CURRENT_JOB := "NO_JOB"; PLAYER_STATS.JOBS_COMPLETED++ (player var store)
+0x469450	Job_FindActive	find the active job descriptor by reading PLAYER_MAIN_VARS.CURRENT_JOB/JOB_COMPLETED
+0x48fce0	Var_GetByIndex	indexed VarStore read: store section[sectionIdx] then value at key[keyIdx] (section+keyIdx*4+8); used by Spx_SelectSubSector
+# CURRENT_JOB writers: Profile_StartGame (0x444520 -> "LOAD_INTRO" on new game); job VAR_ACCEPT
+# directives (data-driven, Job_ParseVarDirectives 0x46a7d0 + job appliers 0x46b5xx) set it to the
+# accepted job name; Job_Complete (0x4696a0) clears it to NO_JOB.
+# --- QUAD = galaxy quadrant (resolved 2026-10-29) ---
+# The SPX +0x34 "QUAD_NN" string is the sector's QUADRANT name. Galaxy hierarchy: Region (7: earth/
+# galspan/bora/frontier/neutral/mystery/disputed) -> Quadrant (the navigable sector, one per .spx) ->
+# conditional sub-sector stages. Nav uses (DESTINATION_REGION, DESTINATION_SECTOR) vars; ingame.cfg
+# seeds BASE_QUADRANT+REGION. Entering a quadrant fires ENTER/LEAVE/SET_QUADRANT entity events and may
+# play a NEWQUADRANT scene; current quadrant id = g_CurrentQuadrant (0x5b31f0, shown on debug overlay).
+0x457ba0	Sector_GetQuadrantName	resolve a sector's QUAD name (sector+0x3c->+4->+0x34) via the quadrant-name registry (0x5a5dc8)
+0x435ca0	Ingame_LoadBaseLocation	read BASE_QUADRANT (0x5a5520) + REGION (0x5a5dd0) from ingame.cfg [INGAME] -> galaxy start location
+0x437610	Nav_SetDestination	set DESTINATION_REGION/DESTINATION_SECTOR vars + dest-quadrant display name (Sector_GetQuadrantName), log "DEST QUADRANT SET TO %s"
+0x416420	Quadrant_OnEnter	on quadrant entry: set g_CurrentQuadrant (0x5b31f0) from galaxy-rec+0x12; play NEWQUADRANT scene
+0x4577d0	Ent_SetQuadrant	entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64)
+0x457a10	Ent_EnterQuadrant	entity ENTER_QUADRANT event handler
+0x457940	Ent_LeaveQuadrant	entity LEAVE_QUADRANT event handler

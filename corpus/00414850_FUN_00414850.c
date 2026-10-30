@@ -1,0 +1,42 @@
+
+void FUN_00414850(char *param_1)
+
+{
+  char cVar1;
+  uint uVar2;
+  uint uVar3;
+  char *pcVar4;
+  char *pcVar5;
+  
+  FUN_0048e380(&DAT_005b90c0,0x1a8);
+  FUN_0048e380(&DAT_005b9268,4);
+  FUN_00414720();
+  DAT_005b90c0 = FUN_00431de0(s_lcd_10_pcx_00533674,0x20000);
+  uVar2 = 0xffffffff;
+  pcVar4 = param_1;
+  do {
+    pcVar5 = pcVar4;
+    if (uVar2 == 0) break;
+    uVar2 = uVar2 - 1;
+    pcVar5 = pcVar4 + 1;
+    cVar1 = *pcVar4;
+    pcVar4 = pcVar5;
+  } while (cVar1 != '\0');
+  uVar2 = ~uVar2;
+  pcVar4 = pcVar5 + -uVar2;
+  pcVar5 = (char *)&DAT_005b91d0;
+  for (uVar3 = uVar2 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
+    *(undefined4 *)pcVar5 = *(undefined4 *)pcVar4;
+    pcVar4 = pcVar4 + 4;
+    pcVar5 = pcVar5 + 4;
+  }
+  for (uVar2 = uVar2 & 3; uVar2 != 0; uVar2 = uVar2 - 1) {
+    *pcVar5 = *pcVar4;
+    pcVar4 = pcVar4 + 1;
+    pcVar5 = pcVar5 + 1;
+  }
+  DAT_005b9210 = FUN_00414830(param_1);
+  DAT_005b9214 = FUN_0041fd80(s_borders_box_0053365c,0xcccc);
+  return;
+}
+

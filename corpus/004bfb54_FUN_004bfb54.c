@@ -1,0 +1,17 @@
+
+int FUN_004bfb54(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = FUN_004bfb82(param_1);
+  if (iVar1 != 0) {
+    return -1;
+  }
+  if ((*(byte *)(param_1 + 0xd) & 0x40) != 0) {
+    iVar1 = FUN_004c6327(*(undefined4 *)(param_1 + 0x10));
+    return -(uint)(iVar1 != 0);
+  }
+  return 0;
+}
+

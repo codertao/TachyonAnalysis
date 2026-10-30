@@ -1,0 +1,14 @@
+
+void FUN_00474580(void)
+
+{
+  FUN_0043ce50(&DAT_00583420,s_BtnCFGSell_00547774,8);
+  FUN_0043c150(&DAT_00583420,s_BtnCFGSell_00547774,0x80000);
+  FUN_0043ce50(&DAT_00583420,s_BtnCFGPurchase_00547764,8);
+  Ui_SetButtonFlag(&DAT_00583420,s_BtnCFGPurchase_00547764,0x80000);
+  if (DAT_005635fc != 0) {
+    FUN_0043ce50(&DAT_00583420,s_BtnCFGSell_00547774,1);
+  }
+  return;
+}
+
