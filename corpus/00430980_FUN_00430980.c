@@ -15,7 +15,7 @@ void FUN_00430980(undefined4 param_1,undefined4 param_2)
     iVar2 = File_Exists(uVar3);
     if (iVar2 == 0) {
       uVar3 = FUN_00430910();
-      iVar2 = FUN_004a0d60(uVar3);
+      iVar2 = lcreat_file_and_do_error_stuff(uVar3);
       if (iVar2 == -1) {
         return;
       }
@@ -28,14 +28,14 @@ void FUN_00430980(undefined4 param_1,undefined4 param_2)
         cVar1 = *pcVar5;
         pcVar5 = pcVar5 + 1;
       } while (cVar1 != '\0');
-      FUN_004a0ef0(local_100,~uVar4 - 1);
+      save_to_open_file(local_100,~uVar4 - 1);
     }
     else {
       uVar3 = FUN_00430910();
       iVar2 = FUN_004a0e60(uVar3);
     }
     if (iVar2 != -1) {
-      FUN_004a0ed0(0,2);
+      move_to_end_of_file_and_get_len(0,2);
       str_sprintf(local_100,s_ENTRY__d__s_c_c_0053eb70,param_1,param_2,0xd,10);
       uVar4 = 0xffffffff;
       pcVar5 = local_100;
@@ -45,11 +45,11 @@ void FUN_00430980(undefined4 param_1,undefined4 param_2)
         cVar1 = *pcVar5;
         pcVar5 = pcVar5 + 1;
       } while (cVar1 != '\0');
-      iVar2 = FUN_004a0ef0(local_100,~uVar4 - 1);
+      iVar2 = save_to_open_file(local_100,~uVar4 - 1);
       if (iVar2 == -1) {
         GetLastError();
       }
-      FUN_004a0ec0();
+      close_glbl_open_file();
     }
   }
   return;

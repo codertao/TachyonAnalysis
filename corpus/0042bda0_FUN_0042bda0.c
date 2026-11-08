@@ -14,7 +14,7 @@ void FUN_0042bda0(int param_1)
     uVar2 = FUN_00455e00(&DAT_005b20e0,iVar3,DAT_005b20fc,uVar1);
     FUN_0042bd40(param_1 + 0xa0c,DAT_005b20f8,uVar2);
   }
-  iVar3 = FUN_00455e40(&DAT_005b20e0,iVar3,DAT_005b20ec,uVar1);
+  iVar3 = Shield_GetMax(&DAT_005b20e0,iVar3,DAT_005b20ec,uVar1);
   FUN_0042bd40(param_1 + 0xa44,DAT_005b20f0 + DAT_005b20e8,iVar3 << 1);
   return;
 }

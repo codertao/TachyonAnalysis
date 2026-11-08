@@ -12,14 +12,14 @@ void FUN_0046c0d0(void)
   DAT_0058974c = (undefined4 *)FUN_0046be60(0);
   if (DAT_0058974c == (undefined4 *)0x0) {
     if (DAT_00589750 != (undefined4 *)0x0) {
-      FUN_0049c530(DAT_00589750);
+      OurFreeMem(DAT_00589750);
       DAT_00589750 = (undefined4 *)0x0;
       return;
     }
   }
   else {
     if (DAT_00589750 != (undefined4 *)0x0) {
-      FUN_0049c530(DAT_00589750);
+      OurFreeMem(DAT_00589750);
       DAT_00589750 = (undefined4 *)0x0;
     }
     FUN_0048e3d0(&DAT_00589750,(int)DAT_0058974c * 0x5c,4,s_STARBASE_AVAIL_ITEM_DEF_0054ae7c,0xa100)

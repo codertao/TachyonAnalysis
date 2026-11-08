@@ -48,16 +48,16 @@ void FUN_0042a760(int param_1,int param_2,int param_3,int param_4,undefined4 par
     local_34 = DAT_005b95ec;
     local_30 = DAT_005b95f0;
     if (DAT_005b0744 != 0) {
-      uVar1 = FUN_0048e350();
+      uVar1 = global_bad_shift_rng();
       local_38 = local_38 + ((int)(((uVar1 & 0x7fffff) - 0x400000) * DAT_005b0750) >> 8);
-      uVar1 = FUN_0048e350();
+      uVar1 = global_bad_shift_rng();
       local_34 = local_34 + ((int)(((uVar1 & 0x7fffff) - 0x400000) * DAT_005b0750) >> 8);
     }
     FUN_0042a6b0(param_2,&local_50);
     FUN_004b1be0(local_68,&local_38);
-    local_20 = local_50 - *(int *)(DAT_005b3300 + 0x34);
-    local_1c = local_4c - *(int *)(DAT_005b3300 + 0x38);
-    local_18 = local_48 - *(int *)(DAT_005b3300 + 0x3c);
+    local_20 = local_50 - *(int *)(GLBL_SOME_CONTEXT + 0x34);
+    local_1c = local_4c - *(int *)(GLBL_SOME_CONTEXT + 0x38);
+    local_18 = local_48 - *(int *)(GLBL_SOME_CONTEXT + 0x3c);
     FUN_004b2410(&local_20,&local_20);
     uVar1 = local_18;
     local_18 = (local_18 ^ (int)local_18 >> 0x1f) - ((int)local_18 >> 0x1f);
@@ -76,8 +76,8 @@ void FUN_0042a760(int param_1,int param_2,int param_3,int param_4,undefined4 par
     local_28 = local_8 - local_10;
     local_24 = 0;
     FUN_004e054e(&local_2c);
-    FUN_0052db6a(local_68,0,0,0x800000);
-    FUN_0052dbcd(local_68);
+    call_math_todo_with_rotation(local_68,0,0,0x800000);
+    call_copy_mathresult_to_global(local_68);
     FUN_0052dc76(&local_2c,local_44);
     local_c = (((uint)((longlong)local_2c * (longlong)(int)uVar2) >> 0x10 |
                (int)((ulonglong)((longlong)local_2c * (longlong)(int)uVar2) >> 0x20) << 0x10) +

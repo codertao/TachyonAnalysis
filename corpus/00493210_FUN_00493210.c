@@ -13,7 +13,7 @@ void FUN_00493210(uint *param_1,uint *param_2,uint *param_3)
   uVar6 = 0;
   uVar7 = 0;
   uVar5 = 0;
-  if (DAT_0055a560 != 0x1c) {
+  if (g_WeaponDefs != 0x1c) {
     piVar4 = &DAT_0055a574;
     do {
       iVar2 = *piVar4;

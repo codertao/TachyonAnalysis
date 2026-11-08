@@ -16,8 +16,8 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
     FUN_00404fd0(param_1,param_3);
     return 0;
   case 2:
-    FUN_00402430(*(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x20),param_3,0,
-                 *(undefined4 *)(param_1 + 100));
+    TrigAct_ObjDockWith(*(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x20),param_3,0,
+                        *(undefined4 *)(param_1 + 100));
     return 0;
   case 3:
     FUN_00403f70(param_1);
@@ -32,7 +32,7 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
   case 6:
     return *(uint *)(*(int *)(param_1 + 0x8c) + 0x558);
   case 7:
-    FUN_00405050(param_1,param_1 + 0xdc,param_3);
+    Ent_SetIdentified(param_1,param_1 + 0xdc,param_3);
     return 0;
   case 8:
     FUN_004050e0(param_1,param_3);
@@ -50,7 +50,7 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
     FUN_00405000(param_1,param_3);
     return 0;
   case 0xf:
-    FUN_00405990(param_1,param_1 + 0xdc,param_3);
+    Nav_ChangeRoute(param_1,param_1 + 0xdc,param_3);
     return 0;
   case 0x11:
     if ((param_3 & 4) != 0) {
@@ -63,11 +63,11 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
     return 0;
   case 0x13:
     *(byte *)(param_1 + 0xc0) = *(byte *)(param_1 + 0xc0) | 0x20;
-    FUN_0045eaf0(*(undefined4 *)(param_1 + 0x78),0x13,*(undefined4 *)(param_1 + 100));
+    SrvSend_ThreatList(*(undefined4 *)(param_1 + 0x78),0x13,*(undefined4 *)(param_1 + 100));
     return 0;
   case 0x14:
     *(byte *)(param_1 + 0xc0) = *(byte *)(param_1 + 0xc0) & 0xdf;
-    FUN_0045eaf0(*(undefined4 *)(param_1 + 0x78),0x14,*(undefined4 *)(param_1 + 100));
+    SrvSend_ThreatList(*(undefined4 *)(param_1 + 0x78),0x14,*(undefined4 *)(param_1 + 100));
     break;
   case 0x18:
     FUN_00403f20(param_1);

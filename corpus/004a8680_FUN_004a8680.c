@@ -2,7 +2,7 @@
 void FUN_004a8680(uint param_1)
 
 {
-  if (DAT_00563e98 != 0) {
+  if (GLBL_audio_running != 0) {
     DAT_005f9d40 = param_1;
     if (0xff < param_1) {
       DAT_005f9d40 = 0xff;

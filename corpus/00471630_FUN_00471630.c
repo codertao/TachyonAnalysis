@@ -4,16 +4,16 @@ void FUN_00471630(int param_1)
 {
   DAT_00577f04 = param_1;
   if (param_1 == 0) {
-    FUN_0043e610();
-    FUN_0043e610(&DAT_00583420,s_TxtCFGShield_005475d4,0x10000);
-    FUN_0043e610(&DAT_00583420,s_TxtCFGInternal_005475c4,0x10000);
-    FUN_0043e610(&DAT_00583420,s_TxtCFGROF_005475b8,0x10000);
+    sbi_label_flags_11c();
+    sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGShield_005475d4,0x10000);
+    sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGInternal_005475c4,0x10000);
+    sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGROF_005475b8,0x10000);
     return;
   }
-  FUN_0043e670(&DAT_00583420,s_TxtCFGHull_005475e4,0x10000);
-  FUN_0043e670(&DAT_00583420,s_TxtCFGShield_005475d4,0x10000);
-  FUN_0043e670(&DAT_00583420,s_TxtCFGInternal_005475c4,0x10000);
-  FUN_0043e670(&DAT_00583420,s_TxtCFGROF_005475b8,0x10000);
+  clr_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGHull_005475e4,0x10000);
+  clr_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGShield_005475d4,0x10000);
+  clr_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGInternal_005475c4,0x10000);
+  clr_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGROF_005475b8,0x10000);
   return;
 }
 

@@ -46,7 +46,7 @@ void FUN_0044b730(void)
     str_sprintf(&DAT_00592950,DAT_00592e58 + 0x18);
     DAT_00592960 = FUN_0044b9d0(DAT_00592e58 + 0x18);
     DAT_00592968 = FUN_004580c0(s_GALSPAN_00533548);
-    DAT_005b2c64 = 0;
+    GLBL_spacesav[0x29] = 0;
     str_sprintf(&DAT_005a41e0,s_BtnMPLoginSel0_00547a24);
     Ui_SetButtonFlag(&g_UiManager,&DAT_005a41e0,4);
   }

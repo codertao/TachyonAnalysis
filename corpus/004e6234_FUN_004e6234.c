@@ -10,7 +10,7 @@ void __fastcall FUN_004e6234(byte param_1)
   
   DAT_004e5ebd = param_1;
   if (*unaff_EDI != 0) {
-    FUN_0049c530(*unaff_EDI);
+    OurFreeMem(*unaff_EDI);
   }
   iVar1 = FUN_004a2eb0(unaff_ESI);
   *unaff_EDI = iVar1;

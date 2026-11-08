@@ -11,7 +11,7 @@ void FUN_004374a0(int param_1)
       piVar2 = (int *)(*(int *)(param_1 + 0x10) + 0x20);
       do {
         if (*piVar2 != 0) {
-          FUN_0041dc50(*piVar2 + 4);
+          DescReg_Shutdown(*piVar2 + 4);
         }
         uVar1 = uVar1 + 1;
         piVar2 = piVar2 + 9;

@@ -52,12 +52,12 @@ void FUN_0047c2b0(int param_1)
       pcVar3 = pcVar3 + 1;
       pcVar9 = pcVar9 + 1;
     }
-    iVar6 = FUN_004c67c0(&DAT_005a41e0,&DAT_00571b80);
+    iVar6 = str_cmp(&DAT_005a41e0,&DAT_00571b80);
     if (iVar6 != 0) {
       FUN_0049c6e0(0xa106);
       DAT_00563688 = 0;
       DAT_00571b80 = 0;
-      DAT_00563688 = FUN_0049df00(&DAT_005a41e0,0xa106);
+      DAT_00563688 = load_rtxt_bin(&DAT_005a41e0,0xa106);
     }
     if (DAT_00563688 != 0) {
       str_sprintf(&DAT_00571b80,&DAT_005a41e0);

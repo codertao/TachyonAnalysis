@@ -4,7 +4,7 @@ undefined4 FUN_004840f0(void)
 {
   MessagePump_IdleTick();
   if (g_TitleMenu_ExitFlag == 0) {
-    Ui_Update(&DAT_00583420);
+    Ui_Update(&GLBL_UI_ELEM_LIST);
     FUN_00484040();
     FUN_0046eac0(0);
     FUN_0048bae0();

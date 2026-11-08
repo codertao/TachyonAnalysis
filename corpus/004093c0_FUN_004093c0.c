@@ -10,7 +10,7 @@ void FUN_004093c0(undefined4 *param_1,undefined4 param_2)
   uVar4 = 0;
   iVar3 = DAT_005b9804;
   if (DAT_005b9800 != 0) {
-    while (iVar2 = FUN_004c67c0(iVar3,param_2), iVar2 != 0) {
+    while (iVar2 = str_cmp(iVar3,param_2), iVar2 != 0) {
       uVar4 = uVar4 + 1;
       iVar3 = iVar3 + 0x44;
       if (DAT_005b9800 <= uVar4) {

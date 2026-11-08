@@ -50,31 +50,31 @@ void FUN_004463e0(undefined4 param_1,undefined4 param_2,undefined4 param_3)
     FUN_0049adb0(local_6c);
     *(undefined4 *)(iVar1 + 0x94) = 0x32;
     *(undefined4 *)(iVar1 + 0x8c) = 0;
-    iVar2 = FUN_004c67c0(param_2,s_SPEED_0053696c);
+    iVar2 = str_cmp(param_2,s_SPEED_0053696c);
     if (iVar2 == 0) {
       FUN_004462b0(s_SPEED_0053696c,s_MAX_SPEED_00545d14,&local_b0,&local_ac,0);
       local_88 = local_98;
     }
     else {
-      iVar2 = FUN_004c67c0(param_2,&DAT_005334f4);
+      iVar2 = str_cmp(param_2,&DAT_005334f4);
       if (iVar2 == 0) {
         FUN_004462b0(&DAT_005334f4,s_DAMAGE_00533fd8,&local_b0,&local_ac,0);
         local_88 = local_90;
       }
       else {
-        iVar2 = FUN_004c67c0(param_2,s_SHIELD_00536a18);
+        iVar2 = str_cmp(param_2,s_SHIELD_00536a18);
         if (iVar2 == 0) {
           FUN_004462b0(s_SHIELDS_005369a8,s_MAX_ENERGY_00545cf8,&local_b0,&local_ac,0);
           local_88 = local_94;
         }
         else {
-          iVar2 = FUN_004c67c0(param_2,s_ENERGY_00545ce0);
+          iVar2 = str_cmp(param_2,s_ENERGY_00545ce0);
           if (iVar2 == 0) {
             FUN_004462b0(s_ENERGY_00545ce0,s_LASER_ENERGY_00545ce8,&local_b0,&local_ac,0);
             local_88 = local_a0;
           }
           else {
-            iVar2 = FUN_004c67c0(param_2,s_AGILITY_00545c78);
+            iVar2 = str_cmp(param_2,s_AGILITY_00545c78);
             if (iVar2 == 0) {
               FUN_004462b0(s_ROTATION_00545ca0,s_MAX_YAW_RATE_00545cac,&local_b0,&local_ac,0);
               FUN_004462b0(s_ROTATION_00545ca0,s_MAX_PITCH_RATE_00545c90,&local_a4,&local_70,0);
@@ -84,19 +84,19 @@ void FUN_004463e0(undefined4 param_1,undefined4 param_2,undefined4 param_3)
               local_88 = local_74;
             }
             else {
-              iVar2 = FUN_004c67c0(param_2,s_ACCEL_00545c70);
+              iVar2 = str_cmp(param_2,s_ACCEL_00545c70);
               if (iVar2 == 0) {
                 FUN_004462b0(s_SPEED_0053696c,s_ACCELERATION_00545d04,&local_b0,&local_ac,0);
                 local_88 = local_b0 - (local_9c - local_ac);
               }
               else {
-                iVar2 = FUN_004c67c0(param_2,s_CARGO_00533fe8);
+                iVar2 = str_cmp(param_2,s_CARGO_00533fe8);
                 if (iVar2 == 0) {
                   FUN_004462b0(&DAT_00535990,s_MAX_HOLD_CREDITS_00545ccc,&local_b0,&local_ac,0);
                   local_88 = local_8c;
                 }
                 else {
-                  iVar2 = FUN_004c67c0(param_2,&PTR_DAT_00545c6c);
+                  iVar2 = str_cmp(param_2,&PTR_DAT_00545c6c);
                   if (iVar2 == 0) {
                     FUN_004462b0(&DAT_00562b14,&DAT_00562b14,&local_b0,&local_ac,
                                  s_CARD_MOUNT__d_00545cbc);

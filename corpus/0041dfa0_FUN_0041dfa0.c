@@ -30,10 +30,10 @@ void FUN_0041dfa0(int param_1)
     uVar2 = FUN_004a0d50(0);
     Cbin_GetScalar(s_IMAGES_005355cc,&DAT_005355b4,&local_10,0x10,0);
     Cbin_SelectGroup(s_IMAGES_005355cc);
-    iVar1 = FUN_004ad650(&local_10);
+    iVar1 = Pal_Load(&local_10);
     *(int *)(param_1 + 0x68) = iVar1;
     if (iVar1 != 0) {
-      FUN_004ad900(iVar1,0x80,0x80,0x80,0x80,0x80);
+      Pal_Remap(iVar1,0x80,0x80,0x80,0x80,0x80);
       FUN_004a2e40(*(int *)(param_1 + 0x68) + 0x300,*(int *)(param_1 + 0x68) + 0x600);
       puVar3 = *(undefined4 **)(param_1 + 0x68);
       puVar5 = &DAT_00603180;

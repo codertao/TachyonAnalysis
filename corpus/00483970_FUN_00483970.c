@@ -10,7 +10,7 @@ uint FUN_00483970(undefined4 param_1)
   pcVar2 = &DAT_0056f444;
   do {
     if (*pcVar2 != '\0') {
-      iVar1 = FUN_004c67c0(param_1,pcVar2);
+      iVar1 = str_cmp(param_1,pcVar2);
       if (iVar1 == 0) {
         return uVar3;
       }

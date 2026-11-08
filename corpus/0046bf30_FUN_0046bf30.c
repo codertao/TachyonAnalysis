@@ -12,7 +12,7 @@ void FUN_0046bf30(void)
   iVar1 = FUN_0046bea0();
   uVar3 = 0;
   if (DAT_00589748 != (char *)0x0) {
-    FUN_0049c530(DAT_00589748);
+    OurFreeMem(DAT_00589748);
     DAT_00589748 = (char *)0x0;
     DAT_00589744 = 0;
   }

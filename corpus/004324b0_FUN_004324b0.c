@@ -35,7 +35,7 @@ void FUN_004324b0(char *param_1,undefined4 param_2,undefined4 param_3,undefined4
     pcVar6 = pcVar6 + 1;
     pcVar7 = pcVar7 + 1;
   }
-  FUN_004c82b6(&DAT_005a6a5c + iVar1);
+  to_uppercase(&DAT_005a6a5c + iVar1);
   *(undefined4 *)(&DAT_005a6a9c + iVar1) = param_2;
   (&DAT_005a6aa0)[iVar3 * 0x13] = param_3;
   (&DAT_005a6aa4)[iVar3 * 0x13] = param_4;

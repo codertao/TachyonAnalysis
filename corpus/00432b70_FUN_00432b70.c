@@ -17,7 +17,7 @@ undefined4 FUN_00432b70(int param_1)
   }
   local_204 = 0;
   FUN_004a0d40(1);
-  iVar2 = FUN_004a0e10(s_TACHYON_CD_0053f344);
+  iVar2 = openfile(s_TACHYON_CD_0053f344);
   if (iVar2 == -1) {
     if (param_1 != 0) {
       FUN_00432a30(0xdf);
@@ -25,13 +25,13 @@ undefined4 FUN_00432b70(int param_1)
     FUN_004a0d40(uVar1);
     return 0;
   }
-  FUN_004a0ea0(local_100,1);
-  FUN_004a0ec0(iVar2);
+  read_file_to_bin(local_100,1);
+  close_glbl_open_file(iVar2);
   str_sprintf(&local_204,&DAT_0053f33c,(int)local_100[0]);
   FUN_00432ae0(&local_204,s_TACHYON_0053f334);
   str_sprintf(local_200,s__s_s__s_0053f314,&local_204,s_ttfsetup_0053f31c,s_tachyon_bik_0053f328);
   File_Exists(local_200);
-  FUN_004a0fe0(local_200);
+  get_file_len(local_200);
   FUN_004a0d40(uVar1);
   return 1;
 }

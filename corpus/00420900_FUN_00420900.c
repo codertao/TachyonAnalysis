@@ -55,11 +55,11 @@ void FUN_00420900(void)
   local_28[1] = (DAT_005a67a8 * local_28[1]) / 0x1e0;
   uStack_32 = (undefined2)iVar5;
   local_30 = CONCAT22(local_30._2_2_,(short)iVar3);
-  if (*(code **)(DAT_005b1dc4 + 0x80) == (code *)0x0) {
+  if (*(code **)(g_ActiveRules + 0x80) == (code *)0x0) {
     pcVar4 = s_QUIT__00535988;
   }
   else {
-    pcVar4 = (char *)(**(code **)(DAT_005b1dc4 + 0x80))();
+    pcVar4 = (char *)(**(code **)(g_ActiveRules + 0x80))();
   }
   FUN_004ae5e0(pcVar4,DAT_005b2180,&local_3c,2,local_28);
   uStack_40 = 0;

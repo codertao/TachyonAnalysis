@@ -8,7 +8,7 @@ FUN_0041e7e0(undefined4 param_1,undefined4 param_2,int param_3,undefined4 param_
   int iVar2;
   
   iVar1 = *(int *)(param_5 + 0x5c);
-  iVar2 = FUN_004b7870(iVar1);
+  iVar2 = something_list_related_get_next(iVar1);
   if (iVar2 == 0) {
     return 0;
   }

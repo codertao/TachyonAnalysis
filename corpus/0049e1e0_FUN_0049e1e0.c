@@ -19,7 +19,7 @@ undefined4 FUN_0049e1e0(int param_1,undefined4 param_2,undefined4 param_3)
     puVar7 = local_4 + *puVar1 * 2;
     if (*puVar1 != 0) {
       do {
-        iVar3 = FUN_004c67c0(puVar7,param_2);
+        iVar3 = str_cmp(puVar7,param_2);
         if (iVar3 == 0) {
           uVar4 = FUN_0049e060(param_1,local_4,param_3);
           return uVar4;

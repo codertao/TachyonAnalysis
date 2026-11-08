@@ -6,7 +6,7 @@ void FUN_00452780(void)
     DAT_005b1f00 = 0;
     return;
   }
-  if (*(int *)(DAT_005b3300 + 0x90) != 0) {
+  if (*(int *)(GLBL_SOME_CONTEXT + 0x90) != 0) {
     DAT_005b1f00 = 1;
   }
   return;

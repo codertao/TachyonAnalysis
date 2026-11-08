@@ -11,9 +11,9 @@ void FUN_0042e060(int param_1)
   undefined4 local_c;
   int local_8;
   
-  local_8 = DAT_005b3300;
+  local_8 = GLBL_SOME_CONTEXT;
   if (((*(byte *)(DAT_005b95e0 + 0xc) & 4) != 0) && (0x13fff < *(int *)(param_1 + 0x48))) {
-    uVar2 = FUN_004e0462(param_1 + 0x40);
+    uVar2 = call_approx_vec_length(param_1 + 0x40);
     if (uVar2 < 0x493e0001) {
       lVar1 = (longlong)DAT_005a67e4;
       uVar3 = FUN_00429da0(param_1);

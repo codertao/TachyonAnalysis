@@ -14,7 +14,7 @@ void FUN_00407c80(int param_1,int param_2)
         iVar2 = iVar2 + 0x2c;
       } while (uVar1 < *(uint *)(param_1 + 0x54));
     }
-    FUN_0049c530(*(undefined4 *)(param_1 + 0x58));
+    OurFreeMem(*(undefined4 *)(param_1 + 0x58));
   }
   return;
 }

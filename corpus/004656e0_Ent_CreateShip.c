@@ -30,7 +30,7 @@ int Ent_CreateShip(undefined4 param_1,undefined4 param_2,int param_3,int param_4
   undefined1 *local_c;
   undefined1 *local_8;
   
-  iVar1 = FUN_0041dbb0(param_1,0);
+  iVar1 = DescReg_FindByName(param_1,0);
   if (iVar1 != 0) {
     if (param_3 != 0) {
       FUN_00464210(iVar1);
@@ -40,13 +40,13 @@ int Ent_CreateShip(undefined4 param_1,undefined4 param_2,int param_3,int param_4
     }
     return iVar1;
   }
-  FUN_0048e380(&local_74,0x74);
+  clr_bytes(&local_74,0x74);
   local_70 = 1;
   local_6c = 0x6c8;
   local_68 = 0xffff;
   local_74 = param_1;
   local_58 = FUN_00434e80;
-  local_64 = FUN_00463560;
+  local_64 = ShipReplica_Init;
   local_60 = &LAB_00463690;
   local_5c = 0;
   local_48 = Sped_ConstructEntity;
@@ -64,7 +64,7 @@ int Ent_CreateShip(undefined4 param_1,undefined4 param_2,int param_3,int param_4
   local_28 = FUN_004634c0;
   local_4c = &LAB_00465590;
   local_8 = &LAB_00465630;
-  iVar1 = FUN_0041db50(&local_74,param_2);
+  iVar1 = DescReg_Alloc(&local_74,param_2);
   if (iVar1 == 0) {
     return 0;
   }

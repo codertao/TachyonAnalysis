@@ -19,8 +19,8 @@ void Dcb_SpawnProjectile(int param_1,undefined4 *param_2,undefined4 param_3,unde
     param_2[0x1f] = iVar2;
     *(undefined4 *)(iVar2 + 0x8c) = param_4;
     *(undefined1 *)(iVar2 + 0xc2) = *(undefined1 *)(param_1 + 0xc2);
-    *(uint *)(iVar2 + 0x104) = DAT_005b3334 & 0xf;
-    DAT_005b3334 = DAT_005b3334 + 1;
+    *(uint *)(iVar2 + 0x104) = glbl_maybe_camera.x & 0xf;
+    glbl_maybe_camera.x = glbl_maybe_camera.x + 1;
     *(undefined2 *)(iVar2 + 0x74) = 1;
     *(undefined4 *)(iVar2 + 0x58) = *param_2;
     puVar1 = (uint *)(iVar2 + 0x18);
@@ -30,8 +30,8 @@ void Dcb_SpawnProjectile(int param_1,undefined4 *param_2,undefined4 param_3,unde
     *(undefined4 *)(iVar2 + 0xc4) = 0;
     *(undefined4 *)(iVar2 + 0x5c) = 0;
     *(undefined4 *)(iVar2 + 0x1c) = param_2[3];
-    FUN_004b2950(puVar1,0);
-    *(undefined1 **)(iVar2 + 0x80) = &LAB_004108c0;
+    Model_SelectState(puVar1,0);
+    *(code **)(iVar2 + 0x80) = Replica_ReportHitShielded;
     *(undefined1 **)(iVar2 + 0x84) = &LAB_00412920;
     *(undefined2 *)(iVar2 + 0x76) = 0xd;
     *(undefined2 *)(iVar2 + 0x74) = 0;

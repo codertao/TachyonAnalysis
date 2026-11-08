@@ -3,7 +3,7 @@ void FUN_0043bc40(int param_1)
 
 {
   if (*(int *)(param_1 + 0x20) != 0) {
-    FUN_0049c530(*(int *)(param_1 + 0x20));
+    OurFreeMem(*(int *)(param_1 + 0x20));
     *(undefined4 *)(param_1 + 0x20) = 0;
     *(undefined4 *)(param_1 + 0x54) = 0;
   }

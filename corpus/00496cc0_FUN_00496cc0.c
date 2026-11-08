@@ -15,7 +15,7 @@ void FUN_00496cc0(int param_1,int param_2,undefined4 param_3,undefined4 param_4)
   int local_10;
   undefined4 local_c;
   
-  iVar1 = FUN_00493120(param_4);
+  iVar1 = WeaponDef_Get(param_4);
   FUN_0040f380(param_1 + 0x34,param_2 + 0x34,local_38);
   local_20 = local_38;
   local_28 = param_1;

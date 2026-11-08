@@ -13,7 +13,7 @@ void FUN_00480af0(int param_1,int param_2)
     return;
   }
   iVar2 = Ui_FindButton(DAT_00571280,param_2 + 0x50);
-  FUN_0043f620(DAT_00571280,iVar1,0x20000);
+  set_flag_10c_on_elem_by_id(DAT_00571280,iVar1,0x20000);
   if (param_1 == 0) {
     if (*(char *)(param_2 + 0xd0) == '\0') goto LAB_00480bd8;
     FUN_0043f6e0(DAT_00571280,iVar1,param_2 + 0xd0);

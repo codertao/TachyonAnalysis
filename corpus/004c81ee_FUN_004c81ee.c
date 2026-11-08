@@ -10,7 +10,7 @@ byte * FUN_004c81ee(byte *param_1,uint param_2)
     param_1 = (byte *)FUN_004c21a0(param_1,param_2);
   }
   else {
-    FUN_004c15cd(0x19);
+    init_andor_enter_crit_section_idx(0x19);
     while( true ) {
       bVar1 = *param_1;
       uVar2 = (uint)bVar1;
@@ -22,17 +22,17 @@ byte * FUN_004c81ee(byte *param_1,uint param_2)
       else {
         pbVar3 = param_1 + 1;
         if (param_1[1] == 0) {
-          FUN_004c162e(0x19);
+          leave_crit_section_idx(0x19);
           return (byte *)0x0;
         }
         if (param_2 == CONCAT11(bVar1,param_1[1])) {
-          FUN_004c162e(0x19);
+          leave_crit_section_idx(0x19);
           return param_1;
         }
       }
       param_1 = pbVar3 + 1;
     }
-    FUN_004c162e(0x19);
+    leave_crit_section_idx(0x19);
     param_1 = (byte *)(~-(uint)(param_2 != uVar2) & (uint)param_1);
   }
   return param_1;

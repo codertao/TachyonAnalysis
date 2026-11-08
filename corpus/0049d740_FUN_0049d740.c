@@ -76,7 +76,8 @@ LAB_0049d85e:
             FUN_004a1310(param_3 + 0x3c);
             FUN_0049d1f0(iVar8,0);
             FUN_004a1220();
-            FUN_0049c670(*(undefined4 *)(iVar8 + 0x24),*(undefined4 *)(param_3 + 0xc4));
+            mark_alloc_memory_with_flags
+                      (*(undefined4 *)(iVar8 + 0x24),*(undefined4 *)(param_3 + 0xc4));
           }
           local_c[-2] = *(uint *)(iVar8 + 0x24);
           if ((puVar1[4] & 1) == 0) {

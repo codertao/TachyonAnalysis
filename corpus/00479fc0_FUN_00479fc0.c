@@ -9,7 +9,7 @@ void FUN_00479fc0(void)
   FUN_0048b6f0(1);
   if (((DAT_0056364c != 0) && (iVar1 = *(int *)(DAT_0056364c + 0x180), iVar1 != 0)) &&
      (*(int *)(iVar1 + 200) != 0)) {
-    FUN_0043f620(&DAT_00583420,iVar1 + 0xcc,0x20000);
+    set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,iVar1 + 0xcc,0x20000);
   }
   FUN_004e4b65(0);
   FUN_0046dd30(0,0);

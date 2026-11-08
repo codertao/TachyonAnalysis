@@ -4,7 +4,7 @@ void FUN_00427d30(undefined4 *param_1,undefined4 param_2,undefined4 param_3,unde
                  undefined4 param_10,undefined4 param_11)
 
 {
-  FUN_0048e380(param_1,0x34);
+  clr_bytes(param_1,0x34);
   *param_1 = param_2;
   param_1[2] = param_4;
   param_1[4] = param_9;

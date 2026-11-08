@@ -19,7 +19,7 @@ void FUN_0040cb10(int param_1)
       FUN_0040ca50(param_1,iVar1);
     }
     *(int *)(param_1 + 0xfc) = iVar1;
-    FUN_0045e830(*(undefined4 *)(param_1 + 0xdc));
+    SrvSend_RankChange(*(undefined4 *)(param_1 + 0xdc));
   }
   return;
 }

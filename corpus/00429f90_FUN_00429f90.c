@@ -20,15 +20,15 @@ void FUN_00429f90(int param_1)
   int local_8;
   
   iVar4 = param_1;
-  iVar8 = DAT_005b3300;
-  if ((((((byte)DAT_005b2154 & 1) != 0) && (iVar9 = *(int *)(DAT_005b3300 + 0x90), iVar9 != 0)) &&
-      (local_8 = FUN_00492c60(&DAT_005b1f10,DAT_005b20d0,DAT_005b20d4), local_8 != 0)) &&
+  iVar8 = GLBL_SOME_CONTEXT;
+  if ((((((byte)DAT_005b2154 & 1) != 0) && (iVar9 = *(int *)(GLBL_SOME_CONTEXT + 0x90), iVar9 != 0))
+      && (local_8 = FUN_00492c60(&DAT_005b1f10,DAT_005b20d0,DAT_005b20d4), local_8 != 0)) &&
      (*(int *)(iVar9 + 0x8c) != 0)) {
     pcVar2 = *(code **)(*(int *)(iVar9 + 0x8c) + 0x78);
     if ((pcVar2 != (code *)0x0) && (iVar5 = (*pcVar2)(iVar9,9,0), iVar5 == 0)) {
       return;
     }
-    param_1 = FUN_0048e440(iVar8 + 0x34,iVar9 + 0x34);
+    param_1 = distance_between((vec3 *)(iVar8 + 0x34),(vec3 *)(iVar9 + 0x34));
     if (*(int *)(local_8 + 0x54) < 0x8000) {
       param_1 = 0;
     }
@@ -38,8 +38,9 @@ void FUN_00429f90(int param_1)
     local_1c = *(int *)(iVar9 + 0xa0) * param_1 + *(int *)(iVar9 + 0x34);
     local_18 = *(int *)(iVar9 + 0xa4) * param_1 + *(int *)(iVar9 + 0x38);
     local_14 = *(int *)(iVar9 + 0xa8) * param_1 + *(int *)(iVar9 + 0x3c);
-    FUN_0052db6a(local_34,-*(int *)(iVar8 + 0x4c),-*(int *)(iVar8 + 0x50),-*(int *)(iVar8 + 0x54));
-    FUN_0052dbcd(local_34);
+    call_math_todo_with_rotation
+              (local_34,-*(int *)(iVar8 + 0x4c),-*(int *)(iVar8 + 0x50),-*(int *)(iVar8 + 0x54));
+    call_copy_mathresult_to_global(local_34);
     local_1c = local_1c - *(int *)(iVar8 + 0x34);
     local_18 = local_18 - *(int *)(iVar8 + 0x38);
     local_14 = local_14 - *(int *)(iVar8 + 0x3c);

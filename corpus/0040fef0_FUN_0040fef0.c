@@ -12,7 +12,7 @@ void FUN_0040fef0(int param_1)
   iVar3 = DAT_005b95f0;
   iVar2 = DAT_005b95ec;
   iVar1 = DAT_005b95e8;
-  if (param_1 == DAT_005b3300) {
+  if (param_1 == GLBL_SOME_CONTEXT) {
     *(undefined4 *)(param_1 + 0x58) = *(undefined4 *)(DAT_005b1f0c + 0x290);
   }
   FUN_0040f6d0(param_1);

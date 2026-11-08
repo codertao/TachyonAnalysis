@@ -10,7 +10,7 @@ void FUN_00437870(int param_1,int param_2)
   
   iVar5 = *(int *)(param_1 + 0x8c) + 0xd0;
   piVar1 = (int *)(param_1 + 0x11c);
-  iVar2 = FUN_00455e40(piVar1,iVar5);
+  iVar2 = Shield_GetMax(piVar1,iVar5);
   iVar4 = iVar2 - *(int *)(param_1 + 0x124);
   iVar3 = iVar2 >> 10;
   if ((param_2 == 0) && (iVar3 < iVar4)) {

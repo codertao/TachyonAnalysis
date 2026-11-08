@@ -4,8 +4,8 @@
 void Ui_FindButton(int param_1,undefined4 param_2)
 
 {
-  FUN_004bd3c6(param_2,*(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x4c),0x23c,
-               &LAB_004397a0);
+  maybe_find_in_list(param_2,*(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x4c),0x23c,
+                     &LAB_004397a0);
   return;
 }
 

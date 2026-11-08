@@ -26,14 +26,14 @@ undefined4 * Ent_CreateBeacon(undefined4 param_1,undefined4 param_2,int param_3)
   code *local_28;
   undefined1 *local_c;
   
-  puVar1 = (undefined4 *)FUN_0041dbb0(param_1,0);
+  puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 != (undefined4 *)0x0) {
     if ((param_3 != 0) || ((g_FlightStateFlags & 2) != 0)) {
       FUN_00445720(puVar1);
     }
     return puVar1;
   }
-  FUN_0048e380(&local_74,0x74);
+  clr_bytes(&local_74,0x74);
   local_70 = 8;
   local_6c = 0xb8;
   local_68 = 0xffff;
@@ -50,12 +50,12 @@ undefined4 * Ent_CreateBeacon(undefined4 param_1,undefined4 param_2,int param_3)
   local_50 = &LAB_0040e9a0;
   local_28 = FUN_0040e770;
   local_c = &LAB_00414230;
-  puVar1 = (undefined4 *)FUN_0041db50(&local_74,param_2);
+  puVar1 = (undefined4 *)DescReg_Alloc(&local_74,param_2);
   if (puVar1 == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
   FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
-  FUN_0048e380(&DAT_005b96e0,0xb8);
+  clr_bytes(&DAT_005b96e0,0xb8);
   puVar3 = puVar1;
   puVar4 = &DAT_005b96e0;
   for (iVar2 = 0x21; iVar2 != 0; iVar2 = iVar2 + -1) {
@@ -66,7 +66,7 @@ undefined4 * Ent_CreateBeacon(undefined4 param_1,undefined4 param_2,int param_3)
   Cbin_Open(param_1);
   FUN_0049bfc0(&PTR_DAT_005339b0);
   _DAT_005b96f8 = FUN_0048e820(DAT_005a6144,s_OTHER_SHIP_NAMES_00533a5c,&DAT_005b96c0);
-  FUN_00431850(&DAT_005b9784,&DAT_005b9764,0,&DAT_005b9774,&DAT_005a7538,1);
+  ModelPool_Load(&DAT_005b9784,&DAT_005b9764,0,&DAT_005b9774,&g_ObjModelPool,1);
   Cbin_Close();
   if (DAT_005b9794 == 0) {
     DAT_005b9794 = 0x186a0000;

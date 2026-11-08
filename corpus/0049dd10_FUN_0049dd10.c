@@ -27,24 +27,24 @@ void FUN_0049dd10(int param_1)
               do {
                 iVar2 = *piVar4;
                 if (*(char *)(iVar2 + 0x23) != '\0') {
-                  FUN_0049c530(*(undefined4 *)(iVar2 + 0x24));
+                  OurFreeMem(*(undefined4 *)(iVar2 + 0x24));
                   *(undefined1 *)(iVar2 + 0x23) = 0;
                 }
                 uVar3 = uVar3 + 1;
                 piVar4 = piVar4 + 7;
               } while (uVar3 < *puVar1);
             }
-            FUN_0049c530(*(undefined4 *)(puVar1 + 8));
+            OurFreeMem(*(undefined4 *)(puVar1 + 8));
             local_c = local_c + 1;
             local_10 = local_10 + 1;
           } while (local_c < (uint)puVar5[-1]);
         }
-        FUN_0049c530(*puVar5);
+        OurFreeMem(*puVar5);
         local_8 = local_8 + 1;
         puVar5 = puVar5 + 0x1c;
       } while (local_8 < *(uint *)(param_1 + 0x28));
     }
-    FUN_0049c530(*(undefined4 *)(param_1 + 0x38));
+    OurFreeMem(*(undefined4 *)(param_1 + 0x38));
     *(undefined4 *)(param_1 + 0x38) = 0;
   }
   return;

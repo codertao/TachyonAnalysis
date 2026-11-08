@@ -5,7 +5,7 @@ void FUN_004a9560(void)
   MMRESULT MVar1;
   int iVar2;
   
-  if (DAT_00563e98 != 0) {
+  if (GLBL_audio_running != 0) {
     waveOutReset(DAT_005f9e00);
     waveOutUnprepareHeader(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9da0,0x20);
     waveOutUnprepareHeader(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9dc0,0x20);

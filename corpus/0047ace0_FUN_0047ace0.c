@@ -225,9 +225,9 @@ void FUN_0047ace0(void)
       if (iVar2 == 0x20) break;
       local_9c = iVar7;
       local_98 = FUN_004a2eb0(iVar2);
-      uVar5 = FUN_004ad650(iVar2);
+      uVar5 = Pal_Load(iVar2);
       *(undefined4 *)(iVar2 + 0xac) = uVar5;
-      FUN_004ad900(uVar5,0x80,0x80,0x80,0x80,0x80);
+      Pal_Remap(uVar5,0x80,0x80,0x80,0x80,0x80);
       FUN_00439810(*(undefined4 *)(iVar2 + 0x28),*(undefined4 *)(iVar2 + 0x34),&local_a5,&local_ad);
       uVar4 = 0;
       if (*(int *)(iVar2 + 0x30) != 0) {
@@ -266,7 +266,7 @@ void FUN_0047ace0(void)
           iVar7 = local_9c;
         } while (uVar4 < *(uint *)(iVar2 + 0x30));
       }
-      FUN_0049c530(local_98);
+      OurFreeMem(local_98);
       iVar7 = iVar7 + -1;
       local_94 = local_94 + 0xd0;
       iVar2 = iVar2 + 0xd0;
@@ -282,9 +282,9 @@ void FUN_0047ace0(void)
       local_9c = iVar7;
       if (iVar2 == 0x20) break;
       local_98 = FUN_004a2eb0(iVar2);
-      uVar5 = FUN_004ad650(iVar2);
+      uVar5 = Pal_Load(iVar2);
       *(undefined4 *)(iVar2 + 0xac) = uVar5;
-      FUN_004ad900(uVar5,0x80,0x80,0x80,0x80,0x80);
+      Pal_Remap(uVar5,0x80,0x80,0x80,0x80,0x80);
       FUN_00439810(*(undefined4 *)(iVar2 + 0x28),*(undefined4 *)(iVar2 + 0x34),&local_a5,&local_ad);
       uVar4 = 0;
       if (*(int *)(iVar2 + 0x30) != 0) {
@@ -312,7 +312,7 @@ void FUN_0047ace0(void)
           iVar7 = local_9c;
         } while (uVar4 < *(uint *)(iVar2 + 0x30));
       }
-      FUN_0049c530(local_98);
+      OurFreeMem(local_98);
       iVar7 = iVar7 + -1;
       iVar2 = iVar2 + 0xd0;
       local_ac = DAT_0056367c;

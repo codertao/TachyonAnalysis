@@ -38,7 +38,7 @@ void Shipyard_SelectShip(int param_1)
     Var_SetInt(g_PlayerVarStore,s_PLAYER_MAIN_VARS_00534198,s_CURRENT_SHIP_00534b18,iVar7);
 LAB_004756a4:
     FUN_00475a60();
-    Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseCFG_0054ffc8,0,0);
+    Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseCFG_0054ffc8,0,0);
     DAT_00563610 = 0;
     uVar4 = FUN_0046e900();
     str_sprintf(local_80,s_SHIP__02d_DATA_0053643c,uVar4);
@@ -53,7 +53,7 @@ LAB_004756a4:
         if (((local_108 != 0) && (iVar1 != 0)) && (*(int *)(iVar1 + 8) != 0)) {
           uVar4 = Var_GetKeyByIndex(*(int *)(iVar1 + 8),local_108);
           iVar1 = FUN_004690b0(uVar4);
-          if ((iVar1 != 0) && (iVar1 = FUN_004c67c0(iVar1,s_AMMO_HOLD_005362c0), iVar1 == 0)) {
+          if ((iVar1 != 0) && (iVar1 = str_cmp(iVar1,s_AMMO_HOLD_005362c0), iVar1 == 0)) {
             DAT_00563610 = 1;
           }
         }

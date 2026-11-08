@@ -26,7 +26,7 @@ void FUN_0047c6d0(int param_1)
     uVar6 = 0;
     if (*(int *)(iVar2 + 0x20) != 0) {
       do {
-        iVar3 = FUN_004c67c0(*puVar4,param_1);
+        iVar3 = str_cmp(*puVar4,param_1);
         if (iVar3 == 0) {
           str_sprintf(local_40,s_REGION__d_00552804,puVar4[1]);
           break;
@@ -34,8 +34,8 @@ void FUN_0047c6d0(int param_1)
         uVar6 = uVar6 + 1;
         puVar4 = puVar4 + 2;
       } while (uVar6 < *(uint *)(iVar2 + 0x20));
-      if ((local_40[0] != '\0') && (DAT_0056368c != 0)) {
-        puVar4 = (undefined4 *)FUN_0049e0d0(DAT_0056368c,s_REGION_NAMES_005527f4,local_40);
+      if ((local_40[0] != '\0') && (GLBL_ingame_rtxt != 0)) {
+        puVar4 = (undefined4 *)FUN_0049e0d0(GLBL_ingame_rtxt,s_REGION_NAMES_005527f4,local_40);
         if (puVar4 == (undefined4 *)0x0) {
           if (iVar1 == 0) {
             pcVar5 = s__High_Lighted_Region_00552810;

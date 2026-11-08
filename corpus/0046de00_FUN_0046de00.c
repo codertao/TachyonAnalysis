@@ -15,7 +15,7 @@ void FUN_0046de00(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
   while( true ) {
     DAT_005635c4 = iVar1;
     if (iVar2 == 0) goto LAB_0046de3c;
-    iVar1 = FUN_004c67c0(iVar2,param_1);
+    iVar1 = str_cmp(iVar2,param_1);
     if (iVar1 == 0) break;
     iVar2 = *(int *)(iVar2 + 0x60);
     iVar1 = DAT_005635c4;
@@ -39,7 +39,7 @@ LAB_0046de3c:
     DAT_00587880 = 0x90;
     DAT_00587884 = 0x10000;
     DAT_005878c0 = iVar1;
-    FUN_004b2950(&DAT_00587880,0);
+    Model_SelectState(&DAT_00587880,0);
     FUN_0046e180(param_4,param_5,param_6);
     FUN_0046e060(param_3);
   }

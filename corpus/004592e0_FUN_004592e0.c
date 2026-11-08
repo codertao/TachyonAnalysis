@@ -102,7 +102,7 @@ void FUN_004592e0(undefined4 *param_1)
       } while (cVar3 != '\0');
       pcVar9 = pcVar9 + ~uVar6;
       FUN_0049b930(&DAT_005367f4,local_20,0x20,0,4,3);
-      iVar4 = FUN_004c67c0(local_20,s_ADDPALETTE_0054916c);
+      iVar4 = str_cmp(local_20,s_ADDPALETTE_0054916c);
       if (iVar4 == 0) {
         uVar5 = param_1[1];
         uVar12 = 0x100000;
@@ -111,7 +111,7 @@ void FUN_004592e0(undefined4 *param_1)
         uVar5 = param_1[1];
         uVar12 = 0x20000;
       }
-      uVar5 = FUN_00431de0(uVar5,uVar12);
+      uVar5 = load_font(uVar5,uVar12);
       param_1[2] = uVar5;
       param_1 = param_1 + 3;
     }

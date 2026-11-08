@@ -12,7 +12,7 @@ void FUN_00442460(void)
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
   }
   FUN_00444d80();
-  DAT_005a40b8 = FUN_0049df00(s_mpgames_bin_00540e54,0xa000);
+  DAT_005a40b8 = load_rtxt_bin(s_mpgames_bin_00540e54,0xa000);
   FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   FUN_00437b30(FUN_004427e0);
@@ -22,10 +22,10 @@ void FUN_00442460(void)
   FUN_0043efa0();
   Ui_ShowWindow(&g_UiManager,s_WndHost_00540e4c,0);
   FUN_0043a8d0(&g_UiManager,s_WndHost_00540e4c);
-  FUN_0043f620(&g_UiManager,s_IAHOPreview_00540e40,0x20000);
-  FUN_00440170(&g_UiManager,s_EntryHOGameName_00540e24,&DAT_005b2bc4,0x1f,FUN_00442e90,
+  set_flag_10c_on_elem_by_id(&g_UiManager,s_IAHOPreview_00540e40,0x20000);
+  FUN_00440170(&g_UiManager,s_EntryHOGameName_00540e24,0x5b2bc4,0x1f,FUN_00442e90,
                s_SHADOW10w_00540e34);
-  FUN_00440170(&g_UiManager,s_EntryHOPassWord_00540e14,&DAT_005b2be4,0x1f,FUN_00442e90,
+  FUN_00440170(&g_UiManager,s_EntryHOPassWord_00540e14,0x5b2be4,0x1f,FUN_00442e90,
                s_SHADOW10w_00540e34);
   Ui_SetButtonFlag(&g_UiManager,s_BtnHOGameName_00540e04,4);
   Ui_SetButtonFlag(&g_UiManager,s_BtnHOPassWord_00540df4,4);
@@ -40,11 +40,11 @@ void FUN_00442460(void)
   Ui_SetButtonFlag(&g_UiManager,s_BtnHostGameSlot6_00540d40,0x2004);
   Ui_SetButtonFlag(&g_UiManager,s_BtnHostGameSlot7_00540d2c,0x2004);
   FUN_0043e770(&g_UiManager,s_TxtHostStatus_00540d08,s_HOST_STATUS_IDLE_00540d18);
-  if (DAT_005b2c0c == 1) {
-    DAT_005b2bc0 = DAT_005b2d64;
+  if (GLBL_spacesav[0x13] == 1) {
+    GLBL_spacesav[0] = GLBL_spacesav[0x69];
   }
   else {
-    DAT_005b2bc0 = DAT_005b2d3c;
+    GLBL_spacesav[0] = GLBL_spacesav[0x5f];
   }
   FUN_00442ee0();
   DAT_005a4020 = 0;
@@ -52,7 +52,7 @@ void FUN_00442460(void)
   FUN_00443440();
   iVar1 = FUN_0043ca90(&g_UiManager,s_BtnHostGameSlot0_00540db8);
   if (iVar1 != 8) {
-    FUN_0043ce50(&g_UiManager,s_BtnHostGameSlot0_00540db8,4);
+    set_button_state(&g_UiManager,s_BtnHostGameSlot0_00540db8,4);
   }
   FUN_00443740();
   if (g_MissionEndReason != 0) {

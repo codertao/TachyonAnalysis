@@ -2,7 +2,7 @@
 void FUN_004bdd09(void)
 
 {
-  FUN_004c15cd(0xd);
+  init_andor_enter_crit_section_idx(0xd);
   return;
 }
 

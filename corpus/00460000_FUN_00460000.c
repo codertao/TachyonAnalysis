@@ -34,7 +34,7 @@ void FUN_00460000(undefined4 *param_1)
       local_50 = 4;
       local_4c = 0;
       local_48 = 1;
-      FUN_0048ddc0(&local_58,*(undefined4 *)(DAT_0058b064 + 100));
+      Mission_PostEvent(&local_58,*(undefined4 *)(DAT_0058b064 + 100));
       if (DAT_005a6730 != 0) {
         str_sprintf(local_40,s_DOCK_FOUND___DOCK_SPED_ID____d_00549430,*(undefined4 *)(iVar3 + 0x20)
                    );

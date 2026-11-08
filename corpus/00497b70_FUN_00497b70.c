@@ -23,10 +23,10 @@ FUN_00497b70(int param_1,int *param_2,undefined4 param_3,undefined4 param_4,unde
       DAT_00565790 = 0;
       iVar3 = FUN_00497b20(iVar2,param_4,param_5,&local_4,param_3,param_2);
       if (iVar3 == 1) {
-        if (*(int *)(DAT_005b3300 + 0x110) != 0) {
-          *(int *)(param_1 + 0x90) = *(int *)(DAT_005b3300 + 0x110);
+        if (*(int *)(GLBL_SOME_CONTEXT + 0x110) != 0) {
+          *(int *)(param_1 + 0x90) = *(int *)(GLBL_SOME_CONTEXT + 0x110);
         }
-        uVar4 = FUN_00497790(param_1,param_2,param_3,local_4,param_6);
+        uVar4 = Weapon_TryFire(param_1,param_2,param_3,local_4,param_6);
         *(undefined4 *)(param_1 + 0x90) = uVar1;
         if ((DAT_00565790 != 0) && (DAT_0056578c != 0)) {
           _DAT_0055e058 = 0;

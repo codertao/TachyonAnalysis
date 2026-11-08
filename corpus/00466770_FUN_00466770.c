@@ -15,7 +15,7 @@ FUN_00466770(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4
     DAT_00563590 = DAT_00563590 | 4;
     _DAT_005635a8 = (undefined2)param_1;
     _DAT_005635ac = (undefined2)param_3;
-    _DAT_0056359c = DAT_005b2d10;
+    _DAT_0056359c = GLBL_spacesav[0x54];
     DAT_00563588 = FUN_00465db0(DAT_00563588);
     _DAT_00563598 = FUN_00465df0();
     FUN_0041d9b0(&DAT_00563580,param_7);

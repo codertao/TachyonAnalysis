@@ -61,10 +61,10 @@ void FUN_00408980(int *param_1,undefined4 param_2)
   int local_8;
   
   piVar4 = param_1;
-  FUN_0048e380(local_d8,0x3c);
-  FUN_0048e380(local_60,0x3c);
-  FUN_0048e380(local_9c,0x3c);
-  FUN_0048e380(local_114,0x3c);
+  clr_bytes(local_d8,0x3c);
+  clr_bytes(local_60,0x3c);
+  clr_bytes(local_9c,0x3c);
+  clr_bytes(local_114,0x3c);
   local_a0 = param_1[6];
   local_c4 = 0x100;
   local_4c = 0x100;

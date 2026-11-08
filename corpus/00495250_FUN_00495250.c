@@ -3,23 +3,26 @@ void FUN_00495250(int param_1)
 
 {
   int iVar1;
-  uint uVar2;
+  int iVar2;
+  uint uVar3;
   
-  *(int *)(param_1 + 0x34) = *(int *)(param_1 + 0x34) + *(int *)(param_1 + 0xa0);
-  *(int *)(param_1 + 0x38) = *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4);
-  iVar1 = *(int *)(param_1 + 0xd4) + -1;
-  *(int *)(param_1 + 0x3c) = *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8);
-  *(int *)(param_1 + 0xd4) = iVar1;
-  uVar2 = 0x13880000;
-  if ((iVar1 < *(int *)(*(int *)(param_1 + 0xdc) + 0x3c) + -0x32) &&
+  iVar2 = *(int *)(param_1 + 0x38);
+  iVar1 = *(int *)(param_1 + 0x3c);
+  ((vec3 *)(param_1 + 0x34))->x = *(int *)(param_1 + 0x34) + *(int *)(param_1 + 0xa0);
+  *(int *)(param_1 + 0x38) = iVar2 + *(int *)(param_1 + 0xa4);
+  iVar2 = *(int *)(param_1 + 0xd4) + -1;
+  *(int *)(param_1 + 0x3c) = iVar1 + *(int *)(param_1 + 0xa8);
+  *(int *)(param_1 + 0xd4) = iVar2;
+  uVar3 = 0x13880000;
+  if ((iVar2 < *(int *)(*(int *)(param_1 + 0xdc) + 0x3c) + -0x32) &&
      (((**(uint **)(*(int *)(param_1 + 100) + 0x1c) ^ *(uint *)(param_1 + 0xd0)) & 7) == 0)) {
-    iVar1 = FUN_0048b2b0(param_1,0xff,0,0x2bc000,*(undefined4 *)(param_1 + 200),3);
-    if (iVar1 != 0) {
-      uVar2 = FUN_0048e440((int *)(param_1 + 0x34),iVar1 + 0x34);
+    iVar2 = Ent_FindNearestHostile(param_1,0xff,0,0x2bc000,*(undefined4 *)(param_1 + 200),3);
+    if (iVar2 != 0) {
+      uVar3 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(iVar2 + 0x34));
     }
   }
-  if ((*(int *)(param_1 + 0xd4) == 0) || (uVar2 < 0x2bc000)) {
-    FUN_004941b0(param_1);
+  if ((*(int *)(param_1 + 0xd4) == 0) || (uVar3 < 0x2bc000)) {
+    Proj_OnHitSplash(param_1);
   }
   return;
 }

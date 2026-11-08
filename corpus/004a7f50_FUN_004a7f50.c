@@ -14,7 +14,7 @@ undefined4 FUN_004a7f50(undefined4 param_1,undefined4 param_2)
     if (iVar1 == 0) {
       return 0;
     }
-    iVar1 = FUN_004c67c0(param_1,local_c);
+    iVar1 = str_cmp(param_1,local_c);
     if (iVar1 == 0) break;
     iVar1 = _AIL_enumerate_3D_providers_12(&local_8,&local_4,&local_c);
   }

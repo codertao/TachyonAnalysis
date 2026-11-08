@@ -34,7 +34,7 @@ void FUN_00477570(void)
         if (1 < *(uint *)(iVar2 + 0x9c)) {
           FUN_0048f670(s_WEAPON_TYPES_0054763c,iVar2,&local_108);
           if (local_108 != 0) {
-            iVar4 = FUN_00493120(local_108 + -1);
+            iVar4 = WeaponDef_Get(local_108 + -1);
             if ((iVar4 != 0) && ((*(byte *)(iVar4 + 0xd8) & 4) != 0)) {
               FUN_0046bde0(local_100,&DAT_005a41e0,*(undefined4 *)(iVar2 + 0x9c));
               goto LAB_004776dd;

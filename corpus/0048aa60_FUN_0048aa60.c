@@ -41,7 +41,8 @@ void FUN_0048aa60(int param_1)
                    (int)((ulonglong)((longlong)DAT_0056c378 * (longlong)iVar3) >> 0x20) << 0x10);
         iVar3 = FUN_0048e550(&local_20,param_1 + 0x34);
         if (iVar3 <= (int)uVar2) {
-          iVar3 = FUN_004b36b0(&DAT_005b9600,&DAT_0056c2bc,param_1 + 0x18,local_2c,0x10000,0);
+          iVar3 = Coll_SegmentVsModel(&DAT_005b9600,&DAT_0056c2bc,param_1 + 0x18,local_2c,0x10000,0)
+          ;
           if (iVar3 != 0) {
             DAT_0056c368 = 1;
           }

@@ -9,7 +9,7 @@ int Dcb_FindById(int param_1)
   if (param_1 != 0) {
     iVar1 = DAT_005b3280;
     if (param_1 == DAT_005b8f50) {
-      return DAT_005b3300;
+      return GLBL_SOME_CONTEXT;
     }
     for (; iVar1 != 0; iVar1 = *(int *)(iVar1 + 8)) {
       if (*(int *)(iVar1 + 0xe8) == param_1) {

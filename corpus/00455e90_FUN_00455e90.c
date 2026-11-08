@@ -13,7 +13,7 @@ void FUN_00455e90(int *param_1,undefined4 param_2)
     local_8 = 0x10000 - ((uint)((longlong)param_1[1] * 4000) >> 0x10 |
                         (int)((ulonglong)((longlong)param_1[1] * 4000) >> 0x20) << 0x10);
   }
-  iVar1 = FUN_00455e40(param_1,param_2);
+  iVar1 = Shield_GetMax(param_1,param_2);
   if ((param_1[2] < iVar1) || (param_1[4] < iVar1)) {
     local_8 = local_8 - ((uint)((longlong)param_1[3] * 4000) >> 0x10 |
                         (int)((ulonglong)((longlong)param_1[3] * 4000) >> 0x20) << 0x10);

@@ -38,7 +38,7 @@ void FUN_0041f260(int param_1)
       else {
         uVar5 = *(undefined4 *)(*(int *)(iVar2 + 0x6c) + 0x78);
       }
-      FUN_0045d860(iVar2 + 0x10,iVar3,0,uVar5,param_1);
+      SrvSend_PlayNamedSound(iVar2 + 0x10,iVar3,0,uVar5,param_1);
       *(undefined4 *)(iVar1 + 0x2c) = *(undefined4 *)(iVar4 + 0x24);
       *(undefined4 *)(iVar1 + 0x30) = *(undefined4 *)(iVar4 + 0x28);
       *(undefined4 *)(iVar1 + 0x34) = *(undefined4 *)(iVar4 + 0x2c);
@@ -56,7 +56,7 @@ void FUN_0041f260(int param_1)
       local_4 = 0xffffffff;
       local_18 = 7;
       local_10 = 0;
-      FUN_0048ddc0(&local_18,param_1);
+      Mission_PostEvent(&local_18,param_1);
       *(undefined4 *)(iVar1 + 0x2c) = 0;
       return;
     }

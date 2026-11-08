@@ -12,7 +12,8 @@ int FUN_004a8010(uint param_1,undefined4 *param_2)
   if (param_2[3] == 0) {
     return 0;
   }
-  puVar1 = (undefined4 *)FUN_0049c3b0(param_1 * 0x38,4,0,s_A3D_OBJECT_ARRAY_0055e6d4);
+  puVar1 = (undefined4 *)mem_GetMemEx_probably_alloc(param_1 * 0x38,4,0,s_A3D_OBJECT_ARRAY_0055e6d4)
+  ;
   param_2[2] = puVar1;
   for (uVar2 = param_1 * 0x38 >> 2; uVar2 != 0; uVar2 = uVar2 - 1) {
     *puVar1 = 0;

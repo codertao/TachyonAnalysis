@@ -11,8 +11,8 @@ void FUN_00465880(int param_1,undefined4 param_2,int param_3,int param_4)
   iVar2 = *(int *)(param_3 + 0xd8);
   iVar3 = *(int *)(param_4 + 0xd4);
   iVar4 = *(int *)(param_4 + 0xd8);
-  FUN_00437c10(param_3 + 0x204,0x100000);
-  FUN_00437c10(param_4 + 0x204,0x100000);
+  sbi_flags(param_3 + 0x204,0x100000);
+  sbi_flags(param_4 + 0x204,0x100000);
   *(undefined4 *)(param_1 + 0xc) = 0;
   *(undefined4 *)(param_1 + 4) = param_2;
   if (iVar4 - iVar2 < iVar3 - iVar1) {

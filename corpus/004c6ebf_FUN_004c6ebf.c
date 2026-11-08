@@ -9,7 +9,7 @@ uint FUN_004c6ebf(LPWSTR param_1,byte *param_2,uint param_3)
   if ((param_2 != (byte *)0x0) && (param_3 != 0)) {
     bVar1 = *param_2;
     if (bVar1 != 0) {
-      if (DAT_00565138 == 0) {
+      if (GLBL_use_locale_str_funcs == 0) {
         if (param_1 != (LPWSTR)0x0) {
           *param_1 = (ushort)bVar1;
         }

@@ -12,7 +12,7 @@ undefined4 FUN_00458c20(undefined4 param_1,undefined4 *param_2)
     if (puVar1 == (undefined *)0x0) {
       return 0;
     }
-    iVar2 = FUN_004c67c0(param_1,*ppuVar3);
+    iVar2 = str_cmp(param_1,*ppuVar3);
     if (iVar2 == 0) break;
     puVar1 = ppuVar3[2];
     ppuVar3 = ppuVar3 + 2;

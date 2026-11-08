@@ -20,7 +20,7 @@ void FUN_00494200(undefined4 *param_1,undefined4 param_2)
     *(undefined4 *)(iVar1 + 0x54) = 0;
     *(undefined4 *)(iVar1 + 0x6c) = 0;
     *(undefined2 *)(iVar1 + 0x30) = 0;
-    uVar2 = FUN_00493120(param_2);
+    uVar2 = WeaponDef_Get(param_2);
     *(undefined4 *)(iVar1 + 0xdc) = uVar2;
     FUN_00494160(iVar1);
     FUN_00423590(param_1);

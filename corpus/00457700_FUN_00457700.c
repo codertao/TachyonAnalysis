@@ -2,9 +2,9 @@
 void FUN_00457700(void)
 
 {
-  FUN_004b5590(3,&LAB_00457160);
-  FUN_004b5590(4,FUN_00457680);
-  FUN_004b5590(5,&LAB_00457460);
+  set_cb_functions_maybe_audio(3,&LAB_00457160);
+  set_cb_functions_maybe_audio(4,FUN_00457680);
+  set_cb_functions_maybe_audio(5,&LAB_00457460);
   return;
 }
 

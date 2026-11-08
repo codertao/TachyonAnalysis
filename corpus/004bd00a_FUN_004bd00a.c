@@ -9,7 +9,7 @@ uint FUN_004bd00a(uint param_1)
   uint local_8;
   
   uVar1 = param_1;
-  if (DAT_00565138 == 0) {
+  if (GLBL_use_locale_str_funcs == 0) {
     if ((0x60 < (int)param_1) && ((int)param_1 < 0x7b)) {
       uVar1 = param_1 - 0x20;
     }
@@ -36,7 +36,7 @@ uint FUN_004bd00a(uint param_1)
       param_1 = CONCAT22((short)uVar2,(undefined2)param_1) & 0xff00ffff;
       uVar4 = 2;
     }
-    iVar3 = FUN_004c225c(DAT_00565138,0x200,&param_1,uVar4,&local_8,3,0,1);
+    iVar3 = FUN_004c225c(GLBL_use_locale_str_funcs,0x200,&param_1,uVar4,&local_8,3,0,1);
     if (iVar3 != 0) {
       if (iVar3 == 1) {
         uVar1 = local_8 & 0xff;

@@ -1,0 +1,28 @@
+
+/* as Impact_Bolt, missile flavour */
+
+void Impact_Missile(int param_1,int param_2,undefined4 param_3,int param_4)
+
+{
+  if (param_2 == 1) {
+    if (param_1 != 0) {
+      FUN_004233e0(&DAT_005653c0,&DAT_005653cc,DAT_005653fc,DAT_005653f0);
+      return;
+    }
+    FUN_00423420(&DAT_005653c0,&DAT_005653cc,DAT_005653fc,DAT_005653d8,DAT_005653f8,DAT_00565408,
+                 DAT_0056540c);
+  }
+  else {
+    if (param_1 != 0) {
+      FUN_004231f0(0,0,&DAT_005653cc,0,DAT_005653f0);
+      return;
+    }
+    SrvSend_EntityDestroyed
+              (&DAT_005653cc,param_3,0,0,DAT_005653f8,DAT_00565408,DAT_005653d8,DAT_0056540c);
+  }
+  if ((DAT_005653f4 != 0) && (param_4 != 0)) {
+    FUN_00493ad0(DAT_005653f4);
+  }
+  return;
+}
+

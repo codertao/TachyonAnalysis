@@ -9,7 +9,7 @@ void FUN_00466590(undefined2 param_1,undefined2 param_2,undefined2 param_3,undef
   _DAT_005635a0 = 0;
   DAT_00563588 = FUN_00465db0(param_4);
   _DAT_00563598 = FUN_00465df0();
-  _DAT_0056359c = DAT_005b2d10;
+  _DAT_0056359c = GLBL_spacesav[0x54];
   _DAT_00563594 = 0;
   _DAT_00563580 = 0x10000;
   _DAT_00563584 = 0;

@@ -4,7 +4,7 @@ undefined4 FUN_004a4070(int param_1,int param_2,undefined4 *param_3)
 {
   int iVar1;
   
-  DAT_006038a0 = *param_3;
+  GLBL_filehandle = *param_3;
   iVar1 = param_3[0x27];
   if (param_2 == 0) {
     param_1 = param_1 + *(int *)(iVar1 + 4);
@@ -16,7 +16,7 @@ undefined4 FUN_004a4070(int param_1,int param_2,undefined4 *param_3)
     param_1 = param_1 + *(int *)(iVar1 + 8) + *(int *)(iVar1 + 4);
   }
   param_3[0x2a] = param_1 - *(int *)(iVar1 + 4);
-  FUN_004a0ed0(param_1,0);
+  move_to_end_of_file_and_get_len(param_1,0);
   param_3[0x2d] = 0;
   return param_3[0x2a];
 }

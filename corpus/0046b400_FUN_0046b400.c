@@ -46,7 +46,7 @@ void FUN_0046b400(void)
       iVar3 = iVar3 + -1;
       puVar1 = puVar1 + 0x40;
     }
-    FUN_0049c530(DAT_00589738);
+    OurFreeMem(DAT_00589738);
     DAT_00589738 = local_4;
   }
   return;

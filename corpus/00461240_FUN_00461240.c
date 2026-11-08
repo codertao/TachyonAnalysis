@@ -17,7 +17,7 @@ void FUN_00461240(void)
     } while (uVar2 < DAT_005897e0);
   }
   FUN_00461230();
-  FUN_0045d740();
+  SrvSend_RoundResume();
   return;
 }
 

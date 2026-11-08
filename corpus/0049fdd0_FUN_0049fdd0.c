@@ -78,7 +78,7 @@ int * FUN_0049fdd0(int *param_1)
   if (param_1 == (int *)0x0) {
     return (int *)0x0;
   }
-  local_3c = DAT_0060395c;
+  local_3c = GLBL_WindowHandle_;
   ppppiStack_a4 = (int ****)0x49fe52;
   ppppiVar4 = _malloc(0x40);
   ppppiVar3 = DAT_00563ff8;

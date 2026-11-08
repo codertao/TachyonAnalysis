@@ -35,8 +35,8 @@ void FUN_00415060(void)
     Var_GetInt(DAT_005a6148,local_80,local_40,&local_8c);
     FUN_004507d0(2,local_8c);
   }
-  if (DAT_005b3300 != 0) {
-    FUN_0048b1b0(DAT_005b3300,2,&local_8c);
+  if (GLBL_SOME_CONTEXT != 0) {
+    FUN_0048b1b0(GLBL_SOME_CONTEXT,2,&local_8c);
     FUN_004507d0(4,local_8c >> 0x10);
   }
   uVar2 = FUN_00455e60(&DAT_005b20e0,DAT_005b1f0c + 0xd0,DAT_005b9020);
@@ -45,10 +45,10 @@ void FUN_00415060(void)
     local_8c = 2;
   }
   else {
-    uVar2 = FUN_00455e40(&DAT_005b20e0,DAT_005b1f0c + 0xd0);
+    uVar2 = Shield_GetMax(&DAT_005b20e0,DAT_005b1f0c + 0xd0);
     uVar3 = FUN_0048ec30(DAT_005b20e8,uVar2);
     if (uVar3 < 0x19) {
-      uVar2 = FUN_00455e40(&DAT_005b20e0,DAT_005b1f0c + 0xd0);
+      uVar2 = Shield_GetMax(&DAT_005b20e0,DAT_005b1f0c + 0xd0);
       uVar3 = FUN_0048ec30(DAT_005b20f0,uVar2);
       if (uVar3 < 0x19) {
         local_8c = 1;

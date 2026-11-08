@@ -10,7 +10,7 @@ void FUN_004964d0(int param_1,int param_2,int param_3,undefined4 param_4,undefin
   local_8 = 0;
   local_4 = 0;
   if ((0x7fff < *(int *)(param_2 + 0x54)) && (0xfff < *(int *)(param_2 + 0xcc))) {
-    local_4 = FUN_0048e440(param_1 + 0x34,param_3 + 0x34);
+    local_4 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(param_3 + 0x34));
     if ((0x3e7fff < local_4) && (local_4 <= *(int *)(param_2 + 0xcc))) {
       local_4 = local_4 + 0x12c000;
       FUN_0040f380(param_5,&local_c,param_4);

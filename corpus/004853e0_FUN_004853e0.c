@@ -23,8 +23,7 @@ void FUN_004853e0(void)
     uVar6 = 0;
     do {
       if ((*piVar5 != 0) &&
-         (iVar3 = FUN_004c67c0(piVar5 + 10,uVar4), uVar1 = uVar6, piVar2 = piVar5, iVar3 == 0))
-      break;
+         (iVar3 = str_cmp(piVar5 + 10,uVar4), uVar1 = uVar6, piVar2 = piVar5, iVar3 == 0)) break;
       uVar6 = uVar6 + 1;
       piVar5 = piVar5 + 0x6d;
       uVar1 = DAT_0056e3a4;
@@ -34,10 +33,10 @@ void FUN_004853e0(void)
   DAT_0056e3a8 = piVar2;
   DAT_0056e3a4 = uVar1;
   if (DAT_0056e3a8[0x34] == 0) {
-    FUN_0043ce50(&DAT_00583420,s_BtnShipYardConfig_00557a94,8);
+    set_button_state(&GLBL_UI_ELEM_LIST,s_BtnShipYardConfig_00557a94,8);
     return;
   }
-  FUN_0043ce50(&DAT_00583420,s_BtnShipYardConfig_00557a94,1);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnShipYardConfig_00557a94,1);
   return;
 }
 

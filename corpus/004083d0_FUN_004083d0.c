@@ -9,9 +9,8 @@ FUN_004083d0(int param_1,int param_2,int *param_3,float param_4,int param_5,int 
   int iVar3;
   int iVar4;
   int iVar5;
-  ulonglong local_40;
-  undefined4 local_38;
-  int local_34 [4];
+  vec3 local_40;
+  vec3 local_34;
   int local_24;
   int local_20;
   int local_1c;
@@ -30,41 +29,42 @@ FUN_004083d0(int param_1,int param_2,int *param_3,float param_4,int param_5,int 
     iVar4 = param_5;
     iVar5 = 0;
   }
-  local_34[0] = 0;
-  local_34[1] = 0;
-  local_38 = 0;
-  local_34[2] = param_2;
-  local_40 = (ulonglong)(uint)(param_1 << 0x10);
+  local_34.x = 0;
+  local_34.y = 0;
+  local_40.z = 0;
+  local_34.z = param_2;
+  local_40.y = 0;
+  local_40.x = param_1 << 0x10;
   FUN_004b1bb0(local_18,&local_40);
-  FUN_004b24d0(local_34,local_34);
-  fVar1 = (float)local_34[2];
+  some_rotate_by_global(&local_34,&local_34);
+  fVar1 = (float)local_34.z;
   param_4 = fVar1;
-  if (local_34[0] != 0) {
-    param_4 = fVar1 / (float)local_34[0];
+  if (local_34.x != 0) {
+    param_4 = fVar1 / (float)local_34.x;
   }
-  *param_6 = local_34[0];
-  if (local_34[0] < iVar3) {
+  *param_6 = local_34.x;
+  if (local_34.x < iVar3) {
     *param_6 = iVar3;
   }
   if (local_20 < *param_6) {
     *param_6 = local_20;
   }
-  local_40._0_4_ = (int)(longlong)ROUND((float)(*param_6 - local_34[0]) * param_4 + fVar1);
-  param_6[1] = (int)local_40;
+  local_40.x = (int)(longlong)ROUND((float)(*param_6 - local_34.x) * param_4 + fVar1);
+  param_6[1] = local_40.x;
   if (param_7 == 0) {
-    if (iVar4 <= (int)local_40) {
-      if ((int)local_40 <= iVar5) goto LAB_0040854d;
-      if (iVar4 < (int)local_40) {
+    if (iVar4 <= local_40.x) {
+      if (local_40.x <= iVar5) goto LAB_0040854d;
+      if (iVar4 < local_40.x) {
         param_6[1] = iVar4;
       }
     }
     if (param_6[1] < iVar5) {
       param_6[1] = iVar5;
     }
-    local_40._0_4_ =
-         (int)(longlong)ROUND((float)(param_6[1] - local_34[2]) / param_4 + (float)local_34[0]);
-    *param_6 = (int)local_40;
-    if ((int)local_40 < iVar3) {
+    local_40.x = (int)(longlong)
+                      ROUND((float)(param_6[1] - local_34.z) / param_4 + (float)local_34.x);
+    *param_6 = local_40.x;
+    if (local_40.x < iVar3) {
       *param_6 = iVar3;
     }
     if (local_20 < *param_6) {
@@ -72,23 +72,23 @@ FUN_004083d0(int param_1,int param_2,int *param_3,float param_4,int param_5,int 
     }
     goto LAB_0040854d;
   }
-  if (iVar4 < (int)local_40) {
+  if (iVar4 < local_40.x) {
     param_6[1] = iVar4;
 LAB_004084be:
     if (param_6[1] < iVar5) {
       param_6[1] = iVar5;
     }
-    local_40._0_4_ =
-         (int)(longlong)ROUND((float)(param_6[1] - local_34[2]) / param_4 + (float)local_34[0]);
-    *param_6 = (int)local_40;
-    if ((int)local_40 < iVar3) {
+    local_40.x = (int)(longlong)
+                      ROUND((float)(param_6[1] - local_34.z) / param_4 + (float)local_34.x);
+    *param_6 = local_40.x;
+    if (local_40.x < iVar3) {
       *param_6 = iVar3;
     }
     if (local_20 < *param_6) {
       *param_6 = local_20;
     }
   }
-  else if ((int)local_40 < iVar5) goto LAB_004084be;
+  else if (local_40.x < iVar5) goto LAB_004084be;
   param_6[1] = param_5 - param_6[1];
 LAB_0040854d:
   param_6[1] = param_6[1] + param_3[1];

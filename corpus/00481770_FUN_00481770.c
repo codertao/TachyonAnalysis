@@ -8,7 +8,7 @@ void FUN_00481770(void)
   undefined4 uVar4;
   undefined4 uVar5;
   
-  if (DAT_00563d74 == &PTR_DAT_00555b98) {
+  if (DAT_00563d74 == &PTR_GLBL_spacesav_64__00555b98) {
     if (DAT_00571180 == 0) {
       DAT_00571188 = 0;
     }

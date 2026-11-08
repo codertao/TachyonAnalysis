@@ -27,16 +27,16 @@ void Dcb_ApplySnapshot(ushort *param_1)
         uVar2 = uVar2 + 1;
       } while (uVar2 < *param_1);
     }
-    FUN_00417830();
+    TachCli_ExpireReplicas();
     if (param_1[1] != 0) {
       DAT_005b3a14 = (uint)param_1[1];
       DAT_005b3a1c = 1;
       DAT_005b3a20 = (uint)param_1[2];
-      FUN_004163e0(1,DAT_005b3a14,DAT_005b3a20);
+      Tach_SendSnapshotAck(1,DAT_005b3a14,DAT_005b3a20);
       return;
     }
     if (DAT_005b3a1c != 0) {
-      FUN_004163e0(1,DAT_005b3a14,DAT_005b3a20);
+      Tach_SendSnapshotAck(1,DAT_005b3a14,DAT_005b3a20);
     }
   }
   return;

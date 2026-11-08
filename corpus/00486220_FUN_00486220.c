@@ -2,7 +2,7 @@
 void FUN_00486220(void)
 
 {
-  g_StarbaseScreen = &PTR_FUN_0054e9d8;
+  g_StarbaseScreen = &g_mode_Loadout;
   g_TitleMenu_ExitFlag = 1;
   return;
 }

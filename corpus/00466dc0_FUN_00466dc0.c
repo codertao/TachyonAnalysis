@@ -8,18 +8,14 @@ void FUN_00466dc0(void)
   DWORD DVar2;
   uint uVar3;
   int *piVar4;
-  undefined4 local_20;
-  undefined4 local_18;
-  undefined4 local_14;
-  undefined4 local_10;
-  undefined4 local_c;
-  undefined4 local_8;
-  undefined4 local_4;
+  int local_20;
+  vec3 local_18;
+  vec3 local_c;
   
   iVar1 = DAT_005897a4;
-  local_18 = 0;
-  local_14 = 0;
-  local_10 = 0;
+  local_18.x = 0;
+  local_18.y = 0;
+  local_18.z = 0;
   piVar4 = &DAT_006240e8;
   DAT_0062c0e8 = 0;
   DVar2 = timeGetTime();
@@ -28,13 +24,13 @@ void FUN_00466dc0(void)
     for (; iVar1 != 0; iVar1 = *(int *)(iVar1 + 8)) {
       if ((((*(byte *)(iVar1 + 0x50) & 1) == 0) && (*(int *)(iVar1 + 0x1c) != 0)) &&
          (*(int *)(iVar1 + 0x18) != 0)) {
-        local_20 = (undefined4)(longlong)ROUND(*(float *)(iVar1 + 0x30) * _DAT_0052e544);
-        local_c = local_20;
-        local_20 = (undefined4)(longlong)ROUND(*(float *)(iVar1 + 0x34) * _DAT_0052e544);
-        local_8 = local_20;
-        local_20 = (undefined4)(longlong)ROUND(*(float *)(iVar1 + 0x38) * _DAT_0052e544);
-        local_4 = local_20;
-        uVar3 = FUN_0048e440(&local_c,&local_18);
+        local_20 = (int)(longlong)ROUND(*(float *)(iVar1 + 0x30) * _DAT_0052e544);
+        local_c.x = local_20;
+        local_20 = (int)(longlong)ROUND(*(float *)(iVar1 + 0x34) * _DAT_0052e544);
+        local_c.y = local_20;
+        local_20 = (int)(longlong)ROUND(*(float *)(iVar1 + 0x38) * _DAT_0052e544);
+        local_c.z = local_20;
+        uVar3 = distance_between(&local_c,&local_18);
         if ((float)uVar3 * _DAT_0052e5d8 <= *(float *)(iVar1 + 0x2c)) {
           *piVar4 = iVar1;
           piVar4[1] = uVar3;

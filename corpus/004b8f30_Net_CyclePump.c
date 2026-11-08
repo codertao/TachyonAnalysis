@@ -10,7 +10,7 @@ void Net_CyclePump(void)
   Net_ReceiveDispatch();
   FUN_004b8a60();
   if ((_DAT_006af614 & DAT_006af640) == 0) {
-    FUN_004b8ef0();
+    NetCli_BuildAndSend();
   }
   DAT_006af640 = DAT_006af640 + 1;
   return;

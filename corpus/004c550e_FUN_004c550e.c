@@ -10,7 +10,7 @@ int FUN_004c550e(void)
   int local_4;
   
   iVar4 = -1;
-  FUN_004c15cd(0x12);
+  init_andor_enter_crit_section_idx(0x12);
   local_8 = 0;
   local_4 = 0;
   piVar3 = &DAT_006c9d80;
@@ -18,12 +18,12 @@ int FUN_004c550e(void)
     for (; puVar2 < puVar1 + 0x120; puVar2 = puVar2 + 9) {
       if ((*(byte *)(puVar2 + 1) & 1) == 0) {
         if (puVar2[2] == 0) {
-          FUN_004c15cd(0x11);
+          init_andor_enter_crit_section_idx(0x11);
           if (puVar2[2] == 0) {
             InitializeCriticalSection((LPCRITICAL_SECTION)(puVar2 + 3));
             puVar2[2] = puVar2[2] + 1;
           }
-          FUN_004c162e(0x11);
+          leave_crit_section_idx(0x11);
         }
         EnterCriticalSection((LPCRITICAL_SECTION)(puVar2 + 3));
         if ((*(byte *)(puVar2 + 1) & 1) == 0) {
@@ -57,7 +57,7 @@ int FUN_004c550e(void)
     FUN_004c576e(iVar4);
   }
 LAB_004c5620:
-  FUN_004c162e(0x12);
+  leave_crit_section_idx(0x12);
   return iVar4;
 }
 

@@ -2,7 +2,7 @@
 void FUN_004a8610(void)
 
 {
-  if (DAT_00563e98 != 0) {
+  if (GLBL_audio_running != 0) {
     if (DAT_00563e9c == 0) {
       FUN_004a9560();
       return;

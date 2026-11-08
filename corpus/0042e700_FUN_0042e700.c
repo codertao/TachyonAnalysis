@@ -20,7 +20,7 @@ int FUN_0042e700(undefined4 param_1,undefined4 param_2)
   *(undefined4 *)(iVar1 + 0x18) = 0x10;
   *(undefined4 *)(iVar1 + 0x1c) = 0x40000;
   *(code **)(iVar1 + 0x70) = FUN_0042e4e0;
-  FUN_004b2950((undefined4 *)(iVar1 + 0x18),0);
+  Model_SelectState((undefined4 *)(iVar1 + 0x18),0);
   FUN_0041b850(iVar1);
   return iVar1;
 }

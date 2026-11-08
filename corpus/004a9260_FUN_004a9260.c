@@ -23,13 +23,13 @@ void FUN_004a9260(void)
   DAT_005f9e00 = (HWAVEOUT)0x0;
   DVar1 = timeGetTime();
   do {
-    MVar2 = waveOutOpen(&DAT_005f9e00,0xffffffff,&local_14,(DWORD_PTR)DAT_0060395c,1,0x10000);
+    MVar2 = waveOutOpen(&DAT_005f9e00,0xffffffff,&local_14,(DWORD_PTR)GLBL_WindowHandle_,1,0x10000);
     DVar3 = timeGetTime();
     if (MVar2 == 0) goto LAB_004a92f9;
   } while ((int)(DVar3 - DVar1) < 3000);
   if (MVar2 != 0) {
     waveOutClose(DAT_005f9e00);
-    DAT_00563e98 = 0;
+    GLBL_audio_running = 0;
     return;
   }
 LAB_004a92f9:
@@ -103,9 +103,9 @@ LAB_004a92f9:
   _DAT_005f9df4 = 0;
   MVar2 = waveOutPrepareHeader(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9da0,0x20);
   if (MVar2 != 0) {
-    MessageBoxA(DAT_0060395c,s_Could_not_prep_audio_0055e798,s_Audio_Error_0055e7b0,0);
+    MessageBoxA(GLBL_WindowHandle_,s_Could_not_prep_audio_0055e798,s_Audio_Error_0055e7b0,0);
     waveOutClose(DAT_005f9e00);
-    DAT_00563e98 = 0;
+    GLBL_audio_running = 0;
     FUN_0049f770();
   }
   waveOutPrepareHeader(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9dc0,0x20);
@@ -118,9 +118,9 @@ LAB_004a92f9:
   DAT_005f9e10 = 1;
   MVar2 = waveOutWrite(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9da0,0x20);
   if (MVar2 != 0) {
-    MessageBoxA(DAT_0060395c,s_Could_not_play_audio_0055e780,s_Audio_Error_0055e7b0,0);
+    MessageBoxA(GLBL_WindowHandle_,s_Could_not_play_audio_0055e780,s_Audio_Error_0055e7b0,0);
     waveOutClose(DAT_005f9e00);
-    DAT_00563e98 = 0;
+    GLBL_audio_running = 0;
     FUN_0049f770();
   }
   waveOutWrite(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9dc0,0x20);

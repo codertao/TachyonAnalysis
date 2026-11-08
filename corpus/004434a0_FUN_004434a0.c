@@ -44,7 +44,7 @@ void FUN_004434a0(int param_1)
       return;
     }
   }
-  FUN_0043f620(&g_UiManager,s_IAHOPreview_00540e40,0x20000);
+  set_flag_10c_on_elem_by_id(&g_UiManager,s_IAHOPreview_00540e40,0x20000);
   return;
 }
 

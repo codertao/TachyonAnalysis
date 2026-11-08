@@ -20,7 +20,7 @@ LAB_00440ce3:
     iVar3 = DAT_005a4b48;
   }
   DAT_005a4b48 = iVar3;
-  FUN_0049c530(param_1);
+  OurFreeMem(param_1);
   DAT_005a4b4c = DAT_005a4b4c + -1;
 LAB_00440d03:
   if (DAT_005a4b4c < 1) {

@@ -13,7 +13,7 @@ undefined4 FUN_0046c34a(void)
                    );
   Cbin_GetField_Ctx(&DAT_00532af4,s_FONT_LONG_DEFAULT_0054aef4,&DAT_005882e8,0x10,0,&stack0x00000000
                    );
-  DAT_005879b0 = FUN_0049df00(&DAT_005879c4,0xa100);
+  DAT_005879b0 = load_rtxt_bin(&DAT_005879c4,0xa100);
   Cbin_FindSection(s_DATA_RECTS_0054aee8,&stack0x00000000);
   iVar2 = Cbin_FindParam(&DAT_00536bc4,&DAT_005882f8,0x3f,0,4,1,&stack0x00000000);
   if (iVar2 != 0) {

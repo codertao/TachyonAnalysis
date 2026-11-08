@@ -64,7 +64,7 @@ void FUN_004260c0(int param_1,int param_2,undefined4 param_3,char *param_4,undef
       pcVar6 = pcVar6 + 1;
     }
     FUN_00425fe0(iVar2,param_2);
-    FUN_004b2950((undefined4 *)(iVar2 + 0x18),0);
+    Model_SelectState((undefined4 *)(iVar2 + 0x18),0);
   }
   return;
 }

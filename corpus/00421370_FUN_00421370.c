@@ -11,7 +11,7 @@ void FUN_00421370(int param_1)
     FUN_00466290(param_1);
   }
   if (*(int *)(param_1 + 0xd4) < 1) {
-    uVar1 = FUN_0048e440(param_1 + 0x34,&DAT_005b9600);
+    uVar1 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)&DAT_005b9600);
     if (uVar1 < 0x4000000) {
       FUN_004b19a0(param_1 + 0x18);
       iVar2 = FUN_004b3bf0(param_1 + 0x18);

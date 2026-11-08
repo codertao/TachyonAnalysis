@@ -6,7 +6,7 @@ undefined4 FUN_00455040(void)
   code *pcVar2;
   int iVar3;
   
-  iVar1 = *(int *)(*(int *)(DAT_005b3300 + 100) + 8);
+  iVar1 = *(int *)(*(int *)(GLBL_SOME_CONTEXT + 100) + 8);
   while( true ) {
     if (iVar1 == 0) {
       return 0;

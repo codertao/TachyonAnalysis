@@ -17,19 +17,19 @@ int FUN_00419090(undefined4 *param_1,undefined4 param_2,int param_3,undefined4 p
   DAT_005b2d84 = 0;
   DAT_005b3190 = param_5;
   if ((*(int *)(param_3 + 0x10) != 0) &&
-     (iVar1 = FUN_00418a80(*(int *)(param_3 + 0x10),param_2,param_1,local_c), iVar1 != 0)) {
+     (iVar1 = Coll_SegmentVsList(*(int *)(param_3 + 0x10),param_2,param_1,local_c), iVar1 != 0)) {
     return iVar1;
   }
   if ((*(int *)(param_3 + 0xc) != 0) &&
-     (iVar1 = FUN_00418a80(*(int *)(param_3 + 0xc),param_2,param_1,local_c), iVar1 != 0)) {
+     (iVar1 = Coll_SegmentVsList(*(int *)(param_3 + 0xc),param_2,param_1,local_c), iVar1 != 0)) {
     return iVar1;
   }
   piVar2 = (int *)FUN_0045cb40(&local_18,param_3);
-  if ((*piVar2 != 0) && (iVar1 = FUN_00418a80(*piVar2,param_2,param_1,local_c), iVar1 != 0)) {
+  if ((*piVar2 != 0) && (iVar1 = Coll_SegmentVsList(*piVar2,param_2,param_1,local_c), iVar1 != 0)) {
     return iVar1;
   }
   piVar2 = (int *)FUN_0045cb90(&local_18,param_3);
-  if ((*piVar2 != 0) && (iVar1 = FUN_00418a80(*piVar2,param_2,param_1,local_c), iVar1 != 0)) {
+  if ((*piVar2 != 0) && (iVar1 = Coll_SegmentVsList(*piVar2,param_2,param_1,local_c), iVar1 != 0)) {
     return iVar1;
   }
   return 0;

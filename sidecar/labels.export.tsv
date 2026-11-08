@@ -1,0 +1,117 @@
+# Tachyon sidecar — exported user-defined labels. Format: addr\tname\tcomment
+0052cbe4	g_SinCosTable	trig table used by the Euler->matrix builder: index = angle>>16 (9 bits, 0..511), cos = +0x200 bytes (+128 entries); FULL CIRCLE = 512 units (0.703125 deg/unit); low 16 bits interpolate
+0052cde4	g_some_trig_table
+0052d7e4	GLBL_MATH_TMPZ_FRAC
+0052d944	GLBL_MATH_TMP_r1
+0052d948	GLBL_MATH_TMP_r2
+0052d94c	GLBL_MATH_TMP_r3
+00533a70	g_Mode_ServerStub	IN-FLIGHT gameplay mode (confirmed live via gdb: active mode object while flying). NOT a server stub (earlier guess wrong)
+00533a70	g_Mode_InFlight	IN-FLIGHT gameplay mode (confirmed live via gdb: active mode object while flying). NOT a server stub (earlier guess wrong)
+00535130	g_DescTypeTable	{char* name, int code} pairs: SHIP=1 ASTEROID=2 CAPITOL_SHIP=3 HYPER_GATE=4 STARBASE=5 MINE=6 CARGO=7 BEACON=8 SPEED_RING=9 COURSE=0xb MISC_OBJECT=0xc POWERUP=0xd
+0053ff08	g_Mode_Credits	credits screen (WndCredits/credits.bin); enter Credits_Enter 0x440ea0
+00541170	g_Mode_Multiplayer	single-player pilot select (WndLogin; Login_SelectSlot+Profile_StartGame); enter 0x443ee0; reached by cbLogin
+00541170	g_Mode_LoginProfile	single-player pilot select (WndLogin; Login_SelectSlot+Profile_StartGame); enter 0x443ee0; reached by cbLogin
+00541170	g_Mode_Login	single-player pilot select (WndLogin; Login_SelectSlot+Profile_StartGame); enter 0x443ee0; reached by cbLogin
+00541480	g_UiCallbackRegistry	array of {char name[0x40]; void* func; i32 flag} stride 0x48 (NAME first); resolved by strcmp(name). (earlier 0x5414c0/{func,flag,name} read was off by one entry)
+00544408	g_Mode_TitleMenu	mode object: enter/update/render/exit at 0x444eb0/0x4450b0/0x4455c0/0x445600
+00544430	g_MpModeFlag	1=multiplayer path, 0=single/credits [tentative]
+00547940	g_Mode_Credits	WndMPLogin multiplayer profile/login select (10 MP slots); enter 0x44acd0
+00547940	g_Mode_MPLogin	WndMPLogin multiplayer profile/login select (10 MP slots); enter 0x44acd0
+005482b0	g_Mode_Login	splash.pcx/WndSplash -> WndLogin; reached by cbExit
+005482b0	g_Mode_Splash	splash.pcx/WndSplash -> WndLogin; reached by cbExit
+0054b0b8	g_Mode_StarbaseHub	main starbase hub screen (return target); enter 0x470930
+0054e9d8	g_mode_Loadout
+00557a30	g_Mode_StarbaseShipyard	hangar/shipyard screen (3D scene); enter 0x485b00
+00559d2c	GLBL_rng_state
+00559d30	s_snapshot_fmtstr
+0055d7cc	PTR_global_mem_pool_root
+0055e0cc	GLBL_some_scale_factor
+0055ecdc	GLBL_3VEC3_input
+0055ef60	MAGIC_SCR0
+00561950	GLBL_crit_section_area
+00562b18	GLBL_maybe_crypt_skip_key
+005635c8	g_PlayerVarStore	current player var-store handle (from g_CurrentSavPath)
+00563640	g_StarbaseScreen	current starbase sub-mode object (copied into g_NextMode to run)
+0056368c	GLBL_ingame_rtxt
+00563e98	GLBL_audio_running
+00564004	GLBL_cb_log_file_io_probably
+00565138	GLBL_use_locale_str_funcs
+0056aac0	GLBL_llist_large_thing
+00571900	g_GameVarStore	session/mission var store (distinct from g_PlayerVarStore)
+00571ae4	g_MapUiCtx	galaxy/nav map UI context
+00583420	GLBL_UI_ELEM_LIST
+00590e28	g_NextMode	"next mode" pointer, written at each mode transition (~55 sites)
+00590e2c	g_ReturnMode	mode to return to when leaving flight (prev-mode slot; g_NextMode=0x590e28)
+00590e40	GLBL_loopTime
+00590e50	GLBL_run_once_func_cb
+005a3700	g_TitleMenuWindow	front-end UI manager: windowDefs@+0xc(stride 0x114,count+0x40) textDefs@+0x14(0x130,+0x48) buttonDefs@+0x18(0x23c,+0x4c)
+005a3700	g_UiManager	front-end UI manager: windowDefs@+0xc(stride 0x114,count+0x40) textDefs@+0x14(0x130,+0x48) buttonDefs@+0x18(0x23c,+0x4c)
+005a3844	g_TitleHoverState	title-screen hover counter (selects Cursor1/Cursor2)
+005a384c	g_TitleMenu_ExitFlag	0 = stay in menu mode, nonzero = leave (checked by TitleMenu_Update)
+005a3980	g_ProfileSlots	10 profile slots, stride 0x8c; display name at slot+0x10 ('\0' = empty slot)
+005a60b0	g_DefaultCfgPath	non-multiplayer config path [tentative]
+005a64fc	g_FlightStateFlags	in-flight gating bits (bit1/bit2 seen)
+005a6500	g_MissionEndFlag	set to leave the in-flight mode (-> g_NextMode = g_ReturnMode)
+005a6504	g_CutsceneActive	nonzero during a cutscene -> Flight_UpdateWorld skips input/control/HUD (world+camera keep running) [matches runtime: same mode, no control]
+005a6508	g_MissionEndReason	mission-end reason code (e.g. 9, 3)
+005a661c	GLBL_cheat_related1
+005a6628	GLBL_cheat_related2
+005a662c	GLBL_cheat_related_all_ships_maybe
+005a6660	g_CurrentProfile	current profile working buffer (0xb8 bytes, = .sav blob)
+005a6680	g_CurrentSavPath	"player%02d.sav" for current slot
+005a6690	g_CurrentCfgPath	"player%02d.cfg" for current slot
+005a66a0	g_CurrentProfileSlot	selected slot index (-1 = none)
+005aed64	GLBL_maybe_shadow_font_specific
+005b0738	GLBL_SOME_2D_X
+005b073c	GLBL_SOME_2D_Y
+005b1dd0	GLBL_FONT_SHDW_08
+005b1dd4	GLBL_FONT_SHDW_12
+005b1dd8	GLBL_BORDERS_BOX
+005b22e0	GLBL_ACTIVE_SND_CNT
+005b22e4	GLBL_ACTIVE_SNDS_PTR_MAYBE
+005b29a0	GLBL_some_sped_ll_head
+005b29a4	GLBL_iter_cnt
+005b29ac	GLBL_some_search_dist_arr?
+005b2a44	GLBL_flag_should_tick_something
+005b2ac0	GLBL_error_msg_str_ptr
+005b2ac4	GLBL_init_to_127
+005b2ac8	GLBL_init_to_110
+005b2af0	GLBL_NW_PING_IP
+005b2b00	GLBL_NW_PING_PORT
+005b2b30	GLBL_some_scale_override
+005b2bc0	GLBL_spacesav
+005b3300	GLBL_SOME_CONTEXT
+005b3334	glbl_maybe_camera
+005b9d10	GLBL_mem_log_lvl
+006038a0	GLBL_filehandle
+006038a4	GLBL_last_file_read_bytes
+006038a8	GLBL_maybe_pff_base
+006038b8	GLBL_some_file_failure
+006038bc	GLBL_open_file_error_flag
+0060390c	GLBL_show_error_dialogs
+00603910	GLBL_some_save_or_log_cb
+00603920	GLBL_pff_found_entry
+0060395c	GLBL_WindowHandle?
+00603c20	GLBL_someinput_array_of_ints
+00603e20	GLBL_someinput_iter_at
+00603e24	GLBL_someinput_MAX_CNT
+00604080	g_CbinCtx	current CBIN parse context (buffer, size, cursors, isBinary@0x68)
+00604440	GLBL_some_str
+0062c100	GLBL_3VEC3_output
+00666ae4	GLBL_R_DIST_MIN_VAL
+00666ae8	GLBL_R_DIST_MAX_VAL
+00666aec	f_global_scalar_maybe
+00668f98	GLBL_fvec3_rotB
+00668fa4	GLBL_fvec3_rotA
+006695b8	GLBL_bin_content
+006af500	GLBL_sbf_file_handle
+006af51c	GLBL_some_scalar_from_spacesav_in_fixed
+006af530	GLBL_MAYBE_AUDIO_CB_1
+006af534	GLBL_MAYBE_AUDIO_CB_2
+006af538	GLBL_MAYBE_AUDIO_CB_3
+006af53c	GLBL_MAYBE_AUDIO_CB_4
+006af540	GLBL_MAYBE_AUDIO_CB_5
+006af658	GLBL_some_game_mode
+006af678	GLBL_maybe_mem_pool_of_size
+006caed8	GLBL_locale_counter
+006caedc	GLBL_locale_inprocess_gauge

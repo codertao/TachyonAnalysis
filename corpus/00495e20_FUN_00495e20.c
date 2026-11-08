@@ -55,7 +55,7 @@ int FUN_00495e20(int *param_1)
   *(undefined4 *)(iVar2 + 0x2c) = 0xff;
   *(undefined4 *)(iVar2 + 0x5c) = 0;
   *(undefined4 *)(iVar2 + 0x18) = 0x90;
-  FUN_004b2950((undefined4 *)(iVar2 + 0x18),0);
+  Model_SelectState((undefined4 *)(iVar2 + 0x18),0);
   if ((*(byte *)(param_1 + 4) & 1) != 0) {
     *(undefined4 *)(iVar2 + 0xd8) = 0;
     return iVar2;

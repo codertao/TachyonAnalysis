@@ -9,7 +9,7 @@ void FUN_004ad2b0(int param_1,int param_2,int param_3)
   int local_4;
   
   if (DAT_00564ae4 != 0) {
-    FUN_004aee60(param_1,0x80,0x80,0x80,0x80);
+    Pal_SetCurveParams(param_1,0x80,0x80,0x80,0x80);
     iVar1 = param_3;
     if (0x80 < param_3) {
       iVar1 = param_3 * 4 + -0x180;

@@ -9,7 +9,7 @@ void FUN_00421e61(void)
   int iVar5;
   int unaff_EBP;
   
-  uVar4 = FUN_0048e350();
+  uVar4 = global_bad_shift_rng();
   iVar2 = *(int *)(unaff_EBP + 8);
   if ((uVar4 & 1) == 0) {
     *(undefined4 *)(iVar2 + 0x104) = DAT_005b216c;
@@ -17,7 +17,7 @@ void FUN_00421e61(void)
   else {
     *(undefined4 *)(iVar2 + 0x104) = DAT_005b2160;
   }
-  iVar5 = FUN_0048e350();
+  iVar5 = global_bad_shift_rng();
   uVar4 = iVar5 * 4 - 0x40000U & 0x40000;
   *(uint *)(iVar2 + 0x108) = uVar4;
   *(undefined4 *)(unaff_EBP + 8) = 0x1000;

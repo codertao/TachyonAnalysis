@@ -10,7 +10,7 @@ char * FUN_00469ac0(undefined4 param_1)
   pcVar2 = DAT_00589704;
   if (DAT_00589700 != 0) {
     do {
-      iVar1 = FUN_004c67c0(pcVar2,param_1);
+      iVar1 = str_cmp(pcVar2,param_1);
       if (iVar1 == 0) {
         return pcVar2;
       }

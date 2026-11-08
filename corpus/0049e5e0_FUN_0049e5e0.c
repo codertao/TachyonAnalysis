@@ -10,13 +10,13 @@ void FUN_0049e5e0(void)
   
   local_34.x = 0;
   local_34.y = 0;
-  iVar2 = PeekMessageA(&local_1c,DAT_0060395c,0x200,0x209,1);
+  iVar2 = PeekMessageA(&local_1c,GLBL_WindowHandle_,0x200,0x209,1);
   while (iVar2 != 0) {
     FUN_0049e450(local_1c.wParam,local_1c.lParam,local_1c.message,1);
-    iVar2 = PeekMessageA(&local_1c,DAT_0060395c,0x200,0x209,1);
+    iVar2 = PeekMessageA(&local_1c,GLBL_WindowHandle_,0x200,0x209,1);
   }
-  GetClientRect(DAT_0060395c,&local_2c);
-  ClientToScreen(DAT_0060395c,&local_34);
+  GetClientRect(GLBL_WindowHandle_,&local_2c);
+  ClientToScreen(GLBL_WindowHandle_,&local_34);
   iVar1 = DAT_00603e44;
   iVar2 = DAT_00603e40;
   SetCursorPos((local_2c.right - local_2c.left >> 1) + local_34.x,

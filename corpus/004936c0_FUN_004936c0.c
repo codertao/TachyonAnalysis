@@ -7,7 +7,7 @@ void FUN_004936c0(void)
   int iVar3;
   int *piVar4;
   
-  if (DAT_0055a560 != 0x26) {
+  if (g_WeaponDefs != 0x26) {
     piVar4 = &DAT_0055a5a0;
     do {
       iVar3 = (int)(0x320000 / (longlong)*piVar4);

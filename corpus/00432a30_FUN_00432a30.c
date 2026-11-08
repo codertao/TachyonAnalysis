@@ -18,10 +18,10 @@ void FUN_00432a30(undefined4 param_1)
     else {
       _strncpy(local_80,(char *)*puVar2,0x7f);
     }
-    FUN_0049c530(iVar1);
+    OurFreeMem(iVar1);
   }
   MessageBeep(0);
-  MessageBoxA(DAT_0060395c,local_80,PTR_s_Tachyon__The_Fringe_0053f274,0x10);
+  MessageBoxA(GLBL_WindowHandle_,local_80,PTR_s_Tachyon__The_Fringe_0053f274,0x10);
   return;
 }
 

@@ -12,7 +12,7 @@ void FUN_004834d0(void)
     if (*piVar1 != 0) {
       FUN_004b1840(*piVar1);
     }
-    FUN_0043ce50(&DAT_00583420,piVar1 + -0x34,8);
+    set_button_state(&GLBL_UI_ELEM_LIST,piVar1 + -0x34,8);
     piVar1 = piVar1 + 0x52;
     iVar2 = iVar2 + -1;
   } while (iVar2 != 0);

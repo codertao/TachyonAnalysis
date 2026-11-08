@@ -11,12 +11,12 @@ void FUN_00424ee0(int param_1,undefined4 param_2)
     iVar1 = FUN_004a2eb0(param_2);
     if (iVar1 != 0) {
       FUN_0049c840(iVar1,s_FOGPCX_00535b88);
-      FUN_0049c670(iVar1,0xcccc);
+      mark_alloc_memory_with_flags(iVar1,0xcccc);
       FUN_004b99a0(0,iVar1,_DAT_00603100,DAT_00603104);
       iVar2 = FUN_004ad610(&DAT_00602e00);
       if (iVar2 != 0) {
         FUN_0049c840(iVar1,s_FOGPALREF_00535b7c);
-        FUN_0049c670(iVar1,0xcccc);
+        mark_alloc_memory_with_flags(iVar1,0xcccc);
         FUN_004b9a10(0,iVar2);
       }
     }

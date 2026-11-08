@@ -7,7 +7,7 @@ char * FUN_0043f000(int param_1,undefined4 *param_2)
   uint uVar3;
   char *pcVar4;
   
-  pcVar1 = (char *)FUN_0043fa70(param_1,param_2);
+  pcVar1 = (char *)find_ui_elem_by_id_(param_1,param_2);
   if (pcVar1 != (char *)0x0) {
 LAB_0043f019:
     pcVar4 = pcVar1;

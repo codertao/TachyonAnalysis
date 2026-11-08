@@ -28,7 +28,7 @@ void FUN_00477e10(void)
           FUN_0049b930(&PTR_DAT_00550a3c,0,0,pcVar2 + 0x74,1,4);
           FUN_0049b930(&PTR_DAT_00550a3c,pcVar2 + 0x30,0x1f,0,4,5);
           FUN_0049b930(&PTR_DAT_00550a3c,pcVar2 + 0x50,0x1f,0,4,6);
-          uVar3 = FUN_0046d580(&DAT_00583420,pcVar2 + 0x20,1,*(undefined4 *)(pcVar2 + 0x70),
+          uVar3 = FUN_0046d580(&GLBL_UI_ELEM_LIST,pcVar2 + 0x20,1,*(undefined4 *)(pcVar2 + 0x70),
                                *(undefined4 *)(pcVar2 + 0x74),0);
           *(undefined4 *)(pcVar2 + 0x7c) = uVar3;
           pcVar2[0x78] = '\x01';
@@ -59,7 +59,7 @@ void FUN_00477e10(void)
         FUN_0049b930(s_CARGO_00533fe8,0,0,pcVar2 + 0x74,1,4);
         FUN_0049b930(s_CARGO_00533fe8,pcVar2 + 0x30,0x1f,0,4,5);
         FUN_0049b930(s_CARGO_00533fe8,pcVar2 + 0x50,0x1f,0,4,6);
-        uVar3 = FUN_0046d580(&DAT_00583420,pcVar2 + 0x20,1,*(undefined4 *)(pcVar2 + 0x70),
+        uVar3 = FUN_0046d580(&GLBL_UI_ELEM_LIST,pcVar2 + 0x20,1,*(undefined4 *)(pcVar2 + 0x70),
                              *(undefined4 *)(pcVar2 + 0x74),0);
         *(undefined4 *)(pcVar2 + 0x7c) = uVar3;
         pcVar2[0x78] = '\0';

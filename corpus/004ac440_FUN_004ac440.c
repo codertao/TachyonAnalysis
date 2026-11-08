@@ -52,12 +52,12 @@ void FUN_004ac440(void)
   DAT_005a64c0 = DAT_004e4a28;
   local_40 = local_6c;
   local_10 = local_68;
-  FUN_004e4eea(local_84,local_58,local_2c,DAT_00604440,*DAT_005a64c8,DAT_004e4a28);
+  FUN_004e4eea(local_84,local_58,local_2c,GLBL_some_str,*DAT_005a64c8,DAT_004e4a28);
   local_6c = (DAT_005a62e0 + DAT_005a62d8) * 0x80;
   local_68 = (DAT_005a62e4 + DAT_005a62dc) * 0x80;
   local_64 = DAT_005a64cc + DAT_005a62d0 << (0x10U - *(char *)(DAT_005a64c8 + 2) & 0x1f);
   local_60 = DAT_005a64d0 + DAT_005a62d4 << (0x10U - *(char *)((int)DAT_005a64c8 + 9) & 0x1f);
-  FUN_004e4eea(local_84,local_2c,local_58,DAT_00604440,*DAT_005a64c8,DAT_004e4a28);
+  FUN_004e4eea(local_84,local_2c,local_58,GLBL_some_str,*DAT_005a64c8,DAT_004e4a28);
   return;
 }
 

@@ -47,9 +47,9 @@ void FUN_00446150(undefined4 param_1,int *param_2,int *param_3,undefined4 *param
       *piVar5 = 0;
       piVar5 = piVar5 + 1;
     }
-    iVar3 = FUN_004b14b0(local_34,s_mp_curship_00545c60,local_44);
+    iVar3 = Pak_Load(local_34,s_mp_curship_00545c60,local_44);
     param_2[0x10] = iVar3;
-    FUN_004b2950(param_2,0);
+    Model_SelectState(param_2,0);
     lVar1 = (longlong)((param_3[2] - *param_3 >> 1) + 1) * (longlong)DAT_005a67e4;
     fVar2 = (float)DAT_00604470 * _DAT_0052e998;
     param_2[7] = 0;

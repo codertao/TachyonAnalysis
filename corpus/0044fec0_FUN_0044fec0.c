@@ -15,7 +15,7 @@ void FUN_0044fec0(int param_1,int param_2)
       *puVar3 = 0;
     }
     else {
-      uVar1 = FUN_00493120(*psVar4 + -1);
+      uVar1 = WeaponDef_Get(*psVar4 + -1);
       *puVar3 = uVar1;
       uVar1 = FUN_00492b40(uVar1,*(uint *)(param_2 + 0x54) & 0x100000);
       puVar3[1] = uVar1;

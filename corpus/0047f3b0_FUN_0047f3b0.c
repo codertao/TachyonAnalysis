@@ -11,14 +11,14 @@ void FUN_0047f3b0(void)
   g_TitleMenu_ExitFlag = 0;
   DAT_005636b4 = 0;
   FUN_0047f370();
-  FUN_0043ab40(&DAT_00583420);
+  FUN_0043ab40(&GLBL_UI_ELEM_LIST);
   FUN_0047ebf0();
-  Ui_ShowWindow(&DAT_00583420,s_WndStarBaseNews_00552c88,0);
-  FUN_0043a8d0(&DAT_00583420,s_WndStarBaseNews_00552c88);
+  Ui_ShowWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseNews_00552c88,0);
+  FUN_0043a8d0(&GLBL_UI_ELEM_LIST,s_WndStarBaseNews_00552c88);
   FUN_00437b30(FUN_0047f680);
   FUN_00437b10(FUN_0047f680);
   FUN_00445710();
-  FUN_0043e8f0(&DAT_00583420,s_Cursor1_0053ff4c);
+  FUN_0043e8f0(&GLBL_UI_ELEM_LIST,s_Cursor1_0053ff4c);
   FUN_0043efa0();
   FUN_00468f50(g_NextMode);
   FUN_0047ed30(0xffffffff);
@@ -36,11 +36,12 @@ void FUN_0047f3b0(void)
       iVar3 = iVar3 + -1;
     } while (iVar3 != 0);
   }
-  FUN_0043ce50(&DAT_00583420,s_BtnNewsFwd_00552ce8,8);
-  FUN_0043ce50(&DAT_00583420,s_BtnNewsBck_00552cdc,8);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnNewsFwd_00552ce8,8);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnNewsBck_00552cdc,8);
   FUN_004af2e0();
-  FUN_004b1b70(DAT_005a6818,0x80,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
-               *(undefined4 *)(iVar1 + 0x54));
+  Pak_SetLoadPalParams
+            (g_PalBrightness,0x80,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
+             *(undefined4 *)(iVar1 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                *(undefined4 *)(iVar1 + 0x48));
   FUN_004e4b65(1);

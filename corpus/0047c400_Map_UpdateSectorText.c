@@ -65,12 +65,12 @@ void Map_UpdateSectorText(char *param_1)
       pcVar4 = pcVar4 + 1;
       pcVar10 = pcVar10 + 1;
     }
-    iVar7 = FUN_004c67c0(&DAT_005a41e0,&DAT_00571b80);
+    iVar7 = str_cmp(&DAT_005a41e0,&DAT_00571b80);
     if (iVar7 != 0) {
       FUN_0049c6e0(0xa106);
       DAT_00563688 = 0;
       DAT_00571b80 = 0;
-      DAT_00563688 = FUN_0049df00(&DAT_005a41e0,0xa106);
+      DAT_00563688 = load_rtxt_bin(&DAT_005a41e0,0xa106);
     }
     if (DAT_00563688 != 0) {
       str_sprintf(&DAT_00571b80,&DAT_005a41e0);
@@ -96,7 +96,7 @@ void Map_UpdateSectorText(char *param_1)
     }
   }
   FUN_0043e6a0(g_MapUiCtx,s_TxtMapSector_00552794,&DAT_00571500);
-  if ((param_1 == (char *)0x0) || (DAT_0056368c == 0)) {
+  if ((param_1 == (char *)0x0) || (GLBL_ingame_rtxt == 0)) {
     if (iVar3 == 0) {
       pcVar4 = s__Sector_Contents_0055275c;
     }
@@ -112,7 +112,7 @@ void Map_UpdateSectorText(char *param_1)
       *pcVar4 = '\0';
     }
     pcVar4 = _strstr(param_1,&DAT_0053fec0);
-    iVar2 = DAT_0056368c;
+    iVar2 = GLBL_ingame_rtxt;
     if (pcVar4 != (char *)0x0) {
       uVar6 = 0xffffffff;
       do {

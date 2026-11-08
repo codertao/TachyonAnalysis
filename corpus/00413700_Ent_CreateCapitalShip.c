@@ -14,58 +14,58 @@ undefined4 * Ent_CreateCapitalShip(undefined4 param_1,undefined4 param_2)
   undefined4 local_6c;
   undefined4 local_68;
   code *local_64;
-  undefined1 *local_60;
+  code *local_60;
   undefined4 local_5c;
   code *local_58;
   code *local_54;
-  undefined1 *local_50;
-  undefined1 *local_4c;
+  code *local_50;
+  code *local_4c;
   code *local_48;
-  undefined1 *local_44;
+  code *local_44;
   code *local_40;
-  undefined1 *local_3c;
-  undefined1 *local_38;
-  undefined1 *local_34;
-  undefined1 *local_30;
-  undefined1 *local_2c;
-  undefined1 *local_24;
-  undefined1 *local_20;
-  undefined1 *local_c;
-  undefined1 *local_8;
+  code *local_3c;
+  code *local_38;
+  code *local_34;
+  code *local_30;
+  code *local_2c;
+  code *local_24;
+  code *local_20;
+  code *local_c;
+  code *local_8;
   
-  puVar1 = (undefined4 *)FUN_0041dbb0(param_1,0);
+  puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 == (undefined4 *)0x0) {
-    FUN_0048e380(&local_74,0x74);
+    clr_bytes(&local_74,0x74);
     local_70 = 3;
     local_6c = 0x174;
     local_68 = 0xffff;
     local_74 = param_1;
     local_58 = FUN_004126b0;
     local_64 = FUN_00412cb0;
-    local_60 = &LAB_00412730;
+    local_60 = FUN_00412730;
     local_5c = 0;
     local_54 = FUN_00412ce0;
-    local_50 = &LAB_004116c0;
+    local_50 = CapShip_OnMessage;
     local_48 = FUN_00412630;
     local_40 = FUN_00412da0;
-    local_3c = &LAB_00412df0;
-    local_30 = &LAB_00411e30;
-    local_38 = &LAB_00413290;
-    local_34 = &LAB_00412e40;
-    local_44 = &LAB_00412e10;
-    local_2c = &LAB_00413170;
-    local_24 = &LAB_004132f0;
-    local_20 = &LAB_004135c0;
-    local_c = &LAB_00413090;
-    local_8 = &LAB_00413630;
-    local_4c = &LAB_004136a0;
-    puVar1 = (undefined4 *)FUN_0041db50(&local_74,param_2);
+    local_3c = FUN_00412df0;
+    local_30 = FUN_00411e30;
+    local_38 = FUN_00413290;
+    local_34 = FUN_00412e40;
+    local_44 = FUN_00412e10;
+    local_2c = FUN_00413170;
+    local_24 = FUN_004132f0;
+    local_20 = FUN_004135c0;
+    local_c = FUN_00413090;
+    local_8 = FUN_00413630;
+    local_4c = FUN_004136a0;
+    puVar1 = (undefined4 *)DescReg_Alloc(&local_74,param_2);
     if (puVar1 == (undefined4 *)0x0) {
       return (undefined4 *)0x0;
     }
     FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
-    FUN_0048e380(&DAT_005b9420,0x174);
-    FUN_0048e380(&DAT_005b95a0,0x40);
+    clr_bytes(&DAT_005b9420,0x174);
+    clr_bytes(&DAT_005b95a0,0x40);
     puVar3 = puVar1;
     puVar4 = &DAT_005b9420;
     for (iVar2 = 0x21; iVar2 != 0; iVar2 = iVar2 + -1) {
@@ -84,7 +84,7 @@ undefined4 * Ent_CreateCapitalShip(undefined4 param_1,undefined4 param_2)
     FUN_004091f0(&DAT_005b957c);
     Cbin_Close();
     if (DAT_005b95d0 == '\0') {
-      FUN_00431850(&DAT_005b9568,&DAT_005b9548,0,&DAT_005b9558,&DAT_005a7538,1);
+      ModelPool_Load(&DAT_005b9568,&DAT_005b9548,0,&DAT_005b9558,&g_ObjModelPool,1);
     }
     else {
       _DAT_005b9574 = FUN_00409b80(&DAT_005b95d0,&DAT_005b957c);

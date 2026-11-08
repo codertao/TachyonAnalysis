@@ -26,15 +26,15 @@ void FUN_0042b3d0(int param_1,int param_2)
       FUN_004281a0(local_80,*(undefined4 *)(param_1 + 0x6e4),*(undefined4 *)(param_1 + 0x6dc),
                    *(undefined4 *)(param_1 + 0x6e0),uVar2,0,*(undefined4 *)(param_1 + 0x6ec));
     }
-    uVar4 = FUN_0048e550(DAT_005b3300 + 0x34,param_2 + 0x34);
+    uVar4 = FUN_0048e550(GLBL_SOME_CONTEXT + 0x34,param_2 + 0x34);
     fVar1 = (float)uVar4 * _DAT_0052e824;
     uVar2 = FUN_0048e800(DAT_005a6140,*(undefined4 *)(param_1 + 0x6f4));
     str_sprintf(local_80,s__s___2_2f_005367a4,uVar2,(double)fVar1);
     FUN_004281a0(local_80,*(undefined4 *)(param_1 + 0x700),*(undefined4 *)(param_1 + 0x6f8),
                  *(undefined4 *)(param_1 + 0x6fc),*(undefined4 *)(param_1 + 0x70c),0,
                  *(undefined4 *)(param_1 + 0x708));
-    if ((*(short *)(param_2 + 0x76) == 1) && (*(code **)(DAT_005b1dc4 + 0x70) != (code *)0x0)) {
-      (**(code **)(DAT_005b1dc4 + 0x70))(param_1,param_2);
+    if ((*(short *)(param_2 + 0x76) == 1) && (*(code **)(g_ActiveRules + 0x70) != (code *)0x0)) {
+      (**(code **)(g_ActiveRules + 0x70))(param_1,param_2);
       return;
     }
     FUN_0042b140(param_1,param_2);

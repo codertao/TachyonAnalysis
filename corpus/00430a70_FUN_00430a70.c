@@ -22,7 +22,7 @@ undefined4 FUN_00430a70(undefined4 param_1)
     }
     iVar3 = Cbin_FindParam(s_ENTRY_0053eba0,local_80,0x80,0,4,2,local_ec);
     while (iVar3 != 0) {
-      iVar3 = FUN_004c67c0(local_80,param_1);
+      iVar3 = str_cmp(local_80,param_1);
       if (iVar3 == 0) {
         uVar4 = 1;
         break;

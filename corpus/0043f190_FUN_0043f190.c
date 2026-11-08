@@ -24,8 +24,8 @@ void FUN_0043f190(undefined4 param_1,int param_2,int param_3,int param_4)
       if (*(int *)(param_2 + 0x110) != 0) {
         param_4 = *(int *)(iVar6 + 0x1684);
         local_8 = *(undefined4 *)(iVar6 + 0x167c);
-        FUN_00437bf0(iVar6 + 0x167c,8);
-        FUN_00437bf0(*(int *)(param_2 + 0xd4) + 0x167c,4);
+        clear_flags(iVar6 + 0x167c,8);
+        clear_flags(*(int *)(param_2 + 0xd4) + 0x167c,4);
         *(undefined4 *)(*(int *)(param_2 + 0xd4) + 0x1684) = *(undefined4 *)(param_2 + 0x110);
         if (*(int *)(param_2 + 0x110) == 0) {
           iVar6 = *(int *)(param_2 + 0xd4);
@@ -35,13 +35,13 @@ void FUN_0043f190(undefined4 param_1,int param_2,int param_3,int param_4)
           iVar6 = *(int *)(param_2 + 0xd4);
           uVar9 = 8;
         }
-        FUN_00437c10(iVar6 + 0x167c,uVar9);
+        sbi_flags(iVar6 + 0x167c,uVar9);
         if (*(int *)(*(int *)(param_2 + 0xd4) + 0x60) != 0) {
           puVar8 = (uint *)(*(int *)(param_2 + 0xd4) + 0x6c);
           do {
-            FUN_00437bf0(puVar8,0x10);
-            FUN_00437bf0(puVar8,0x2000000);
-            FUN_00437bf0(puVar8,0x200000);
+            clear_flags(puVar8,0x10);
+            clear_flags(puVar8,0x2000000);
+            clear_flags(puVar8,0x200000);
             if ((*(byte *)(*(int *)(param_2 + 0xd4) + 0x167c) & 4) != 0) {
               *puVar8 = *puVar8 | 0x10;
             }
@@ -64,9 +64,9 @@ void FUN_0043f190(undefined4 param_1,int param_2,int param_3,int param_4)
         if (*(int *)(*(int *)(param_2 + 0xd4) + 0x60) != 0) {
           puVar8 = (uint *)(*(int *)(param_2 + 0xd4) + 0x6c);
           do {
-            FUN_00437bf0(puVar8,0x10);
-            FUN_00437bf0(puVar8,0x2000000);
-            FUN_00437bf0(puVar8,0x200000);
+            clear_flags(puVar8,0x10);
+            clear_flags(puVar8,0x2000000);
+            clear_flags(puVar8,0x200000);
             if ((*(byte *)(*(int *)(param_2 + 0xd4) + 0x167c) & 4) != 0) {
               *puVar8 = *puVar8 | 0x10;
             }
@@ -83,7 +83,7 @@ void FUN_0043f190(undefined4 param_1,int param_2,int param_3,int param_4)
       }
     }
     if (DAT_00564ae4 == 0) {
-      FUN_00437bf0(param_2 + 0x10c,0x400);
+      clear_flags(param_2 + 0x10c,0x400);
     }
   }
   return;

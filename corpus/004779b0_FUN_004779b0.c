@@ -25,7 +25,7 @@ LAB_00477a12:
     DAT_00572028 = *(int *)(DAT_00572028 + 0x88);
   }
   FUN_00477b70();
-  Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseInventory_00550a00,&DAT_0055099c,0);
+  Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseInventory_00550a00,&DAT_0055099c,0);
   return;
 }
 

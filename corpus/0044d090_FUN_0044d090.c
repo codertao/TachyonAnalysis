@@ -65,7 +65,7 @@ void FUN_0044d090(void)
     puVar4 = &DAT_00591b40;
     iVar1 = 0xc;
     do {
-      FUN_0043ce50(&g_UiManager,puVar4,*(undefined4 *)(puVar4 + 0x104));
+      set_button_state(&g_UiManager,puVar4,*(undefined4 *)(puVar4 + 0x104));
       puVar4 = puVar4 + 0x108;
       iVar1 = iVar1 + -1;
     } while (iVar1 != 0);

@@ -18,7 +18,7 @@ void FUN_0045a240(undefined4 *param_1,undefined4 param_2,undefined4 param_3,floa
   local_28 = (undefined4)(longlong)ROUND(param_4 * _DAT_0052eb24);
   param_1[3] = local_28;
   Cbin_GetParam(param_2,param_3,local_20,0x20,0,4,4);
-  iVar1 = FUN_004c67c0(local_20,s_SHAKE_00549268);
+  iVar1 = str_cmp(local_20,s_SHAKE_00549268);
   if (iVar1 == 0) {
     param_1[4] = 1;
     return;

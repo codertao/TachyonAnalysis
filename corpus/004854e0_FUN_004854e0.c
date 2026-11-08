@@ -37,7 +37,7 @@ void FUN_004854e0(void)
   local_c8 = 0x20;
   if (DAT_0056e38c != 0) {
     DAT_0056e3a8 = (undefined4 *)0x0;
-    local_ac = FUN_0049df00(s_shiptext_bin_00545c20,0xa103);
+    local_ac = load_rtxt_bin(s_shiptext_bin_00545c20,0xa103);
     FUN_004b1c80(0xa103,0xa103);
     iVar9 = 1;
     local_b0 = 0;
@@ -83,7 +83,7 @@ void FUN_004854e0(void)
             *puVar11 = 0;
             puVar11 = puVar11 + 1;
           }
-          uVar5 = FUN_004b14b0(local_88,s_shipyard_shippak_00557890,local_98);
+          uVar5 = Pak_Load(local_88,s_shipyard_shippak_00557890,local_98);
           *(undefined4 *)(puVar10 + 0xfc) = uVar5;
           *(undefined1 **)(puVar10 + 0x144) = &LAB_004854b0;
           *(undefined4 **)(puVar10 + 0x148) = puVar7;
@@ -97,7 +97,7 @@ void FUN_004854e0(void)
             piVar8 = piVar8 + 1;
           }
           FUN_004b1ca0(0x20000000);
-          uVar5 = FUN_004b14b0(local_88,s_shipyard_shipshdw_00557acc,local_98);
+          uVar5 = Pak_Load(local_88,s_shipyard_shipshdw_00557acc,local_98);
           *(undefined4 *)(puVar10 + 0x14c) = uVar5;
           FUN_004b1ca0(0);
           local_a8 = -1;
@@ -108,7 +108,7 @@ void FUN_004854e0(void)
           }
           str_sprintf(puVar10 + 0x34,pcVar6);
           FUN_0049adb0(local_6c);
-          puVar7 = (undefined4 *)FUN_004b1db0(DAT_0056e38c,*(undefined4 *)(puVar10 + -0x14));
+          puVar7 = (undefined4 *)Pak_GetAttachPoint(DAT_0056e38c,*(undefined4 *)(puVar10 + -0x14));
           if (puVar7 != (undefined4 *)0x0) {
             *(undefined4 *)(puVar10 + -0xc) = *puVar7;
             *(undefined4 *)(puVar10 + -8) = puVar7[1];
@@ -118,7 +118,7 @@ void FUN_004854e0(void)
             piVar8 = (int *)0x0;
           }
           else {
-            piVar8 = (int *)FUN_004b1db0(*(undefined4 *)(puVar10 + 0xfc),local_a8);
+            piVar8 = (int *)Pak_GetAttachPoint(*(undefined4 *)(puVar10 + 0xfc),local_a8);
           }
           piVar2 = (int *)(puVar10 + 0x11c);
           *piVar2 = *(int *)(puVar10 + -0xc) + DAT_0056e35c;
@@ -142,7 +142,7 @@ void FUN_004854e0(void)
           local_b8 = DAT_0056e360;
           *(undefined4 *)(puVar10 + 0x100) = 0x90;
           *(undefined4 *)(puVar10 + 0x114) = 0;
-          piVar8 = (int *)FUN_004b1db0(iVar9,0);
+          piVar8 = (int *)Pak_GetAttachPoint(iVar9,0);
           if (piVar8 != (int *)0x0) {
             local_bc = local_bc + *piVar8;
             local_b8 = local_b8 + piVar8[1];
@@ -190,7 +190,7 @@ void FUN_004854e0(void)
       local_c0 = local_c0 + 0x68;
     } while (local_b0 < 5);
     FUN_004853e0();
-    FUN_0049c530(local_ac);
+    OurFreeMem(local_ac);
   }
   return;
 }

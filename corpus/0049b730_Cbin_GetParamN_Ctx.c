@@ -69,7 +69,7 @@ Cbin_GetParamN_Ctx(undefined4 param_1,int param_2,undefined4 param_3,float *para
       } while (cVar1 != '\0');
       cVar1 = local_302[~uVar5];
     }
-    iVar3 = FUN_004c67c0(local_302 + 2,param_1);
+    iVar3 = str_cmp(local_302 + 2,param_1);
     if (iVar3 == 0) {
       iVar3 = FUN_004bcef7(local_100,&local_304);
       param_6 = param_6 + -1;

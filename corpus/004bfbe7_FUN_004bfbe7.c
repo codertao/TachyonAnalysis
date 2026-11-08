@@ -9,7 +9,7 @@ int FUN_004bfbe7(int param_1)
   
   iVar2 = 0;
   iVar4 = 0;
-  FUN_004c15cd(2);
+  init_andor_enter_crit_section_idx(2);
   iVar3 = 0;
   if (0 < DAT_006caec0) {
     do {
@@ -36,7 +36,7 @@ int FUN_004bfbe7(int param_1)
       iVar3 = iVar3 + 1;
     } while (iVar3 < DAT_006caec0);
   }
-  FUN_004c162e(2);
+  leave_crit_section_idx(2);
   if (param_1 != 1) {
     iVar2 = iVar4;
   }

@@ -15,7 +15,7 @@ undefined4 * Ent_CreateCourse(undefined4 param_1,undefined4 param_2,int param_3)
   undefined4 local_68;
   undefined1 *local_64;
   undefined1 *local_60;
-  undefined1 *local_58;
+  code *local_58;
   undefined4 local_54;
   undefined4 local_48;
   code *local_3c;
@@ -26,19 +26,19 @@ undefined4 * Ent_CreateCourse(undefined4 param_1,undefined4 param_2,int param_3)
   undefined1 *local_18;
   undefined1 *local_c;
   
-  puVar1 = (undefined4 *)FUN_0041dbb0(param_1,0);
+  puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 != (undefined4 *)0x0) {
     if ((param_3 != 0) || ((g_FlightStateFlags & 2) != 0)) {
       FUN_0041b190(puVar1);
     }
     return puVar1;
   }
-  FUN_0048e380(&local_74,0x74);
+  clr_bytes(&local_74,0x74);
   local_70 = 0xb;
   local_6c = 0x158;
   local_68 = 0xffff;
   local_74 = param_1;
-  local_58 = &LAB_0041b280;
+  local_58 = FUN_0041b280;
   local_64 = &LAB_0041b420;
   local_60 = &LAB_0041b3b0;
   local_3c = FUN_0041b310;
@@ -50,12 +50,12 @@ undefined4 * Ent_CreateCourse(undefined4 param_1,undefined4 param_2,int param_3)
   local_2c = 0;
   local_18 = &LAB_0041b560;
   local_c = &LAB_00414230;
-  puVar1 = (undefined4 *)FUN_0041db50(&local_74,param_2);
+  puVar1 = (undefined4 *)DescReg_Alloc(&local_74,param_2);
   if (puVar1 == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
   FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
-  FUN_0048e380(&DAT_005b2840,0x158);
+  clr_bytes(&DAT_005b2840,0x158);
   puVar4 = puVar1;
   puVar5 = &DAT_005b2840;
   for (iVar3 = 0x21; iVar3 != 0; iVar3 = iVar3 + -1) {

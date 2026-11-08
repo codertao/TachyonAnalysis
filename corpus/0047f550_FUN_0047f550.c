@@ -9,12 +9,12 @@ void FUN_0047f550(void)
       FUN_00440bd0();
       return;
     }
-    FUN_0043ac90(&DAT_00583420);
+    FUN_0043ac90(&GLBL_UI_ELEM_LIST);
     FUN_0048bf30();
     FUN_0048d620();
     FUN_0048d1c0(local_10);
-    Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseNews_00552c88,local_10,0);
-    FUN_0046ded0(&DAT_00583420,s_WndStarBaseNews_00552c88);
+    Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseNews_00552c88,local_10,0);
+    FUN_0046ded0(&GLBL_UI_ELEM_LIST,s_WndStarBaseNews_00552c88);
     FUN_0047f8e0();
   }
   return;

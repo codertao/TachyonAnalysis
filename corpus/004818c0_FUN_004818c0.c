@@ -19,7 +19,7 @@ void FUN_004818c0(int param_1)
   DAT_00563d6c = 1;
   DAT_00562bd0 = 1;
   FUN_0043c730(1);
-  FUN_0043ce50(DAT_00571280,local_20,0x10);
+  set_button_state(DAT_00571280,local_20,0x10);
   Ui_RefreshWindow(DAT_00571280,s_WndStarBaseOptions_00556bf0,0,0);
   return;
 }

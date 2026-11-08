@@ -16,7 +16,7 @@ void FUN_00419dd0(undefined4 param_1)
   uVar2 = Spx_ResolveDesName(s_hyper_gate_00534ab8);
   Desc_CreateByType(uVar2,&local_4,0,0,0,0xffffffff);
   if (local_4 != 0) {
-    FUN_0048e380(&DAT_005b29d0,0x68);
+    clr_bytes(&DAT_005b29d0,0x68);
     _DAT_005b29fc = 0;
     _DAT_005b2a18 = 0xffff;
     _DAT_005b2a20 = 0xffff;

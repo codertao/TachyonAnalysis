@@ -7,8 +7,8 @@ void FUN_00430840(void)
   int iVar1;
   code *pcVar2;
   
-  if ((((DAT_005a6730 != 0) && (*(int *)(DAT_005b3300 + 0x90) != 0)) &&
-      (iVar1 = *(int *)(*(int *)(DAT_005b3300 + 0x90) + 0xf4), iVar1 != 0)) &&
+  if ((((DAT_005a6730 != 0) && (*(int *)(GLBL_SOME_CONTEXT + 0x90) != 0)) &&
+      (iVar1 = *(int *)(*(int *)(GLBL_SOME_CONTEXT + 0x90) + 0xf4), iVar1 != 0)) &&
      (*(int *)(iVar1 + 0x8c) != 0)) {
     DAT_005653e4 = 0x100;
     DAT_005653e8 = 0x100;

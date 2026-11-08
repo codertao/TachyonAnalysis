@@ -11,7 +11,7 @@ void FUN_00446040(void)
   str_sprintf(&DAT_005a41e0,s_mptach_d_dat_00545c50,DAT_005a60c0);
   File_WriteAll(&DAT_005a41e0,&DAT_005a6080,0xb8);
   FUN_00458230();
-  FUN_0049c530(DAT_005a3160);
+  OurFreeMem(DAT_005a3160);
   if (DAT_005a34c0 != 0) {
     FUN_004b1840(DAT_005a34c0);
     DAT_005a34c0 = 0;

@@ -20,7 +20,7 @@ void FUN_004833f0(void)
     if ((piVar6[-0x14] != 0) && (*piVar6 != 0)) {
       FUN_00452150();
       FUN_00451fc0(piVar6[-0x18],piVar6[-0x17],piVar6[-0x16],piVar6[-0x15],1);
-      FUN_004add80(&DAT_005a67a0);
+      copy_str32_to_some_global(&DAT_005a67a0);
       if (DAT_00564ae4 == 0) {
         FUN_00452100();
       }
@@ -32,7 +32,7 @@ void FUN_004833f0(void)
   } while (iVar5 != 0);
   FUN_00452150();
   FUN_00452070(uVar1,uVar2,uVar3,uVar4,1);
-  FUN_004add80(&DAT_005a67a0);
+  copy_str32_to_some_global(&DAT_005a67a0);
   return;
 }
 

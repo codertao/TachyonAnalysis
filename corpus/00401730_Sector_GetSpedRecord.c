@@ -22,7 +22,7 @@ Sector_GetSpedRecord
   if (*puVar1 <= param_6) {
     param_6 = 0;
   }
-  FUN_004016c0(param_1,param_3,puVar1[1] + param_6 * 0x20);
+  Nav_SetWaypoint(param_1,param_3,puVar1[1] + param_6 * 0x20);
   return 1;
 }
 

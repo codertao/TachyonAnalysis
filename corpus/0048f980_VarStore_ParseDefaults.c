@@ -6,7 +6,7 @@ undefined4 VarStore_ParseDefaults(undefined4 param_1,undefined4 param_2,undefine
 {
   int iVar1;
   
-  FUN_0048e380(&DAT_0056aa80,0x18);
+  clr_bytes(&DAT_0056aa80,0x18);
   iVar1 = Cbin_Open(param_1);
   if (iVar1 == 0) {
     return 0;

@@ -34,12 +34,12 @@ void FUN_00472140(int param_1,int param_2)
         }
       }
     }
-    FUN_0043f650(&DAT_00583420,s_IACFGDrag_0054765c,param_1,param_2);
+    FUN_0043f650(&GLBL_UI_ELEM_LIST,s_IACFGDrag_0054765c,param_1,param_2);
     local_10 = *(int *)(*(int *)(DAT_00563608 + 0xd4) + 0x166c) + 4 + param_1;
     local_8 = local_10 + 1;
     local_c = *(int *)(*(int *)(DAT_00563608 + 0xd4) + 0x1670) / 2 + -4 + param_2;
     local_4 = local_c + 1;
-    FUN_0043e5c0(&DAT_00583420,s_TxtCFGDragQty_0054764c,&local_10);
+    FUN_0043e5c0(&GLBL_UI_ELEM_LIST,s_TxtCFGDragQty_0054764c,&local_10);
     if (DAT_00563604 != 0) {
       str_sprintf(&DAT_00577f60,&DAT_00535eb8,*(undefined4 *)(DAT_00563604 + 0x54));
     }

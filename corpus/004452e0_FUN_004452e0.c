@@ -21,8 +21,8 @@ void FUN_004452e0(void)
       FUN_00452360(DAT_00604464,DAT_0060446c - DAT_00604464,
                    *(undefined4 *)(&DAT_005a6440 + (uint)DAT_005a632a * 4));
     }
-    FUN_004b1920(&DAT_00640000,0x2ee00000);
-    FUN_0048e380(&local_4c,0x4c);
+    set_global_near_far(&DAT_00640000,0x2ee00000);
+    clr_bytes(&local_4c,0x4c);
     local_c = *(int *)(iVar1 + 0x10);
     local_4c = 0x10;
     local_48 = 0x20000;
@@ -46,7 +46,7 @@ void FUN_004452e0(void)
     }
     FUN_0048ab90();
     FUN_00452180(1);
-    if (DAT_005b2c88 != 0) {
+    if (GLBL_spacesav[0x32] != 0) {
       uVar3 = 0;
       if (*(int *)(iVar1 + 200) != 0) {
         piVar4 = (int *)(*(int *)(iVar1 + 0xcc) + 0x34);
@@ -62,11 +62,11 @@ void FUN_004452e0(void)
       }
     }
     DAT_00668f8c = DAT_005b9088 >> 8;
-    FUN_004b1920(0x2000,0x13880000);
+    set_global_near_far(0x2000,0x13880000);
     return;
   }
 LAB_004453e8:
-  FUN_004b1920(0x2000,DAT_00668fb4 + 0xfa0000);
+  set_global_near_far(0x2000,DAT_00668fb4 + 0xfa0000);
   return;
 }
 

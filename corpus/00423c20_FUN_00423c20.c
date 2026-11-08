@@ -27,7 +27,7 @@ void FUN_00423c20(undefined4 *param_1,int param_2,undefined4 param_3,undefined4 
       *(undefined4 *)(iVar1 + 0xa0) = 0;
       *(undefined4 *)(iVar1 + 0xa4) = 0;
       *(undefined4 *)(iVar1 + 0xa8) = 0;
-      FUN_004b2950((undefined4 *)(iVar1 + 0x18),0);
+      Model_SelectState((undefined4 *)(iVar1 + 0x18),0);
       *(undefined4 *)(iVar1 + 0x8c) = param_3;
       *(undefined4 *)(iVar1 + 0x90) = 0;
     }

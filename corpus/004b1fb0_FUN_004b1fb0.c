@@ -5,69 +5,59 @@ void FUN_004b1fb0(byte *param_1,int *param_2,int param_3)
 
 {
   int iVar1;
-  int local_60;
-  int local_5c;
-  int local_58;
-  int local_54;
-  int local_50;
-  int local_4c;
-  int local_48;
-  int local_44;
-  int local_40;
-  undefined4 local_3c;
-  undefined4 local_38;
-  undefined4 local_34;
-  undefined4 local_30;
-  undefined4 local_2c;
-  undefined4 local_28;
-  undefined4 local_24;
-  undefined4 local_20;
-  undefined4 local_1c;
+  vec3 local_60;
+  vec3 local_54;
+  vec3 local_48;
+  vec3 local_3c;
+  vec3 local_30;
+  vec3 local_24;
   undefined1 local_18 [24];
   
-  local_38 = 0;
-  local_34 = 0;
-  local_30 = 0;
-  local_28 = 0;
-  local_24 = 0;
-  local_20 = 0;
+  local_3c.y = 0;
+  local_3c.z = 0;
+  local_30.x = 0;
+  local_30.z = 0;
+  local_24.x = 0;
+  local_24.y = 0;
   if ((*param_1 & 0x10) == 0) {
-    local_3c = 0x10000;
+    local_3c.x = 0x10000;
   }
   else {
-    local_3c = *(undefined4 *)(param_1 + 4);
+    local_3c.x = *(int *)(param_1 + 4);
   }
   iVar1 = param_2[10];
-  local_2c = local_3c;
-  local_1c = local_3c;
-  FUN_0052db6a(local_18,*(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x38),
-               *(undefined4 *)(param_1 + 0x3c));
-  FUN_0052db6a(iVar1,param_2[1],param_2[2],param_2[3]);
-  FUN_0052dbcd(iVar1);
-  FUN_004b24d0(&local_3c,&local_60);
-  FUN_004b24d0(&local_30,&local_54);
-  FUN_004b24d0(&local_24,&local_48);
+  local_30.y = local_3c.x;
+  local_24.z = local_3c.x;
+  call_math_todo_with_rotation
+            (local_18,*(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x38),
+             *(undefined4 *)(param_1 + 0x3c));
+  call_math_todo_with_rotation(iVar1,param_2[1],param_2[2],param_2[3]);
+  call_copy_mathresult_to_global(iVar1);
+  some_rotate_by_global(&local_3c,&local_60);
+  some_rotate_by_global(&local_30,&local_54);
+  some_rotate_by_global(&local_24,&local_48);
   for (iVar1 = param_2[8]; iVar1 != 0; iVar1 = *(int *)(iVar1 + 0x20)) {
-    FUN_0052db6a(*(undefined4 *)(iVar1 + 0x28),*(undefined4 *)(iVar1 + 4),*(undefined4 *)(iVar1 + 8)
-                 ,*(undefined4 *)(iVar1 + 0xc));
-    FUN_0052dbcd(*(undefined4 *)(iVar1 + 0x28));
-    FUN_004b24d0(&local_60,&local_60);
-    FUN_004b24d0(&local_54,&local_54);
-    FUN_004b24d0(&local_48,&local_48);
+    call_math_todo_with_rotation
+              (*(undefined4 *)(iVar1 + 0x28),*(undefined4 *)(iVar1 + 4),*(undefined4 *)(iVar1 + 8),
+               *(undefined4 *)(iVar1 + 0xc));
+    call_copy_mathresult_to_global(*(undefined4 *)(iVar1 + 0x28));
+    some_rotate_by_global(&local_60,&local_60);
+    some_rotate_by_global(&local_54,&local_54);
+    some_rotate_by_global(&local_48,&local_48);
   }
-  FUN_0052dbcd(local_18);
-  FUN_004b24d0(&local_60,&local_60);
-  FUN_004b24d0(&local_54,&local_54);
-  FUN_004b24d0(&local_48,&local_48);
-  DAT_0062c100 = (float)local_60 * _DAT_0052e5d8;
-  DAT_0062c104 = (float)local_5c * _DAT_0052e5d8;
-  _DAT_0062c108 = (float)local_58 * _DAT_0052e5d8;
-  _DAT_0062c10c = (float)local_54 * _DAT_0052e5d8;
-  _DAT_0062c110 = (float)local_50 * _DAT_0052e5d8;
-  _DAT_0062c114 = (float)local_4c * _DAT_0052e5d8;
-  _DAT_0062c118 = (float)local_48 * _DAT_0052e5d8;
-  _DAT_0062c11c = (float)local_44 * _DAT_0052e5d8;
-  _DAT_0062c120 = (float)local_40 * _DAT_0052e5d8;
+  call_copy_mathresult_to_global(local_18);
+  some_rotate_by_global(&local_60,&local_60);
+  some_rotate_by_global(&local_54,&local_54);
+  some_rotate_by_global(&local_48,&local_48);
+  GLBL_3VEC3_output[0] = (float)local_60.x * _DAT_0052e5d8;
+  GLBL_3VEC3_output[1] = (float)local_60.y * _DAT_0052e5d8;
+  GLBL_3VEC3_output[2] = (float)local_60.z * _DAT_0052e5d8;
+  GLBL_3VEC3_output[3] = (float)local_54.x * _DAT_0052e5d8;
+  GLBL_3VEC3_output[4] = (float)local_54.y * _DAT_0052e5d8;
+  GLBL_3VEC3_output[5] = (float)local_54.z * _DAT_0052e5d8;
+  GLBL_3VEC3_output[6] = (float)local_48.x * _DAT_0052e5d8;
+  GLBL_3VEC3_output[7] = (float)local_48.y * _DAT_0052e5d8;
+  GLBL_3VEC3_output[8] = (float)local_48.z * _DAT_0052e5d8;
   if (*(char *)((int)param_2 + 0x1b) != '\0') {
     FUN_004b1df0(param_2);
   }

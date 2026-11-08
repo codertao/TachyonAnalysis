@@ -14,7 +14,7 @@ void FUN_00409b00(uint *param_1)
     uVar1 = 0;
     if (DAT_005b9808 != 0) {
       do {
-        FUN_004094a0(uVar2,uVar1,param_1);
+        Ocf_ParsePart(uVar2,uVar1,param_1);
         uVar1 = uVar1 + 1;
         uVar2 = uVar2 + 0x80;
       } while (uVar1 < DAT_005b9808);

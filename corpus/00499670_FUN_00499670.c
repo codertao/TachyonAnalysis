@@ -14,7 +14,7 @@ void FUN_00499670(void)
   }
   Var_SetStr(DAT_005a6148,s_PLAYER_MAIN_VARS_00534198,s_CURRENT_WINGMAN_0054a954,
              s_NO_WINGMEN_0055d69c);
-  FUN_004525c0(2);
+  Chatter_PlayRandom(2);
   return;
 }
 

@@ -16,10 +16,10 @@ void FUN_00473080(undefined4 param_1,undefined4 param_2,int param_3,int param_4,
   local_c = param_4 - local_18;
   local_8 = param_3 + param_5;
   local_4 = param_4 + param_6;
-  FUN_0043e5c0(&DAT_00583420,param_1,&local_10);
-  FUN_0043e6a0(&DAT_00583420,param_1,param_2);
-  FUN_0043e670(&DAT_00583420,param_1,0x10000);
-  FUN_0043e610(&DAT_00583420,param_1,0x400);
+  FUN_0043e5c0(&GLBL_UI_ELEM_LIST,param_1,&local_10);
+  FUN_0043e6a0(&GLBL_UI_ELEM_LIST,param_1,param_2);
+  clr_label_flags_11c(&GLBL_UI_ELEM_LIST,param_1,0x10000);
+  sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,param_1,0x400);
   return;
 }
 

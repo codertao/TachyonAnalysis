@@ -56,7 +56,7 @@ void FUN_00476ec0(undefined4 param_1)
     if (DAT_0054f88c == 0) {
       iVar3 = _rand();
       DAT_0054f88c = iVar3 % 500 + 0x4e2;
-      iVar3 = FUN_0043ba90(&DAT_00583420,param_1);
+      iVar3 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,param_1);
       if (iVar3 == 0) {
         return;
       }
@@ -139,7 +139,7 @@ void FUN_00476ec0(undefined4 param_1)
       pcVar7 = &DAT_00582bc0;
       iVar3 = _rand();
       DAT_0054f890 = iVar3 % 0x96 + 0x96;
-      iVar3 = FUN_0043ba90(&DAT_00583420,param_1);
+      iVar3 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,param_1);
       if (iVar3 != 0) {
         local_6c = 8;
         uVar6 = 0;

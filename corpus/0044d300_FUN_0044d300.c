@@ -27,7 +27,7 @@ void FUN_0044d300(int param_1)
       } while (iVar2 != 0);
       DAT_0059124c = FUN_004ad610(&DAT_00591300);
       if (DAT_0059124c != 0) {
-        FUN_004ad900(DAT_0059124c,0x80,0x80,0x80,0x80,0x80);
+        Pal_Remap(DAT_0059124c,0x80,0x80,0x80,0x80,0x80);
       }
     }
   }

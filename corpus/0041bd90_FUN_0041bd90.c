@@ -8,13 +8,13 @@ void FUN_0041bd90(void)
   iVar1 = FUN_0044fe80();
   if (iVar1 == 0) {
     FUN_0044fc30();
-    FUN_0045d740();
+    SrvSend_RoundResume();
   }
   else {
     uVar2 = FUN_0044fe30();
     Sector_StartMP(uVar2);
   }
-  DAT_005b2824 = DAT_005b2d44 * 3000;
+  DAT_005b2824 = GLBL_spacesav[0x61] * 3000;
   return;
 }
 

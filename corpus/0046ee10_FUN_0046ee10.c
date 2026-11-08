@@ -10,9 +10,7 @@ void FUN_0046ee10(int param_1,int *param_2,int param_3,undefined4 param_4)
   int local_f0;
   undefined4 local_ec;
   undefined4 local_e8;
-  undefined4 local_e4;
-  undefined4 local_e0;
-  int local_dc;
+  vec3 local_e4;
   int local_d8;
   int local_d4;
   undefined1 local_c8 [20];
@@ -45,10 +43,10 @@ void FUN_0046ee10(int param_1,int *param_2,int param_3,undefined4 param_4)
   undefined4 local_1c;
   undefined1 local_18 [24];
   
-  local_dc = param_3 << 0x10;
+  local_e4.z = param_3 << 0x10;
   local_e8 = DAT_005a6810;
-  local_e4 = 0;
-  local_e0 = 0;
+  local_e4.x = 0;
+  local_e4.y = 0;
   FUN_00452180(1);
   FUN_004b1bb0(local_18,&local_e4);
   local_1c = 0xffff00;

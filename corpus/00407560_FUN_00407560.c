@@ -20,11 +20,11 @@ void FUN_00407560(int param_1,int param_2,uint param_3,int *param_4,uint param_5
     param_4[2] = 0;
   }
   iVar2 = (int)param_5 >> 1;
-  uVar3 = FUN_0048e350();
+  uVar3 = global_bad_shift_rng();
   *param_4 = *param_4 + ((uVar3 % param_5 + *(int *)(param_1 + 0x34)) - iVar2);
-  uVar3 = FUN_0048e350();
+  uVar3 = global_bad_shift_rng();
   param_4[1] = param_4[1] + ((uVar3 % param_5 + *(int *)(param_1 + 0x38)) - iVar2);
-  uVar3 = FUN_0048e350();
+  uVar3 = global_bad_shift_rng();
   param_4[2] = param_4[2] + ((uVar3 % param_5 + *(int *)(param_1 + 0x3c)) - iVar2);
   return;
 }

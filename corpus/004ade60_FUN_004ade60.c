@@ -30,7 +30,7 @@ void FUN_004ade60(char *param_1,undefined4 *param_2,uint param_3,undefined4 para
   char *local_8;
   
   if ((param_1 != (char *)0x0) && (*param_1 != '\0')) {
-    puVar6 = &DAT_00604440;
+    puVar6 = &GLBL_some_str;
     puVar8 = local_e8;
     for (iVar9 = 0x19; iVar9 != 0; iVar9 = iVar9 + -1) {
       *puVar8 = *puVar6;
@@ -77,7 +77,7 @@ void FUN_004ade60(char *param_1,undefined4 *param_2,uint param_3,undefined4 para
     }
     else {
       FUN_004e62ba(param_1,&DAT_00604420,2);
-      uVar5 = FUN_004ad650(param_1);
+      uVar5 = Pal_Load(param_1);
       param_2[2] = uVar5;
     }
     puVar6 = (undefined4 *)FUN_0049c500(0xc00,4,0,s_polyfont_entry_table_0055ea30,param_4);
@@ -160,7 +160,7 @@ void FUN_004ade60(char *param_1,undefined4 *param_2,uint param_3,undefined4 para
         FUN_004af030(*puVar6,uVar11);
         FUN_004af000(0,0,uVar11 - 1,uVar7 - 1);
         FUN_004adcd0(local_84,*puVar6,uVar11,uVar7,1);
-        FUN_004add80(local_84);
+        copy_str32_to_some_global(local_84);
         param_1 = (char *)0x1;
         local_18 = 1;
       }
@@ -182,15 +182,15 @@ void FUN_004ade60(char *param_1,undefined4 *param_2,uint param_3,undefined4 para
       local_8 = (char *)((int)local_8 + -1);
     } while (local_8 != (char *)0x0);
     if (DAT_00604420 != 0) {
-      FUN_0049c530(DAT_00604420);
+      OurFreeMem(DAT_00604420);
       DAT_00604420 = 0;
     }
     if (DAT_00604424 != (undefined2 *)0x0) {
-      FUN_0049c530(DAT_00604424);
+      OurFreeMem(DAT_00604424);
       DAT_00604424 = (undefined2 *)0x0;
     }
     puVar6 = local_e8;
-    puVar8 = &DAT_00604440;
+    puVar8 = &GLBL_some_str;
     for (iVar9 = 0x19; iVar9 != 0; iVar9 = iVar9 + -1) {
       *puVar8 = *puVar6;
       puVar6 = puVar6 + 1;

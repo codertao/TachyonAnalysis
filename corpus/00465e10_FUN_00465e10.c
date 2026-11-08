@@ -9,7 +9,7 @@ void FUN_00465e10(int param_1,int param_2)
   
   iVar1 = DAT_005897b0;
   if (param_2 != -1) {
-    iVar1 = DAT_005b2d10;
+    iVar1 = GLBL_spacesav[0x54];
   }
   local_8 = (ulonglong)(iVar1 - 0x28);
   DAT_005897b8 = 0x14;

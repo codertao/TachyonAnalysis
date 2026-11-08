@@ -29,9 +29,9 @@ void FUN_004487e0(void)
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
   }
   FUN_004e4b65(1);
-  DAT_00562c78 = FUN_0043fa70(&g_UiManager,s_IACFGDrag_0054765c);
-  FUN_0043f620(&g_UiManager,s_IACFGDrag_0054765c,0x20000);
-  FUN_0043f620(&g_UiManager,s_IACFGDrag_0054765c,0x80000);
+  DAT_00562c78 = find_ui_elem_by_id_(&g_UiManager,s_IACFGDrag_0054765c);
+  set_flag_10c_on_elem_by_id(&g_UiManager,s_IACFGDrag_0054765c,0x20000);
+  set_flag_10c_on_elem_by_id(&g_UiManager,s_IACFGDrag_0054765c,0x80000);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGModeWP_00547790,0x2004);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGModeHW_00547780,0x2004);
   FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
@@ -46,9 +46,9 @@ void FUN_004487e0(void)
   FUN_0043e8f0(&g_UiManager,s_Cursor1_0053ff4c);
   FUN_0043efa0();
   FUN_0043e6a0(&g_UiManager,s_TxtCFGDragQty_0054764c,&DAT_00598590);
-  FUN_0043e610(&g_UiManager,s_TxtCFGDragQty_0054764c,0x10000);
-  FUN_0043ce50(&g_UiManager,s_BtnCFGSell_00547774,8);
-  FUN_0043ce50(&g_UiManager,s_BtnCFGPurchase_00547764,8);
+  sbi_label_flags_11c(&g_UiManager,s_TxtCFGDragQty_0054764c,0x10000);
+  set_button_state(&g_UiManager,s_BtnCFGSell_00547774,8);
+  set_button_state(&g_UiManager,s_BtnCFGPurchase_00547764,8);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGSell_00547774,0x80000);
   FUN_0043c150(&g_UiManager,s_BtnCFGPurchase_00547764,0x80000);
   FUN_0043cac0(&g_UiManager,s_BtnItemBuy1_00547744,s_SNDEVNT_ITEM_ROLL_00547750);
@@ -61,7 +61,7 @@ void FUN_004487e0(void)
   FUN_0043cac0(&g_UiManager,s_BtnItemSell4_005476e0,s_SNDEVNT_ITEM_ROLL_00547750);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGModeWP_00547790,0x2004);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGModeHW_00547780,0x2004);
-  FUN_0043ce50(&g_UiManager,s_BtnOption0_005476d4,4);
+  set_button_state(&g_UiManager,s_BtnOption0_005476d4,4);
   FUN_00448f10(0);
   FUN_004491e0(0,0);
   FUN_004493d0(0);
@@ -71,8 +71,9 @@ void FUN_004487e0(void)
   FUN_00446dc0(0);
   FUN_0043a820(&g_UiManager,s_WndMPShipDM_0054767c,&LAB_00448c10);
   FUN_004af2e0();
-  FUN_004b1b70(DAT_005a6818,0x80,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
-               *(undefined4 *)(iVar1 + 0x54));
+  Pak_SetLoadPalParams
+            (g_PalBrightness,0x80,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
+             *(undefined4 *)(iVar1 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                *(undefined4 *)(iVar1 + 0x48));
   FUN_0044ab10();

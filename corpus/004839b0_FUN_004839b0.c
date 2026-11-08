@@ -107,7 +107,7 @@ void FUN_004839b0(void)
           }
           uVar4 = FUN_00469d80(local_80,iVar6);
           *(undefined4 *)(puVar8 + 0x94) = uVar4;
-          FUN_0049c530(local_80);
+          OurFreeMem(local_80);
           local_80 = 0;
         }
         FUN_0049adb0(local_6c);

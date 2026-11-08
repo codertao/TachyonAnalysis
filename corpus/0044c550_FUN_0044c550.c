@@ -19,15 +19,15 @@ void FUN_0044c550(void)
   DAT_00562cb8 = 0;
   netsock_Init();
   netsock_SetPorts(DAT_005b2b08,DAT_005b2b08);
-  netsock_InitTCPIP(&DAT_005b2af0);
-  uVar1 = FUN_0044c8e0(&DAT_005b2af0,DAT_005b2b00);
+  netsock_InitTCPIP(&GLBL_NW_PING_IP);
+  uVar1 = FUN_0044c8e0(&GLBL_NW_PING_IP,GLBL_NW_PING_PORT);
   netsock_Initiate_NWPing(uVar1);
-  FUN_0043ce50(&g_UiManager,s_BtnNWSkip_00547f64,8);
+  set_button_state(&g_UiManager,s_BtnNWSkip_00547f64,8);
   Ui_SetButtonFlag(&g_UiManager,s_BtnNWSkip_00547f64,0x80000);
-  FUN_0043ce50(&g_UiManager,s_BtnNWCont_00547f58,8);
+  set_button_state(&g_UiManager,s_BtnNWCont_00547f58,8);
   Ui_SetButtonFlag(&g_UiManager,s_BtnNWCont_00547f58,0x80000);
-  FUN_0043e610(&g_UiManager,s_TxtMPNWPing1_00547f70,0x10000);
-  FUN_0043e610(&g_UiManager,s_TxtMPNWPing2_00547f48,0x10000);
+  sbi_label_flags_11c(&g_UiManager,s_TxtMPNWPing1_00547f70,0x10000);
+  sbi_label_flags_11c(&g_UiManager,s_TxtMPNWPing2_00547f48,0x10000);
   return;
 }
 

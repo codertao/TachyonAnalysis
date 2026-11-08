@@ -14,7 +14,7 @@ void FUN_00443af0(void)
       str_sprintf(&DAT_005a3f00,s__s_s_00541110,&DAT_005a3f00,*(undefined4 *)(iVar1 + 0x40));
     }
   }
-  if (DAT_005b2bc4 == '\0') {
+  if ((char)GLBL_spacesav[1] == '\0') {
     iVar1 = FUN_0043bf10(&g_UiManager,s_HOST_MSG_GAMENAME_005410fc);
     if (iVar1 != 0) {
       str_sprintf(&DAT_005a3f00,s__s_s_00541110,&DAT_005a3f00,*(undefined4 *)(iVar1 + 0x40));

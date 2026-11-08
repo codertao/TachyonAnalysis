@@ -6,7 +6,7 @@ void FUN_00488d90(void)
     FUN_00440bd0();
     return;
   }
-  FUN_0043ac90(&DAT_00583420);
+  FUN_0043ac90(&GLBL_UI_ELEM_LIST);
   if ((DAT_0056c520 == 0) && (DAT_0056c490 == 0)) {
     FUN_0048bf30();
     if (DAT_00564ae4 == 0) {

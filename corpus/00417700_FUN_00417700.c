@@ -7,7 +7,7 @@ void FUN_00417700(int param_1)
   uint uVar3;
   
   if (DAT_005b9038 != (uint *)0x0) {
-    FUN_0049c530(DAT_005b9038);
+    OurFreeMem(DAT_005b9038);
   }
   DAT_005b9034 = *(uint *)(param_1 + 4);
   FUN_0048e3a0(&DAT_005b9038,DAT_005b9034 << 4,4,s_CLIENT_TECH_DATA_00534304,0xcccc);

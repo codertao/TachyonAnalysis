@@ -13,7 +13,7 @@ undefined4 FUN_00449f20(int param_1,int param_2)
       if (*piVar2 == 0) {
         return 0;
       }
-      iVar1 = FUN_004c67c0(*piVar2,param_1);
+      iVar1 = str_cmp(*piVar2,param_1);
       if ((iVar1 == 0) || (*piVar2 == param_1)) {
         return 1;
       }

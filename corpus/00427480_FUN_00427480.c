@@ -14,7 +14,7 @@ void FUN_00427480(int param_1,undefined4 param_2,int param_3)
   if (DAT_005b1c00 == 0) {
     if (param_3 == 0) goto LAB_0042753d;
     uVar3 = FUN_0048e800(DAT_005a6140,0x53,0x32);
-    FUN_0042ddb0(uVar3);
+    maybe_log_something(uVar3);
     DAT_005b1c00 = 1;
     uVar3 = 100;
   }
@@ -22,7 +22,7 @@ void FUN_00427480(int param_1,undefined4 param_2,int param_3)
     uVar1 = FUN_0048e850(DAT_005a6140,param_2);
     uVar2 = FUN_0048e800(DAT_005a6140,0x4f);
     str_sprintf(&DAT_00562b20,s___s__s____00536430,uVar1,uVar2);
-    FUN_0042ddb0(&DAT_00562b20,uVar3);
+    maybe_log_something(&DAT_00562b20,uVar3);
   }
 LAB_0042753d:
   FUN_00427440(param_2,1);

@@ -14,8 +14,8 @@ void FUN_004218a0(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 
     FUN_004216c0(param_1,param_2,param_3);
     return;
   }
-  iVar1 = FUN_004b36b0(param_1,(int *)(param_5 + 0x34),param_5 + 0x18,&local_18,0,
-                       *(undefined4 *)(param_5 + 0xc4));
+  iVar1 = Coll_SegmentVsModel(param_1,(int *)(param_5 + 0x34),param_5 + 0x18,&local_18,0,
+                              *(undefined4 *)(param_5 + 0xc4));
   if (iVar1 == 0) {
     local_18 = *param_1;
     local_14 = param_1[1];

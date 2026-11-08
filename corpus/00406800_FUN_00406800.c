@@ -10,7 +10,7 @@ undefined4 FUN_00406800(undefined4 param_1,int param_2)
   iVar3 = *(int *)(param_2 + 0x58);
   if (*(int *)(param_2 + 0x54) != 0) {
     do {
-      iVar1 = FUN_004c67c0(iVar3,param_1);
+      iVar1 = str_cmp(iVar3,param_1);
       if (iVar1 == 0) {
         return *(undefined4 *)(iVar3 + 0x20);
       }

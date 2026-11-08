@@ -6,7 +6,7 @@ int FUN_0052d958(void)
   uint in_EAX;
   int iVar2;
   
-  DAT_0052d7e4 = in_EAX & 0x1ffffff;
+  GLBL_MATH_TMPZ_FRAC = in_EAX & 0x1ffffff;
   iVar2 = ((in_EAX & 0x1ffffff) >> 0x10) * 4;
   lVar1 = (longlong)(*(int *)(&DAT_0052bfe4 + iVar2) - *(int *)(&DAT_0052bfe0 + iVar2)) *
           (longlong)(int)(in_EAX & 0xffff);

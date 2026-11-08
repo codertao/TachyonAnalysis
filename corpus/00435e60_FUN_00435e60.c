@@ -24,7 +24,7 @@ void FUN_00435e60(int param_1)
     str_sprintf(local_20,s_MOUNT__d_0053fa18,uVar1);
     Var_GetInt(DAT_005a6148,local_40,local_20,&local_48);
     if (local_48 != 0) {
-      iVar4 = FUN_00493120(local_48 + -1);
+      iVar4 = WeaponDef_Get(local_48 + -1);
       piVar6[-1] = iVar4;
       if (*(int *)(iVar4 + 0x50) != 0) {
         if ((*(byte *)(iVar4 + 0xd8) & 4) == 0) {

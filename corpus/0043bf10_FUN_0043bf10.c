@@ -1,9 +1,9 @@
 
-void FUN_0043bf10(int param_1,undefined4 param_2)
+void FUN_0043bf10(int uiMgr,undefined4 err_reason)
 
 {
-  FUN_004bd3c6(param_2,*(undefined4 *)(param_1 + 0x28),*(undefined4 *)(param_1 + 0x60),0x90,
-               &LAB_004397a0);
+  maybe_find_in_list(err_reason,*(undefined4 *)(uiMgr + 0x28),*(undefined4 *)(uiMgr + 0x60),0x90,
+                     &LAB_004397a0);
   return;
 }
 

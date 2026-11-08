@@ -3,7 +3,7 @@ void FUN_00471060(void)
 
 {
   FUN_00469eb0();
-  FUN_00437dc0(&DAT_00583420);
+  FUN_00437dc0(&GLBL_UI_ELEM_LIST);
   if (g_PlayerVarStore != 0) {
     VarStore_Save(&g_CurrentSavPath,g_PlayerVarStore);
   }

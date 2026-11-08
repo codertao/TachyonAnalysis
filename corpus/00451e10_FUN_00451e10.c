@@ -2,7 +2,7 @@
 void FUN_00451e10(int param_1)
 
 {
-  FUN_004add80(param_1);
+  copy_str32_to_some_global(param_1);
   FUN_004b1d10(param_1);
   if ((*(int *)(param_1 + 0x54) != 0) && (DAT_00564ae4 != 0)) {
     FUN_00452150();

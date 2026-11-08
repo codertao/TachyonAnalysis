@@ -41,7 +41,7 @@ void WinMain(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4
   }
   FUN_0049f710();
   if (DAT_0060394c != 0) {
-    FUN_0049f5c0(DAT_0060395c);
+    FUN_0049f5c0(GLBL_WindowHandle_);
   }
   local_8 = 1;
   pCVar2 = GetCommandLineA();

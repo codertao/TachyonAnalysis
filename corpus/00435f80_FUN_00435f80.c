@@ -14,8 +14,8 @@ void FUN_00435f80(int param_1,undefined4 param_2)
   local_4 = 0;
   iVar3 = FUN_004352b0(DAT_005a6540,iVar2 + 0x34,iVar2 + 0x4c,piVar1);
   if (iVar3 == 0) {
-    FUN_0048e380(iVar2 + 0x34,0xc);
-    FUN_0048e380(iVar2 + 0x4c,0xc);
+    clr_bytes(iVar2 + 0x34,0xc);
+    clr_bytes(iVar2 + 0x4c,0xc);
     if (DAT_005a6590 == '\0') {
       Var_GetInt(DAT_005a6148,s_PLAYER_MAIN_VARS_00534198,s_CURRENT_SHIP_00534b18,&local_4);
       puVar4 = (undefined1 *)FUN_004373b0(local_4);

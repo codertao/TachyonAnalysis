@@ -7,7 +7,7 @@ void FUN_0040b420(int param_1)
   undefined1 local_80 [128];
   
   if ((*(char *)(param_1 + 0x9c) != '\0') && (*(int *)(param_1 + 0xbc) == 0)) {
-    iVar1 = FUN_0045aea0(param_1 + 0x9c);
+    iVar1 = Scene_Load(param_1 + 0x9c);
     *(int *)(param_1 + 0xbc) = iVar1;
     pcVar2 = s_Loaded_OK_00532e2c;
     if (iVar1 == 0) {
@@ -17,7 +17,7 @@ void FUN_0040b420(int param_1)
     FUN_004329a0(local_80);
   }
   if ((*(char *)(param_1 + 0xac) != '\0') && (*(int *)(param_1 + 0xc0) == 0)) {
-    iVar1 = FUN_0045aea0(param_1 + 0xac);
+    iVar1 = Scene_Load(param_1 + 0xac);
     *(int *)(param_1 + 0xc0) = iVar1;
     pcVar2 = s_Loaded_OK_00532e2c;
     if (iVar1 == 0) {

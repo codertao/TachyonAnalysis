@@ -10,9 +10,9 @@ void FUN_0041f3d0(void)
   }
   if (DAT_005b22e8 != 0) {
     if (DAT_005b22f4 == 0) {
-      uVar1 = FUN_0048e350();
+      uVar1 = global_bad_shift_rng();
       DAT_005b22f4 = uVar1 % 0xc + 6;
-      uVar1 = FUN_0048e350();
+      uVar1 = global_bad_shift_rng();
       DAT_005b22f0 = uVar1 % *(uint *)(DAT_005b22e8 + 0x40);
     }
     else {

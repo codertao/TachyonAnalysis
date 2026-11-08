@@ -9,7 +9,7 @@ char * FUN_0043d030(int param_1,undefined4 *param_2)
   char *pcVar5;
   undefined4 uVar6;
   
-  pcVar1 = (char *)FUN_0043e3d0(param_1,param_2);
+  pcVar1 = (char *)find_ui_elem_by_name(param_1,param_2);
   if (pcVar1 == (char *)0x0) {
     param_2[0x4b] = 0xffff;
     uVar2 = *(uint *)(param_1 + 0x58);

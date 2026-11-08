@@ -10,7 +10,7 @@ void FUN_0043ed30(void)
   FUN_0049e440(0);
   if (DAT_005a5504 == 1) {
     if (DAT_005a5484 != 0) {
-      FUN_0049c530(DAT_005a5484);
+      OurFreeMem(DAT_005a5484);
     }
     puVar2 = &DAT_005a5480;
     for (iVar1 = 0x23; iVar1 != 0; iVar1 = iVar1 + -1) {

@@ -40,8 +40,8 @@ undefined4 Cbin_FindSection(char *param_1,int param_2)
                            *(undefined4 *)(param_2 + 0x18));
     }
     else {
-      iVar3 = FUN_004bd3c6(local_80,*(undefined4 *)(param_2 + 0x28),*(undefined4 *)(param_2 + 0x18),
-                           0x1c,&LAB_0049af60);
+      iVar3 = maybe_find_in_list(local_80,*(undefined4 *)(param_2 + 0x28),
+                                 *(undefined4 *)(param_2 + 0x18),0x1c,&LAB_0049af60);
     }
     if (iVar3 != 0) {
       if (*(int *)(param_2 + 0x1c) != 0) {

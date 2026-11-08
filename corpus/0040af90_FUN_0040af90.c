@@ -8,7 +8,7 @@ void FUN_0040af90(int param_1,int param_2,int param_3)
   puVar1 = (undefined4 *)
            ((uint)*(ushort *)(param_3 + 6) * 0x80 + *(int *)(*(int *)(param_2 + 0x94) + 4));
   *(undefined4 *)(param_1 + 0x58) = *puVar1;
-  FUN_0040ae80(param_1,puVar1);
+  CapPartReplica_Init(param_1,puVar1);
   puVar1[0x1f] = param_1;
   *(undefined4 *)(param_1 + 0xe0) = 0;
   *(undefined1 **)(param_1 + 0x70) = &LAB_0040acb0;

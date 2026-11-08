@@ -18,9 +18,9 @@ void FUN_0048d620(void)
   undefined1 uStack_6a;
   undefined4 local_64 [25];
   
-  iVar1 = DAT_0056aac0;
+  iVar1 = GLBL_llist_large_thing;
   DAT_0056aae0 = DAT_005a680c;
-  FUN_004add80(&DAT_0056aae0);
+  copy_str32_to_some_global(&DAT_0056aae0);
   for (; iVar1 != 0; iVar1 = *(int *)(iVar1 + 0x2b8)) {
     if ((*(int *)(iVar1 + 0x228) <= DAT_0056aacc) &&
        (DAT_0056aac4 <= *(int *)(iVar1 + 0x21c) + *(int *)(iVar1 + 0x228))) {
@@ -87,7 +87,7 @@ void FUN_0048d620(void)
   }
   FUN_00452150();
   FUN_00451e10(&DAT_005a67a0);
-  for (iVar1 = DAT_0056aac0; iVar1 != 0; iVar1 = *(int *)(iVar1 + 0x2b8)) {
+  for (iVar1 = GLBL_llist_large_thing; iVar1 != 0; iVar1 = *(int *)(iVar1 + 0x2b8)) {
     if ((*(int *)(iVar1 + 0x228) <= DAT_0056aacc) &&
        (DAT_0056aac4 <= *(int *)(iVar1 + 0x228) + *(int *)(iVar1 + 0x21c))) {
       if ((*(int *)(iVar1 + 0x214) == 0) || (*(int *)(iVar1 + 0x204) == 0)) {

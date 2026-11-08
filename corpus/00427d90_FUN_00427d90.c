@@ -7,8 +7,8 @@ void FUN_00427d90(void)
   undefined4 uVar3;
   undefined **ppuVar4;
   
-  DAT_005b1870 = FUN_00431de0(s_shdw_12_pcx_00535974,0x20000);
-  DAT_005b1b54 = FUN_00431de0(s_shdw_08b_pcx_005366e0,0x20000);
+  DAT_005b1870 = load_font(s_shdw_12_pcx_00535974,0x20000);
+  DAT_005b1b54 = load_font(s_shdw_08b_pcx_005366e0,0x20000);
   uVar3 = FUN_0048e800(DAT_005a6140,0x41,0xff,0x40,0,0x12000,4,DAT_005b1b54,0);
   FUN_00427d30(&DAT_005b18a8,0x22c,0x9e,uVar3);
   uVar3 = FUN_0048e800(DAT_005a6140,0x2f,0xff,0x40,0,0x12000,4,DAT_005b1870,1);

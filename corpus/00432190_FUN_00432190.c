@@ -22,7 +22,7 @@ void FUN_00432190(int *param_1,undefined4 param_2)
     pcVar3 = s_ENGINE__2d____s_0053f24c;
   }
   str_sprintf(param_2,pcVar3,iVar2,uVar1);
-  FUN_004c82b6(param_2);
+  to_uppercase(param_2);
   return;
 }
 

@@ -19,13 +19,13 @@ void FUN_00443ee0(void)
   Ui_ShowWindow(&g_UiManager,s_WndLogin_00541204,0);
   FUN_0043a8d0(&g_UiManager,s_WndLogin_00541204);
   FUN_00443d60();
-  FUN_0043ce50(&g_UiManager,s_BtnLoginCopy_005411f4,1);
+  set_button_state(&g_UiManager,s_BtnLoginCopy_005411f4,1);
   FUN_0043c150(&g_UiManager,s_BtnLoginCopy_005411f4,0x80000);
-  FUN_0043ce50(&g_UiManager,s_BtnLoginPaste_005411e4,8);
+  set_button_state(&g_UiManager,s_BtnLoginPaste_005411e4,8);
   Ui_SetButtonFlag(&g_UiManager,s_BtnLoginPaste_005411e4,0x80000);
   DAT_00541184 = 0xffffffff;
-  g_CurrentProfileSlot = DAT_005b2c60;
-  Login_SelectSlot(DAT_005b2c60);
+  g_CurrentProfileSlot = GLBL_spacesav[0x28];
+  Login_SelectSlot(GLBL_spacesav[0x28]);
   FUN_00444450();
   DAT_00562c10 = 0;
   FUN_0043a860(&g_UiManager,s_WndLoginDlg_005411d8,&LAB_004442b0);

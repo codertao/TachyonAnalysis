@@ -13,7 +13,7 @@ void FUN_0040cf10(undefined4 *param_1,int param_2)
     }
     FUN_0040cd80(param_1);
     uVar2 = FUN_0040c960(*DAT_005b97bc,param_1[1] + 1,param_1[1],0);
-    FUN_0045e760(*param_1,param_1[3],uVar2);
+    SrvSend_FactionProgress(*param_1,param_1[3],uVar2);
     FUN_0040cc10(param_1);
   }
   return;

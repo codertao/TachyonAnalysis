@@ -8,12 +8,12 @@ void PlayerDcb_Init(int param_1)
 {
   int iVar1;
   
-  if (DAT_005b3300 == 0) {
-    DAT_005b3300 = DcbPool_Alloc(&DAT_005b3288,1,&DAT_005b31c0);
+  if (GLBL_SOME_CONTEXT == 0) {
+    GLBL_SOME_CONTEXT = DcbPool_Alloc(&DAT_005b3288,1,&DAT_005b31c0);
   }
-  iVar1 = DAT_005b3300;
-  FUN_0041b850(DAT_005b3300);
-  FUN_0048e380(&DAT_005b1e80,0x2d8);
+  iVar1 = GLBL_SOME_CONTEXT;
+  FUN_0041b850(GLBL_SOME_CONTEXT);
+  clr_bytes(&DAT_005b1e80,0x2d8);
   *(undefined2 *)(iVar1 + 0x74) = 1;
   *(undefined4 *)(iVar1 + 0x34) = *(undefined4 *)(param_1 + 0x18);
   *(undefined4 *)(iVar1 + 0x38) = *(undefined4 *)(param_1 + 0x1c);
@@ -48,10 +48,10 @@ void PlayerDcb_Init(int param_1)
   *(undefined4 *)(iVar1 + 0x6c) = 0;
   if (DAT_005b3398 == 0) {
     DAT_005b3398 = 1;
-    if (*(code **)(DAT_005b1dc4 + 0x94) != (code *)0x0) {
+    if (*(code **)(g_ActiveRules + 0x94) != (code *)0x0) {
                     /* WARNING: Could not recover jumptable at 0x00454e80. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-      (**(code **)(DAT_005b1dc4 + 0x94))();
+      (**(code **)(g_ActiveRules + 0x94))();
       return;
     }
   }

@@ -10,8 +10,8 @@ void FUN_0052d8ed(void)
   int *unaff_EDI;
   
   iVar2 = unaff_ESI[2];
-  if (unaff_ESI[2] < DAT_00666ae4) {
-    iVar2 = DAT_00666ae4;
+  if (unaff_ESI[2] < GLBL_R_DIST_MIN_VAL) {
+    iVar2 = GLBL_R_DIST_MIN_VAL;
   }
   iVar2 = (int)((longlong)((ulonglong)DAT_00604470 << 0x20) / (longlong)iVar2);
   lVar1 = (longlong)*unaff_ESI * (longlong)iVar2;

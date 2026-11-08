@@ -16,7 +16,7 @@ void FUN_0044e080(void)
                       (HANDLE)0x0);
   if (hFile != (HANDLE)0xffffffff) {
     WriteFile(hFile,local_c,local_10,&local_10,(LPOVERLAPPED)0x0);
-    FUN_0049c530(local_c);
+    OurFreeMem(local_c);
     CloseHandle(hFile);
   }
   return;

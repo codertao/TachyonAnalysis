@@ -8,7 +8,7 @@ void FUN_00485330(void)
   undefined4 *puVar2;
   
   FUN_00485240();
-  FUN_0052db6a(&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
+  call_math_todo_with_rotation(&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
   FUN_00445720();
   FUN_004b1c80(0xa103,0xa103);
   puVar2 = &DAT_0056e340;
@@ -16,7 +16,7 @@ void FUN_00485330(void)
     *puVar2 = 0;
     puVar2 = puVar2 + 1;
   }
-  _DAT_0056e380 = FUN_004b14b0(&DAT_00587a44,s_mnu_shipyard_pak_00557ab8,&DAT_00587a54);
+  _DAT_0056e380 = Pak_Load(&DAT_00587a44,s_mnu_shipyard_pak_00557ab8,&DAT_00587a54);
   DAT_0056e35c = 0;
   DAT_0056e360 = 0;
   DAT_0056e364 = 0;
@@ -25,7 +25,7 @@ void FUN_00485330(void)
   _DAT_0056e370 = 0;
   _DAT_0056e354 = 0xff;
   DAT_0056e38c = _DAT_0056e380;
-  FUN_004b2950(&DAT_0056e340,0);
+  Model_SelectState(&DAT_0056e340,0);
   FUN_004852d0();
   return;
 }

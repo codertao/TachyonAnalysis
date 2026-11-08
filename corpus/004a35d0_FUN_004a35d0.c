@@ -9,8 +9,8 @@ void FUN_004a35d0(undefined4 param_1)
   uVar2 = FUN_0049c4e0(iVar1 + -0x380,4,0);
   FUN_004a14f0(0x80,0);
   FUN_004a1490(uVar2,iVar1 + -0x380);
-  FUN_004a34c0(uVar2,param_1,DAT_00603108);
-  FUN_0049c530(uVar2);
+  Rle_DecodePcx(uVar2,param_1,DAT_00603108);
+  OurFreeMem(uVar2);
   return;
 }
 

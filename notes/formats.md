@@ -81,6 +81,44 @@ Chain: `Bdf_LoadBackdrop(name) 0x444e60 → Bdf_LoadAndApply 0x468180 → Bdf_Ge
 `IMAGE` entry params (from `mnu.bdf.inf`): `pak, pal, posX(f), posY(f), distance(i), scale/spin(f)`
 → 0x64-byte record (exact layout TBD in `Bdf_ParseImageEntry`).
 
+### Per-sector palette re-tint (investigated 2026-11-08) [c]
+No palette *swapping*: every model keeps the one `.pal` its `.des`/`.bdf` names. What changes per
+sector is a **recomputed copy** of that palette.
+
+- **Palette object** (`Pal_Load 0x4ad650`, cached and refcounted by name in `Pal_GetCached 0x4af4a0`,
+  so every model that names `bora.pal` shares one copy):
+  - `+0x000` the original 256×RGB from the file;
+  - `+0x300` the remapped RGB that is actually drawn;
+  - `+0x600` a 256-byte protect mask. It is filled from an index list stored in the `.pal` file.
+    Protected indices are never remapped (presumably glows and lights stay fixed **[l]**).
+  - `+0x700/+0x704` optional `<name>.CR1`/`.CR2` companion files, used for 16-bit colour tables.
+- **`Pal_Remap (pal, gamma, sat, r, g, b) 0x4ad900`**:
+  1. `Pal_BuildCurve`: builds a per-channel lookup. `gamma − 128` bends the midtones up or down
+     using the signed table `0x55ea48`, then each channel is multiplied by `r/g/b ÷ 128`.
+  2. For each unprotected index: `luma = (r + 2g + b)/4`, `c = luma + (c − luma)·sat/128`, then the
+     curve lookup.
+  3. Rebuild the 8-bit or 16-bit lookup tables (`DAT_0055e964 == 0x10` means 16-bit).
+- **When it runs**, via `ModelPool_Relight`, on every pool slot flagged remappable (`+0x24 == 1`):
+  - **Sector load:** `Bdf_LoadAndApply` calls
+    `Scene_SetPalParams(GAMMA·g_PalBrightness/128, SATURATION, RGB)`, then relights all three model
+    pools. Model palettes get the gamma and saturation only; Relight passes RGB as neutral 0x80.
+    The sector `RGB` goes to `0x669200`, which feeds the lighting shade ramp
+    (`Light_BuildShadeRamp 0x4b37a0` **[l]**). So `RGB` tints the lighting, not the palette.
+  - **No backdrop** (`Bdf_SetNeutralLighting 0x468690`): neutral saturation and RGB.
+  - **Artist debug mode** (`ART_DEBUG_*` in `DEF_KEYS.CFG`, Ctrl+F11 select): live ±5 adjusters
+    for gamma, saturation, R/G/B, ambient, light RGB, plus yaw/pitch (`ArtDebug_Adj* 0x466fc0..
+    0x4672e0`). They sit in the action table `0x53cbb8` (stride 0x20: handler, arg, …, action id)
+    and relight all pools on every keypress.
+  - **Hyperspace:** `Hyper_TintPlayerShip 0x42e460` remaps the ship's palette to gamma = global,
+    sat 128, RGB (100, 100, 128), which gives a blue cast inside the warp tube.
+- **`g_PalBrightness 0x5a6818`**: a global gamma multiplier. `Video_Init` sets it to 0xb4 (the
+  software renderer draws everything about 40% brighter); hardware init resets it to 0x80.
+- **Non-remappable loads** (`ModelPool_Load(..., remap=0)`): backdrop paks, the hyperspace pak and
+  some effects. They are tinted once at load time with `g_PalBrightness` only. `Pak_Load` warns
+  "Pak %s in not REMAPPED" if the pak header flag `+0x28 & 2` is clear.
+- **Data:** all 88 `.bdf` files set their own `RGB`; GAMMA is almost always 128 (exceptions:
+  MYSTER7 = 58, MYSTER8 = 133, NEUTRA4 = 143, NEUTRA7 = 138), and SATURATION ranges 78–208.
+
 ## .des — object/ship definition (CBIN; DESC_TYPE picks the class)
 A `.des` is a CBIN whose `main.DESC_TYPE` selects the entity class (see `flight.md`:
 SHIP/ASTEROID/CAPITOL_SHIP/HYPER_GATE/STARBASE/MINE/CARGO/BEACON/SPEED_RING/COURSE/MISC_OBJECT/
@@ -169,13 +207,15 @@ allocates the sector object and reads `buf+0`/the section descriptors), not the 
 +0x14 u32  placement count   (5)    \   object placement / SPED-def section
 +0x18 u32  placement offset  (0x338) }  (the x/y/z spawn data; variable-stride records)
 +0x1c u32  ?                  (0x14)  /
-+0x20 u32  param count  (1)          \   nested param section (Spx_RelocParamSection 0x48dac0;
-+0x24 u32  param offset (0x2dc)      /    records stride 0x14, sub-arrays stride 0x28)
++0x20 u32  trigger count  (1)        \   MISSION TRIGGER TABLE (Spx_RelocParamSection 0x48dac0;
++0x24 u32  trigger offset (0x2dc)    /    trigger 0x14, condition 0x28, action 0x10; see missions.md)
 +0x2c u32  sub-sector count  (2)     \   sub-sector "stage" section (conditional; stride 0x2c)
 +0x30 u32  sub-sector offset (0x234) /
 +0x34 char QUAD name[] (e.g. "QUAD_05") = this sector's QUADRANT id (galaxy: Region -> Quadrant);
                                            resolved via Sector_GetQuadrantName 0x457ba0
-+0x5c/+0x68/+0x74   further relocated section pointers (partially identified)
++0x58 u32  dialog count / +0x5c offset: .SCR dialog names, stride 0x10 (trigger action 2, event 7)
++0x64 u32  scene count  / +0x68 offset: .SEN cutscene names, stride 0x10 (trigger action 3)
++0x70/+0x74  further relocated section (count 2 in BORA05; unidentified)
 +0x78 char BDF backdrop[] (e.g. "BORA5.BDF")
 +0x8c u32  SPED-instance count       \   SPED instance-data (Spx_InitSectionC 0x435550; stride 0x14,
 +0x90 u32  SPED-instance offset      /    each with a sub-array stride 0x20; see Sector_GetSpedRecord)
@@ -204,11 +244,13 @@ object's **orientation**, not velocity — it is fed to the Euler→matrix build
 +0x08 s32  pos.x    +0x0c s32 pos.y    +0x10 s32 pos.z     (world units)
 +0x14 s32  orient.x +0x18 s32 orient.y +0x1c s32 orient.z  (Euler angles, <<16 at runtime; NOT velocity -
                                                             stationary objects carry non-zero facing here)
++0x20 s32  OBJECT ID (sector-unique; what triggers, Sped_FindDef and spawn actions refer to)
 +0x24 u32  flags    (0x2, 0x4, 0x82, 0xc2, …; bit tested 0x1000 etc. in ctor)
 +0x28 u32  runtime entity ptr      (0 on disk)
 +0x2c u32  runtime "constructed"   (0 on disk)
 +0x38 ...  PER-KIND: ships -> u8 team/side (0=default); gates -> dest sector .spx name string
-+0x5c s32  object id               (-1 = none)
++0x54 s32  GROUP ID (-1 = none; trigger group conditions/actions; Trig_SpawnGroup)
++0x5c s32  ? (-1/0/10/11/13 seen; earlier guessed "object id" but triggers use +0x20)
  ...tail  per-kind params (e.g. gate link ids at +0x48/+0x50 = {u16 kind, u16 id})
 ```
 **Orientation unit.** The three Euler angles are in **512 units per full revolution** (0.703125°/unit,
@@ -257,3 +299,6 @@ class struct. The **flight-handling** groups and their runtime homes:
 ## PFF / SBF / PAK / PCX
 See `TachyonFileFormats` (PFF = tar-like archive, 32/36/40-byte entries; extracted to `pff/`).
 TODO: correlate with in-game loaders (`CreateFileA`/`ReadFile` callers) when we reach them.
+
+### .PAK (3DPK model)
+Full spec in `notes/pak.md`; parser/exporter `TachyonFileFormats/src/pak.py`.

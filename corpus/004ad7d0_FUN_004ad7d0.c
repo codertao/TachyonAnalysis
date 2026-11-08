@@ -26,21 +26,21 @@ void FUN_004ad7d0(int param_1)
   DAT_006046a8 = DAT_006046a8 + -1;
 LAB_004ad837:
   if (*(int *)(param_1 + 0x708) != 0) {
-    FUN_0049c530(*(int *)(param_1 + 0x708));
+    OurFreeMem(*(int *)(param_1 + 0x708));
   }
   if (*(int *)(param_1 + 0x70c) != 0) {
-    FUN_0049c530(*(int *)(param_1 + 0x70c));
+    OurFreeMem(*(int *)(param_1 + 0x70c));
   }
   if (*(int *)(param_1 + 0x710) != 0) {
-    FUN_0049c530(*(int *)(param_1 + 0x710));
+    OurFreeMem(*(int *)(param_1 + 0x710));
   }
   if (*(int *)(param_1 + 0x700) != 0) {
-    FUN_0049c530(*(int *)(param_1 + 0x700));
+    OurFreeMem(*(int *)(param_1 + 0x700));
   }
   if (*(int *)(param_1 + 0x704) != 0) {
-    FUN_0049c530(*(undefined4 *)(param_1 + 0x700));
+    OurFreeMem(*(undefined4 *)(param_1 + 0x700));
   }
-  FUN_0049c530(param_1);
+  OurFreeMem(param_1);
   return;
 }
 

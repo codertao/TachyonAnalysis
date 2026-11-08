@@ -9,7 +9,7 @@ undefined4 Shipyard_Update(void)
     FUN_00485f20();
     FUN_00485c30();
     FUN_00485f30();
-    Ui_Update(&DAT_00583420);
+    Ui_Update(&GLBL_UI_ELEM_LIST);
     if (DAT_00589758 != (code *)0x0) {
       (*DAT_00589758)();
     }

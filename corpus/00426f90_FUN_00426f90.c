@@ -8,7 +8,7 @@ int FUN_00426f90(undefined4 param_1,int *param_2,int param_3)
   do {
     for (iVar1 = *param_2; iVar1 != 0; iVar1 = *(int *)(iVar1 + 8)) {
       if (*(short *)(iVar1 + 0x76) == 10) {
-        iVar2 = FUN_004c67c0(*(int *)(iVar1 + 0xf0) + 0x38,param_1);
+        iVar2 = str_cmp(*(int *)(iVar1 + 0xf0) + 0x38,param_1);
         if (iVar2 == 0) {
           if (param_3 == -1) {
             return iVar1;

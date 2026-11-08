@@ -20,7 +20,7 @@ int FUN_00476760(int param_1,uint param_2)
   if (1 < *(uint *)(iVar5 + 0x9c)) {
     uVar2 = FUN_0046be00(local_80,param_1 + 0x40);
     if (param_2 <= uVar2) {
-      iVar3 = FUN_004c67c0(*(undefined4 *)(param_1 + 0xa9c),s_GATLING_GUN_0054ffbc);
+      iVar3 = str_cmp(*(undefined4 *)(param_1 + 0xa9c),s_GATLING_GUN_0054ffbc);
       uVar6 = param_2;
       if (iVar3 != 0) goto LAB_004767ff;
     }
@@ -28,7 +28,7 @@ int FUN_00476760(int param_1,uint param_2)
   }
 LAB_004767ff:
   iVar3 = *(int *)(param_1 + 0xa9c);
-  iVar4 = FUN_004c67c0(iVar3,s_GATLING_GUN_0054ffbc);
+  iVar4 = str_cmp(iVar3,s_GATLING_GUN_0054ffbc);
   if (iVar4 == 0) {
     *(undefined4 *)(iVar3 + 0x54) = *(undefined4 *)(iVar5 + 0x9c);
   }
@@ -41,7 +41,7 @@ LAB_004767ff:
   if (iVar5 == 0) {
     *(undefined4 *)(param_1 + 0xa9c) = 0;
     *(undefined4 *)(param_1 + 0xaa0) = 0;
-    FUN_0043f620(&DAT_00583420,param_1 + 0xf8,0x20000);
+    set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,param_1 + 0xf8,0x20000);
     Var_SetStr(g_PlayerVarStore,local_80,param_1 + 0x20,s_NOT_USED_005478f8);
   }
   return iVar3;

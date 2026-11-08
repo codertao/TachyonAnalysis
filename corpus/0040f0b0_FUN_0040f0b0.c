@@ -5,9 +5,7 @@ void FUN_0040f0b0(int param_1)
   undefined4 local_3c;
   undefined4 local_38;
   undefined4 local_34;
-  int local_30;
-  int local_2c;
-  int local_28;
+  vec3 local_30;
   undefined4 local_24;
   undefined4 local_20;
   undefined4 local_1c;
@@ -16,15 +14,15 @@ void FUN_0040f0b0(int param_1)
   local_24 = DAT_005b95e8;
   local_20 = DAT_005b95ec;
   local_1c = DAT_005b95f0;
-  FUN_004b1bb0(local_18,(undefined4 *)(param_1 + 0x4c));
-  local_30 = *(int *)(DAT_005b1f0c + 0x530);
-  local_2c = *(int *)(DAT_005b1f0c + 0x534);
-  local_28 = *(int *)(DAT_005b1f0c + 0x538);
-  FUN_004b24d0(&local_30,&local_30);
-  DAT_005b9600 = *(int *)(param_1 + 0x34) + local_30;
-  DAT_005b9604 = *(int *)(param_1 + 0x38) + local_2c;
-  DAT_005b9608 = *(int *)(param_1 + 0x3c) + local_28;
-  DAT_005b95e8 = *(undefined4 *)(param_1 + 0x4c);
+  FUN_004b1bb0(local_18,(vec3 *)(param_1 + 0x4c));
+  local_30.x = *(int *)(DAT_005b1f0c + 0x530);
+  local_30.y = *(int *)(DAT_005b1f0c + 0x534);
+  local_30.z = *(int *)(DAT_005b1f0c + 0x538);
+  some_rotate_by_global(&local_30,&local_30);
+  DAT_005b9600 = *(int *)(param_1 + 0x34) + local_30.x;
+  DAT_005b9604 = *(int *)(param_1 + 0x38) + local_30.y;
+  DAT_005b9608 = *(int *)(param_1 + 0x3c) + local_30.z;
+  DAT_005b95e8 = ((vec3 *)(param_1 + 0x4c))->x;
   DAT_005b95ec = *(undefined4 *)(param_1 + 0x50);
   DAT_005b95f0 = *(undefined4 *)(param_1 + 0x54);
   switch(*(undefined4 *)(DAT_005b95e0 + 0x2c)) {

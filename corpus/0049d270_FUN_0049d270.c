@@ -15,7 +15,7 @@ int FUN_0049d270(int param_1)
       if (*(char *)(iVar3 + 0x22) != '\0') {
         FUN_0049d260(iVar3);
         iVar2 = iVar2 + 1;
-        FUN_0049c670(*(undefined4 *)(iVar3 + 0x24),*(undefined4 *)(param_1 + 0xc4));
+        mark_alloc_memory_with_flags(*(undefined4 *)(iVar3 + 0x24),*(undefined4 *)(param_1 + 0xc4));
       }
       uVar1 = uVar1 + 1;
       iVar3 = iVar3 + 0x34;

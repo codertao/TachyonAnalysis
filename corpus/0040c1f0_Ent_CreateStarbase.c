@@ -25,21 +25,21 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
   undefined1 *local_38;
   undefined1 *local_30;
   undefined1 *local_2c;
-  undefined1 *local_24;
+  code *local_24;
   undefined1 *local_20;
   undefined1 *local_18;
   undefined1 *local_c;
   undefined1 *local_8;
   undefined1 *local_4;
   
-  puVar1 = (undefined4 *)FUN_0041dbb0(param_1,0);
+  puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 != (undefined4 *)0x0) {
     if ((param_3 != 0) || ((g_FlightStateFlags & 4) != 0)) {
       FUN_0040b420(puVar1);
     }
     return puVar1;
   }
-  FUN_0048e380(&local_74,0x74);
+  clr_bytes(&local_74,0x74);
   local_70 = 5;
   local_6c = 0x128;
   local_68 = 0xffff;
@@ -55,20 +55,20 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
   local_38 = &LAB_0040bb60;
   local_54 = &LAB_00408f40;
   local_4c = &LAB_0040b770;
-  local_24 = &LAB_004132f0;
+  local_24 = FUN_004132f0;
   local_20 = &LAB_0040bd10;
   local_18 = &LAB_0040bdf0;
   local_40 = &LAB_0040bf10;
   local_30 = &LAB_0040bf40;
   local_8 = &LAB_0040c030;
   local_4 = &LAB_0040c1b0;
-  puVar1 = (undefined4 *)FUN_0041db50(&local_74,param_2);
+  puVar1 = (undefined4 *)DescReg_Alloc(&local_74,param_2);
   if (puVar1 == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
   FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
-  FUN_0048e380(&DAT_005b98a0,0x128);
-  FUN_0048e380(&DAT_005b9820,0x80);
+  clr_bytes(&DAT_005b98a0,0x128);
+  clr_bytes(&DAT_005b9820,0x80);
   puVar3 = puVar1;
   puVar4 = &DAT_005b98a0;
   for (iVar2 = 0x21; iVar2 != 0; iVar2 = iVar2 + -1) {

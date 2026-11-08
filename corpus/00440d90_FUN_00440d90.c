@@ -10,7 +10,7 @@ int FUN_00440d90(int param_1,undefined4 param_2)
     if (iVar1 == 0) {
       return 0;
     }
-    iVar2 = FUN_004c67c0(iVar1,param_2);
+    iVar2 = str_cmp(iVar1,param_2);
     if (iVar2 == 0) break;
     iVar1 = *(int *)(iVar1 + 0x58);
   }

@@ -15,9 +15,9 @@ void FUN_00444d80(void)
     FUN_0046c310(&g_UiManager);
     FUN_004450a0(0x440000);
     FUN_0049e7d0(0xff);
-    FUN_00450770(&DAT_005b2b78,&DAT_005b2b88);
-    FUN_00452510(DAT_005b2c9c,0x80,0x80);
-    FUN_004af260(DAT_005b2ca0,0x80,0x80);
+    load_sbf_and_bin(&DAT_005b2b78,&DAT_005b2b88);
+    FUN_00452510(GLBL_spacesav[0x37],0x80,0x80);
+    FUN_004af260(GLBL_spacesav[0x38],0x80,0x80);
     FUN_004acfa0();
     iVar1 = FUN_00432b70(1);
     if (iVar1 == 0) {

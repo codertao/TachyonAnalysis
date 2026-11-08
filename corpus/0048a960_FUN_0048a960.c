@@ -7,7 +7,7 @@ void FUN_0048a960(undefined4 *param_1,undefined4 *param_2,int param_3,undefined4
 {
   uint uVar1;
   
-  FUN_0048e380(&DAT_0056c2a0,0x4c);
+  clr_bytes(&DAT_0056c2a0,0x4c);
   DAT_0056c344 = *param_1;
   DAT_0056c348 = param_1[1];
   DAT_0056c34c = param_1[2];
@@ -19,14 +19,14 @@ void FUN_0048a960(undefined4 *param_1,undefined4 *param_2,int param_3,undefined4
   DAT_0056c2e0 = param_3;
   _DAT_0056c2ba = 0xffff;
   DAT_0056c37c = param_5;
-  uVar1 = FUN_004e0462(&DAT_0056c344);
+  uVar1 = call_approx_vec_length(&DAT_0056c344);
   DAT_0056c364 = uVar1 >> 1;
   FUN_004b3a10(param_1);
   FUN_004b1ca0(0x30000400);
-  FUN_00431a10(&PTR_s_sunflare_pak_00559830,&DAT_005ac548);
+  FUN_00431a10(&PTR_s_sunflare_pak_00559830,&g_FxModelPool);
   FUN_004b1ca0(0);
   if (DAT_0056c2e0 != 0) {
-    FUN_004b2950(&DAT_0056c2a0,0);
+    Model_SelectState(&DAT_0056c2a0,0);
     FUN_004b5120(0);
     return;
   }

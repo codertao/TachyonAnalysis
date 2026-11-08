@@ -72,7 +72,7 @@ void FUN_00484650(void)
       FUN_00484b20(&DAT_00562b14);
       FUN_00484a40();
       FUN_004835c0();
-      Ui_SetButtonFlag(&DAT_00583420,s_BtnSPSell_00557968,0x80000);
+      Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnSPSell_00557968,0x80000);
     }
   }
   return;

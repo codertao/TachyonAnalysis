@@ -14,13 +14,13 @@ void FUN_00443c90(void)
   uVar1 = DAT_005a67c0;
   FUN_00452150();
   FUN_00451fc0(0,0,0x27f,0x1df,1);
-  FUN_004add80(&DAT_005a67a0);
+  copy_str32_to_some_global(&DAT_005a67a0);
   FUN_004455f0();
   FUN_0044ea50();
   FUN_004521c0();
   FUN_00452150();
   FUN_00452070(uVar1,uVar2,uVar3,uVar4,1);
-  FUN_004add80(&DAT_005a67a0);
+  copy_str32_to_some_global(&DAT_005a67a0);
   FUN_00443c20();
   return;
 }

@@ -24,7 +24,7 @@ int * FUN_004a7c90(int *param_1)
       _AIL_WAV_info_8(piVar4,local_24);
       iVar2 = _AIL_decompress_ADPCM_12(local_24,&param_1,&local_2c);
       if (iVar2 != 0) {
-        piVar3 = (int *)FUN_0049c3b0(local_2c,4,0,s_AUDIO_BUFFER_0055e564);
+        piVar3 = (int *)mem_GetMemEx_probably_alloc(local_2c,4,0,s_AUDIO_BUFFER_0055e564);
         if (piVar3 == (int *)0x0) {
           return (int *)0x0;
         }
@@ -41,7 +41,7 @@ int * FUN_004a7c90(int *param_1)
           piVar7 = (int *)((int)piVar7 + 1);
         }
         _AIL_mem_free_lock_4(param_1);
-        FUN_0049c530(piVar4);
+        OurFreeMem(piVar4);
         _AIL_WAV_info_8(piVar3,local_24);
         return piVar3;
       }
@@ -53,7 +53,7 @@ int * FUN_004a7c90(int *param_1)
       iVar2 = _AIL_decompress_ASI_24(piVar4,local_2c,&DAT_0055e55c,&param_1,&local_28,&LAB_004a7c80)
       ;
       if (iVar2 != 0) {
-        piVar3 = (int *)FUN_0049c3b0(local_28,4,0,s_AUDIO_BUFFER_0055e564);
+        piVar3 = (int *)mem_GetMemEx_probably_alloc(local_28,4,0,s_AUDIO_BUFFER_0055e564);
         if (piVar3 == (int *)0x0) {
           return (int *)0x0;
         }
@@ -70,7 +70,7 @@ int * FUN_004a7c90(int *param_1)
           piVar7 = (int *)((int)piVar7 + 1);
         }
         _AIL_mem_free_lock_4(param_1);
-        FUN_0049c530(piVar4);
+        OurFreeMem(piVar4);
         return piVar3;
       }
     }

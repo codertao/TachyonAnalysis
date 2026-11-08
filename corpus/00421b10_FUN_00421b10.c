@@ -31,9 +31,9 @@ void FUN_00421b10(undefined4 *param_1,undefined4 param_2)
     *(undefined4 *)(iVar2 + 0x50) = DAT_005b95ec;
     *(undefined4 *)(iVar2 + 0x54) = DAT_005b95f0;
     *(undefined4 *)(iVar2 + 0x2c) = 0xff;
-    local_8 = FUN_0048e350();
+    local_8 = global_bad_shift_rng();
     local_8 = local_8 & 0x7fffff;
-    local_c = FUN_0048e350();
+    local_c = global_bad_shift_rng();
     local_c = local_c & 0x7fffff;
     Vec_RotateByOrientation(&local_c,(undefined4 *)(iVar2 + 0x4c));
     *(undefined4 *)(iVar2 + 0x98) = 45000;

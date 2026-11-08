@@ -10,7 +10,7 @@ uint FUN_004580c0(undefined4 param_1)
   iVar3 = DAT_0058f2e4;
   if (DAT_0058f2e0 != 0) {
     do {
-      iVar1 = FUN_004c67c0(iVar3,param_1);
+      iVar1 = str_cmp(iVar3,param_1);
       if (iVar1 == 0) {
         return uVar2;
       }

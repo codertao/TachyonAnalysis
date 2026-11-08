@@ -33,19 +33,19 @@ void FUN_0042ef10(void)
       return;
     }
     if (*(int *)(*local_4 + 0xc) != 0) {
-      FUN_0049c530(*(int *)(*local_4 + 0xc));
+      OurFreeMem(*(int *)(*local_4 + 0xc));
       *(undefined4 *)(*local_4 + 0xc) = 0;
     }
     if (*(int *)(*local_4 + 4) != 0) {
-      FUN_0049c530(*(int *)(*local_4 + 4));
+      OurFreeMem(*(int *)(*local_4 + 4));
       *(undefined4 *)(*local_4 + 4) = 0;
     }
     if (*(int *)(*local_4 + 8) != 0) {
-      FUN_0049c530(*(int *)(*local_4 + 8));
+      OurFreeMem(*(int *)(*local_4 + 8));
       *(undefined4 *)(*local_4 + 8) = 0;
     }
     if (*(int *)(*local_4 + 0x10) != 0) {
-      FUN_0049c530(*(int *)(*local_4 + 0x10));
+      OurFreeMem(*(int *)(*local_4 + 0x10));
       *(undefined4 *)(*local_4 + 0x10) = 0;
     }
     piVar11 = *(int **)*local_4;

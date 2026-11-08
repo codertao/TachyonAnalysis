@@ -31,7 +31,7 @@ void FUN_00430c40(undefined4 param_1)
       local_160 = 0;
       local_158 = 0;
       uVar3 = FUN_00430910();
-      iVar2 = FUN_004a0d60(uVar3);
+      iVar2 = lcreat_file_and_do_error_stuff(uVar3);
       if (iVar2 != -1) {
         iVar4 = FUN_0049aed0(local_100,0x80,local_16c);
         while (iVar4 != 0) {
@@ -58,7 +58,7 @@ LAB_00430d80:
             FUN_00430b70(iVar2,local_100,~uVar5);
           }
           else {
-            iVar4 = FUN_004c67c0(iVar4,param_1);
+            iVar4 = str_cmp(iVar4,param_1);
             if (iVar4 != 0) {
               uVar5 = 0xffffffff;
               pcVar6 = local_100;
@@ -76,7 +76,7 @@ LAB_00430d80:
       }
       FUN_0049adb0(local_16c);
     }
-    FUN_004a0ec0();
+    close_glbl_open_file();
     FUN_004a0d40(local_170);
   }
   return;

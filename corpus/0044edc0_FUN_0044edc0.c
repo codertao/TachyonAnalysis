@@ -10,7 +10,7 @@ char * FUN_0044edc0(char *param_1)
   char *pcVar6;
   char *pcVar7;
   
-  str_sprintf(param_1,s__s__s___s__00548480,&DAT_005b2bc4,*(undefined4 *)(DAT_00590238 + 4),
+  str_sprintf(param_1,s__s__s___s__00548480,0x5b2bc4,*(undefined4 *)(DAT_00590238 + 4),
               &DAT_0058f4f8 + DAT_00590d68 * 0x34);
   if (DAT_005b2b0c == 0) {
     return param_1;

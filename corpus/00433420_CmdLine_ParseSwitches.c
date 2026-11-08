@@ -7,10 +7,10 @@ void CmdLine_ParseSwitches(char *param_1)
 {
   char *pcVar1;
   
-  FUN_004256f0(&PTR_FUN_0053f6d8);
+  Rules_Set(&g_Rules_SinglePlayer);
   pcVar1 = _strstr(param_1,s__NOHELP_0053f424);
   if (pcVar1 != (char *)0x0) {
-    DAT_005b2c6c = 0;
+    GLBL_spacesav[0x2b] = 0;
   }
   DAT_005a6638 = 0x99;
   DAT_005a663c = 0xa6;

@@ -12,7 +12,7 @@ void FUN_00417690(int param_1)
   iVar4 = param_1 + 6;
   if (0 < *(short *)(param_1 + 4)) {
     do {
-      FUN_00416ac0(iVar4);
+      CliOn_RosterEntry(iVar4);
       uVar2 = 0xffffffff;
       pcVar5 = (char *)(iVar4 + 8);
       do {

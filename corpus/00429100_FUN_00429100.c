@@ -35,7 +35,7 @@ void FUN_00429100(int param_1,int param_2,int param_3)
                *(undefined4 *)(param_3 + 0x584),*(undefined4 *)(param_3 + 0x588),
                *(undefined4 *)(param_3 + 0x58c),*(undefined4 *)(param_3 + 0x590));
   iVar1 = *(int *)(param_3 + 0x5a4);
-  iVar2 = FUN_00455e40(&DAT_005b20e0,param_1 + 0xd0);
+  iVar2 = Shield_GetMax(&DAT_005b20e0,param_1 + 0xd0);
   iVar3 = *(int *)(param_2 + 8);
   *(int *)(iVar1 + 4) =
        (((*(int *)(param_3 + 0x5c4) * iVar3) / iVar2) * 0x100 +

@@ -2,7 +2,7 @@
 void FUN_00481480(void)
 
 {
-  netcomm_SetAudioGain(DAT_005b2cc8);
+  netcomm_SetAudioGain(GLBL_spacesav[0x42]);
   return;
 }
 

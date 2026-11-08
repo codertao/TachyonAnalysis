@@ -23,7 +23,7 @@ void FUN_0044a930(void)
     FUN_0043fce0(&g_UiManager,puVar2,uVar3,uVar4);
     FUN_0043f810(&g_UiManager,puVar2,0);
     FUN_0043f840(&g_UiManager,puVar2 + 0x40,0x80000);
-    FUN_0043f620(&g_UiManager,puVar2 + 0x40,0x400);
+    set_flag_10c_on_elem_by_id(&g_UiManager,puVar2 + 0x40,0x400);
     puVar2 = puVar2 + 0xab4;
     iVar1 = iVar1 + -1;
   } while (iVar1 != 0);
@@ -43,7 +43,7 @@ void FUN_0044a930(void)
     FUN_0043fce0(&g_UiManager,puVar2,uVar3,uVar4);
     FUN_0043f810(&g_UiManager,puVar2,0);
     FUN_0043f840(&g_UiManager,puVar2 + 0x40,0x80000);
-    FUN_0043f620(&g_UiManager,puVar2 + 0x40,0x400);
+    set_flag_10c_on_elem_by_id(&g_UiManager,puVar2 + 0x40,0x400);
     puVar2 = puVar2 + 0xab4;
     iVar1 = iVar1 + -1;
   } while (iVar1 != 0);

@@ -16,8 +16,8 @@ void FUN_004279b0(int *param_1,undefined4 param_2,undefined4 param_3,int param_4
     puVar3 = DAT_005b013c;
   }
   else {
-    FUN_004b1b70(DAT_005a6818,0x80,0x80,0x80,0x80);
-    puVar3 = (undefined4 *)FUN_004af4a0(param_4);
+    Pak_SetLoadPalParams(g_PalBrightness,0x80,0x80,0x80,0x80);
+    puVar3 = (undefined4 *)Pal_GetCached(param_4);
     param_1[8] = (int)puVar3;
   }
   puVar5 = &DAT_00603180;
@@ -29,12 +29,12 @@ void FUN_004279b0(int *param_1,undefined4 param_2,undefined4 param_3,int param_4
   if ((param_5 & 0x1000000) == 0) {
     iVar4 = FUN_004a2eb0(param_2);
     *param_1 = iVar4;
-    FUN_0049c670(iVar4,0xd400);
+    mark_alloc_memory_with_flags(iVar4,0xd400);
   }
   else {
     iVar4 = FUN_004a3cc0(param_2,param_3);
     *param_1 = iVar4;
-    FUN_0049c670(iVar4,0xd400);
+    mark_alloc_memory_with_flags(iVar4,0xd400);
   }
   if (*param_1 == 0) {
     FUN_00432ee0(param_2,s_hud_LoadImage_005366a8);

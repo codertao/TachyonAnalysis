@@ -25,7 +25,7 @@ void FUN_00425d60(int param_1,int param_2)
     else {
       iVar1 = (-(uint)((*(uint *)(param_1 + 0xe4) & 1) != 0) & 0xffc0be01) + 0x4040ff;
     }
-    if (*(int *)(param_1 + 0x110) == DAT_005b3338) {
+    if (*(int *)(param_1 + 0x110) == glbl_maybe_camera.y) {
       iVar1 = 0xffffff;
     }
     if (*(short *)(*(int *)(param_1 + 0xd4) + 0xce) == 0) {

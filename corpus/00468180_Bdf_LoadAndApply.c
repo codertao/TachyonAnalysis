@@ -8,12 +8,12 @@ void Bdf_LoadAndApply(undefined4 param_1)
   
   iVar1 = Bdf_GetOrLoadScene(param_1,DAT_005b3304);
   DAT_005b9084 = iVar1;
-  FUN_00431c40((uint)(*(int *)(iVar1 + 0xac) * DAT_005a6818) >> 7,*(undefined4 *)(iVar1 + 0xb0),
-               *(undefined4 *)(iVar1 + 0xb4),*(undefined4 *)(iVar1 + 0xb8),
-               *(undefined4 *)(iVar1 + 0xbc));
-  FUN_00431c80(&DAT_005ac548);
-  FUN_00431c80(&DAT_005a7538);
-  FUN_00431c80(&DAT_005a9d40);
+  Scene_SetPalParams((uint)(*(int *)(iVar1 + 0xac) * g_PalBrightness) >> 7,
+                     *(undefined4 *)(iVar1 + 0xb0),*(undefined4 *)(iVar1 + 0xb4),
+                     *(undefined4 *)(iVar1 + 0xb8),*(undefined4 *)(iVar1 + 0xbc));
+  ModelPool_Relight(&g_FxModelPool);
+  ModelPool_Relight(&g_ObjModelPool);
+  ModelPool_Relight(&g_BasePakPool);
   FUN_004acfa0();
   FUN_004af290(*(undefined4 *)(iVar1 + 0xc0));
   DAT_00668f8c = 0x10000;

@@ -69,8 +69,8 @@ LAB_0047ca65:
     puVar3 = puVar3 + 1;
   }
   FUN_0043e6a0(g_MapUiCtx,s_TxtMapFloating_005526e0,&DAT_00571b00);
-  DAT_0056368c = FUN_0049df00(s_ingame_bin_0053595c,0xa105);
-  DAT_0057128c = FUN_0043e3d0(g_MapUiCtx,s_TxtMapFloating_005526e0);
+  GLBL_ingame_rtxt = load_rtxt_bin(s_ingame_bin_0053595c,0xa105);
+  DAT_0057128c = find_ui_elem_by_name(g_MapUiCtx,s_TxtMapFloating_005526e0);
   FUN_0047abe0();
   return;
 }

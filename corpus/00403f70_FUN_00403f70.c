@@ -21,7 +21,7 @@ void FUN_00403f70(int param_1)
       }
       else {
         *(int *)(DAT_005653f4 + 0xe0) = *(int *)(DAT_005653f4 + 0xe0) + 1;
-        FUN_004525c0(1);
+        Chatter_PlayRandom(1);
       }
     }
     else if ((*(short *)(DAT_005653f4 + 0x76) == 2) &&

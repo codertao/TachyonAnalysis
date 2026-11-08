@@ -4,7 +4,7 @@ void FUN_0043e120(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
 {
   int iVar1;
   
-  iVar1 = FUN_0043e3d0(param_1,param_2);
+  iVar1 = find_ui_elem_by_name(param_1,param_2);
   if (iVar1 != 0) {
     if (DAT_00564ae4 == 0) {
       FUN_0043d560(param_1,*(undefined4 *)(iVar1 + 0x104),iVar1 + 0x80,0,iVar1 + 0x10c,param_3,

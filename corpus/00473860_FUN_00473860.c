@@ -15,7 +15,7 @@ void FUN_00473860(void)
       iVar1 = *(int *)(iVar4 + 0x58);
       if ((iVar1 != 0) &&
          ((*(int *)(iVar1 + 0x90) != 0 || (iVar2 = FUN_00469100(iVar4), iVar2 != 0)))) {
-        FUN_0046d580(&DAT_00583420,iVar1 + 0xb0,1,*(undefined4 *)(iVar1 + 0xc0),
+        FUN_0046d580(&GLBL_UI_ELEM_LIST,iVar1 + 0xb0,1,*(undefined4 *)(iVar1 + 0xc0),
                      *(undefined4 *)(iVar1 + 0xc4),0);
       }
       uVar3 = uVar3 + 1;

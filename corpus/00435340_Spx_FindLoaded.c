@@ -14,7 +14,7 @@ undefined4 * Spx_FindLoaded(undefined4 param_1)
   if (DAT_005a5544 != 0) {
     puVar4 = &DAT_005a5554;
     do {
-      iVar1 = FUN_004c67c0(param_1,puVar4);
+      iVar1 = str_cmp(param_1,puVar4);
       if (iVar1 == 0) {
         return puVar2;
       }

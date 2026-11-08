@@ -26,7 +26,7 @@ void FUN_004962c0(undefined4 *param_1,undefined4 param_2,int param_3,undefined4 
   iVar1 = FUN_004960f0(&local_2c);
   if ((iVar1 != 0) && ((param_6 & 2) != 0)) {
     FUN_00466620(1,1,param_1[0x12],param_3,0x10000,param_7 * 2,0);
-    FUN_00415c70(param_3 + 0x34,param_3 + 0x4c,*param_1,param_7,local_18,0,DAT_0056579c);
+    NetCli_SendFireGuided(param_3 + 0x34,param_3 + 0x4c,*param_1,param_7,local_18,0,DAT_0056579c);
   }
   return;
 }

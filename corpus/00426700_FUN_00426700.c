@@ -4,7 +4,7 @@ void FUN_00426700(int param_1,int param_2,int param_3)
 {
   ushort uVar1;
   
-  *(undefined1 **)(param_1 + 0x80) = &LAB_00415370;
+  *(code **)(param_1 + 0x80) = Replica_ReportHit;
   *(code **)(param_1 + 0x70) = FUN_00425e60;
   *(code **)(param_1 + 0x5c) = FUN_00425ba0;
   *(undefined4 *)(param_1 + 0x18) = 0;
@@ -18,7 +18,7 @@ void FUN_00426700(int param_1,int param_2,int param_3)
   *(undefined4 *)(param_1 + 0xd0) = 0;
   *(int *)(param_1 + 0x60) = param_1;
   *(uint *)(param_1 + 0xe4) = (uint)uVar1;
-  FUN_004b2950((undefined4 *)(param_1 + 0x18),0);
+  Model_SelectState((undefined4 *)(param_1 + 0x18),0);
   FUN_0045cbd0(param_1,*(int *)(param_1 + 100) + 0x14);
   if (*(int *)(param_1 + 0xe8) == DAT_005b7e40) {
     DAT_005b7e44 = param_1;

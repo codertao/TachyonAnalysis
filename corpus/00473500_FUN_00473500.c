@@ -17,21 +17,21 @@ void FUN_00473500(void)
     pcVar8 = s_TxtInvQty1_0054f1b8;
     do {
       pcVar6 = pcVar8 + -0x80;
-      Ui_SetButtonFlag(&DAT_00583420,pcVar6,4);
-      FUN_0043ce50(&DAT_00583420,pcVar6,8);
-      Ui_SetButtonFlag(&DAT_00583420,pcVar6,0x400000);
-      FUN_0043f620(&DAT_00583420,pcVar8 + 0x40,0x20000);
-      FUN_0043e610(&DAT_00583420,pcVar8 + -0x40,0x200);
-      FUN_0043e610(&DAT_00583420,pcVar8,0x20000);
-      FUN_0043e6a0(&DAT_00583420,pcVar8,&DAT_00562b14);
-      FUN_0043e6a0(&DAT_00583420,pcVar8 + -0x40,&DAT_00562b14);
+      Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,pcVar6,4);
+      set_button_state(&GLBL_UI_ELEM_LIST,pcVar6,8);
+      Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,pcVar6,0x400000);
+      set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,pcVar8 + 0x40,0x20000);
+      sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,0x200);
+      sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,pcVar8,0x20000);
+      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8,&DAT_00562b14);
+      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,&DAT_00562b14);
       pcVar8[0x84] = '\0';
       pcVar8[0xc4] = '\0';
       pcVar8[0x80] = '\0';
       pcVar8[0x81] = '\0';
       pcVar8[0x82] = '\0';
       pcVar8[0x83] = '\0';
-      iVar1 = Ui_FindButton(&DAT_00583420,pcVar6);
+      iVar1 = Ui_FindButton(&GLBL_UI_ELEM_LIST,pcVar6);
       if (iVar1 != 0) {
         *(undefined4 *)(pcVar8 + 0xe4) = *(undefined4 *)(iVar1 + 0xd4);
         *(undefined4 *)(pcVar8 + 0xe8) = *(undefined4 *)(iVar1 + 0xd8);
@@ -65,23 +65,23 @@ void FUN_00473500(void)
         if (iVar1 != 0) {
           pcVar6 = pcVar8 + -0xc0;
           *(int *)(pcVar8 + 0x40) = iVar7;
-          iVar7 = FUN_0043ca90(&DAT_00583420,pcVar6);
+          iVar7 = FUN_0043ca90(&GLBL_UI_ELEM_LIST,pcVar6);
           if (iVar7 == 8) {
-            FUN_0043ce50(&DAT_00583420,pcVar6,1);
+            set_button_state(&GLBL_UI_ELEM_LIST,pcVar6,1);
           }
-          iVar7 = Ui_FindButton(&DAT_00583420,pcVar6);
+          iVar7 = Ui_FindButton(&GLBL_UI_ELEM_LIST,pcVar6);
           if (iVar7 != 0) {
-            FUN_0046d770(&DAT_00583420,pcVar8,iVar1 + 0xb0,1,*(undefined4 *)(iVar1 + 0xc0),
+            FUN_0046d770(&GLBL_UI_ELEM_LIST,pcVar8,iVar1 + 0xb0,1,*(undefined4 *)(iVar1 + 0xc0),
                          *(undefined4 *)(iVar1 + 0xc4),*(undefined4 *)(iVar7 + 0xd4),
                          *(undefined4 *)(iVar7 + 0xd8),0);
-            iVar3 = FUN_0043fa70(&DAT_00583420,pcVar8);
+            iVar3 = find_ui_elem_by_id_(&GLBL_UI_ELEM_LIST,pcVar8);
             str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar1 + 0xb0);
-            iVar4 = FUN_0043a7a0(&DAT_00583420,&DAT_005a41e0);
-            iVar7 = FUN_0043a7a0(&DAT_00583420,iVar7 + 0x80);
+            iVar4 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0);
+            iVar7 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,iVar7 + 0x80);
             if (((iVar3 != 0) && (iVar4 != 0)) && (iVar7 != 0)) {
               uVar5 = FUN_0046be00(*piVar2 + 0x20,*piVar2);
               str_sprintf(pcVar8 + 0x84,s___SHADOW8r__d_SHADOW8w___005476a8,uVar5);
-              FUN_0043e6a0(&DAT_00583420,pcVar8 + -0x40,pcVar8 + 0x84);
+              FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,pcVar8 + 0x84);
               if (*(undefined4 **)(iVar1 + 0x60) == (undefined4 *)0x0) {
                 pcVar6 = s__ITEM_005476a0;
               }

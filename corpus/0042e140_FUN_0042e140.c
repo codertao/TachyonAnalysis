@@ -17,7 +17,7 @@ void FUN_0042e140(int param_1,uint param_2)
     if ((int)DAT_005b0750 < (int)param_2) {
       DAT_005b0750 = param_2 & 0xff;
     }
-    uVar1 = FUN_0048e350();
+    uVar1 = global_bad_shift_rng();
     if ((uVar1 & 0xff) < DAT_005b0750) {
       DAT_005b2138 = DAT_005b2138 + 1;
       if (DAT_005b213c < DAT_005b2138) {

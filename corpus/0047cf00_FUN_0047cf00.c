@@ -110,7 +110,7 @@ int FUN_0047cf00(void)
       else if ((iVar2 == 1) && (local_34 = 2, *(int *)(iVar10 + 0x3c) != 0)) {
         bVar3 = true;
         if (DAT_005636a0 == 0) {
-          FUN_00466860(s_smover_wav_005528e0,(DAT_005b2d10 & 0x7ffffff) >> 3);
+          FUN_00466860(s_smover_wav_005528e0,(GLBL_spacesav[0x54] & 0x7ffffff) >> 3);
           DAT_005636a0 = 1;
         }
         FUN_0047bc40(*(undefined4 *)(iVar10 + 0x3c));
@@ -135,12 +135,12 @@ LAB_0047d343:
       BVar7 = PtInRect((RECT *)&DAT_00571fd0,pt_01);
       if ((BVar7 != 0) && (bVar12)) {
         if (DAT_00563680 != 0) {
-          FUN_00466860(s_zoomin_wav_005528d4,(DAT_005b2d10 * 5 & 0x1fffffff) >> 5);
+          FUN_00466860(s_zoomin_wav_005528d4,(GLBL_spacesav[0x54] * 5 & 0x1fffffff) >> 5);
           FUN_0047cc30(0x3f800000);
           FUN_0047bf50(0x43a00000,0x43700000);
           return local_34;
         }
-        FUN_00466860(s_zoomout_wav_005528c8,(DAT_005b2d10 * 5 & 0x1fffffff) >> 5);
+        FUN_00466860(s_zoomout_wav_005528c8,(GLBL_spacesav[0x54] * 5 & 0x1fffffff) >> 5);
         FUN_0047cc30(0x40000000);
         FUN_0047bf50((float)iVar4,(float)iVar5);
       }

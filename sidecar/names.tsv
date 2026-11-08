@@ -37,7 +37,7 @@
 0x5a6500	g_MissionEndFlag	set to leave the in-flight mode (-> g_NextMode = g_ReturnMode)
 0x5a6508	g_MissionEndReason	mission-end reason code (e.g. 9, 3)
 0x590e2c	g_ReturnMode	mode to return to when leaving flight (prev-mode slot; g_NextMode=0x590e28)
-0x5a64fc	g_FlightStateFlags	in-flight gating bits (bit1/bit2 seen)
+0x5a64fc	g_FlightStateFlags	bits: 1 hosts server, 2 local player, 4 offline SP. 7=SP 3=listen host 1=dedicated 2=remote client
 
 # --- audio / profile (known from prior analysis) ---
 0x4a90a0	StreamAudio_Refill	16x16KB ring buffer; 16->8-bit; WAV loop at file offset 0x2c
@@ -258,17 +258,17 @@
 # (0x403270 Entity_TurnToward defined above - orientation controller, not velocity)
 0x4035d0	Dcb_Think_AiShip	AI/drone ship think (DCB +0x68, installed by 0x4036f0): Entity_ApproachVelocity + staggered turn FX + Dcb_WorldDelta + Euler integrate
 0x4111b0	Dcb_Think_MultiPart	multi-part/parented entity think (DCB +0x68, installed by 0x412220): optional hook +0x134, steer toward +0xec, integrate, staggered engine-audio/collision, Dcb_UpdateChildTransforms
-0x4112d0	Dcb_Think_Ordnance	long-life ordnance think (DCB +0x68, installed by 0x411f80): range flags + proximity detonate (0x404c00)
+0x4112d0	Dcb_Think_Turret	turret DCB think (+0x68): range flags; runs Turret_Think only while root +0x138 has 8 (weapon generator alive) and root +0x130 bit 1 clear
 0x40a250	Dcb_Think_Missile	short-life guided-missile think (DCB +0x68, installed by 0x40a460): advance + proximity detonate
 0x403590	Dcb_WorldDelta	compute world-space position delta +0xa0 from forward speed rotated by orientation +0x4c (staggered gyro via +0xd4) -> 0x424030
 0x424030	Entity_ThrustToWorld	rotate forward speed by the orientation matrix (built from angles +0x4c), accumulate into world posDelta +0xa0/a4/a8, scale by def+0x3c; optional out = speed magnitude. This is the linear-motion step
 0x4241c0	Entity_ApplyTurnControl	turn integrator: advance orientation +0x4c by angular rate (turn magnitude +0x312), honoring handling params def+0x84
 0x403230	Dcb_UpdateEngineAudio	3D positional engine sound: distance to player DCB (0x58b064) -> play at attenuated volume
 0x410f60	Dcb_UpdateChildTransforms	update attached sub-object transforms (child chain via +0xe0); recompute each child world posDelta +0xa0 = newPos-oldPos
-0x404c00	Dcb_Detonate	ordnance proximity detonation / effect spawn
+0x404c00	Turret_Think	turret AI per frame: slew yaw/pitch toward solution (max 0x20000/frame each), fire when error < def+0xc; every 32 frames (staggered by +0x154) re-solve lead, every 256 reacquire nearest hostile
 0x412220	Dcb_InitMultiPart	init multi-part entity DCB: install think 0x4111b0, action +0x80=0x411b70
 0x4036f0	Dcb_InitAiShip	init AI ship DCB: install think 0x4035d0 (when +0xf7!=1)
-0x411f80	Dcb_InitOrdnance	init long-life ordnance DCB (type 0xf, life 50000): think 0x4112d0, action +0x80=0x411af0
+0x411f80	Dcb_InitTurret	OCF TYPE 2 part: entity type 0xf, hp +0x180 = 50000, weapon = g_TurretSubtypeWeapon[SUB_TYPE], range +0x158 = def+0x60
 0x40a460	Dcb_InitMissile	init short-life missile DCB (type 0xf, life 5000): think 0x40a250, action +0x80=0x40a1c0
 # --- player input -> ship physics path (resolved 2026-10-29) ---
 # Each frame the player-control DCB's +0x68 think runs: PlayerDcb_Think -> PlayerShip_UpdateKinematics
@@ -332,3 +332,702 @@
 0x4577d0	Ent_SetQuadrant	entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64)
 0x457a10	Ent_EnterQuadrant	entity ENTER_QUADRANT event handler
 0x457940	Ent_LeaveQuadrant	entity LEAVE_QUADRANT event handler
+
+# --- back-ported from Ghidra GUI 2026-11-08: functions ---
+0x4041f0	handle_hit_for_voiceline
+0x414720	clear_cheats
+0x414740	toggle_cheats
+0x414790	something_decrypt_related
+0x418550	init_flight_start
+0x419900	init_a_lotta_globals
+0x419a90	snapshot_to_spacesav
+0x419ac0	init_spacesav
+0x419ad0	load_or_init_spacesav
+0x41a380	overwrite_some_globals
+0x41ad70	maybe_sped_is_near_sortof
+0x41adc0	any_some_speds_are_sortof_near
+0x41df50	check_is_snd_playing_maybe
+0x41ebe0	copy_p2_to_p1_and_get_basename?
+0x41f0e0	some_kind_of_play_sound
+0x41fd80	load_box_file
+0x4206f0	some_extract_key_I_think
+0x420730	decrypt_str_with_key
+0x420770	some_kind_of_decrypt_i_think
+0x4207f0	check_str_matches_enc_str
+0x42ddb0	maybe_log_something
+0x431ce0	actual_load_font
+0x431de0	load_font
+0x437bf0	clear_flags
+0x437c10	sbi_flags
+0x43ce50	set_button_state
+0x43e3d0	find_ui_elem_by_name
+0x43e610	sbi_label_flags_11c
+0x43e670	clr_label_flags_11c
+0x43f620	set_flag_10c_on_elem_by_id
+0x43fa70	find_ui_elem_by_id?
+0x44bc00	dialog_mp_error_reason
+0x450750	filename_to_base_name
+0x450770	load_sbf_and_bin
+0x473940	loadout_enter
+0x473d40	loadout_update
+0x475100	initialize_loadout_ui
+0x48e350	global_bad_shift_rng
+0x48e370	seed_rng
+0x48e380	clr_bytes
+0x48e440	distance_between
+0x48e4c0	dist_2d
+0x48e510	normalize_vec2
+0x49c3b0	mem_GetMemEx_probably_alloc
+0x49c530	OurFreeMem
+0x49c670	mark_alloc_memory_with_flags
+0x49cd50	maybe_cleanup
+0x49dea0	markup_rtxtbin_as_ptrs
+0x49df00	load_rtxt_bin
+0x49ec30	some_iter_over_list
+0x4a0d60	lcreat_file_and_do_error_stuff
+0x4a0e10	openfile
+0x4a0ea0	read_file_to_bin
+0x4a0ec0	close_glbl_open_file
+0x4a0ed0	move_to_end_of_file_and_get_len
+0x4a0ef0	save_to_open_file
+0x4a0f10	read_file
+0x4a0fe0	get_file_len
+0x4a11c0	get_actual_filename_from_pff
+0x4a1620	load_a_file_probably
+0x4a1a60	show_dialog_on_cannot_open_file
+0x4a4040	read_some_bytes_and_update_seek_ptr
+0x4a4100	decrypt_str_xor_rol_312a4ce
+0x4a4130	probably_load_from_pff
+0x4a7820	shutdown_audio
+0x4add80	copy_str32_to_some_global
+0x4b1920	set_global_near_far
+0x4b24d0	some_rotate_by_global
+0x4b3c80	scale_glbl_3vecs_by_global
+0x4b5160	actual2_load_sbf_and_bin
+0x4b5290	actual_load_sbf_and_bin
+0x4b5590	set_cb_functions_maybe_audio
+0x4b55f0	set_some_glbl_scalar
+0x4b57e0	load_bin_scr_file
+0x4b7870	something_list_related_get_next
+0x4b87d0	maybe_take_some_mem
+0x4b8880	set_global_some_game_mode
+0x4bc6a2	something_locale_related
+0x4bd3c6	maybe_find_in_list
+0x4bdf99	probably_find_in_pff
+0x4c15cd	init_andor_enter_crit_section_idx
+0x4c162e	leave_crit_section_idx
+0x4c5a4e	__break
+0x4c67c0	str_cmp
+0x4c82b6	to_uppercase
+0x4e0417	approx_vector_len
+0x4e0462	call_approx_vec_length
+0x52d9cd	math_todo_with_rotation
+0x52db6a	call_math_todo_with_rotation
+0x52db9a	copy_mathresult_to_global
+0x52dbcd	call_copy_mathresult_to_global
+
+# --- back-ported from Ghidra GUI 2026-11-08: data labels ---
+0x52cde4	g_some_trig_table
+0x52d7e4	GLBL_MATH_TMPZ_FRAC
+0x52d944	GLBL_MATH_TMP_r1
+0x52d948	GLBL_MATH_TMP_r2
+0x52d94c	GLBL_MATH_TMP_r3
+0x54e9d8	g_mode_Loadout
+0x559d2c	GLBL_rng_state
+0x559d30	s_snapshot_fmtstr
+0x55d7cc	PTR_global_mem_pool_root
+0x55e0cc	GLBL_some_scale_factor
+0x55ecdc	GLBL_3VEC3_input
+0x55ef60	MAGIC_SCR0
+0x561950	GLBL_crit_section_area
+0x562b18	GLBL_maybe_crypt_skip_key
+0x56368c	GLBL_ingame_rtxt
+0x563e98	GLBL_audio_running
+0x564004	GLBL_cb_log_file_io_probably
+0x565138	GLBL_use_locale_str_funcs
+0x56aac0	GLBL_llist_large_thing
+0x583420	GLBL_UI_ELEM_LIST
+0x590e40	GLBL_loopTime
+0x590e50	GLBL_run_once_func_cb
+0x5a661c	GLBL_cheat_related1
+0x5a6628	GLBL_cheat_related2
+0x5a662c	GLBL_cheat_related_all_ships_maybe
+0x5aed64	GLBL_maybe_shadow_font_specific
+0x5b0738	GLBL_SOME_2D_X
+0x5b073c	GLBL_SOME_2D_Y
+0x5b1dd0	GLBL_FONT_SHDW_08
+0x5b1dd4	GLBL_FONT_SHDW_12
+0x5b1dd8	GLBL_BORDERS_BOX
+0x5b22e0	GLBL_ACTIVE_SND_CNT
+0x5b22e4	GLBL_ACTIVE_SNDS_PTR_MAYBE
+0x5b29a0	GLBL_some_sped_ll_head
+0x5b29a4	GLBL_iter_cnt
+0x5b29ac	GLBL_some_search_dist_arr?
+0x5b2a44	GLBL_flag_should_tick_something
+0x5b2ac0	GLBL_error_msg_str_ptr
+0x5b2ac4	GLBL_init_to_127
+0x5b2ac8	GLBL_init_to_110
+0x5b2af0	GLBL_NW_PING_IP
+0x5b2b00	GLBL_NW_PING_PORT
+0x5b2b30	GLBL_some_scale_override
+0x5b2bc0	GLBL_spacesav
+0x5b3300	GLBL_SOME_CONTEXT
+0x5b3334	glbl_maybe_camera
+0x5b9d10	GLBL_mem_log_lvl
+0x6038a0	GLBL_filehandle
+0x6038a4	GLBL_last_file_read_bytes
+0x6038a8	GLBL_maybe_pff_base
+0x6038b8	GLBL_some_file_failure
+0x6038bc	GLBL_open_file_error_flag
+0x60390c	GLBL_show_error_dialogs
+0x603910	GLBL_some_save_or_log_cb
+0x603920	GLBL_pff_found_entry
+0x60395c	GLBL_WindowHandle?
+0x603c20	GLBL_someinput_array_of_ints
+0x603e20	GLBL_someinput_iter_at
+0x603e24	GLBL_someinput_MAX_CNT
+0x604440	GLBL_some_str
+0x62c100	GLBL_3VEC3_output
+0x666ae4	GLBL_R_DIST_MIN_VAL
+0x666ae8	GLBL_R_DIST_MAX_VAL
+0x666aec	f_global_scalar_maybe
+0x668f98	GLBL_fvec3_rotB
+0x668fa4	GLBL_fvec3_rotA
+0x6695b8	GLBL_bin_content
+0x6af500	GLBL_sbf_file_handle
+0x6af51c	GLBL_some_scalar_from_spacesav_in_fixed
+0x6af530	GLBL_MAYBE_AUDIO_CB_1
+0x6af534	GLBL_MAYBE_AUDIO_CB_2
+0x6af538	GLBL_MAYBE_AUDIO_CB_3
+0x6af53c	GLBL_MAYBE_AUDIO_CB_4
+0x6af540	GLBL_MAYBE_AUDIO_CB_5
+0x6af658	GLBL_some_game_mode
+0x6af678	GLBL_maybe_mem_pool_of_size
+0x6caed8	GLBL_locale_counter
+0x6caedc	GLBL_locale_inprocess_gauge
+
+# --- netcode (2026-11-08, see notes/multiplayer.md) ---
+0x4a6d00	Net_SelectTransport	pick transport vtable: 1 -> 0x55e8c8 (netsock TCP/IP), else 0x55e800; active ptr 0x55e458
+0x4a6fd0	Net_SendSessionNotify	send 8-byte msg {u16 0x4001, u32 0x55e400} via transport slot +0x64
+0x4a7020	NetDrv_SendToServer	transport slot +0x58
+0x4a7040	NetDrv_SendToClient	transport slot +0x60
+0x4ab8a0	NetSock_GetMessage	netsock_GetMessage wrapper (0x8000 buf), skips system msgs (sender id 0)
+0x4ab920	NetSock_SendToServer	retries up to 0x800x while result==0x10 (busy), pumping messages
+0x4ab990	NetSock_SendToClient	retries up to 0x800x while result==0x10 (busy), pumping messages
+0x4b7bf0	NetSrv_OnPlayerJoin	alloc player slot, init (name / JAKE_LOGAN default), join callback 0x6af7b4
+0x4b7ac0	NetSrv_InitPlayerSlot	zero slot, set connection id, copy player name
+0x4b79d0	NetSrv_FindFreeSlot
+0x4b7a00	NetSrv_FindPlayerByConnId
+0x4b7cd0	NetSrv_Init	copy server config (0x16 dwords -> 0x6af788), alloc mpPlayerBuffer / Server send buffer / Server Event Buffer
+0x4b7e80	NetSrv_HandlePlayerData	MSG_PLAYERDATA(3): if session matches & newer, callback 0x6af7ac(player, body)
+0x4b7fe0	NetSrv_HandleAppEvent	dedup by event tag ring (player+0x7c), deliver via 0x6af7a8 (live or stale)
+0x4b8030	NetSrv_AdvanceStartupStage	on startup ack: callback 0x6af7d4 decides next stage
+0x4b8090	NetSrv_HandleStartupAck	msg 0x103 {u16 1,u32 stage}
+0x4b80e0	NetSrv_ProcessPacket	seq/ack check, retire acked events, dispatch sub-msgs (3, 0x103, app)
+0x4b8250	NetSrv_ReceiveAll	drain loopback + transport, NetSrv_ProcessPacket each
+0x4b8320	NetSrv_SendPacketToPlayer	transport SendToClient or loopback; dumps server.txt if over buffer size
+0x4b8390	NetSrv_WriteStartupData	MSG_STARTUPDATA(4)
+0x4b83e0	NetSrv_WritePacketHeader	u32 seq, u32 ack
+0x4b8410	NetSrv_WriteKick	type 7 {u8 reason}
+0x4b8440	NetSrv_WritePlayerInfo	MSG_PLAYERINFO(6)
+0x4b8490	NetSrv_WriteQueuedEvents	copy pending reliable events into packet, decrement resend budget
+0x4b8520	NetSrv_WriteGameData	MSG_GAMEDATA(2) via callback 0x6af7c4
+0x4b8560	NetSrv_QueueEventForPlayer
+0x4b85c0	NetSrv_DistributeEvents	run delivery filter 0x6af7cc per player, queue copies
+0x4b8650	NetSrv_SendRound	round-robin: build+send packets for slots where (slot&mask)==(tick&mask)
+0x4b8760	NetSrv_Tick	receive, per-player tick, world tick callback, send round
+0x4b87b0	NetSrv_SetSendInterval	power of 2; mask = n-1
+0x4b87f0	NetSrv_QueueEvent	finalize app event {type,size,tag} + delivery spec, add to broadcast list 0x6af69c
+0x4b8890	Net_DumpPacket	debug: write sub-msg list with MSG_* names to file
+0x4b8970	NetCli_Init	copy client config (0xd dwords -> 0x6af580), alloc Client send buffer, event tag ring, msg pool
+0x4b8a70	NetCli_HandleGameData	MSG_GAMEDATA(2): advance client time, callback 0x6af598
+0x4b8ad0	NetCli_HandleKick	type 7 -> callback 0x6af5ac(reason)
+0x4b8b90	NetCli_HandleAppEvent	dedup by tag ring, deliver live/stale via 0x6af590
+0x4b8be0	NetCli_SendStartupAck	queue 0x103 {u16 1, u32 stage}
+0x4b8c10	NetCli_HandleStartupData	MSG_STARTUPDATA(4): new stage -> callback 0x6af594, ack
+0x4b8c70	NetCli_HandlePlayerInfo	MSG_PLAYERINFO(6)
+0x4b8c90	NetCli_ProcessPacket	seq/ack check, retire acked events, dispatch sub-msgs 2/4/6/7/app
+0x4b8dc0	NetCli_WriteQueuedEvents	copy pending reliable events into packet, decrement resend budget
+0x4b8e40	NetCli_WritePacketHeader	u32 seq, u32 ack
+0x4b8e60	NetCli_WritePlayerData	MSG_PLAYERDATA(3) header + callback 0x6af59c body
+0x4b8eb0	NetCli_SendPacket	transport SendToServer or loopback
+0x4b8ef0	NetCli_BuildAndSend
+0x4b8f80	NetCli_SetSendInterval	power of 2
+0x4b8fb0	NetCli_AllocEvent	returns body ptr (node+0x28)
+0x4b8fd0	NetCli_QueueEvent	(body, type, size, resendBudget)
+0x4b9070	NetBridge_Init	loopback buffers (1 = to server, 2 = to client)
+0x4b90b0	NetBridge_Put
+0x4b9110	NetBridge_Get
+0x418150	NetCli_RegisterGameCallbacks	Tachyon client callbacks -> NetCli_Init
+0x462180	NetSrv_RegisterGameCallbacks	Tachyon server config/callbacks -> NetSrv_Init (was populate_func_ptr_struct)
+0x417eb0	Tach_WritePlayerData	0x4C-byte PLAYERDATA (client-authoritative pos/orient/vel, camera pos, target, throttle)
+0x460b30	Tach_SrvReadPlayerData
+0x461a30	Tach_SrvWriteGameData	24-byte status header + entity snapshot
+0x417dc0	Tach_ReadGameData
+0x461870	Tach_SrvWriteSnapshot	interest-managed: <=8 in radius +0x15c of client camera, target, 2 far, persistent-object page
+0x4614e0	Tach_SrvWriteEntityRecord	24-byte record, f16 rel pos/vel, u8 orient
+0x4615c0	Tach_SrvWriteEntityRecordExt	28-byte record (flag 8)
+0x461f80	Tach_SrvWriteStartupStage	stages 0..5
+0x462080	Tach_SrvStartupStageDone	stage 5 -> send 0x1111
+0x4620b0	Tach_SrvEventFilter	delivery flags 0x01 radius,0x02 except,0x04 only,0x08 team,0x10,0x20 same quadrant,0x40,0x80
+0x460850	Tach_SrvDispatchEvent	client->server 0x2xxx app events
+0x416fc0	Tach_CliDispatchEvent	server->client 0x10xx/0x11xx app events
+0x48e870	f16_Encode	custom 16-bit float: bit0 sign, bits1-3 exp, bits4-15 mantissa
+0x48e8c0	f16_Decode
+0x415710	Tach_SendChat	0x2022 {u16 mode, u16 target, char[0xff]}
+0x414f10	Tach_SendLoadout	0x2028 {u32 ship, u16 n, {u16,u16}[n]}
+0x415a40	Tach_SendUseGate	0x2006
+0x4163e0	Tach_SendSnapshotAck	0x2008
+
+# --- netcode: server->client events (2026-11-08) ---
+0x45d900	SrvSend_TextMsg	S->C 0x1001
+0x45e470	SrvSend_ProjectileFired	S->C 0x1002
+0x45e530	SrvSend_EntityDestroyed	S->C 0x1003
+0x45e5d0	SrvSend_ProjectileImpact	S->C 0x1004
+0x45e680	SrvSend_YouTookDamage	S->C 0x1005
+0x45ea30	SrvSend_YouDied	S->C 0x1006
+0x45ed20	SrvSend_EnterQuadrant	S->C 0x1007
+0x45de10	SrvSend_MinePlaced	S->C 0x1008
+0x45df50	SrvSend_GateState	S->C 0x1009
+0x45dfb0	SrvSend_PlayScene	S->C 0x1010
+0x45db70	SrvSend_Despawn	S->C 0x1011
+0x45eb40	SrvSend_Respawn	S->C 0x1012
+0x45d860	SrvSend_PlayNamedSound	S->C 0x1013
+0x45de80	SrvSend_EntityStateOp	S->C 0x1014
+0x45ebb0	SrvSend_NavPrimary	S->C 0x1015
+0x45dd20	SrvSend_OrderAdd	S->C 0x1016
+0x45ddc0	SrvSend_OrderUpdate	S->C 0x1017
+0x45e200	SrvSend_EntityFiredAt	S->C 0x1020
+0x45ec70	SrvSend_NavSecondary	S->C 0x1028
+0x45e6c0	SrvSend_RosterClear	S->C 0x1029
+0x40d9e0	SrvSend_RoundResult	S->C 0x1032
+0x4611f0	SrvSend_SessionBump	S->C 0x1033
+0x45dad0	SrvSend_UiSound	S->C 0x1034
+0x45ea70	SrvSend_EntityClassInfo	S->C 0x1100
+0x45e310	SrvSend_DropPredicted	S->C 0x1101
+0x45df00	SrvSend_MineRemoved	S->C 0x1102
+0x45e360	SrvSend_EntityFired	S->C 0x1103
+0x45dbc0	SrvSend_DecoyDropped	S->C 0x1104
+0x45eaf0	SrvSend_ThreatList	S->C 0x1105
+0x461610	SrvSend_SpawnEntity	S->C 0x1106
+0x45dc40	SrvSend_TeamShipDesc	S->C 0x1107
+0x45dcb0	SrvSend_PlayerPortrait	S->C 0x1108
+0x45da70	SrvSend_RosterEntry	S->C 0x1110
+0x462030	SrvSend_StartupComplete	S->C 0x1111
+0x45e980	SrvSend_Scoreboard	S->C 0x1112
+0x45e290	SrvSend_EntityLabel	S->C 0x1113
+0x45e160	SrvSend_Allegiance	S->C 0x1114
+0x45d780	SrvSend_VoiceWav	S->C 0x1115
+0x45d810	SrvSend_ResupplyNotice	S->C 0x1117
+0x45e3d0	SrvSend_BeamImpact	S->C 0x1118
+0x45d700	SrvSend_RoundFreeze	S->C 0x1119
+0x45d740	SrvSend_RoundResume	S->C 0x1120
+0x4515e0	SrvSend_CampaignCheck	S->C 0x1121
+0x45e700	SrvSend_RankProgress	S->C 0x1122
+0x45e760	SrvSend_FactionProgress	S->C 0x1123
+0x45e1b0	SrvSend_Ammo	S->C 0x1124
+0x45e7d0	SrvSend_SubpartAttach	S->C 0x1125
+0x45e890	SrvSend_SubpartDestroy	S->C 0x1126
+0x45e830	SrvSend_RankChange	S->C 0x1127
+0x4167b0	CliOn_NavSecondary	S->C 0x1028 handler
+0x415ff0	CliOn_TextMsg	S->C 0x1001 handler
+0x416040	CliOn_ProjectileFired	S->C 0x1002 handler
+0x4160e0	CliOn_EntityDestroyed	S->C 0x1003 handler
+0x4161c0	CliOn_ProjectileImpact	S->C 0x1004 handler
+0x416250	CliOn_YouTookDamage	S->C 0x1005 handler
+0x4162a0	CliOn_YouDied	S->C 0x1006 handler
+0x416590	CliOn_MinePlaced	S->C 0x1008 handler
+0x4165b0	CliOn_GateState	S->C 0x1009 handler
+0x416610	CliOn_PlayScene	S->C 0x1010 handler
+0x416670	CliOn_Despawn	S->C 0x1011 handler
+0x416690	CliOn_Respawn	S->C 0x1012 handler
+0x4166b0	CliOn_PlayNamedSound	S->C 0x1013 handler
+0x4166d0	CliOn_EntityStateOp	S->C 0x1014 handler
+0x416780	CliOn_NavPrimary	S->C 0x1015 handler
+0x416800	CliOn_OrderAdd	S->C 0x1016 handler
+0x416830	CliOn_OrderUpdate	S->C 0x1017 handler
+0x416870	CliOn_EntityFiredAt	S->C 0x1020 handler
+0x40e040	CliOn_RoundResult	S->C 0x1032 handler
+0x416f90	CliOn_UiSound	S->C 0x1034 handler
+0x416180	CliOn_EntityClassInfo	S->C 0x1100 handler
+0x416850	CliOn_DropPredicted	S->C 0x1101 handler
+0x416910	CliOn_MineRemoved	S->C 0x1102 handler
+0x416930	CliOn_EntityFired	S->C 0x1103 handler
+0x416960	CliOn_DecoyDropped	S->C 0x1104 handler
+0x4169c0	CliOn_ThreatList	S->C 0x1105 handler
+0x416a10	CliOn_SpawnEntity	S->C 0x1106 handler
+0x416a80	CliOn_TeamShipDesc	S->C 0x1107 handler
+0x416b20	CliOn_StartupComplete	S->C 0x1111 handler
+0x416bb0	CliOn_EntityLabel	S->C 0x1113 handler
+0x416be0	CliOn_Allegiance	S->C 0x1114 handler
+0x416c20	CliOn_VoiceWav	S->C 0x1115 handler
+0x416c40	CliOn_ResupplyNotice	S->C 0x1117 handler
+0x416c60	CliOn_BeamImpact	S->C 0x1118 handler
+0x416d10	CliOn_RoundFreeze	S->C 0x1119 handler
+0x416d90	CliOn_CampaignCheck	S->C 0x1121 handler
+0x416dd0	CliOn_RankProgress	S->C 0x1122 handler
+0x416e10	CliOn_FactionProgress	S->C 0x1123 handler
+0x416e40	CliOn_Ammo	S->C 0x1124 handler
+0x416e60	CliOn_SubpartAttach	S->C 0x1125 handler
+0x416e90	CliOn_SubpartDestroy	S->C 0x1126 handler
+0x416ec0	CliOn_RankChange	S->C 0x1127 handler
+0x416ac0	CliOn_RosterEntry	S->C 0x1110 handler
+0x416aa0	CliOn_PlayerPortrait	S->C 0x1108 handler
+0x416ef0	CliOn_RosterClear	S->C 0x1029 handler
+0x416f20	CliOn_MissionEnd	S->C 0x1031 handler
+0x416f80	CliOn_SessionBump	S->C 0x1033 handler
+0x416b60	CliOn_Scoreboard	S->C 0x1112 handler
+0x416d70	CliOn_RoundResume	S->C 0x1120 handler
+0x45fc30	TachSrv_OnShipKilled	player ship killed: sends 0x1006, 0x1003 (effect 3), 0x1014 op 8; kill/death credit
+0x45e900	TachSrv_BuildScoreboard	{u16 slot, u16 kills(+0xe0), u16 deaths(+0xf8)} per player, sorted
+
+# --- single-player / server tick (2026-11-08, see notes/singleplayer.md) ---
+0x45eee0	TachSrv_WorldTick	per server tick: each active quadrant -> rules +0x44, every DCB +0x68 think then +0x6c; Dcb_GC around
+0x415430	TachCli_ReplicaThink	replica +0x68: SP copies linked server DCB (+0xf4) exactly; MP dead-reckons snapshot (1/16 ease)
+0x417830	TachCli_ExpireReplicas	after snapshot: unrefreshed replicas count down +0xec then removed
+0x4256f0	Rules_Set	g_ActiveRules = table
+0x425700	Rules_Tick	rules +0x04
+0x425760	Rules_Init	rules +0x00
+0x425780	Rules_Shutdown	rules +0x10
+0x4359c0	SpRules_Init	load desnames.cfg, PLAYER_MAIN_VARS.PLAYER_SIDE
+0x435a70	SpRules_Tick
+0x435aa0	SpRules_Shutdown	write PLAYER_STATS (kills, shots, hits) to save vars (SP only)
+0x4373f0	SpRules_OnPlayerDamaged	post mission event {0,0,0,hull%}; low-hull warning < 1/4
+0x455580	SpRules_OnPlayerDeath	death cam + sound
+0x460f60	TachSrv_DamagePlayer	god mode (SP), easy x0.687 (SP), rules +0x84/+0x28/+0x24, kill -> TachSrv_OnShipKilled, sends 0x1005
+0x4628c0	Flight_ServerShutdown	rules shutdown, VarStore_Save .sav (SP only), free pools, netcomm_Shutdown
+0x4629d0	Sp_ApplyDifficulty	SP: 0x58b078 = 2*difficulty+1 -> player ship +0xca (max AI attackers)
+0x48ddc0	Mission_PostEvent	(event{cat,sub,code,value,a,b}, quadrant) -> both trigger tables
+0x48ddf0	Mission_PostEventAll	post to every loaded quadrant
+0x48dcd0	Mission_MatchTriggers	compare event vs trigger table using comparator table 0x559984[cat][code]
+0x404110	Ai_CanEngageTarget	attacker count +0xc8 < cap +0xca, team mask check
+0x4146d0	Cheat_ToggleGodMode	needs cheats enabled; GOD MODE ENABLED/DISABLED
+0x414580	Cheat_OpenTargetedGate	SP only: via replica server link +0xf4
+0x490280	Voice_ServerInit	netcomm; skipped in SP
+0x4903c0	Voice_ClientInit	netcomm; skipped in SP
+0x53f6d8	g_Rules_SinglePlayer	game-rules hook table (campaign)
+0x5483d0	g_Rules_Multiplayer	game-rules hook table (MP)
+0x5b1dc4	g_ActiveRules	current game-rules hook table
+# --- mission scripting: SPX trigger tables ---
+0x48dc90	Trig_SatisfyCond	mark trigger condition satisfied (cond+0x20=1, +0x24=frame), set g_TrigCurrentIndex, re-evaluate its trigger
+0x48dbf0	Trig_Evaluate	fold conditions left-to-right with join (0 AND,1 AND NOT,2 OR); flag1=momentary, flag4=repeatable; latches trig+8 and runs actions
+0x48db60	Trig_RunActions	run trigger actions {cat,arg,code,arg2} via g_TrigActionTable[cat][code] = {fn, extra}
+0x48de40	Trig_MatchVarConds	cat-3 (var) conditions: sub=cat<<16|idx, code 0/1 ==, 2 >, 3 <; level-sensitive (clears when false and trigger not fired)
+0x48df00	Trig_MatchProximity	cat-0 code-1: player within value (x10 at load) of object b
+0x48df80	Mission_PostProximity	called per positional object from Dcb_UpdateEngineAudio with dist>>13
+0x48dfc0	Trig_InitVarConds	at sector load: evaluate all var conditions against current var values
+0x48e0c0	Mission_PostVarChange	var (cat,idx) changed -> Trig_MatchVarConds on every quadrant's two SPX tables
+0x48e120	Counters_PostValues	every 50 frames: post each COUNTERS var as a var change
+0x48e180	Counters_Tick	every 50 frames: ++ each running counter
+0x48e1d0	Counters_Reset	
+0x48da20	Counters_Init	bind g_Counters to vars.cfg COUNTERS section ('trigger_counters')
+0x48da10	Trig_CmpGreaterEq	condition comparator: event value >= trigger value
+0x48db30	TrigAct_CounterRun	action 4: start(1)/stop(0) a COUNTERS var
+0x436240	TrigAct_PlayDialog	action 2: play SPX dialog[arg] (.SCR actor) from line arg2
+0x436aa0	TrigAct_PlayScene	action 3: play main SPX scene[arg2] (.SEN) -> SrvSend_PlayScene
+0x436190	TrigAct_SetVar	action 1/0: var(arg) = arg2
+0x436210	TrigAct_AddVar	action 1/1,1/2: var(arg) += arg2 * extra(+1/-1)
+0x436130	Var_SetAndNotify	set var + Mission_OnVarChanged
+0x4361b0	Var_AddAndNotify	add to var + Mission_OnVarChanged
+0x4360d0	Mission_OnVarChanged	refresh var-bound objects (type 10), post var change to every quadrant
+0x425ac0	TrigAct_GateSetInstant	action 0/0,0/1: gate obj state = extra, SrvSend_GateState(...,1)
+0x425b30	TrigAct_GateSet	action 0/2,0/3: gate obj state = extra, SrvSend_GateState(...,0)
+0x436960	Trig_SpawnGroup	spawn all placements whose group(+0x54)==arg; delay -1 = immediate else staggered by 150
+0x436a60	TrigAct_GroupSpawn	action 6/0
+0x436a80	TrigAct_GroupSpawnStaggered	action 6/1
+0x436cf0	TrigAct_GroupActivate	action 6/2,6/6: Sped action 1 (ACTIVATE) on each spawned member
+0x436ec0	Trig_GroupSpedAction	Sped_DispatchAction on every placement of group in one SPX
+0x436f20	TrigAct_GroupSpedAction	action 6/4,5,8: named Sped action (extra) on group in both SPX tables
+0x436d70	TrigAct_GroupTakeoffNext	action 6/7: first member not yet launched -> TAKEOFF
+0x402490	TrigAct_GroupSetOrder	action 6/3: Ship_Update(member, 2, arg2) for each live member
+0x436e40	TrigAct_ObjSpedAction	action 5/8..21: Sped_DispatchAction(obj, extra=action id, arg2); debug 'OBJ %d ACTION %s'
+0x436cb0	TrigAct_ObjActivate	action 5/5,5/6: ACTIVATE on/off
+0x436dd0	TrigAct_ObjHyperOut	action 5/4: HYPERSPACE out
+0x436df0	TrigAct_ObjHyperIn	action 5/3: spawn then HYPERSPACE in
+0x436e20	TrigAct_ObjExplode	action 5/7: EXPLODE
+0x436d50	TrigAct_ObjTakeoff	action 5/12: TAKEOFF (0xe)
+0x436cd0	TrigAct_ObjWeapons	action 5/17,18: WEAPONS ACTIVATE (0x19) on/off
+0x402430	TrigAct_ObjDockWith	action 5/2: obj arg docks with obj arg2
+0x4377a0	TrigAct_SetNav	action 7: Nav_SetDestination(arg>>16, arg&0xffff)
+0x451620	TrigAct_OrderAdd	action 8: add objective of type `code` about arg2 to this quadrant (+0x60); SrvSend_CampaignCheck
+0x451680	TrigAct_OrderAddAll	action 8/8,11,12, 11/0: add in every quadrant; 11/12 trigger wingman chatter
+0x451770	TrigAct_OrderRemove	action 9: remove objective; type 10 = clear all; SrvSend_OrderUpdate op 2
+0x4517f0	TrigAct_OrderRemoveAll	action 9/8, 11/1: every quadrant
+0x451830	TrigAct_OrderComplete	action 10: SrvSend_OrderUpdate op 1
+0x451890	TrigAct_OrderCompleteAll	action 11/2: every quadrant
+0x450b60	Orders_Reset	action 9/11
+0x451350	Order_BuildText	build 0x80-byte objective record + text for order type
+0x455bc0	TrigAct_ResetInventoryVars	action 11/3: clear PLAYER_ITEMS/WEAPONS/.../SHIP_nn_DATA var sections
+0x452540	TrigAct_SetChatterTimer	action 11/4: DAT_005b9050 = arg2*50 [?]
+0x4525c0	Chatter_PlayRandom	SP: random PLAYER.SCR line from chatter set
+0x434470	Sped_ActionName	Sped action id -> name (g_SpedActionNames)
+0x437010	Mission_PostAttackedByPlayer	events {1,obj,0}, {5,group,4}, {8,side,0} when the player hits an object
+0x437230	Mission_PostObjDamage	event {1,obj,3,damage%}
+0x437290	Mission_PostObjDamage2	event {1,obj,4,damage%}
+0x4372f0	Mission_PostEnemyStatus	event {4,0,0} all enemies dead / {4,0,1,% killed}
+0x41ee30	Dialog_PlayLine	play .SCR line; posts event {7,dialogIdx,0,line}
+0x437770	Nav_RestoreDestination	
+0x559984	g_TrigCondCmpTable	[cat][code] -> comparator fn or 0 (equality)
+0x559c48	g_TrigActionTable	[cat] -> {fn, extra}[code]; 12 entries, cats 12..14 alias into cat 11
+0x53f600	g_SpedActionNames	{id, char*} list, -1 terminated
+0x56aabc	g_TrigCurrentIndex	index of the trigger being fired (debug 'TRIGGER %d OCCURED')
+0x56aab0	g_CounterCount	
+0x56aab4	g_Counters	{running, int *var} per COUNTERS var
+0x56aab8	g_CounterVarCat	var category index of COUNTERS
+# --- netcode: startup name tables ---
+0x461b30	TachSrv_WriteModelTable	startup stage 0 blob kind 3: {u16 count; {u16 slot; char pak[]; char pal[]}*} from g_ObjModelPool
+0x461c40	TachSrv_WriteDescTable	startup stage 1 blob kind 2: {u16 count; {u16 slot; char desName[]}*} from g_DescRegistry
+0x417820	TachCli_OnStartupData	client startup-data callback -> TachCli_ReadStartupBlob
+0x417780	TachCli_ReadStartupBlob	{u16 nRecs; {u16 kind; u16 size; ...}*} dispatch kinds 1..8
+0x417470	TachCli_OnModelTable	kind 3: ModelPool_SetSlot(pak, slot, pal) into g_ObjModelPool
+0x4174e0	TachCli_OnDescTable	kind 2: Desc_CreateByType(desName, slot) so descriptor slots match the server
+0x4317d0	ModelPool_SetSlot	load pak+palette into a fixed slot (no-op if slot already used)
+0x431850	ModelPool_Load	find-by-name or load pak with palette into first free slot; out {handle, slot, pool}
+0x431700	ModelPool_FindFree	
+0x4316b0	ModelPool_FindByName	
+0x431720	ModelPool_Store	
+0x431c80	ModelPool_Relight	re-remap every remappable (+0x24==1) pak after brightness change
+0x4b14b0	Pak_Load	load a '3DPK' model pak with palette, refcounted cache
+0x41dae0	DescReg_Create	allocate object_descriptor in slot: +0 DESC_TYPE, +4 name, +0x14 slot, +0x20.. class callbacks
+0x41db50	DescReg_Alloc	register descriptor at slot (-1 = first free), 256 slots
+0x41dbb0	DescReg_FindByName	
+0x41dc00	DescReg_Get	slot -> descriptor
+0x41dc20	DescReg_Free	
+0x41dc50	DescReg_Shutdown	run descriptor +0x48 shutdown and free
+0x41df00	DescReg_Clear	
+0x41df20	DescReg_ShutdownAll	
+0x4178a0	TachCli_SpawnFromDesc	extended snapshot record: descriptor slot at rec+0x1a -> class +0x28 spawn
+0x417900	TachCli_SpawnReplica	snapshot record -> replica DCB; model = g_ObjModelPool[rec+4]
+0x416120	TachCli_SetEntityDesc	entity +0x8c = descriptor from slot, run its init callbacks
+0x5a7538	g_ObjModelPool	object model pool: u32[2] header + 256 x {u32 pakHandle; char pak[0x10]; char pal[0x10]; u32 remappable}
+0x5b2300	g_DescRegistry	256 object_descriptor pointers, indexed by descriptor slot
+# --- palette re-tint (sector GAMMA/SATURATION) ---
+0x4ad650	Pal_Load	load .pal: +0 rgb[768], +0x300 remapped rgb, +0x600 protect mask[256] (indices listed in the .pal), +0x700/+0x704 optional .CR1/.CR2
+0x4ad900	Pal_Remap	(pal, gamma, sat, r, g, b): rebuild pal+0x300 from pal+0 via curve + saturation, skip protected indices, then rebuild 8/16-bit lookup
+0x4aee60	Pal_SetCurveParams
+0x4aed30	Pal_BuildCurve	per-channel 256-entry LUT: gamma-0x80 bends midtones via signed table 0x55ea48, then *r/g/b>>7
+0x4aefb0	Pal_SaturateAll
+0x4aeea0	Pal_SaturateColor	luma=(r+2g+b)/4; c = luma + (c-luma)*sat>>7, then curve LUT
+0x4af4a0	Pal_GetCached	refcounted palette cache by name (256 slots @0x6128c0); new palettes remapped with Pak_SetLoadPalParams values
+0x4b07b0	Pal_LoadDefault
+0x4b1b70	Pak_SetLoadPalParams	gamma/sat/rgb used when Pak_Load creates a palette
+0x431c40	Scene_SetPalParams	store scene gamma/sat (0x5aed50/54) and sector RGB (-> 0x669200 light ramp)
+0x4b37a0	Light_BuildShadeRamp	uses sector RGB tint 0x669200..08 [l]
+0x468690	Bdf_SetNeutralLighting	no-backdrop scene: gamma=global, sat/rgb neutral, relight all pools
+0x466fc0	ArtDebug_AdjGamma	ART_DEBUG_INC/DEC_GAMMA (+-5), relights all pools
+0x467010	ArtDebug_AdjSaturation
+0x467060	ArtDebug_AdjRed
+0x4670b0	ArtDebug_AdjGreen
+0x467100	ArtDebug_AdjBlue
+0x4672e0	ArtDebug_AdjAmbient
+0x4672a0	ArtDebug_AdjYaw
+0x4672c0	ArtDebug_AdjPitch
+0x467150	ArtDebug_AdjLightRed
+0x4671c0	ArtDebug_AdjLightGreen
+0x467230	ArtDebug_AdjLightBlue
+0x42e460	Hyper_TintPlayerShip	hyperspace: remap ship palette gamma=global sat=0x80 rgb=(100,100,128) -> blue cast
+0x42e780	Hyper_LoadAssets	wrptube/swrptube.pak + ship hyperspace pak into g_FxModelPool
+0x42e810	Hyper_Enter
+0x451cf0	Video_Init	sets g_PalBrightness = 0xb4 (software); Video_InitHardware resets to 0x80
+0x451ba0	Video_InitHardware	hw_3dfx.dll / hw_d3d.dll
+0x5a6818	g_PalBrightness	global gamma multiplier (x/128): 0xb4 software renderer, 0x80 hardware
+0x5ac548	g_FxModelPool	client-local model pool: backdrops, explosions, debris, warp tube, sun flare
+0x5a9d40	g_BasePakPool	client-local model pool: 'base_paks' list (remappable)
+# --- .anm part animation (Enforcer arms, gates) ---
+0x406e80	Anim_LoadFile	parse .anm CBIN -> 0x5c anim-file struct (+4 nAnims, +8 anims[0x54], +0xc nParts, +0x10 cur rot[nParts*12], +0x14 scratch rot)
+0x405d80	Anim_ReadPartDefines	defines/PART_DEFINE name,index (index = sub-object in the pak)
+0x405e20	Anim_LoadParticlePaks
+0x405f20	Anim_ReadSoundLabels
+0x406090	Anim_ReadNames
+0x406e40	Anim_ParseAll
+0x406dc0	Anim_ParseAnim	<name>_frame_NN keyframes (0x2c), camera frames, particle paths
+0x4061b0	Anim_ParseKeyframe	TIME, PAUSE, SCALE, INTENSITY, SOUND, PART_DEST part,rx,ry,rz (deg -> engine angle)
+0x406470	Anim_ComputeDeltas	per-frame rotation step = (dest - prev) / TIME
+0x406790	Anim_ParseCameraFrames
+0x406620	Anim_ParseCameraFrame
+0x406d50	Anim_ParseParticlePaths
+0x4068c0	Anim_ParseParticlePath
+0x406fe0	Anim_CopyPartRotations	rot[i] -> model part i (+4, stride 0x2c)
+0x4070b0	Anim_SetPose	keyframe PART_DEST values -> rot buffer
+0x407130	Anim_SetPoseWeighted	PART_DEST * weight/256 -> rot buffer
+0x407900	Anim_Find	by ANIM_NAME
+0x407940	Anim_Start
+0x407af0	Anim_Play	timed playback: hooks entity think (+0x68 -> Anim_Think) and +0x5c, saved in anim +0x38/+0x3c
+0x407890	Anim_Think
+0x4071d0	Anim_StepFrame	add per-frame deltas; next keyframe at TIME; PAUSE holds; SOUND fires
+0x407060	Anim_Finish	restore saved think/+0x5c
+0x407400	Anim_StepCamera
+0x407760	Anim_StepParticlePath
+0x407610	Anim_EmitParticle
+0x407b50	Anim_ApplyPose	(ent, name, parts, ?, nParts, anim): full pose straight into the model parts
+0x407bc0	Anim_ApplyPoseWeighted	same, scaled by weight/256
+0x462fd0	Ship_PreRender	ship +0x5c: if des has ANIMFILE, pose YAW_RIGHT/YAW_LEFT weighted by smoothed yaw (+0xf8 >>9, max 256); 0 -> rest pose
+0x463440	ShipReplica_Think
+0x463560	ShipReplica_Init	+0xd0 = des+0x568 (anim file), +0x5c = Ship_PreRender
+0x417b40	Dcb_UpdateFromRecord	existing replica: pos, orientation bytes <<17 -> +0xac/b0/b4, velocity
+# --- capital ship parts & turrets ---
+0x404bb0	Turret_ClearTarget	desired aim = current, target = 0, solution flag +0x150 = 0
+0x402a20	Ai_LeadAimPoint	aim = tgtPos + tgtVel * (dist/projSpeed + rand(spread) - spread/2); no lead if speed <= 0x8000
+0x48b2b0	Ent_FindNearestHostile	(self, sideMask, outDist, maxRange, exclude, classMask): nearest in quadrant matching side relation and +0xd0 class bits
+0x497620	Weapon_Fire	checks energy/ammo vs def+0x58, calls def+0x6c fire fn along shooter +0x34/+0x4c, cycles mount
+0x497730	Weapon_FireAllMounts
+0x497790	Weapon_TryFire	refire gate: def+0x40 frames (or def+0x44 if sys flag 4)
+0x493510	WeaponSys_Init	0x38-byte weapon system: +0 def, +4/+8 mounts, +0xc nMounts, +0x1c clock ptr, +0x20 last fire, +0x24 flags
+0x4934c0	WeaponSys_CalcCosts
+0x493460	WeaponMounts_Init
+0x493120	WeaponDef_Get	&g_WeaponDefs[id] (stride 0x110)
+0x410830	Turret_SetupWeapon	'turret mount data': mount points from pak, WeaponSys_Init(flag 4)
+0x4125e0	CapShip_SpawnParts	one server DCB (AI pool) per OCF part (0x80 records), chained via +0xe0
+0x412400	CapShip_SpawnPart	root part -> Dcb_InitMultiPart; attached -> CapShip_InitChildPart; TYPE 2/3 -> Dcb_InitTurret
+0x412350	CapShip_InitChildPart	parts with flags & 0x91e get hp (+0xbc, default 100000) and set root +0x13c bits; TYPE 9 counted in root +0x140
+0x4119d0	CapPart_Destroyed	clears root +0x138 bit (8 weapon gen -> turrets off, 0x10 shield gen); last TYPE 9 power gen clears 0x100 (engines)
+0x411af0	Turret_OnDamage
+0x411ca0	CapPart_OnDamage	subsystem damage; at 0 posts mission event {1,obj,14,partId}
+0x410e90	CapShip_SteerHook	root +0x134 while power gens alive (root +0x138 & 0x100)
+0x410e30	CapShip_DriftHook	root +0x134 after power loss: hold heading, no thrust
+0x4094a0	Ocf_ParsePart	part_NN: SCALE, ANGLES, ROTATE, TYPE (flags = 1<<(TYPE-1) at +0x34), SUB_TYPE +0x60, PART_ID, HITPOINTS, docks, ATTACH, SOUND_LOOP
+0x40bbf0	TurretDebug_Draw	'TURRET DEBUG' / 'IT ANGLE' overlay
+0x55a560	g_WeaponDefs	weapon definitions, stride 0x110; 0..0x1b player weapons, 0x1c terminator, 0x1d..0x25 turret/special
+0x533e90	g_TurretSubtypeWeapon	OCF SUB_TYPE 0..7 -> weapon id {1d,1e,22,23,1f,25,24,20}
+0x549e30	g_AiClassNames	CLASS_FIGHTER 1, BOMBER 2, CAPSHIP 4, STARBASE 8, TURRET 0x10
+# --- capital ship movement / orders ---
+0x4116c0	CapShip_OnMessage	desc+0x34 order handler: 0 HYPERSPACE, 1 ACTIVATE, 3 EXPLODE, 7 SET_IDENTIFIED, 8 CHANGE_RACE, 0xf CHANGE_WP, 0x13/0x14 objective on/off, 0x19 WEAPONS_ACTIVATE (+0x130 bit 1), 0x1a set speed, 0x1d RESTORE_POWERPLANT, 0x1e TIMED_EXPLODE (arg*50 frames)
+0x436b30	Ent_SendMessage	(ent, msg, arg) -> desc+0x34
+0x4115b0	CapShip_MsgHyperspace	arg 1 + powered: HyperOutHook; else CapShip_HyperIn
+0x411610	CapShip_MsgActivate	0: DriftHook (hold heading); 1: SteerHook
+0x4116a0	CapShip_MsgWeapons	arg 1 clears root +0x130 bit 1 (turrets on); 0 sets it (turrets off)
+0x411980	CapShip_StartDeath	think -> CapShip_DeathThink with frame timer +0x12c (EXPLODE = 1000)
+0x410bc0	CapShip_DeathThink	escalating secondary explosions; at 0 posts {OBJ, code 16} and removes
+0x4114d0	CapShip_HyperIn	place ship back along heading by the decel distance, HyperInHook
+0x411420	CapShip_HyperInHook	decelerate; at rest -> SteerHook, post {OBJ, code 9}
+0x411320	CapShip_HyperOutHook	accelerate; past limit post {OBJ, code 8}, unspawn
+0x405050	Ent_SetIdentified	posts {OBJ, code 10}
+0x4349a0	Nav_InitRoute	placement +0x48 {route, point} -> nav +0x10 route, +0x14 waypoint
+0x405990	Nav_ChangeRoute	CHANGE_WP: route = arg>>16, point = arg&0xffff ('OBJ %d CHANGE WAY')
+0x4016c0	Nav_SetWaypoint	waypoint +0x14 = arrival time (16.16 s): send msg 0x1a speed = dist / (time*50)
+0x4018a0	Nav_ReachedWaypoint	run waypoint action, advance (+0x20, wraps to route start), post {OBJ,5,route<<16|pt} and {GROUP,2,...}
+0x4017b0	Nav_RunWaypointAction	wp +0xc: 0 change route(+0x10), 1 hyperspace out, 2 deactivate, 3 group order / ENTERGATE, 4 unspawn
+0x4535b0	PlayerShip_CollisionPostThink	client player +0x6c: 6 segment casts from last pos (+0xd4) to nose (+radius+0x2000) / tail / +-x / +-y (radius/4) vs client entity list 0x5b31d4; hit -> PlayerShip_OnCollision
+0x4532e0	PlayerShip_OnCollision	hit desc+0x6c veto; restore last safe pose (+0xe0/+0xec); 50-frame cooldown 0x5b2118; shake+sound; hit +0x88 handler or send 0x2009; bounce vel*-0.95, or deflect (jitter +-0x200000, vel*0.85/0.55, cooldown 100)
+0x415a10	NetCli_SendCollision	client->server event 0x2009 {impact speed, other entity server id}
+0x4156a0	Ent_OnPlayerCollide	+0x88 for ship replicas & asteroids: send 0x2009 {impact, +0xe8 id}; return type!=2 (0 -> deflect)
+0x421e10	Debris_OnPlayerCollide	+0x88 for debris chunks: destroy self (50000 dmg), send 0x2009 {impact/2, 0}; deflect
+0x421f20	Debris_Spawn	client debris chunk DCB (pool 0x5b32b0): damage 0x421dc0, +0x88 Debris_OnPlayerCollide
+0x408110	Asteroid_InitClient	asteroid +0x80 damage, +0x88 Ent_OnPlayerCollide
+0x45fd70	TachSrv_OnCollision	event 0x2009: other's desc+0x70 hook, else player dmg = maxShieldOrHull * clamp(min(v,1.25*maxSpd)/maxSpd*0.95, 0.2,1.25); same dmg to other entity (type 0x26)
+0x45fa50	TachSrv_DamageEntityById	look up server entity by id, call its +0x80 damage handler with dmg, type 0x26 (collision)
+0x419170	Shield_ApplyDamage	shields +8 take dmg*p2>>9; once <= threshold, hull +0x24 dmg*p3>>8 and +0x28 dmg*p4>>8; returns 1 shield / 2 hull
+0x455e40	Shield_GetMax	+0x2c bit 4 ? def+0xc : def+8
+0x454040	PlayerDcb_PostThinkCamera	camera/follow; ticks collision cooldown 0x5b2118
+0x4596f0	Scene_ParseFlags	.sen header: END_MISSION 1, NO_AI_COLLIDE 2 (parsed, never read), EXILE 4, END_MISSION_TO_CREDITS 0x10, _TO_MAIN 0x20 -> scene +0x134
+0x45aea0	Scene_Load	load .sen cutscene CBIN (0x14c struct)
+0x45c500	Scene_Play	start cutscene; current scene in 0x58f1c0
+0x45b430	Scene_Finish	end cutscene, apply END_MISSION* flags
+0x404aa0	Ai_CollisionLookahead	AI post-think every 16 frames: ray to pos+(vel+fwd*3)*350 with filter Ai_LookaheadFilter; hit -> Ai_AvoidCollision
+0x404630	Ai_LookaheadFilter	segment-cast filter: predicts moving ships, ignores own target etc.
+0x404a50	Ai_AvoidCollision	enter AVOIDING COLLISION: pick clear direction, steer
+0x404770	Ai_FindClearDirection	probe 5000 units +-y/+-x; fallback reverse vel*-2, goal 2000 back
+0x402330	Ai_ApproachTarget	avoidance suppressed within 6000 units of attack target
+0x404440	AiShip_OnDamage	AI ship +0x80 damage handler
+0x418d10	Coll_SegmentCast	segment vs entity list (+0x10/+0xc fast lists, then quadrant grid cells); sets exclusion 0x5b2d80/84, filter 0x5b3190
+0x418a80	Coll_SegmentVsList	walk entity list: sphere test then mesh
+0x4187d0	Coll_SegmentVsSphere	broad phase vs model bounding radius
+0x4b36b0	Coll_SegmentVsModel	narrow phase: model = entity +0xc4 override or instance +0x40 pak; needs pak flags +0x28 & 1, tris at +0x48
+0x412080	CapPart_CollideTargetDrone	capship part collision only vs type 0xb target drones (50000/25000 dmg)
+0x4121d0	CapPart_CollisionPostThink	capship part post-think calling CapPart_CollideTargetDrone
+0x41aa30	TargetDrone_Spawn	type 0xb target drone
+0x4971a0	Weapon_FireHitscan	weapon 0x17: flag 2 (client) -> local stepped hitscan + send 0x2001; else SrvSend_ProjectileFired
+0x496550	Weapon_FireBolt	def+0x6c for guns: create bolt, post-think by owner; flag 2 (client) -> sound + send 0x2001; server -> SrvSend_ProjectileFired 0x1002
+0x496370	Proj_CreateBolt	def+0x70: pool by flag 1 (server 0x58b03c / client 0x5b32b0), +0xd8 = 1 client-owned, +0xc3 = 1 (not in snapshots), +0xd4 life = def+0x3c, +0xf0 dmg scale
+0x495b40	Weapon_FireMissile	def+0x6c for guided: client (flag 2) only sends 0x2004 (no local missile); server -> Proj_CreateMissile with target +0x90
+0x495960	Proj_CreateMissile	server pool only; +0xc3 = 0 (replicated by snapshot); hp +0xbc = 1, +0x80 Missile_OnDamage; launch phase from 0x55a51c[def+0x84] then def+0x64
+0x4970a0	Proj_CreateHitscan	def+0x70 for weapon 0x17: steps the segment def+0xa0 times via 0x496e90
+0x497280	Proj_SpawnRemoteVisual	0x1002 on client: create via def+0x70, fast-forward by age, post-think Proj_PostThinkVisual* only within 10000 units (MP)
+0x497380	Proj_SpawnFromClientMissile	0x2004 on server: create missile from staged globals 0x565420.., age = server frame - client frame
+0x4957a0	Proj_Launch	vel = fwd * def+0x54; optional muzzle offset; position += vel * age (latency fast-forward)
+0x4949e0	Proj_PostThinkOwned	every 8 frames (id&7): mesh Coll_SegmentCast last->now; hit -> def+0x98
+0x494b20	Proj_PostThinkServer	server bolts: every 8 frames 0x418f80 cast; hit -> def+0x98
+0x494aa0	Proj_PostThinkServerLightTurret	weapon 0x1d server bolt: filter 0x494a70, no exclusion
+0x494bb0	Proj_PostThinkVisualTurret	remote-visual turret bolt: cast, on hit just delete (no damage)
+0x494c20	Proj_PostThinkVisual	remote-visual bolt: cast, on hit just delete (no damage)
+0x4943c0	Proj_OnHitDirect	def+0x98: stage damage (Weapon_StageDamage), call target +0x80, +0x118 hook, Proj_Remove
+0x4941b0	Proj_OnHitSplash	def+0x98 (some missiles/mines): become stationary blast, SrvSend_MinePlaced
+0x494370	Proj_Remove	if server-owned & networked (+0xd8==0, !(+0xc3&1)) send 0x1014 op 8; free
+0x493320	Weapon_StageDamage	globals: 0x5653dc weapon, 0x5653e0 dmg = def+0x14 * scale >>16, 0x5653cc hit pos, 0x5653f4 shooter, 0x565400 scale
+0x493ca0	Weapon_PlayImpact	def+0x68(isClient, kind, ...) unless type 0x26
+0x493bd0	Impact_Bolt	kind 1: client spark / server 0x1004 (SrvSend_ProjectileImpact via 0x423420); else client boom / server 0x1003
+0x493b00	Impact_Missile	as Impact_Bolt, missile flavour
+0x495440	Proj_ThinkBolt	def+0x64: move, life--, smoke trail Proj_EmitTrail if def+0x7c&1 on client copies
+0x4950a0	Proj_ThinkMissile	def+0x64: home on +0x90 (turn rate +0xec ramps by def+0x8c to def+0x88); lose lock if error > 45 deg; decoy check; life--
+0x4953e0	Proj_ThinkMissileLaunch	straight flight for launch frames, then switch to def+0x64 and reset life
+0x494fb0	Missile_LoseLock	clear target +0x90, threat-list remove (0x493910 op 2)
+0x494fe0	Missile_CheckDecoys	every 32 frames: decoy within 162.5 units and +-19.5 deg of nose -> lose lock
+0x495910	Missile_OnDamage	missile hp 1: any hit -> 0x1003 explosion, Proj_Remove
+0x415b20	NetCli_SendHitReport	0x2003 {hit pos, target id, weapon, kind 1/2, dmg scale>>2}, resend 4
+0x415b80	NetCli_SendPartHitReport	0x2027 {hit pos, capship root id, part id u16, weapon, kind, scale>>2}
+0x415bf0	NetCli_SendFire	0x2001 {pos, angles, client frame, weapon, slot, ?}
+0x415c70	NetCli_SendFireGuided	0x2004 {pos, angles, f16 offset, client frame, target id, lock flag, weapon, slot}
+0x45ef70	TachSrv_OnFire	0x2001: ammo check only, relay 0x1002 to quadrant r4000 except shooter; no server projectile
+0x45f030	TachSrv_OnFireGuided	0x2004: ammo check, stage, Proj_SpawnFromClientMissile (target = id, or player's target if lock flag)
+0x45f180	TachSrv_OnHitReport	0x2003: trust client; recompute dmg from weapon def * scale, call target +0x80, impact broadcast
+0x45f210	TachSrv_OnPartHitReport	0x2027: as 0x2003 but on capship part by part id (CapShip_DamagePartById)
+0x40a420	CapShip_DamagePartById	walk part chain +0xe0 for part def +0x44 == id, call its +0x80
+0x40ae80	CapPartReplica_Init	client capship part replica: +0x80 = Replica_ReportHit / CapPartReplica_ReportHit
+0x40a2b0	CapPartReplica_ReportHit	client: send 0x2027 for this part, local impact
+0x415370	Replica_ReportHit	client replica +0x80: send 0x2003 kind 1, local impact
+0x4153b0	ShipReplica_ReportHit	client ship replica +0x80: send 0x2003 (kind by shield flag), local impact
+0x41aa00	Replica_ReportHitHull	client replica +0x80: send 0x2003 kind 2
+0x407f00	Asteroid_ReportHit	client asteroid +0x80: send 0x2003
+0x4108c0	Replica_ReportHitShielded	client replica +0x80: 0x2003 kind 1/2 by +0xc0&0x40
+0x496dc0	Weapon_FireBeam	def+0x6c for BEAM_A: instant server-side resolve, S->C 0x1118
+0x494c90	Proj_EmitTrail	client rocket smoke trail: particles within 6000 units of camera (table 0x55a534 by def+0x80)
+0x494790	Sapper_OnHit	def+0x98 for sappers: stick to target (offset +0xfc, rel orient +0x108, target +0xf4); client copy -> Sapper_ReportAttach, server -> Sapper_BroadcastAttach
+0x4945b0	Sapper_ThinkPredicted	client predicted sapper: follow target only (cosmetic)
+0x4944f0	Sapper_ThinkServer	server sapper: follow target; every 8 frames send msg 0x11 with sapper kind def+0xf4 (8 remote,1 inertial,2 power,4 shield) to target desc+0x34
+0x4946e0	Sapper_ReportAttach	client: send 0x2017 {kind, f16 offset, f16 relOrient, localId, targetId, partIdx}
+0x494630	Sapper_BroadcastAttach	server: SrvSend_EntityFiredAt 0x1020
+0x415810	NetCli_SendAttach	C->S 0x2017 (sapper stuck to object)
+0x4603c0	TachSrv_OnAttach	0x2017: reply 0x1101 drop predicted; Sapper_AttachServer on target (or capship part)
+0x498630	Sapper_AttachServer	def+0xec create-attached (0x4983d0), then Sapper_BroadcastAttach
+0x4b3560	Coll_SegmentVsTriList	brute-force loop over collision tris (stride 0x48): one-sided plane test (start in front), segment-plane t in [0,1], barycentric inside; first hit wins
+0x4b3280	Coll_SegmentToModelSpace	segment -> model local: minus instance pos (+0x1c), inverse rotate (+0x34..), fixed -> float
+0x4b3380	Coll_ScaleSegment	apply instance scale to model-space segment
+0x4afe60	Pak_RelocCollision	header +0x48 file offset -> ptr; rebase tri vertex/normal offsets; clear per-tri hit flag +0x44
+0x4affb0	Pak_Relocate	fix up loaded 3DPK offsets (parts/LODs), collision if flags +0x28 & 1
+0x4b0bf0	Model_CopyCollision	copy collision block into a model instance, rebasing pointers
+0x4b0bd0	PakColl_Size	hdrSize + (nVerts + nTris*6 + nNormals) * 12
+0x4b1400	Model_CloneFromPak	copy header, LODs (0x4b0b40), collision (Model_CopyCollision), parts (0x4b12c0)
+0x4b1740	Pak_LoadPlain	Pak_Load(name, 0, 0): used for gate GATE_OPEN/CLOSE_COLLIDE paks
+0x426200	Gate_UpdateCollideState	set entity +0xc4 collision override = desc+0x160 (open pak) or +0x164 (closed pak); post mission event
+0x4afbd0	Mesh_Relocate	3DO1 mesh: rebase section offsets (+0x44..+0x58), face ptrs; file axes (x,y,z)->(x,z,-y) for verts/normals/pts54/attach; collect texture ptrs
+0x4afe10	Pak_RelocStates	state block (flags&4): rebase entry list (0x74 each) and their animator/counter arrays
+0x4b0680	Pak_LoadTextures	texture section: u32 count + records; skip if cached by name, else Pak_LoadTexture
+0x4b02d0	Pak_LoadTexture	record {name[12], u16 npal, u16 flags, w, h, size, RLE data, pal}: flags -> render state, RLE decode, mip
+0x4b01b0	PakTex_Next	next record = rec + 0x1c + size (+0x300 if npal)
+0x4af100	TexCache_FindByName	texture cache 0x62c12c (stride 0x50) lookup by name
+0x4a34c0	Rle_DecodePcx	PCX RLE: b>=0xC0 -> repeat next (b-0xC0) times, else literal
+0x4af590	Tex_FlagsToRenderState	material/texture u16 flags -> renderer state bits
+0x4af640	Tex_AdjustRenderState	blend-mode fixups; material +0x15 -> 0x10000
+0x4af910	Pak_BindMaterial	untextured material: flat RGB +0x10 (or palette shade if 0x80) -> texture slot
+0x4af6c0	Pak_BindTextureByName	textured material: find texture by name, store in +0x10
+0x4afaa0	Pak_BindMaterialAny	flags&8 ? texture : flat colour
+0x4afb60	Pak_FixupAnimMaterials	animated (0x2000) materials: DUMMYPCX fallback, compact frames
+0x4afb10	Mat_CompactAnimFrames	halve frame count +0x19, pack consecutive frame materials
+0x4b0cb0	MeshClone_BuildTriList	per-material u16 index list; double-sided (flags 0x40) adds reversed tri
+0x4b0e50	MeshClone_BuildVertList	per-material unique {normal, vertex} pairs
+0x4b0fd0	MeshClone_Build	runtime (hardware) mesh: float verts + UV*(1/65536), copies normals/attach/pts54/materials, tri lists
+0x4b12c0	ModelClone_CopyLods	copy LOD table + groups, MeshClone_Build each part mesh
+0x4b3f90	Part_ComputeTransform	per-part matrix: own rot then parents (skip 0x100 parents); 0x40 billboard (no rotation)
+0x4b0760	Pak_SetPalette	+0x64 = cached .pal or default
+0x4afde0	Str_TrimTrailingSpaces	used on pak name
+0x4b1db0	Pak_GetAttachPoint	(model, idx) -> attach point record (runtime +0xc -> transformed pos); idx out of range -> default
+0x4b1cd0	Model_GetLod0Mesh	model -> current/first part mesh record [l]
+0x4b2950	Model_SelectState	instance select state n: flags 0x400 (+0xc00 counters), glow (0x80), scale (0x10/0x200) from curves
+0x4b27d0	Model_UpdateState	run part animators: rot = base + rate*t; blink modes 1 random / 2 periodic / 4 copy other part's hidden bit
+0x4b2710	Model_ApplyStateCurves	apply state curves (glow/scale) for state n
+0x4b2790	Model_UpdateStateCounters	update texture-anim counters for state n
+0x4b2640	State_EvalCurves	glow -> 0x668f38, scale x/y/z -> instance +4/+8/+0xc
+0x4b2750	State_UpdateCounters	counter[slot] = rate * time (0x668fe0[])
+0x4b25a0	Curve_Eval	mode 1 a+c*rand, 2 a/b by frame parity, 4 a+c*sin(d*t), else b
+0x4b2580	Rng_Pak	rotate-add RNG for model effects
+0x4b4e90	Mat_GetAnimFrame	material + (counter[+0x1a] % frames[+0x19]) * 0x1c

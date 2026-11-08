@@ -7,11 +7,11 @@ float10 FUN_00465d50(void)
   float10 fVar1;
   
   fVar1 = (float10)_DAT_0052e598;
-  if (DAT_005b2d10 != 0) {
-    fVar1 = (float10)DAT_005897b0 / (float10)(int)DAT_005b2d10;
+  if (GLBL_spacesav[0x54] != 0) {
+    fVar1 = (float10)DAT_005897b0 / (float10)(int)GLBL_spacesav[0x54];
   }
-  if ((float10)DAT_005b2d10 < fVar1) {
-    fVar1 = (float10)DAT_005b2d10;
+  if ((float10)GLBL_spacesav[0x54] < fVar1) {
+    fVar1 = (float10)GLBL_spacesav[0x54];
   }
   return fVar1;
 }

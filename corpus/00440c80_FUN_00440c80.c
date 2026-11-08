@@ -8,7 +8,7 @@ void FUN_00440c80(void)
   iVar2 = DAT_005a4b48;
   while (iVar2 != 0) {
     iVar1 = *(int *)(iVar2 + 0xd0);
-    FUN_0049c530(iVar2);
+    OurFreeMem(iVar2);
     iVar2 = iVar1;
   }
   DAT_005a4b48 = 0;

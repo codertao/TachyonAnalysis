@@ -11,7 +11,7 @@ void ShipDes_ParseRotation(undefined4 *param_1)
   undefined4 *puVar2;
   undefined4 local_8;
   
-  FUN_0048e380(&DAT_00562d84,0x9c);
+  clr_bytes(&DAT_00562d84,0x9c);
   if ((param_1 != (undefined4 *)0x0) && (iVar1 = FUN_0049bfc0(&PTR_DAT_00549b78), iVar1 != 0)) {
     local_8 = (undefined4)(longlong)ROUND(_DAT_00562dbc);
     iVar1 = FUN_00423e60(local_8);

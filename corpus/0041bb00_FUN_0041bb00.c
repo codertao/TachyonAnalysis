@@ -7,19 +7,19 @@ void FUN_0041bb00(int param_1)
   undefined4 local_30;
   undefined4 local_2c;
   undefined4 local_28;
-  uint local_24 [3];
+  vec3 local_24;
   undefined1 local_18 [24];
   
   iVar2 = *(int *)(param_1 + 200);
-  local_24[0] = 0;
-  local_24[1] = 0;
-  local_24[2] = 0;
+  local_24.x = 0;
+  local_24.y = 0;
+  local_24.z = 0;
   local_30 = 0;
   local_2c = 0x2710000;
   local_28 = 0x9c40000;
-  local_24[0] = FUN_0048e350();
-  local_24[0] = local_24[0] & 0x1ffffff;
-  FUN_004b1bb0(local_18,local_24);
+  local_24.x = global_bad_shift_rng();
+  local_24.x = local_24.x & 0x1ffffff;
+  FUN_004b1bb0(local_18,&local_24);
   iVar1 = iVar2 + 0x34;
   FUN_0052dc22(&local_30,iVar1);
   local_30 = 0;

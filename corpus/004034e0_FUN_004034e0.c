@@ -12,7 +12,7 @@ void FUN_004034e0(int param_1)
   iVar3 = *(int *)(param_1 + 0x8c);
   iVar1 = iVar3 + 0xd0;
   iVar2 = param_1 + 0x10c;
-  iVar5 = FUN_00455e40(iVar2,iVar1);
+  iVar5 = Shield_GetMax(iVar2,iVar1);
   if (*(ushort *)(param_1 + 0x310) < 2) {
     if (*(int *)(iVar3 + 0xe0) * 4 < *(int *)(param_1 + 0x114)) goto LAB_0040357e;
 LAB_0040356d:

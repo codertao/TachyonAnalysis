@@ -16,7 +16,7 @@ void FUN_0045e010(int param_1,undefined4 param_2,undefined4 param_3)
   local_8 = (undefined2)((uint)*(undefined4 *)(iVar1 + 0x4c) >> 0x10);
   local_6 = (undefined2)((uint)*(undefined4 *)(iVar1 + 0x50) >> 0x10);
   local_4 = (undefined2)((uint)*(undefined4 *)(iVar1 + 0x54) >> 0x10);
-  FUN_0045ed20(iVar1 + 0x34,&local_8,param_2,0,param_3,1,param_1);
+  SrvSend_EnterQuadrant(iVar1 + 0x34,&local_8,param_2,0,param_3,1,param_1);
   return;
 }
 

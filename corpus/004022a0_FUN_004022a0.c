@@ -18,7 +18,7 @@ void FUN_004022a0(int param_1,int param_2)
   local_c = 0;
   local_8 = 0xffffffff;
   local_4 = 0xffffffff;
-  FUN_0048ddc0(&local_18,*(undefined4 *)(param_1 + 100));
+  Mission_PostEvent(&local_18,*(undefined4 *)(param_1 + 100));
   uVar1 = FUN_004347b0(param_1,param_2);
   Gate_SpawnSped(uVar1);
   FUN_00402240(param_1);

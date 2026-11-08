@@ -66,16 +66,16 @@ void FUN_00442a70(char *param_1)
   }
   cVar1 = FUN_004429d0();
   param_1[3] = cVar1;
-  if (DAT_005b2bc0 < 10) {
+  if (GLBL_spacesav[0] < 10) {
     ppuVar8 = (undefined **)&DAT_00540ed0;
   }
-  else if (DAT_005b2bc0 < 100) {
+  else if (GLBL_spacesav[0] < 100) {
     ppuVar8 = &PTR_DAT_00540ecc;
   }
   else {
     ppuVar8 = (undefined **)&DAT_00535eb8;
   }
-  str_sprintf(local_40,ppuVar8,DAT_005b2bc0);
+  str_sprintf(local_40,ppuVar8,GLBL_spacesav[0]);
   uVar2 = 0xffffffff;
   pcVar5 = local_40;
   do {
@@ -109,7 +109,7 @@ void FUN_00442a70(char *param_1)
     pcVar5 = pcVar5 + 1;
     pcVar7 = pcVar7 + 1;
   }
-  if (DAT_005b2c08 == 0) {
+  if (GLBL_spacesav[0x12] == 0) {
     param_1[7] = 'P';
   }
   else {

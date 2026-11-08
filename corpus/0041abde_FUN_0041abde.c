@@ -47,7 +47,7 @@ void FUN_0041abde(undefined4 param_1,undefined4 *param_2,undefined4 *param_3,und
     *(undefined4 *)(unaff_ESI + 0x58) = uVar2;
     *(undefined4 *)(unaff_ESI + 0xe0) = *(undefined4 *)(DAT_005b29c8 + 0xa4);
     *(undefined1 *)(unaff_ESI + 0x7e) = *(undefined1 *)(DAT_005b29c8 + 0xa8);
-    uVar2 = FUN_0041aa30();
+    uVar2 = TargetDrone_Spawn();
     *(undefined4 *)(unaff_ESI + 0xf4) = uVar2;
   }
   FUN_0045cbf0();

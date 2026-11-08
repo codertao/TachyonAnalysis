@@ -12,11 +12,11 @@ uint FUN_004565e0(int param_1)
   if (uVar2 != 0) {
     uVar4 = uVar2 << 0xd;
     uVar2 = uVar2 & 0x7ffff;
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     *(uint *)(param_1 + 0x34) = uVar3 % uVar4 + *(int *)(iVar1 + 8) + uVar2 * -0x1000;
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     *(uint *)(param_1 + 0x38) = uVar3 % uVar4 + *(int *)(iVar1 + 0xc) + uVar2 * -0x1000;
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     *(uint *)(param_1 + 0x3c) = uVar3 % uVar4 + *(int *)(iVar1 + 0x10) + uVar2 * -0x1000;
     return uVar3 / uVar4;
   }

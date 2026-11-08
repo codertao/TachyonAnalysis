@@ -28,7 +28,7 @@ int FUN_0043f920(int param_1,uint param_2,undefined4 param_3)
         return local_24;
       }
       if ((((*(uint *)(pcVar3 + 0x10c) & 0x40000) != 0) ||
-          (iVar2 = FUN_004c67c0(pcVar3 + 0x40,iVar1), iVar2 == 0)) &&
+          (iVar2 = str_cmp(pcVar3 + 0x40,iVar1), iVar2 == 0)) &&
          ((*(uint *)(pcVar3 + 0x10c) & 0x20400) == 0)) {
         local_20 = *(int *)(iVar1 + 0x44) + *(int *)(pcVar3 + 0xc4);
         local_1c = *(int *)(iVar1 + 0x48) + *(int *)(pcVar3 + 200);

@@ -17,7 +17,7 @@ void FUN_00432510(int param_1)
   if (DAT_005b9034 != 0) {
     do {
       if ((*piVar6 == 0) &&
-         (iVar2 = FUN_00493120(piVar6[1]), (uVar1 & *(uint *)(iVar2 + 0x104)) != 0)) {
+         (iVar2 = WeaponDef_Get(piVar6[1]), (uVar1 & *(uint *)(iVar2 + 0x104)) != 0)) {
         iVar3 = FUN_0040c430(iVar2,DAT_005b9030,1);
         if (iVar3 != 0) {
           iVar8 = piVar6[2];

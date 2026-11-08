@@ -10,7 +10,7 @@ char * FUN_004c83ea(char *param_1)
   void *local_c;
   
   local_c = (void *)0x0;
-  if (DAT_00565138 == 0) {
+  if (GLBL_use_locale_str_funcs == 0) {
     cVar1 = *param_1;
     pcVar3 = param_1;
     while (cVar1 != '\0') {
@@ -23,18 +23,18 @@ char * FUN_004c83ea(char *param_1)
     }
   }
   else {
-    InterlockedIncrement(&DAT_006caedc);
-    bVar4 = DAT_006caed8 == 0;
+    InterlockedIncrement(&GLBL_locale_inprocess_gauge);
+    bVar4 = GLBL_locale_counter == 0;
     if (!bVar4) {
-      InterlockedDecrement(&DAT_006caedc);
-      FUN_004c15cd(0x13);
+      InterlockedDecrement(&GLBL_locale_inprocess_gauge);
+      init_andor_enter_crit_section_idx(0x13);
     }
-    if (DAT_00565138 == 0) {
+    if (GLBL_use_locale_str_funcs == 0) {
       if (bVar4) {
-        InterlockedDecrement(&DAT_006caedc);
+        InterlockedDecrement(&GLBL_locale_inprocess_gauge);
       }
       else {
-        FUN_004c162e(0x13);
+        leave_crit_section_idx(0x13);
       }
       cVar1 = *param_1;
       pcVar3 = param_1;
@@ -48,17 +48,17 @@ char * FUN_004c83ea(char *param_1)
       }
     }
     else {
-      _Size = FUN_004c225c(DAT_00565138,0x100,param_1,0xffffffff,0,0,0,1);
+      _Size = FUN_004c225c(GLBL_use_locale_str_funcs,0x100,param_1,0xffffffff,0,0,0,1);
       if (((_Size != 0) && (local_c = _malloc(_Size), local_c != (void *)0x0)) &&
-         (iVar2 = FUN_004c225c(DAT_00565138,0x100,param_1,0xffffffff,local_c,_Size,0,1), iVar2 != 0)
-         ) {
+         (iVar2 = FUN_004c225c(GLBL_use_locale_str_funcs,0x100,param_1,0xffffffff,local_c,_Size,0,1)
+         , iVar2 != 0)) {
         FUN_004c1790(param_1,local_c);
       }
       if (bVar4) {
-        InterlockedDecrement(&DAT_006caedc);
+        InterlockedDecrement(&GLBL_locale_inprocess_gauge);
       }
       else {
-        FUN_004c162e(0x13);
+        leave_crit_section_idx(0x13);
       }
       FUN_004bd512(local_c);
     }

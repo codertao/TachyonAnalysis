@@ -11,12 +11,12 @@ void FUN_00443870(void)
   
   iVar5 = DAT_00562c04;
   uVar3 = 0;
-  uVar1 = FUN_00443420(DAT_005b2c0c);
+  uVar1 = FUN_00443420(GLBL_spacesav[0x13]);
   uVar4 = 0;
   if (DAT_005a4000 != 0) {
     do {
-      iVar2 = FUN_004c67c0(iVar5,uVar1);
-      if ((iVar2 == 0) && (DAT_005b2bc0 <= *(uint *)(iVar5 + 0xb0))) {
+      iVar2 = str_cmp(iVar5,uVar1);
+      if ((iVar2 == 0) && (GLBL_spacesav[0] <= *(uint *)(iVar5 + 0xb0))) {
         iVar2 = FUN_0048e820(DAT_005a40b8,s_TITLES_00540fec,iVar5 + 0x60);
         if (iVar2 == 0) {
           uVar6 = *(undefined4 *)(iVar5 + 0xb4);
@@ -26,7 +26,7 @@ void FUN_00443870(void)
           uVar6 = *(undefined4 *)(iVar5 + 0xb4);
         }
         FUN_0044ee60(uVar3,iVar5 + 0x40,iVar2,uVar6);
-        iVar2 = FUN_004c67c0(iVar5 + 0x40,&DAT_005a4010);
+        iVar2 = str_cmp(iVar5 + 0x40,&DAT_005a4010);
         if (iVar2 == 0) {
           FUN_0044eee0(uVar3);
         }

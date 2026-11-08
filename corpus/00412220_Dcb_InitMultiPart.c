@@ -19,14 +19,14 @@ void Dcb_InitMultiPart(int param_1,int param_2,undefined4 param_3)
   *(code **)(param_1 + 0x68) = Dcb_Think_MultiPart;
   *(undefined4 *)(param_1 + 0x88) = 0;
   uVar3 = FUN_00434850(param_1);
-  FUN_004349a0(param_1,param_2,param_1 + 0xec,param_3,param_2 + 0x48,uVar3);
+  Nav_InitRoute(param_1,param_2,param_1 + 0xec,param_3,param_2 + 0x48,uVar3);
   FUN_00434960(param_1,param_2);
   FUN_00434a30(param_1,param_1 + 0xec,*(undefined4 *)(param_2 + 0x54),1);
   if (((*(byte *)(param_2 + 0x24) & 0x10) == 0) && (*(int *)(param_1 + 0xfc) != 0)) {
-    *(undefined1 **)(param_1 + 0x134) = &LAB_00410e90;
+    *(code **)(param_1 + 0x134) = CapShip_SteerHook;
   }
   else {
-    *(code **)(param_1 + 0x134) = FUN_00410e30;
+    *(code **)(param_1 + 0x134) = CapShip_DriftHook;
   }
   uVar1 = FUN_00434530(param_2);
   *(undefined1 *)(param_1 + 0x106) = uVar1;

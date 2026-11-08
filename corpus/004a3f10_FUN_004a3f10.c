@@ -32,9 +32,10 @@ void FUN_004a3f10(char *param_1,int param_2)
     pcVar5 = pcVar5 + 1;
     pcVar6 = pcVar6 + 1;
   }
-  FUN_004c82b6(local_20);
-  iVar2 = FUN_004bd3c6(local_20,*(undefined4 *)(param_2 + 0x98),*(undefined4 *)(param_2 + 0x8c),
-                       *(undefined4 *)(param_2 + 0x90),&LAB_004a3d60);
+  to_uppercase(local_20);
+  iVar2 = maybe_find_in_list(local_20,*(undefined4 *)(param_2 + 0x98),
+                             *(undefined4 *)(param_2 + 0x8c),*(undefined4 *)(param_2 + 0x90),
+                             &LAB_004a3d60);
   if (iVar2 == 0) {
     *(undefined4 *)(param_2 + 0xb4) = 1;
   }

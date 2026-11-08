@@ -13,8 +13,8 @@ bool FUN_00432ae0(LPCSTR param_1,undefined4 param_2)
   uMode = SetErrorMode(1);
   GetVolumeInformationA(param_1,local_100,0x100,&local_20c,&local_204,&local_208,local_200,0x100);
   SetErrorMode(uMode);
-  FUN_004c67c0(local_200,&DAT_0053f30c);
-  iVar1 = FUN_004c67c0(local_100,param_2);
+  str_cmp(local_200,&DAT_0053f30c);
+  iVar1 = str_cmp(local_100,param_2);
   return iVar1 == 0;
 }
 

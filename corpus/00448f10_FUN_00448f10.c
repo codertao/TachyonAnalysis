@@ -17,16 +17,16 @@ void FUN_00448f10(int param_1)
     if (DAT_00598580 == 0) {
       DAT_00546620 = DAT_00598580;
       DAT_00546624 = 1;
-      FUN_0043ce50(&g_UiManager,s_BtnCFGModeWP_00547790,4);
-      FUN_0043ce50(&g_UiManager,s_BtnCFGModeHW_00547780,1);
+      set_button_state(&g_UiManager,s_BtnCFGModeWP_00547790,4);
+      set_button_state(&g_UiManager,s_BtnCFGModeHW_00547780,1);
       FUN_004498e0();
       FUN_00449630();
     }
     else if (DAT_00598580 == 1) {
       DAT_00546620 = DAT_00598580;
       DAT_00546624 = 0;
-      FUN_0043ce50(&g_UiManager,s_BtnCFGModeHW_00547780,4);
-      FUN_0043ce50(&g_UiManager,s_BtnCFGModeWP_00547790,1);
+      set_button_state(&g_UiManager,s_BtnCFGModeHW_00547780,4);
+      set_button_state(&g_UiManager,s_BtnCFGModeWP_00547790,1);
       FUN_00449fc0();
     }
     FUN_00448360();

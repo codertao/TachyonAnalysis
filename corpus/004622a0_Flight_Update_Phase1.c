@@ -4,10 +4,10 @@
 undefined4 Flight_Update_Phase1(void)
 
 {
-  FUN_004b8760();
+  NetSrv_Tick();
   if (g_CutsceneActive == 0) {
     FUN_00445720();
-    FUN_00425700();
+    Rules_Tick();
   }
   DAT_005897e4 = DAT_005897e4 + 1;
   FUN_00442800(DAT_006af664);

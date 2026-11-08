@@ -18,12 +18,12 @@ LAB_00430195:
       }
       DAT_00562bb0 = param_1;
       FUN_0042fff0();
-      FUN_0048e380(&DAT_005affe0,0x40);
-      FUN_0048e380(&DAT_005aeed4,0x80);
-      FUN_0048e380(&DAT_005af7dc,0x800);
-      FUN_0048e380(&DAT_005aefdc,0x800);
-      FUN_0048e380(&DAT_005aef54,0x80);
-      FUN_0048e380(&DAT_005b0020,0x40);
+      clr_bytes(&DAT_005affe0,0x40);
+      clr_bytes(&DAT_005aeed4,0x80);
+      clr_bytes(&DAT_005af7dc,0x800);
+      clr_bytes(&DAT_005aefdc,0x800);
+      clr_bytes(&DAT_005aef54,0x80);
+      clr_bytes(&DAT_005b0020,0x40);
       return;
     }
     if (ppuVar2 == param_1) {

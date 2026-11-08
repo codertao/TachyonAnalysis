@@ -8,7 +8,7 @@ void FUN_00455aa0(int param_1,int param_2)
   
   uVar2 = (**(code **)(*(int *)(param_2 + 0x8c) + 0x34))(param_2,5,0);
   if (uVar2 != 0) {
-    uVar3 = FUN_0048e440(param_1 + 0x34,param_2 + 0x34);
+    uVar3 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(param_2 + 0x34));
     if (uVar3 < uVar2) {
       if (*(short *)(param_1 + 0x10a) == 0) {
         *(undefined2 *)(param_1 + 0x10a) = 1;

@@ -40,7 +40,7 @@ LAB_004c0845:
     DAT_005650ac = iVar3;
     if (DAT_005650ac == 2) {
       if (param_6 == 0) {
-        param_6 = DAT_00565138;
+        param_6 = GLBL_use_locale_str_funcs;
       }
       BVar2 = GetStringTypeA(param_6,param_1,param_2,param_3,param_4);
       goto LAB_004c090d;

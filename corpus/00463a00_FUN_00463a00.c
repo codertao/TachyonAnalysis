@@ -9,9 +9,9 @@ uint FUN_00463a00(char *param_1)
   uint uVar5;
   
   uVar5 = 0;
-  ppuVar4 = &PTR_s_CLASS_FIGHTER_00549e30;
-  FUN_004c82b6(param_1);
-  puVar2 = PTR_s_CLASS_FIGHTER_00549e30;
+  ppuVar4 = &g_AiClassNames;
+  to_uppercase(param_1);
+  puVar2 = g_AiClassNames;
   while (puVar2 != (undefined *)0x0) {
     pcVar3 = _strstr(param_1,*ppuVar4);
     if (pcVar3 != (char *)0x0) {

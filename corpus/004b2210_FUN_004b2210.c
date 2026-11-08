@@ -34,7 +34,7 @@ uint FUN_004b2210(uint param_1,int *param_2,int param_3)
     local_74[0] = 0x10;
     local_74[1] = param_3;
     FUN_004b21c0(local_74);
-    iVar5 = FUN_004b1cd0(param_1);
+    iVar5 = Model_GetLod0Mesh(param_1);
     local_10 = (int *)(iVar5 + 0xc);
     local_c = 0;
     local_14 = iVar5;

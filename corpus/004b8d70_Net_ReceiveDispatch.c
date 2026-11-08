@@ -10,16 +10,16 @@ void Net_ReceiveDispatch(void)
   do {
     while( true ) {
       bVar1 = false;
-      if (((byte)DAT_006af658 & 2) == 0) {
+      if (((byte)GLBL_some_game_mode & 2) == 0) {
         iVar2 = thunk_FUN_004aabb0();
         if (iVar2 != 0) {
-          FUN_004b8c90(iVar2,DAT_0055e420);
+          NetCli_ProcessPacket(iVar2,DAT_0055e420);
           bVar1 = true;
         }
       }
-      iVar2 = FUN_004b9110(2);
+      iVar2 = NetBridge_Get(2);
       if (iVar2 == 0) break;
-      FUN_004b8c90(iVar2,DAT_006af574);
+      NetCli_ProcessPacket(iVar2,DAT_006af574);
     }
   } while (bVar1);
   return;

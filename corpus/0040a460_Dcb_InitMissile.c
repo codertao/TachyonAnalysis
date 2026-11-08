@@ -24,9 +24,10 @@ void Dcb_InitMissile(int param_1,int param_2)
   *(undefined4 *)(param_1 + 0xb8) = 0x20000;
   *(undefined4 *)(param_1 + 0x180) = 5000;
   *(code **)(param_1 + 0x80) = FUN_0040a1c0;
-  FUN_00410830((int *)(param_1 + 0x100),local_c,1,1,*(undefined4 *)(param_1 + 0x58),
-               *(undefined4 *)(&DAT_00533e90 + *(int *)(*(int *)(param_1 + 0xdc) + 0x60) * 4),
-               *(undefined4 *)(param_1 + 0x1c));
+  Turret_SetupWeapon((int *)(param_1 + 0x100),local_c,1,1,*(undefined4 *)(param_1 + 0x58),
+                     *(undefined4 *)
+                      (&g_TurretSubtypeWeapon + *(int *)(*(int *)(param_1 + 0xdc) + 0x60) * 4),
+                     *(undefined4 *)(param_1 + 0x1c));
   *(int *)(param_1 + 0x154) = DAT_005a5540;
   DAT_005a5540 = DAT_005a5540 + 1;
   *(undefined4 *)(param_1 + 0x158) = *(undefined4 *)(*(int *)(param_1 + 0x100) + 0x60);

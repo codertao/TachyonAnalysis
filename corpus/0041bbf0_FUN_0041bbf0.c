@@ -13,7 +13,7 @@ void FUN_0041bbf0(void)
   ushort local_600 [768];
   
   if (DAT_005b2b14 != 0) {
-    FUN_0045e900(local_600);
+    TachSrv_BuildScoreboard(local_600);
     uVar3 = c_fopen(s_DMSTATS_TXT_00534c10,&DAT_005338ac);
     GetSystemTime(&local_610);
     FUN_004bc50d(local_614);

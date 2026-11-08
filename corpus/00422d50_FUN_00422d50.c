@@ -13,21 +13,21 @@ void FUN_00422d50(int *param_1,int param_2,uint param_3,int param_4)
   int iVar9;
   uint local_c;
   
-  uVar5 = FUN_0048e350();
+  uVar5 = global_bad_shift_rng();
   lVar1 = (longlong)(int)((uVar5 >> 4 & 0xffff) + 0x20000) * (longlong)param_2;
   local_c = 0;
   if (param_3 != 0) {
     do {
-      uVar5 = FUN_0048e350();
+      uVar5 = global_bad_shift_rng();
       lVar2 = (longlong)(int)((uVar5 & 0x3fff) + 0x4000) *
               (longlong)(int)((uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10);
-      uVar5 = FUN_0048e350();
+      uVar5 = global_bad_shift_rng();
       lVar3 = (longlong)(int)((uVar5 >> 8 & 0x7fff) - 0x4000) * (longlong)param_2;
       iVar9 = *param_1 + ((uint)lVar3 >> 0x10 | (int)((ulonglong)lVar3 >> 0x20) << 0x10);
-      uVar5 = FUN_0048e350();
+      uVar5 = global_bad_shift_rng();
       lVar3 = (longlong)(int)((uVar5 >> 8 & 0x7fff) - 0x4000) * (longlong)param_2;
       iVar8 = param_1[1] + ((uint)lVar3 >> 0x10 | (int)((ulonglong)lVar3 >> 0x20) << 0x10);
-      uVar5 = FUN_0048e350();
+      uVar5 = global_bad_shift_rng();
       lVar3 = (longlong)(int)((uVar5 >> 8 & 0x7fff) - 0x4000) * (longlong)param_2;
       iVar7 = param_1[2] + ((uint)lVar3 >> 0x10 | (int)((ulonglong)lVar3 >> 0x20) << 0x10);
       iVar6 = FUN_0041b790(&DAT_005b32b0,7,&DAT_005b31c0);
@@ -48,7 +48,7 @@ void FUN_00422d50(int *param_1,int param_2,uint param_3,int param_4)
       *(undefined2 *)(iVar6 + 0x30) = 0;
       *(undefined4 *)(iVar6 + 0x2c) = 0xff;
       *(undefined4 *)(iVar6 + 0x98) = 4000;
-      uVar5 = FUN_0048e350();
+      uVar5 = global_bad_shift_rng();
       *(undefined1 **)(iVar6 + 0x68) = &LAB_00422c60;
       *(undefined1 **)(iVar6 + 0x70) = &LAB_00422d20;
       *(uint *)(iVar6 + 0x90) = (uVar5 >> 8) % 600;
@@ -58,11 +58,11 @@ void FUN_00422d50(int *param_1,int param_2,uint param_3,int param_4)
       else {
         *(undefined1 *)(iVar6 + 0x7f) = 1;
       }
-      uVar5 = FUN_0048e350();
+      uVar5 = global_bad_shift_rng();
       *(uint *)(iVar6 + 0xb4) = (uVar5 >> 8 & 0xfffff) - 0x1fffff;
-      uVar5 = FUN_0048e350();
+      uVar5 = global_bad_shift_rng();
       *(uint *)(iVar6 + 0x54) = (uVar5 >> 8 & 0x1ff) << 0x10;
-      FUN_004b2950(iVar6 + 0x18,0);
+      Model_SelectState(iVar6 + 0x18,0);
       *(int *)(iVar6 + 0xa0) = iVar9 - *param_1 >> 1;
       *(int *)(iVar6 + 0xa4) = iVar8 - param_1[1] >> 1;
       *(int *)(iVar6 + 0xa8) = iVar7 - param_1[2] >> 1;

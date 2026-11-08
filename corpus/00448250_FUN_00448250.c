@@ -18,8 +18,8 @@ void FUN_00448250(undefined4 param_1,undefined4 param_2,int param_3,int param_4,
   local_4 = param_4 + param_6;
   FUN_0043e5c0(&g_UiManager,param_1,&local_10);
   FUN_0043e6a0(&g_UiManager,param_1,param_2);
-  FUN_0043e670(&g_UiManager,param_1,0x10000);
-  FUN_0043e610(&g_UiManager,param_1,0x400);
+  clr_label_flags_11c(&g_UiManager,param_1,0x10000);
+  sbi_label_flags_11c(&g_UiManager,param_1,0x400);
   return;
 }
 

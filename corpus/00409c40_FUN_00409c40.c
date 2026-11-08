@@ -19,7 +19,7 @@ int FUN_00409c40(uint *param_1)
   
   iVar6 = 0;
   if (param_1 != (uint *)0x0) {
-    FUN_0048e380(&local_4c,0x4c);
+    clr_bytes(&local_4c,0x4c);
     puVar2 = (undefined4 *)param_1[1];
     local_c = *puVar2;
     local_4c = 0x10;
@@ -41,7 +41,7 @@ int FUN_00409c40(uint *param_1)
           local_14 = puVar3[5];
           local_10 = puVar3[6];
           FUN_004b21c0(&local_4c);
-          iVar5 = FUN_004b1db0(local_c,puVar7[8]);
+          iVar5 = Pak_GetAttachPoint(local_c,puVar7[8]);
           piVar4 = *(int **)(iVar5 + 0xc);
           puVar7[0x13] = puVar3[0x13] + *piVar4;
           puVar7[0x14] = piVar4[1] + puVar3[0x14];
@@ -53,7 +53,7 @@ int FUN_00409c40(uint *param_1)
           local_10 = puVar7[6];
           local_48 = puVar7[3];
           FUN_004b21c0(&local_4c);
-          iVar5 = FUN_004b1db0(local_c,puVar7[9]);
+          iVar5 = Pak_GetAttachPoint(local_c,puVar7[9]);
           piVar4 = *(int **)(iVar5 + 0xc);
           *piVar1 = *piVar1 - *piVar4;
           puVar7[0x14] = puVar7[0x14] - piVar4[1];

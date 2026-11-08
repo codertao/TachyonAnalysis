@@ -17,7 +17,7 @@ undefined4 FUN_0049e060(undefined4 param_1,undefined4 *param_2,undefined4 param_
     do {
       piVar2 = (int *)FUN_0049e2e0(param_1,pcVar7);
       if ((piVar2 != (int *)0x0) && (*piVar2 != 0)) {
-        iVar3 = FUN_004c67c0(*piVar2,param_3);
+        iVar3 = str_cmp(*piVar2,param_3);
         if (iVar3 == 0) {
           uVar4 = FUN_0049e340(param_1,pcVar7);
           return uVar4;

@@ -8,10 +8,10 @@ void FUN_00414850(char *param_1)
   char *pcVar4;
   char *pcVar5;
   
-  FUN_0048e380(&DAT_005b90c0,0x1a8);
-  FUN_0048e380(&DAT_005b9268,4);
-  FUN_00414720();
-  DAT_005b90c0 = FUN_00431de0(s_lcd_10_pcx_00533674,0x20000);
+  clr_bytes(&DAT_005b90c0,0x1a8);
+  clr_bytes(&DAT_005b9268,4);
+  clear_cheats();
+  DAT_005b90c0 = load_font(s_lcd_10_pcx_00533674,0x20000);
   uVar2 = 0xffffffff;
   pcVar4 = param_1;
   do {
@@ -36,7 +36,7 @@ void FUN_00414850(char *param_1)
     pcVar5 = pcVar5 + 1;
   }
   DAT_005b9210 = FUN_00414830(param_1);
-  DAT_005b9214 = FUN_0041fd80(s_borders_box_0053365c,0xcccc);
+  DAT_005b9214 = load_box_file(s_borders_box_0053365c,0xcccc);
   return;
 }
 

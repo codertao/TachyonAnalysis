@@ -1,15 +1,13 @@
 
-void FUN_00401510(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+void FUN_00401510(int param_1,int param_2,int param_3,int param_4)
 
 {
-  undefined4 local_c;
-  undefined4 local_8;
-  undefined4 local_4;
+  vec3 local_c;
   
-  local_c = param_2;
-  local_8 = param_3;
-  local_4 = param_4;
-  FUN_0048e720(&local_c,param_1 + 0x4c,param_1 + 0xdc);
+  local_c.x = param_2;
+  local_c.y = param_3;
+  local_c.z = param_4;
+  FUN_0048e720(&local_c,(vec3 *)(param_1 + 0x4c),(vec3 *)(param_1 + 0xdc));
   return;
 }
 

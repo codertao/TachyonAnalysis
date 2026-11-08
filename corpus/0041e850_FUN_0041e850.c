@@ -10,10 +10,10 @@ void FUN_0041e850(int param_1,int param_2,int param_3,undefined4 param_4)
     if (*(int *)(param_2 + 0x34) != 0) {
       FUN_004b5670(*(int *)(param_2 + 0x34),*(undefined4 *)(param_2 + 0x38));
     }
-    iVar1 = FUN_00466960(param_2 + 0x10,DAT_005b2d14,param_4);
+    iVar1 = FUN_00466960(param_2 + 0x10,GLBL_spacesav[0x55],param_4);
     iVar2 = FUN_0048e850(DAT_005a5dc8,param_2);
     if (iVar1 != 0) {
-      FUN_0049c670(iVar1,0xcccc);
+      mark_alloc_memory_with_flags(iVar1,0xcccc);
     }
     if (iVar2 != 0) {
       FUN_0048ce30(iVar2,0xffffffff);

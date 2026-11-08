@@ -9,11 +9,11 @@ int FUN_0048ec90(undefined4 param_1,uint param_2,int *param_3,undefined4 param_4
   int iVar3;
   
   piVar2 = param_3;
-  FUN_0048e380(param_3,0x18);
+  clr_bytes(param_3,0x18);
   iVar3 = FUN_004a2eb0(param_1);
   *param_3 = iVar3;
   if (iVar3 != 0) {
-    FUN_0049c670(iVar3,param_4);
+    mark_alloc_memory_with_flags(iVar3,param_4);
   }
   iVar3 = 0x1f;
   if (_DAT_00603100 != 0) {

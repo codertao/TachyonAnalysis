@@ -14,8 +14,8 @@ undefined4 Ship_LoadDes(undefined4 param_1,undefined4 *param_2,int param_3)
   undefined4 local_84;
   undefined1 local_80 [128];
   
-  FUN_0048e380(&DAT_00562d00,0x6c8);
-  FUN_0048e380(&DAT_005633c8,0x1a0);
+  clr_bytes(&DAT_00562d00,0x6c8);
+  clr_bytes(&DAT_005633c8,0x1a0);
   puVar4 = param_2;
   puVar5 = &DAT_00562d00;
   for (iVar1 = 0x21; iVar1 != 0; iVar1 = iVar1 + -1) {
@@ -45,9 +45,9 @@ undefined4 Ship_LoadDes(undefined4 param_1,undefined4 *param_2,int param_3)
       if (DAT_00562f3c == 0) {
         DAT_00562f3c = 0xff;
       }
-      FUN_00431850(&DAT_00562f90,&DAT_00562fc8,&DAT_00562fd8,&DAT_00562fd8,&DAT_005a7538,1);
+      ModelPool_Load(&DAT_00562f90,&DAT_00562fc8,&DAT_00562fd8,&DAT_00562fd8,&g_ObjModelPool,1);
       if ((DAT_00562fa8 != '\0') && (param_3 != 0)) {
-        FUN_00431850(&DAT_00562f9c,&DAT_00562fa8,0,&DAT_00562fb8,&DAT_005a7538,1);
+        ModelPool_Load(&DAT_00562f9c,&DAT_00562fa8,0,&DAT_00562fb8,&g_ObjModelPool,1);
       }
       Object_ParseHardpoints(&DAT_00563298,DAT_00562f90);
       FUN_00463db0(&DAT_00563338);
@@ -69,7 +69,7 @@ undefined4 Ship_LoadDes(undefined4 param_1,undefined4 *param_2,int param_3)
       FUN_004639c0(&DAT_00562d00,DAT_00562f90);
       _DAT_00562f44 = FUN_00465f20(DAT_00562f38);
       if (DAT_00563528 != '\0') {
-        _DAT_00563268 = FUN_00406e80(&DAT_00563528,1);
+        _DAT_00563268 = Anim_LoadFile(&DAT_00563528,1);
       }
       _DAT_005633c4 = FUN_00462c80(&DAT_00563558);
       FUN_00462dd0(&DAT_0056332c);

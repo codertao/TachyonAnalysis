@@ -11,7 +11,7 @@ int FUN_0041ea20(int param_1,undefined4 param_2)
     uVar2 = 0;
     if (*(int *)(param_1 + 0x48) != 0) {
       do {
-        iVar1 = FUN_004c67c0(iVar3,param_2);
+        iVar1 = str_cmp(iVar3,param_2);
         if (iVar1 == 0) {
           return iVar3;
         }

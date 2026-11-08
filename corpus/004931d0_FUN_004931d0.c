@@ -7,7 +7,7 @@ void FUN_004931d0(int *param_1)
   int iVar3;
   
   iVar3 = -1;
-  if (DAT_0055a560 != 0x1c) {
+  if (g_WeaponDefs != 0x1c) {
     piVar2 = &DAT_0055a5a0;
     do {
       if (*piVar2 < iVar3) {

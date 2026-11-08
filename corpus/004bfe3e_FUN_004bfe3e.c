@@ -11,13 +11,13 @@ void FUN_004bfe3e(void)
   char *_Source;
   int local_8;
   
-  FUN_004c15cd(0xc);
+  init_andor_enter_crit_section_idx(0xc);
   DAT_00561938 = 0xffffffff;
   DAT_00561928 = 0xffffffff;
   DAT_00564fc8 = 0;
   _Str1 = (char *)FUN_004c63ba(&DAT_0052f168);
   if (_Str1 == (char *)0x0) {
-    FUN_004c162e(0xc);
+    leave_crit_section_idx(0xc);
     DVar3 = GetTimeZoneInformation((LPTIME_ZONE_INFORMATION)&DAT_00564fd0);
     if (DVar3 == 0xffffffff) {
       return;
@@ -60,7 +60,7 @@ LAB_004c00af:
       DAT_0056507c = _malloc(sVar5 + 1);
       if (DAT_0056507c != (char *)0x0) {
         FUN_004c1790(DAT_0056507c,_Str1);
-        FUN_004c162e(0xc);
+        leave_crit_section_idx(0xc);
         _strncpy(PTR_DAT_0056191c,_Str1,3);
         _Source = _Str1 + 3;
         PTR_DAT_0056191c[3] = 0;
@@ -99,7 +99,7 @@ LAB_004c00af:
         goto LAB_004c00af;
       }
     }
-    FUN_004c162e(0xc);
+    leave_crit_section_idx(0xc);
   }
   return;
 }

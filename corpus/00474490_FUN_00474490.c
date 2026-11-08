@@ -3,10 +3,10 @@ void FUN_00474490(void)
 
 {
   FUN_00474430();
-  FUN_0043ce50(&DAT_00583420,s_BtnCFGSell_00547774,8);
-  Ui_SetButtonFlag(&DAT_00583420,s_BtnCFGSell_00547774,0x80000);
-  FUN_0043ce50(&DAT_00583420,s_BtnCFGPurchase_00547764,8);
-  Ui_SetButtonFlag(&DAT_00583420,s_BtnCFGPurchase_00547764,0x80000);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,8);
+  Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,0x80000);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGPurchase_00547764,8);
+  Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnCFGPurchase_00547764,0x80000);
   return;
 }
 

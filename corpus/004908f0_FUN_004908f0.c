@@ -11,14 +11,14 @@ void FUN_004908f0(void)
   
   iVar5 = 0;
   if (DAT_00565884 == 0) {
-    if (DAT_005b2ccc == 0) {
+    if (GLBL_spacesav[0x43] == 0) {
       uVar1 = FUN_0048e800(DAT_005a6140,0xf3,DAT_005a6324._2_1_);
       FUN_0048ce30(uVar1);
       FUN_00491330(0);
       return;
     }
-    if (((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
-       (DAT_00565881 != '\0')) {
+    if (((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0'))
+       && (DAT_00565881 != '\0')) {
       if (DAT_0056589c < 0) {
         FUN_00491330(0);
       }

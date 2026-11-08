@@ -7,7 +7,7 @@ void FUN_00463810(uint param_1,undefined4 param_2,uint *param_3,int param_4)
   
   iVar1 = FUN_004b1cb0(param_2);
   if (*(uint *)(iVar1 + 0x38) <= param_1) {
-    FUN_0048e380(param_3,0xc);
+    clr_bytes(param_3,0xc);
     return;
   }
   puVar2 = (uint *)(*(int *)(iVar1 + 0x50) + param_1 * 0x10);

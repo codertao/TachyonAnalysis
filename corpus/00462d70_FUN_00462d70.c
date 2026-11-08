@@ -4,7 +4,7 @@ void FUN_00462d70(int *param_1)
 {
   int iVar1;
   
-  FUN_0048e380(param_1,8);
+  clr_bytes(param_1,8);
   FUN_0049bfc0(&PTR_DAT_005496e0);
   *param_1 = DAT_00563254;
   param_1[1] = DAT_00563258;

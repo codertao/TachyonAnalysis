@@ -18,14 +18,14 @@ undefined4 FUN_004042c0(int param_1,int param_2)
   if (*(char *)(param_1 + 0x325) != '\0') {
     return 0;
   }
-  FUN_00455e40(param_1 + 0x10c,iVar2 + 0xd0);
+  Shield_GetMax(param_1 + 0x10c,iVar2 + 0xd0);
   switch(*(undefined2 *)(param_1 + 0x310)) {
   case 0:
-    bVar1 = FUN_0048e350();
+    bVar1 = global_bad_shift_rng();
     bVar1 = bVar1 & 7;
     break;
   case 1:
-    bVar1 = FUN_0048e350();
+    bVar1 = global_bad_shift_rng();
     bVar1 = bVar1 & 0x1f;
     break;
   case 2:
@@ -33,7 +33,7 @@ undefined4 FUN_004042c0(int param_1,int param_2)
       if (param_2 == 0) {
         return 0;
       }
-      bVar1 = FUN_0048e350();
+      bVar1 = global_bad_shift_rng();
       if (4 < (bVar1 & 0xf)) {
         return 0;
       }
@@ -49,7 +49,7 @@ undefined4 FUN_004042c0(int param_1,int param_2)
       if (param_2 == 0) {
         return 0;
       }
-      bVar1 = FUN_0048e350();
+      bVar1 = global_bad_shift_rng();
       if (4 < (bVar1 & 7)) {
         return 0;
       }
@@ -60,7 +60,7 @@ undefined4 FUN_004042c0(int param_1,int param_2)
       return 1;
     }
 LAB_00404393:
-    bVar1 = FUN_0048e350();
+    bVar1 = global_bad_shift_rng();
     bVar1 = bVar1 & 0xf;
     break;
   default:

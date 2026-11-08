@@ -20,7 +20,7 @@ undefined4 FUN_00456a20(int param_1,int param_2,int param_3)
       if (piVar2[-1] < iVar1) {
         *piVar2 = piVar2[-1];
       }
-      FUN_0045e1b0(param_3,uVar3,*piVar2);
+      SrvSend_Ammo(param_3,uVar3,*piVar2);
     }
     uVar3 = uVar3 + 1;
     piVar2 = piVar2 + 3;
@@ -38,7 +38,7 @@ undefined4 FUN_00456a20(int param_1,int param_2,int param_3)
   }
   FUN_004568a0(uVar4,param_3);
 LAB_00456aab:
-  FUN_0045d810(*(undefined4 *)(param_1 + 0xb0),*(undefined4 *)(param_1 + 0xb4),param_3);
+  SrvSend_ResupplyNotice(*(undefined4 *)(param_1 + 0xb0),*(undefined4 *)(param_1 + 0xb4),param_3);
   return 1;
 }
 

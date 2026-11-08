@@ -15,7 +15,7 @@ void FUN_0043c0d0(int param_1,undefined4 param_2)
       if (*pcVar4 == '\0') {
         return;
       }
-      iVar2 = FUN_004c67c0(param_2,pcVar4 + 0x40);
+      iVar2 = str_cmp(param_2,pcVar4 + 0x40);
       if (iVar2 == 0) {
         if ((iVar1 != 0) && ((*(byte *)(iVar1 + 0xf0) & 4) != 0)) {
           *(uint *)(pcVar4 + 0x204) = *(uint *)(pcVar4 + 0x204) | 0x400;

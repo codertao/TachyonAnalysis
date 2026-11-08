@@ -27,7 +27,7 @@ void FUN_00433130(char *param_1)
   FUN_0049c320(1);
   FUN_004b18c0();
   FUN_004b07a0(&LAB_00432f40);
-  FUN_004b1920(0x2000,0x13880000);
+  set_global_near_far(0x2000,0x13880000);
   FUN_004b1870(0x32);
   FUN_004a2e70(1);
   FUN_004b7780(0xffff);
@@ -95,7 +95,7 @@ void FUN_00433130(char *param_1)
   FUN_004ad4c0();
   FUN_004ad4e0(0x20);
   DAT_005a6808 = (uint)(DAT_005b2ad4 != 0);
-  FUN_00451cf0();
+  Video_Init();
   FUN_0042f360();
   return;
 }

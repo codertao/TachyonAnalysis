@@ -32,14 +32,14 @@ void FUN_004850b0(void)
       pcVar4 = pcVar4 + 1;
       pcVar5 = pcVar5 + 1;
     }
-    FUN_0043e6a0(&DAT_00583420,s_TxtSYShipLabel_00557aa8,&DAT_00563d80);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtSYShipLabel_00557aa8,&DAT_00563d80);
     if (*(int *)(DAT_0056e3a8 + 0xd0) != 0) {
-      FUN_0043ce50(&DAT_00583420,s_BtnShipYardConfig_00557a94,1);
-      FUN_0043ce50(&DAT_00583420,s_BtnShipYardLaunch_00557a80,1);
+      set_button_state(&GLBL_UI_ELEM_LIST,s_BtnShipYardConfig_00557a94,1);
+      set_button_state(&GLBL_UI_ELEM_LIST,s_BtnShipYardLaunch_00557a80,1);
       return;
     }
-    FUN_0043ce50(&DAT_00583420,s_BtnShipYardConfig_00557a94,8);
-    FUN_0043ce50(&DAT_00583420,s_BtnShipYardLaunch_00557a80,8);
+    set_button_state(&GLBL_UI_ELEM_LIST,s_BtnShipYardConfig_00557a94,8);
+    set_button_state(&GLBL_UI_ELEM_LIST,s_BtnShipYardLaunch_00557a80,8);
   }
   return;
 }

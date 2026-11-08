@@ -23,7 +23,7 @@ undefined4 FUN_004616c0(int param_1,undefined4 param_2,undefined4 param_3,short 
   }
   do {
     if (*piVar3 != 0) {
-      param_3 = FUN_004615c0(*piVar3,param_2,param_3);
+      param_3 = Tach_SrvWriteEntityRecordExt(*piVar3,param_2,param_3);
       *param_4 = *param_4 + 1;
     }
     piVar3 = piVar3 + 1;

@@ -121,7 +121,7 @@ LAB_00447ac2:
           if ((local_20 == (undefined4 *)0x0) || (DAT_00562c74 != 0)) {
             if ((local_18 == (char *)0x0) &&
                (((DAT_00562c80 != (char *)0x0 && (DAT_00562c74 == 0)) &&
-                (iVar6 = FUN_0043fa70(&g_UiManager,DAT_00562c80 + 0xc0), iVar6 != 0)))) {
+                (iVar6 = find_ui_elem_by_id_(&g_UiManager,DAT_00562c80 + 0xc0), iVar6 != 0)))) {
               DAT_00562c70 = *(int *)(DAT_00562c80 + 0x100);
               if (DAT_00562c70 == 0) {
                 DAT_00562c74 = 0;
@@ -152,7 +152,7 @@ LAB_00447ac2:
             }
           }
           else {
-            iVar6 = FUN_0043fa70(&g_UiManager,local_20 + 0x3e);
+            iVar6 = find_ui_elem_by_id_(&g_UiManager,local_20 + 0x3e);
             if (((iVar6 != 0) && (DAT_00562c70 = FUN_0044a740(local_20), DAT_00562c70 != 0)) &&
                (iVar7 = *(int *)(DAT_00562c70 + 0x58), iVar7 != 0)) {
               FUN_00440460(&g_UiManager,s_SNDEVNT_LOADOUT_TAKE_00547688);
@@ -168,7 +168,7 @@ LAB_00447ac2:
           }
         }
         else {
-          iVar6 = FUN_0043fa70(&g_UiManager,local_1c + 0x3e);
+          iVar6 = find_ui_elem_by_id_(&g_UiManager,local_1c + 0x3e);
           if (iVar6 != 0) {
             if ((*(int *)(local_1c[0x2a7] + 0x58) == 0) ||
                (uVar11 = *(uint *)(*(int *)(local_1c[0x2a7] + 0x58) + 0x9c), uVar11 < 2)) {
@@ -226,7 +226,7 @@ LAB_00447ac2:
         FUN_004498e0();
         FUN_00448360();
         if (local_18 != (char *)0x0) {
-          FUN_0043ce50(&g_UiManager,local_18,param_1);
+          set_button_state(&g_UiManager,local_18,param_1);
         }
         *(undefined4 *)(DAT_00562c70 + 0x54) = 0;
         DAT_00562c70 = 0;
@@ -242,7 +242,7 @@ LAB_00447ac2:
     if ((BVar5 != 0) && (iVar6 = FUN_0043ca90(&g_UiManager,pcVar10), iVar6 != 8)) {
       local_18 = pcVar10;
       if ((pcVar10 != (char *)0x0) && (bVar2)) {
-        iVar6 = FUN_0043fa70(&g_UiManager,pcVar10 + 0xc0);
+        iVar6 = find_ui_elem_by_id_(&g_UiManager,pcVar10 + 0xc0);
         if (iVar6 != 0) {
           FUN_00440460(&g_UiManager,s_SNDEVNT_LOADOUT_TAKE_00547688);
           FUN_004477c0(s_WndMPShipDM_0054767c,*(undefined4 *)(iVar6 + 0xd4));

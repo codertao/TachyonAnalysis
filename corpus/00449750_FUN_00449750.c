@@ -10,7 +10,7 @@ undefined4 FUN_00449750(void)
   undefined1 local_20 [32];
   
   uVar1 = Ship_GetCurrentModel();
-  FUN_0043f620(&g_UiManager,s_IACFGLoadHalo_005478bc,0x20000);
+  set_flag_10c_on_elem_by_id(&g_UiManager,s_IACFGLoadHalo_005478bc,0x20000);
   iVar2 = Cbin_Open_Inner(uVar1);
   if (iVar2 == 0) {
     return 0;

@@ -21,7 +21,7 @@ int FUN_00469570(void)
       if (iVar2 != 0) {
         local_4 = Var_GetKeyByIndex(*(undefined4 *)(iVar1 + 8),local_8);
         if (local_4 != 0) {
-          iVar1 = FUN_004c67c0(local_4,s_NO_JOB_0054a964);
+          iVar1 = str_cmp(local_4,s_NO_JOB_0054a964);
           if ((iVar1 != 0) && (local_c = 0, DAT_00589728 != 0)) {
             do {
               iVar1 = *(int *)(iVar4 + 0x124);
@@ -29,11 +29,11 @@ int FUN_00469570(void)
               if (*(int *)(iVar4 + 0x128) != 0) {
                 iVar2 = iVar1 + 0x40;
                 do {
-                  iVar3 = FUN_004c67c0(iVar1,s_PLAYER_MAIN_VARS_00534198);
+                  iVar3 = str_cmp(iVar1,s_PLAYER_MAIN_VARS_00534198);
                   if (iVar3 == 0) {
-                    iVar3 = FUN_004c67c0(iVar2 + -0x20,s_CURRENT_JOB_005342b0);
+                    iVar3 = str_cmp(iVar2 + -0x20,s_CURRENT_JOB_005342b0);
                     if (iVar3 == 0) {
-                      iVar3 = FUN_004c67c0(iVar2,local_4);
+                      iVar3 = str_cmp(iVar2,local_4);
                       if (iVar3 == 0) {
                         return iVar4;
                       }

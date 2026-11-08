@@ -12,13 +12,9 @@ void FUN_004b2c10(uint param_1,int *param_2,int *param_3)
   int iVar8;
   float *pfVar9;
   int iVar10;
-  undefined4 local_38;
-  undefined4 local_30;
-  undefined4 local_2c;
-  undefined4 local_28;
-  int local_24;
-  int local_20;
-  int local_1c;
+  int local_38;
+  vec3 local_30;
+  vec3 local_24;
   undefined1 local_18 [24];
   
   piVar3 = param_2;
@@ -31,8 +27,8 @@ void FUN_004b2c10(uint param_1,int *param_2,int *param_3)
     param_3[2] = 0;
     FUN_004b2ac0(param_1,param_2,param_3);
     FUN_004b21c0(param_1);
-    FUN_004b1bb0(local_18,param_1 + 0x34);
-    iVar4 = FUN_004b1cd0(*(undefined4 *)(param_1 + 0x40));
+    FUN_004b1bb0(local_18,(vec3 *)(param_1 + 0x34));
+    iVar4 = Model_GetLod0Mesh(*(undefined4 *)(param_1 + 0x40));
     piVar6 = (int *)(iVar4 + 0xc);
     param_2 = (int *)0x0;
     if (*(int *)(iVar4 + 4) != 0) {
@@ -43,16 +39,16 @@ void FUN_004b2c10(uint param_1,int *param_2,int *param_3)
         if (*(int *)(iVar1 + 0x28) != 0) {
           pfVar9 = (float *)(*(int *)(iVar1 + 0x40) + 0x28);
           do {
-            local_38 = (undefined4)(longlong)ROUND(pfVar9[-1]);
-            local_30 = local_38;
-            local_38 = (undefined4)(longlong)ROUND(*pfVar9);
-            local_2c = local_38;
-            local_38 = (undefined4)(longlong)ROUND(pfVar9[1]);
-            local_28 = local_38;
-            FUN_004b24d0(&local_30,&local_24);
-            iVar5 = *(int *)(iVar2 + 0x30) + local_24;
-            iVar7 = *(int *)(iVar2 + 0x34) + local_20;
-            iVar8 = *(int *)(iVar2 + 0x38) + local_1c;
+            local_38 = (int)(longlong)ROUND(pfVar9[-1]);
+            local_30.x = local_38;
+            local_38 = (int)(longlong)ROUND(*pfVar9);
+            local_30.y = local_38;
+            local_38 = (int)(longlong)ROUND(pfVar9[1]);
+            local_30.z = local_38;
+            some_rotate_by_global(&local_30,&local_24);
+            iVar5 = *(int *)(iVar2 + 0x30) + local_24.x;
+            iVar7 = *(int *)(iVar2 + 0x34) + local_24.y;
+            iVar8 = *(int *)(iVar2 + 0x38) + local_24.z;
             iVar10 = *piVar3;
             if (iVar5 < *piVar3) {
               iVar10 = iVar5;

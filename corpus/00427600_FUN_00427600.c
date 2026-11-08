@@ -36,11 +36,11 @@ void FUN_00427600(int param_1)
     Var_GetInt(DAT_005a6148,local_20,local_40,&local_4c);
     FUN_00427590(uVar4,local_4c,uVar3,param_1);
     Var_SetInt(DAT_005a6148,s_PLAYER_MOUNTED_HARDWARE_0053645c,uVar3,param_1 != 0);
-    if (DAT_005b3300 != 0) {
+    if (GLBL_SOME_CONTEXT != 0) {
       uVar3 = FUN_004900c0(s_PLAYER_MOUNTED_HARDWARE_0053645c,uVar3,1,
-                           *(undefined4 *)(DAT_005b3300 + 100));
+                           *(undefined4 *)(GLBL_SOME_CONTEXT + 100));
       uVar3 = FUN_004900a0(s_PLAYER_MOUNTED_HARDWARE_0053645c,uVar3);
-      FUN_0048e0c0(uVar3);
+      Mission_PostVarChange(uVar3);
     }
     uVar4 = uVar1;
   } while (uVar1 < 0x20);

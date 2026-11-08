@@ -33,11 +33,11 @@ void FUN_00498710(undefined4 *param_1,int param_2,undefined4 *param_3)
     FUN_0041b850(iVar2);
     if (param_2 == 0) {
       FUN_0045d060(iVar2,*(int *)(iVar2 + 100) + 0x14);
-      FUN_004b2950(puVar1,0);
+      Model_SelectState(puVar1,0);
       return;
     }
     FUN_00466770(1,1,0x1e,param_1,0x10000,0xff,0);
-    FUN_004b2950(puVar1,0);
+    Model_SelectState(puVar1,0);
   }
   return;
 }

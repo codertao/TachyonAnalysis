@@ -10,7 +10,7 @@ void FUN_00480290(undefined4 param_1,int param_2)
   
   puVar4 = &DAT_005564f8;
   if (DAT_005564f8 != 0) {
-    while (iVar2 = FUN_004c67c0(puVar4 + 1,param_1), iVar2 != 0) {
+    while (iVar2 = str_cmp(puVar4 + 1,param_1), iVar2 != 0) {
       piVar1 = puVar4 + 0x1b;
       puVar4 = puVar4 + 0x1b;
       if (*piVar1 == 0) {

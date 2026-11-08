@@ -32,8 +32,8 @@ int FUN_004196c0(int param_1,int *param_2,int *param_3,undefined4 param_4)
           ((*(byte *)(*(int *)(param_1 + 0x58) + 0x28) & 1) != 0)) &&
          (iVar1 = FUN_00418910(param_3,param_2,param_1,0x10000,&DAT_005b3194,DAT_005b31a0),
          iVar3 = DAT_005b2d88, iVar1 != 0)) {
-        iVar2 = FUN_004b36b0(param_3,param_2,param_1 + 0x18,param_4,iVar2,
-                             *(undefined4 *)(param_1 + 0xc4));
+        iVar2 = Coll_SegmentVsModel(param_3,param_2,param_1 + 0x18,param_4,iVar2,
+                                    *(undefined4 *)(param_1 + 0xc4));
         iVar3 = DAT_005b2d88;
         if ((iVar2 != 0) &&
            ((FUN_004b1c10(param_1 + 0x18,param_4), DAT_005b3190 == (code *)0x0 ||

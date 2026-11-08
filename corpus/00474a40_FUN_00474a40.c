@@ -13,7 +13,7 @@ void FUN_00474a40(int param_1)
   cVar2 = s_BtnCFGBuy1_0054e9f0[0];
   if (DAT_0056360c == 0) {
     while (cVar2 != '\0') {
-      iVar3 = FUN_0043ca90(&DAT_00583420,pcVar4);
+      iVar3 = FUN_0043ca90(&GLBL_UI_ELEM_LIST,pcVar4);
       if (iVar3 != 8) {
         if (iVar5 == param_1) {
           DAT_005635f8 = *(int *)(pcVar4 + 0x100);
@@ -22,7 +22,7 @@ void FUN_00474a40(int param_1)
           }
         }
         else {
-          FUN_0043ce50(&DAT_00583420,pcVar4,1);
+          set_button_state(&GLBL_UI_ELEM_LIST,pcVar4,1);
         }
       }
       pcVar1 = pcVar4 + 0x174;
@@ -33,9 +33,9 @@ void FUN_00474a40(int param_1)
     pcVar4 = s_BtnCFGSell1_0054f138;
     cVar2 = s_BtnCFGSell1_0054f138[0];
     while (cVar2 != '\0') {
-      iVar5 = FUN_0043ca90(&DAT_00583420,pcVar4);
+      iVar5 = FUN_0043ca90(&GLBL_UI_ELEM_LIST,pcVar4);
       if (iVar5 != 8) {
-        FUN_0043ce50(&DAT_00583420,pcVar4,1);
+        set_button_state(&GLBL_UI_ELEM_LIST,pcVar4,1);
       }
       pcVar1 = pcVar4 + 0x174;
       pcVar4 = pcVar4 + 0x174;

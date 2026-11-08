@@ -208,7 +208,7 @@ raw code pointers on each DCB instance:
 - **`+0x70` = render**. The render pass `Dcb_RenderPass (0x4584d0)` builds a depth-sorted visible
   list (`Dcb_BuildVisibleList 0x458460` → scratch `0x6240e8`) for 3 buckets and calls
   `(*(dcb+0x70))(dcb)` on each.
-- **`+0x80` = action/fire-control** (e.g. ship weapons `FUN_00404440`).
+- **`+0x80` = damage handler** (e.g. AI ships `AiShip_OnDamage 0x404440`). `+0x88` = player-collision handler (`collision.md`).
 - `+0x84` = aux.
 
 `Ship_Update (0x405a20)` is the SHIP **message handler** (selector in arg2: case 2 = think-ish,
@@ -222,11 +222,16 @@ already exists it **updates in place (KEPT++, `g_DcbKeptCount 0x5b9060`)**, else
 DCB (NEW++, `g_DcbNewCount 0x5b909c`)**. This is the netcode entity-replication path, reached from
 `Net_CyclePump`. The authoritative physics/AI integration for networked play lives in **`netsock.dll`
 / the server** (no `GameCycleNotify`-style string in `space.exe`; server logic is external).
+> **Correction (2026-11-08):** wrong — the server runs inside `space.exe` (callbacks registered by
+> `populate_func_ptr_struct 0x462180`); `Netsock.dll` is only UDP transport. See `multiplayer.md`.
 
 So the per-DCB `+0x68` think methods ARE the flight physics/entity-update code, but the **global
 per-frame dispatch of `+0x68`** is not a plain `*(x+0x68)()` offset-grep hit in `space.exe` — it is
-either invoked via a code-pointer local inside a list loop, or driven server-side. **Pinning the
-exact per-frame caller of `+0x68` is a one-step dynamic task**: break on `Dcb_Think_Missile
+either invoked via a code-pointer local inside a list loop, or driven server-side. > **Resolved (2026-11-08):** the caller is the server world tick `TachSrv_WorldTick (0x45eee0)`, run
+> from `NetSrv_Tick` in `Flight_Update_Phase1`; it walks each active quadrant's list and calls `+0x68` then
+> `+0x6c`. See `singleplayer.md`.
+
+~~Pinning the exact per-frame caller of `+0x68` is a one-step dynamic task~~: break on `Dcb_Think_Missile
 (0x40a250)` (or `0x403480`) while flying and read the return address / caller frame.
 
 ## DCB think-method internals — the integration math (resolved 2026-10-29)
@@ -291,8 +296,8 @@ The base entity think (`Sped_ConstructEntity` installs its tail `LAB_004039c0` a
 - `Dcb_Think_MultiPart (0x4111b0)` — parented/multi-part entity (installed by `0x412220`): optional
   pre-hook `+0x134`, steers toward `+0xec`, then `Dcb_UpdateChildTransforms (0x410f60)` walks the
   attached sub-object chain (`+0xe0`) and recomputes each child's world delta as `newPos − oldPos`.
-- `Dcb_Think_Ordnance (0x4112d0)` / `Dcb_Think_Missile (0x40a250)` — projectiles: range flags +
-  proximity detonate (`Dcb_Detonate 0x404c00`).
+- `Dcb_Think_Missile (0x40a250)` — projectiles: range flags +
+  proximity checks. (`0x4112d0`/`0x404c00` are the capital-ship turret think/AI, see `capships.md`.)
 
 ### Cross-cutting per-frame helpers called from thinks
 

@@ -22,7 +22,7 @@ void FUN_0046da20(int param_1,int *param_2,uint *param_3,uint param_4,undefined4
         *(undefined4 *)(*param_2 + 0xbc) = *(undefined4 *)(*param_2 + 0xb8);
         *(undefined4 *)(*param_2 + 0x84) = *(undefined4 *)(*param_2 + 0x80);
         if ((*(int *)(*param_2 + 200) == 0) && (iVar1 != 0)) {
-          FUN_0043f620(DAT_005879a0,iVar1 + 0xcc,0x20000);
+          set_flag_10c_on_elem_by_id(DAT_005879a0,iVar1 + 0xcc,0x20000);
         }
       }
       else {

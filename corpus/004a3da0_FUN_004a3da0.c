@@ -10,7 +10,7 @@ void FUN_004a3da0(int param_1)
     if (*(int *)(param_1 + 0x8c) != 0) {
       iVar1 = *(int *)(param_1 + 0x98) + 0x10;
       do {
-        FUN_004c82b6(iVar1);
+        to_uppercase(iVar1);
         uVar2 = uVar2 + 1;
         iVar1 = iVar1 + 0x24;
       } while (uVar2 < *(uint *)(param_1 + 0x8c));

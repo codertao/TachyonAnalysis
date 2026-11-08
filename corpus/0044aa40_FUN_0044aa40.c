@@ -36,7 +36,7 @@ void FUN_0044aa40(undefined4 param_1)
         if (uVar2 != 0) {
           FUN_0043fce0(&g_UiManager,puVar4,1,puVar4[0x28] + -2);
           FUN_0043f810(&g_UiManager,puVar4,1);
-          FUN_0043f620(&g_UiManager,puVar4 + 0x10,0x80000);
+          set_flag_10c_on_elem_by_id(&g_UiManager,puVar4 + 0x10,0x80000);
         }
       }
       puVar5 = puVar5 + 0x2ad;

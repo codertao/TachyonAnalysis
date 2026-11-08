@@ -21,7 +21,7 @@ int FUN_0041e6d0(char *param_1,undefined4 param_2)
   local_3 = 0;
   local_10 = DAT_00562b14;
   local_1 = 0;
-  iVar2 = FUN_0041df50(param_1);
+  iVar2 = check_is_snd_playing_maybe(param_1);
   if (iVar2 == 0) {
     iVar2 = Cbin_Open(param_1);
     if (iVar2 == 0) {
@@ -31,12 +31,12 @@ int FUN_0041e6d0(char *param_1,undefined4 param_2)
     if (iVar2 == 0) {
       return 0;
     }
-    DAT_005b22e0 = DAT_005b22e0 + 1;
-    if (DAT_005b22e4 == 0) {
-      FUN_0048e3a0(&DAT_005b22e4,0x3800,4,s_DIALOG_ACTOR_ARRAY_005356c8,0xd000);
+    GLBL_ACTIVE_SND_CNT = GLBL_ACTIVE_SND_CNT + 1;
+    if (GLBL_ACTIVE_SNDS_PTR_MAYBE == 0) {
+      FUN_0048e3a0(&GLBL_ACTIVE_SNDS_PTR_MAYBE,0x3800,4,s_DIALOG_ACTOR_ARRAY_005356c8,0xd000);
     }
-    iVar2 = DAT_005b22e0 * 0x70 + -0x70 + DAT_005b22e4;
-    FUN_0048e380(iVar2,0x70);
+    iVar2 = GLBL_ACTIVE_SND_CNT * 0x70 + -0x70 + GLBL_ACTIVE_SNDS_PTR_MAYBE;
+    clr_bytes(iVar2,0x70);
     uVar3 = 0xffffffff;
     do {
       pcVar5 = param_1;

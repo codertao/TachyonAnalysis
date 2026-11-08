@@ -2,7 +2,7 @@
 void FUN_004105c0(void)
 
 {
-  FUN_0048e380(&DAT_005b95e0,0xdc);
+  clr_bytes(&DAT_005b95e0,0xdc);
   FUN_004103b0();
   DAT_005b9644 = 0xa0000;
   DAT_005b9654 = 0;

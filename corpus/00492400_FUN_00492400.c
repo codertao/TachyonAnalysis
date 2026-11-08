@@ -15,8 +15,8 @@ void FUN_00492400(uint *param_1,uint *param_2,int *param_3)
   bVar2 = false;
   local_4 = 0;
   bVar1 = false;
-  if (((DAT_00565a34._3_1_ == '\0') && (*(code **)(DAT_005b1dc4 + 0x90) != (code *)0x0)) &&
-     (iVar3 = (**(code **)(DAT_005b1dc4 + 0x90))(), iVar3 != 0)) {
+  if (((DAT_00565a34._3_1_ == '\0') && (*(code **)(g_ActiveRules + 0x90) != (code *)0x0)) &&
+     (iVar3 = (**(code **)(g_ActiveRules + 0x90))(), iVar3 != 0)) {
     bVar1 = true;
   }
   piVar7 = param_3;

@@ -23,11 +23,11 @@ void FUN_0040d630(int param_1)
       piVar3 = piVar3 + 4;
       iVar2 = *piVar1;
     }
-    FUN_0048e380(param_1 + 0x164,0x60);
+    clr_bytes(param_1 + 0x164,0x60);
     iVar2 = *piVar5;
     while (iVar2 != -1) {
       if ((piVar5[2] < 2) && (iVar2 == 0)) {
-        uVar4 = FUN_00493120(piVar5[1],uVar6 & 0x100000);
+        uVar4 = WeaponDef_Get(piVar5[1],uVar6 & 0x100000);
         FUN_0040d5b0(param_1,uVar4);
       }
       piVar3 = piVar5 + 4;

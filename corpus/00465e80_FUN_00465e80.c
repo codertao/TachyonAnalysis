@@ -6,7 +6,7 @@ void FUN_00465e80(void)
 {
   if (DAT_005897b8 == 0) {
     if (DAT_005897b4 == 0) {
-      if (DAT_005897b0 == DAT_005b2d10) {
+      if (DAT_005897b0 == GLBL_spacesav[0x54]) {
         return;
       }
       FUN_00465e10(0,1);
@@ -28,10 +28,10 @@ void FUN_00465e80(void)
   if (DAT_005897b0 < 0x28) {
     DAT_005897b0 = 0x28;
   }
-  if (DAT_005897b0 <= DAT_005b2d10) {
+  if (DAT_005897b0 <= GLBL_spacesav[0x54]) {
     return;
   }
-  DAT_005897b0 = DAT_005b2d10;
+  DAT_005897b0 = GLBL_spacesav[0x54];
   return;
 }
 

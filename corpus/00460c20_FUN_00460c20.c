@@ -10,7 +10,7 @@ void FUN_00460c20(int param_1)
      ((*(uint *)(param_1 + 0x10c) ^ DAT_005897e4) & 0xf) == 0)) {
     FUN_004191f0(param_1 + 0x11c,*(int *)(param_1 + 0x8c) + 0xd0,0x96,0x96,0xff,0xff,0);
     if (*(int *)(param_1 + 0x140) < 1) {
-      FUN_0045fc30(param_1);
+      TachSrv_OnShipKilled(param_1);
     }
   }
   return;

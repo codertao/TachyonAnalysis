@@ -16,7 +16,7 @@ void FUN_00403cc0(int param_1,int param_2)
   iVar1 = param_1;
   iVar2 = FUN_004344a0(param_1);
   if (iVar2 != 0) {
-    FUN_004372f0(*(undefined4 *)(iVar1 + 100));
+    Mission_PostEnemyStatus(*(undefined4 *)(iVar1 + 100));
   }
   iVar2 = param_2;
   local_14 = *(undefined4 *)(param_2 + 0x20);
@@ -25,7 +25,7 @@ void FUN_00403cc0(int param_1,int param_2)
   local_c = 0;
   local_8 = 0xffffffff;
   local_4 = 0xffffffff;
-  FUN_0048ddc0(&local_18,*(undefined4 *)(iVar1 + 100));
+  Mission_PostEvent(&local_18,*(undefined4 *)(iVar1 + 100));
   FUN_004518d0(*(undefined4 *)(iVar2 + 0x20),*(undefined4 *)(iVar1 + 100));
   if (*(int *)(iVar2 + 0x54) != -1) {
     FUN_00457ce0(*(undefined4 *)(iVar1 + 100),*(int *)(iVar2 + 0x54));
@@ -37,7 +37,7 @@ void FUN_00403cc0(int param_1,int param_2)
       local_18 = 5;
       local_8 = 0xffffffff;
       local_4 = 0xffffffff;
-      FUN_0048ddc0(&local_18,*(undefined4 *)(iVar1 + 100));
+      Mission_PostEvent(&local_18,*(undefined4 *)(iVar1 + 100));
       FUN_00451950(*(undefined4 *)(iVar2 + 0x54),*(undefined4 *)(iVar1 + 100));
     }
     else {
@@ -48,7 +48,7 @@ void FUN_00403cc0(int param_1,int param_2)
       local_10 = 1;
       local_8 = 0xffffffff;
       local_4 = 0xffffffff;
-      FUN_0048ddc0(&local_18,*(undefined4 *)(iVar1 + 100));
+      Mission_PostEvent(&local_18,*(undefined4 *)(iVar1 + 100));
     }
   }
   uVar3 = FUN_00434830(iVar1,iVar2,*(undefined4 *)(iVar2 + 0x5c),1);

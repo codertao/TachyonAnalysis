@@ -14,7 +14,7 @@ undefined4 FUN_0041e100(undefined4 param_1,char *param_2)
   if (uVar2 == 0) {
     return 0;
   }
-  uVar3 = FUN_0048e350();
+  uVar3 = global_bad_shift_rng();
   Cbin_SelectGroup(s_COMMON_LINES_005355dc);
   for (iVar4 = uVar3 % uVar2 + 1; iVar4 != 0; iVar4 = iVar4 + -1) {
     FUN_0049bdb0(param_1,local_40,0x40,0,4,1);

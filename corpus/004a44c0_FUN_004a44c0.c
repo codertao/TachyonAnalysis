@@ -15,10 +15,10 @@ undefined4 FUN_004a44c0(int param_1,int param_2,int param_3,int param_4)
   DAT_006022e4 = param_2;
   DAT_006022ec = param_4;
   if (DAT_006022f4 != 0) {
-    SetWindowLongA(DAT_0060395c,-0x10,0x16ca0000);
+    SetWindowLongA(GLBL_WindowHandle_,-0x10,0x16ca0000);
     if ((DAT_005640f4 == 0) && (DAT_005640fc != 0)) {
       (**(code **)(*DAT_00602760 + 0x4c))(DAT_00602760);
-      (**(code **)(*DAT_00602760 + 0x50))(DAT_00602760,DAT_0060395c,8);
+      (**(code **)(*DAT_00602760 + 0x50))(DAT_00602760,GLBL_WindowHandle_,8);
       (**(code **)(*DAT_005640e4 + 8))(DAT_005640e4);
       if (DAT_005640e8 != (int *)0x0) {
         (**(code **)(*DAT_005640e8 + 8))(DAT_005640e8);
@@ -26,7 +26,7 @@ undefined4 FUN_004a44c0(int param_1,int param_2,int param_3,int param_4)
       DAT_005640e4 = (int *)0x0;
       DAT_005640e8 = (int *)0x0;
       DAT_005640fc = 0;
-      MoveWindow(DAT_0060395c,DAT_00603974,DAT_0060397c,DAT_00603978 - DAT_00603974,
+      MoveWindow(GLBL_WindowHandle_,DAT_00603974,DAT_0060397c,DAT_00603978 - DAT_00603974,
                  DAT_00603980 - DAT_0060397c,1);
     }
     DAT_0060231c = param_1;
@@ -65,7 +65,7 @@ undefined4 FUN_004a44c0(int param_1,int param_2,int param_3,int param_4)
 LAB_004a4ad2:
       DAT_005640f8 = 0;
     }
-    hdc = GetDC(DAT_0060395c);
+    hdc = GetDC(GLBL_WindowHandle_);
     DAT_006022d4 = CreateDIBSection(hdc,(BITMAPINFO *)&DAT_00601ea0,0,(void **)&DAT_005640f8,
                                     (HANDLE)0x0,0);
     DeleteDC(hdc);
@@ -74,7 +74,7 @@ LAB_004a4ad2:
     FUN_0049fbe0();
     goto LAB_004a4b1b;
   }
-  SetWindowLongA(DAT_0060395c,-0x10,0);
+  SetWindowLongA(GLBL_WindowHandle_,-0x10,0);
   if (DAT_005640e4 != (int *)0x0) {
     (**(code **)(*DAT_005640e4 + 8))(DAT_005640e4);
     DAT_005640e4 = (int *)0x0;
@@ -83,7 +83,7 @@ LAB_004a4ad2:
     (**(code **)(*DAT_005640e8 + 8))(DAT_005640e8);
     DAT_005640e8 = (int *)0x0;
   }
-  (**(code **)(*DAT_00602760 + 0x50))(DAT_00602760,DAT_0060395c,0x53);
+  (**(code **)(*DAT_00602760 + 0x50))(DAT_00602760,GLBL_WindowHandle_,0x53);
   if (DAT_00602334 == 0x20) {
     iVar1 = FUN_004a4440(param_1,param_2);
   }

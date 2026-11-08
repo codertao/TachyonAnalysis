@@ -8,8 +8,8 @@ undefined4 FUN_0049fd58(void)
   undefined4 *unaff_FS_OFFSET;
   
   *(undefined4 *)(unaff_EBP + -4) = 0xffffffff;
-  if (DAT_0060395c != (HWND)0x0) {
-    PostMessageA(DAT_0060395c,0x10,0,0);
+  if (GLBL_WindowHandle_ != (HWND)0x0) {
+    PostMessageA(GLBL_WindowHandle_,0x10,0,0);
     iVar2 = GetMessageA((LPMSG)(unaff_EBP + -0x34),(HWND)0x0,0,0);
     while (iVar2 != 0) {
       TranslateMessage((MSG *)(unaff_EBP + -0x34));

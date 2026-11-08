@@ -18,7 +18,7 @@ int FUN_004adb70(undefined4 param_1,undefined4 param_2,LPCSTR param_3)
   DAT_00604500 = 0x84;
   iVar2 = (*pFVar1)(param_1,&DAT_00604500,0x101);
   if (iVar2 == 0) {
-    (*DAT_0060451c)(0x1030,DAT_0060395c,0);
+    (*DAT_0060451c)(0x1030,GLBL_WindowHandle_,0);
     pFVar1 = GetProcAddress(DAT_006044e0,s_hw3d_GetDescriptor2_0055e9d4);
     if (pFVar1 != (FARPROC)0x0) {
       _DAT_006044c0 = 0x20;

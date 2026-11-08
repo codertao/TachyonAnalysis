@@ -12,7 +12,7 @@ void FUN_0044f3f0(int param_1,undefined4 param_2,undefined4 param_3,int param_4,
   }
   iVar1 = param_5 + DAT_00590d4c * -3 + 0x30;
   str_sprintf(local_80,&DAT_00536768,param_1);
-  FUN_004c82b6(local_80);
+  to_uppercase(local_80);
   param_4 = param_4 + 0x38;
   FUN_0048e970(local_80,DAT_00590d40,param_4,iVar1,param_6,0xffff,0x10000,2);
   iVar1 = iVar1 + DAT_00590d4c;

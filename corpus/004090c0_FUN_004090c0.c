@@ -23,7 +23,7 @@ void FUN_004090c0(int param_1)
         FUN_0049bdb0(&DAT_00532c58,iVar2,0x40,0,4,1);
         FUN_0049b930(&DAT_00532c58,local_20,0x20,0,4,2);
         FUN_0049b930(&DAT_00532c58,local_40,0x20,0,4,3);
-        FUN_00431850(iVar3,local_20,local_40,local_40,&DAT_005a9d40,1);
+        ModelPool_Load(iVar3,local_20,local_40,local_40,&g_BasePakPool,1);
         *(int *)(iVar2 + 0x40) = iVar3;
         uVar1 = uVar1 + 1;
         iVar2 = iVar2 + 0x44;

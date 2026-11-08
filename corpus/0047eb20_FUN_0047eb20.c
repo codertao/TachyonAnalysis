@@ -31,8 +31,8 @@ void FUN_0047eb20(void)
       piVar3[6] = iVar2;
     }
     DAT_00571288 = FUN_0049e8d0(piVar3[6],0,
-                                (int)(((longlong)piVar3[7] * (longlong)DAT_005b2d14 & 0xffffffffU) /
-                                     0xff),0);
+                                (int)(((longlong)piVar3[7] * (longlong)GLBL_spacesav[0x55] &
+                                      0xffffffffU) / 0xff),0);
     piVar3[4] = DAT_00571288;
   }
   return;

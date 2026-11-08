@@ -8,7 +8,7 @@ void FUN_00483f60(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
   undefined1 uVar3;
   int iVar4;
   
-  iVar4 = FUN_0043bc10(&DAT_00583420,param_5);
+  iVar4 = FUN_0043bc10(&GLBL_UI_ELEM_LIST,param_5);
   if (iVar4 == 0) {
     uVar3 = 0xff;
     uVar2 = 0xff;

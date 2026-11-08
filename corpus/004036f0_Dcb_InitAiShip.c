@@ -24,7 +24,7 @@ void Dcb_InitAiShip(int param_1)
     local_c = 0;
     local_8 = 0xffffffff;
     local_4 = 0xffffffff;
-    FUN_0048ddc0(&local_18,*(undefined4 *)(param_1 + 100));
+    Mission_PostEvent(&local_18,*(undefined4 *)(param_1 + 100));
     if (*(int *)(iVar1 + 0x100) != 0) {
       iVar2 = FUN_00457d00(*(undefined4 *)(iVar1 + 100),*(undefined4 *)(*(int *)(iVar1 + 0x100) + 4)
                           );
@@ -37,7 +37,7 @@ void Dcb_InitAiShip(int param_1)
         local_c = 0;
         local_8 = 0xffffffff;
         local_4 = 0xffffffff;
-        FUN_0048ddc0(&local_18,*(undefined4 *)(iVar1 + 100));
+        Mission_PostEvent(&local_18,*(undefined4 *)(iVar1 + 100));
       }
     }
     FUN_00436580(*(undefined4 *)(*(int *)(iVar1 + 0x8c) + 0x18),*(undefined4 *)(iVar1 + 0xd8),

@@ -15,10 +15,10 @@ void FUN_004745f0(int param_1,int param_2)
   ulonglong local_8;
   
   if ((param_1 != 0) && (iVar9 = *(int *)(param_1 + 0x58), iVar9 != 0)) {
-    iVar2 = FUN_0043bf10(&DAT_00583420,s_CFG_FOR_005500d0);
-    iVar3 = FUN_0043bf10(&DAT_00583420,s_CFG_CREDIT_AMT_005500c0);
+    iVar2 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_CFG_FOR_005500d0);
+    iVar3 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_CFG_CREDIT_AMT_005500c0);
     if (param_2 == 0) {
-      iVar4 = FUN_0043bf10(&DAT_00583420,s_MAINT_BUYBACK_0055008c);
+      iVar4 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_MAINT_BUYBACK_0055008c);
       if (DAT_005635fc == 0) {
         if ((DAT_00563600 != 0) && (iVar9 = *(int *)(DAT_00563600 + 0x58), iVar9 != 0)) {
           if (*(int *)(iVar9 + 0x9c) == 0) {
@@ -66,10 +66,10 @@ void FUN_004745f0(int param_1,int param_2)
                         *(int *)(DAT_00563600 + 0x54),puVar8,(undefined4)local_8,pcVar10);
           }
         }
-        FUN_0043ce50(&DAT_00583420,s_BtnCFGSell_00547774,8);
-        Ui_SetButtonFlag(&DAT_00583420,s_BtnCFGSell_00547774,0x80000);
-        FUN_0043ce50(&DAT_00583420,s_BtnCFGPurchase_00547764,8);
-        Ui_SetButtonFlag(&DAT_00583420,s_BtnCFGPurchase_00547764,0x80000);
+        set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,8);
+        Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,0x80000);
+        set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGPurchase_00547764,8);
+        Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnCFGPurchase_00547764,0x80000);
       }
       else {
         iVar9 = *(int *)(DAT_005635fc + 0x58);
@@ -127,7 +127,7 @@ void FUN_004745f0(int param_1,int param_2)
       }
     }
     else {
-      iVar4 = FUN_0043bf10(&DAT_00583420,s_MAINT_PRICE_0054ffe8);
+      iVar4 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_MAINT_PRICE_0054ffe8);
       if (iVar3 == 0) {
         pcVar10 = s__credits_005500b4;
       }
@@ -151,15 +151,15 @@ void FUN_004745f0(int param_1,int param_2)
     }
     if (((*(int **)(iVar9 + 0x60) != (int *)0x0) && (**(int **)(iVar9 + 0x60) != 0)) &&
        (iVar2 = iVar9 + 0x20, iVar2 != 0)) {
-      FUN_0043e6a0(&DAT_00583420,s_TxtCFGItemCost_0054780c,&DAT_00572080);
+      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtCFGItemCost_0054780c,&DAT_00572080);
       if (*(int **)(iVar9 + 0x60) != (int *)0x0) {
         iVar2 = **(int **)(iVar9 + 0x60);
       }
-      FUN_0043e6a0(&DAT_00583420,s_TxtCFGItemLabel_005477fc,iVar2);
+      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtCFGItemLabel_005477fc,iVar2);
       return;
     }
-    FUN_0043e6a0(&DAT_00583420,s_TxtCFGItemCost_0054780c,&DAT_00572080);
-    FUN_0043e6a0(&DAT_00583420,s_TxtCFGItemLabel_005477fc,&DAT_00562b14);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtCFGItemCost_0054780c,&DAT_00572080);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtCFGItemLabel_005477fc,&DAT_00562b14);
   }
   return;
 }

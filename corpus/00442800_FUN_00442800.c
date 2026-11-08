@@ -20,7 +20,7 @@ void FUN_00442800(undefined4 param_1)
     }
     DAT_005a404c = param_1;
     DAT_005a4044 = 0x640;
-    if (DAT_005b2be4 == '\0') {
+    if ((char)GLBL_spacesav[9] == '\0') {
       pcVar7 = s_ttfcus1_00540ea8;
     }
     else {

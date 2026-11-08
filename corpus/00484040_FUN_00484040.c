@@ -30,7 +30,7 @@ void FUN_00484040(void)
           *piVar5 = iVar1 + -0x1fe0000;
         }
       }
-      Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseShipBuy_00557938,(RECT *)(piVar5 + -0x14),0);
+      Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseShipBuy_00557938,(RECT *)(piVar5 + -0x14),0);
       piVar5[4] = 1;
     }
 LAB_004840cb:

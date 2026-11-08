@@ -7,19 +7,19 @@ void __thiscall FUN_00421e40(undefined4 param_1,int param_2)
   uint uVar3;
   int iVar4;
   
-  bVar2 = FUN_0048e350(param_1);
+  bVar2 = global_bad_shift_rng(param_1);
   if ((bVar2 & 0xf) < 6) {
     *(undefined4 *)(param_2 + 0x104) = 0;
     return;
   }
-  uVar3 = FUN_0048e350();
+  uVar3 = global_bad_shift_rng();
   if ((uVar3 & 1) == 0) {
     *(undefined4 *)(param_2 + 0x104) = DAT_005b216c;
   }
   else {
     *(undefined4 *)(param_2 + 0x104) = DAT_005b2160;
   }
-  iVar4 = FUN_0048e350();
+  iVar4 = global_bad_shift_rng();
   uVar3 = iVar4 * 4 - 0x40000U & 0x40000;
   *(uint *)(param_2 + 0x108) = uVar3;
   *(uint *)(param_2 + 0x124) = uVar3 >> 4;

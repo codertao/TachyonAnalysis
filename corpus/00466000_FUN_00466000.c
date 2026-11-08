@@ -25,7 +25,7 @@ void FUN_00466000(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
   undefined4 local_8;
   uint local_4;
   
-  FUN_0048e380(&local_3c,0x3c);
+  clr_bytes(&local_3c,0x3c);
   local_3c = param_4;
   FUN_004104a0(param_1,&local_48);
   local_24 = (float)local_48 * _DAT_0052e5d8;
@@ -37,7 +37,7 @@ void FUN_00466000(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
     local_14 = (float)local_44 * _DAT_0052eb90;
     local_10 = (float)local_40 * _DAT_0052eb90;
   }
-  local_50 = (ulonglong)DAT_005b2d10;
+  local_50 = (ulonglong)GLBL_spacesav[0x54];
   local_34 = param_8;
   local_30 = param_5;
   local_50._0_4_ = (undefined4)(longlong)ROUND((float)local_50 * _DAT_0052eb8c * (float)param_8);

@@ -13,8 +13,8 @@ int FUN_0041b200(void)
   if (local_48 == 0) {
     local_48 = 1;
   }
-  if (DAT_005b2c10 == 0) {
-    DAT_005b2c10 = 1;
+  if (GLBL_spacesav[0x14] == 0) {
+    GLBL_spacesav[0x14] = 1;
   }
   return local_48;
 }

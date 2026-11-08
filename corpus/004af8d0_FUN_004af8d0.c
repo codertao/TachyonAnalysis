@@ -8,7 +8,7 @@ undefined4 FUN_004af8d0(undefined4 param_1)
     DAT_0062c0f0 = 0;
     return 0;
   }
-  uVar1 = FUN_004af6c0(param_1,param_1);
+  uVar1 = Pak_BindTextureByName(param_1,param_1);
   return uVar1;
 }
 

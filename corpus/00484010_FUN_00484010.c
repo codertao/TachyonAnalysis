@@ -12,7 +12,7 @@ void FUN_00484010(void)
     puVar1 = puVar1 + 0x52;
     iVar2 = iVar2 + -1;
   } while (iVar2 != 0);
-  Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseShipBuy_00557938,0,0);
+  Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseShipBuy_00557938,0,0);
   return;
 }
 

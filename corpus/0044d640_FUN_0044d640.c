@@ -18,7 +18,7 @@ undefined4 FUN_0044d640(LPCSTR param_1)
         if (local_4 == nNumberOfBytesToRead) {
           uVar1 = FUN_0044e230(param_1,nNumberOfBytesToRead);
         }
-        FUN_0049c530(param_1);
+        OurFreeMem(param_1);
       }
     }
     CloseHandle(hFile);

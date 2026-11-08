@@ -22,7 +22,7 @@ void FUN_0043a470(int param_1,int param_2,int param_3,float param_4,float param_
   if (param_1 != 0) {
     FUN_00452150();
     FUN_00451fc0(0,0,0x27f,0x1df,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     FUN_00452180(1);
     FUN_004ad9c0(*(undefined4 *)(param_1 + 0x1650),0);
     piVar1 = (int *)(param_1 + 0x60);
@@ -63,7 +63,7 @@ void FUN_0043a470(int param_1,int param_2,int param_3,float param_4,float param_
     }
     FUN_00452150();
     FUN_00452070(uVar6,uVar7,uVar8,uVar9,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
   }
   return;
 }

@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void FUN_004b4630(int param_1,int *param_2)
 
 {
@@ -20,9 +18,9 @@ void FUN_004b4630(int param_1,int *param_2)
     uVar5 = 0;
     if (*(int *)(iVar1 + 0x28) != 0) {
       do {
-        *pfVar6 = DAT_0062c100 * pfVar6[9] + (float)*(int *)(iVar2 + 0x30);
-        pfVar6[1] = _DAT_0062c110 * pfVar6[10] + (float)*(int *)(iVar2 + 0x34);
-        fVar4 = _DAT_0062c120 * pfVar6[0xb] + (float)*(int *)(iVar2 + 0x38);
+        *pfVar6 = GLBL_3VEC3_output[0] * pfVar6[9] + (float)*(int *)(iVar2 + 0x30);
+        pfVar6[1] = GLBL_3VEC3_output[4] * pfVar6[10] + (float)*(int *)(iVar2 + 0x34);
+        fVar4 = GLBL_3VEC3_output[8] * pfVar6[0xb] + (float)*(int *)(iVar2 + 0x38);
         pfVar6[2] = fVar4;
         local_c = (int)(longlong)ROUND(fVar4);
         if (DAT_00668fc8 == 0) {
@@ -53,9 +51,9 @@ void FUN_004b4630(int param_1,int *param_2)
     uVar5 = 0;
     if (*(int *)(iVar1 + 0x28) != 0) {
       do {
-        *pfVar6 = DAT_0062c100 * pfVar6[9] + (float)*(int *)(iVar2 + 0x30);
-        pfVar6[1] = _DAT_0062c110 * pfVar6[10] + (float)*(int *)(iVar2 + 0x34);
-        fVar4 = _DAT_0062c120 * pfVar6[0xb] + (float)*(int *)(iVar2 + 0x38);
+        *pfVar6 = GLBL_3VEC3_output[0] * pfVar6[9] + (float)*(int *)(iVar2 + 0x30);
+        pfVar6[1] = GLBL_3VEC3_output[4] * pfVar6[10] + (float)*(int *)(iVar2 + 0x34);
+        fVar4 = GLBL_3VEC3_output[8] * pfVar6[0xb] + (float)*(int *)(iVar2 + 0x38);
         pfVar6[2] = fVar4;
         local_14 = (int)(longlong)ROUND(fVar4);
         if (DAT_00668fc8 == 0) {

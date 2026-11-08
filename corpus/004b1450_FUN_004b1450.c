@@ -19,7 +19,7 @@ undefined4 * FUN_004b1450(undefined4 param_1)
     puVar4 = (undefined4 *)((int)puVar4 + 1);
   }
   FUN_0049c840(puVar2,puVar2 + 0x1c);
-  FUN_004b1400(puVar2,param_1);
+  Model_CloneFromPak(puVar2,param_1);
   return puVar2;
 }
 

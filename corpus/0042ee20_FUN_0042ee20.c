@@ -8,10 +8,10 @@ void FUN_0042ee20(void)
   local_4 = 0;
   iVar1 = File_Exists(s_KBCC_BIN_0053cad4);
   if (iVar1 != 0) {
-    FUN_004a0e10(s_KBCC_BIN_0053cad4);
-    FUN_004a0ed0(0,0);
-    FUN_004a0ea0(&local_4,3);
-    FUN_004a0ec0();
+    openfile(s_KBCC_BIN_0053cad4);
+    move_to_end_of_file_and_get_len(0,0);
+    read_file_to_bin(&local_4,3);
+    close_glbl_open_file();
   }
   if ((char)local_4 != '\0') {
     str_sprintf(&DAT_005b0060,s__s__s_0053cacc,s_def_keys_00536d64,&local_4);

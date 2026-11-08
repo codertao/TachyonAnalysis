@@ -17,7 +17,7 @@ void FUN_0042c9a0(int param_1)
     do {
       FUN_0049bdb0(&DAT_005367f4,iVar1,0x18,0,4,1);
       FUN_0049b930(&DAT_005367f4,local_10,0x10,0,4,2);
-      uVar2 = FUN_00431de0(local_10,0x20000);
+      uVar2 = load_font(local_10,0x20000);
       *(undefined4 *)(iVar1 + 0x18) = uVar2;
       uVar3 = uVar3 + 1;
       iVar1 = iVar1 + 0x1c;

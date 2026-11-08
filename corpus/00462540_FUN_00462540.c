@@ -8,7 +8,7 @@ void FUN_00462540(void)
     FUN_0042ffb0();
     FUN_00414850(s__SYSOP__00549548);
     FUN_00425030();
-    DAT_0058b07c = FUN_00431de0(s_shdw_08b_pcx_005366e0,0x20000);
+    DAT_0058b07c = load_font(s_shdw_08b_pcx_005366e0,0x20000);
     FUN_004582e0();
     FUN_00430150(&PTR_DAT_0053eb10);
   }

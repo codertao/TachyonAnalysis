@@ -52,7 +52,7 @@ void FUN_004718e0(void)
       *piVar8 = iVar9;
       if (iVar9 != 0) {
         str_sprintf(local_80,s_IMAGE__s_005444a8,iVar9 + 0x40);
-        iVar9 = FUN_0043a7a0(&DAT_00583420,local_80);
+        iVar9 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,local_80);
         piVar8[-1] = iVar9;
       }
       piVar1 = piVar8 + 1;

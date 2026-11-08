@@ -31,7 +31,7 @@ int Sped_Spawn(undefined4 param_1,undefined4 param_2,int param_3,int param_4,int
         uStack_c = 0;
         uStack_8 = 0xffffffff;
         uStack_4 = 0xffffffff;
-        FUN_0048ddc0(&uStack_18,iVar2);
+        Mission_PostEvent(&uStack_18,iVar2);
         iStack_14 = *(int *)(iVar3 + 0x54);
         if (iStack_14 != -1) {
           uStack_18 = 5;
@@ -39,7 +39,7 @@ int Sped_Spawn(undefined4 param_1,undefined4 param_2,int param_3,int param_4,int
           uStack_c = 0;
           uStack_8 = 0xffffffff;
           uStack_4 = 0xffffffff;
-          FUN_0048ddc0(&uStack_18,iVar2);
+          Mission_PostEvent(&uStack_18,iVar2);
         }
         return param_5;
       }

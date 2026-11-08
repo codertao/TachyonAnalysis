@@ -16,8 +16,8 @@ void FUN_00467760(int param_1)
       iVar1 = iVar1 + 100;
     } while (uVar2 < *(uint *)(param_1 + 200));
   }
-  FUN_0049c530(*(undefined4 *)(param_1 + 0xcc));
-  FUN_0048e380(param_1,0x144);
+  OurFreeMem(*(undefined4 *)(param_1 + 0xcc));
+  clr_bytes(param_1,0x144);
   return;
 }
 

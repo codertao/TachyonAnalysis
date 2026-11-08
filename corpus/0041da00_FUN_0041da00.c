@@ -13,7 +13,7 @@ void FUN_0041da00(void)
           FUN_0049d4a0(piVar2 + 2,DAT_005b2708);
         }
         else {
-          FUN_00466860(piVar2[0xe],DAT_005b2d10);
+          FUN_00466860(piVar2[0xe],GLBL_spacesav[0x54]);
         }
         *piVar2 = 0;
       }

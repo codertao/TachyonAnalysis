@@ -2,8 +2,8 @@
 void FUN_0049eca0(void)
 
 {
-  DAT_00603e20 = 0;
-  DAT_00603e24 = 0;
+  GLBL_someinput_iter_at = 0;
+  GLBL_someinput_MAX_CNT = 0;
   return;
 }
 

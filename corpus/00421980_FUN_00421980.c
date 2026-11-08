@@ -1,5 +1,5 @@
 
-int FUN_00421980(int *param_1,undefined4 param_2,int param_3,undefined4 param_4,int *param_5,
+int FUN_00421980(vec3 *param_1,undefined4 param_2,int param_3,undefined4 param_4,int *param_5,
                 undefined4 param_6,int param_7,int param_8,int param_9)
 
 {
@@ -10,7 +10,7 @@ int FUN_00421980(int *param_1,undefined4 param_2,int param_3,undefined4 param_4,
     if (param_3 == 0) {
       param_3 = 0x10000;
     }
-    iVar2 = FUN_0048e440(param_1,&DAT_005b9600);
+    iVar2 = distance_between(param_1,(vec3 *)&DAT_005b9600);
     if (0x800 < (uint)((ulonglong)((longlong)iVar2 * (longlong)param_3) >> 0x20)) {
       return 0;
     }
@@ -25,9 +25,9 @@ int FUN_00421980(int *param_1,undefined4 param_2,int param_3,undefined4 param_4,
   *(undefined1 **)(iVar2 + 0x70) = &LAB_00421280;
   *(undefined4 *)(iVar2 + 0x5c) = 0;
   piVar1 = (int *)(iVar2 + 0x34);
-  *piVar1 = *param_1;
-  *(int *)(iVar2 + 0x38) = param_1[1];
-  *(int *)(iVar2 + 0x3c) = param_1[2];
+  *piVar1 = param_1->x;
+  *(int *)(iVar2 + 0x38) = param_1->y;
+  *(int *)(iVar2 + 0x3c) = param_1->z;
   *(int *)(iVar2 + 0x1c) = param_3;
   *(undefined1 **)(iVar2 + 0x68) = &LAB_00421600;
   *(undefined4 *)(iVar2 + 0x6c) = 0;

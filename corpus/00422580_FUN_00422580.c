@@ -15,10 +15,10 @@ void FUN_00422580(int *param_1,int param_2,undefined4 param_3,uint param_4,int p
   local_c = 0;
   if (param_4 != 0) {
     do {
-      uVar2 = FUN_0048e350();
+      uVar2 = global_bad_shift_rng();
       lVar1 = (longlong)(int)(uVar2 % 0xc000 + 0x4000) * (longlong)param_2;
       uVar2 = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;
-      uVar3 = FUN_0048e350();
+      uVar3 = global_bad_shift_rng();
       lVar1 = (longlong)(int)((uVar3 >> 8) % 22000 - 11000) * (longlong)(int)uVar2;
       uVar3 = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;
       if ((int)uVar3 < 0) {
@@ -30,7 +30,7 @@ void FUN_00422580(int *param_1,int param_2,undefined4 param_3,uint param_4,int p
                 (int)((ulonglong)((longlong)(int)uVar2 * 26000) >> 0x20) << 0x10;
       }
       iVar4 = *param_1 + uVar3 + uVar5;
-      uVar3 = FUN_0048e350();
+      uVar3 = global_bad_shift_rng();
       lVar1 = (longlong)(int)((uVar3 >> 8) % 22000 - 11000) * (longlong)(int)uVar2;
       uVar3 = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;
       if ((int)uVar3 < 0) {
@@ -42,7 +42,7 @@ void FUN_00422580(int *param_1,int param_2,undefined4 param_3,uint param_4,int p
                 (int)((ulonglong)((longlong)(int)uVar2 * 26000) >> 0x20) << 0x10;
       }
       iVar7 = param_1[1] + uVar3 + uVar5;
-      uVar3 = FUN_0048e350();
+      uVar3 = global_bad_shift_rng();
       lVar1 = (longlong)(int)((uVar3 >> 8) % 22000 - 11000) * (longlong)(int)uVar2;
       uVar3 = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;
       if ((int)uVar3 < 0) {
@@ -72,7 +72,7 @@ void FUN_00422580(int *param_1,int param_2,undefined4 param_3,uint param_4,int p
       *(uint *)(iVar6 + 0x1c) = uVar2;
       *(undefined2 *)(iVar6 + 0x30) = 0;
       *(undefined4 *)(iVar6 + 0x2c) = 0xff;
-      uVar2 = FUN_0048e350();
+      uVar2 = global_bad_shift_rng();
       uVar2 = uVar2 >> 8 & 0xf;
       *(uint *)(iVar6 + 0x8c) = uVar2;
       *(uint *)(iVar6 + 0x90) = -uVar2;
@@ -83,9 +83,9 @@ void FUN_00422580(int *param_1,int param_2,undefined4 param_3,uint param_4,int p
       else {
         *(undefined1 *)(iVar6 + 0x7f) = 1;
       }
-      uVar2 = FUN_0048e350();
+      uVar2 = global_bad_shift_rng();
       *(uint *)(iVar6 + 0x54) = (uVar2 >> 8 & 0x1ff) << 0x10;
-      FUN_004b2950(iVar6 + 0x18,0);
+      Model_SelectState(iVar6 + 0x18,0);
       *(undefined4 *)(iVar6 + 0x9c) = 0xfffffff6;
       *(int *)(iVar6 + 0xa0) = iVar4 - *param_1;
       *(int *)(iVar6 + 0xa4) = iVar7 - param_1[1];

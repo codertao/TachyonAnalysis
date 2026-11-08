@@ -6,7 +6,7 @@ void FUN_00491660(void)
   int iVar2;
   
   iVar2 = DAT_005658a4;
-  if (((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
+  if (((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0')) &&
      ((DAT_00565881 != '\0' && (DAT_005658a4 != -1)))) {
     iVar1 = DAT_005658a4 * 0x44;
     FUN_0044f390(&DAT_005b3a38 + iVar1,0x1ec,0x14,0x80,0x80);

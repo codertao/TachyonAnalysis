@@ -18,7 +18,7 @@ FUN_0049b520(undefined4 param_1,undefined4 *param_2,uint param_3,float *param_4,
   }
   if ((((-1 < param_6 + -1) && (iVar2 = *(int *)(param_7 + 0x24), iVar2 != 0)) &&
       (piVar3 = *(int **)(iVar2 + 0x10), piVar3 != (int *)0x0)) &&
-     ((*piVar3 != 0 && (iVar4 = FUN_004c67c0(*piVar3,param_1), iVar4 == 0)))) {
+     ((*piVar3 != 0 && (iVar4 = str_cmp(*piVar3,param_1), iVar4 == 0)))) {
     pfVar1 = (float *)(piVar3[4] + (param_6 + -1) * 0x14);
     if (piVar3[3] < param_6) {
       *(int **)(iVar2 + 0x14) = piVar3 + 5;

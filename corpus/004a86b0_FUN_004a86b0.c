@@ -4,7 +4,7 @@
 void FUN_004a86b0(void)
 
 {
-  (**(code **)(*DAT_005f9d64 + 0x18))(DAT_005f9d64,DAT_0060395c,2);
+  (**(code **)(*DAT_005f9d64 + 0x18))(DAT_005f9d64,GLBL_WindowHandle_,2);
   _DAT_00601e4c = 0;
   _DAT_005f9d70 = 0x20001;
   _DAT_005f9d74 = 0x5622;

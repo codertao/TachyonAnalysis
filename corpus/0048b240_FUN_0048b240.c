@@ -13,8 +13,8 @@ int FUN_0048b240(int param_1,uint param_2,uint *param_3)
     for (iVar1 = *(int *)(*(int *)(param_1 + 100) + 8); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0x94))
     {
       if (((*(byte *)(iVar1 + 0xc2) == param_2) &&
-          (uVar2 = FUN_0048e440(param_1 + 0x34,iVar1 + 0x34), uVar2 < uVar4)) && (*param_3 < uVar2))
-      {
+          (uVar2 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(iVar1 + 0x34)), uVar2 < uVar4)
+          ) && (*param_3 < uVar2)) {
         iVar3 = iVar1;
         uVar4 = uVar2;
       }

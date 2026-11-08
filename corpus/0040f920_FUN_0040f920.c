@@ -9,13 +9,11 @@ void FUN_0040f920(int param_1)
   int iVar5;
   float10 fVar6;
   ulonglong local_2c;
-  int local_24;
-  int local_20;
-  int local_1c;
+  vec3 local_24;
   undefined1 local_18 [24];
   
-  local_24 = 0;
-  local_20 = 0;
+  local_24.x = 0;
+  local_24.y = 0;
   iVar1 = 0xc8000;
   if ((param_1 != 0) && (*(int *)(param_1 + 0x58) != 0)) {
     iVar1 = *(int *)(*(int *)(param_1 + 0x58) + 0x30);
@@ -32,23 +30,24 @@ void FUN_0040f920(int param_1)
       DAT_005b9644 = iVar1;
     }
   }
-  local_1c = DAT_005b9640;
-  FUN_0052db6a(local_18,DAT_005b9648,DAT_005b964c,DAT_005b9650);
-  FUN_0052dbcd(local_18);
-  FUN_004b24d0(&local_24,&local_24);
-  FUN_0052db6a(local_18,*(undefined4 *)(param_1 + 0x4c),*(undefined4 *)(param_1 + 0x50),
-               *(undefined4 *)(param_1 + 0x54));
-  FUN_0052dbcd(local_18);
-  FUN_004b24d0(&local_24,&local_24);
+  local_24.z = DAT_005b9640;
+  call_math_todo_with_rotation(local_18,DAT_005b9648,DAT_005b964c,DAT_005b9650);
+  call_copy_mathresult_to_global(local_18);
+  some_rotate_by_global(&local_24,&local_24);
+  call_math_todo_with_rotation
+            (local_18,*(undefined4 *)(param_1 + 0x4c),*(undefined4 *)(param_1 + 0x50),
+             *(undefined4 *)(param_1 + 0x54));
+  call_copy_mathresult_to_global(local_18);
+  some_rotate_by_global(&local_24,&local_24);
   if (g_CutsceneActive == 0) {
-    iVar5 = ((*(int *)(param_1 + 0xa0) * 7 + *(int *)(param_1 + 0x34)) - DAT_005b9600) - local_24;
-    iVar1 = ((*(int *)(param_1 + 0xa4) * 7 + *(int *)(param_1 + 0x38)) - DAT_005b9604) - local_20;
-    iVar3 = ((*(int *)(param_1 + 0xa8) * 7 + *(int *)(param_1 + 0x3c)) - DAT_005b9608) - local_1c;
+    iVar5 = ((*(int *)(param_1 + 0xa0) * 7 + *(int *)(param_1 + 0x34)) - DAT_005b9600) - local_24.x;
+    iVar1 = ((*(int *)(param_1 + 0xa4) * 7 + *(int *)(param_1 + 0x38)) - DAT_005b9604) - local_24.y;
+    iVar3 = ((*(int *)(param_1 + 0xa8) * 7 + *(int *)(param_1 + 0x3c)) - DAT_005b9608) - local_24.z;
   }
   else {
-    iVar5 = (*(int *)(param_1 + 0x34) - DAT_005b9600) - local_24;
-    iVar1 = (*(int *)(param_1 + 0x38) - DAT_005b9604) - local_20;
-    iVar3 = (*(int *)(param_1 + 0x3c) - DAT_005b9608) - local_1c;
+    iVar5 = (*(int *)(param_1 + 0x34) - DAT_005b9600) - local_24.x;
+    iVar1 = (*(int *)(param_1 + 0x38) - DAT_005b9604) - local_24.y;
+    iVar3 = (*(int *)(param_1 + 0x3c) - DAT_005b9608) - local_24.z;
   }
   DAT_005b9690 = iVar3 >> 3;
   DAT_005b968c = iVar1 >> 3;

@@ -43,7 +43,7 @@ undefined4 FUN_004c665f(void)
       if (puVar6 != (undefined1 *)0x0) {
         iVar3 = *(int *)(unaff_EBP + 0x1c);
         if (*(int *)(unaff_EBP + 0x1c) == 0) {
-          iVar3 = DAT_00565138;
+          iVar3 = GLBL_use_locale_str_funcs;
         }
         iVar2 = *(int *)(unaff_EBP + 0x10) * 2;
         psVar1 = (short *)(puVar6 + iVar2);

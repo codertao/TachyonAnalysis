@@ -27,7 +27,7 @@ void Input_DispatchBindings(void)
     DAT_005aeeb8 = DAT_0053cbc0;
     DAT_0053cbc0 = -1;
   }
-  if (DAT_005b2cb8 == 1) {
+  if (GLBL_spacesav[0x3e] == 1) {
     FUN_0042fab0();
     FUN_0042f980();
     DAT_005b1edc = DAT_005aefd4 + DAT_005aefd8;

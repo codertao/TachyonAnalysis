@@ -15,7 +15,7 @@ undefined4 FUN_0041ec50(undefined4 *param_1)
     return 0;
   }
   if (param_1[1] == 0) {
-    FUN_0041ebe0(local_80,*param_1);
+    copy_p2_to_p1_and_get_basename_(local_80,*param_1);
     iVar1 = FUN_0041e6d0(local_80,&DAT_005a5dd0);
     param_1[1] = iVar1;
     if (iVar1 == 0) {

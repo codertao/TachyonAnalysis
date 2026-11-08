@@ -8,7 +8,7 @@ void FUN_00441200(undefined4 param_1,undefined4 *param_2)
   int iVar4;
   undefined4 *puVar5;
   
-  puVar3 = (undefined4 *)FUN_0049c3b0(0x134,4,0,s_mnu_Credit_0053ff7c);
+  puVar3 = (undefined4 *)mem_GetMemEx_probably_alloc(0x134,4,0,s_mnu_Credit_0053ff7c);
   iVar2 = (int)DAT_005a41b4;
   if (puVar3 != (undefined4 *)0x0) {
     puVar5 = puVar3;

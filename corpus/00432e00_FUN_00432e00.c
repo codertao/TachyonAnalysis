@@ -20,7 +20,7 @@ void FUN_00432e00(LPCSTR param_1,LPCSTR param_2)
     else {
       FUN_004adcb0();
     }
-    MessageBoxA(DAT_0060395c,param_1,param_2,0);
+    MessageBoxA(GLBL_WindowHandle_,param_1,param_2,0);
     DAT_00564ae4 = iVar1;
     if (iVar1 != 0) {
       FUN_004adc70();

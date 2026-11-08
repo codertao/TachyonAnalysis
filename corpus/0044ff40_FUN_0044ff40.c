@@ -14,7 +14,7 @@ void FUN_0044ff40(int param_1,int param_2)
   else {
     uVar1 = FUN_0044f810(param_2 + 0x44,0xffffffff);
     *(undefined4 *)(param_1 + 0x1c8) = uVar1;
-    FUN_0045dcb0(param_2 + 0x44,uVar1);
+    SrvSend_PlayerPortrait(param_2 + 0x44,uVar1);
   }
   FUN_0044fec0(param_1,param_2);
   FUN_0044ff20(param_1);

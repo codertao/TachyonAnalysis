@@ -14,7 +14,7 @@ void FUN_00453f30(void)
   if (((byte)DAT_005b3304 & 0x1f) != 0) {
     return;
   }
-  iVar2 = FUN_00455e40(&DAT_005b20e0,iVar1);
+  iVar2 = Shield_GetMax(&DAT_005b20e0,iVar1);
   iVar3 = DAT_005b20f0 + DAT_005b20e8 >> 1;
   if (iVar3 < iVar2 >> 1) {
     iVar2 = FUN_00455fa0(&DAT_005b20e0,0);

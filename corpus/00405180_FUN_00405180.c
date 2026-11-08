@@ -44,7 +44,7 @@ void FUN_00405180(int param_1)
       uStack_8 = 1;
       uStack_10 = 0xb;
       uStack_c = 0;
-      FUN_0048ddc0(&uStack_18,*(undefined4 *)(param_1 + 100));
+      Mission_PostEvent(&uStack_18,*(undefined4 *)(param_1 + 100));
     }
   }
   return;

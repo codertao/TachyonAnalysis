@@ -98,7 +98,7 @@ void FUN_00449fc0(void)
       pcVar11 = &DAT_005986d8;
       do {
         pcVar1 = pcVar11 + -0x40;
-        FUN_0043f620(&g_UiManager,pcVar1,0x20000);
+        set_flag_10c_on_elem_by_id(&g_UiManager,pcVar1,0x20000);
         iVar4 = iVar4 + 1;
         str_sprintf(local_100,s_SLOT__d_00536454,iVar4);
         iVar5 = Var_GetInt(g_PlayerVarStore,local_80,local_100,&local_1f0);
@@ -118,7 +118,7 @@ void FUN_00449fc0(void)
                 FUN_0046d770(DAT_005879a0,pcVar1,iVar5 + 0xb0,1,*(undefined4 *)(iVar5 + 0xc0),
                              *(undefined4 *)(iVar5 + 0xc4),*(undefined4 *)(pcVar11 + 0x18),
                              *(undefined4 *)(pcVar11 + 0x1c),0);
-                uVar3 = FUN_0043fa70(&g_UiManager,pcVar1);
+                uVar3 = find_ui_elem_by_id_(&g_UiManager,pcVar1);
                 str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar5 + 0xb0);
                 uVar8 = FUN_0043a7a0(&g_UiManager,&DAT_005a41e0,*(undefined4 *)(pcVar11 + 0x18),
                                      *(undefined4 *)(pcVar11 + 0x1c),*(undefined4 *)(pcVar11 + 0x10)

@@ -20,7 +20,7 @@ void FUN_0044d590(void)
   DAT_00562c98 = 0;
   do {
     FUN_004acf80(puVar3);
-    FUN_0049c530(*puVar3);
+    OurFreeMem(*puVar3);
     puVar4 = puVar3 + -4;
     puVar3 = puVar3 + 0xb;
     iVar2 = iVar2 + -1;
@@ -30,7 +30,7 @@ void FUN_0044d590(void)
     }
   } while (iVar2 != 0);
   if (DAT_005927cc != 0) {
-    FUN_0049c530(DAT_005927cc);
+    OurFreeMem(DAT_005927cc);
     DAT_005927cc = 0;
   }
   FUN_0044d300(0);

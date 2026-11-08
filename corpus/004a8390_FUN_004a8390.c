@@ -17,7 +17,7 @@ void FUN_004a8390(undefined4 *param_1)
           puVar2 = puVar2 + 0xe;
         } while (uVar1 < (uint)param_1[1]);
       }
-      FUN_0049c530(param_1[2]);
+      OurFreeMem(param_1[2]);
     }
     _AIL_close_3D_provider_4(*param_1);
     *param_1 = 0;

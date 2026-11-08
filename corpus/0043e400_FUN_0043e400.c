@@ -14,7 +14,7 @@ int FUN_0043e400(int param_1,undefined4 param_2)
     do {
       if (((*(uint *)(pcVar3 + 0x11c) & 0x10000) == 0) &&
          ((DAT_00564ae4 != 0 || ((*(uint *)(pcVar3 + 0x11c) & 4) != 0)))) {
-        iVar1 = FUN_004c67c0(pcVar3 + 0x40,param_2);
+        iVar1 = str_cmp(pcVar3 + 0x40,param_2);
         if (iVar1 == 0) {
           iVar2 = iVar2 + 1;
         }

@@ -61,10 +61,10 @@ void FUN_004762b0(void)
             }
             *(uint *)(puVar11 + 0xa70) = *(uint *)(iVar5 + 100) / uVar10 + *(int *)(puVar11 + 0xa68)
             ;
-            FUN_0046d770(&DAT_00583420,puVar11 + 0x78,iVar5 + 0x40,*(undefined4 *)(iVar5 + 0x68),
-                         *(undefined4 *)(iVar5 + 0x60),*(undefined4 *)(iVar5 + 100),*puVar2,*puVar3,
-                         0);
-            FUN_0043f500(&DAT_00583420,puVar11 + 0x78,*(undefined4 *)(puVar11 + 0x11c));
+            FUN_0046d770(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,iVar5 + 0x40,
+                         *(undefined4 *)(iVar5 + 0x68),*(undefined4 *)(iVar5 + 0x60),
+                         *(undefined4 *)(iVar5 + 100),*puVar2,*puVar3,0);
+            FUN_0043f500(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,*(undefined4 *)(puVar11 + 0x11c));
           }
         }
         Cbin_FindSection(puVar11 + -0x40,local_1ec);
@@ -86,7 +86,7 @@ void FUN_004762b0(void)
         }
         if (puVar11[0xf8] != '\0') {
           *(undefined4 *)(puVar11 + 0x70) = 1;
-          FUN_0043f840(&DAT_00583420,puVar11 + 0x78,0x20000);
+          FUN_0043f840(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,0x20000);
         }
         puVar11 = puVar11 + 0xab4;
         bVar14 = local_200 < 0x10;
@@ -98,7 +98,7 @@ void FUN_004762b0(void)
       pcVar12 = &DAT_005780b8;
       do {
         pcVar1 = pcVar12 + -0x40;
-        FUN_0043f620(&DAT_00583420,pcVar1,0x20000);
+        set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,pcVar1,0x20000);
         iVar5 = iVar5 + 1;
         str_sprintf(local_100,s_SLOT__d_00536454,iVar5);
         iVar6 = Var_GetInt(g_PlayerVarStore,local_80,local_100,&local_1f0);
@@ -115,19 +115,20 @@ void FUN_004762b0(void)
             iVar8 = FUN_00476240(iVar7,pcVar12 + -0x138);
             if (iVar8 == 0) {
               if ((iVar6 != 0) && (*pcVar12 != '\0')) {
-                FUN_0046d770(&DAT_00583420,pcVar1,iVar6 + 0xb0,1,*(undefined4 *)(iVar6 + 0xc0),
+                FUN_0046d770(&GLBL_UI_ELEM_LIST,pcVar1,iVar6 + 0xb0,1,*(undefined4 *)(iVar6 + 0xc0),
                              *(undefined4 *)(iVar6 + 0xc4),*(undefined4 *)(pcVar12 + 0x18),
                              *(undefined4 *)(pcVar12 + 0x1c),0);
-                uVar4 = FUN_0043fa70(&DAT_00583420,pcVar1);
+                uVar4 = find_ui_elem_by_id_(&GLBL_UI_ELEM_LIST,pcVar1);
                 str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar6 + 0xb0);
-                uVar9 = FUN_0043a7a0(&DAT_00583420,&DAT_005a41e0,*(undefined4 *)(pcVar12 + 0x18),
-                                     *(undefined4 *)(pcVar12 + 0x1c),*(undefined4 *)(pcVar12 + 0x10)
-                                     ,*(undefined4 *)(pcVar12 + 0x14),
-                                     *(undefined4 *)(pcVar12 + 0x20),2,2);
+                uVar9 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,
+                                     *(undefined4 *)(pcVar12 + 0x18),*(undefined4 *)(pcVar12 + 0x1c)
+                                     ,*(undefined4 *)(pcVar12 + 0x10),
+                                     *(undefined4 *)(pcVar12 + 0x14),*(undefined4 *)(pcVar12 + 0x20)
+                                     ,2,2);
                 FUN_00473110(uVar4,uVar9);
-                FUN_0043f5d0(&DAT_00583420,pcVar12 + -0x80,9);
+                FUN_0043f5d0(&GLBL_UI_ELEM_LIST,pcVar12 + -0x80,9);
                 *(int *)(pcVar12 + 0x964) = iVar7;
-                FUN_0043f840(&DAT_00583420,pcVar1,0x20000);
+                FUN_0043f840(&GLBL_UI_ELEM_LIST,pcVar1,0x20000);
                 *(undefined4 *)(pcVar12 + 0x968) = *(undefined4 *)(iVar6 + 0x9c);
               }
             }

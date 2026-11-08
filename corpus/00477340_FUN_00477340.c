@@ -24,15 +24,15 @@ void FUN_00477340(void)
     FUN_004abcc0(0x1d,*(undefined4 *)(iVar3 + 0x40),*(undefined4 *)(iVar3 + 0x44),
                  *(undefined4 *)(iVar3 + 0x48));
   }
-  uVar4 = Ui_FindWindowDef(&DAT_00583420,s_WndStarBaseCFG_0054ffc8);
-  uVar5 = Ui_FindButton(&DAT_00583420,s_BtnCFGTxtUp_00547930);
-  uVar6 = Ui_FindButton(&DAT_00583420,s_BtnCFGTxtDn_00547924);
+  uVar4 = Ui_FindWindowDef(&GLBL_UI_ELEM_LIST,s_WndStarBaseCFG_0054ffc8);
+  uVar5 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnCFGTxtUp_00547930);
+  uVar6 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnCFGTxtDn_00547924);
   FUN_00465880(&DAT_0054fea8,uVar4,uVar5,uVar6);
-  uVar5 = Ui_FindButton(&DAT_00583420,s_BtnCFGAvailUp_00550198);
-  uVar6 = Ui_FindButton(&DAT_00583420,s_BtnCFGAvailDn_00550188);
+  uVar5 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnCFGAvailUp_00550198);
+  uVar6 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnCFGAvailDn_00550188);
   FUN_00465880(&DAT_0054fee8,uVar4,uVar5,uVar6);
-  uVar5 = Ui_FindButton(&DAT_00583420,s_BtnCFGInvUp_00547918);
-  uVar6 = Ui_FindButton(&DAT_00583420,s_BtnCFGInvDn_0054790c);
+  uVar5 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnCFGInvUp_00547918);
+  uVar6 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnCFGInvDn_0054790c);
   FUN_00465880(&DAT_0054ff28,uVar4,uVar5,uVar6);
   return;
 }

@@ -8,7 +8,7 @@ void FUN_0045b640(int param_1)
   if ((uVar1 & 4) != 0) {
     *(uint *)(param_1 + 0x134) = uVar1 & 0xfffffffb;
     FUN_0045c980(param_1);
-    FUN_0045b430(param_1);
+    Scene_Finish(param_1);
     return;
   }
   if (*(int *)(param_1 + 0x140) != 0) {

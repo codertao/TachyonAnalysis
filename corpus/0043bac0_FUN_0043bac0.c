@@ -15,7 +15,7 @@ int FUN_0043bac0(int param_1,undefined4 param_2)
       if (*pcVar3 == '\0') {
         return 0;
       }
-      iVar1 = FUN_004c67c0(pcVar3,param_2);
+      iVar1 = str_cmp(pcVar3,param_2);
       if (iVar1 == 0) {
         return iVar2;
       }

@@ -67,7 +67,7 @@ void Gate_JumpToSector(int param_1,int param_2)
   FUN_0044eaa0();
   Sector_Transition(*(undefined4 *)(*(int *)(iVar2 + 0xf0) + 0x5c),local_20);
   Desc_CreateByType(&DAT_005b8f74,&DAT_005b1f0c,1,&param_1,1,0xffffffff);
-  *(undefined4 *)(DAT_005b3300 + 0x8c) = DAT_005b1f0c;
+  *(undefined4 *)(GLBL_SOME_CONTEXT + 0x8c) = DAT_005b1f0c;
   FUN_0044eab0();
   FUN_0045d9d0(s_ENTERING_REGIONAL_GATE_005493dc,0);
   iVar2 = FUN_00435390(local_20);
@@ -75,7 +75,7 @@ void Gate_JumpToSector(int param_1,int param_2)
     Ent_SetQuadrant(DAT_0058b064,DAT_0058b068,iVar2);
     FUN_0045f460(DAT_0058b068,iVar2);
     FUN_00427010(local_10,iVar2,local_2c,local_34,0);
-    FUN_0045ed20(local_2c,local_34,iVar2,0,1,1,DAT_0058b068);
+    SrvSend_EnterQuadrant(local_2c,local_34,iVar2,0,1,1,DAT_0058b068);
     *(undefined4 *)(DAT_0058b068 + 0x13c) = 1;
   }
   return;

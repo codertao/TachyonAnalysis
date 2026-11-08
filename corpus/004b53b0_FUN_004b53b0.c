@@ -15,12 +15,12 @@ undefined4 FUN_004b53b0(void)
   else {
     uVar1 = FUN_004df4ba();
     if (uVar1 < 0xd) {
-      BVar2 = ReadFile(DAT_006af500,&DAT_0066f4e0 + DAT_0055ed20 * 0x4000,DAT_006af510,&local_8,
-                       (LPOVERLAPPED)0x0);
+      BVar2 = ReadFile(GLBL_sbf_file_handle,&DAT_0066f4e0 + DAT_0055ed20 * 0x4000,DAT_006af510,
+                       &local_8,(LPOVERLAPPED)0x0);
       if (BVar2 == 0) {
         return 0;
       }
-      FUN_0049e7f0((DAT_006af51c >> 0x10) * (DAT_006af520 >> 0x10) >> 8);
+      FUN_0049e7f0((GLBL_some_scalar_from_spacesav_in_fixed >> 0x10) * (DAT_006af520 >> 0x10) >> 8);
       FUN_004df4c9();
       DAT_006af514 = DAT_006af514 - DAT_006af510;
       DAT_0055ed20 = DAT_0055ed20 + 1 & 0xf;
@@ -31,8 +31,11 @@ undefined4 FUN_004b53b0(void)
       else if (0xff0000 < DAT_006af520) {
         DAT_006af520 = 0xff0000;
       }
-      if ((DAT_006af52c != 0) && (DAT_006af51c = DAT_006af51c - DAT_006af52c, DAT_006af51c < 0)) {
-        DAT_006af51c = 0;
+      if ((DAT_006af52c != 0) &&
+         (GLBL_some_scalar_from_spacesav_in_fixed =
+               GLBL_some_scalar_from_spacesav_in_fixed - DAT_006af52c,
+         GLBL_some_scalar_from_spacesav_in_fixed < 0)) {
+        GLBL_some_scalar_from_spacesav_in_fixed = 0;
         return 1;
       }
     }

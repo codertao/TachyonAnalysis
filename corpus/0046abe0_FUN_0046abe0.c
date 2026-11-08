@@ -36,7 +36,7 @@ void FUN_0046abe0(int *param_1,char *param_2)
       }
     }
     if (*param_1 != 0) {
-      FUN_0049c530(*param_1);
+      OurFreeMem(*param_1);
       *param_1 = 0;
     }
     if (local_4 == (char *)0x0) {
@@ -72,7 +72,7 @@ void FUN_0046abe0(int *param_1,char *param_2)
       }
     }
     if (local_4 != (char *)0x0) {
-      FUN_0049c530(local_4);
+      OurFreeMem(local_4);
     }
   }
   return;

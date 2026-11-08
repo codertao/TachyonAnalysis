@@ -13,7 +13,7 @@ void FUN_0043f3f0(int param_1,undefined4 param_2)
     uVar3 = 0;
     if (*(int *)(param_1 + 0x48) != 0) {
       do {
-        iVar2 = FUN_004c67c0(param_2,iVar4 + 0x40);
+        iVar2 = str_cmp(param_2,iVar4 + 0x40);
         if (iVar2 == 0) {
           if ((*(byte *)(iVar1 + 0xf0) & 2) != 0) goto LAB_0043f44c;
         }

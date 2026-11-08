@@ -33,7 +33,7 @@ void FUN_00484b20(int param_1)
   undefined4 local_10;
   
   piVar1 = (int *)FUN_004699f0(s_SHIPYARD_TEXT_00557a00);
-  iVar2 = FUN_0043ba90(&DAT_00583420,s_SHADOW10g_005579f4);
+  iVar2 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,s_SHADOW10g_005579f4);
   if (((iVar2 != 0) && (param_1 != 0)) && (piVar1 != (int *)0x0)) {
     FUN_0048b740(0,0xa100);
     piVar4 = local_64;

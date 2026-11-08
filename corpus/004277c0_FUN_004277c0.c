@@ -11,7 +11,7 @@ undefined4 FUN_004277c0(undefined4 param_1,uint param_2)
   else if (10 < param_2) {
     param_2 = 10;
   }
-  uVar1 = FUN_0048e350();
+  uVar1 = global_bad_shift_rng();
   if ((uVar1 & 0x3fff) < param_2 * 700) {
     uVar2 = FUN_004944c0(param_1);
     return uVar2;

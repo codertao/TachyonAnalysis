@@ -9,7 +9,7 @@ void FUN_00458660(void)
   FUN_00445720();
   FUN_004e53d6(DAT_0060398c);
   FUN_004aecf0();
-  DAT_005b2b9c = DAT_005b2c94 * 0x2000;
+  DAT_005b2b9c = GLBL_spacesav[0x35] * 0x2000;
   DAT_005a652c = &LAB_00458560;
   if (DAT_005b2b9c < 0x13880000) {
     DAT_005b2b9c = 0x13880000;
@@ -17,7 +17,7 @@ void FUN_00458660(void)
   else if (0x493e0000 < DAT_005b2b9c) {
     DAT_005b2b9c = 0x493e0000;
   }
-  _DAT_005b2b98 = (float)DAT_005b2c98 * _DAT_0052e644;
+  _DAT_005b2b98 = (float)GLBL_spacesav[0x36] * _DAT_0052e644;
   if ((float)_DAT_0052eaf8 <= _DAT_005b2b98) {
     if ((float)_DAT_0052eaf0 < _DAT_005b2b98) {
       _DAT_005b2b98 = 4.0;

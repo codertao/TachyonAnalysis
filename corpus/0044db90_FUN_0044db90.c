@@ -30,7 +30,7 @@ void FUN_0044db90(void)
     DAT_00562c9c = DAT_00562c9c + 1;
     FUN_00452150();
     FUN_00451fc0(0xc,0x36,0x274,0x1a8,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     FUN_00452180(1);
     DAT_005a62d0 = 0;
     DAT_005a62d4 = 0;
@@ -90,7 +90,7 @@ void FUN_0044db90(void)
     }
     FUN_00452150();
     FUN_00452070(uVar4,uVar5,uVar6,uVar7,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     DAT_00562c9c = DAT_00562c9c + -1;
   }
   return;

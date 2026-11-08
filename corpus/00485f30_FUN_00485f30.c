@@ -63,7 +63,7 @@ LAB_00485fb2:
       }
       pcVar5 = s_Cursor1_0053ff4c;
     }
-    FUN_0043e8f0(&DAT_00583420,pcVar5);
+    FUN_0043e8f0(&GLBL_UI_ELEM_LIST,pcVar5);
     DAT_00557a78 = DAT_00557a7c;
   }
   return;

@@ -26,7 +26,7 @@ undefined4 FUN_004a99f0(uint param_1,undefined4 param_2)
        ((uint)CONCAT11((undefined1)local_4,(undefined1)local_8) << 8 | local_c & 0xff) << 8 |
        _DAT_005b9ce4;
   DAT_005648f4 = param_1;
-  _DAT_005b9ce0 = DAT_0060395c;
+  _DAT_005b9ce0 = GLBL_WindowHandle_;
   MVar2 = mciSendCommandA(DAT_005b9cd4,0x806,0xc,0x5b9ce0);
   if (MVar2 != 0) {
     return 0;

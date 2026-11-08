@@ -12,7 +12,7 @@ void FUN_00402020(int param_1,int param_2)
   FUN_00462380(param_1);
   *(undefined4 *)(param_2 + 0x28) = 0;
   FUN_0045b6f0(param_1);
-  FUN_0045de80(8,*(undefined4 *)(param_1 + 0x78),0,0,*(undefined4 *)(param_1 + 100),0);
+  SrvSend_EntityStateOp(8,*(undefined4 *)(param_1 + 0x78),0,0,*(undefined4 *)(param_1 + 100),0);
   FUN_00492ba0(param_1,*(undefined4 *)(param_1 + 100));
   return;
 }

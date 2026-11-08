@@ -19,8 +19,8 @@ void FUN_0047edc0(undefined4 param_1)
     local_8 = puVar2[2];
     local_4 = puVar2[3] + local_14;
     local_c = puVar2[1] - local_14;
-    Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseNews_00552c88,&local_10,0);
-    Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseNews_00552c88,&DAT_00552bd4,0);
+    Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseNews_00552c88,&local_10,0);
+    Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseNews_00552c88,&DAT_00552bd4,0);
   }
   return;
 }

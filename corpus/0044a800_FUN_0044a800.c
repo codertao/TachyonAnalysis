@@ -14,7 +14,7 @@ void FUN_0044a800(int param_1,undefined4 param_2,int param_3,undefined4 param_4)
     if (iVar2 == 0) {
       *(undefined4 *)(param_1 + 0xa9c) = param_2;
       *(undefined4 *)(param_1 + 0xaa0) = param_4;
-      uVar1 = FUN_0043fa70(&g_UiManager,param_1 + 0xf8);
+      uVar1 = find_ui_elem_by_id_(&g_UiManager,param_1 + 0xf8);
       FUN_004482e0(uVar1,param_3,*(undefined4 *)(param_1 + 0x150),*(undefined4 *)(param_1 + 0x154),
                    *(undefined4 *)(param_1 + 0x148),*(undefined4 *)(param_1 + 0x14c),
                    *(undefined4 *)(param_1 + 0x158),2,2);

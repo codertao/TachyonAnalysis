@@ -5,7 +5,7 @@ int FUN_0049c8f0(int param_1)
   int iVar1;
   int iVar2;
   
-  iVar2 = *(int *)(PTR_DAT_0055d7cc + 8);
+  iVar2 = *(int *)(PTR_global_mem_pool_root + 8);
   do {
     iVar1 = iVar2;
     if (iVar1 == 0) {

@@ -46,7 +46,7 @@ void FUN_0044ffe0(int param_1,char *param_2)
   *(undefined2 *)(param_2 + 0x12) = *(undefined2 *)(param_1 + 0x140);
   psVar8 = (short *)(param_2 + 0x30);
   *(undefined4 *)(param_2 + 0x14) = *(undefined4 *)(param_1 + 0x158);
-  FUN_0048e380(psVar8,0x20);
+  clr_bytes(psVar8,0x20);
   puVar10 = (undefined4 *)(param_1 + 0x164);
   iVar6 = 8;
   do {

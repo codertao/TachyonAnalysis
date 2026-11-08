@@ -12,7 +12,7 @@ void FUN_0040df00(void)
   }
   do {
     iVar1 = *(int *)(iVar2 + 0x10);
-    FUN_0049c530(iVar2);
+    OurFreeMem(iVar2);
     iVar2 = iVar1;
   } while (iVar1 != 0);
   DAT_005b97ac = iVar1;

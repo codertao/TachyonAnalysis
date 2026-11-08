@@ -29,11 +29,11 @@ void FUN_00421f43(undefined4 param_1,undefined4 param_2,int *param_3,undefined4 
   *(int *)(unaff_ESI + 0xdc) = param_5[1];
   *(int *)(unaff_ESI + 0xe0) = param_5[2];
   *(code **)(unaff_ESI + 0x80) = FUN_00421dc0;
-  *(undefined1 **)(unaff_ESI + 0x88) = &LAB_00421e10;
+  *(undefined1 **)(unaff_ESI + 0x88) = &Debris_OnPlayerCollide;
   *(undefined4 *)(unaff_ESI + 0xbc) = param_6;
-  uVar2 = FUN_0048e350();
+  uVar2 = global_bad_shift_rng();
   if ((uVar2 & 1) == 0) {
-    uVar2 = FUN_0048e350();
+    uVar2 = global_bad_shift_rng();
     iVar3 = (uVar2 & 0x1fffff) - 0x100000;
     *(int *)(unaff_ESI + 0xe4) = iVar3;
     if (iVar3 < unaff_EDI) {
@@ -47,7 +47,7 @@ void FUN_00421f43(undefined4 param_1,undefined4 param_2,int *param_3,undefined4 
     *(int *)(unaff_ESI + 0xe8) = unaff_EDI;
   }
   else {
-    uVar2 = FUN_0048e350();
+    uVar2 = global_bad_shift_rng();
     iVar3 = (uVar2 & 0x1fffff) - 0x100000;
     *(int *)(unaff_ESI + 0xe8) = iVar3;
     if (iVar3 < unaff_EDI) {
@@ -65,7 +65,7 @@ void FUN_00421f43(undefined4 param_1,undefined4 param_2,int *param_3,undefined4 
 LAB_00422079:
   *(int *)(unaff_ESI + 0x4c) = unaff_EDI;
   *(int *)(unaff_ESI + 0x50) = unaff_EDI;
-  uVar2 = FUN_0048e350();
+  uVar2 = global_bad_shift_rng();
   *(uint *)(unaff_ESI + 0x54) = uVar2 & 0x1ffffff;
   *(int *)(unaff_ESI + 0xf8) = *piVar1;
   *(undefined4 *)(unaff_ESI + 0xfc) = *(undefined4 *)(unaff_ESI + 0x38);

@@ -23,7 +23,7 @@ void FUN_004a39c0(void)
       puVar2 = puVar2 + 3;
     } while (uVar3 < DAT_0060310c);
   }
-  FUN_0049c530(puVar1);
+  OurFreeMem(puVar1);
   return;
 }
 

@@ -4,9 +4,9 @@
 void Flight_Enter(void)
 
 {
-  FUN_004b8880(3);
+  set_global_some_game_mode(3);
   Flight_SceneSetup();
-  FUN_00418550();
+  init_flight_start();
   return;
 }
 

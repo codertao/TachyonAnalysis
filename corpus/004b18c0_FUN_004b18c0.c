@@ -5,16 +5,16 @@ void FUN_004b18c0(void)
 
 {
   int iVar1;
-  undefined4 *puVar2;
+  float *pfVar2;
   
-  puVar2 = &DAT_0062c100;
+  pfVar2 = GLBL_3VEC3_output;
   for (iVar1 = 0xf447; iVar1 != 0; iVar1 = iVar1 + -1) {
-    *puVar2 = 0;
-    puVar2 = puVar2 + 1;
+    *pfVar2 = 0.0;
+    pfVar2 = pfVar2 + 1;
   }
   _DAT_00668f30 = 0;
   DAT_00668f34 = 0;
-  _DAT_00666aec = 0x37800000;
+  f_global_scalar_maybe = 1.5258789e-05;
   _DAT_00666af0 = 0x3c000000;
   DAT_00668f2c = 1000;
   DAT_00668f58 = 0xffffffff;

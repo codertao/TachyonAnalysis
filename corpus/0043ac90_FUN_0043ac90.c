@@ -42,11 +42,11 @@ void FUN_0043ac90(uint param_1)
             if (puVar4[-2] != 0) {
               if ((undefined4 *)puVar4[5] != (undefined4 *)0x0) {
                 *(undefined4 *)puVar4[5] = DAT_005a67a0;
-                FUN_004add80(puVar4[5]);
+                copy_str32_to_some_global(puVar4[5]);
               }
               if (DAT_00564ae4 == 0) {
                 FUN_0043a280(iVar1,pcVar3,puVar4[-2],puVar4[-0x2b],puVar4[-0x2a],puVar4 + 1);
-                FUN_00437bf0(puVar4,0x200);
+                clear_flags(puVar4,0x200);
                 puVar4[1] = 0;
                 puVar4[2] = 0;
                 puVar4[3] = 0;

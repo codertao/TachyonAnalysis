@@ -14,7 +14,7 @@ void FUN_004c19fd(int param_1,int param_2,int *param_3)
         return;
       }
       iVar3 = (param_2 + iVar2) / 2;
-      iVar1 = FUN_004c67c0(*param_3,*(undefined4 *)(param_1 + iVar3 * 8));
+      iVar1 = str_cmp(*param_3,*(undefined4 *)(param_1 + iVar3 * 8));
       if (iVar1 == 0) {
         *param_3 = param_1 + iVar3 * 8 + 4;
       }

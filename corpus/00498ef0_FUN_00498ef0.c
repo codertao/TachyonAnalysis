@@ -6,7 +6,7 @@ undefined4 FUN_00498ef0(void)
   undefined4 uVar2;
   int iVar3;
   
-  iVar1 = *(int *)(DAT_005b3300 + 0x90);
+  iVar1 = *(int *)(GLBL_SOME_CONTEXT + 0x90);
   if ((iVar1 != 0) && (*(int *)(iVar1 + 0xf4) != DAT_005653a0)) {
     uVar2 = *(undefined4 *)(*(int *)(DAT_005653a0 + 0x8c) + 0x56c);
     *(undefined4 *)(*(int *)(DAT_005653a0 + 0x8c) + 0x56c) =

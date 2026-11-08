@@ -9,7 +9,7 @@ undefined4 FUN_0044e330(void)
   DWORD DVar3;
   uint uVar4;
   undefined4 uVar5;
-  undefined *puVar6;
+  undefined4 uVar6;
   
   FUN_0044e270(s_HOST_MSG_FINDING_SESSION_0054827c);
   iVar1 = FUN_004a6d90(&DAT_00590ef0);
@@ -19,7 +19,7 @@ undefined4 FUN_0044e330(void)
   }
   if ((*(byte *)(iVar1 + 0x30) & 1) != 0) {
     FUN_0043a990(&g_UiManager,s_WndNWLaunch_00548258);
-    FUN_0044ccc0(s_WndPassword_00548084,s_WndNWLaunch_00548258,&g_UiManager,&DAT_005b2c38,0x1f,
+    FUN_0044ccc0(s_WndPassword_00548084,s_WndNWLaunch_00548258,&g_UiManager,0x5b2c38,0x1f,
                  s_EntryPassWord_00548090);
     iVar2 = FUN_0044cc00();
     while (iVar2 != 0) {
@@ -39,13 +39,13 @@ undefined4 FUN_0044e330(void)
     FUN_0044e790();
     if ((*(byte *)(iVar1 + 0x30) & 1) == 0) {
       uVar5 = *(undefined4 *)(iVar1 + 8);
-      puVar6 = (undefined *)0x0;
+      uVar6 = 0;
     }
     else {
       uVar5 = *(undefined4 *)(iVar1 + 8);
-      puVar6 = &DAT_005b2c38;
+      uVar6 = 0x5b2c38;
     }
-    iVar2 = FUN_004a6ec0(uVar5,puVar6);
+    iVar2 = FUN_004a6ec0(uVar5,uVar6);
     if (g_TitleMenu_ExitFlag != 0) {
       return 0;
     }
@@ -60,8 +60,8 @@ undefined4 FUN_0044e330(void)
   case -0x45:
     goto switchD_0044e476_caseD_ffffffbb;
   default:
-    if (((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) {
-      FUN_004903c0();
+    if (((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) {
+      Voice_ClientInit();
       uVar4 = DAT_005b2b04;
       if (DAT_005b2b04 == 0) {
         uVar4 = (uint)DAT_00565894;

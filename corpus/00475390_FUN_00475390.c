@@ -12,7 +12,7 @@ void FUN_00475390(void)
   char *pcVar8;
   ulonglong local_8;
   
-  iVar4 = FUN_0043bf10(&DAT_00583420,s_STAT_CREDITS_00550060);
+  iVar4 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_STAT_CREDITS_00550060);
   if (DAT_005635fc != 0) {
     iVar1 = *(int *)(DAT_005635fc + 0x58);
     if (iVar1 == 0) {
@@ -45,7 +45,7 @@ void FUN_00475390(void)
     }
     uVar7 = FUN_004699a0();
     str_sprintf(&DAT_00577f20,s__s___d_005367b8,pcVar8,uVar7);
-    FUN_0043e6a0(&DAT_00583420,s_TxtCFGCreditLabel_00550040,&DAT_00577f20);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtCFGCreditLabel_00550040,&DAT_00577f20);
     if (DAT_005635fc != 0) {
       iVar4 = FUN_0046be00(DAT_005635fc + 0x20,DAT_005635fc);
       if (iVar4 == 0) {
@@ -56,8 +56,8 @@ void FUN_00475390(void)
   }
   FUN_00474a40(0xffffffff);
   FUN_00474430();
-  FUN_0043ce50(&DAT_00583420,s_BtnCFGSell_00547774,8);
-  Ui_SetButtonFlag(&DAT_00583420,s_BtnCFGSell_00547774,0x80000);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,8);
+  Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,0x80000);
 LAB_00475518:
   FUN_00473500();
   if (DAT_005635fc != 0) {
@@ -65,7 +65,7 @@ LAB_00475518:
     FUN_004745f0(DAT_005635fc,0);
   }
   FUN_00474010(0);
-  Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseCFG_0054ffc8,0,0);
+  Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseCFG_0054ffc8,0,0);
   return;
 }
 

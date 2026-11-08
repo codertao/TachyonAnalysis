@@ -1,12 +1,12 @@
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_00466440(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+void FUN_00466440(vec3 *param_1,vec3 *param_2,undefined4 param_3)
 
 {
   uint uVar1;
   
-  uVar1 = FUN_0048e440(param_1,param_2);
+  uVar1 = distance_between(param_1,param_2);
   DAT_00563588 = 0xff - (uVar1 >> 0x11);
   if (DAT_00563588 < 0) {
     DAT_00563588 = 0;

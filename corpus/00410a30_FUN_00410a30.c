@@ -6,7 +6,7 @@ void FUN_00410a30(int param_1)
   int iVar2;
   
   iVar1 = *(int *)(param_1 + 0xe0);
-  FUN_0045de80(8,*(undefined4 *)(param_1 + 0x78),0,0,*(undefined4 *)(param_1 + 100),0);
+  SrvSend_EntityStateOp(8,*(undefined4 *)(param_1 + 0x78),0,0,*(undefined4 *)(param_1 + 100),0);
   while (iVar1 != 0) {
     iVar2 = *(int *)(iVar1 + 0xe0);
     FUN_0041b8c0(iVar1);

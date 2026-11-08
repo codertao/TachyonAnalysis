@@ -15,22 +15,22 @@ void FUN_00423790(int param_1,undefined4 param_2,int *param_3,int param_4,int pa
   local_18 = *param_3;
   local_14 = param_3[1];
   local_10 = param_3[2];
-  uVar1 = FUN_0048e350();
+  uVar1 = global_bad_shift_rng();
   param_4 = uVar1 % (uint)(param_5 - param_4) + param_4;
   if (param_4 == 0) {
     param_4 = 1;
   }
   FUN_004e04ba(&local_18);
   for (; param_4 != 0; param_4 = param_4 + -1) {
-    uVar1 = FUN_0048e350();
+    uVar1 = global_bad_shift_rng();
     local_c = ((int)(((uVar1 & 0x7fff) - 0x4000) + local_18) >> 2) * param_9;
-    uVar1 = FUN_0048e350();
+    uVar1 = global_bad_shift_rng();
     local_8 = ((int)(((uVar1 & 0x7fff) - 0x4000) + local_14) >> 2) * param_9;
-    uVar1 = FUN_0048e350();
+    uVar1 = global_bad_shift_rng();
     local_4 = ((int)(((uVar1 & 0x7fff) - 0x4000) + local_10) >> 2) * param_9;
-    uVar1 = FUN_0048e350();
-    uVar2 = FUN_0048e350();
-    FUN_00421f20(param_2,**(undefined4 **)(param_1 + (uVar1 % param_6) * 4),&local_c,0,
+    uVar1 = global_bad_shift_rng();
+    uVar2 = global_bad_shift_rng();
+    Debris_Spawn(param_2,**(undefined4 **)(param_1 + (uVar1 % param_6) * 4),&local_c,0,
                  uVar2 % (uint)(param_8 - param_7) + param_7,&LAB_00420f10,param_11,param_10);
   }
   return;

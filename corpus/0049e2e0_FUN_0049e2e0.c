@@ -15,7 +15,7 @@ undefined4 FUN_0049e2e0(int param_1,undefined4 param_2)
     pcVar6 = *(char **)(*(int *)(param_1 + 4) + 4);
     if (*(int *)(param_1 + 0xc) != 0) {
       do {
-        iVar2 = FUN_004c67c0(pcVar6,param_2);
+        iVar2 = str_cmp(pcVar6,param_2);
         if (iVar2 == 0) {
           uVar3 = FUN_0049df40(param_1,uVar5);
           return uVar3;

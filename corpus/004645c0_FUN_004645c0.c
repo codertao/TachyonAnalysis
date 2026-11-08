@@ -25,7 +25,7 @@ undefined1 * FUN_004645c0(int param_1,undefined4 param_2,char *param_3)
   case 3:
     if (*(short *)(param_1 + 0x11c) != -1) {
       FUN_00436440((int)*(short *)(param_1 + 0x11c),(int)*(short *)(param_1 + 0x11e),param_3);
-      FUN_004c82b6(param_3);
+      to_uppercase(param_3);
       return (undefined1 *)0x0;
     }
     *param_3 = '\0';

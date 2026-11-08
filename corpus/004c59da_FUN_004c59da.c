@@ -10,7 +10,7 @@ int FUN_004c59da(LPSTR param_1,WCHAR param_2)
   if (param_1 == (LPSTR)0x0) {
     return 0;
   }
-  if (DAT_00565138 == 0) {
+  if (GLBL_use_locale_str_funcs == 0) {
     if ((ushort)param_2 < 0x100) {
       *param_1 = (CHAR)param_2;
       return 1;

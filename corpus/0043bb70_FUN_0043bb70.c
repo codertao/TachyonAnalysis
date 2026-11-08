@@ -10,7 +10,7 @@ uint FUN_0043bb70(int param_1,undefined4 *param_2)
   pcVar3 = *(char **)(param_1 + 0x20);
   if (*(int *)(param_1 + 0x54) != 0) {
     do {
-      iVar1 = FUN_004c67c0(pcVar3,param_2);
+      iVar1 = str_cmp(pcVar3,param_2);
       if ((iVar1 == 0) || (*pcVar3 == '\0')) goto LAB_0043bbfd;
       uVar2 = uVar2 + 1;
       pcVar3 = pcVar3 + 0x4c;
@@ -22,7 +22,7 @@ uint FUN_0043bb70(int param_1,undefined4 *param_2)
   *(char **)(param_1 + 0x20) = pcVar3;
   if ((pcVar3 != (char *)0x0) && (uVar2 = 0, *(int *)(param_1 + 0x54) != 0)) {
     do {
-      iVar1 = FUN_004c67c0(pcVar3,param_2);
+      iVar1 = str_cmp(pcVar3,param_2);
       if ((iVar1 == 0) || (*pcVar3 == '\0')) {
 LAB_0043bbfd:
         for (iVar1 = 0x13; iVar1 != 0; iVar1 = iVar1 + -1) {

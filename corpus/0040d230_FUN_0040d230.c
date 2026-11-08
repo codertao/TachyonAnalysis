@@ -16,7 +16,7 @@ void FUN_0040d230(void)
   uVar1 = DAT_005a67c0;
   if (DAT_005b9020 != 0) {
     FUN_00451fc0(0,0,0x27f,0x1df,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     FUN_00452180(1);
     FUN_0041f6e0(DAT_005b97a8,5,0,0x276,0x19,0x80,DAT_005b97a0,0,0xffff00,80000,2);
     uVar5 = FUN_0040d200(DAT_005b9020,DAT_005b9020);
@@ -32,7 +32,7 @@ void FUN_0040d230(void)
     str_sprintf(local_80,s_EXP___d__d_00533634,DAT_005b9028,DAT_005b902c);
     FUN_0048e970(local_80,DAT_005b97a0,0x1ef,7,&DAT_006060ff,0xffff,0x10000,2);
     FUN_00452070(uVar1,uVar2,uVar3,uVar4,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
   }
   return;
 }

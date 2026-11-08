@@ -20,7 +20,7 @@ void FUN_0040e530(undefined4 param_1)
   uVar2 = FUN_004580c0(&DAT_00533540);
   uVar3 = FUN_0040e310(uVar1);
   uVar4 = FUN_0040e310(uVar2);
-  if (DAT_005b2d70 == 0) {
+  if (GLBL_spacesav[0x6c] == 0) {
     pcVar8 = s_PLAYER_005339a8;
   }
   else {
@@ -36,7 +36,7 @@ void FUN_0040e530(undefined4 param_1)
     uVar6 = *(undefined4 *)(iVar5 + 4);
   }
   str_sprintf(param_1,s_REGION__s_BORA_CNT__d_GSPAN_CNT__00533948,local_40,uVar4,uVar3,uVar6,uVar7,
-              DAT_005b2d50,local_60,DAT_005b2d7c);
+              GLBL_spacesav[100],local_60,GLBL_spacesav[0x6f]);
   return;
 }
 

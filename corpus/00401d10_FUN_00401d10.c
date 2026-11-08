@@ -5,13 +5,13 @@ void FUN_00401d10(int param_1,int param_2)
   int iVar1;
   undefined2 uVar2;
   uint uVar3;
-  undefined1 local_c [12];
+  vec3 local_c;
   
   iVar1 = *(int *)(param_1 + 0xf8);
   *(undefined1 *)(param_1 + 0x326) = 0;
   if (((*(uint *)(param_1 + 800) ^ DAT_005897e4) & 0xf) == 0) {
-    FUN_00401b30(param_1,local_c);
-    uVar3 = FUN_0048e440(param_1 + 0x34,local_c);
+    FUN_00401b30(param_1,&local_c);
+    uVar3 = distance_between((vec3 *)(param_1 + 0x34),&local_c);
     if ((uVar3 < 0xc350000) && (0x320000 < uVar3)) {
       FUN_004014a0(param_1);
     }
@@ -32,7 +32,7 @@ void FUN_00401d10(int param_1,int param_2)
     else {
       *(undefined2 *)(param_1 + 0x312) = 0x400;
     }
-    FUN_0040f380(param_1 + 0x34,local_c,param_1 + 0xdc);
+    FUN_0040f380((vec3 *)(param_1 + 0x34),&local_c,param_1 + 0xdc);
   }
   return;
 }

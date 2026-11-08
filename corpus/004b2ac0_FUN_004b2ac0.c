@@ -8,9 +8,7 @@ undefined4 FUN_004b2ac0(uint param_1,int *param_2,int *param_3)
   int iVar2;
   float *pfVar3;
   int local_2c;
-  int local_24;
-  int local_20;
-  int local_1c;
+  vec3 local_24;
   undefined1 local_18 [24];
   
   if (param_1 == 0) {
@@ -29,46 +27,46 @@ undefined4 FUN_004b2ac0(uint param_1,int *param_2,int *param_3)
   *param_3 = 0;
   param_3[1] = 0;
   param_3[2] = 0;
-  FUN_004b1bb0(local_18,param_1 + 0x34);
+  FUN_004b1bb0(local_18,(vec3 *)(param_1 + 0x34));
   pfVar3 = *(float **)(iVar1 + 0x14);
   param_1 = 0;
   if (*(int *)(iVar1 + 8) != 0) {
     do {
       local_2c = (int)(longlong)ROUND(*pfVar3 * _DAT_0052e544);
-      local_24 = local_2c;
+      local_24.x = local_2c;
       local_2c = (int)(longlong)ROUND(pfVar3[1] * _DAT_0052e544);
-      local_20 = local_2c;
+      local_24.y = local_2c;
       local_2c = (int)(longlong)ROUND(pfVar3[2] * _DAT_0052e544);
-      local_1c = local_2c;
-      FUN_004b24d0(&local_24,&local_24);
+      local_24.z = local_2c;
+      some_rotate_by_global(&local_24,&local_24);
       iVar2 = *param_2;
-      if (local_24 <= *param_2) {
-        iVar2 = local_24;
+      if (local_24.x <= *param_2) {
+        iVar2 = local_24.x;
       }
       *param_2 = iVar2;
       iVar2 = param_2[1];
-      if (local_20 <= param_2[1]) {
-        iVar2 = local_20;
+      if (local_24.y <= param_2[1]) {
+        iVar2 = local_24.y;
       }
       param_2[1] = iVar2;
       iVar2 = param_2[2];
-      if (local_1c <= param_2[2]) {
-        iVar2 = local_1c;
+      if (local_24.z <= param_2[2]) {
+        iVar2 = local_24.z;
       }
       param_2[2] = iVar2;
       iVar2 = *param_3;
-      if (*param_3 <= local_24) {
-        iVar2 = local_24;
+      if (*param_3 <= local_24.x) {
+        iVar2 = local_24.x;
       }
       *param_3 = iVar2;
       iVar2 = param_3[1];
-      if (param_3[1] <= local_20) {
-        iVar2 = local_20;
+      if (param_3[1] <= local_24.y) {
+        iVar2 = local_24.y;
       }
       param_3[1] = iVar2;
       iVar2 = param_3[2];
-      if (param_3[2] <= local_1c) {
-        iVar2 = local_1c;
+      if (param_3[2] <= local_24.z) {
+        iVar2 = local_24.z;
       }
       param_3[2] = iVar2;
       param_1 = param_1 + 1;

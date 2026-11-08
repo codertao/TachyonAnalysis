@@ -8,7 +8,7 @@ void FUN_0044cdd0(void)
   int iVar2;
   int iVar3;
   undefined4 uVar4;
-  undefined *puVar5;
+  undefined4 uVar5;
   char *pcVar6;
   
   if (DAT_00591100 == 0) {
@@ -21,7 +21,7 @@ void FUN_0044cdd0(void)
     if (iVar1 != 0) {
       if ((*(byte *)(iVar1 + 0x30) & 1) != 0) {
         FUN_0043a990(&g_UiManager,s_WndMPSystemLan_00547ee0);
-        FUN_0044ccc0(s_WndPassword_00548084,s_WndMPSystem_00547ea8,&g_UiManager,&DAT_005b2c38,0x1f,
+        FUN_0044ccc0(s_WndPassword_00548084,s_WndMPSystem_00547ea8,&g_UiManager,0x5b2c38,0x1f,
                      s_EntryPassWord_00548090);
         iVar2 = FUN_0044cc00();
         while (iVar2 != 0) {
@@ -42,13 +42,13 @@ void FUN_0044cdd0(void)
         FUN_0044c3f0();
         if ((*(byte *)(iVar1 + 0x30) & 1) == 0) {
           uVar4 = *(undefined4 *)(iVar1 + 8);
-          puVar5 = (undefined *)0x0;
+          uVar5 = 0;
         }
         else {
           uVar4 = *(undefined4 *)(iVar1 + 8);
-          puVar5 = &DAT_005b2c38;
+          uVar5 = 0x5b2c38;
         }
-        iVar3 = FUN_004a6ec0(uVar4,puVar5);
+        iVar3 = FUN_004a6ec0(uVar4,uVar5);
         if (iVar2 == 0) {
           thunk_FUN_00445720();
           goto LAB_0044cf17;
@@ -65,8 +65,8 @@ LAB_0044cf17:
         pcVar6 = s_HOST_MSG_ERR_ERR_00548070;
       }
       else {
-        if (((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) {
-          FUN_004903c0();
+        if (((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) {
+          Voice_ClientInit();
           if (DAT_005b2b04 == 0) {
             _DAT_005916c8 = DAT_00565894;
           }

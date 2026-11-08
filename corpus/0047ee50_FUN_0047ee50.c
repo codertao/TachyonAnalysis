@@ -46,7 +46,7 @@ void FUN_0047ee50(int param_1)
   }
   DAT_005636b0 = iVar1;
   DAT_005636ac = uVar5;
-  Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseNews_00552c88,&DAT_00552c14,0);
+  Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseNews_00552c88,&DAT_00552c14,0);
   FUN_0047ef20();
   return;
 }

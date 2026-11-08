@@ -10,7 +10,7 @@ void FUN_00456850(int param_1)
   *(undefined4 *)(param_1 + 0x68) = 0;
   FUN_004565e0(param_1);
   FUN_0045cbf0(param_1,*(int *)(param_1 + 100) + 0x14);
-  FUN_00461610(param_1);
+  SrvSend_SpawnEntity(param_1);
   *(undefined1 *)(param_1 + 0xc3) = 3;
   return;
 }

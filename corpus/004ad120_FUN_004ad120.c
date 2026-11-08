@@ -7,8 +7,8 @@ void FUN_004ad120(void)
   int iVar3;
   uint uVar4;
   
-  if (DAT_00604440 != 0) {
-    puVar1 = (uint *)(DAT_00604490 * DAT_00604464 + DAT_00604440);
+  if (GLBL_some_str != 0) {
+    puVar1 = (uint *)(DAT_00604490 * DAT_00604464 + GLBL_some_str);
     iVar3 = DAT_0060446c - DAT_00604464;
     if (0 < iVar3) {
       uVar2 = (DAT_0060f864 << 8 | DAT_0060f868) << 8 | DAT_0060f86c;

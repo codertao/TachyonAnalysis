@@ -13,7 +13,7 @@ void FUN_0044c9d0(void)
   puVar5 = &DAT_00591b40;
   do {
     str_sprintf(puVar5,s_BtnLanSlot_d_00548020,uVar4);
-    FUN_0043ce50(&g_UiManager,puVar5,8);
+    set_button_state(&g_UiManager,puVar5,8);
     Ui_SetButtonFlag(&g_UiManager,puVar5,0x2000);
     Ui_SetButtonFlag(&g_UiManager,puVar5,4);
     puVar1 = puVar5 + 0x80;

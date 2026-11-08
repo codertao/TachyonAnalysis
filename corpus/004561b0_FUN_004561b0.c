@@ -16,7 +16,7 @@ void FUN_004561b0(int *param_1,int param_2,uint param_3,uint param_4)
     }
   }
   if ((param_3 & 2) != 0) {
-    iVar1 = FUN_00455e40(param_1,param_2);
+    iVar1 = Shield_GetMax(param_1,param_2);
     if (((param_3 & 0x10) != 0) || (param_1[2] != 0)) {
       param_1[2] = param_1[2] + (*(int *)(&DAT_00532fc8 + param_4 * 4) * (param_1[3] >> 0xb) >> 8);
     }

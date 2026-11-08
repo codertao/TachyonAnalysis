@@ -14,7 +14,7 @@ void FUN_004933f0(int param_1,int param_2)
   lVar1 = (longlong)local_8 * (longlong)*(int *)(param_2 + 0x108);
   local_c = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;
   if ((int)local_c < 0x1001) {
-    FUN_0048e380(param_1 + 0xc,0xc);
+    clr_bytes(param_1 + 0xc,0xc);
     return;
   }
   FUN_0040f380(param_1,&local_14,param_1 + 0xc);

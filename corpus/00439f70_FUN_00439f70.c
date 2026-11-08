@@ -13,7 +13,7 @@ void FUN_00439f70(undefined4 param_1,undefined4 param_2)
     do {
       if (*piVar3 != 0) {
         FUN_004acf80(piVar3);
-        FUN_0049c530(*piVar3);
+        OurFreeMem(*piVar3);
         if (*(int *)(iVar1 + 0x1650) != 0) {
           FUN_004ad7d0(*(int *)(iVar1 + 0x1650));
           *(undefined4 *)(iVar1 + 0x1650) = 0;

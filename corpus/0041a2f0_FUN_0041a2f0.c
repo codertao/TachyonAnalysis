@@ -6,9 +6,9 @@ void FUN_0041a2f0(void)
   int iVar2;
   int iVar3;
   
-  iVar3 = DAT_005b29a0;
-  if (DAT_005b29a0 == 0) {
-    DAT_005b29a0 = 0;
+  iVar3 = GLBL_some_sped_ll_head;
+  if (GLBL_some_sped_ll_head == 0) {
+    GLBL_some_sped_ll_head = 0;
     return;
   }
   do {
@@ -24,7 +24,7 @@ void FUN_0041a2f0(void)
     }
     iVar3 = iVar1;
   } while (iVar1 != 0);
-  DAT_005b29a0 = iVar1;
+  GLBL_some_sped_ll_head = iVar1;
   return;
 }
 

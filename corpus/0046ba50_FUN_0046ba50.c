@@ -44,7 +44,7 @@ void FUN_0046ba50(char *param_1,int param_2)
         *puVar3 = (uint)local_74;
         iVar4 = FUN_0048f670(s_WEAPON_TYPES_0054763c,_Dest,&local_78);
         if (iVar4 != 0) {
-          iVar4 = FUN_00493120(local_78 + -1);
+          iVar4 = WeaponDef_Get(local_78 + -1);
           if (iVar4 != 0) {
             uVar5 = FUN_00492b40(iVar4,0);
             *(undefined4 *)(_Dest + 0x9c) = uVar5;
@@ -59,7 +59,7 @@ void FUN_0046ba50(char *param_1,int param_2)
         uVar5 = FUN_0049e0d0(DAT_005879b0,s_ITEMS_0054ae3c,_Dest + 0x20);
         *(undefined4 *)(_Dest + 0x60) = uVar5;
         Job_ParseVarDirectives(_Dest + 0x68,local_6c);
-        if (DAT_005a6628 == 0) {
+        if (GLBL_cheat_related2 == 0) {
           uVar5 = FUN_00469d80(*(undefined4 *)(_Dest + 0x68),*(undefined4 *)(_Dest + 0x6c));
           *(undefined4 *)(_Dest + 0x90) = uVar5;
         }
@@ -102,7 +102,7 @@ void FUN_0046ba50(char *param_1,int param_2)
         FUN_0049adb0(local_6c);
         return;
       }
-      FUN_0049c530(*piVar1);
+      OurFreeMem(*piVar1);
       *piVar1 = 0;
     }
   }

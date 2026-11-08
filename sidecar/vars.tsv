@@ -9,3 +9,443 @@
 # Source of truth for variable naming. Apply with ApplyVars.java, then re-run ExportCorpus.java.
 # Back-port GUI edits with DumpVars.java -> vars.export.tsv, then merge the rows you want here.
 
+
+# --- back-ported from Ghidra GUI 2026-11-08 ---
+0x004041f0	param	Stack[0x4]:4	-	self	SpED *
+0x00404c00	local	Stack[-0x54]:12	-	tgt_offset	vec3
+0x00404c00	param	Stack[0x4]:4	-	self	SpED *
+0x00404c00	local	EAX:4	00404d3f	dist_to_tgt	int
+0x00404c00	local	HASH:27fc5127351:4	00404d3a	my_position	vec3 *
+0x00404c00	local	EAX:4	00404d1b	new_tgt	int
+0x00404c00	local	EDX:4	00404c32	uvar4_highbits	uint
+0x00404c00	local	ECX:4	00404c29	uVar4_semihighbits	uint
+0x00404c00	local	HASH:5fa166adcc:4	00404d31	tgt	SpED *
+0x00408ea0	local	ESI:4	00408eca	fvec	vec3 *
+0x0041a450	param	Stack[0x4]:4	-	max_cnt	uint
+0x0041ad70	param	Stack[0x4]:4	-	search_pos	vec3 *
+0x0041ad70	param	Stack[0x8]:4	-	some_idx	int
+0x0041ad70	local	EDI:4	0041ad7a	our_idx	int
+0x0041ad70	local	ESI:4	0041ad8b	sped_comparison	SpED *
+0x0041adc0	local	HASH:5f37e99785:4	0041addf	ll_ptr	int
+0x0041adc0	local	EDI:4	0041adc8	ll_idx	int
+0x0041b120	local	EAX:4	0041b131	keep_looping	int
+0x0041df50	param	Stack[0x4]:4	-	name	undefined4
+0x0041ebe0	local	ECX:4	0041ebe0	p2Len	uint
+0x0041ebe0	local	HASH:103f8a105230:4	0041ebfd	str2	char *
+0x0041f0e0	param	Stack[0x8]:4	-	voice_key	undefined4
+0x0041f0e0	local	EAX:4	0041f110	pPlayingSoundMaybe	int
+0x00420730	param	Stack[0x8]:4	-	probably_key	undefined4
+0x00420730	param	Stack[0x4]:4	-	enc	char *
+0x004207f0	param	Stack[0xc]:4	-	enc_key	undefined4
+0x00424030	param	Stack[0x4]:4	-	self	SpED *
+0x004294c0	local	Stack[-0xc]:4	-	diff_x	float
+0x004294c0	local	Stack[-0x8]:4	-	diff_y	float
+0x004297e0	param	Stack[0x4]:4	-	self	SpED *
+0x00429900	local	unique:00017200:4	0042996d	self	SpED *
+0x00429dd0	local	EAX:4	00429e10	fvec	vec3 *
+0x0042a6b0	local	EAX:4	0042a701	fvec	vec3 *
+0x00431de0	param	Stack[0x4]:4	-	name	undefined4
+0x00431de0	param	Stack[0x8]:4	-	maybe_size_or_flags	undefined4
+0x00432ae0	local	EAX:4	00432af0	uMode	UINT
+0x0043af70	local	EAX:4	0043af9a	BVar3	BOOL
+0x0043af70	local	unique:100001f9:8	0043b012	pt_06	POINT
+0x0043af70	local	unique:100001e1:8	0043af8f	pt_03	POINT
+0x0043af70	local	unique:100001c8:8	0043b009	pt_02	POINT
+0x0043af70	local	unique:100001f1:8	0043afdf	pt_05	POINT
+0x0043af70	local	unique:100001e9:8	0043afcc	pt_04	POINT
+0x0043af70	local	unique:100001a0:8	0043afad	pt	POINT
+0x0043af70	local	unique:100001c0:8	0043aff7	pt_01	POINT
+0x0043af70	local	unique:100001a8:8	0043afbf	pt_00	POINT
+0x0043bf10	param	Stack[0x4]:4	-	uiMgr	int
+0x0043bf10	param	Stack[0x8]:4	-	err_reason	undefined4
+0x0043c220	local	EAX:4	0043c396	BVar6	BOOL
+0x0043c220	local	unique:1000024c:8	0043c396	pt	POINT
+0x0043ce50	param	Stack[0x4]:4	-	ui_ctx	undefined4
+0x0043ce50	param	Stack[0x8]:4	-	element_name	undefined4
+0x0043ce50	param	Stack[0xc]:4	-	new_state	int
+0x0043e3d0	param	Stack[0x4]:4	-	ui_ctx	int
+0x0043e3d0	param	Stack[0x8]:4	-	name	undefined4
+0x0043e610	param	Stack[0x4]:4	-	uiCtx	undefined4
+0x0043e610	param	Stack[0x8]:4	-	name	undefined4
+0x0043e610	param	Stack[0xc]:4	-	flags	undefined4
+0x0043e670	param	Stack[0x4]:4	-	ui_ctx	undefined4
+0x0043e670	param	Stack[0x8]:4	-	elem_name	undefined4
+0x0043e670	param	Stack[0xc]:4	-	flags	undefined4
+0x0043e770	param	Stack[0x4]:4	-	uiMgr	undefined4
+0x0043e770	param	Stack[0x8]:4	-	dlg_type	undefined4
+0x0043e770	param	Stack[0xc]:4	-	err_reason	undefined4
+0x0043ebc0	local	Stack[-0x14]:4	0043ebc8	lpRect	tagRECT *
+0x0043ebc0	local	EAX:4	0043ebc8	hWnd	HWND
+0x0043f590	local	unique:1000003a:8	0043f5b6	pt	POINT
+0x0043f590	local	EAX:4	0043f5b6	BVar2	BOOL
+0x0043f620	param	Stack[0x4]:4	-	uiCtx	undefined4
+0x0043f620	param	Stack[0x8]:4	-	name	undefined4
+0x0043f620	param	Stack[0xc]:4	-	flag	uint
+0x0043fa70	param	Stack[0x4]:4	-	ui_ctx	int
+0x0043fa70	param	Stack[0x8]:4	-	name	undefined4
+0x00440080	local	unique:1000003d:8	004400f7	pt	POINT
+0x00440080	local	EAX:4	004400f7	BVar2	BOOL
+0x004479f0	local	EAX:4	00447a91	BVar5	BOOL
+0x004479f0	local	unique:100004a2:8	00447e15	pt_01	POINT
+0x004479f0	local	unique:1000049a:8	00447b95	pt_00	POINT
+0x004479f0	local	unique:10000492:8	00447a91	pt	POINT
+0x0044ba60	local	unique:00006800:4	0044ba7f	_Dest	char *
+0x0044d640	local	EAX:4	0044d66e	nNumberOfBytesToRead	DWORD
+0x0044d640	local	EAX:4	0044d65d	hFile	HANDLE
+0x0044de20	local	EAX:4	0044de35	BVar1	BOOL
+0x0044de20	local	unique:10000096:8	0044de35	pt	POINT
+0x0044df10	local	EAX:4	0044df3d	DVar2	DWORD
+0x0044df10	local	EAX:4	0044df2a	hFile	HANDLE
+0x0044df90	local	EAX:4	0044dfbd	nNumberOfBytesToRead	LPCSTR
+0x0044df90	local	EAX:4	0044dfa9	hFile	HANDLE
+0x0044e080	local	EAX:4	0044e0cb	hFile	HANDLE
+0x0044e110	local	EDI:4	0044e14e	p_Var3	_STARTUPINFOA *
+0x0044e110	local	EAX:4	0044e12d	hObject	HANDLE
+0x0044e110	local	EAX:4	0044e1cf	BVar1	BOOL
+0x0044e330	local	EAX:4	0044e407	DVar3	DWORD
+0x0044e5b0	local	EAX:4	0044e5ea	DVar1	DWORD
+0x0044e800	local	EAX:4	0044e884	BVar1	BOOL
+0x0044e800	local	EDI:4	0044e816	p_Var3	_STARTUPINFOA *
+0x0044eab0	local	EAX:4	0044eab0	DVar1	DWORD
+0x0044ead0	local	EAX:4	0044eb07	DVar2	DWORD
+0x00450770	local	Stack[-0x10]:16	-	sbfname	undefined1[16]
+0x00450770	local	Stack[-0x20]:16	-	binname	undefined1[16]
+0x00451a10	local	Stack[-0x34]:4	00451a85	lpRect	tagRECT *
+0x00451a10	local	EAX:4	00451a85	hWnd	HWND
+0x00455090	local	EAX:4	00455155	fvec	vec3 *
+0x004572d0	local	EAX:4	0045738b	BVar2	BOOL
+0x0045c0d0	local	unique:00006600:4	0045c167	fvec	vec3 *
+0x0045d620	local	EAX:4	0045d65f	DVar1	DWORD
+0x00462ad0	local	EAX:4	00462ad0	DVar1	DWORD
+0x00465c20	local	EAX:4	00465c8b	BVar5	BOOL
+0x00465c20	local	unique:100000b7:4	00465c20	LVar3	LONG
+0x00465c20	local	unique:100000bb:4	00465c20	LVar4	LONG
+0x00465c20	local	unique:10000066:8	00465c8b	pt	POINT
+0x00466dc0	local	EAX:4	00466de5	DVar2	DWORD
+0x00467840	local	unique:00006600:4	004679a8	fvec	vec3 *
+0x004679f0	local	unique:00006600:4	00467a23	fvec	vec3 *
+0x0046ba50	local	unique:00017200:4	0046baa4	_Dest	char *
+0x0046bf30	local	ESI:4	0046bfdd	_Source	char *
+0x0046bf30	local	EDI:4	0046bfca	_Dest	char *
+0x00472260	local	EAX:4	00472393	BVar6	BOOL
+0x00472260	local	unique:10000813:8	004724f5	pt_01	POINT
+0x00472260	local	unique:1000080b:8	004723e2	pt_00	POINT
+0x00472260	local	unique:10000803:8	00472393	pt	POINT
+0x00472260	local	unique:1000081b:8	0047276e	pt_02	POINT
+0x0047cc50	local	EAX:4	0047cd12	BVar1	BOOL
+0x0047cc50	local	unique:100001a2:8	0047ce29	pt_03	POINT
+0x0047cc50	local	unique:1000019a:8	0047cdcf	pt_02	POINT
+0x0047cc50	local	unique:10000192:8	0047cd67	pt_01	POINT
+0x0047cc50	local	unique:1000018a:8	0047cd12	pt_00	POINT
+0x0047cc50	local	unique:10000182:8	0047cc9d	pt	POINT
+0x0047cf00	local	unique:1000031a:8	0047d352	pt_01	POINT
+0x0047cf00	local	unique:10000312:8	0047d2cc	pt_00	POINT
+0x0047cf00	local	EAX:4	0047d052	BVar7	BOOL
+0x0047cf00	local	unique:1000030a:8	0047d052	pt	POINT
+0x00480220	local	EAX:4	0048025e	BVar5	BOOL
+0x00480220	local	unique:1000006d:4	00480236	LVar3	LONG
+0x00480220	local	unique:10000069:4	00480236	LVar2	LONG
+0x00480220	local	unique:10000052:8	0048025e	pt	POINT
+0x00481c40	local	EDI:4	00481c8d	pBVar15	BYTE *
+0x00484040	local	EAX:4	00484087	BVar4	BOOL
+0x00484040	local	unique:10000089:4	00484040	LVar3	LONG
+0x00484040	local	unique:10000085:4	00484040	LVar2	LONG
+0x00484040	local	unique:10000062:8	00484087	pt	POINT
+0x00485f30	local	EAX:4	00485fdb	BVar4	BOOL
+0x00485f30	local	unique:100000c1:8	00485fdb	pt	POINT
+0x00485f30	local	unique:100000ea:4	00485fb2	LVar2	LONG
+0x00485f30	local	unique:100000e6:4	00485fb2	LVar1	LONG
+0x00485f30	local	unique:100000c9:8	00485fec	pt_00	POINT
+0x00486ed0	local	EAX:4	00486ee3	DVar1	DWORD
+0x00488080	local	EAX:4	00488163	DVar3	DWORD
+0x0048bbb0	local	ECX:4	0048bc2d	_Count	size_t
+0x0048d400	local	unique:100000e5:8	0048d5aa	pt	POINT
+0x0048d400	local	EAX:4	0048d5aa	BVar5	BOOL
+0x0048e380	param	Stack[0x4]:4	-	tgt	undefined4 *
+0x0048e380	param	Stack[0x8]:4	-	byte_len	uint
+0x0048e4c0	param	Stack[0x4]:4	-	x1	int
+0x0048e4c0	param	Stack[0x8]:4	-	y1	int
+0x0048e4c0	param	Stack[0xc]:4	-	x2	int
+0x0048e4c0	param	Stack[0x10]:4	-	y2	int
+0x0048e510	local	HASH:6bfa63b04af:4	0048e52e	flen	float
+0x0048e510	local	HASH:5fe6685f11:4	0048e514	fy	float
+0x0048e510	local	HASH:5f7c2c05ed:4	0048e51a	fx	float
+0x0048e720	param	Stack[0xc]:4	-	result_out	vec3 *
+0x0048ede0	local	EAX:4	0048ee11	BVar1	BOOL
+0x0048ede0	local	EAX:4	0048edf1	hFindFile	HANDLE
+0x0048fd70	local	EAX:4	0048fde4	_Source	char *
+0x00493650	local	ESI:4	00493673	fresult_out	vec3 *
+0x00494db0	local	unique:00006800:4	00494e4c	fvec	vec3 *
+0x004957a0	local	unique:00006800:4	004957b3	fvec	vec3 *
+0x0049c3b0	param	Stack[0x10]:4	-	done_for	LPCSTR
+0x0049c3b0	local	ESI:4	0049c411	pCVar5	LPCSTR
+0x0049c3b0	param	Stack[0x4]:4	-	size_bytes	int
+0x0049c670	param	Stack[0x4]:4	-	mem	int
+0x0049c670	param	Stack[0x8]:4	-	flags	uint
+0x0049dea0	local	HASH:5f44a35124:4	0049deb3	record_count	int
+0x0049dea0	local	ESI:4	0049dea6	record_idx	uint
+0x0049df00	param	Stack[0x4]:4	-	file_name	undefined4
+0x0049df00	param	Stack[0x8]:4	-	flags_or_key_or_other	undefined4
+0x0049ecb0	local	EAX:4	0049ecbb	BVar1	BOOL
+0x0049f400	local	EAX:4	0049f42f	hWnd	HWND
+0x0049f5c0	local	ECX:4	0049f5dc	UVar2	UINT
+0x0049fc40	local	EAX:4	0049fd1c	pCVar2	LPSTR
+0x0049fdd0	local	Stack[-0xa4]:4	-	ppppiStack_a4	int * * * *
+0x0049fdd0	local	unique:100002c7:4	0049fe83	ppppiVar2	int * * * *
+0x0049fdd0	local	EAX:4	0049fe4d	ppppiVar4	int * * * *
+0x0049fdd0	local	unique:100002d3:4	0049fe94	ppppiVar3	int * * * *
+0x0049fdd0	local	Stack[-0xf8]:4	-	pppppiStack_f8	int * * * * *
+0x0049fdd0	local	Stack[-0xec]:4	-	pppppiStack_ec	int * * * * *
+0x0049fdd0	local	Stack[-0xfc]:4	-	ppppppiStack_fc	int * * * * * *
+0x0049fdd0	local	Stack[-0x10c]:4	-	ppppiStack_10c	int * * * *
+0x0049fdd0	local	Stack[-0xb0]:4	-	ppppiStack_b0	int * * * *
+0x0049fdd0	local	Stack[-0xc8]:4	-	ppppiStack_c8	int * * * *
+0x0049fdd0	local	Stack[-0xbc]:4	-	ppppiStack_bc	int * * * *
+0x0049fdd0	local	Stack[-0xc0]:4	-	ppppiStack_c0	int * * * *
+0x0049fdd0	local	Stack[-0xd4]:4	-	pppppiStack_d4	int * * * * *
+0x0049fdd0	local	Stack[-0xcc]:4	-	ppppiStack_cc	int * * * *
+0x0049fdd0	local	Stack[-0xe4]:4	-	ppppiStack_e4	int * * * *
+0x0049fdd0	local	Stack[-0xe8]:4	-	pppppiStack_e8	int * * * * *
+0x0049fdd0	local	Stack[-0xe0]:4	-	ppppiStack_e0	int * * * *
+0x004a03c0	local	EAX:4	004a03cd	LVar1	LONG
+0x004a0d60	param	Stack[0x4]:4	-	file_name	LPCSTR
+0x004a0dd0	local	EAX:4	004a0dd7	hFile	HFILE
+0x004a0ea0	param	Stack[0x4]:4	-	dst	LPVOID
+0x004a0ea0	param	Stack[0x8]:4	-	len_bytes	UINT
+0x004a0ef0	param	Stack[0x4]:4	-	bindata	LPCCH
+0x004a0ef0	param	Stack[0x8]:4	-	len	UINT
+0x004a0f10	local	EAX:4	004a0f4f	size_bytes	undefined4
+0x004a0fe0	local	EAX:4	004a1004	file_len	undefined4
+0x004a1310	local	EAX:4	004a1393	pCVar2	LPCSTR
+0x004a1550	local	EAX:4	004a159e	pCVar2	LPCSTR
+0x004a1620	local	EAX:4	004a1648	pCVar1	LPCSTR
+0x004a1620	param	Stack[0x4]:4	-	file_name	LPCSTR
+0x004a1780	local	EAX:4	004a17da	pCVar3	LPCSTR
+0x004a18e0	local	EAX:4	004a194a	pCVar4	LPCSTR
+0x004a1a60	local	Stack[-0x80]:128	-	str_msg	CHAR[128]
+0x004a1a60	param	Stack[0x4]:4	-	filename	LPCSTR
+0x004a1ef0	local	EAX:4	004a236b	MVar6	MMRESULT
+0x004a2460	local	EAX:4	004a2492	UVar2	UINT
+0x004a2520	local	EDI:4	004a2587	pDVar5	DWORD *
+0x004a2520	local	EAX:4	004a2776	MVar3	MMRESULT
+0x004a4040	param	Stack[0x4]:4	-	out_buf	undefined4
+0x004a4040	param	Stack[0x8]:4	-	file_len	undefined4
+0x004a4130	param	Stack[0x4]:4	-	filename	undefined4
+0x004a4130	param	Stack[0x8]:4	-	maybe_pff	int
+0x004a4130	local	EAX:4	004a415a	size_bytes	undefined4
+0x004a43f0	local	EAX:4	004a43f7	hdc	HDC
+0x004a44c0	local	EAX:4	004a4adf	hdc	HDC
+0x004a54c0	local	EAX:4	004a54e7	hdc	HDC
+0x004a5520	local	EAX:4	004a5560	pBVar1	BYTE *
+0x004a5520	local	EDI:4	004a5545	pPVar4	PALETTEENTRY *
+0x004a5520	local	EAX:4	004a5566	hdc	HDC
+0x004a5520	local	EAX:4	004a5573	pHVar2	HPALETTE
+0x004a55c0	local	EAX:4	004a5601	plpal	LOGPALETTE *
+0x004a55c0	local	EAX:4	004a55d2	hdc	HDC
+0x004a55c0	local	ECX:4	004a565e	pWVar3	WORD *
+0x004a5760	local	unique:00017200:4	004a57c9	pmh	LPMIDIHDR
+0x004a5850	local	EAX:4	004a58c5	MVar2	MMRESULT
+0x004a5900	local	EAX:4	004a5960	MVar2	MMRESULT
+0x004a5ad0	local	EAX:4	004a5b26	MVar1	MMRESULT
+0x004a5b50	local	EAX:4	004a5bc4	MVar1	MMRESULT
+0x004a5ca0	local	EAX:4	004a5e01	MVar6	MMRESULT
+0x004a5ca0	local	unique:100003be:4	004a5ebb	DVar4	DWORD_PTR
+0x004a5ca0	local	ECX:4	004a5ce7	UVar10	UINT
+0x004a5ca0	local	Stack[-0x24]:4	004a5f07	dwBytes	uint
+0x004a60d0	local	EBX:4	004a6126	DVar3	DWORD
+0x004a60d0	local	ESI:4	004a616e	DVar4	DWORD
+0x004a60d0	local	EAX:4	004a60fd	MVar1	MMRESULT
+0x004a84d0	local	EAX:4	004a8504	DVar1	DWORD
+0x004a84d0	local	EAX:4	004a8518	DVar3	DWORD
+0x004a8990	local	ECX:4	004a89ab	UVar1	UINT
+0x004a9000	local	EAX:4	004a9033	hFile	HANDLE
+0x004a90a0	local	EAX:4	004a910a	BVar2	BOOL
+0x004a9260	local	EAX:4	004a92cb	DVar3	DWORD
+0x004a9260	local	EAX:4	004a92c3	MVar2	MMRESULT
+0x004a9260	local	EAX:4	004a92a6	DVar1	DWORD
+0x004a9560	local	EAX:4	004a95c4	MVar1	MMRESULT
+0x004a9950	local	EAX:4	004a999c	MVar1	MCIERROR
+0x004a99f0	local	EAX:4	004a9aa8	MVar2	MCIERROR
+0x004a9d60	local	EAX:4	004a9db9	HVar2	HRESULT
+0x004aa330	local	EAX:4	004aa374	HVar1	HRESULT
+0x004adb70	local	EAX:4	004adb9a	pFVar1	FARPROC
+0x004adc30	local	EAX:4	004adc3f	pFVar1	FARPROC
+0x004b02d0	local	EAX:4	004b038e	done_for	LPCSTR
+0x004b24d0	local	HASH:5ff4085929f:4	004b24f3	initial_rot1	float
+0x004b24d0	local	HASH:5ff3e9537c6:4	004b2507	initial_rot2	float
+0x004b24d0	param	Stack[0x4]:4	-	fvec	vec3 *
+0x004b24d0	param	Stack[0x8]:4	-	fresult_out	vec3 *
+0x004b24d0	local	HASH:5f6df7aeb2:4	004b24d7	initial_z	int
+0x004b5160	param	Stack[0x4]:4	-	sbf_file	LPCSTR
+0x004b5160	local	EAX:4	004b5263	BVar2	BOOL
+0x004b5160	param	Stack[0x8]:4	-	bin_file	LPCSTR
+0x004b5160	local	ESI:4	004b524e	lpBuffer	undefined *
+0x004b5290	param	Stack[0x4]:4	-	sbf_name	undefined4
+0x004b5290	param	Stack[0x8]:4	-	bin_name	LPCSTR
+0x004b5320	local	unique:00017200:4	004b5388	lDistanceToMove	LONG
+0x004b53b0	local	EAX:4	004b5409	BVar2	BOOL
+0x004b5550	local	EAX:4	004b557c	BVar1	BOOL
+0x004b57e0	param	Stack[0x4]:4	-	bin_file	char *
+0x004b62c0	local	EAX:4	004b6331	wParam	WPARAM
+0x004b7870	local	HASH:5f39814709:4	004b7874	next	int
+0x004bab80	local	EAX:4	004baba8	DVar1	DWORD
+0x004bc50d	local	EAX:4	004bc579	DVar1	DWORD
+0x004bc6a2	local	EDI:4	004bc800	_Str2	char *
+0x004bcbfc	local	EAX:4	004bcc4b	_Count	size_t
+0x004bcbfc	local	ESI:4	004bcc45	_Source	char *
+0x004bcbfc	local	Stack[-0x1c]:4	004bcca7	_Dest	char *
+0x004bcd20	param	Stack[0x4]:4	-	_Str	char *
+0x004bcd20	param	Stack[0x8]:4	-	_SubStr	char *
+0x004bcdd0	param	Stack[0x4]:4	-	_Dest	char *
+0x004bcdd0	param	Stack[0x8]:4	-	_Source	char *
+0x004bcdd0	param	Stack[0xc]:4	-	_Count	size_t
+0x004bced0	param	Stack[0x4]:4	-	_Str	char *
+0x004bced0	param	Stack[0x8]:4	-	_Ch	int
+0x004bd3c6	param	Stack[0x4]:4	-	lookup_code	undefined4
+0x004bd3c6	param	Stack[0xc]:4	-	count	uint
+0x004bd3c6	param	Stack[0x10]:4	-	stride	int
+0x004bd3c6	param	Stack[0x14]:4	-	callback	undefined *
+0x004bd486	param	Stack[0x4]:4	-	_Size	size_t
+0x004bd498	param	Stack[0x4]:4	-	_Size	size_t
+0x004bd498	param	Stack[0x8]:4	-	_NhFlag	int
+0x004bd629	local	EAX:4	004bd6fd	pHVar5	HMODULE
+0x004bd629	local	EAX:4	004bd64f	DVar1	DWORD
+0x004bdc53	param	Stack[0x4]:4	-	_Code	int
+0x004bdc64	local	EAX:4	004bdc79	hProcess	HANDLE
+0x004bdc64	local	Stack[-0x8]:4	004bdc79	uExitCode	UINT
+0x004bdf99	param	Stack[0x4]:4	-	search_for	byte *
+0x004bdf99	param	Stack[0x10]:4	-	pff_entry_list_thing	int
+0x004bdf99	param	Stack[0x14]:4	-	buf_out	undefined1 *
+0x004be420	param	Stack[0x4]:4	-	_Dest	char *
+0x004be420	param	Stack[0x8]:4	-	_Source	char *
+0x004be420	param	Stack[0xc]:4	-	_Count	size_t
+0x004be5a0	local	EAX:4	004be5d3	hObject	HANDLE
+0x004be5a0	local	EAX:4	004be5da	BVar3	BOOL
+0x004be5a0	local	EAX:4	004be5e4	DVar4	DWORD
+0x004be688	local	EAX:4	004be70c	DVar6	DWORD
+0x004be688	local	EAX:4	004be702	BVar5	BOOL
+0x004be8c6	local	EAX:4	004be8cd	hFile	HANDLE
+0x004be8c6	local	EAX:4	004be8fd	DVar4	DWORD
+0x004be8c6	local	EAX:4	004be8f0	DVar3	DWORD
+0x004be939	local	EAX:4	004beaec	hFile	HANDLE
+0x004be939	local	EAX:4	004beaf8	DVar5	DWORD
+0x004bf57a	local	EAX:4	004bf58f	pFVar1	FARPROC
+0x004bf57a	local	EAX:4	004bf57f	hModule	HMODULE
+0x004bf663	param	Stack[0x4]:4	-	flag	int
+0x004bf663	param	Stack[0x8]:4	-	argument	char *
+0x004bf663	param	Stack[0xc]:4	-	number	char *
+0x004bf953	param	Stack[0x4]:4	-	arg	double *
+0x004bf953	param	Stack[0x8]:4	-	buffer	char *
+0x004bf953	param	Stack[0xc]:4	-	sizeInBytes	size_t
+0x004bf953	param	Stack[0x10]:4	-	format	int
+0x004bf953	param	Stack[0x14]:4	-	precision	int
+0x004bf953	param	Stack[0x18]:4	-	caps	int
+0x004bfb29	param	Stack[0x4]:4	-	_File	FILE *
+0x004bfc8b	local	EAX:4	004bfca5	lpTlsValue	DWORD *
+0x004bfc8b	local	EAX:4	004bfcca	DVar2	DWORD
+0x004bfc8b	local	EAX:4	004bfcb9	BVar1	BOOL
+0x004bfcf2	local	EAX:4	004bfd37	DVar2	DWORD
+0x004bfcf2	local	EAX:4	004bfd26	BVar1	BOOL
+0x004bfcf2	local	EAX:4	004bfd02	lpTlsValue	DWORD *
+0x004bfcf2	local	EAX:4	004bfcf4	dwErrCode	DWORD
+0x004bfe3e	local	EAX:4	004bfe6f	_Str1	char *
+0x004bfe3e	local	EAX:4	004bfe8c	DVar3	DWORD
+0x004bfe3e	local	ESI:4	004bffe7	_Source	char *
+0x004c07d6	local	EAX:4	004c0815	BVar2	BOOL
+0x004c12d5	local	unique:00006600:4	004c13da	pBVar1	BYTE *
+0x004c12d5	local	EAX:4	004c1444	pBVar6	BYTE *
+0x004c12d5	local	EAX:4	004c138d	BVar5	BOOL
+0x004c1520	param	Stack[0x4]:4	-	_Str1	char *
+0x004c1520	param	Stack[0x8]:4	-	_Str2	char *
+0x004c15cd	local	EAX:4	004c15e8	lpCriticalSection	LPCRITICAL_SECTION
+0x004c1690	param	Stack[0x4]:4	-	_Str	char *
+0x004c1710	param	Stack[0x4]:4	-	_Str1	char *
+0x004c1710	param	Stack[0x8]:4	-	_Str2	char *
+0x004c1710	param	Stack[0xc]:4	-	_MaxCount	size_t
+0x004c1880	local	EAX:4	004c1964	BVar3	BOOL
+0x004c1fb1	local	EAX:4	004c1fcb	BVar1	BOOL
+0x004c1fe7	local	EAX:4	004c205b	_Source	undefined * *
+0x004c2130	param	Stack[0x4]:4	-	_Dst	void *
+0x004c2130	param	Stack[0x8]:4	-	_Val	int
+0x004c2130	param	Stack[0xc]:4	-	_Size	size_t
+0x004c37b9	local	EDI:4	004c37fc	lpAddress	int *
+0x004c444e	local	EAX:4	004c457a	LVar6	LONG
+0x004c4924	local	EDI:4	004c4939	pCVar9	LPCH
+0x004c4924	local	ESI:4	004c4937	lpWideCharStr	LPWCH
+0x004c4924	local	EAX:4	004c4993	pWVar4	WCHAR *
+0x004c4924	local	EAX:4	004c4992	pWVar3	WCHAR *
+0x004c4924	local	unique:00017100:2	004c498b	WVar2	WCHAR
+0x004c4924	local	EAX:4	004c49c0	pCVar6	LPSTR
+0x004c4924	local	EAX:4	004c49b7	_Size	size_t
+0x004c4a56	local	EBX:4	004c4b91	pUVar5	UINT *
+0x004c4a56	local	EAX:4	004c4bc2	hFile	HANDLE
+0x004c4a56	local	EAX:4	004c4b5f	DVar4	DWORD
+0x004c4a56	local	EDI:4	004c4b44	UVar9	UINT
+0x004c4a56	local	EDI:4	004c4ae4	UVar8	UINT
+0x004c4c4b	local	Stack[-0x1d8]:4	-	pcStackY_1d8	char *
+0x004c4c4b	local	Stack[-0x1dc]:4	-	puStackY_1dc	undefined1 *
+0x004c4c4b	local	Stack[-0x1e3]:7	-	acStackY_1e3	char[7]
+0x004c4c4b	local	Stack[-0x1c8]:4	-	puStackY_1c8	undefined1 *
+0x004c4c4b	local	Stack[-0x1cc]:4	-	uStackY_1cc	undefined4
+0x004c4c4b	local	Stack[-0x1d0]:4	-	puStackY_1d0	undefined1 *
+0x004c4c4b	local	Stack[-0x1d4]:4	-	uStackY_1d4	undefined4
+0x004c4c4b	local	Stack[-0x1c4]:4	-	puStackY_1c4	undefined *
+0x004c4c4b	local	EAX:4	004c4cb8	DVar3	DWORD
+0x004c4c4b	local	EAX:4	004c4c59	pDVar2	DWORD *
+0x004c4c4b	local	Stack[-0x1bc]:4	004c4d8e	lpBuffer	LPCVOID
+0x004c4c4b	local	EAX:4	004c4d8e	hFile	HANDLE
+0x004c4c4b	local	Stack[-0x1b0]:4	004c4d7e	lpOverlapped	LPOVERLAPPED
+0x004c4c4b	local	Stack[-0x1b4]:4	004c4d83	lpNumberOfBytesWritten	LPDWORD
+0x004c4e88	local	EAX:4	004c4f4f	BVar6	BOOL
+0x004c5080	local	unique:00006600:4	004c51c1	pBVar1	BYTE *
+0x004c5080	local	EAX:4	004c50d1	BVar6	BOOL
+0x004c5080	local	EAX:4	004c50b8	pUVar5	UINT *
+0x004c5080	local	EAX:4	004c5093	CodePage	UINT
+0x004c5080	local	ECX:4	004c5112	pBVar9	BYTE *
+0x004c52d3	local	EAX:4	004c52e7	BVar2	BOOL
+0x004c52d3	local	EDX:4	004c531c	pBVar9	BYTE *
+0x004c5631	local	Stack[-0x14]:4	004c5678	nStdHandle	DWORD
+0x004c56ad	local	Stack[-0x10]:4	004c56f7	nStdHandle	DWORD
+0x004c57ef	local	Stack[-0x28]:4	-	uStackY_28	undefined4
+0x004c57ef	local	Stack[-0x24]:4	-	uStackY_24	undefined4
+0x004c57ef	local	Stack[-0x20]:4	-	uStackY_20	undefined4
+0x004c57ef	local	EAX:4	004c58c3	hFile	HANDLE
+0x004c57ef	local	EAX:4	004c58cc	BVar4	BOOL
+0x004c57ef	local	EAX:4	004c58ea	DVar5	DWORD
+0x004c57ef	local	EAX:4	004c58f2	pDVar6	DWORD *
+0x004c59da	local	unique:10000091:4	004c59da	lpMultiByteStr	LPSTR
+0x004c6087	local	unique:00006600:4	004c6099	_Str	char *
+0x004c6219	local	EAX:4	004c6250	_Dst	void *
+0x004c6219	local	ESI:4	004c6220	_Size	uint
+0x004c6327	local	EAX:4	004c6367	hFile	HANDLE
+0x004c6327	local	EAX:4	004c6378	DVar2	DWORD
+0x004c6327	local	EAX:4	004c636e	BVar1	BOOL
+0x004c6327	local	EAX:4	004c6388	pDVar3	DWORD *
+0x004c63ba	local	EAX:4	004c63f4	_MaxCount	size_t
+0x004c6437	local	EAX:4	004c6473	DVar4	DWORD
+0x004c6437	local	EAX:4	004c64c1	_Dest	char *
+0x004c6437	local	EAX:4	004c6496	_Source	char *
+0x004c656f	local	EAX:4	004c6622	_Size	size_t
+0x004c656f	local	EAX:4	004c65ae	BVar2	BOOL
+0x004c665f	local	EAX:4	004c66f6	BVar4	BOOL
+0x004c715b	local	EAX:4	004c716d	hModule	HMODULE
+0x004c7679	param	Stack[0x4]:4	-	_Str1	uchar *
+0x004c7679	param	Stack[0x8]:4	-	_Str2	uchar *
+0x004c7679	param	Stack[0xc]:4	-	_MaxCount	size_t
+0x004c76b8	local	EAX:4	004c76e4	lpMultiByteStr	LPSTR
+0x004c76b8	local	EAX:4	004c76db	_Size	size_t
+0x004c76b8	local	unique:00017200:4	004c76c5	lpWideCharStr	LPCWSTR
+0x004c7bf3	local	EAX:4	004c7d32	pBVar5	BYTE *
+0x004c7bf3	local	EAX:4	004c7cfd	BVar4	BOOL
+0x004c7e70	local	EAX:4	004c7fb5	lpName	LPCSTR
+0x004c7ff7	local	unique:00017200:4	004c7fff	_Str2	uchar *
+0x004c82b6	local	EAX:4	004c837b	_Size	size_t
+0x004c83ea	local	EAX:4	004c84af	_Size	size_t
+0x004c851e	local	EAX:4	004c8522	BVar1	BOOL
+0x004c851e	local	EAX:4	004c852c	DVar2	DWORD
+0x004e0417	local	EDX:4	004e0432	z	int
+0x004e0417	local	ECX:4	004e043a	min_xy	int
+0x004e0417	local	HASH:103fee827874:4	004e043c	min_xz	int
+0x004e0417	local	HASH:41f336717fe:8	004e0448	s_coords_4	longlong
+0x004e0417	local	EBX:4	004e0420	x	int
+0x004e0417	local	ECX:4	004e0429	y	int

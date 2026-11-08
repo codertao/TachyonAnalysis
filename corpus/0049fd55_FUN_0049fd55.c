@@ -16,8 +16,8 @@ undefined4 FUN_0049fd55(void)
   
   iVar3 = *(int *)(unaff_EBP + -0x18);
   *(undefined4 *)(unaff_EBP + -4) = 0xffffffff;
-  iVar2 = DAT_0060395c;
-  if (DAT_0060395c != 0) {
+  iVar2 = GLBL_WindowHandle_;
+  if (GLBL_WindowHandle_ != 0) {
     *(undefined4 *)(iVar3 + -4) = 0;
     *(undefined4 *)(iVar3 + -8) = 0;
     *(undefined4 *)(iVar3 + -0xc) = 0x10;

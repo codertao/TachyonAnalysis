@@ -21,7 +21,7 @@ undefined4 FUN_004c5080(undefined4 param_1)
   _cpinfo local_1c;
   uint local_8;
   
-  FUN_004c15cd(0x19);
+  init_andor_enter_crit_section_idx(0x19);
   CodePage = FUN_004c522d(param_1);
   if (CodePage != DAT_006c9b48) {
     if (CodePage != 0) {
@@ -128,7 +128,7 @@ LAB_004c5211:
 LAB_004c50a7:
   uVar14 = 0;
 LAB_004c521e:
-  FUN_004c162e(0x19);
+  leave_crit_section_idx(0x19);
   return uVar14;
 }
 

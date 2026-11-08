@@ -35,11 +35,11 @@ void FUN_0047f150(void)
   FUN_0047eab0();
   FUN_0048d0a0(piVar1);
   FUN_0048d1f0(0xffffffff,0);
-  iVar2 = FUN_0043ba90(&DAT_00583420,s_SHADOW12w_0054e750);
+  iVar2 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,s_SHADOW12w_0054e750);
   local_14 = iVar2;
-  iVar3 = FUN_0043ba90(&DAT_00583420,s_SHADOW12b_00552cc4);
+  iVar3 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,s_SHADOW12b_00552cc4);
   local_c = iVar3;
-  iVar4 = FUN_0043ba90(&DAT_00583420,s_SHADOW12o_00552cb8);
+  iVar4 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,s_SHADOW12o_00552cb8);
   if (((iVar2 != 0) && (iVar3 != 0)) && (iVar4 != 0)) {
     puVar5 = local_2d0;
     for (iVar2 = 0xaf; iVar2 != 0; iVar2 = iVar2 + -1) {

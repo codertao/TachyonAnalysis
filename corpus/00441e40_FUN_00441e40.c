@@ -32,7 +32,7 @@ void FUN_00441e40(void)
   iVar2 = 0;
   piVar1 = &DAT_005400b0;
   do {
-    if (*piVar1 == DAT_005b2d78) {
+    if (*piVar1 == GLBL_spacesav[0x6e]) {
       DAT_00562bfc = iVar2;
     }
     piVar1 = piVar1 + 1;

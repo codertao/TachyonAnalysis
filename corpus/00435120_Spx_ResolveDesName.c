@@ -22,7 +22,7 @@ undefined4 Spx_ResolveDesName(char *param_1)
     puVar2 = DAT_005a5e04;
     if (0 < DAT_005a5df8) {
       do {
-        iVar1 = FUN_004c67c0(param_1,*puVar2);
+        iVar1 = str_cmp(param_1,*puVar2);
         if (iVar1 == 0) {
           return puVar2[1];
         }

@@ -12,7 +12,7 @@ void FUN_0043bc70(int param_1,undefined4 param_2)
   undefined1 local_48 [68];
   undefined4 local_4;
   
-  uVar1 = FUN_0049df00(param_2,0xa000);
+  uVar1 = load_rtxt_bin(param_2,0xa000);
   *(undefined4 *)(param_1 + 4) = uVar1;
   iVar5 = 0;
   for (iVar2 = FUN_0049dfa0(uVar1); iVar2 != 0; iVar2 = iVar2 + -1) {

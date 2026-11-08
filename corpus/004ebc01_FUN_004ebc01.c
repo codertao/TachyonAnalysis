@@ -15,7 +15,7 @@ void __fastcall FUN_004ebc01(int param_1,byte param_2)
   int extraout_ECX_04;
   undefined4 unaff_EBX;
   
-  if (DAT_00604440 != 0) {
+  if (GLBL_some_str != 0) {
     DAT_004eba68 = *(undefined4 *)(&DAT_005a63c0 + (uint)param_2 * 4);
     DAT_004eba64 = *(undefined4 *)(&DAT_005a6440 + (uint)param_2 * 4);
     DAT_004eba6c = *(undefined4 *)(&DAT_005a6340 + (uint)param_2 * 4);

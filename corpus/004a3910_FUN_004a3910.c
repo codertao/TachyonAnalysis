@@ -23,7 +23,7 @@ void FUN_004a3910(undefined4 param_1)
     FUN_004a3c20(param_1,uVar1,DAT_00603104 * _DAT_00603100);
   }
   FUN_004a3700(param_1);
-  FUN_0049c530(uVar1);
+  OurFreeMem(uVar1);
   return;
 }
 

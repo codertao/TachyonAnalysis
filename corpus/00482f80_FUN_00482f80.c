@@ -15,8 +15,8 @@ void FUN_00482f80(void)
   uVar2 = 0;
   do {
     str_sprintf(&DAT_005a41e0,s_TxtSPCallout_d_0055785c,uVar2);
-    FUN_0043e6a0(&DAT_00583420,&DAT_005a41e0,&DAT_00562b14);
-    FUN_0043e610(&DAT_00583420,&DAT_005a41e0,0x10000);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,&DAT_00562b14);
+    sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,0x10000);
     uVar2 = uVar2 + 1;
   } while (uVar2 < 0x10);
   return;

@@ -8,7 +8,7 @@ void PlayerDcb_Think(int param_1)
   if (*(int *)(param_1 + 0x10c) == 0) {
     PlayerShip_UpdateKinematics(param_1);
   }
-  FUN_00454040(param_1);
+  PlayerDcb_PostThinkCamera(param_1);
   return;
 }
 

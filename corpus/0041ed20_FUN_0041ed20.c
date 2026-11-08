@@ -18,8 +18,8 @@ FUN_0041ed20(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 param
     }
     return 0;
   }
-  FUN_0041ebe0(local_80,*puVar1);
-  FUN_0041ee30(local_80,param_1[2],&DAT_005a5dd0,param_2,1,param_3,param_4,param_5,param_1[1],0);
+  copy_p2_to_p1_and_get_basename_(local_80,*puVar1);
+  Dialog_PlayLine(local_80,param_1[2],&DAT_005a5dd0,param_2,1,param_3,param_4,param_5,param_1[1],0);
   return 1;
 }
 

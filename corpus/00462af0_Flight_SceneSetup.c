@@ -24,8 +24,8 @@ void Flight_SceneSetup(void)
     *puVar2 = 0;
     puVar2 = puVar2 + 1;
   }
-  FUN_0048e380(&g_MissionEndFlag,0xc);
-  FUN_00462180(local_58);
+  clr_bytes(&g_MissionEndFlag,0xc);
+  NetSrv_RegisterGameCallbacks(local_58);
   FUN_0048e3d0(&DAT_0058b084,DAT_005897e0 * 6,4,s_SCORE_BUFFER_005496b4,0xbbbb);
   FUN_00445720();
   Server_InitDcbPools();
@@ -51,10 +51,10 @@ void Flight_SceneSetup(void)
   FUN_00405d50();
   FUN_00445720();
   FUN_00445720(s_gamelog_txt_00549698);
-  FUN_00425760();
+  Rules_Init();
   FUN_00462540();
   FUN_00431b90();
-  FUN_004629d0(DAT_005b2c7c);
+  Sp_ApplyDifficulty(GLBL_spacesav[0x2f]);
   FUN_0049c630(0xffff,0xbbbb);
   return;
 }

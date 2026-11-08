@@ -29,7 +29,7 @@ int FUN_0044a480(int param_1,uint param_2)
     if (iVar4 == 0) {
       *(undefined4 *)(param_1 + 0xa9c) = 0;
       *(undefined4 *)(param_1 + 0xaa0) = 0;
-      FUN_0043f620(&g_UiManager,param_1 + 0xf8,0x20000);
+      set_flag_10c_on_elem_by_id(&g_UiManager,param_1 + 0xf8,0x20000);
       Var_SetStr(g_PlayerVarStore,local_80,param_1 + 0x20,s_NOT_USED_005478f8);
     }
     return iVar1;

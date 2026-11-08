@@ -29,7 +29,7 @@ void FUN_00460300(undefined4 *param_1)
       uStack_10 = 7;
       uStack_c = 0;
       uStack_8 = 1;
-      FUN_0048ddc0(&uStack_18,*(undefined4 *)(DAT_0058b064 + 100));
+      Mission_PostEvent(&uStack_18,*(undefined4 *)(DAT_0058b064 + 100));
     }
     pcVar1 = *(code **)(*(int *)(iVar2 + 0x8c) + 0x34);
     if (pcVar1 != (code *)0x0) {

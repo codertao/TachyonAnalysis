@@ -11,13 +11,13 @@ void FUN_004607b0(undefined4 *param_1)
   uVar1 = FUN_00455dd0(*param_1);
   FUN_00456090(DAT_0058b064 + 0x11c,uVar1);
   psVar4 = (short *)((int)param_1 + 6);
-  FUN_0048e380(DAT_0058b068 + 0x164,0x60);
+  clr_bytes(DAT_0058b068 + 0x164,0x60);
   uVar3 = 0;
   puVar2 = (undefined4 *)(DAT_0058b068 + 0x164);
   if (*(short *)(param_1 + 1) != 0) {
     do {
       if (*psVar4 != 0) {
-        uVar1 = FUN_00493120(*psVar4 + -1);
+        uVar1 = WeaponDef_Get(*psVar4 + -1);
         *puVar2 = uVar1;
         puVar2[1] = (int)psVar4[1];
         puVar2[2] = (int)psVar4[1];

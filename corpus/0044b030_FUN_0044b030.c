@@ -26,7 +26,7 @@ void FUN_0044b030(void)
       } while (cVar1 != '\0');
       uVar3 = ~uVar3;
       pcVar5 = pcVar6 + -uVar3;
-      pcVar6 = (char *)&DAT_005b2c18;
+      pcVar6 = (char *)(GLBL_spacesav + 0x16);
       for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {
         *(undefined4 *)pcVar6 = *(undefined4 *)pcVar5;
         pcVar5 = pcVar5 + 4;

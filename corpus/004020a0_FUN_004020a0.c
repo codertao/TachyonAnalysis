@@ -13,7 +13,7 @@ void FUN_004020a0(int param_1,undefined4 param_2)
                  param_1 + 0xdc,local_c0);
     uVar2 = FUN_00426840(param_2);
     str_sprintf(local_80,iVar1,local_c0,uVar2);
-    FUN_0045d900(local_80,1,0,0,0,*(undefined4 *)(param_1 + 100),0xffffffff);
+    SrvSend_TextMsg(local_80,1,0,0,0,*(undefined4 *)(param_1 + 100),0xffffffff);
   }
   return;
 }

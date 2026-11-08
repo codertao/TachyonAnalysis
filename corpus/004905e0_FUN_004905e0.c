@@ -13,10 +13,10 @@ undefined4 FUN_004905e0(uint param_1)
   
   bVar1 = false;
   bVar2 = false;
-  if (((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
+  if (((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0')) &&
      (DAT_00565881 != '\0')) {
-    if (((*(code **)(DAT_005b1dc4 + 0x90) != (code *)0x0) && (DAT_00565a34._3_1_ == '\0')) &&
-       (iVar4 = (**(code **)(DAT_005b1dc4 + 0x90))(), iVar4 != 0)) {
+    if (((*(code **)(g_ActiveRules + 0x90) != (code *)0x0) && (DAT_00565a34._3_1_ == '\0')) &&
+       (iVar4 = (**(code **)(g_ActiveRules + 0x90))(), iVar4 != 0)) {
       bVar1 = true;
       bVar2 = true;
     }

@@ -12,8 +12,8 @@ void FUN_004547e0(short *param_1,int *param_2,int param_3)
     iVar2 = param_3 + 0x4d0;
     do {
       if (*param_1 != 0) {
-        uVar1 = FUN_00493120(*param_1 + -1,1,0xcccc,0);
-        FUN_00493510(param_2,iVar2,uVar1);
+        uVar1 = WeaponDef_Get(*param_1 + -1,1,0xcccc,0);
+        WeaponSys_Init(param_2,iVar2,uVar1);
         if (*(int *)(*param_2 + 0x50) != 0) {
           param_2[0xb] = (int)param_1[1];
         }

@@ -12,7 +12,7 @@ undefined4 * FUN_004af450(undefined4 param_1)
   puVar3 = &DAT_006128c4;
   do {
     if (puVar3[4] != 0) {
-      iVar1 = FUN_004c67c0(puVar3,param_1);
+      iVar1 = str_cmp(puVar3,param_1);
       if (iVar1 == 0) {
         return puVar2;
       }

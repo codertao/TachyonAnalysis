@@ -60,14 +60,14 @@ char * FUN_00461cf0(int param_1,char *param_2,short *param_3)
     pcVar7 = pcVar7 + 1;
     pcVar6 = pcVar6 + 1;
   }
-  uVar3 = (**(code **)(DAT_005b1dc4 + 0x38))();
+  uVar3 = (**(code **)(g_ActiveRules + 0x38))();
   *(undefined4 *)(param_2 + 0x26) = uVar3;
   *(undefined2 *)(param_2 + 0x2a) = (undefined2)DAT_005a5dcc;
   *(undefined2 *)(param_2 + 0x2c) = *(undefined2 *)(*(int *)(*(int *)(param_1 + 200) + 100) + 0x30);
   *(undefined2 *)(param_2 + 0x2e) = *(undefined2 *)(param_1 + 8);
   *(undefined2 *)(param_2 + 0x30) = (undefined2)DAT_005897e0;
-  if (*(code **)(DAT_005b1dc4 + 0x50) != (code *)0x0) {
-    uVar2 = (**(code **)(DAT_005b1dc4 + 0x50))();
+  if (*(code **)(g_ActiveRules + 0x50) != (code *)0x0) {
+    uVar2 = (**(code **)(g_ActiveRules + 0x50))();
     *(undefined2 *)(param_2 + 0x32) = uVar2;
     *param_3 = *param_3 + 1;
     return param_2 + *(ushort *)(param_2 + 2);

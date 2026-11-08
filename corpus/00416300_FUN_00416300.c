@@ -4,8 +4,8 @@
 void FUN_00416300(void)
 
 {
-  FUN_0048e380(&DAT_005b334c,0x40);
-  *(undefined4 *)(DAT_005b3300 + 0x90) = 0;
+  clr_bytes(&DAT_005b334c,0x40);
+  *(undefined4 *)(GLBL_SOME_CONTEXT + 0x90) = 0;
   DAT_005b1864 = 0;
   FUN_004270f0();
   FUN_00415d10();

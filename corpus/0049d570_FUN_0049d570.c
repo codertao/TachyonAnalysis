@@ -16,7 +16,7 @@ undefined4 FUN_0049d570(undefined4 param_1,int param_2)
     FUN_0049d260(iVar1);
     FUN_004a1220();
   }
-  FUN_0049c670(*(undefined4 *)(iVar1 + 0x24),*(undefined4 *)(param_2 + 0xc4));
+  mark_alloc_memory_with_flags(*(undefined4 *)(iVar1 + 0x24),*(undefined4 *)(param_2 + 0xc4));
   return *(undefined4 *)(iVar1 + 0x24);
 }
 

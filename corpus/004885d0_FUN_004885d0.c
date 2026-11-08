@@ -26,7 +26,7 @@ void FUN_004885d0(void)
     }
     uVar4 = FUN_0046e930(local_58);
     FUN_00488520(uVar4);
-    FUN_0043e6a0(&DAT_00583420,s_TxtStatsShip_0055880c,&DAT_0056c4a0);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtStatsShip_0055880c,&DAT_0056c4a0);
     DAT_005711f0 = *piVar3;
     DAT_005711f4 = piVar3[1];
     DAT_005711f8 = piVar3[2];
@@ -37,8 +37,8 @@ void FUN_004885d0(void)
       *puVar5 = 0;
       puVar5 = puVar5 + 1;
     }
-    DAT_00571284 = FUN_004b14b0(local_28,s_stats_curship_005587fc,local_38);
-    FUN_004b2950(&DAT_005711a0,0);
+    DAT_00571284 = Pak_Load(local_28,s_stats_curship_005587fc,local_38);
+    Model_SelectState(&DAT_005711a0,0);
     lVar1 = (longlong)((DAT_005711f8 - DAT_005711f0 >> 1) + 1) * (longlong)DAT_005a67e4;
     _DAT_005711bc = 0;
     _DAT_005711c0 = 0;

@@ -5,7 +5,7 @@ void FUN_0043f650(undefined4 param_1,undefined4 param_2,int param_3,int param_4)
   int iVar1;
   int iVar2;
   
-  iVar2 = FUN_0043fa70(param_1,param_2);
+  iVar2 = find_ui_elem_by_id_(param_1,param_2);
   if (iVar2 != 0) {
     iVar1 = *(int *)(iVar2 + 0xd4);
     *(uint *)(iVar2 + 0x10c) = *(uint *)(iVar2 + 0x10c) | 0x400;

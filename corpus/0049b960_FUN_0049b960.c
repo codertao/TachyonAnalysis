@@ -19,7 +19,7 @@ FUN_0049b960(undefined4 param_1,undefined4 *param_2,uint param_3,float *param_4,
   if ((((-1 < param_6 + -1) && (iVar2 = *(int *)(param_7 + 0x24), iVar2 != 0)) &&
       ((piVar6 = *(int **)(iVar2 + 0x14), piVar6 != (int *)0x0 ||
        (piVar6 = *(int **)(iVar2 + 0x10), piVar6 != (int *)0x0)))) && (*piVar6 != 0)) {
-    iVar3 = FUN_004c67c0(*piVar6,param_1);
+    iVar3 = str_cmp(*piVar6,param_1);
     while (iVar3 != 0) {
       *(int **)(iVar2 + 0x10) = piVar6;
       if (piVar6[4] == 0) {
@@ -30,7 +30,7 @@ FUN_0049b960(undefined4 param_1,undefined4 *param_2,uint param_3,float *param_4,
       if (*piVar6 == 0) {
         return 0;
       }
-      iVar3 = FUN_004c67c0(*piVar6,param_1);
+      iVar3 = str_cmp(*piVar6,param_1);
     }
     pfVar1 = (float *)(piVar6[4] + (param_6 + -1) * 0x14);
     if (piVar6[3] < param_6) {

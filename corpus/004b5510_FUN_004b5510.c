@@ -4,10 +4,10 @@ undefined4 FUN_004b5510(void)
 {
   undefined4 uVar1;
   
-  if (DAT_006af53c != (code *)0x0) {
+  if (GLBL_MAYBE_AUDIO_CB_4 != (code *)0x0) {
                     /* WARNING: Could not recover jumptable at 0x004b5519. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-    uVar1 = (*DAT_006af53c)();
+    uVar1 = (*GLBL_MAYBE_AUDIO_CB_4)();
     return uVar1;
   }
   if (DAT_006af504 != 0) {

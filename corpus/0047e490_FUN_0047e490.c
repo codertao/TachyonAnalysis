@@ -55,7 +55,7 @@ void FUN_0047e490(void)
   DAT_005a67d8 = local_38;
   DAT_005a67dc = local_34;
   DAT_005a67e0 = local_30;
-  FUN_004add80(&DAT_005a67a0);
+  copy_str32_to_some_global(&DAT_005a67a0);
   FUN_0047d770();
   FUN_0047dae0();
   if (DAT_005524dc != 0) {
@@ -71,7 +71,7 @@ LAB_0047e591:
   FUN_0047dcd0();
   FUN_0047d980();
   FUN_00452070(local_50,local_4c,local_48,local_44,1);
-  FUN_004add80(&DAT_005a67a0);
+  copy_str32_to_some_global(&DAT_005a67a0);
   FUN_00452180(local_c);
   return;
 }

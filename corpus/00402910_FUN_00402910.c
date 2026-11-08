@@ -16,7 +16,7 @@ void FUN_00402910(int param_1,int param_2)
     if (*(int *)(*(int *)(param_1 + 0x8c) + 0x100) != 0) {
       FUN_004014a0(param_1);
     }
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     if ((uVar3 & 3) == 0) {
       FUN_004028b0(param_1,&DAT_00532030);
       return;
@@ -25,16 +25,16 @@ void FUN_00402910(int param_1,int param_2)
       FUN_004028b0(param_1,&DAT_00532060);
       return;
     }
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     iVar1 = uVar3 % 400 + param_2 * 0x32;
     *(int *)(param_1 + 0x30c) = iVar1;
     lVar2 = (longlong)iVar1 *
             (longlong)*(int *)(&DAT_005323b8 + (uint)*(ushort *)(param_1 + 0x310) * 4);
     *(uint *)(param_1 + 0x30c) = (uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10;
     *(undefined1 **)(param_1 + 0x304) = &LAB_004028f0;
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     FUN_004014d0(param_1,uVar3 & 0x1ffffff);
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     FUN_004014f0(param_1,uVar3 & 0x1ffffff);
   }
   return;

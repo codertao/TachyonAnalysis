@@ -42,10 +42,10 @@ char * FUN_00409b80(char *param_1,undefined4 param_2)
   FUN_004090c0(param_1);
   FUN_00409b00(param_1);
   if (DAT_005b9800 != 0) {
-    FUN_0049c530(DAT_005b9804);
+    OurFreeMem(DAT_005b9804);
   }
   if (DAT_005b9808 != 0) {
-    FUN_0049c530(DAT_005b980c);
+    OurFreeMem(DAT_005b980c);
   }
   Cbin_Close();
   return param_1;

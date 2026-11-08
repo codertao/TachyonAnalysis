@@ -23,13 +23,13 @@ void Sector_LaunchMission(int param_1)
   FUN_0044eaa0();
   Sector_Transition(*(undefined4 *)(param_1 + 0x20),param_1 + 0x10);
   Desc_CreateByType(&DAT_005b8f74,&DAT_005b1f0c,1,local_18,1,0xffffffff);
-  *(undefined4 *)(DAT_005b3300 + 0x8c) = DAT_005b1f0c;
+  *(undefined4 *)(GLBL_SOME_CONTEXT + 0x8c) = DAT_005b1f0c;
   FUN_0044eab0();
   iVar1 = FUN_00435390(param_1 + 0x10);
   if (iVar1 != 0) {
     Ent_SetQuadrant(DAT_0058b064,DAT_0058b068,iVar1);
     FUN_0045f460(DAT_0058b068,iVar1);
-    FUN_0045ed20(&local_c,&local_14,iVar1,param_1,1,1,DAT_0058b068);
+    SrvSend_EnterQuadrant(&local_c,&local_14,iVar1,param_1,1,1,DAT_0058b068);
     FUN_0044eab0();
   }
   return;

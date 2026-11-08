@@ -11,8 +11,8 @@ void FUN_004364e0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
   iVar1 = FUN_0048e800(DAT_005a6140,param_4);
   if (iVar1 != 0) {
     str_sprintf(local_80,iVar1,local_c0);
-    FUN_004c82b6(local_80);
-    FUN_0045d900(local_80,1,0,0,0,param_5,0xffffffff);
+    to_uppercase(local_80);
+    SrvSend_TextMsg(local_80,1,0,0,0,param_5,0xffffffff);
   }
   return;
 }

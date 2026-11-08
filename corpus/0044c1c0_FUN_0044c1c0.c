@@ -20,8 +20,8 @@ undefined4 FUN_0044c1c0(void)
       DAT_00562cb8 = DAT_00562cb8 + 1;
       if ((DAT_00562cb0 == 0) && (100 < DAT_00562cb8)) {
         DAT_00562cb0 = 1;
-        FUN_0043e670(&g_UiManager,s_TxtMPNWPing1_00547f70,0x10000);
-        FUN_0043ce50(&g_UiManager,s_BtnNWSkip_00547f64,1);
+        clr_label_flags_11c(&g_UiManager,s_TxtMPNWPing1_00547f70,0x10000);
+        set_button_state(&g_UiManager,s_BtnNWSkip_00547f64,1);
         FUN_0043c150(&g_UiManager,s_BtnNWSkip_00547f64,0x80000);
       }
       local_4 = 0;
@@ -35,11 +35,11 @@ undefined4 FUN_0044c1c0(void)
         DAT_00562ca4 = 0;
         _DAT_00562cac = 0;
         DAT_00562cb8 = -1;
-        FUN_0043ce50(&g_UiManager,s_BtnNWSkip_00547f64,8);
+        set_button_state(&g_UiManager,s_BtnNWSkip_00547f64,8);
         Ui_SetButtonFlag(&g_UiManager,s_BtnNWSkip_00547f64,0x80000);
-        FUN_0043ce50(&g_UiManager,s_BtnNWCont_00547f58,1);
+        set_button_state(&g_UiManager,s_BtnNWCont_00547f58,1);
         FUN_0043c150(&g_UiManager,s_BtnNWCont_00547f58,0x80000);
-        FUN_0043e670(&g_UiManager,s_TxtMPNWPing2_00547f48,0x10000);
+        clr_label_flags_11c(&g_UiManager,s_TxtMPNWPing2_00547f48,0x10000);
         Ui_RefreshWindow(&g_UiManager,s_WndMPSystem_00547ea8,0,0);
         Ui_RefreshWindow(&g_UiManager,s_WndMPSystemNW_00547ed0,0,0);
       }

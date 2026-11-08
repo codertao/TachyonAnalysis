@@ -36,8 +36,8 @@ void FUN_00430b70(undefined4 param_1,char *param_2,char *param_3)
         pcVar4 = pcVar4 + 1;
       }
     }
-    FUN_004a0ef0(param_3,pcVar3);
-    FUN_0049c530(param_3);
+    save_to_open_file(param_3,pcVar3);
+    OurFreeMem(param_3);
   }
   return;
 }

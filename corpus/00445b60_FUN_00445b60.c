@@ -9,7 +9,7 @@ void FUN_00445b60(void)
   iVar1 = FUN_00469a70(s_DefaultLight_0053ff6c);
   g_TitleMenu_ExitFlag = 0;
   _DAT_00562c60 = 0;
-  DAT_005a3160 = FUN_0049df00(s_shiptext_bin_00545c20,0xa100);
+  DAT_005a3160 = load_rtxt_bin(s_shiptext_bin_00545c20,0xa100);
   if (g_PlayerVarStore == 0) {
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
   }
@@ -27,8 +27,9 @@ void FUN_00445b60(void)
   FUN_00446ac0(&DAT_00545040);
   FUN_00458200();
   FUN_004af2e0();
-  FUN_004b1b70(DAT_005a6818,0x80,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
-               *(undefined4 *)(iVar1 + 0x54));
+  Pak_SetLoadPalParams
+            (g_PalBrightness,0x80,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
+             *(undefined4 *)(iVar1 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                *(undefined4 *)(iVar1 + 0x48));
   FUN_0043a820(&g_UiManager,s_WndMPShipBW_00545c14,&LAB_00445fb0);

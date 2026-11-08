@@ -19,7 +19,7 @@ bool FUN_00436f60(int param_1,undefined4 param_2)
     else {
       iVar3 = *(int *)(*(int *)(iVar3 + 4) + 0x74);
     }
-    iVar3 = FUN_004c67c0(*(int *)(iVar2 + 0x44) * 0x20 + iVar3,param_2);
+    iVar3 = str_cmp(*(int *)(iVar2 + 0x44) * 0x20 + iVar3,param_2);
     return iVar3 == 0;
   }
   return false;

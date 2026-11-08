@@ -4,8 +4,8 @@
 void Ui_FindWindowDef(int param_1,undefined4 param_2)
 
 {
-  FUN_004bd3c6(param_2,*(undefined4 *)(param_1 + 0xc),*(undefined4 *)(param_1 + 0x40),0x114,
-               &LAB_004397a0);
+  maybe_find_in_list(param_2,*(undefined4 *)(param_1 + 0xc),*(undefined4 *)(param_1 + 0x40),0x114,
+                     &LAB_004397a0);
   return;
 }
 

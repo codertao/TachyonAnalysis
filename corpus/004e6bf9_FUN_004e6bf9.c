@@ -17,12 +17,12 @@ void __fastcall FUN_004e6bf9(undefined4 param_1,undefined4 param_2)
   int unaff_EDI;
   uint extraout_var;
   
-  if (DAT_00604440 == 0) {
+  if (GLBL_some_str == 0) {
     return;
   }
   DAT_004e5ec0 = (undefined1)param_2;
   DAT_004e5ec1 = (char)((uint)param_2 >> 8);
-  DAT_004e54a0 = unaff_EBX * DAT_00604490 + in_EAX * DAT_0060448c + DAT_00604440;
+  DAT_004e54a0 = unaff_EBX * DAT_00604490 + in_EAX * DAT_0060448c + GLBL_some_str;
   DAT_004e5550 = *(int *)(unaff_EDI + 0x14);
   DAT_004e5570 = in_EAX;
   DAT_004e5574 = unaff_EBX;
@@ -45,7 +45,7 @@ void __fastcall FUN_004e6bf9(undefined4 param_1,undefined4 param_2)
       uVar5 = extraout_EDX;
       if (DAT_004e5ec1 != '\0') {
         DAT_005a62e0 = extraout_ECX + 3;
-        DAT_005a62c4 = DAT_00604440;
+        DAT_005a62c4 = GLBL_some_str;
         DAT_005a62cc = (undefined4)((longlong)(ulonglong)DAT_00604490 / (longlong)DAT_0060448c);
         uVar5 = (undefined4)((longlong)(ulonglong)DAT_00604490 % (longlong)DAT_0060448c);
         DAT_005a62e4 = DAT_004e556c + 2;

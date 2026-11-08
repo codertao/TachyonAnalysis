@@ -8,7 +8,7 @@ void FUN_0047cae0(void)
   
   g_TitleMenu_ExitFlag = 0;
   if (DAT_00571340 == 0) {
-    g_MapUiCtx = &DAT_00583420;
+    g_MapUiCtx = &GLBL_UI_ELEM_LIST;
     g_GameVarStore = g_PlayerVarStore;
   }
   else {

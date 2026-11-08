@@ -14,7 +14,7 @@ void FUN_004a8a20(void)
   undefined1 local_c [4];
   undefined1 local_8 [8];
   
-  if (DAT_00563e98 == 0) {
+  if (GLBL_audio_running == 0) {
     return;
   }
   if (DAT_005b9d24 == (int *)0x0) {

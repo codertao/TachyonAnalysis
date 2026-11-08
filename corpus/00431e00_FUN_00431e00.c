@@ -29,9 +29,9 @@ void FUN_00431e00(int *param_1,int param_2)
         }
         if (iVar2 != 0) {
           FUN_004addf0(iVar2);
-          FUN_0049c530(iVar2);
+          OurFreeMem(iVar2);
         }
-        FUN_0049c530(piVar3);
+        OurFreeMem(piVar3);
       }
     }
   }

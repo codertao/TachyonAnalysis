@@ -9,7 +9,7 @@ void FUN_004b4f40(uint *param_1,int param_2)
     puVar2 = (undefined4 *)(*(int *)(param_2 + 8) + param_2);
     if ((code *)param_1[0x11] == (code *)0x0) {
       if ((*param_1 & 0x400) != 0) {
-        FUN_004b27d0(param_1,0,puVar2,1);
+        Model_UpdateState(param_1,0,puVar2,1);
       }
     }
     else {

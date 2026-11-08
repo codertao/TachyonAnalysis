@@ -54,7 +54,7 @@ void FUN_00471a90(int param_1)
   FUN_0048f670(s_WEAPON_TYPES_0054763c,param_1,&local_48);
   iVar3 = 0;
   if (local_48 != 0) {
-    iVar3 = FUN_00493120(local_48 + -1);
+    iVar3 = WeaponDef_Get(local_48 + -1);
   }
   iVar2 = 0;
   local_5c = 0;

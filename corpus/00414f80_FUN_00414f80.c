@@ -9,7 +9,7 @@ void FUN_00414f80(char *param_1,char *param_2,undefined4 param_3)
   char *pcVar5;
   char *pcVar6;
   
-  pcVar2 = (char *)FUN_004b8fb0();
+  pcVar2 = (char *)NetCli_AllocEvent();
   if (pcVar2 != (char *)0x0) {
     uVar3 = 0xffffffff;
     do {
@@ -56,7 +56,7 @@ void FUN_00414f80(char *param_1,char *param_2,undefined4 param_3)
       pcVar6 = pcVar6 + 1;
     }
     *(undefined4 *)(pcVar2 + 0x20) = param_3;
-    FUN_004b8fd0(pcVar2,0x1116,0x24,0x800);
+    NetCli_QueueEvent(pcVar2,0x1116,0x24,0x800);
   }
   return;
 }

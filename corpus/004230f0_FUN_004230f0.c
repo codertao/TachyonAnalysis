@@ -9,7 +9,7 @@ void FUN_004230f0(undefined4 param_1,int param_2,uint param_3)
   undefined4 uVar5;
   
   uVar4 = (param_3 & 0xff) >> 2 & 1;
-  uVar1 = FUN_0048e350();
+  uVar1 = global_bad_shift_rng();
   uVar5 = DAT_005a7454;
   if ((uVar1 & 0xff00) < 0x8000) {
     uVar5 = DAT_005a743c;

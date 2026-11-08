@@ -14,7 +14,7 @@ void FUN_00445d40(int param_1)
   puVar7 = &DAT_005a3180;
   iVar5 = 0;
   do {
-    iVar2 = FUN_004c67c0(puVar7,&DAT_005a60d4);
+    iVar2 = str_cmp(puVar7,&DAT_005a60d4);
     if (iVar2 == 0) {
       iVar5 = iVar5 + param_1;
       if (iVar5 < 5) {

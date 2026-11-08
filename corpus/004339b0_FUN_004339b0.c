@@ -65,7 +65,7 @@ undefined4 FUN_004339b0(int param_1,int param_2,int param_3,undefined4 *param_4)
     *(char *)(iVar3 + 0xc2) = *(char *)(param_1 + 0x38) + -1;
   }
   *(undefined4 *)(iVar3 + 0xbc) = *(undefined4 *)(param_2 + 0xf0);
-  uVar5 = FUN_0048e350();
+  uVar5 = global_bad_shift_rng();
   *(uint *)(iVar3 + 0x10c) = uVar5 & 0xff;
   uVar1 = FUN_00434530(param_1);
   *(undefined1 *)(iVar3 + 0xf6) = uVar1;

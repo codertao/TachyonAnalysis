@@ -9,18 +9,18 @@ byte * FUN_004c5013(byte *param_1,byte *param_2)
       param_2 = param_2 + -1;
     }
     else {
-      FUN_004c15cd(0x19);
+      init_andor_enter_crit_section_idx(0x19);
       pbVar1 = param_2 + -1;
       if ((*(byte *)((int)&DAT_006c9c60 + param_2[-1] + 1) & 4) == 0) {
         do {
           pbVar1 = pbVar1 + -1;
           if (pbVar1 < param_1) break;
         } while ((*(byte *)((int)&DAT_006c9c60 + *pbVar1 + 1) & 4) != 0);
-        FUN_004c162e(0x19);
+        leave_crit_section_idx(0x19);
         param_2 = param_2 + (-1 - ((int)param_2 - (int)pbVar1 & 1U));
       }
       else {
-        FUN_004c162e(0x19);
+        leave_crit_section_idx(0x19);
         param_2 = param_2 + -2;
       }
     }

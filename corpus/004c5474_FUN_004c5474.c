@@ -13,7 +13,7 @@ byte * FUN_004c5474(byte *param_1,byte *param_2,uint param_3)
     param_1 = (byte *)_strncpy((char *)param_1,(char *)param_2,param_3);
   }
   else {
-    FUN_004c15cd(0x19);
+    init_andor_enter_crit_section_idx(0x19);
     uVar4 = 0;
     pbVar6 = param_1;
     pbVar5 = param_1;
@@ -63,7 +63,7 @@ LAB_004c54e5:
         pbVar6 = pbVar6 + 1;
       }
     }
-    FUN_004c162e(0x19);
+    leave_crit_section_idx(0x19);
   }
   return param_1;
 }

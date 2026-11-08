@@ -7,7 +7,7 @@ void FUN_0046db30(int param_1,int *param_2,undefined4 *param_3,undefined4 param_
   FUN_0046dd30(0,0);
   if ((((param_1 != 0) && (param_2 != (int *)0x0)) && (*param_2 != 0)) &&
      (param_3 != (undefined4 *)0x0)) {
-    FUN_0043f620(DAT_005879a0,*param_2 + 0xcc,0x20000);
+    set_flag_10c_on_elem_by_id(DAT_005879a0,*param_2 + 0xcc,0x20000);
     *param_3 = 0;
     *param_2 = param_1;
     *(undefined4 *)(param_1 + 0x124) = *(undefined4 *)(param_1 + 0x120);

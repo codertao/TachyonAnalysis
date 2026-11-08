@@ -17,7 +17,7 @@ void FUN_00457fa0(void)
   if (DAT_0058f2e0 != 0) {
     do {
       FUN_0049bdb0(&DAT_00532c10,iVar4,0x20,0,4,1);
-      FUN_004c82b6(iVar4);
+      to_uppercase(iVar4);
       bVar1 = (byte)uVar3;
       *(uint *)(iVar4 + 0x20) = uVar3;
       uVar3 = uVar3 + 1;

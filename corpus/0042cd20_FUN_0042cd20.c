@@ -12,7 +12,7 @@ uint FUN_0042cd20(uint *param_1,undefined4 param_2)
   if (*param_1 != 0) {
     iVar4 = uVar2 + 0x24;
     do {
-      iVar1 = FUN_004c67c0(iVar4,param_2);
+      iVar1 = str_cmp(iVar4,param_2);
       if (iVar1 == 0) {
         return uVar2;
       }

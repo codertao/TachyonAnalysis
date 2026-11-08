@@ -11,7 +11,7 @@ void Profile_SaveAll(void)
   undefined4 local_b8 [8];
   undefined1 local_98 [152];
   
-  DAT_005b2c60 = g_CurrentProfileSlot;
+  GLBL_spacesav[0x28] = g_CurrentProfileSlot;
   iVar2 = 0;
   puVar3 = &g_ProfileSlots;
   do {

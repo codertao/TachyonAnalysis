@@ -12,7 +12,7 @@ void FUN_00433c90(int param_1,int param_2,int param_3)
   *(short *)(param_1 + 0x11e) = (short)*(char *)(param_3 + 10);
   *(code **)(param_1 + 0x70) = FUN_00433c10;
   *(code **)(param_1 + 0x68) = FUN_00433c40;
-  FUN_004b2950(param_1 + 0x18,0);
+  Model_SelectState(param_1 + 0x18,0);
   FUN_0045cbf0(param_1,*(int *)(param_1 + 100) + 0x14);
   *(undefined4 *)(param_1 + 0xb8) = 0x28000;
   return;

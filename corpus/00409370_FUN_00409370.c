@@ -10,7 +10,7 @@ int FUN_00409370(int param_1,undefined4 param_2)
   if (DAT_005b9808 != 0) {
     iVar2 = 0;
     do {
-      iVar1 = FUN_004c67c0(iVar2 + DAT_005b980c,param_2);
+      iVar1 = str_cmp(iVar2 + DAT_005b980c,param_2);
       if (iVar1 == 0) {
         return uVar3 * 0x80 + *(int *)(param_1 + 4);
       }

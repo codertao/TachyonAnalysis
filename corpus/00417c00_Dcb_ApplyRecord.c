@@ -13,12 +13,12 @@ undefined4 * Dcb_ApplyRecord(undefined4 *param_1)
   }
   iVar1 = Dcb_FindById(*param_1);
   if (iVar1 == 0) {
-    iVar1 = FUN_00417900(param_1);
+    iVar1 = TachCli_SpawnReplica(param_1);
     DAT_005b909c = DAT_005b909c + 1;
   }
   else {
     FUN_0041b990(iVar1,&DAT_005b3280);
-    FUN_00417b40(iVar1,param_1);
+    Dcb_UpdateFromRecord(iVar1,param_1);
     DAT_005b9060 = DAT_005b9060 + 1;
   }
   if (iVar1 != 0) {

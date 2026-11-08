@@ -29,7 +29,7 @@ FUN_0049b0e0(undefined4 param_1,int param_2,undefined4 param_3,float *param_4,in
        (piVar9 = *(int **)(iVar2 + 0x10), piVar9 == (int *)0x0)) || (*piVar9 == 0)))) {
     return 0;
   }
-  iVar4 = FUN_004c67c0(*piVar9,param_1);
+  iVar4 = str_cmp(*piVar9,param_1);
   while (iVar4 != 0) {
     *(int **)(iVar2 + 0x10) = piVar9;
     if (piVar9[4] == 0) {
@@ -42,7 +42,7 @@ FUN_0049b0e0(undefined4 param_1,int param_2,undefined4 param_3,float *param_4,in
     if (*piVar9 == 0) {
       return 0;
     }
-    iVar4 = FUN_004c67c0(*piVar9,param_1);
+    iVar4 = str_cmp(*piVar9,param_1);
   }
   uVar3 = piVar9[3];
   pfVar8 = (float *)piVar9[4];

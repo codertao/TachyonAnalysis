@@ -25,12 +25,12 @@ undefined4 VarStore_OverlayFile(char *param_1,int param_2)
     VarStore_Save(param_1,param_2);
   }
   uVar2 = FUN_004a0d40(1);
-  iVar1 = FUN_004a0f10(param_1);
+  iVar1 = read_file(param_1);
   FUN_004a0d40(uVar2);
   if (iVar1 == 0) {
     return 0;
   }
-  FUN_0049c670(iVar1,DAT_0056aa90);
+  mark_alloc_memory_with_flags(iVar1,DAT_0056aa90);
   FUN_0049c840(iVar1,param_1);
   uVar6 = 0;
   iVar5 = param_2 + 8;

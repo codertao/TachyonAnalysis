@@ -18,10 +18,10 @@ void * FUN_004c80b6(LPVOID param_1,uint param_2)
     else {
       do {
         if (param_2 < 0xffffffe1) {
-          FUN_004c15cd(9);
+          init_andor_enter_crit_section_idx(9);
           iVar2 = FUN_004c30a9(param_1);
           if (iVar2 == 0) {
-            FUN_004c162e(9);
+            leave_crit_section_idx(9);
             if (param_2 == 0) {
               param_2 = 1;
             }
@@ -60,7 +60,7 @@ LAB_004c8155:
               }
               if (pvVar4 == (LPVOID)0x0) goto LAB_004c8155;
             }
-            FUN_004c162e(9);
+            leave_crit_section_idx(9);
           }
           if (pvVar4 != (LPVOID)0x0) {
             return pvVar4;

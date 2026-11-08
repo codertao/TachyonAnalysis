@@ -7,7 +7,7 @@ bool FUN_004851c0(int param_1)
   int local_4;
   
   iVar2 = param_1;
-  if (DAT_005a662c != 0) {
+  if (GLBL_cheat_related_all_ships_maybe != 0) {
     Var_SetStr(g_PlayerVarStore,s_PLAYER_SHIPS_00548b00,param_1,
                &PTR_s_W_AVAILABLE_0053413c_0xc_00532ac0);
   }

@@ -13,16 +13,14 @@ int FUN_00496b60(int *param_1)
   int local_30;
   int local_2c;
   int local_28;
-  int local_24;
-  int local_20;
-  int local_1c;
+  vec3 local_24;
   undefined1 local_18 [24];
   
   piVar3 = param_1;
   piVar1 = (int *)param_1[2];
-  local_24 = 0;
-  local_20 = 0;
-  local_1c = 0;
+  local_24.x = 0;
+  local_24.y = 0;
+  local_24.z = 0;
   local_38 = 0;
   local_34 = *(int *)(*param_1 + 0xa0);
   local_30 = *piVar1;
@@ -30,9 +28,9 @@ int FUN_00496b60(int *param_1)
   local_28 = piVar1[2];
   iVar5 = 0;
   local_3c = 0;
-  FUN_004b1bb0(local_18,param_1[3]);
-  local_1c = *(int *)(*param_1 + 0x9c);
-  FUN_004b24d0(&local_24,&local_24);
+  FUN_004b1bb0(local_18,(vec3 *)param_1[3]);
+  local_24.z = *(int *)(*param_1 + 0x9c);
+  some_rotate_by_global(&local_24,&local_24);
   if ((*(byte *)(param_1 + 4) & 2) != 0) {
     FUN_00496ac0(&local_30,0);
   }
@@ -64,9 +62,9 @@ int FUN_00496b60(int *param_1)
       if (local_38 != 0) {
         return iVar5;
       }
-      local_30 = local_30 + local_24;
-      local_2c = local_2c + local_20;
-      local_28 = local_28 + local_1c;
+      local_30 = local_30 + local_24.x;
+      local_2c = local_2c + local_24.y;
+      local_28 = local_28 + local_24.z;
       param_1 = (int *)((int)param_1 + 1);
       local_3c = iVar4;
     } while ((int)param_1 < local_34);

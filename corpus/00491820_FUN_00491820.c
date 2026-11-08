@@ -15,7 +15,7 @@ void FUN_00491820(undefined4 param_1)
   
   local_2a = 0;
   local_29 = 0;
-  if (((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
+  if (((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0')) &&
      (DAT_00565881 != '\0')) {
     if (DAT_00565a5c == 0) {
       DAT_00565a5c = DAT_005b3304;
@@ -23,7 +23,7 @@ void FUN_00491820(undefined4 param_1)
     DAT_00565a60 = DAT_005b3304 - DAT_00565a5c;
     DAT_00565a5c = DAT_005b3304;
     if ((char)DAT_00565a34 != '\0') {
-      puVar2 = &DAT_00604440;
+      puVar2 = &GLBL_some_str;
       puVar6 = &DAT_005657fc;
       for (iVar5 = 0x19; iVar5 != 0; iVar5 = iVar5 + -1) {
         *puVar6 = *puVar2;
@@ -79,11 +79,11 @@ void FUN_00491820(undefined4 param_1)
         FUN_0048e970(&local_2a,DAT_005657c0,0x278,0xa3,uVar4,0xffff,0x10000,10);
         cVar1 = *(char *)((int)&DAT_00565934 + iVar5);
         FUN_00451fc0(0x1f6,0xa3,0x26b,iVar3 + 0xa3,1);
-        FUN_004add80(&DAT_005a67a0);
+        copy_str32_to_some_global(&DAT_005a67a0);
         FUN_0048e970(&DAT_005b3a38 + iVar5 * 0x44,DAT_005657c0,0x1f6,0xa3,
                      (-(uint)(cVar1 != '\0') & 0xff01ff00) + 0xff0000,0xffff,0x10000,2);
         FUN_00452070(DAT_005657ec,DAT_005657f0,DAT_005657f4,DAT_005657f8,1);
-        FUN_004add80(&DAT_005657fc);
+        copy_str32_to_some_global(&DAT_005657fc);
       }
       DAT_00565860 = iVar3 + 0xa6;
       FUN_00491fc0();

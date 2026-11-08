@@ -13,7 +13,7 @@ char * FUN_0043a7a0(int param_1,undefined4 param_2)
       if (*pcVar2 == '\0') {
         return (char *)0x0;
       }
-      iVar1 = FUN_004c67c0(pcVar2,param_2);
+      iVar1 = str_cmp(pcVar2,param_2);
       if (iVar1 == 0) {
         return pcVar2;
       }

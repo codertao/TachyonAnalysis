@@ -15,17 +15,18 @@ void FUN_004a4330(void)
   }
   DirectDrawCreate(0,&DAT_006027f0,0);
   if (DAT_006027f0 == (undefined4 *)0x0) {
-    MessageBoxA(DAT_0060395c,s_Unable_to_initiate_DirectDraw_Pl_0055e1f4,s_NovaLogic_0055e260,0x10);
+    MessageBoxA(GLBL_WindowHandle_,s_Unable_to_initiate_DirectDraw_Pl_0055e1f4,s_NovaLogic_0055e260,
+                0x10);
     FUN_0049f770();
   }
   (**(code **)*DAT_006027f0)(DAT_006027f0,&DAT_0052ee78,&DAT_00602760);
   if (DAT_00602760 == 0) {
-    MessageBoxA(DAT_0060395c,s_Unable_to_initiate_DirectDraw2__P_0055e184,s_NovaLogic_0055e260,0x10)
-    ;
+    MessageBoxA(GLBL_WindowHandle_,s_Unable_to_initiate_DirectDraw2__P_0055e184,s_NovaLogic_0055e260
+                ,0x10);
     FUN_0049f770();
   }
   FUN_004a5520();
-  FUN_004a55c0(DAT_0060395c);
+  FUN_004a55c0(GLBL_WindowHandle_);
   DAT_00602324 = 1;
   DAT_00602334 = 8;
   return;

@@ -24,10 +24,10 @@ void FUN_00488c90(void)
   local_20 = 0;
   local_4 = DAT_0060446c;
   FUN_004b1940(&local_1c,&local_28);
-  FUN_004b1920(0x50000,0x2ee00000);
+  set_global_near_far(0x50000,0x2ee00000);
   FUN_00452150();
   FUN_00451fc0(DAT_005711f0,DAT_005711f4,DAT_005711f8,DAT_005711fc,1);
-  FUN_004add80(&DAT_005a67a0);
+  copy_str32_to_some_global(&DAT_005a67a0);
   if (DAT_00564ae4 == 0) {
     FUN_00452100();
   }
@@ -35,9 +35,9 @@ void FUN_00488c90(void)
   FUN_004b19f0(&DAT_005711a0);
   FUN_00452150();
   FUN_00452070(uVar1,uVar2,uVar3,local_4,1);
-  FUN_004add80(&DAT_005a67a0);
-  FUN_004b1920(0x2000,0x13880000);
-  Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseStats_0055883c,&DAT_005711f0,0);
+  copy_str32_to_some_global(&DAT_005a67a0);
+  set_global_near_far(0x2000,0x13880000);
+  Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseStats_0055883c,&DAT_005711f0,0);
   return;
 }
 

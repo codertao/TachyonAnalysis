@@ -12,7 +12,7 @@ undefined4 * FUN_00482b00(undefined4 param_1)
     if (cVar1 == '\0') {
       return (undefined4 *)0x0;
     }
-    iVar2 = FUN_004c67c0(puVar3,param_1);
+    iVar2 = str_cmp(puVar3,param_1);
     if (iVar2 == 0) break;
     cVar1 = *(char *)(puVar3 + 0x2b);
     puVar3 = puVar3 + 0x2b;

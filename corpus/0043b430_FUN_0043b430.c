@@ -126,7 +126,7 @@ undefined4 FUN_0043b430(undefined4 param_1,undefined4 param_2)
     }
     *(undefined4 *)(iVar2 + 0x44) = *(undefined4 *)(iVar2 + 0x5c);
     *(undefined4 *)(iVar2 + 0x48) = *(undefined4 *)(iVar2 + 0x60);
-    FUN_00437bf0(iVar2 + 0xf0,4);
+    clear_flags(iVar2 + 0xf0,4);
     Ui_RefreshWindow(param_1,iVar2 + 0x68,0,0);
     _DAT_00562bf0 = 0.0;
     _DAT_00562bf4 = 0.0;

@@ -6,14 +6,14 @@ undefined4 File_WriteAll(undefined4 param_1,undefined4 param_2,undefined4 param_
 {
   int iVar1;
   
-  iVar1 = FUN_004a0d60(param_1);
+  iVar1 = lcreat_file_and_do_error_stuff(param_1);
   if (iVar1 == -1) {
-    DAT_006038b8 = 1;
+    GLBL_some_file_failure = 1;
     return 0xffffffff;
   }
-  FUN_004a0ef0(param_2,param_3);
-  FUN_004a0ec0();
-  DAT_006038b8 = 0;
+  save_to_open_file(param_2,param_3);
+  close_glbl_open_file();
+  GLBL_some_file_failure = 0;
   return 0;
 }
 

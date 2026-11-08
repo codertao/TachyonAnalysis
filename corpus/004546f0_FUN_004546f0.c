@@ -4,19 +4,19 @@ void FUN_004546f0(undefined4 *param_1,undefined4 *param_2)
 {
   int iVar1;
   
-  iVar1 = DAT_005b3300;
-  *(undefined4 *)(DAT_005b3300 + 0x34) = *param_1;
+  iVar1 = GLBL_SOME_CONTEXT;
+  *(undefined4 *)(GLBL_SOME_CONTEXT + 0x34) = *param_1;
   *(undefined4 *)(iVar1 + 0x38) = param_1[1];
   *(undefined4 *)(iVar1 + 0x3c) = param_1[2];
-  iVar1 = DAT_005b3300;
-  *(undefined4 *)(DAT_005b3300 + 0x4c) = *param_2;
+  iVar1 = GLBL_SOME_CONTEXT;
+  *(undefined4 *)(GLBL_SOME_CONTEXT + 0x4c) = *param_2;
   *(undefined4 *)(iVar1 + 0x50) = param_2[1];
   *(undefined4 *)(iVar1 + 0x54) = param_2[2];
-  FUN_004545f0(DAT_005b3300);
+  FUN_004545f0(GLBL_SOME_CONTEXT);
   FUN_004546a0();
   FUN_0041c3e0(1);
-  if (*(code **)(DAT_005b1dc4 + 0x88) != (code *)0x0) {
-    (**(code **)(DAT_005b1dc4 + 0x88))(1);
+  if (*(code **)(g_ActiveRules + 0x88) != (code *)0x0) {
+    (**(code **)(g_ActiveRules + 0x88))(1);
   }
   FUN_004107c0(0,0);
   FUN_004103b0();

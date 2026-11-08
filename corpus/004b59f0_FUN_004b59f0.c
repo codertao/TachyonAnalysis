@@ -18,11 +18,11 @@ void FUN_004b59f0(undefined4 *param_1,byte *param_2)
   bool bVar14;
   
   *param_1 = FUN_00445720;
-  iVar2 = *(int *)(DAT_006695b8 + 8);
+  iVar2 = *(int *)(GLBL_bin_content + 8);
   if (iVar2 != 0) {
     iVar12 = 0;
     if (0 < iVar2) {
-      piVar7 = *(int **)(DAT_006695b8 + 0xc);
+      piVar7 = *(int **)(GLBL_bin_content + 0xc);
       do {
         iVar9 = *piVar7;
         if (iVar9 != 0) {
@@ -51,11 +51,11 @@ LAB_004b5a57:
         piVar7 = piVar7 + 1;
       } while (iVar12 < iVar2);
     }
-    iVar9 = **(int **)(DAT_006695b8 + 0xc);
+    iVar9 = **(int **)(GLBL_bin_content + 0xc);
 LAB_004b5a7a:
     param_1[1] = iVar9;
     uVar11 = *(int *)(iVar9 + 0x1c) + *(int *)(iVar9 + 0x18);
-    puVar6 = (undefined4 *)FUN_0049c3b0(uVar11,4,0,s_Script_Data_Block_0055ef68);
+    puVar6 = (undefined4 *)mem_GetMemEx_probably_alloc(uVar11,4,0,s_Script_Data_Block_0055ef68);
     puVar13 = puVar6;
     for (uVar8 = uVar11 >> 2; uVar8 != 0; uVar8 = uVar8 - 1) {
       *puVar13 = 0;
@@ -68,7 +68,7 @@ LAB_004b5a7a:
     param_1[2] = puVar6;
     param_1[3] = puVar6;
     param_1[4] = (undefined1 *)(*(int *)(iVar9 + 0x18) + (int)puVar6);
-    param_1[5] = *(undefined4 *)(DAT_006695b8 + 0x18);
+    param_1[5] = *(undefined4 *)(GLBL_bin_content + 0x18);
     param_1[7] = *(undefined4 *)(iVar9 + 0x2c);
     uVar3 = *(undefined4 *)(*(int *)(iVar9 + 0x24) + *(int *)(iVar9 + 0x2c) * 4);
     *param_1 = FUN_004b5b80;

@@ -26,7 +26,7 @@ void FUN_00491fc0(void)
   FUN_004abf90(uVar5 + 1,iVar6,uVar7 - 1,iVar6,DAT_005a633f);
   DAT_005a62d0 = 0;
   DAT_005a62d4 = 0;
-  DAT_005a62d8 = uVar5 + (((uVar7 - uVar3) - uVar5) * DAT_005b2cc8 >> 8);
+  DAT_005a62d8 = uVar5 + (((uVar7 - uVar3) - uVar5) * GLBL_spacesav[0x42] >> 8);
   DAT_005a64cc = 2;
   DAT_005a64d0 = 5;
   DAT_005a64c4 = 0xffffffff;

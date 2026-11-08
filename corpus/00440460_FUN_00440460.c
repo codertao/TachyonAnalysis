@@ -12,7 +12,7 @@ void FUN_00440460(int param_1,undefined4 param_2)
   iVar1 = FUN_00440580(param_1,param_2);
   if (iVar1 != 0) {
     puVar3 = &DAT_005a61a0;
-    for (iVar2 = 0xc; _DAT_005a61a8 = DAT_005b2d10, iVar2 != 0; iVar2 = iVar2 + -1) {
+    for (iVar2 = 0xc; _DAT_005a61a8 = GLBL_spacesav[0x54], iVar2 != 0; iVar2 = iVar2 + -1) {
       *puVar3 = 0;
       puVar3 = puVar3 + 1;
     }

@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void FUN_004b3eb0(int *param_1,int *param_2)
 
 {
@@ -16,16 +14,19 @@ void FUN_004b3eb0(int *param_1,int *param_2)
       piVar2 = (int *)(*(int *)(param_1[9] + 0x28) + 0x34);
       do {
         local_8 = (int)(longlong)
-                       ROUND((float)piVar1[2] * _DAT_0062c118 +
-                             (float)*piVar1 * DAT_0062c100 + (float)piVar1[1] * _DAT_0062c10c);
+                       ROUND((float)piVar1[2] * GLBL_3VEC3_output[6] +
+                             (float)*piVar1 * GLBL_3VEC3_output[0] +
+                             (float)piVar1[1] * GLBL_3VEC3_output[3]);
         piVar2[-1] = local_8 + *param_2;
         local_8 = (int)(longlong)
-                       ROUND((float)piVar1[2] * _DAT_0062c11c +
-                             (float)*piVar1 * DAT_0062c104 + (float)piVar1[1] * _DAT_0062c110);
+                       ROUND((float)piVar1[2] * GLBL_3VEC3_output[7] +
+                             (float)*piVar1 * GLBL_3VEC3_output[1] +
+                             (float)piVar1[1] * GLBL_3VEC3_output[4]);
         *piVar2 = local_8 + param_2[1];
         local_8 = (int)(longlong)
-                       ROUND((float)piVar1[2] * _DAT_0062c120 +
-                             (float)*piVar1 * _DAT_0062c108 + (float)piVar1[1] * _DAT_0062c114);
+                       ROUND((float)piVar1[2] * GLBL_3VEC3_output[8] +
+                             (float)*piVar1 * GLBL_3VEC3_output[2] +
+                             (float)piVar1[1] * GLBL_3VEC3_output[5]);
         piVar2[1] = local_8 + param_2[2];
         uVar3 = uVar3 + 1;
         piVar1 = piVar1 + 3;

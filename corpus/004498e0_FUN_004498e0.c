@@ -85,7 +85,7 @@ void FUN_004498e0(void)
                  iVar4 != 0 && (uVar8 < 0x20))) {
             local_28c = -1;
             FUN_0048f670(s_WEAPON_CLASS_005478cc,local_80,&local_28c);
-            if ((local_28c != -1) && (piVar10 = &DAT_0055a560, DAT_0055a560 != 0x1c)) {
+            if ((local_28c != -1) && (piVar10 = &g_WeaponDefs, g_WeaponDefs != 0x1c)) {
               puVar9 = (undefined4 *)((int)&DAT_005931bc + uVar8 * 0x48 + iVar3);
               do {
                 if (((piVar10[0x41] == local_28c) && (uVar8 < 0x20)) &&
@@ -150,7 +150,7 @@ void FUN_004498e0(void)
               }
               else {
                 FUN_0048f670(s_WEAPON_TYPES_0054763c,iVar4,&local_294);
-                if (((local_294 == 0) || (iVar6 = FUN_00493120(local_294 - 1), iVar6 == 0)) ||
+                if (((local_294 == 0) || (iVar6 = WeaponDef_Get(local_294 - 1), iVar6 == 0)) ||
                    ((*(byte *)(iVar6 + 0xd8) & 4) == 0)) {
                   uVar2 = FUN_0046be00(local_200,&DAT_005a41e0);
                   *(undefined4 *)(pcVar5 + 0x968) = uVar2;
@@ -164,7 +164,7 @@ void FUN_004498e0(void)
                   FUN_0046d770(DAT_005879a0,pcVar5 + -0x40,iVar4 + 0xb0,1,
                                *(undefined4 *)(iVar4 + 0xc0),*(undefined4 *)(iVar4 + 0xc4),
                                *(undefined4 *)(pcVar5 + 0x18),*(undefined4 *)(pcVar5 + 0x1c),0);
-                  uVar2 = FUN_0043fa70(&g_UiManager,pcVar5 + -0x40);
+                  uVar2 = find_ui_elem_by_id_(&g_UiManager,pcVar5 + -0x40);
                   str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar4 + 0xb0);
                   uVar7 = FUN_0043a7a0(&g_UiManager,&DAT_005a41e0,*(undefined4 *)(pcVar5 + 0x18),
                                        *(undefined4 *)(pcVar5 + 0x1c),*(undefined4 *)(pcVar5 + 0x10)
@@ -179,7 +179,7 @@ void FUN_004498e0(void)
                 FUN_0043f840(&g_UiManager,pcVar5 + -0x40,0x20000);
                 if (1 < *(uint *)(iVar4 + 0x9c)) {
                   str_sprintf(pcVar5 + -0x98,&DAT_00535eb8,*(undefined4 *)(pcVar5 + 0x968));
-                  FUN_0043e670(&g_UiManager,pcVar5 + -0xd8,0x10000);
+                  clr_label_flags_11c(&g_UiManager,pcVar5 + -0xd8,0x10000);
                 }
               }
             }

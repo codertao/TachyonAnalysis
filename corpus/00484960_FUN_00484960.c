@@ -15,9 +15,9 @@ void FUN_00484960(void)
                    DAT_0056f3e4 + 4);
         *(undefined4 *)(iVar1 + 0xf0) = 1;
         FUN_004699d0(-*(int *)(iVar1 + 0xe8));
-        FUN_0043ce50(&DAT_00583420,s_BtnSPPurchase_00557958,8);
-        FUN_0043ce50(&DAT_00583420,s_BtnSPConfig_00557974,1);
-        FUN_0043ce50(&DAT_00583420,s_BtnSPLaunch_005579e8,1);
+        set_button_state(&GLBL_UI_ELEM_LIST,s_BtnSPPurchase_00557958,8);
+        set_button_state(&GLBL_UI_ELEM_LIST,s_BtnSPConfig_00557974,1);
+        set_button_state(&GLBL_UI_ELEM_LIST,s_BtnSPLaunch_005579e8,1);
         FUN_00484a40();
         FUN_004835c0();
       }

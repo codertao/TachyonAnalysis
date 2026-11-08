@@ -22,7 +22,7 @@ void FUN_004050e0(int param_1,undefined1 param_2)
   else {
     iVar4 = FUN_004344a0(param_1);
     if (iVar4 == 0) {
-      FUN_004372f0(*(undefined4 *)(param_1 + 100));
+      Mission_PostEnemyStatus(*(undefined4 *)(param_1 + 100));
     }
   }
   if (*(int *)(param_1 + 0x90) != 0) {
@@ -30,8 +30,8 @@ void FUN_004050e0(int param_1,undefined1 param_2)
     *psVar2 = *psVar2 + -1;
     *(undefined4 *)(param_1 + 0x90) = 0;
   }
-  uVar3 = (**(code **)(DAT_005b1dc4 + 0x1c))(param_1,*(undefined4 *)(param_1 + 100));
-  FUN_0045e160(*(undefined4 *)(param_1 + 0x78),uVar3);
+  uVar3 = (**(code **)(g_ActiveRules + 0x1c))(param_1,*(undefined4 *)(param_1 + 100));
+  SrvSend_Allegiance(*(undefined4 *)(param_1 + 0x78),uVar3);
   return;
 }
 

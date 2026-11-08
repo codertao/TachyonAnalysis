@@ -31,7 +31,7 @@ void FUN_004819a0(void)
     return;
   }
   iVar1 = DAT_00563d70 + DAT_00563d60;
-  uVar3 = FUN_0049ec30();
+  uVar3 = some_iter_over_list();
   if ((((uVar3 != 0) && (cVar2 = (char)uVar3, cVar2 != '\x10')) && (cVar2 != '\0')) &&
      (cVar2 != '\x11')) {
     iVar9 = (uVar3 >> 0x10) + (uVar3 & 0xff);
@@ -99,7 +99,7 @@ void FUN_004819a0(void)
   }
 LAB_00481b48:
   str_sprintf(local_20,s_BtnOptP4KeyMap__2d_00556d94,DAT_00563d70);
-  FUN_0043ce50(DAT_00571280,local_20,1);
+  set_button_state(DAT_00571280,local_20,1);
   FUN_00481c40();
   DAT_00556a20 = 0xf;
   return;

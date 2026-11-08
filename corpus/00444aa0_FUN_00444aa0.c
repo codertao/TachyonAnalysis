@@ -5,9 +5,9 @@ void FUN_00444aa0(int param_1)
   if ((((param_1 != -1) || (param_1 = g_CurrentProfileSlot, g_CurrentProfileSlot != -1)) &&
       (-1 < param_1)) && (param_1 < 10)) {
     DAT_00541184 = param_1;
-    FUN_0043ce50(&g_UiManager,s_BtnLoginCopy_005411f4,8);
+    set_button_state(&g_UiManager,s_BtnLoginCopy_005411f4,8);
     Ui_SetButtonFlag(&g_UiManager,s_BtnLoginCopy_005411f4,0x80000);
-    FUN_0043ce50(&g_UiManager,s_BtnLoginPaste_005411e4,1);
+    set_button_state(&g_UiManager,s_BtnLoginPaste_005411e4,1);
     FUN_0043c150(&g_UiManager,s_BtnLoginPaste_005411e4,0x80000);
   }
   return;

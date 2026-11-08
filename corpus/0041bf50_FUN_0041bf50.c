@@ -12,7 +12,7 @@ void FUN_0041bf50(int param_1,int param_2)
   uVar2 = Spx_ResolveDesName(param_2 + 0xa4);
   piVar3 = (int *)(iVar1 + 0x8c);
   Desc_CreateByType(uVar2,piVar3,0,0,0,0xffffffff);
-  FUN_0045dc40(uVar2,*(undefined4 *)(*piVar3 + 0x14));
+  SrvSend_TeamShipDesc(uVar2,*(undefined4 *)(*piVar3 + 0x14));
   return;
 }
 

@@ -16,7 +16,7 @@ uint FUN_004e98c0(void)
   int iVar5;
   int unaff_ESI;
   
-  if (DAT_00604440 == 0) {
+  if (GLBL_some_str == 0) {
     return in_EAX;
   }
   FUN_004e9720();

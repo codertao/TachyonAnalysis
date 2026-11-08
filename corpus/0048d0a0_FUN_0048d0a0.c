@@ -7,7 +7,7 @@ void FUN_0048d0a0(int *param_1)
   undefined4 *puVar3;
   
   FUN_0048d180();
-  puVar2 = &DAT_0056aac0;
+  puVar2 = &GLBL_llist_large_thing;
   for (iVar1 = 0x22; iVar1 != 0; iVar1 = iVar1 + -1) {
     *puVar2 = 0;
     puVar2 = puVar2 + 1;

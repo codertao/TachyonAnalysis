@@ -9,7 +9,7 @@ void FUN_00454f30(int param_1)
   DAT_005b1edc = 0;
   DAT_005aeebc = 0;
   FUN_00424d00(param_1);
-  FUN_00454040(param_1);
+  PlayerDcb_PostThinkCamera(param_1);
   if ((*(int *)(param_1 + 0xf8) != 0) &&
      (iVar2 = *(int *)(param_1 + 0xf8) + -1, *(int *)(param_1 + 0xf8) = iVar2, iVar2 == 0)) {
     pcVar1 = *(code **)(*(int *)(*(int *)(param_1 + 0x90) + 0x8c) + 0x38);

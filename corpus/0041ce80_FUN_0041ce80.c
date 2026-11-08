@@ -21,19 +21,19 @@ void FUN_0041ce80(void)
               (double)((float)DAT_005b964c * _DAT_0052e6c4 * _DAT_0052e5d8));
   FUN_0048e970(local_48,DAT_005b2770,10,0x37,0xffff00,0xffff,0x10000,0);
   iVar6 = *DAT_005b95e0;
-  if ((iVar6 == 0) || (iVar6 == DAT_005b3300)) {
-    iVar4 = *(int *)(DAT_005b3300 + 0x34);
-    iVar5 = *(int *)(DAT_005b3300 + 0x38);
-    iVar6 = *(int *)(DAT_005b3300 + 0x3c);
+  if ((iVar6 == 0) || (iVar6 == GLBL_SOME_CONTEXT)) {
+    iVar4 = *(int *)(GLBL_SOME_CONTEXT + 0x34);
+    iVar5 = *(int *)(GLBL_SOME_CONTEXT + 0x38);
+    iVar6 = *(int *)(GLBL_SOME_CONTEXT + 0x3c);
   }
   else {
-    iVar4 = *(int *)(DAT_005b3300 + 0x34) - *(int *)(iVar6 + 0x34);
-    iVar5 = *(int *)(DAT_005b3300 + 0x38) - *(int *)(iVar6 + 0x38);
-    iVar6 = *(int *)(DAT_005b3300 + 0x3c) - *(int *)(iVar6 + 0x3c);
+    iVar4 = *(int *)(GLBL_SOME_CONTEXT + 0x34) - *(int *)(iVar6 + 0x34);
+    iVar5 = *(int *)(GLBL_SOME_CONTEXT + 0x38) - *(int *)(iVar6 + 0x38);
+    iVar6 = *(int *)(GLBL_SOME_CONTEXT + 0x3c) - *(int *)(iVar6 + 0x3c);
   }
-  fVar1 = (float)*(int *)(DAT_005b3300 + 0x4c) * _DAT_0052e6c4 * _DAT_0052e5d8;
-  fVar2 = (float)*(int *)(DAT_005b3300 + 0x50) * _DAT_0052e6c4 * _DAT_0052e5d8;
-  fVar3 = (float)*(int *)(DAT_005b3300 + 0x54) * _DAT_0052e6c4 * _DAT_0052e5d8;
+  fVar1 = (float)*(int *)(GLBL_SOME_CONTEXT + 0x4c) * _DAT_0052e6c4 * _DAT_0052e5d8;
+  fVar2 = (float)*(int *)(GLBL_SOME_CONTEXT + 0x50) * _DAT_0052e6c4 * _DAT_0052e5d8;
+  fVar3 = (float)*(int *)(GLBL_SOME_CONTEXT + 0x54) * _DAT_0052e6c4 * _DAT_0052e5d8;
   str_sprintf(local_48,s_PLAYER_X____2_2f__Y____2_2f__Z___00534f40,
               (double)((float)iVar4 * _DAT_0052e6c0),(double)((float)iVar5 * _DAT_0052e6c0),
               (double)((float)iVar6 * _DAT_0052e6c0));

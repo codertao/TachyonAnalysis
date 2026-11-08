@@ -11,9 +11,9 @@ void FUN_0047eab0(void)
     DAT_005636a4 = *(int *)(iVar1 + 0x20);
     if (*(int *)(iVar1 + 0x18) != 0) {
       FUN_0049ea00(*(undefined4 *)(iVar1 + 0x10));
-      FUN_0049c530(*(undefined4 *)(iVar1 + 0x18));
+      OurFreeMem(*(undefined4 *)(iVar1 + 0x18));
     }
-    FUN_0049c530(iVar1);
+    OurFreeMem(iVar1);
     iVar1 = DAT_005636a4;
   }
   DAT_005636a4 = 0;

@@ -6,7 +6,7 @@ void FUN_004841d0(void)
 {
   g_NextMode = g_StarbaseScreen;
   _DAT_00556e6c = 0xffffffff;
-  FUN_0049c530(DAT_0056363c);
+  OurFreeMem(DAT_0056363c);
   FUN_0048b6f0(0);
   FUN_004e4b65(0);
   FUN_004acfa0();

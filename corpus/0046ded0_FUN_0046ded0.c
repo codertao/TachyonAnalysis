@@ -49,7 +49,7 @@ void FUN_0046ded0(undefined4 param_1,undefined4 param_2)
     }
     FUN_00452150();
     FUN_00451fc0(local_10,iVar5,iVar7,iVar6,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     if ((DAT_00564ae4 == 0) && (FUN_00452100(), DAT_00564ae4 == 0)) {
       uVar8 = 1;
     }
@@ -60,7 +60,7 @@ void FUN_0046ded0(undefined4 param_1,undefined4 param_2)
     Ui_RefreshWindow(param_1,param_2,&DAT_005878d0,0);
     FUN_00452150();
     FUN_00452070(iVar1,iVar2,iVar3,iVar4,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
   }
   return;
 }

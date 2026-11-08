@@ -11,7 +11,7 @@ undefined4 FUN_00456bd0(int param_1,int param_2)
   iVar2 = *(int *)(param_2 + 0x8c) + 0xd0;
   switch(*(undefined4 *)(iVar1 + 0xb0)) {
   case 1:
-    iVar2 = FUN_00455e40(param_2 + 0x11c,iVar2);
+    iVar2 = Shield_GetMax(param_2 + 0x11c,iVar2);
     if ((iVar2 <= *(int *)(param_2 + 0x124)) && (iVar2 <= *(int *)(param_2 + 300))) {
       return 0;
     }
@@ -59,8 +59,9 @@ LAB_00456cf1:
     uVar3 = FUN_00456910(iVar1,param_2);
     return uVar3;
   }
-  FUN_0045d810(*(undefined4 *)(iVar1 + 0xb0),*(undefined4 *)(iVar1 + 0xb4),
-               *(undefined4 *)(param_2 + 0xdc));
+  SrvSend_ResupplyNotice
+            (*(undefined4 *)(iVar1 + 0xb0),*(undefined4 *)(iVar1 + 0xb4),
+             *(undefined4 *)(param_2 + 0xdc));
   return 1;
 }
 

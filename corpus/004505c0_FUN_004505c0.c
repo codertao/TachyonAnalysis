@@ -19,7 +19,7 @@ void FUN_004505c0(void)
   uVar2 = DAT_005a67c0;
   if (DAT_0058f4a8 != 0) {
     FUN_00451fc0(0,0,0x27f,0x1df,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     FUN_00452180(1);
     FUN_0041f6e0(DAT_0058f4c0,100,DAT_0058f4b0,0x1b8,400,0x80,DAT_0058f4bc,s_MESSAGES_005485a0,
                  0xffff00,0x10000,2);
@@ -43,7 +43,7 @@ void FUN_004505c0(void)
       } while (uVar10 < DAT_0058f4b4);
     }
     FUN_00452070(uVar2,uVar3,uVar4,uVar5,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
   }
   return;
 }

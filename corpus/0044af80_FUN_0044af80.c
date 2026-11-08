@@ -12,7 +12,7 @@ void FUN_0044af80(void)
   FUN_0044b9b0();
   FUN_00437b40(0);
   FUN_00437b50(0);
-  FUN_00450770(&DAT_005b2b78,&DAT_005b2b88);
+  load_sbf_and_bin(&DAT_005b2b78,&DAT_005b2b88);
   return;
 }
 

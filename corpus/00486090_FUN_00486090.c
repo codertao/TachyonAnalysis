@@ -5,9 +5,9 @@ void FUN_00486090(void)
   int iVar1;
   undefined4 *puVar2;
   
-  FUN_0052db6a(&DAT_005b9628,0,0,0);
+  call_math_todo_with_rotation(&DAT_005b9628,0,0,0);
   FUN_004b1940(&DAT_0056e3ac,&DAT_0056e3c4);
-  FUN_004b1920(0xa000,0x2ee0000);
+  set_global_near_far(0xa000,0x2ee0000);
   FUN_004b19a0(&DAT_0056e340);
   FUN_004b19f0(&DAT_0056e340);
   puVar2 = &DAT_00587b7c;
@@ -22,7 +22,7 @@ void FUN_00486090(void)
     puVar2 = puVar2 + 0x6d;
     iVar1 = iVar1 + -1;
   } while (iVar1 != 0);
-  FUN_004b1920(0x2000,0x13880000);
+  set_global_near_far(0x2000,0x13880000);
   return;
 }
 

@@ -17,8 +17,8 @@ void FUN_00479940(void)
   undefined4 local_c;
   ulonglong local_8;
   
-  FUN_0043bf10(&DAT_00583420,s_JOB_CREDITS_EARNED_00552488);
-  iVar1 = FUN_0043bf10(&DAT_00583420,s_JOB_NONE_0055247c);
+  FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_JOB_CREDITS_EARNED_00552488);
+  iVar1 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_JOB_NONE_0055247c);
   iVar2 = FUN_00469a70(s_DefaultLight_0053ff6c);
   iVar3 = FUN_00469330();
   local_c = FUN_004699f0(s_JOB_STATS_00552470);
@@ -39,19 +39,19 @@ void FUN_00479940(void)
     return;
   }
   g_TitleMenu_ExitFlag = 0;
-  FUN_00440460(&DAT_00583420,s_SNDEVNT_CHANGE_MENUS_0053ff54);
-  FUN_0043ab40(&DAT_00583420);
-  Ui_ShowWindow(&DAT_00583420,s_WndStarBaseJobsComplete_0055227c,0);
-  FUN_0043a8d0(&DAT_00583420,s_WndStarBaseJobsComplete_0055227c);
+  FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  FUN_0043ab40(&GLBL_UI_ELEM_LIST);
+  Ui_ShowWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobsComplete_0055227c,0);
+  FUN_0043a8d0(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobsComplete_0055227c);
   FUN_00437b30(FUN_004798b0);
   FUN_00437b10(FUN_004798b0);
   FUN_00445710();
-  FUN_0043e8f0(&DAT_00583420,s_Cursor1_0053ff4c);
+  FUN_0043e8f0(&GLBL_UI_ELEM_LIST,s_Cursor1_0053ff4c);
   FUN_0043efa0();
-  FUN_0043e6a0(&DAT_00583420,s_TxtJobCompletedPayField_00552458,&DAT_00572000);
-  FUN_0043e6a0(&DAT_00583420,s_TxtJobCompletedWingCutField_0055243c,&DAT_00572010);
-  FUN_0043e6a0(&DAT_00583420,s_TxtJobCompletedYourCutField_00552420,&DAT_00571ff0);
-  FUN_0043e6a0(&DAT_00583420,s_TxtJobCompletedCreditsField_00552404,&DAT_00571fe0);
+  FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtJobCompletedPayField_00552458,&DAT_00572000);
+  FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtJobCompletedWingCutField_0055243c,&DAT_00572010);
+  FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtJobCompletedYourCutField_00552420,&DAT_00571ff0);
+  FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtJobCompletedCreditsField_00552404,&DAT_00571fe0);
   if (DAT_00552018 == 2) {
     uVar6 = *(uint *)(DAT_0056364c + 0x148);
   }
@@ -76,14 +76,14 @@ void FUN_00479940(void)
   if (DAT_00552018 == 1) {
     FUN_0047a170();
     Var_GetInt(g_PlayerVarStore,s_PLAYER_MAIN_VARS_00534198,s_CAMPAIGN_MISSION_005342f0,&local_18);
-    FUN_0043ce50(&DAT_00583420,s_BtnJobsCompExit_00552378,8);
-    Ui_SetButtonFlag(&DAT_00583420,s_BtnJobsCompExit_00552378,0x80000);
-    FUN_0043ce50(&DAT_00583420,s_BtnJobCompReplay_005523d4,1);
-    FUN_0043c150(&DAT_00583420,s_BtnJobCompReplay_005523d4,0x80000);
+    set_button_state(&GLBL_UI_ELEM_LIST,s_BtnJobsCompExit_00552378,8);
+    Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnJobsCompExit_00552378,0x80000);
+    set_button_state(&GLBL_UI_ELEM_LIST,s_BtnJobCompReplay_005523d4,1);
+    FUN_0043c150(&GLBL_UI_ELEM_LIST,s_BtnJobCompReplay_005523d4,0x80000);
     if (local_18 == 0) {
-      FUN_0043ce50(&DAT_00583420,s_BtnJobCompContinue_005523c0,1);
-      FUN_0043c150(&DAT_00583420,s_BtnJobCompContinue_005523c0,0x80000);
-      iVar1 = FUN_0043bf10(&DAT_00583420,s_JOB_MISSION_FAILED_00552334);
+      set_button_state(&GLBL_UI_ELEM_LIST,s_BtnJobCompContinue_005523c0,1);
+      FUN_0043c150(&GLBL_UI_ELEM_LIST,s_BtnJobCompContinue_005523c0,0x80000);
+      iVar1 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_JOB_MISSION_FAILED_00552334);
       if (iVar1 == 0) {
         pcVar4 = s__Independent_Mission_Failed_00552318;
       }
@@ -92,9 +92,9 @@ void FUN_00479940(void)
       }
     }
     else {
-      FUN_0043ce50(&DAT_00583420,s_BtnJobCompContinue_005523c0,8);
-      Ui_SetButtonFlag(&DAT_00583420,s_BtnJobCompContinue_005523c0,0x80000);
-      iVar1 = FUN_0043bf10(&DAT_00583420,s_JOB_CAMPAIGN_FAILED_00552364);
+      set_button_state(&GLBL_UI_ELEM_LIST,s_BtnJobCompContinue_005523c0,8);
+      Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnJobCompContinue_005523c0,0x80000);
+      iVar1 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_JOB_CAMPAIGN_FAILED_00552364);
       if (iVar1 == 0) {
         pcVar4 = s__Campaign_Mission_Failed_00552348;
       }
@@ -102,16 +102,16 @@ void FUN_00479940(void)
         pcVar4 = *(char **)(iVar1 + 0x40);
       }
     }
-    FUN_0043e6a0(&DAT_00583420,s_TxtJobCompletedMessage_005523a8,pcVar4);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtJobCompletedMessage_005523a8,pcVar4);
     goto LAB_00479e1e;
   }
-  FUN_0043ce50(&DAT_00583420,s_BtnJobCompExit_005523e8,1);
-  FUN_0043c150(&DAT_00583420,s_BtnJobCompExit_005523e8,0x80000);
-  FUN_0043ce50(&DAT_00583420,s_BtnJobCompReplay_005523d4,8);
-  Ui_SetButtonFlag(&DAT_00583420,s_BtnJobCompReplay_005523d4,0x80000);
-  FUN_0043ce50(&DAT_00583420,s_BtnJobCompContinue_005523c0,8);
-  Ui_SetButtonFlag(&DAT_00583420,s_BtnJobCompContinue_005523c0,0x80000);
-  FUN_0043e610(&DAT_00583420,s_TxtJobCompletedMessage_005523a8,0x10000);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnJobCompExit_005523e8,1);
+  FUN_0043c150(&GLBL_UI_ELEM_LIST,s_BtnJobCompExit_005523e8,0x80000);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnJobCompReplay_005523d4,8);
+  Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnJobCompReplay_005523d4,0x80000);
+  set_button_state(&GLBL_UI_ELEM_LIST,s_BtnJobCompContinue_005523c0,8);
+  Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,s_BtnJobCompContinue_005523c0,0x80000);
+  sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtJobCompletedMessage_005523a8,0x10000);
   Var_GetInt(g_PlayerVarStore,s_PLAYER_MAIN_VARS_00534198,s_CURRENT_WINGMAN_0054a954,&local_14);
   iVar1 = Var_GetTable(s_WINGMEN_0054adb0);
   if (iVar1 == 0) {
@@ -154,13 +154,14 @@ LAB_00479e1e:
   FUN_004524a0(0xf1);
   FUN_004107c0(0,&LAB_00479930);
   FUN_004af2e0();
-  FUN_004b1b70(DAT_005a6818,0x80,*(undefined4 *)(iVar2 + 0x4c),*(undefined4 *)(iVar2 + 0x50),
-               *(undefined4 *)(iVar2 + 0x54));
+  Pak_SetLoadPalParams
+            (g_PalBrightness,0x80,*(undefined4 *)(iVar2 + 0x4c),*(undefined4 *)(iVar2 + 0x50),
+             *(undefined4 *)(iVar2 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar2 + 0x40),*(undefined4 *)(iVar2 + 0x44),
                *(undefined4 *)(iVar2 + 0x48));
   FUN_004e4b65(1);
   FUN_0047a250();
-  FUN_0043f620(&DAT_00583420,s_IAJobCompImage_0054e8b0,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAJobCompImage_0054e8b0,0x20000);
   return;
 }
 

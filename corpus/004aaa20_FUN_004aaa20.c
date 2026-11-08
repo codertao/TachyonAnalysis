@@ -12,7 +12,7 @@ void FUN_004aaa20(uint *param_1)
         DAT_0055e404 = param_1[2];
         DAT_0055e42c = param_1[4];
         DAT_0055e430 = param_1[5];
-        FUN_004a6fd0(DAT_0055e404);
+        Net_SendSessionNotify(DAT_0055e404);
         DAT_0055e408 = DAT_0055e408 + 1;
         DAT_0055e40c = DAT_0055e40c + 1;
         if (DAT_0055e434 != (code *)0x0) {

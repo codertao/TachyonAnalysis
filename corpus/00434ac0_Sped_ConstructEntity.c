@@ -86,14 +86,14 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
     *puVar1 = *(undefined4 *)(iVar6 + 0x4c);
     *(undefined4 *)(iVar6 + 0xe0) = *(undefined4 *)(iVar6 + 0x50);
     *(undefined4 *)(iVar6 + 0xe4) = *(undefined4 *)(iVar6 + 0x54);
-    if ((DAT_005b2c7c == 2) &&
+    if ((GLBL_spacesav[0x2f] == 2) &&
        (*(short *)(iVar6 + 0x310) = *(short *)(iVar6 + 0x310) + 1, 3 < *(ushort *)(iVar6 + 0x310)))
     {
       *(undefined2 *)(iVar6 + 0x310) = 3;
     }
     *(undefined1 **)(iVar6 + 0x68) = &LAB_004039c0;
-    *(undefined1 **)(iVar6 + 0x6c) = &LAB_00404aa0;
-    *(code **)(iVar6 + 0x80) = FUN_00404440;
+    *(code **)(iVar6 + 0x6c) = Ai_CollisionLookahead;
+    *(code **)(iVar6 + 0x80) = AiShip_OnDamage;
     if ((*(int *)(param_1 + 0x68) == 0) && ((*(byte *)(param_1 + 0x24) & 0x10) == 0)) {
       FUN_00401e20(iVar6);
       FUN_00423e80(iVar6,*(float *)(*(int *)(iVar6 + 0x8c) + 0xbc) * *(float *)(iVar6 + 300));
@@ -121,7 +121,7 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
     FUN_00434630(uVar5,*(undefined4 *)(param_1 + 0x5c),iVar6 + 0x10c);
     FUN_0045cff0(iVar6,*(int *)(iVar6 + 100) + 0x14);
     FUN_00434960(iVar6,param_1);
-    FUN_004349a0(iVar6,param_1,puVar1,param_3,param_1 + 0x48,uVar5);
+    Nav_InitRoute(iVar6,param_1,puVar1,param_3,param_1 + 0x48,uVar5);
     if (param_4 == (undefined4 *)0x0) {
       uVar5 = *(undefined4 *)(param_1 + 0x54);
       uVar9 = *(uint *)(param_1 + 0x24) & 0x20;

@@ -12,8 +12,8 @@ void FUN_00433760(int param_1)
      (iVar3 = *(int *)(*(int *)(param_1 + 100) + 8), iVar2 = DAT_0058f2e8, iVar3 != 0)) {
     while (((*(uint *)((uint)*(byte *)(param_1 + 0xc2) * 0x10 + 4 + iVar2) &
             *(uint *)((uint)*(byte *)(iVar3 + 0xc2) * 0x10 + iVar2)) == 0 ||
-           (puVar1 = (undefined *)FUN_0048e440(param_1 + 0x34,iVar3 + 0x34), iVar2 = DAT_0058f2e8,
-           &DAT_00578000 <= puVar1))) {
+           (puVar1 = (undefined *)distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(iVar3 + 0x34)),
+           iVar2 = DAT_0058f2e8, &DAT_00578000 <= puVar1))) {
       iVar3 = *(int *)(iVar3 + 0x94);
       if (iVar3 == 0) {
         return;

@@ -46,7 +46,7 @@ void FUN_004a3700(undefined1 *param_1)
     }
     param_1 = param_1 + 1;
   }
-  FUN_0049c530(puVar1);
+  OurFreeMem(puVar1);
   return;
 }
 

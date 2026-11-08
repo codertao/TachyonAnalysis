@@ -11,7 +11,7 @@ void FUN_004852d0(void)
   DAT_005b95ec = 0;
   DAT_005b95f0 = 0;
   DAT_0056e3c8 = 0xffc00000;
-  puVar1 = (undefined4 *)FUN_004b1db0(DAT_0056e38c,0x1a);
+  puVar1 = (undefined4 *)Pak_GetAttachPoint(DAT_0056e38c,0x1a);
   if (puVar1 != (undefined4 *)0x0) {
     DAT_0056e3ac = *puVar1;
     DAT_0056e3b0 = puVar1[1];

@@ -4,7 +4,7 @@
 void Flight_Exit(void)
 
 {
-  FUN_004628c0();
+  Flight_ServerShutdown();
   FUN_004183c0();
   return;
 }

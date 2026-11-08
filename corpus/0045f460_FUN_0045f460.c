@@ -16,7 +16,7 @@ void FUN_0045f460(int param_1,undefined4 *param_2)
   FUN_0052def7();
   puVar1 = (undefined4 *)(param_1 + 0x120);
   if (*(int *)(param_1 + 0x120) != 0) {
-    FUN_0049c530(*(int *)(param_1 + 0x120));
+    OurFreeMem(*(int *)(param_1 + 0x120));
   }
   FUN_0048e3a0(puVar1,local_4 * 4,4,s_PLAYER_STATIC_OBJ_LIST_005493c4,
                *(undefined4 *)(param_1 + 0x10));

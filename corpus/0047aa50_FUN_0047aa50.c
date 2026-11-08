@@ -14,7 +14,7 @@ void FUN_0047aa50(int param_1,int param_2,float param_3,int param_4)
     uVar3 = uVar3 + 1;
     piVar2 = piVar2 + 9;
     if (0xf < uVar3) {
-      FUN_00466860(s_lmover_wav_005525e0,(DAT_005b2d10 * 3 & 0xfffffffU) >> 4);
+      FUN_00466860(s_lmover_wav_005525e0,(GLBL_spacesav[0x54] * 3 & 0xfffffffU) >> 4);
       piVar2 = &DAT_00571d80;
       uVar3 = 0;
       do {

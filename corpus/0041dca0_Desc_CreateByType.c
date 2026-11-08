@@ -13,7 +13,7 @@ Desc_CreateByType(int param_1,undefined4 *param_2,undefined4 param_3,undefined4 
   
   *param_2 = 0;
   if ((param_1 != 0) && (param_2 != (undefined4 *)0x0)) {
-    puVar1 = (undefined4 *)FUN_0041dbb0(param_1,0);
+    puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
     if (puVar1 == (undefined4 *)0x0) {
       iVar2 = Cbin_Open(param_1);
       if (iVar2 == 0) {

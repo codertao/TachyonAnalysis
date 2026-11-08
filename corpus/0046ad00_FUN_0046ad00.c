@@ -65,7 +65,7 @@ joined_r0x0046ad91:
       iVar2 = iVar2 + -1;
       puVar6 = puVar6 + 0x6e;
     }
-    FUN_0049c530(DAT_00589730);
+    OurFreeMem(DAT_00589730);
     DAT_00589730 = local_4;
   }
   return;

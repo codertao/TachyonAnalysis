@@ -6,12 +6,12 @@ int FUN_00466860(undefined4 param_1,uint param_2)
   undefined1 uVar2;
   undefined1 local_40 [64];
   
-  if (DAT_005b2d14 < param_2) {
-    param_2 = DAT_005b2d14;
+  if (GLBL_spacesav[0x55] < param_2) {
+    param_2 = GLBL_spacesav[0x55];
   }
   if (DAT_005897c0 != 0) {
     FUN_0049ea00(DAT_005897c4);
-    FUN_0049c530(DAT_005897c0);
+    OurFreeMem(DAT_005897c0);
   }
   uVar1 = FUN_004a0d50(0);
   FUN_0044eaa0();
@@ -19,7 +19,7 @@ int FUN_00466860(undefined4 param_1,uint param_2)
   FUN_0044eab0();
   FUN_004a0d50(uVar1);
   if (DAT_005897c0 != 0) {
-    FUN_0049c670(DAT_005897c0,0xcccc);
+    mark_alloc_memory_with_flags(DAT_005897c0,0xcccc);
     DAT_005897c4 = FUN_0049e940(8,DAT_005897c0,0,param_2,0x10000);
   }
   if ((DAT_005a6730 != 0) && (DAT_005b8f48 != 0)) {

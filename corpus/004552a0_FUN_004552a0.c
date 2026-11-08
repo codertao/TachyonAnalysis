@@ -8,15 +8,15 @@ void FUN_004552a0(undefined4 param_1,int param_2,undefined4 param_3)
   iVar1 = DcbPool_Alloc(&DAT_0058af74,1,param_1);
   *(int *)(param_2 + 200) = iVar1;
   *(code **)(iVar1 + 0x68) = FUN_00460d90;
-  *(code **)(iVar1 + 0x80) = FUN_00460f60;
+  *(code **)(iVar1 + 0x80) = TachSrv_DamagePlayer;
   *(undefined4 *)(iVar1 + 0xb8) = 0x20000;
   *(undefined4 *)(iVar1 + 0xd0) = 1;
   *(undefined1 *)(iVar1 + 0xc3) = 0;
   *(undefined1 *)(iVar1 + 0xc0) = 5;
   *(undefined4 *)(iVar1 + 0x10c) = *(undefined4 *)(param_2 + 8);
   *(int *)(*(int *)(param_2 + 200) + 0xdc) = param_2;
-  if (*(code **)(DAT_005b1dc4 + 0x20) != (code *)0x0) {
-    (**(code **)(DAT_005b1dc4 + 0x20))(param_2,param_3);
+  if (*(code **)(g_ActiveRules + 0x20) != (code *)0x0) {
+    (**(code **)(g_ActiveRules + 0x20))(param_2,param_3);
   }
   *(undefined4 *)(iVar1 + 0x58) = *(undefined4 *)(*(int *)(iVar1 + 0x8c) + 0x290);
   *(undefined1 *)(iVar1 + 0x7e) = *(undefined1 *)(*(int *)(iVar1 + 0x8c) + 0x294);

@@ -15,7 +15,7 @@ void FUN_00450990(char *param_1,undefined4 param_2,int param_3,int param_4)
   undefined4 local_8;
   undefined4 local_4;
   
-  FUN_0048e380(local_80,0x80);
+  clr_bytes(local_80,0x80);
   uVar3 = 0xffffffff;
   do {
     pcVar5 = param_1;

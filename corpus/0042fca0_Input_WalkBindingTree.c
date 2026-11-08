@@ -15,7 +15,7 @@ void Input_WalkBindingTree(int param_1)
   ushort local_8;
   ushort uStack_6;
   
-  uVar2 = FUN_0049ec30();
+  uVar2 = some_iter_over_list();
   local_8 = (ushort)uVar2;
   uStack_6 = (ushort)(uVar2 >> 0x10);
   while (uVar2 != 0) {
@@ -62,7 +62,7 @@ void Input_WalkBindingTree(int param_1)
       } while( true );
     }
 LAB_0042fdab:
-    uVar2 = FUN_0049ec30();
+    uVar2 = some_iter_over_list();
     local_8 = (ushort)uVar2;
     uStack_6 = (ushort)(uVar2 >> 0x10);
   }

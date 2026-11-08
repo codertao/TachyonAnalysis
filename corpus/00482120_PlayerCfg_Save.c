@@ -13,9 +13,9 @@ void PlayerCfg_Save(void)
     puVar1 = &g_CurrentCfgPath;
   }
   PlayerCfg_WriteActions(puVar1);
-  FUN_0049c530(DAT_00563d68);
+  OurFreeMem(DAT_00563d68);
   DAT_00563d68 = 0;
-  FUN_0049c530(DAT_00563d64);
+  OurFreeMem(DAT_00563d64);
   DAT_00563d64 = 0;
   return;
 }

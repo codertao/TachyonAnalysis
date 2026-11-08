@@ -27,10 +27,10 @@ void FUN_0042c330(int param_1,int param_2)
     FUN_0042c300();
   }
   else {
-    local_18 = *(int *)(param_2 + 0x34) - *(int *)(DAT_005b3300 + 0x34);
-    local_14 = *(int *)(param_2 + 0x38) - *(int *)(DAT_005b3300 + 0x38);
-    local_10 = *(int *)(param_2 + 0x3c) - *(int *)(DAT_005b3300 + 0x3c);
-    FUN_004b1be0(local_30,DAT_005b3300 + 0x4c);
+    local_18 = *(int *)(param_2 + 0x34) - *(int *)(GLBL_SOME_CONTEXT + 0x34);
+    local_14 = *(int *)(param_2 + 0x38) - *(int *)(GLBL_SOME_CONTEXT + 0x38);
+    local_10 = *(int *)(param_2 + 0x3c) - *(int *)(GLBL_SOME_CONTEXT + 0x3c);
+    FUN_004b1be0(local_30,GLBL_SOME_CONTEXT + 0x4c);
     FUN_004b2410(&local_18,&local_18);
     if (0 < local_10) {
       FUN_004b2e00(&local_18,&local_c);

@@ -2,7 +2,7 @@
 void FUN_00481470(void)
 
 {
-  netcomm_SetPlaybackVolume(DAT_005b2cc4);
+  netcomm_SetPlaybackVolume(GLBL_spacesav[0x41]);
   return;
 }
 

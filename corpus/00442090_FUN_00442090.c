@@ -10,11 +10,11 @@ void FUN_00442090(void)
   char *pcVar6;
   
   uVar5 = 0;
-  if (PTR_DAT_005400c0 != (undefined *)0x0) {
+  if (PTR_GLBL_spacesav_89__005400c0 != (undefined *)0x0) {
     pcVar6 = s_HOPT_NUM_ROUNDS_005400cc;
     puVar4 = &DAT_005a40e0;
     do {
-      if (*(int *)(pcVar6 + -8) == DAT_005b2c0c) {
+      if (*(int *)(pcVar6 + -8) == GLBL_spacesav[0x13]) {
         if (pcVar6 != (char *)0x0) {
           str_sprintf(&DAT_005a41e0,s_TxtOptBanner_d_00540a30,uVar5);
           FUN_0043e770(&g_UiManager,&DAT_005a41e0,pcVar6);
@@ -40,13 +40,13 @@ LAB_00442151:
           FUN_0043e6a0(&g_UiManager,pcVar6 + 0x40,*(int *)(iVar2 + 0x40));
         }
         str_sprintf(&DAT_005a41e0,s_BtnHostOpt_d_00540a18,uVar5);
-        FUN_0043ce50(&g_UiManager,&DAT_005a41e0,1);
+        set_button_state(&g_UiManager,&DAT_005a41e0,1);
         FUN_0043c150(&g_UiManager,&DAT_005a41e0,0x80000);
         str_sprintf(&DAT_005a41e0,s_BtnHostOpt_dL_00540a08,uVar5);
-        FUN_0043ce50(&g_UiManager,&DAT_005a41e0,1);
+        set_button_state(&g_UiManager,&DAT_005a41e0,1);
         FUN_0043c150(&g_UiManager,&DAT_005a41e0,0x80000);
         str_sprintf(&DAT_005a41e0,s_BtnHostOpt_dR_005409f8,uVar5);
-        FUN_0043ce50(&g_UiManager,&DAT_005a41e0,1);
+        set_button_state(&g_UiManager,&DAT_005a41e0,1);
         FUN_0043c150(&g_UiManager,&DAT_005a41e0,0x80000);
         uVar5 = uVar5 + 1;
         puVar4 = puVar4 + 8;
@@ -60,13 +60,13 @@ LAB_00442151:
   }
   do {
     str_sprintf(&DAT_005a41e0,s_BtnHostOpt_d_00540a18,uVar5);
-    FUN_0043ce50(&g_UiManager,&DAT_005a41e0,8);
+    set_button_state(&g_UiManager,&DAT_005a41e0,8);
     Ui_SetButtonFlag(&g_UiManager,&DAT_005a41e0,0x80000);
     str_sprintf(&DAT_005a41e0,s_BtnHostOpt_dL_00540a08,uVar5);
-    FUN_0043ce50(&g_UiManager,&DAT_005a41e0,8);
+    set_button_state(&g_UiManager,&DAT_005a41e0,8);
     Ui_SetButtonFlag(&g_UiManager,&DAT_005a41e0,0x80000);
     str_sprintf(&DAT_005a41e0,s_BtnHostOpt_dR_005409f8,uVar5);
-    FUN_0043ce50(&g_UiManager,&DAT_005a41e0,8);
+    set_button_state(&g_UiManager,&DAT_005a41e0,8);
     Ui_SetButtonFlag(&g_UiManager,&DAT_005a41e0,0x80000);
     str_sprintf(&DAT_005a41e0,s_TxtOptBanner_d_00540a30,uVar5);
     FUN_0043e6a0(&g_UiManager,&DAT_005a41e0,&DAT_00562b14);

@@ -13,25 +13,25 @@ void FUN_00473190(void)
   int iStack_10;
   int iStack_c;
   
-  iVar1 = FUN_0043bf10(&DAT_00583420,s_MAINT_PRICE_0054ffe8);
+  iVar1 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_MAINT_PRICE_0054ffe8);
   iVar7 = DAT_005720c0;
   if (s_BtnCFGBuy1_0054e9f0[0] != '\0') {
     pcVar8 = s_TxtItemQty1_0054ea70;
     do {
       pcVar6 = pcVar8 + -0x80;
-      Ui_SetButtonFlag(&DAT_00583420,pcVar6,4);
-      FUN_0043ce50(&DAT_00583420,pcVar6,8);
-      Ui_SetButtonFlag(&DAT_00583420,pcVar6,0x400000);
-      FUN_0043f620(&DAT_00583420,pcVar8 + 0x40,0x20000);
-      FUN_0043e610(&DAT_00583420,pcVar8,0x20000);
-      FUN_0043e6a0(&DAT_00583420,pcVar8,&DAT_00562b14);
-      FUN_0043e610(&DAT_00583420,pcVar8 + -0x40,0x200);
-      FUN_0043e6a0(&DAT_00583420,pcVar8 + -0x40,&DAT_00562b14);
+      Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,pcVar6,4);
+      set_button_state(&GLBL_UI_ELEM_LIST,pcVar6,8);
+      Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,pcVar6,0x400000);
+      set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,pcVar8 + 0x40,0x20000);
+      sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,pcVar8,0x20000);
+      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8,&DAT_00562b14);
+      sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,0x200);
+      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,&DAT_00562b14);
       pcVar8[0x80] = '\0';
       pcVar8[0x81] = '\0';
       pcVar8[0x82] = '\0';
       pcVar8[0x83] = '\0';
-      iVar2 = Ui_FindButton(&DAT_00583420,pcVar6);
+      iVar2 = Ui_FindButton(&GLBL_UI_ELEM_LIST,pcVar6);
       if (iVar2 != 0) {
         *(undefined4 *)(pcVar8 + 0xe4) = *(undefined4 *)(iVar2 + 0xd4);
         *(undefined4 *)(pcVar8 + 0xe8) = *(undefined4 *)(iVar2 + 0xd8);
@@ -58,19 +58,19 @@ void FUN_00473190(void)
         if ((iStack_10 != 0) && (iVar7 = *(int *)(iStack_10 + 0x58), iVar7 != 0)) {
           pcVar6 = pcVar8 + -0xc0;
           *(int *)(pcVar8 + 0x40) = iStack_10;
-          iVar2 = FUN_0043ca90(&DAT_00583420,pcVar6);
+          iVar2 = FUN_0043ca90(&GLBL_UI_ELEM_LIST,pcVar6);
           if ((iVar2 == 8) && (uVar3 = FUN_004699a0(), *(uint *)(iVar7 + 0x98) <= uVar3)) {
-            FUN_0043ce50(&DAT_00583420,pcVar6,1);
+            set_button_state(&GLBL_UI_ELEM_LIST,pcVar6,1);
           }
-          iVar2 = Ui_FindButton(&DAT_00583420,pcVar6);
+          iVar2 = Ui_FindButton(&GLBL_UI_ELEM_LIST,pcVar6);
           if (iVar2 != 0) {
-            FUN_0046d770(&DAT_00583420,pcVar8,iVar7 + 0xb0,1,*(undefined4 *)(iVar7 + 0xc0),
+            FUN_0046d770(&GLBL_UI_ELEM_LIST,pcVar8,iVar7 + 0xb0,1,*(undefined4 *)(iVar7 + 0xc0),
                          *(undefined4 *)(iVar7 + 0xc4),*(undefined4 *)(iVar2 + 0xd4),
                          *(undefined4 *)(iVar2 + 0xd8),0);
-            iVar4 = FUN_0043fa70(&DAT_00583420,pcVar8);
+            iVar4 = find_ui_elem_by_id_(&GLBL_UI_ELEM_LIST,pcVar8);
             str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar7 + 0xb0);
-            iVar5 = FUN_0043a7a0(&DAT_00583420,&DAT_005a41e0);
-            iVar2 = FUN_0043a7a0(&DAT_00583420,iVar2 + 0x80);
+            iVar5 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0);
+            iVar2 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,iVar2 + 0x80);
             if (((iVar4 != 0) && (iVar5 != 0)) && (iVar2 != 0)) {
               if (iVar1 == 0) {
                 pcVar6 = s__Price__0054ffe0;
@@ -79,7 +79,7 @@ void FUN_00473190(void)
                 pcVar6 = *(char **)(iVar1 + 0x40);
               }
               str_sprintf(pcVar8 + 0x84,s__s__d_0054ffd8,pcVar6,*(undefined4 *)(iVar7 + 0x98));
-              FUN_0043e6a0(&DAT_00583420,pcVar8 + -0x40,pcVar8 + 0x84);
+              FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,pcVar8 + 0x84);
               if (*(undefined4 **)(iVar7 + 0x60) == (undefined4 *)0x0) {
                 pcVar6 = s__ITEM_005476a0;
               }

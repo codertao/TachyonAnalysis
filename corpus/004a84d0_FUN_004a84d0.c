@@ -8,7 +8,7 @@ void FUN_004a84d0(int param_1)
   uint unaff_EBX;
   undefined4 auStack_60 [24];
   
-  DAT_00563e98 = 0;
+  GLBL_audio_running = 0;
   DAT_00563e9c = 0;
   DAT_00601e20 = 0xff;
   DAT_005f9d40 = 0xff;
@@ -19,13 +19,13 @@ void FUN_004a84d0(int param_1)
         auStack_60[0] = 0x60;
         iVar2 = (**(code **)(*DAT_005f9d64 + 0x10))(DAT_005f9d64,auStack_60);
         if (iVar2 != 0) {
-          DAT_00563e98 = 0;
+          GLBL_audio_running = 0;
           return;
         }
         if ((unaff_EBX & 0x20) == 0) {
           FUN_004a86b0();
           FUN_004a8790();
-          DAT_00563e98 = 1;
+          GLBL_audio_running = 1;
           DAT_00563e9c = 1;
           return;
         }
@@ -33,7 +33,7 @@ void FUN_004a84d0(int param_1)
       }
     }
     FUN_004a9260();
-    DAT_00563e98 = 1;
+    GLBL_audio_running = 1;
     DAT_00563e9c = 0;
     return;
   }
@@ -44,13 +44,13 @@ void FUN_004a84d0(int param_1)
     if (iVar2 == 0) goto LAB_004a853c;
   } while ((int)(DVar3 - DVar1) < 3000);
   if (iVar2 != 0) {
-    DAT_00563e98 = 0;
+    GLBL_audio_running = 0;
     return;
   }
 LAB_004a853c:
   FUN_004a86b0();
   FUN_004a8790();
-  DAT_00563e98 = 1;
+  GLBL_audio_running = 1;
   DAT_00563e9c = 1;
   return;
 }

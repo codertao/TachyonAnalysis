@@ -13,12 +13,12 @@ char * FUN_0043bd30(int param_1,undefined4 *param_2)
   pcVar1 = (char *)FUN_0043bf10(param_1,param_2);
   if (pcVar1 != (char *)0x0) {
     if ((pcVar1[0x8c] & 2U) != 0) {
-      FUN_0049c530(*(undefined4 *)(pcVar1 + 0x44));
+      OurFreeMem(*(undefined4 *)(pcVar1 + 0x44));
       pcVar1[0x44] = '\0';
       pcVar1[0x45] = '\0';
       pcVar1[0x46] = '\0';
       pcVar1[0x47] = '\0';
-      FUN_00437bf0(pcVar1 + 0x8c,2);
+      clear_flags(pcVar1 + 0x8c,2);
     }
 LAB_0043bd77:
     puVar4 = param_2;

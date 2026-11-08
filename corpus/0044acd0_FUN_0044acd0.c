@@ -25,7 +25,7 @@ void FUN_0044acd0(void)
   FUN_0044b8c0();
   FUN_0044b730();
   DAT_005a60c0 = 0xffffffff;
-  FUN_0044b3d0(DAT_005b2c64);
+  FUN_0044b3d0(GLBL_spacesav[0x29]);
   FUN_0044b180();
   do {
     str_sprintf(local_80,s_BtnMPLoginSel_d_00547970,uVar1);
@@ -33,7 +33,7 @@ void FUN_0044acd0(void)
     FUN_0043cdb0(&g_UiManager,local_80,&DAT_005a41e0);
     uVar1 = uVar1 + 1;
   } while (uVar1 < 10);
-  FUN_00450770(&DAT_005b2b78,s_mpbay_00547958);
+  load_sbf_and_bin(&DAT_005b2b78,s_mpbay_00547958);
   return;
 }
 

@@ -10,7 +10,7 @@ void FUN_0044b180(void)
   do {
     FUN_00440270(&g_UiManager,puVar1);
     str_sprintf(&DAT_005a41e0,s_BtnMPLoginSel_d_00547970,iVar2);
-    FUN_0043ce50(&g_UiManager,&DAT_005a41e0,1);
+    set_button_state(&g_UiManager,&DAT_005a41e0,1);
     puVar1 = puVar1 + 0x8c;
     iVar2 = iVar2 + 1;
   } while ((int)puVar1 < 0x592e88);

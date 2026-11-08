@@ -63,8 +63,8 @@ void FUN_004175a0(int param_1)
   DAT_005b39b0 = (uint)*(ushort *)(param_1 + 0x2c);
   DAT_005b8f54 = (uint)*(ushort *)(param_1 + 0x2e);
   DAT_005b9014 = (uint)*(ushort *)(param_1 + 0x30);
-  if (*(code **)(DAT_005b1dc4 + 0x54) != (code *)0x0) {
-    (**(code **)(DAT_005b1dc4 + 0x54))(*(undefined2 *)(param_1 + 0x32));
+  if (*(code **)(g_ActiveRules + 0x54) != (code *)0x0) {
+    (**(code **)(g_ActiveRules + 0x54))(*(undefined2 *)(param_1 + 0x32));
   }
   return;
 }

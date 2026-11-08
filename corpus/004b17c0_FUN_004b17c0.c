@@ -16,9 +16,9 @@ void FUN_004b17c0(int param_1)
       piVar1 = piVar1 + 1;
     } while (uVar2 < *(uint *)(param_1 + 0x68));
   }
-  FUN_0049c530(*(undefined4 *)(param_1 + 0x6c));
+  OurFreeMem(*(undefined4 *)(param_1 + 0x6c));
   FUN_004af550(*(undefined4 *)(param_1 + 100));
-  FUN_0049c530(param_1);
+  OurFreeMem(param_1);
   return;
 }
 

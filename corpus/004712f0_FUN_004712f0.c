@@ -16,11 +16,11 @@ void FUN_004712f0(void)
       else {
         pcVar3 = s_ImageJobsCompBg_0054e95c;
       }
-      iVar2 = FUN_0043a7a0(&DAT_00583420,pcVar3);
+      iVar2 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,pcVar3);
       if (iVar2 != 0) {
-        FUN_004398b0(&DAT_00583420,iVar2,0);
-        FUN_004405e0(&DAT_00583420,iVar2,s_WndStarBase_0054e768,0,0,*piVar1,piVar1[1],0x280,0x1e0,
-                     piVar1[2] - *piVar1,piVar1[3] - piVar1[1],0,0x11,FUN_004712c0,0);
+        FUN_004398b0(&GLBL_UI_ELEM_LIST,iVar2,0);
+        FUN_004405e0(&GLBL_UI_ELEM_LIST,iVar2,s_WndStarBase_0054e768,0,0,*piVar1,piVar1[1],0x280,
+                     0x1e0,piVar1[2] - *piVar1,piVar1[3] - piVar1[1],0,0x11,FUN_004712c0,0);
         return;
       }
     }

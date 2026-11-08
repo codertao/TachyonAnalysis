@@ -19,8 +19,8 @@ int FUN_0040a620(int param_1,undefined4 *param_2,undefined4 param_3,int param_4,
   else {
     param_1 = *(byte *)(param_1 + 0x38) - 1;
   }
-  if ((*(code **)(DAT_005b1dc4 + 0x68) != (code *)0x0) && (param_6 != 0)) {
-    iVar3 = (**(code **)(DAT_005b1dc4 + 0x68))(param_2,param_1);
+  if ((*(code **)(g_ActiveRules + 0x68) != (code *)0x0) && (param_6 != 0)) {
+    iVar3 = (**(code **)(g_ActiveRules + 0x68))(param_2,param_1);
     if (iVar3 == 0) {
       param_2[0x1f] = 0;
       FUN_0040a0b0(param_5,param_2[0x11]);

@@ -14,7 +14,7 @@ int FUN_0040e340(int param_1)
   
   iVar1 = FUN_004580c0(s_GALSPAN_00533548);
   iVar2 = FUN_004580c0(&DAT_00533540);
-  if ((DAT_005b2d70 != 0) ||
+  if ((GLBL_spacesav[0x6c] != 0) ||
      ((iVar3 = param_1, param_1 != iVar1 && (bVar9 = param_1 != iVar2, param_1 = iVar2, bVar9)))) {
     iVar3 = FUN_0040e310(iVar1);
     iVar4 = FUN_0040e310(iVar2);

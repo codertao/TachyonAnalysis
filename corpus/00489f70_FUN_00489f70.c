@@ -53,7 +53,7 @@ void FUN_00489f70(int param_1)
   local_c = *(int *)(DAT_00558d2c + 0x48) + _DAT_00558d48;
   local_8 = *(int *)(DAT_00558d2c + 0x44) + DAT_00558d4c;
   local_4 = *(int *)(DAT_00558d2c + 0x48) + DAT_00558d50;
-  Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseWingMan2_005596d8,&local_10,0);
+  Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseWingMan2_005596d8,&local_10,0);
   return;
 }
 

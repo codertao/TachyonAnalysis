@@ -1,5 +1,5 @@
 
-int * FUN_0045f3f0(int param_1,int *param_2,int *param_3,undefined4 param_4)
+int * FUN_0045f3f0(int param_1,int *param_2,int *param_3,vec3 *param_4)
 
 {
   int iVar1;
@@ -12,7 +12,7 @@ int * FUN_0045f3f0(int param_1,int *param_2,int *param_3,undefined4 param_4)
         *param_2 = param_1;
         iVar1 = FUN_0045f3c0(param_1,piVar2);
         if (iVar1 == 0) {
-          iVar1 = FUN_0048e440(param_4,param_1 + 0x34);
+          iVar1 = distance_between(param_4,(vec3 *)(param_1 + 0x34));
           *piVar2 = iVar1;
         }
         param_2 = param_2 + 2;

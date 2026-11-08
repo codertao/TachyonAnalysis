@@ -13,7 +13,7 @@ void TitleMenu_Enter(void)
   DAT_0054442c = 1;
   DAT_00562c48 = 0;
   _g_FlightStateFlags = 7;
-  FUN_004256f0(&PTR_FUN_0053f6d8);
+  Rules_Set(&g_Rules_SinglePlayer);
   FUN_004ad380(0);
   FUN_00444d80();
   uVar1 = FUN_004bc50d(0);
@@ -25,7 +25,7 @@ void TitleMenu_Enter(void)
     DAT_00562ca8 = 0;
     FUN_00437bc0(0);
   }
-  FUN_00440460(&DAT_00583420,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   Ui_ShowWindow(&g_UiManager,s_WndMainTitle_00544480,0);
   FUN_0043a8d0(&g_UiManager,s_WndMainTitle_00544480);

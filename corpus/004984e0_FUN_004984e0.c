@@ -10,12 +10,12 @@ void FUN_004984e0(int param_1)
   _DAT_0056543c = 0;
   _DAT_00565440 = 0;
   _DAT_00565444 = 0;
-  FUN_0048e380(&DAT_00565430,0xc);
+  clr_bytes(&DAT_00565430,0xc);
   DAT_0056544c = 0x21;
   DAT_00565448 = 0;
   DAT_00565420 = *(undefined4 *)(param_1 + 200);
   DAT_00565450 = 0;
-  FUN_00497380();
+  Proj_SpawnFromClientMissile();
   return;
 }
 

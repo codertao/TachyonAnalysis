@@ -39,7 +39,7 @@ void FUN_00452bb0(undefined4 param_1)
     uVar4 = 4;
     break;
   case 5:
-    iVar2 = FUN_00455e40(&DAT_005b20e0,iVar3);
+    iVar2 = Shield_GetMax(&DAT_005b20e0,iVar3);
     iVar2 = iVar2 >> 4;
     iVar3 = FUN_004563f0(&DAT_005b20e0,iVar3,5,iVar2);
     if (iVar3 == 0) {
@@ -51,7 +51,7 @@ void FUN_00452bb0(undefined4 param_1)
     if (((byte)DAT_005b2154 & 4) == 0) {
       return;
     }
-    iVar2 = FUN_00455e40(&DAT_005b20e0,iVar3);
+    iVar2 = Shield_GetMax(&DAT_005b20e0,iVar3);
     iVar2 = iVar2 >> 4;
     iVar3 = FUN_004563f0(&DAT_005b20e0,iVar3,6,iVar2);
     if (iVar3 == 0) {

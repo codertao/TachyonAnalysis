@@ -46,20 +46,20 @@ int * FUN_004a3e00(char *param_1)
     piVar7 = (int *)((int)piVar7 + 1);
     piVar10 = (int *)((int)piVar10 + 1);
   }
-  iVar3 = FUN_004a0e10(pcVar2);
+  iVar3 = openfile(pcVar2);
   *piVar4 = iVar3;
   if (iVar3 == -1) {
     FUN_0049c810(piVar4);
     piVar4[0x2d] = 1;
     return (int *)0x0;
   }
-  FUN_004a0ea0(&param_1,4);
-  FUN_004a0ed0(0,0);
-  FUN_004a0ea0(piVar4 + 0x21,param_1);
+  read_file_to_bin(&param_1,4);
+  move_to_end_of_file_and_get_len(0,0);
+  read_file_to_bin(piVar4 + 0x21,param_1);
   iVar3 = FUN_0049c7d0(piVar4[0x23] * piVar4[0x24],s_PFF_ENTRIES_0055e128);
   piVar4[0x26] = iVar3;
-  FUN_004a0ed0(piVar4[0x25],0);
-  FUN_004a0ea0(piVar4[0x26],piVar4[0x23] * piVar4[0x24]);
+  move_to_end_of_file_and_get_len(piVar4[0x25],0);
+  read_file_to_bin(piVar4[0x26],piVar4[0x23] * piVar4[0x24]);
   piVar4[0x2b] = 1;
   piVar4[0x2d] = 0;
   FUN_004a3da0(piVar4);

@@ -10,7 +10,7 @@ void FUN_004abf90(float param_1,float param_2,float param_3,float param_4,uint p
   int iVar4;
   int local_c;
   
-  iVar2 = DAT_00604440;
+  iVar2 = GLBL_some_str;
   if ((DAT_00604494 == 0) || (iVar2 = *(int *)(DAT_00604504 + 0x1c), (DAT_006044a0 & 2) != 0)) {
     if (iVar2 != 0) {
       FUN_004e9334(param_1,param_2,param_3,param_4,param_5);

@@ -13,10 +13,10 @@ void FUN_00430de0(void)
     *puVar4 = 0;
     puVar4 = puVar4 + 1;
   }
-  DAT_005aed88 = FUN_0041fd80(s_borders_box_0053365c,0xcccc);
-  DAT_005aed80 = FUN_00431de0(s_shdw_08_pcx_00535e9c,0x20000);
-  DAT_005aed84 = FUN_00431de0(s_shdw_12_pcx_00535974,0x20000);
-  DAT_005a6150 = FUN_0049df00(s_helptext_bin_0053cb20,0xcccc);
+  DAT_005aed88 = load_box_file(s_borders_box_0053365c,0xcccc);
+  DAT_005aed80 = load_font(s_shdw_08_pcx_00535e9c,0x20000);
+  DAT_005aed84 = load_font(s_shdw_12_pcx_00535974,0x20000);
+  DAT_005a6150 = load_rtxt_bin(s_helptext_bin_0053cb20,0xcccc);
   FUN_0049c840(DAT_005a6150,s_helptext_bin_0053cb20);
   DAT_005aed8c = 0;
   iVar2 = DAT_0053cbc8;

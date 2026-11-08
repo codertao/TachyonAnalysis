@@ -31,7 +31,7 @@ undefined4 FUN_0048c270(int param_1)
     piVar1 = (int *)(&DAT_0056ac30 + iVar2);
     *(undefined4 *)(&DAT_0056ac2c + iVar2) = (&DAT_0056abb8)[param_1 * 0x5c];
     if (*piVar1 != 0) {
-      FUN_0049c530(*piVar1);
+      OurFreeMem(*piVar1);
     }
     FUN_0048e3d0(piVar1,(&DAT_0056abb8)[param_1 * 0x5c] * 0x30,4,s_TELETYPE_CHAR_005598c4,
                  *(undefined4 *)(&DAT_0056aba0 + iVar2));

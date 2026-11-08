@@ -18,7 +18,7 @@ void FUN_004b5320(uint param_1)
   }
   DAT_006af528 = (DAT_006af524 - DAT_006af520) / (DAT_006af514 / (int)DAT_006af510);
   lDistanceToMove = (&DAT_0066b650)[param_1 * 8];
-  SetFilePointer(DAT_006af500,lDistanceToMove,(PLONG)0x0,0);
+  SetFilePointer(GLBL_sbf_file_handle,lDistanceToMove,(PLONG)0x0,0);
   _DAT_0066f4c0 = lDistanceToMove;
   return;
 }

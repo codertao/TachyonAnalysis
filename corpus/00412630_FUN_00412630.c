@@ -18,7 +18,7 @@ undefined4 FUN_00412630(int param_1,int param_2,int param_3)
     *(int *)(param_3 + 0x4c) = *(int *)(param_3 + 0x4c) + 1;
     *(int *)(param_3 + 0x50) = *(int *)(param_3 + 0x50) + 1;
   }
-  FUN_004125e0(*(undefined4 *)(param_2 + 0x154),param_1,param_3,param_2);
+  CapShip_SpawnParts(*(undefined4 *)(param_2 + 0x154),param_1,param_3,param_2);
   return 1;
 }
 

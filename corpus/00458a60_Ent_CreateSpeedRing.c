@@ -23,14 +23,14 @@ undefined4 * Ent_CreateSpeedRing(undefined4 param_1,undefined4 param_2,int param
   code *local_34;
   code *local_2c;
   
-  puVar1 = (undefined4 *)FUN_0041dbb0(param_1,0);
+  puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 != (undefined4 *)0x0) {
     if ((param_3 != 0) || ((g_FlightStateFlags & 2) != 0)) {
       FUN_00445720(puVar1);
     }
     return puVar1;
   }
-  FUN_0048e380(&local_74,0x74);
+  clr_bytes(&local_74,0x74);
   local_70 = 9;
   local_6c = 0xb4;
   local_68 = 0xffff;
@@ -45,12 +45,12 @@ undefined4 * Ent_CreateSpeedRing(undefined4 param_1,undefined4 param_2,int param
   local_54 = 0;
   local_2c = Ent_CreateMiscObject;
   local_50 = Ent_CreateMiscObject;
-  puVar1 = (undefined4 *)FUN_0041db50(&local_74,param_2);
+  puVar1 = (undefined4 *)DescReg_Alloc(&local_74,param_2);
   if (puVar1 == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
   FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
-  FUN_0048e380(&DAT_0058f220,0xb4);
+  clr_bytes(&DAT_0058f220,0xb4);
   puVar3 = puVar1;
   puVar4 = &DAT_0058f220;
   for (iVar2 = 0x21; iVar2 != 0; iVar2 = iVar2 + -1) {
@@ -60,7 +60,7 @@ undefined4 * Ent_CreateSpeedRing(undefined4 param_1,undefined4 param_2,int param
   }
   Cbin_Open(param_1);
   FUN_0049bfc0(&PTR_DAT_00548dd8);
-  FUN_00431850(&DAT_0058f2c4,&DAT_0058f2a4,0,&DAT_0058f2b4,&DAT_005a7538,1);
+  ModelPool_Load(&DAT_0058f2c4,&DAT_0058f2a4,0,&DAT_0058f2b4,&g_ObjModelPool,1);
   DAT_0058f2d0 = FUN_00423e60(DAT_0058f2d0);
   Cbin_Close();
   puVar3 = &DAT_0058f220;

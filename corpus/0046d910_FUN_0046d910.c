@@ -17,8 +17,8 @@ void FUN_0046d910(int param_1,undefined4 param_2)
   }
   if ((*(int *)(param_1 + 0x84) == 0) && (*(char *)(param_1 + 0x40) != '\0')) {
     FUN_0046d8d0(param_1 + 0x40,
-                 (int)(((longlong)*(int *)(param_1 + 0x88) * (longlong)DAT_005b2d14 & 0xffffffffU) /
-                      0xff));
+                 (int)(((longlong)*(int *)(param_1 + 0x88) * (longlong)GLBL_spacesav[0x55] &
+                       0xffffffffU) / 0xff));
     *(undefined4 *)(param_1 + 0x84) = 0xffffffff;
     FUN_00468fb0(0,*(undefined4 *)(param_1 + 0x8c));
   }

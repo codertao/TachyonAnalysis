@@ -72,7 +72,7 @@ void FUN_004415c0(undefined4 param_1,undefined4 param_2)
           pcVar3[3] = '\0';
           pcVar3 = pcVar3 + 4;
         }
-        iVar1 = FUN_004c67c0(local_108,&DAT_00540028);
+        iVar1 = str_cmp(local_108,&DAT_00540028);
         if (iVar1 == 0) {
           local_23c[0] = '\0';
         }

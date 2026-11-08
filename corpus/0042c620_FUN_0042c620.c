@@ -11,7 +11,8 @@ void FUN_0042c620(void)
   iVar4 = 0x10;
   do {
     iVar1 = *piVar3;
-    if (((iVar1 != 0) && (iVar1 != DAT_005b1864)) && (iVar1 != *(int *)(DAT_005b3300 + 0x90))) {
+    if (((iVar1 != 0) && (iVar1 != DAT_005b1864)) && (iVar1 != *(int *)(GLBL_SOME_CONTEXT + 0x90)))
+    {
       uVar2 = FUN_0042a670(iVar1,0,0x8000,1);
       FUN_00429dd0(*piVar3,uVar2);
     }

@@ -5,9 +5,9 @@ void FUN_0049eb40(undefined1 param_1,uint param_2)
   int iVar1;
   
   if (DAT_00603e2c == 0) {
-    iVar1 = DAT_00603e24 * 4;
-    DAT_00603e28 = &DAT_00603c20 + iVar1;
-    DAT_00603e24 = DAT_00603e24 + 1 & 0x7f;
+    iVar1 = GLBL_someinput_MAX_CNT * 4;
+    DAT_00603e28 = &GLBL_someinput_array_of_ints + iVar1;
+    GLBL_someinput_MAX_CNT = GLBL_someinput_MAX_CNT + 1 & 0x7f;
     *DAT_00603e28 = param_1;
     (&DAT_00603c21)[iVar1] = 0;
     *(undefined2 *)(&DAT_00603c22 + iVar1) = 0;

@@ -11,7 +11,7 @@ void FUN_0048d400(void)
   int iVar6;
   RECT local_14;
   
-  iVar1 = DAT_0056aac0;
+  iVar1 = GLBL_llist_large_thing;
   if (DAT_0056aadc != 0) {
     DAT_0056aadc = DAT_0056aadc + -1;
     return;
@@ -34,7 +34,7 @@ joined_r0x0048d447:
         iVar6 = *(int *)(iVar1 + 0x21c);
         if ((*(byte *)(iVar1 + 0x2b4) & 2) != 0) {
           if (iVar2 == 0) {
-            DAT_0056aac0 = *(int *)(iVar1 + 0x2b8);
+            GLBL_llist_large_thing = *(int *)(iVar1 + 0x2b8);
           }
           else {
             *(undefined4 *)(iVar2 + 0x2b8) = *(undefined4 *)(iVar1 + 0x2b8);
@@ -43,7 +43,7 @@ joined_r0x0048d447:
           if (*(code **)(iVar1 + 0x22c) != (code *)0x0) {
             (**(code **)(iVar1 + 0x22c))(iVar1 + 0x234);
           }
-          FUN_0049c530(iVar1);
+          OurFreeMem(iVar1);
           iVar1 = iVar2;
           goto joined_r0x0048d447;
         }

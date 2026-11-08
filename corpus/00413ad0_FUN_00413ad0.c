@@ -64,9 +64,9 @@ undefined4 FUN_00413ad0(int param_1,int param_2,undefined4 param_3,undefined4 *p
   }
   FUN_0045cff0(iVar5,*(int *)(iVar5 + 100) + 0x14);
   uVar4 = FUN_00434850(iVar5);
-  FUN_004349a0(iVar5,iVar1,iVar5 + 0xdc,param_3,iVar1 + 0x48,uVar4);
+  Nav_InitRoute(iVar5,iVar1,iVar5 + 0xdc,param_3,iVar1 + 0x48,uVar4);
   if (param_5 != 0) {
-    FUN_0045e530(param_1,9,0,0,0,0,9,*(undefined4 *)(iVar5 + 100));
+    SrvSend_EntityDestroyed(param_1,9,0,0,0,0,9,*(undefined4 *)(iVar5 + 100));
   }
   return 1;
 }

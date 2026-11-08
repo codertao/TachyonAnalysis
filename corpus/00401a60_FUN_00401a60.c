@@ -11,11 +11,11 @@ uint FUN_00401a60(int param_1)
   *(undefined2 *)(param_1 + 0x312) = 0x300;
   *(undefined1 *)(param_1 + 0x327) = 0;
   if ((int)uVar3 < 1) {
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     FUN_004014d0(param_1,uVar3 & 0x1ffffff);
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     FUN_004014f0(param_1,uVar3 & 0x1ffffff);
-    uVar1 = FUN_0048e350();
+    uVar1 = global_bad_shift_rng();
     uVar3 = uVar1 / 1000;
     *(uint *)(param_1 + 0x30c) = uVar1 % 1000 + 0xfa;
   }

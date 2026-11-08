@@ -15,7 +15,7 @@ void Flight_ReadControlAxes(void)
   if ((-0x81 < (int)DAT_005640bc) && ((int)DAT_005640bc < 0x80)) {
     DAT_005640bc = 0;
   }
-  if (DAT_005b2c84 != 0) {
+  if (GLBL_spacesav[0x31] != 0) {
     DAT_005aeeb8 = DAT_005640b8;
   }
   if (DAT_005aeea4 == 0) {
@@ -25,7 +25,7 @@ void Flight_ReadControlAxes(void)
     DAT_005aeea8 = DAT_005640b4;
   }
   if (DAT_005aeeb4 == 0) {
-    DAT_005aeeb0 = -(uint)(DAT_005b2c80 != 0) & DAT_005640bc;
+    DAT_005aeeb0 = -(uint)(GLBL_spacesav[0x30] != 0) & DAT_005640bc;
   }
   return;
 }

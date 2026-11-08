@@ -14,12 +14,12 @@ void FUN_00401980(int param_1)
   *(undefined1 *)(param_1 + 0x327) = 0;
   *(undefined1 *)(param_1 + 0x326) = 0;
   if (((*(uint *)(param_1 + 800) ^ DAT_005897e4) & 0xf) == 0) {
-    uVar1 = FUN_0048e440(param_1 + 0x34,*(undefined4 *)(param_1 + 0xf0));
+    uVar1 = distance_between((vec3 *)(param_1 + 0x34),*(vec3 **)(param_1 + 0xf0));
     if ((uVar1 < 0x3e8000) &&
-       (FUN_004018a0(param_1,param_1 + 0xdc), *(code **)(param_1 + 0x304) != FUN_00401980)) {
+       (Nav_ReachedWaypoint(param_1,param_1 + 0xdc), *(code **)(param_1 + 0x304) != FUN_00401980)) {
       return;
     }
-    FUN_0040f380(param_1 + 0x34,*(undefined4 *)(param_1 + 0xf0),param_1 + 0xdc);
+    FUN_0040f380((vec3 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0xf0),param_1 + 0xdc);
     if (*(int *)(param_1 + 0x90) == 0) {
       iVar2 = FUN_004015e0(param_1);
       *(int *)(param_1 + 0x90) = iVar2;

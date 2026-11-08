@@ -1,0 +1,341 @@
+# Tachyon sidecar — exported function names. Format: addr\tname\tcomment
+# Only non-default (not FUN_*) names. Merge into names.tsv when back-porting.
+00401680	Sector_LogMissingSpedData	debug: CANNOT FIND SECTOR DATA FOR SPED OBJECT
+00401730	Sector_GetSpedRecord	index a SPED's instance data (def+0x8c count, def+0x90 records stride 0x14)
+00402130	Sped_LogSpawn	debug: "Spawning alias %s [SPED_OBJ %d]"
+00402170	Gate_SpawnSped	spawn a SPED on gate transit
+00403230	Dcb_UpdateEngineAudio	3D positional engine sound: distance to player DCB (0x58b064) -> play at attenuated volume
+00403270	Entity_TurnToward	orientation controller: drives angular velocity +0xac/b0/b4 so orientation (3 Euler angles) +0x4c/50/54 converges to desired orientation (param2, e.g. +0xdc); max turn rate = def+0x84+{0xc,0x1c,0x2c}; angular-accel cap +-0x400/frame; param4&1 = quarter-rate. NOT linear velocity
+00403480	Dcb_SetRangeFlags	set dcb+0xc0 bits 0x40/0x80 by comparing range fields (called by +0x68 think methods)
+00403590	Dcb_WorldDelta	compute world-space position delta +0xa0 from forward speed rotated by orientation +0x4c (staggered gyro via +0xd4) -> 0x424030
+004035d0	Dcb_Think_AiShip	AI/drone ship think (DCB +0x68, installed by 0x4036f0): Entity_ApproachVelocity + staggered turn FX + Dcb_WorldDelta + Euler integrate
+004036f0	Dcb_InitAiShip	init AI ship DCB: install think 0x4035d0 (when +0xf7!=1)
+00403820	Dcb_Think_Ship	canonical ship physics think (DCB +0x68): Entity_TurnToward(desiredOrient+0xdc), staggered turn control (0x4241c0, afterburner gate +0x338&1, drain energy +0x124), Dcb_WorldDelta, then integrate orientation+=angVel(+0xac) and pos+=worldPosDelta(+0xa0). Tail entry LAB_004039c0 = integrate-only
+004041f0	handle_hit_for_voiceline
+00404c00	Dcb_Detonate	ordnance proximity detonation / effect spawn
+00405a20	Ship_Update	per-frame ship physics/update (SHIP class update method)
+00408170	Ent_CreateAsteroid	DESC_TYPE ASTEROID (2)
+0040a250	Dcb_Think_Missile	short-life guided-missile think (DCB +0x68, installed by 0x40a460): advance + proximity detonate
+0040a460	Dcb_InitMissile	init short-life missile DCB (type 0xf, life 5000): think 0x40a250, action +0x80=0x40a1c0
+0040be50	Dock_PickRandomScene	pick random DOCK_SCENE/UNDOCK_SCENE (.sen) name into struct
+0040c1f0	Ent_CreateStarbase	DESC_TYPE STARBASE (5)
+0040e600	Ent_SpawnAiDcb	spawn AI DCB from Server AI pool (0x58af9c): +0x68=0x40a570, +0x80=no-op
+0040ea20	Ent_CreateBeacon	DESC_TYPE BEACON (8)
+0040ebd0	Flight_Enter	in-flight mode enter
+0040ebf0	Flight_Update	per-frame in-flight sim tick (mode+4; runs the SPED world/physics) [confirmed via gdb EDI=0x533a70 @ 0x44eb2a]
+0040ec00	Flight_Render	in-flight 3D render
+0040ec10	Flight_Exit	in-flight mode exit
+004104f0	Camera_Update	in-flight camera update: camera DCB 0x5b95e0; call cam method +0x1c (cam[7]); compute view delta + build view matrix (0x52db6a); DAT_005b9600.. = cam pos
+00410f60	Dcb_UpdateChildTransforms	update attached sub-object transforms (child chain via +0xe0); recompute each child world posDelta +0xa0 = newPos-oldPos
+004111b0	Dcb_Think_MultiPart	multi-part/parented entity think (DCB +0x68, installed by 0x412220): optional hook +0x134, steer toward +0xec, integrate, staggered engine-audio/collision, Dcb_UpdateChildTransforms
+004112d0	Dcb_Think_Ordnance	long-life ordnance think (DCB +0x68, installed by 0x411f80): range flags + proximity detonate (0x404c00)
+00411f80	Dcb_InitOrdnance	init long-life ordnance DCB (type 0xf, life 50000): think 0x4112d0, action +0x80=0x411af0
+00412220	Dcb_InitMultiPart	init multi-part entity DCB: install think 0x4111b0, action +0x80=0x411b70
+00412a70	Dcb_SpawnProjectile	spawn projectile/bolt DCB (type 0xd) from client pool 0x5b3288; set methods +0x68/+0x70/+0x80/+0x84; link into g_DcbActiveList
+00413700	Ent_CreateCapitalShip	DESC_TYPE CAPITOL_SHIP (3)
+00414260	Ent_CreateCargo	DESC_TYPE CARGO (7)
+00414720	clear_cheats
+00414740	toggle_cheats
+00414790	something_decrypt_related
+00414e20	Ent_CreateMiscObject	DESC_TYPE MISC_OBJECT (0xc)
+00415e10	Dcb_FindById	look up active client DCB by id (scans g_DcbActiveList 0x5b3280)
+00416420	Quadrant_OnEnter	on quadrant entry: set g_CurrentQuadrant (0x5b31f0) from galaxy-rec+0x12; play NEWQUADRANT scene
+00417c00	Dcb_ApplyRecord	apply one DCB record from snapshot: if DCB id exists -> update existing (KEPT++, 0x5b9060), else spawn new (NEW++, 0x5b909c)
+00417ce0	Dcb_ApplySnapshot	apply a server->client DCB snapshot packet: param[0]=record count; reset KEPT/NEW counters; iterate Dcb_ApplyRecord
+00418220	Flight_UpdateWorld	Flight_Update part 2: orchestrates client frame: input-binding dispatch, net cycle, camera, HUD, render-prep; applies server DCB snapshots; evaluates mission-end. Does NOT contain the entity think loop directly (see method table +0x68)
+00418550	init_flight_start
+00419900	init_a_lotta_globals
+00419a90	snapshot_to_spacesav
+00419ac0	init_spacesav
+00419ad0	load_or_init_spacesav
+0041a380	overwrite_some_globals
+0041ad70	maybe_sped_is_near_sortof
+0041adc0	any_some_speds_are_sortof_near
+0041b570	Ent_CreateCourse	DESC_TYPE COURSE (0xb)
+0041b730	DcbPool_Init	init a DCB pool (count,elemsize,name); server pools named Server_*_DCBS
+0041b7d0	DcbPool_Alloc	pop a DCB from a pool free-list; assign id; dec free count
+0041c560	Dcb_DebugOverlay	DCB_DEBUG overlay: NEW/KEPT DCBS, NUM HOSTILES, free counts per pool (Server/Client DRONE/AI/BASE/ROID/COMMON)
+0041c8f0	Sector_DebugOverlay	REGION_DEBUG overlay: render galaxy table (count 0x5a5544, base 0x5a5548, stride 0x44; MainSPX@+0xc, SubSPX@+0x1c)
+0041daa0	Desc_ResolveTypeName	DESC_TYPE name -> code via g_DescTypeTable
+0041dca0	Desc_CreateByType	.des object factory: read DESC_TYPE from CBIN, switch->typed ctor (ship/proj/station/...)
+0041df50	check_is_snd_playing_maybe
+0041ebe0	copy_p2_to_p1_and_get_basename?
+0041f0e0	some_kind_of_play_sound
+0041fd80	load_box_file
+004206f0	some_extract_key_I_think
+00420730	decrypt_str_with_key
+00420770	some_kind_of_decrypt_i_think
+004207f0	check_str_matches_enc_str
+00424030	Entity_ThrustToWorld	rotate forward speed by the orientation matrix (built from angles +0x4c), accumulate into world posDelta +0xa0/a4/a8, scale by def+0x3c; optional out = speed magnitude. This is the linear-motion step
+00424170	FlightModel_SolveThrottle	compute throttle/forward-speed setpoint from handling block (ship+0x84) and target
+004241c0	Entity_ApplyTurnControl	turn integrator: advance orientation +0x4c by angular rate (turn magnitude +0x312), honoring handling params def+0x84
+004242e0	PlayerControl_ProcessInput	stick/throttle -> control rates: squared (fine-near-center) response, scale by ship response (g_PlayerShip+0x88/98/a8), per-axis max-rate clamp (+0x84/94/a4), frame-rate-compensated inertia smoothing (g_SmoothRatePYR 0x5b1e98/9c/a0); throttle setpoint g_Throttle 0x5b1ee0; sets ship orientation +0x4c directly via rotate (0x48e660) and derives angVel +0xac as the delta (player bypasses Entity_TurnToward)
+00424b50	PlayerShip_UpdateKinematics	per-frame player ship update: save prev pos(+0xe0)/vel(+0xec), PlayerControl_ProcessInput, afterburner/throttle logic (g_Throttle, energy ship+0x118), Entity_ApplyTurnControl (rotation), Entity_RotateVelToWorld (throttle+facing -> world motion)
+00426400	Gate_SpawnAndPreload	spawn gate entity; preloads linked sector .spx via Spx_LoadSector(def+0x38)
+00426dd0	Ent_CreateHyperGate	DESC_TYPE HYPER_GATE (4)
+0042ddb0	maybe_log_something
+0042e920	PlayerCfg_WriteActions	write player.cfg [ACTIONS] keybindings (fopen "wt+"); maps codes->names
+0042f730	Flight_ReadControlAxes	poll stick (Input_SampleAxes 0x4a29c0), apply deadzone (+-0x80) to raw axes 0x5640b0/b4/bc, write processed pitch/yaw/roll -> g_AxisPYR 0x5aeea0/a8/b0 and throttle 0x5aeeb8 (unless overridden)
+0042fbc0	Input_DispatchBindings	per-frame input binding tree walk + camera-axis input (0x42f730); gated by DAT_0058f1c0 / DAT_005b2cb8 modes
+0042fca0	Input_WalkBindingTree	walk input binding tree (param=root 0x562bb0); match key/button state (0x49ec30) -> fire bound callback (*(node+0x10))(node+0x14,...)
+0042ff90	Flight_InputDispatch	if not paused (0x5affdc==0 && g_NextMode==0) -> Input_DispatchBindings
+00431ce0	actual_load_font
+00431de0	load_font
+00433420	CmdLine_ParseSwitches	/D /VRULES /VECHO /VLOG /NOHELP
+004334c0	CmdLine_Dispatch	GetCommandLineA; NLSTATS etc.
+004341e0	Ent_CreateMine	DESC_TYPE MINE (6)
+00434870	Sped_GetDefList	return world's SPED list (world+0x3c -> +4 active / +8 template) by flag
+00434ac0	Sped_ConstructEntity	build live entity from a SPED def: pos+0x34 (def+8/c/10), ORIENTATION euler angles +0x4c (def+0x14/18/1c<<16, NOT velocity), vtable/update+0x68/+0x6c/+0x80, def+0x8c, world+0xd8
+00434f80	Spx_ConstructPlacement	dispatch class method +0x2c (= Sped_ConstructEntity) with the placement def record -> build live entity at def pos+0x08/0c/10 and orientation+0x14/18/1c (euler angles, NOT velocity)
+00434fb0	Sped_LoadNameRegistry	load CBIN mapping SPEDNAMES alias -> DES_NAMES (.des model); arrays at DAT_005a5dfc/e00/e04
+00435120	Spx_ResolveDesName	map a SPED object alias to its .des file via the desnames.cfg name registry (Sped_LoadNameRegistry); falls back to DEFAULT
+004351a0	Spx_SpawnDecls	iterate SPED decl section (ptr buf+0x10, count buf+0xc, stride buf+0x08=0x24): each = {char alias[0x20]; u32 runtimeEntityPtr}; Spx_ResolveDesName(alias)->.des, Desc_CreateByType stores class/entity back into decl+0x20
+004351e0	Spx_ApplyPlacements	iterate placement/def section (ptr buf+0x18, count buf+0x14, VARIABLE stride = u16 at rec+2, SPED index = u32 at rec+4): for index<declCount call Spx_ConstructPlacement(defRec, decl[index].entity) -> spawns entity at def pos
+00435340	Spx_FindLoaded	look up an already-loaded sector by spx name in the galaxy table (dedupe)
+00435410	Spx_SelectSubSector	conditional sub-sector stage loader: for each stage record (buf+0x2c count / +0x30 offset, stride 0x2c) eval a VarStore condition (sect/key@+0x10/14 vs value@+0x18, op@+0x1c, optional 2nd var @+0x20/24/28) and Spx_LoadSector(record=name@+0x0) the first match -> sectors morph by mission vars (bora05A/B)
+00435550	Spx_InitSectionC	post-reloc section init (buf)
+004355f0	Spx_ReadFile	SPX file reader: alloc 0x1a4, read first_offset(@0,4B), read header block, get size (Fs_GetSize), grow buf, read body after +0x1a4; store reloc base at buf+0x1a0. Uses Fs_ReadRegion/Fs_GetSize (random-access path, NOT whole-file Cbin reader)
+00435690	Spx_LinkSection	process sector link/nav section (buf+0xe8)
+004356e0	Spx_LoadSector	sector register/parse(name,ctx): dedupe via Spx_FindLoaded; copy name->galaxy rec+0xc (Main SPX); call Spx_ReadFile; relocate section offsets by +buf+0x1a0; copy BDF name(buf+0x78)->rec+0x1c; construct + recurse sub-sectors via 0x435410
+00435ca0	Ingame_LoadBaseLocation	read BASE_QUADRANT (0x5a5520) + REGION (0x5a5dd0) from ingame.cfg [INGAME] -> galaxy start location
+00435d80	Spx_LoadSectorTop	LoadSector(name): Spx_LoadSector(name,0) + finalize 0x4355a0; records count into g_SectorCount2 (0x58af70)
+004362e0	Sped_FindInList	linear find SPED by id in a list
+00436320	Sped_FindDef	find SPED def by id in world's two lists (world+0x3c -> {+4 active, +8 template})
+00436640	Sped_LogAlreadySpawned	debug: SPED already spawned
+00436680	Sped_Spawn	instantiate a SPED entity via its class vtable (+0x3c create); fire spawn events; set spawned flag +0x2c
+00436790	Sped_SpawnSimple	Sped_Spawn wrapper (no position override)
+004367b0	Sped_SpawnByClass	resolve position (transform vtable +0x30 or default +0x34..0x54) then Sped_Spawn
+004368f0	Sped_ProcessSpawnQueue	timed/deferred spawn (delay countdown -> spawn -> advance list; reinforcement waves)
+00436b60	Sped_FindById	resolve SPED id -> entity for action dispatch
+00436c00	Sped_DispatchAction	look up SPED by id, run named action on it (logs OBJECT %d ACTION %s)
+00437610	Nav_SetDestination	set DESTINATION_REGION/DESTINATION_SECTOR vars + dest-quadrant display name (Sector_GetQuadrantName), log "DEST QUADRANT SET TO %s"
+004377d0	Sector_Transition	SP sector transition(ctx,spxName): teardown prev (0x435c50), reset galaxy table (0x437520), Spx_LoadSectorTop(spxName), spawn player from PLAYER.SCR (0x41f590)
+00437bf0	clear_flags
+00437c10	sbi_flags
+004397c0	Ui_Update	per-frame UI update/draw (called by TitleMenu_Update) [tentative]
+0043ab00	Ui_BuildWindows	iterate windowDefs calling FUN_0043a990 (realize each) [tentative]
+0043ab80	Ui_FindWindowDef	name-search over windowDefs (stride 0x114) via FUN_004bd3c6
+0043ae60	Ui_ShowWindow	activate window by name: add its matching buttonDefs/textDefs to screen
+0043b100	Ui_RefreshWindow	rebuild/refresh a window by name [tentative]
+0043ca60	Ui_FindButton	find button def by name [inferred from Ui_SetButtonFlag]
+0043cc00	Ui_AddButtonToWindow	bind button to its window; set image count(+0xc8)/frame(+0xcc)/flags(+0x204)
+0043ce00	Ui_SetButtonFlag	find button by name, OR flag into button+0x204
+0043ce50	set_button_state
+0043e3d0	find_ui_elem_by_name
+0043e610	sbi_label_flags_11c
+0043e670	clr_label_flags_11c
+0043f620	set_flag_10c_on_elem_by_id
+0043f870	Ui_AddTextToWindow	[inferred from Ui_ShowWindow text loop, stride 0x130]
+0043fa70	find_ui_elem_by_id?
+00443090	MP_BuildMapList	scan bw%02d.mpc/dm%02d.mpc; read GAMETYPE/MAIN_SPX/IMAGE_NAME/TITLE/players into 0xb8 records (g_MPGameList 0x562c04)
+00443e40	Profile_SaveAll	iterate 10 slots: save .sav blob, or Profile_Delete if name empty
+00444400	Profile_CreateNew	[tentative] new-profile path when slot empty
+00444520	Profile_StartGame	on Play: open sav vars, seed INTRO_HAS_PLAYED/CREDITS/CURRENT_JOB, save
+00444690	Profile_Select	load slot into g_CurrentProfile; build sav/cfg paths; set g_CurrentProfileSlot
+00444760	Login_SelectSlot	slot click (cbLoginSlotN): Profile_Select, create-if-empty, refresh WndLogin
+004447c0	Profile_Delete	clear slot name; delete its .sav and .cfg; clear current
+00444e60	Bdf_LoadBackdrop	reset scene then load+apply a .bdf (arg = filename)
+00444eb0	TitleMenu_Enter	builds title window + Login/Multi/Exit buttons, loads mnu(s).bdf, version text
+004450b0	TitleMenu_Update	pump messages; tick menu + update window; loop-flag g_TitleMenu_ExitFlag
+004455c0	TitleMenu_Render
+00445600	TitleMenu_Exit
+00445610	cb_MainLogin	registry 'cbLogin' (BtnLogin, single-player): next=g_Mode_Login(0x541170 WndLogin); DAT_00544430=1
+00445630	cb_MainMultiplayer	registry 'cbMulti' (BtnMulti): next=g_Mode_MPLogin(0x547940 WndMPLogin); DAT_00544430=0
+00445650	cb_MainCredits	registry 'cbCredits' (BtnCredits): next=g_Mode_Credits(0x53ff08 WndCredits)
+00445670	cb_MainExit	registry 'cbExit': delete playrtmp.sav; next=g_Mode_Splash(0x5482b0); exit title
+004456a0	cb_HoverCursor	hover in/out: adjust g_TitleHoverState, swap Cursor1/Cursor2 [registry name reads cbExit - verify]
+0044bc00	dialog_mp_error_reason
+0044bd40	Profile_LoadoutInit	default ships BORA_CUTLASS / GALSPAN_ORION when lookup fails
+0044e8e0	Login_DismissSplash	dismiss splash, show WndLogin profile list [inferred]
+0044e970	Login_Enter	show splash (splash.pcx/WndSplash) w/ 3000-frame timeout -> Login_DismissSplash
+0044ea10	Login_Update	pump input; countdown; else Ui_Update; exit on flag
+0044ea60	Login_Render
+0044ead0	ModeLoop_FixedStep50Hz	50Hz/0x14ms; drives mode +4 update / +8 render
+0044ec10	ModeLoop_Variable
+0044ec80	StateMachine_Run	runs current mode object; chains next mode via g_NextMode (DAT_00590e28)
+0044fb00	Sector_StartMP	MP/mission sector start: Spx_LoadSectorTop(g_MapSpxName 0x590208) then mode hook
+00450750	filename_to_base_name
+00450770	load_sbf_and_bin
+004540d0	PlayerDcb_Think	player-control DCB +0x68 think: if +0x10c==0 -> PlayerShip_UpdateKinematics; then 0x454040 (camera/follow)
+004541b0	PlayerDcb_InstallThink	install g_PlayerCtrlDcb+0x68 = PlayerDcb_Think
+00454d00	PlayerDcb_Init	alloc player-control/viewpoint DCB (g_PlayerCtrlDcb 0x5b3300 from client pool 0x5b3288); seed pos +0x34 and vel +0x4c from spawn desc (param+0x18 pos, param+0x24 vel); link to player ship g_PlayerShip (+0x8c); set render +0x70
+00456fc0	Ent_CreatePowerup	DESC_TYPE POWERUP (0xd)
+004577d0	Ent_SetQuadrant	entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64)
+00457940	Ent_LeaveQuadrant	entity LEAVE_QUADRANT event handler
+00457a10	Ent_EnterQuadrant	entity ENTER_QUADRANT event handler
+00457ba0	Sector_GetQuadrantName	resolve a sector's QUAD name (sector+0x3c->+4->+0x34) via the quadrant-name registry (0x5a5dc8)
+00458460	Dcb_BuildVisibleList	build/sort visible DCB list into scratch 0x6240e8 (from 0x5b31c0 + g_DcbActiveList 0x5b3280) for a depth bucket
+004584d0	Dcb_RenderPass	in-flight render pass: for 3 depth buckets build visible list (Dcb_BuildVisibleList) then call each DCB render method (*(dcb+0x70))(dcb)
+00458a60	Ent_CreateSpeedRing	DESC_TYPE SPEED_RING (9)
+0045e090	Sector_LaunchMission	mission/sector launch(desc): Sector_Transition(desc+0x20, desc+0x10=spxName) then create player ship via Desc_CreateByType
+0045ee80	Dcb_GC	garbage-collect deferred-free DCBs across AI/DRONE/BASE/COMMON pools
+0045f550	Gate_JumpToSector	in-flight hyper-gate jump: reads gate entity +0xf0->+0x38 (dest spx name) and transitions sector
+00462180	populate_func_ptr_struct
+004622a0	Flight_Update_Phase1	Flight_Update part 1: tick UI (if not cutscene), frame counter, mission-end check
+00462a10	Server_InitDcbPools	alloc server DCB pools: DRONE(0x58afc4) AI(0x58af9c) BASE/station(0x58afec) ROID/asteroid(0x58b014) COMMON(0x58b03c) player(0x58af74)
+00462af0	Flight_SceneSetup	Flight_Enter scene setup: init server pools, load vars.cfg, set up world; called by Flight_Enter
+00462e60	Object_ParseHardpoints	parse CONNECT group: LAND/SPAWN/DOCK/PICKUP/ENGINE_POINT[] hardpoints
+00463a90	ShipDes_ParseRotation	parse .des 'rotation' group into class+0x84 (0x9c bytes): per-axis yaw/pitch/roll {ACCEL, MAX_RATE, DAMPEN}; scaled MAX_YAW/PITCH/ROLL_RATE -> class+0x90/0xa0/0xb0 (read by Entity_TurnToward as param_3+0xc/1c/2c); accel*0052e6d0, rate*0052e544
+00463ef0	Ship_LoadDes	parse SHIP .des CBIN into 0x6c8 ship struct (rotation/speed/shields/hull/weapons/mounts)
+004656e0	Ent_CreateShip	DESC_TYPE SHIP (1): register SHIP class (entity size 0x6c8, ctor Sped_ConstructEntity, update Ship_Update)
+00467840	Bdf_ParseImageEntry	parse one IMAGE/SUN entry into a 0x64-byte record
+004679f0	Bdf_ParseScene	parse .bdf via Cbin_* into scene struct (SPACE_PAK/SPACE_ROT/IMAGES/LIGHTNING/fog/...)
+004680f0	Bdf_GetOrLoadScene	scene cache lookup / alloc; copy filename; call Bdf_ParseScene
+00468180	Bdf_LoadAndApply	load scene struct, apply SPACE_ROT/RGB/lighting, spawn images
+00469450	Job_FindActive	find the active job descriptor by reading PLAYER_MAIN_VARS.CURRENT_JOB/JOB_COMPLETED
+004696a0	Job_Complete	on job completion: JOB_COMPLETED := CURRENT_JOB; CURRENT_JOB := "NO_JOB"; PLAYER_STATS.JOBS_COMPLETED++ (player var store)
+00469b10	Job_StoreVarValue	store a directive's value (CHECK/COMPLETE) [tentative]
+0046a400	Job_ParseBriefingBlock	parse one BLOCK%d briefing step (pak/image/audio/text) [inferred]
+0046a7d0	Job_ParseVarDirectives	parse VAR_CHECK/ACCEPT/COMPLETE/RESET/RETURN into campaign-var-set arrays
+0046aea0	Job_LoadAll	load <prefix>NN.job (NN 0..99) into array of 0x1b8 job structs
+0046e740	Ship_GetCurrentModel	CURRENT_SHIP var -> SHIP_TYPE table -> .des model (default claw.des)
+00471120	cb_SPLaunch	space/launch button -> shipyard mode
+00473940	loadout_enter
+00473d40	loadout_update
+00473f50	cb_CFGLaunch	starbase Config "Launch" -> shipyard mode
+00475100	initialize_loadout_ui
+004755e0	Shipyard_SelectShip	cycle owned PLAYER_SHIPS, set CURRENT_SHIP, read SHIP_%02d_DATA/SLOT_%d
+0047bfe0	Nav_SetOverrideSector	region/sector nav; walks region table; sets OVERRIDE_REGION/SECTOR
+0047c400	Map_UpdateSectorText	nav-map: highlighted sector name + SECTOR_CONTENTS/QUADRANT text
+00482120	PlayerCfg_Save	pick cfg path by g_MpModeFlag, write via PlayerCfg_WriteActions
+00485b00	Shipyard_Enter	build WndStarBaseShipYard + 3D hangar scene (lights/camera)
+00486050	Shipyard_Update	pump + 3D scene tick + Ui_Update + per-frame hook
+0048dac0	Spx_RelocParamSection	relocate nested param section (buf+0x20 count / +0x24 offset, stride 0x14): fix sub-array ptrs rec+0xc/+0x10 by +buf+0x1a0; sub-entries stride 0x28
+0048e350	global_bad_shift_rng
+0048e370	seed_rng
+0048e380	clr_bytes
+0048e440	distance_between
+0048e4c0	dist_2d
+0048e510	normalize_vec2
+0048e660	Vec_RotateByOrientation	rotate a 3-vector by an entity orientation basis (used to map control rates / local vel to world)
+0048f5e0	Var_GetTable	section name -> table object (for index lookup)
+0048f6b0	Var_GetKeyByIndex	table + index -> key string
+0048f6e0	Var_FindSection	section name -> section object (+0x30 = id)
+0048f980	VarStore_ParseDefaults	[tentative] parse template (vars.cfg)
+0048f9f0	VarStore_Save	write store back to a path
+0048fa20	VarStore_Create	[tentative]
+0048fab0	Var_FindKey	(section, key) -> entry (+4 = id)
+0048fba0	Var_SetInt	(store, section, key, value)
+0048fc40	Var_SetStr	(store, section, key, strValue)
+0048fce0	Var_GetByIndex	indexed VarStore read: store section[sectionIdx] then value at key[keyIdx] (section+keyIdx*4+8); used by Spx_SelectSubSector
+0048fd20	Var_GetInt	(store, section, key, &out)
+0048ff40	VarStore_OverlayFile	[tentative] layer a .sav file onto the store
+00490010	VarStore_Close
+00490040	VarStore_Load	load a vars store: defaults from vars.cfg + overlay player .sav path -> handle
+004939a0	Ent_CreateType0a	DESC_TYPE 0xa (unnamed)
+0049a750	Cbin_ParseText	plaintext fallback parser (same group/entry/param model)
+0049a8c0	Cbin_Decrypt	rotate-left-7 XOR of bytes after 20-byte header, using header key (matches TachyonFileFormats cbin.py)
+0049a980	Cbin_ParseBinary	build string table + group/entry/param tree from decrypted buffer
+0049acb0	Cbin_LoadFile	read file to buffer; magic 'CBIN' -> Cbin_ParseBinary else Cbin_ParseText; ctx[0x1a]=isBinary
+0049ad90	Cbin_Open_Inner	-> Cbin_LoadFile(file, &g_CbinCtx)
+0049ae60	Cbin_Close
+0049ae70	Cbin_Open	close any open ctx, then load into g_CbinCtx
+0049afe0	Cbin_FindSection
+0049b0c0	Cbin_SelectGroup	select group/section by name
+0049b4b0	Cbin_GetField_Ctx	get a key's param into buffer (explicit ctx variant)
+0049b4f0	Cbin_GetScalar	single int/scalar convenience getter
+0049b730	Cbin_GetParamN_Ctx	get Nth param of a key (explicit ctx variant)
+0049bbb0	Cbin_FindParam
+0049bde0	Cbin_GetParam_Ctx	core: find section then fetch param
+0049be30	Cbin_GetParam	(key, strOut, strLen, &numOut, type, index1based) on g_CbinCtx; type 1=int 2=float 4=string
+0049c000	Cbin_CountEntries_Ctx	count entries of a name (explicit ctx variant)
+0049c040	Cbin_CountEntries	count entries of given name within a group
+0049c170	Cbin_CountIndexed_Ctx	count NAME%d entries (e.g. BLOCK%d)
+0049c3b0	mem_GetMemEx_probably_alloc
+0049c530	OurFreeMem
+0049c670	mark_alloc_memory_with_flags
+0049cd50	maybe_cleanup
+0049dea0	markup_rtxtbin_as_ptrs
+0049df00	load_rtxt_bin
+0049ec30	some_iter_over_list
+0049f390	App_InstanceInit
+0049f400	App_WindowDisplayInit
+0049f6a0	MessagePump_IdleTick	PeekMessageA loop; idle: timed tasks / audio pump / periodic poll; breaks on WM_QUIT
+0049fc40	WinMain	Init 3 memory pools, instance+window init, cmdline dispatch, run state machine
+0049fd35	Timer_Teardown	timer cleanup (not the main loop)
+004a0d60	lcreat_file_and_do_error_stuff
+004a0dc0	File_Delete
+004a0dd0	File_Exists	_lopen/_lclose probe
+004a0e10	openfile
+004a0ea0	read_file_to_bin
+004a0ec0	close_glbl_open_file
+004a0ed0	move_to_end_of_file_and_get_len
+004a0ef0	save_to_open_file
+004a0f10	read_file
+004a0fe0	get_file_len
+004a1030	File_ReadAll	open, size via seek-end, read whole into buf; returns size
+004a1170	File_WriteAll	open-for-write, write buf[len], close
+004a11c0	get_actual_filename_from_pff
+004a1240	Fs_Exists	mount-aware file-exists(name): File_Exists + PFF mounts (used to count %02d.job/.nws/.wng/.mpc)
+004a1550	Fs_GetSize	mount-aware file size(name): disk 0x4a0fe0 or PFF mount 0x4a4290
+004a1620	load_a_file_probably
+004a1780	Cbin_ReadWhole	mount-aware whole-file read (Cbin-only); File_ReadAll + PFF mount 0x4a41c0; tag "file:RawLoaderEx"
+004a18e0	Fs_ReadRegion	mount-aware read-region(name,dst,fileOff,len): disk 0x4a10e0 (_llseek/_lread) or PFF mount 0x4a4230
+004a1a60	show_dialog_on_cannot_open_file
+004a2520	Input_PollJoystick	joyGetPosEx wrapper (flight stick)
+004a29c0	Input_SampleAxes	aggregate joystick (Input_PollJoystick) + other control sources into raw axis globals
+004a4040	read_some_bytes_and_update_seek_ptr
+004a4100	decrypt_str_xor_rol_312a4ce
+004a4130	probably_load_from_pff
+004a7820	shutdown_audio
+004a90a0	StreamAudio_Refill	16x16KB ring buffer; 16->8-bit; WAV loop at file offset 0x2c
+004add80	copy_str32_to_some_global
+004b1920	set_global_near_far
+004b24d0	some_rotate_by_global
+004b3c80	scale_glbl_3vecs_by_global
+004b5160	actual2_load_sbf_and_bin
+004b5290	actual_load_sbf_and_bin
+004b5590	set_cb_functions_maybe_audio
+004b55f0	set_some_glbl_scalar
+004b57e0	load_bin_scr_file
+004b7870	something_list_related_get_next
+004b87d0	maybe_take_some_mem
+004b8880	set_global_some_game_mode
+004b8d70	Net_ReceiveDispatch	receive loop: pull packets (0x4b9110) and dispatch via 0x4b8c90 handler table
+004b8f30	Net_CyclePump	per-frame network cycle: frame counter 0x6af5bc++, Net_ReceiveDispatch, hook 0x4b8a60, periodic 0x4b8ef0
+004bc160	str_sprintf	sprintf into buffer
+004bc202	c_fclose	[tentative]
+004bc233	__fclose_lk	Library Function - Single Match\n __fclose_lk\n\nLibrary: Visual Studio 2003 Release
+004bc371	c_fprintf	[tentative]
+004bc61a	c_fopen	[tentative]
+004bc6a2	something_locale_related
+004bcd20	_strstr	Library Function - Single Match\n _strstr\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004bcdad	_rand	Library Function - Single Match\n _rand\n\nLibraries: Visual Studio 2003 Release, Visual Studio 2005 Release, Visual Studio 2008 Release
+004bcdd0	_strncpy	Library Function - Single Match\n _strncpy\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004bced0	_strrchr	Library Function - Single Match\n _strrchr\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004bd3c6	maybe_find_in_list
+004bd486	_malloc	Library Function - Single Match\n _malloc\n\nLibrary: Visual Studio 2003 Release
+004bd498	__nh_malloc	Library Function - Single Match\n __nh_malloc\n\nLibrary: Visual Studio 2003 Release
+004bd629	entry
+004bd731	__amsg_exit	Library Function - Single Match\n __amsg_exit\n\nLibrary: Visual Studio 2003 Release
+004bd77c	__ftol	Library Function - Single Match\n __ftol\n\nLibrary: Visual Studio
+004bdc53	__exit	Library Function - Single Match\n __exit\n\nLibrary: Visual Studio 2003 Release
+004bdd38	__global_unwind2	Library Function - Single Match\n __global_unwind2\n\nLibrary: Visual Studio
+004bdd7a	__local_unwind2	Library Function - Single Match\n __local_unwind2\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release, Visual Studio 2003 Debug, Visual Studio 2003 Release
+004bdf99	probably_find_in_pff
+004be420	_strncat	Library Function - Single Match\n _strncat\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004bf663	__fassign	Library Function - Single Match\n __fassign\n\nLibrary: Visual Studio 2003 Release
+004bf953	__cfltcvt	Library Function - Single Match\n __cfltcvt\n\nLibrary: Visual Studio 2003 Release
+004bfb29	__freebuf	Library Function - Single Match\n __freebuf\n\nLibrary: Visual Studio 2003 Release
+004c1520	_strcmp	Library Function - Single Match\n _strcmp\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004c15cd	init_andor_enter_crit_section_idx
+004c162e	leave_crit_section_idx
+004c1690	_strlen	Library Function - Single Match\n _strlen\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004c1710	_strncmp	Library Function - Single Match\n _strncmp\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004c2130	_memset	Library Function - Single Match\n _memset\n\nLibraries: Visual Studio 1998 Debug, Visual Studio 1998 Release
+004c24b0	__allmul	Library Function - Single Match\n __allmul\n\nLibrary: Visual Studio
+004c4262	__frnd	Library Function - Single Match\n __frnd\n\nLibraries: Visual Studio 2008 Release, Visual Studio 2010 Release, Visual Studio 2012 Release, Visual Studio 2019 Release
+004c5a4e	__break
+004c5a50	__aulldiv	Library Function - Single Match\n __aulldiv\n\nLibrary: Visual Studio
+004c5ac0	__aullrem	Library Function - Single Match\n __aullrem\n\nLibrary: Visual Studio
+004c67c0	str_cmp
+004c6fb0	__allshl	Library Function - Single Match\n __allshl\n\nLibrary: Visual Studio
+004c7266	___add_12	Library Function - Single Match\n ___add_12\n\nLibrary: Visual Studio 2003 Release
+004c7679	__mbsnbicoll	Library Function - Single Match\n __mbsnbicoll\n\nLibrary: Visual Studio 2003 Release
+004c82b6	to_uppercase
+004e0417	approx_vector_len
+004e0462	call_approx_vec_length
+0052d9cd	math_todo_with_rotation
+0052db6a	call_math_todo_with_rotation
+0052db9a	copy_mathresult_to_global
+0052dbcd	call_copy_mathresult_to_global

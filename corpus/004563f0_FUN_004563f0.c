@@ -10,7 +10,7 @@ undefined4 FUN_004563f0(int *param_1,undefined4 param_2,undefined4 param_3,int p
     switch(param_3) {
     case 3:
     case 4:
-      iVar2 = FUN_00455e40(param_1,param_2);
+      iVar2 = Shield_GetMax(param_1,param_2);
       if ((param_1[2] != iVar2) || (param_1[4] != iVar2)) {
         iVar1 = param_1[2] + (param_4 >> 2);
         iVar3 = param_1[4] + (param_4 >> 2);

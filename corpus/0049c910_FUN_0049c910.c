@@ -13,7 +13,7 @@ void FUN_0049c910(int param_1,int param_2,int *param_3,int *param_4,int *param_5
   local_c = 0;
   local_8 = 0;
   local_4 = 0;
-  piVar1 = *(int **)(PTR_DAT_0055d7cc + 8);
+  piVar1 = *(int **)(PTR_global_mem_pool_root + 8);
   if (param_1 == 0) {
     return;
   }
@@ -27,9 +27,9 @@ void FUN_0049c910(int param_1,int param_2,int *param_3,int *param_4,int *param_5
       return;
     }
     piVar1 = (int *)piVar3[3];
-    if (((piVar1 < *(int **)(PTR_DAT_0055d7cc + 8)) ||
-        (*(int **)(PTR_DAT_0055d7cc + 8) + *(int *)(PTR_DAT_0055d7cc + 4) * 4 < piVar1)) &&
-       (piVar1 != (int *)0x0)) {
+    if (((piVar1 < *(int **)(PTR_global_mem_pool_root + 8)) ||
+        (*(int **)(PTR_global_mem_pool_root + 8) + *(int *)(PTR_global_mem_pool_root + 4) * 4 <
+         piVar1)) && (piVar1 != (int *)0x0)) {
       bVar2 = true;
     }
     if ((param_2 == -1) || (piVar3[1] == param_2)) {
@@ -49,7 +49,7 @@ LAB_0049c9fd:
       return;
     }
   }
-  MessageBoxA(DAT_0060395c,s_Memory_Overlap_0055d8bc,s_module_CheckMem_0055d8cc,0);
+  MessageBoxA(GLBL_WindowHandle_,s_Memory_Overlap_0055d8bc,s_module_CheckMem_0055d8cc,0);
   goto LAB_0049c9fd;
 }
 

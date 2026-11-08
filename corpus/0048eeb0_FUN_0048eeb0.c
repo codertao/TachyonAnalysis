@@ -89,7 +89,7 @@ undefined4 FUN_0048eeb0(void)
     }
     FUN_0048ee60(&DAT_0056aaa0,&DAT_00559d50);
     File_WriteAll(&DAT_0056aaa0,puVar7,iVar14);
-    FUN_0049c530(puVar7);
+    OurFreeMem(puVar7);
   }
   else if (DAT_005a67e8 == 0x10) {
     iVar14 = (DAT_005a67ac * DAT_005a67a8 + 0x12) * 3;
@@ -147,7 +147,7 @@ undefined4 FUN_0048eeb0(void)
     }
     FUN_0048ee60(&DAT_0056aaa0,&DAT_00559d50);
     File_WriteAll(&DAT_0056aaa0,puVar7,iVar14);
-    FUN_0049c530(puVar7);
+    OurFreeMem(puVar7);
   }
   else {
     DAT_00603108 = DAT_005a67a4;

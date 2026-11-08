@@ -63,13 +63,13 @@ void FUN_004383b0(int param_1)
       local_298 = FUN_004bd32f(uVar4);
       pcVar3 = (char *)FUN_004bcef7(0,&DAT_0053ebb4);
       _strncpy(local_210,pcVar3,0x3f);
-      iVar2 = FUN_004c67c0(local_210,&DAT_0053f1e4);
+      iVar2 = str_cmp(local_210,&DAT_0053f1e4);
       if (iVar2 == 0) {
         local_210[0] = '\0';
       }
       pcVar3 = (char *)FUN_004bcef7(0,&DAT_0053ebb4);
       _strncpy(local_1d0,pcVar3,0x3f);
-      iVar2 = FUN_004c67c0(local_1d0,&DAT_0053f1e4);
+      iVar2 = str_cmp(local_1d0,&DAT_0053f1e4);
       if (iVar2 == 0) {
         local_210[0] = '\0';
       }

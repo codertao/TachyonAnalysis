@@ -13,7 +13,7 @@ undefined4 FUN_0044c950(void)
     puVar3 = puVar3 + 1;
   }
   thunk_FUN_004aa330();
-  FUN_004a6d00(1);
+  Net_SelectTransport(1);
   FUN_004a6de0();
   uVar1 = FUN_004bd32f(&DAT_00591600,0xace);
   FUN_004a70d0(uVar1);

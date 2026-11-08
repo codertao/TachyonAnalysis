@@ -26,8 +26,8 @@ void FUN_0047e7c0(void)
 LAB_0047e894:
   if (DAT_00571340 != 0) {
     FUN_004376f0(local_4,local_8,*(undefined4 *)(DAT_0058b064 + 100));
-    if (DAT_005b2c8c == 1) {
-      DAT_005b2c8c = 2;
+    if (GLBL_spacesav[0x33] == 1) {
+      GLBL_spacesav[0x33] = 2;
     }
   }
   return;

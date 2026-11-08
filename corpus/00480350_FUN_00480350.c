@@ -8,7 +8,7 @@ void FUN_00480350(int *param_1)
     iVar1 = param_1[0x12];
     while (iVar1 != 0) {
       iVar1 = *(int *)(param_1[0x12] + 0x68);
-      FUN_0049c530(param_1[0x12]);
+      OurFreeMem(param_1[0x12]);
       param_1[0x12] = iVar1;
     }
     param_1[0x12] = 0;

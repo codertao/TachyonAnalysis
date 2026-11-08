@@ -27,7 +27,7 @@ void Ui_ShowWindow(int param_1,undefined4 param_2,undefined4 param_3)
       pcVar4 = pcVar3 + 0x40;
       do {
         if (*pcVar3 == '\0') break;
-        iVar1 = FUN_004c67c0(pcVar4,param_2);
+        iVar1 = str_cmp(pcVar4,param_2);
         if (iVar1 == 0) {
           Ui_AddButtonToWindow(param_1,pcVar3,0x400,param_3);
         }
@@ -43,7 +43,7 @@ void Ui_ShowWindow(int param_1,undefined4 param_2,undefined4 param_3)
         if (*pcVar5 == '\0') {
           return;
         }
-        iVar1 = FUN_004c67c0(pcVar3,param_2);
+        iVar1 = str_cmp(pcVar3,param_2);
         if (iVar1 == 0) {
           Ui_AddTextToWindow(param_1,pcVar5,param_3);
         }

@@ -7,8 +7,8 @@ void FUN_004910f0(undefined4 param_1)
   byte bVar1;
   undefined4 uVar2;
   
-  if (((((_g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
-     (DAT_00565881 != '\0')) {
+  if (((((_g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0'))
+     && (DAT_00565881 != '\0')) {
     switch(param_1) {
     case 0x1af:
       bVar1 = (byte)DAT_00565a34 + 1;
@@ -16,7 +16,7 @@ void FUN_004910f0(undefined4 param_1)
       if (2 < bVar1) {
         DAT_00565a34._0_1_ = 0;
       }
-      _DAT_005b2ce0 = (uint)(byte)DAT_00565a34;
+      GLBL_spacesav[0x48] = (uint)(byte)DAT_00565a34;
       return;
     case 0x1b0:
       DAT_00563e58 = 0;

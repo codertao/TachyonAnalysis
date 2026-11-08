@@ -73,12 +73,12 @@ int FUN_00496e90(int *param_1,int *param_2,undefined4 *param_3,undefined4 param_
   else {
     *(undefined4 *)(iVar5 + 0xd8) = 0;
   }
-  FUN_004957a0(iVar5,param_1[3],param_1[5],param_1[6]);
+  Proj_Launch(iVar5,param_1[3],param_1[5],param_1[6]);
   local_24 = *piVar1 + *param_2;
   local_20 = *(int *)(iVar5 + 0x38) + param_2[1];
   local_1c = *(int *)(iVar5 + 0x3c) + param_2[2];
-  iVar6 = FUN_00418d10(&local_24,piVar1,local_c,*(int *)(iVar5 + 100) + 0x14,iVar5,param_1[1],0,
-                       &LAB_00494910);
+  iVar6 = Coll_SegmentCast(&local_24,piVar1,local_c,*(int *)(iVar5 + 100) + 0x14,iVar5,param_1[1],0,
+                           &LAB_00494910);
   if (iVar6 != 0) {
     if ((param_1[8] != 0) && (*(code **)(iVar2 + 0x98) != (code *)0x0)) {
       (**(code **)(iVar2 + 0x98))(iVar5,iVar6,local_c);

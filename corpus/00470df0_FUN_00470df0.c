@@ -56,10 +56,10 @@ void FUN_00470df0(void)
     DAT_005a67d8 = local_34;
     DAT_005a67dc = local_30;
     DAT_005a67e0 = local_2c;
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     FUN_004454c0();
     FUN_00452070(local_4c,local_48,local_44,local_40,1);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
   }
   return;
 }

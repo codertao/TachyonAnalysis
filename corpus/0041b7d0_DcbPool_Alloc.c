@@ -12,7 +12,7 @@ undefined4 * DcbPool_Alloc(int param_1,undefined2 param_2,undefined4 param_3)
   undefined4 *puVar6;
   undefined4 local_18 [6];
   
-  puVar1 = (undefined4 *)FUN_004b7870(param_1);
+  puVar1 = (undefined4 *)something_list_related_get_next(param_1);
   if (puVar1 != (undefined4 *)0x0) {
     puVar5 = puVar1;
     puVar6 = local_18;

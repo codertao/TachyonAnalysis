@@ -33,7 +33,7 @@ int FUN_004648a0(int param_1,int param_2,int param_3,undefined4 param_4)
     str_sprintf(local_100,s_SPED_ID___d__DCB__x__0054a358,*(undefined4 *)(param_2 + 0x20),param_1);
     FUN_0048e970(local_100,DAT_005b2770,0x1c,iVar8,0xffffff,0xffff,0x10000,2);
   }
-  uVar2 = (**(code **)(DAT_005b1dc4 + 0x1c))(param_1,1);
+  uVar2 = (**(code **)(g_ActiveRules + 0x1c))(param_1,1);
   uVar3 = FUN_00429780(uVar2);
   uVar4 = FUN_00458060();
   str_sprintf(local_100,s_RACE___s_0054a34c,uVar4);
@@ -47,19 +47,19 @@ int FUN_004648a0(int param_1,int param_2,int param_3,undefined4 param_4)
   iVar8 = *(int *)(param_1 + 0x90);
   iVar9 = iVar9 + uVar7;
   if (iVar8 == 0) {
-    str_sprintf(local_80,&DAT_00547904);
+    str_sprintf(local_80);
     uStack_108 = 0x808080;
   }
   else {
-    FUN_00464860(iVar8,local_80);
+    FUN_00464860(iVar8);
     uStack_108 = 0xff2020;
   }
-  str_sprintf(local_100,s_TARGET___s___x__0054a324,local_80,iVar8);
+  str_sprintf(local_100,s_TARGET___s___x__0054a324,local_80);
   FUN_0048e970(local_100,DAT_005b2770,0x1c,iVar9,uStack_108,0xffff,0x10000,2);
   if (iVar8 != 0) {
     pcVar1 = *(code **)(*(int *)(iVar8 + 0x8c) + 0x60);
     if (pcVar1 == (code *)0x0) {
-      iVar8 = FUN_0048e440(param_1 + 0x34,iVar8 + 0x34);
+      iVar8 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(iVar8 + 0x34));
     }
     else {
       iVar8 = (*pcVar1)(iVar8,param_1);

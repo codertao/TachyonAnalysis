@@ -27,7 +27,7 @@ void FUN_00460220(undefined4 *param_1)
       local_50 = 5;
       local_4c = 0;
       local_48 = 1;
-      FUN_0048ddc0(&local_58,*(undefined4 *)(DAT_0058b064 + 100));
+      Mission_PostEvent(&local_58,*(undefined4 *)(DAT_0058b064 + 100));
       if (DAT_005a6730 != 0) {
         str_sprintf(local_40,s_DOCK_FOUND___UNDOCKING_WITH_SPED_00549478,
                     *(undefined4 *)(iVar2 + 0x20));

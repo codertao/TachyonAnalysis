@@ -25,7 +25,7 @@ void FUN_0040db60(void)
   FUN_0040d990(&local_634,&DAT_00533540);
   FUN_0040d990(&local_624,s_GALSPAN_00533548);
   if (DAT_005b2b14 != 0) {
-    FUN_0045e900(local_600);
+    TachSrv_BuildScoreboard(local_600);
     uVar2 = c_fopen(s_BWSTATS_TXT_005338a0,&DAT_005338ac);
     GetSystemTime(&local_610);
     FUN_004bc50d(local_638);

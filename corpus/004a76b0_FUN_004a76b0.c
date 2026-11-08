@@ -50,7 +50,7 @@ LAB_004a7761:
     return;
   }
 LAB_004a7772:
-  DAT_00563e98 = 1;
+  GLBL_audio_running = 1;
   FUN_004a7600(param_2[3]);
   return;
 }

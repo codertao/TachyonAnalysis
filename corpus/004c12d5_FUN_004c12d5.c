@@ -20,7 +20,7 @@ undefined4 FUN_004c12d5(void)
   uVar9 = 0;
   local_8 = (void *)0x0;
   local_c = (undefined2 *)0x0;
-  if (DAT_00565138 == 0) {
+  if (GLBL_use_locale_str_funcs == 0) {
     PTR_DAT_00561258 = &DAT_00561262;
     PTR_DAT_0056125c = &DAT_00561262;
     FUN_004bd512(DAT_005650c4);

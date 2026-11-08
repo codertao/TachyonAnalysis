@@ -35,7 +35,7 @@ void FUN_0044d390(void)
     else {
       uVar6 = 2;
     }
-    ibrowse_InitEx(DAT_0060395c,0x268,0x172,uVar6);
+    ibrowse_InitEx(GLBL_WindowHandle_,0x268,0x172,uVar6);
     DAT_005927c0 = 1;
   }
   ibrowse_SetCallback(5,&LAB_0044da20);

@@ -28,7 +28,7 @@ void FUN_00487cc0(void)
       DAT_0056e314 = 0;
     }
     FUN_004874c0();
-    Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseSlots_0055811c,0,0);
+    Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseSlots_0055811c,0,0);
   }
   uVar2 = DAT_0056e2b0 | DAT_0056e1cc | DAT_0056e0e8;
   FUN_004878a0(uVar2);

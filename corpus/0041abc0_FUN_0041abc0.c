@@ -51,7 +51,7 @@ int FUN_0041abc0(undefined4 *param_1,undefined4 *param_2,undefined4 param_3,unde
     *(undefined4 *)(iVar2 + 0x58) = uVar3;
     *(undefined4 *)(iVar2 + 0xe0) = *(undefined4 *)(DAT_005b29c8 + 0xa4);
     *(undefined1 *)(iVar2 + 0x7e) = *(undefined1 *)(DAT_005b29c8 + 0xa8);
-    uVar3 = FUN_0041aa30(iVar2);
+    uVar3 = TargetDrone_Spawn(iVar2);
     *(undefined4 *)(iVar2 + 0xf4) = uVar3;
   }
   FUN_0045cbf0(iVar2,*(int *)(iVar2 + 100) + 0x14);

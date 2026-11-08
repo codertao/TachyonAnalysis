@@ -42,7 +42,7 @@ void FUN_0041ccc0(void)
       pcVar9 = pcVar9 + 1;
       pcVar7 = pcVar7 + 1;
     }
-    FUN_004c82b6(local_140);
+    to_uppercase(local_140);
     FUN_0041f6e0(DAT_005b276c,10,10,0xf0,0x1cc,0x80,DAT_005b2770,local_140,0xc0ff,0x10000,2);
     uVar4 = *(int *)(iVar2 + 0x20) - DAT_005b2768;
     iVar8 = 0x28;

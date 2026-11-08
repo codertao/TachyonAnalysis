@@ -28,7 +28,7 @@ void FUN_00437cf0(int param_1)
     puVar2 = puVar2 + 1;
   }
   if (DAT_005a4300 != 0) {
-    FUN_0049c530(DAT_005a4300);
+    OurFreeMem(DAT_005a4300);
     DAT_005a4300 = 0;
   }
   return;

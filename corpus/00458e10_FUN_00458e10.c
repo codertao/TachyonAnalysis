@@ -55,42 +55,42 @@ void FUN_00458e10(undefined4 param_1,int param_2,float param_3)
   local_48 = (undefined4)(longlong)ROUND(param_3 * _DAT_0052e544);
   *(undefined4 *)(param_2 + 0x20) = local_48;
   Cbin_GetParam(local_20,s_JUSTIFY_00549108,local_40,0x20,0,4,1);
-  iVar2 = FUN_004c67c0(local_40,s_RIGHT_00549100);
+  iVar2 = str_cmp(local_40,s_RIGHT_00549100);
   if (iVar2 == 0) {
     uVar3 = *(uint *)(param_2 + 0x2c) | 8;
   }
   else {
-    iVar2 = FUN_004c67c0(local_40,s_CENTER_005490f8);
+    iVar2 = str_cmp(local_40,s_CENTER_005490f8);
     if (iVar2 == 0) {
       uVar3 = *(uint *)(param_2 + 0x2c) | 4;
     }
     else {
-      iVar2 = FUN_004c67c0(local_40,s_BOTTOM_005490f0);
+      iVar2 = str_cmp(local_40,s_BOTTOM_005490f0);
       if (iVar2 == 0) {
         uVar3 = *(uint *)(param_2 + 0x2c) | 0x20;
       }
       else {
-        iVar2 = FUN_004c67c0(local_40,s_VERTCENTERED_005490e0);
+        iVar2 = str_cmp(local_40,s_VERTCENTERED_005490e0);
         if (iVar2 == 0) {
           uVar3 = *(uint *)(param_2 + 0x2c) | 0x10;
         }
         else {
-          iVar2 = FUN_004c67c0(local_40,s_CENTER_VERTCENTERED_005490cc);
+          iVar2 = str_cmp(local_40,s_CENTER_VERTCENTERED_005490cc);
           if (iVar2 == 0) {
             uVar3 = *(uint *)(param_2 + 0x2c) | 0x14;
           }
           else {
-            iVar2 = FUN_004c67c0(local_40,s_CENTER_BOTTOM_005490bc);
+            iVar2 = str_cmp(local_40,s_CENTER_BOTTOM_005490bc);
             if (iVar2 == 0) {
               uVar3 = *(uint *)(param_2 + 0x2c) | 0x24;
             }
             else {
-              iVar2 = FUN_004c67c0(local_40,s_RIGHT_VERTCENTERED_005490a8);
+              iVar2 = str_cmp(local_40,s_RIGHT_VERTCENTERED_005490a8);
               if (iVar2 == 0) {
                 uVar3 = *(uint *)(param_2 + 0x2c) | 0x18;
               }
               else {
-                iVar2 = FUN_004c67c0(local_40,s_RIGHT_BOTTOM_00549098);
+                iVar2 = str_cmp(local_40,s_RIGHT_BOTTOM_00549098);
                 if (iVar2 != 0) goto LAB_00459167;
                 uVar3 = *(uint *)(param_2 + 0x2c) | 0x28;
               }
@@ -103,12 +103,12 @@ void FUN_00458e10(undefined4 param_1,int param_2,float param_3)
   *(uint *)(param_2 + 0x2c) = uVar3;
 LAB_00459167:
   Cbin_GetParam(local_20,s_SHADOW_00549090,local_40,0x20,0,4,1);
-  iVar2 = FUN_004c67c0(local_40,&DAT_00541270);
+  iVar2 = str_cmp(local_40,&DAT_00541270);
   if (iVar2 == 0) {
     *(uint *)(param_2 + 0x2c) = *(uint *)(param_2 + 0x2c) | 2;
   }
   Cbin_GetParam(local_20,s_BILINEAR_00549084,local_40,0x20,0,4,1);
-  iVar2 = FUN_004c67c0(local_40,s_FALSE_00541294);
+  iVar2 = str_cmp(local_40,s_FALSE_00541294);
   if (iVar2 == 0) {
     *(uint *)(param_2 + 0x2c) = *(uint *)(param_2 + 0x2c) | 0x80;
   }

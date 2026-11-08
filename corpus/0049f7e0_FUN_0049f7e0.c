@@ -99,7 +99,7 @@ void FUN_0049f7e0(int param_1,char *param_2)
     *unaff_FS_OFFSET = local_14;
     return;
   }
-  MessageBoxA(DAT_0060395c,s_System_Dump_file_could_not_be_op_0055e004,
+  MessageBoxA(GLBL_WindowHandle_,s_System_Dump_file_could_not_be_op_0055e004,
               s_SysMgr_sys_DumpException_0055e02c,0);
   *unaff_FS_OFFSET = local_14;
   return;

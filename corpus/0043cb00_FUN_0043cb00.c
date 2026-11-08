@@ -21,7 +21,7 @@ int FUN_0043cb00(int param_1,int param_2,undefined4 param_3)
         if (*pcVar4 == '\0') {
           return local_14;
         }
-        iVar2 = FUN_004c67c0(pcVar4 + 0x40,param_2);
+        iVar2 = str_cmp(pcVar4 + 0x40,param_2);
         if ((iVar2 == 0) && ((*(uint *)(pcVar4 + 0x204) & 0x80000) == 0)) {
           local_10 = *(int *)(pcVar4 + 0xd4) + *(int *)(param_2 + 0x44);
           local_c = *(int *)(pcVar4 + 0xd8) + *(int *)(param_2 + 0x48);

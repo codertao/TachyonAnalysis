@@ -57,7 +57,7 @@ int FUN_0047de80(void)
                    (int)((ulonglong)((longlong)local_30 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
                    iVar10);
       if ((DAT_005524dc == 0) && (piVar9[-6] != 0)) {
-        FUN_00466860(s_tracer_wav_005528ec,(DAT_005b2d10 & 0xfffffff) >> 4);
+        FUN_00466860(s_tracer_wav_005528ec,(GLBL_spacesav[0x54] & 0xfffffff) >> 4);
       }
       if (((piVar9[6] != 0) && (piVar9[4] != 0)) && (piVar9[-2] != 0)) {
         FUN_00452180(4);

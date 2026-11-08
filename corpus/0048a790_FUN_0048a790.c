@@ -24,13 +24,13 @@ void FUN_0048a790(void)
     FUN_004abcc0(0x1d,*(undefined4 *)(iVar3 + 0x40),*(undefined4 *)(iVar3 + 0x44),
                  *(undefined4 *)(iVar3 + 0x48));
   }
-  uVar4 = Ui_FindWindowDef(&DAT_00583420,s_WndStarBaseWingMan_00559700);
-  uVar5 = Ui_FindButton(&DAT_00583420,s_BtnWingTxtUp_0055980c);
-  uVar6 = Ui_FindButton(&DAT_00583420,s_BtnWingTxtDown_005597fc);
+  uVar4 = Ui_FindWindowDef(&GLBL_UI_ELEM_LIST,s_WndStarBaseWingMan_00559700);
+  uVar5 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnWingTxtUp_0055980c);
+  uVar6 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnWingTxtDown_005597fc);
   FUN_00465880(&DAT_00558ce8,uVar4,uVar5,uVar6);
-  uVar4 = Ui_FindWindowDef(&DAT_00583420,s_WndStarBaseWingMan2_005596d8);
-  uVar5 = Ui_FindButton(&DAT_00583420,s_BtnWingUp_005597f0);
-  uVar6 = Ui_FindButton(&DAT_00583420,s_BtnWingDown_005597e4);
+  uVar4 = Ui_FindWindowDef(&GLBL_UI_ELEM_LIST,s_WndStarBaseWingMan2_005596d8);
+  uVar5 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnWingUp_005597f0);
+  uVar6 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnWingDown_005597e4);
   FUN_00465880(&DAT_00558d28,uVar4,uVar5,uVar6);
   return;
 }

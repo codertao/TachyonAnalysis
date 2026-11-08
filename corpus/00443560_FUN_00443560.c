@@ -23,7 +23,7 @@ void FUN_00443560(int param_1)
   else if (iVar2 < DAT_005a4020) {
     DAT_005a4020 = iVar2;
   }
-  uVar1 = FUN_00443420(DAT_005b2c0c);
+  uVar1 = FUN_00443420(GLBL_spacesav[0x13]);
   uVar8 = 0;
   if (DAT_005a4000 != 0) {
     do {
@@ -35,7 +35,7 @@ void FUN_00443560(int param_1)
         }
         break;
       }
-      iVar2 = FUN_004c67c0(iVar4,uVar1);
+      iVar2 = str_cmp(iVar4,uVar1);
       if (iVar2 == 0) {
         iVar6 = iVar6 + 1;
       }
@@ -46,7 +46,7 @@ void FUN_00443560(int param_1)
   goto LAB_004436e0;
 LAB_00443601:
   do {
-    iVar6 = FUN_004c67c0(iVar4,uVar1);
+    iVar6 = str_cmp(iVar4,uVar1);
     if (iVar6 == 0) {
       *piVar5 = iVar4;
       str_sprintf(&DAT_005a41e0,s_BtnHostGameSlot_d_00540ff4,local_4);
@@ -56,15 +56,15 @@ LAB_00443601:
         iVar6 = iVar3;
       }
       FUN_0043cc80(&g_UiManager,&DAT_005a41e0,iVar6);
-      if (*(uint *)(iVar2 + 0x60) < DAT_005b2bc0) {
-        FUN_0043ce50(&g_UiManager,&DAT_005a41e0,8);
-        iVar6 = FUN_004c67c0(iVar2 + -0x10,&DAT_005a4010);
+      if (*(uint *)(iVar2 + 0x60) < GLBL_spacesav[0]) {
+        set_button_state(&g_UiManager,&DAT_005a41e0,8);
+        iVar6 = str_cmp(iVar2 + -0x10,&DAT_005a4010);
         if (iVar6 != 0) {
           FUN_004434a0(0xffffffff);
         }
       }
       else {
-        FUN_0043ce50(&g_UiManager,&DAT_005a41e0,1);
+        set_button_state(&g_UiManager,&DAT_005a41e0,1);
       }
       local_4 = local_4 + 1;
       piVar5 = piVar5 + 1;
@@ -81,7 +81,7 @@ LAB_004436e0:
       *puVar7 = 0;
       str_sprintf(&DAT_005a41e0,s_BtnHostGameSlot_d_00540ff4,local_4);
       FUN_0043cc80(&g_UiManager,&DAT_005a41e0,&DAT_00562b14);
-      FUN_0043ce50(&g_UiManager,&DAT_005a41e0,8);
+      set_button_state(&g_UiManager,&DAT_005a41e0,8);
       puVar7 = puVar7 + 1;
       local_4 = local_4 + 1;
     } while ((int)puVar7 < 0x5a40e0);

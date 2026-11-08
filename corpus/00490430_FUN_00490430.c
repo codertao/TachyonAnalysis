@@ -6,7 +6,7 @@ void FUN_00490430(void)
   int iVar2;
   undefined4 *puVar3;
   
-  if (((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
+  if (((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0')) &&
      (DAT_00565881 != '\0')) {
     puVar3 = &DAT_00565a80;
     for (iVar2 = 0x1400; iVar2 != 0; iVar2 = iVar2 + -1) {
@@ -28,7 +28,7 @@ void FUN_00490430(void)
     DAT_00565888 = DAT_006af654;
     DAT_00565890 = DAT_006af608;
     if (DAT_006af650 == 0) {
-      if ((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) &&
+      if ((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) &&
          ((DAT_00565880 != '\0' && (DAT_00565881 != '\0')))) {
         FUN_00490a10();
         FUN_00490a80();
@@ -47,7 +47,7 @@ void FUN_00490430(void)
     }
     netcomm_RegisterMessageCallback(&LAB_00490bf0);
     FUN_00490780(DAT_00565890);
-    netcomm_SetAudioGain(DAT_005b2cc8);
+    netcomm_SetAudioGain(GLBL_spacesav[0x42]);
     netcomm_EnablePlaybackFiltering(DAT_00565a64 & 0xff);
     netcomm_EnableNotification(DAT_00565a68);
     netcomm_SetMaxBusyNotifications(DAT_00565a68);

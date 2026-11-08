@@ -10,7 +10,7 @@ void FUN_00478c40(void)
     iVar2 = DAT_00589728;
     do {
       if ((puVar1 != (undefined4 *)0x174) && (puVar1[-0x59] != 0)) {
-        FUN_0046d580(&DAT_00583420,puVar1 + -9,1,puVar1[-1],*puVar1,0);
+        FUN_0046d580(&GLBL_UI_ELEM_LIST,puVar1 + -9,1,puVar1[-1],*puVar1,0);
       }
       puVar1 = puVar1 + 0x6e;
       iVar2 = iVar2 + -1;

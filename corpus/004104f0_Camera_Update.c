@@ -23,9 +23,9 @@ void Camera_Update(void)
   local_8 = DAT_005b9604 - DAT_005b9610;
   local_c = DAT_005b9600 - DAT_005b960c;
   local_4 = DAT_005b9608 - DAT_005b9614;
-  DAT_005b9624 = FUN_004e0462(&local_c);
+  DAT_005b9624 = call_approx_vec_length(&local_c);
   FUN_004103e0();
-  FUN_0052db6a(&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
+  call_math_todo_with_rotation(&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
   return;
 }
 

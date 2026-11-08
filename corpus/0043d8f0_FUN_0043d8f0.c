@@ -88,10 +88,10 @@ void FUN_0043d8f0(int param_1,int param_2,undefined2 param_3,undefined2 param_4,
               (int)((ulonglong)((longlong)DAT_005a67e4 * 0x1df) >> 0x20) << 0x10;
     }
     FUN_00452070(uVar9,uVar8,uVar6,uVar7,0);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     FUN_004aec10(param_2,&DAT_005a4300,param_7,param_6 / uVar5,param_10,0,param_9);
     FUN_00452070(uVar1,uVar2,uVar3,uVar4,0);
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
   }
   return;
 }

@@ -11,7 +11,7 @@ void FUN_00498900(void)
   undefined8 uVar5;
   
   if ((DAT_005a6730 != 0) && (iVar2 = c_fopen(), iVar2 != 0)) {
-    if (DAT_0055a560 != 0x26) {
+    if (g_WeaponDefs != 0x26) {
       piVar4 = &DAT_0055a5a0;
       do {
         uVar3 = FUN_00492d00();

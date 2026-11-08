@@ -17,7 +17,7 @@ undefined4 FUN_004a3170(int param_1,undefined4 param_2,undefined4 param_3)
       uVar2 = uVar2 + 1;
     } while (uVar2 < DAT_00603104);
   }
-  FUN_0049c530(uVar1);
+  OurFreeMem(uVar1);
   return 1;
 }
 

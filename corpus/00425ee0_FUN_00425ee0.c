@@ -18,7 +18,7 @@ void FUN_00425ee0(int param_1)
       uVar2 = *(undefined4 *)(iVar1 + 0x34);
       uVar3 = *(undefined4 *)(iVar1 + 0x38);
       uVar4 = *(undefined4 *)(iVar1 + 0x3c);
-      FUN_0048e380((undefined4 *)(iVar1 + 0x34),0xc);
+      clr_bytes((undefined4 *)(iVar1 + 0x34),0xc);
       FUN_00425d10(*(undefined4 *)(*(int *)(param_1 + 0xd8) + 0xd8));
       iVar1 = *(int *)(*(int *)(param_1 + 0xd8) + 0xd8);
       *(undefined4 *)(iVar1 + 0x34) = uVar2;
@@ -33,7 +33,7 @@ void FUN_00425ee0(int param_1)
     uVar2 = *(undefined4 *)(iVar1 + 0x34);
     uVar3 = *(undefined4 *)(iVar1 + 0x38);
     uVar4 = *(undefined4 *)(iVar1 + 0x3c);
-    FUN_0048e380((undefined4 *)(iVar1 + 0x34),0xc);
+    clr_bytes((undefined4 *)(iVar1 + 0x34),0xc);
     FUN_00425d60(*(undefined4 *)(param_1 + 0xd8),0);
     iVar1 = *(int *)(param_1 + 0xd8);
     *(undefined4 *)(iVar1 + 0x34) = uVar2;

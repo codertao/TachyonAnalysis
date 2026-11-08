@@ -5,7 +5,7 @@ void FUN_00491330(undefined4 param_1)
   undefined4 uVar1;
   
   uVar1 = 0;
-  if (((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
+  if (((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0')) &&
      (DAT_00565881 != '\0')) {
     switch(param_1) {
     case 0:

@@ -19,11 +19,11 @@ void FUN_00448360(void)
     do {
       pcVar7 = pcVar9 + -0x80;
       Ui_SetButtonFlag(&g_UiManager,pcVar7,4);
-      FUN_0043ce50(&g_UiManager,pcVar7,8);
+      set_button_state(&g_UiManager,pcVar7,8);
       Ui_SetButtonFlag(&g_UiManager,pcVar7,0x400000);
-      FUN_0043f620(&g_UiManager,pcVar9 + 0x40,0x20000);
-      FUN_0043e610(&g_UiManager,pcVar9 + -0x40,0x200);
-      FUN_0043e610(&g_UiManager,pcVar9,0x20000);
+      set_flag_10c_on_elem_by_id(&g_UiManager,pcVar9 + 0x40,0x20000);
+      sbi_label_flags_11c(&g_UiManager,pcVar9 + -0x40,0x200);
+      sbi_label_flags_11c(&g_UiManager,pcVar9,0x20000);
       FUN_0043e6a0(&g_UiManager,pcVar9,&DAT_00562b14);
       FUN_0043e6a0(&g_UiManager,pcVar9 + -0x40,&DAT_00562b14);
       pcVar9[0x84] = '\0';
@@ -89,14 +89,14 @@ LAB_004484c0:
           *(int *)(pcVar9 + 0x40) = iVar8;
           iVar8 = FUN_0043ca90(&g_UiManager,pcVar7);
           if (iVar8 == 8) {
-            FUN_0043ce50(&g_UiManager,pcVar7,1);
+            set_button_state(&g_UiManager,pcVar7,1);
           }
           iVar8 = Ui_FindButton(&g_UiManager,pcVar7);
           if (iVar8 != 0) {
             FUN_0046d770(DAT_005879a0,pcVar9,iVar2 + 0xb0,1,*(undefined4 *)(iVar2 + 0xc0),
                          *(undefined4 *)(iVar2 + 0xc4),*(undefined4 *)(iVar8 + 0xd4),
                          *(undefined4 *)(iVar8 + 0xd8),0);
-            iVar5 = FUN_0043fa70(&g_UiManager,pcVar9);
+            iVar5 = find_ui_elem_by_id_(&g_UiManager,pcVar9);
             str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar2 + 0xb0);
             iVar6 = FUN_0043a7a0(&g_UiManager,&DAT_005a41e0);
             iVar8 = FUN_0043a7a0(&g_UiManager,iVar8 + 0x80);

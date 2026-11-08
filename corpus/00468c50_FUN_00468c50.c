@@ -25,7 +25,7 @@ void FUN_00468c50(void)
   int local_4;
   
   FUN_00452180(2);
-  FUN_0052dbcd(&DAT_005b9628);
+  call_copy_mathresult_to_global(&DAT_005b9628);
   FUN_0052dc22(&DAT_0054a6b0,local_54);
   FUN_0052dccb(local_54,local_54);
   FUN_0052dc76(local_54,local_54);

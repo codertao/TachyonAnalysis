@@ -20,7 +20,7 @@ undefined4 FUN_0049d2d0(int param_1,undefined4 *param_2,int param_3)
   if (*(int *)(param_1 + 0x24) == 0) {
     return 0;
   }
-  FUN_0049c670(*(int *)(param_1 + 0x24),*(undefined4 *)(param_3 + 0xc4));
+  mark_alloc_memory_with_flags(*(int *)(param_1 + 0x24),*(undefined4 *)(param_3 + 0xc4));
   uVar2 = (uint)*(byte *)(param_1 + 0x21);
   if (uVar2 == 0) {
     uVar2 = 0xff;

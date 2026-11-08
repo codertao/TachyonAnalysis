@@ -8,9 +8,9 @@ void FUN_0044bfe0(void)
   char *pcVar2;
   
   g_TitleMenu_ExitFlag = 0;
-  FUN_004256f0(&PTR_FUN_005483d0);
+  Rules_Set(&g_Rules_Multiplayer);
   _g_FlightStateFlags = 2;
-  DAT_00590e34 = &PTR_FUN_00534260;
+  DAT_00590e34 = &PTR_init_flight_start_00534260;
   g_ReturnMode = &PTR_FUN_00547a88;
   if (g_PlayerVarStore == 0) {
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
@@ -26,8 +26,8 @@ void FUN_0044bfe0(void)
   FUN_0043efa0();
   Ui_ShowWindow(&g_UiManager,s_WndMPSystem_00547ea8,0);
   FUN_0043a8d0(&g_UiManager,s_WndMPSystem_00547ea8);
-  FUN_0043ce50(&g_UiManager,s_BtnMPSysLan_00547f3c,1);
-  FUN_0043ce50(&g_UiManager,s_BtnMPSysNW_00547f30,1);
+  set_button_state(&g_UiManager,s_BtnMPSysLan_00547f3c,1);
+  set_button_state(&g_UiManager,s_BtnMPSysNW_00547f30,1);
   Ui_SetButtonFlag(&g_UiManager,s_BtnMPSysLan_00547f3c,4);
   Ui_SetButtonFlag(&g_UiManager,s_BtnMPSysNW_00547f30,4);
   Ui_SetButtonFlag(&g_UiManager,s_BtnMPSysLan_00547f3c,0x2000);
@@ -44,12 +44,12 @@ void FUN_0044bfe0(void)
   else {
     pcVar2 = s_BtnMPSysNW_00547f30;
   }
-  FUN_0043ce50(&g_UiManager,pcVar2,0x10);
+  set_button_state(&g_UiManager,pcVar2,0x10);
   FUN_0044c670(DAT_00547a9c);
   FUN_0044c710();
   DAT_00562cb4 = 0;
   if (g_MissionEndReason != 0) {
-    FUN_0044bc00();
+    dialog_mp_error_reason();
   }
   iVar1 = FUN_00432b70(0);
   if (iVar1 == 0) {

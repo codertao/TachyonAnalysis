@@ -67,7 +67,7 @@ FUN_0049b2e0(undefined4 param_1,int param_2,undefined4 param_3,undefined4 *param
       } while (cVar5 != '\0');
       cVar5 = local_300[~uVar4 - 2];
     }
-    iVar3 = FUN_004c67c0(local_300,param_1);
+    iVar3 = str_cmp(local_300,param_1);
     if (iVar3 == 0) {
       pcVar6 = &local_100;
       cVar5 = ' ';

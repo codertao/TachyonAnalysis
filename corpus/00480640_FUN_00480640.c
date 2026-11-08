@@ -4,7 +4,7 @@ void FUN_00480640(void)
 {
   char *pcVar1;
   
-  DAT_00571280 = &DAT_00583420;
+  DAT_00571280 = &GLBL_UI_ELEM_LIST;
   if (g_MpModeFlag == 0) {
     DAT_00571280 = &g_UiManager;
   }
@@ -31,12 +31,13 @@ void FUN_00480640(void)
   else {
     pcVar1 = s_BtnOption0_005476d4;
   }
-  FUN_0043ce50(DAT_00571280,pcVar1,4);
+  set_button_state(DAT_00571280,pcVar1,4);
   FUN_00482170();
   DAT_00571184 = FUN_00469a70(s_DefaultLight_0053ff6c);
   FUN_004af2e0();
-  FUN_004b1b70(DAT_005a6818,0x80,*(undefined4 *)(DAT_00571184 + 0x4c),
-               *(undefined4 *)(DAT_00571184 + 0x50),*(undefined4 *)(DAT_00571184 + 0x54));
+  Pak_SetLoadPalParams
+            (g_PalBrightness,0x80,*(undefined4 *)(DAT_00571184 + 0x4c),
+             *(undefined4 *)(DAT_00571184 + 0x50),*(undefined4 *)(DAT_00571184 + 0x54));
   FUN_00468e40(*(undefined4 *)(DAT_00571184 + 0x40),*(undefined4 *)(DAT_00571184 + 0x44),
                *(undefined4 *)(DAT_00571184 + 0x48));
   FUN_004822b0();

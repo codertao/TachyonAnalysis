@@ -10,7 +10,7 @@ void FUN_0043bec0(int param_1)
     piVar2 = (int *)(*(int *)(param_1 + 0x28) + 0x44);
     do {
       if (*piVar2 != 0) {
-        FUN_0049c530(*piVar2);
+        OurFreeMem(*piVar2);
       }
       uVar1 = uVar1 + 1;
       piVar2 = piVar2 + 0x24;

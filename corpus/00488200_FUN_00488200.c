@@ -49,7 +49,7 @@ void FUN_00488200(int *param_1,char *param_2)
   if (s_STAT_ENEMY_KILLS_00558268[0] != '\0') {
     pcVar8 = s_STAT_ENEMY_KILLS_00558268;
     do {
-      iVar3 = FUN_0043bf10(&DAT_00583420,pcVar8);
+      iVar3 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,pcVar8);
       if (iVar3 != 0) {
         uVar5 = 0xffffffff;
         pcVar4 = *(char **)(iVar3 + 0x40);
@@ -69,7 +69,7 @@ void FUN_00488200(int *param_1,char *param_2)
   if (s_STAT_ENEMY_KILLS_00558268[0] != '\0') {
     pcVar8 = s_ENEMY_KILLED_00558228;
     do {
-      iVar7 = FUN_0043bf10(&DAT_00583420,pcVar8 + 0x40);
+      iVar7 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,pcVar8 + 0x40);
       if (iVar7 != 0) {
         pcVar4 = _strstr(pcVar8,&DAT_00535eb8);
         if (pcVar4 == (char *)0x0) {
@@ -123,7 +123,7 @@ void FUN_00488200(int *param_1,char *param_2)
   if ((param_2 == (char *)0x0) || (*param_2 == '\0')) {
     param_2 = s_SHADOW12w_0054e750;
   }
-  iVar7 = FUN_0043ba90(&DAT_00583420,param_2);
+  iVar7 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,param_2);
   if ((iVar7 != 0) && (piVar2 != (int *)0x0)) {
     FUN_0048b740(1,0xa100);
     ppcVar11 = &local_164;

@@ -15,15 +15,15 @@ void FUN_00422aa0(int *param_1,int param_2,uint param_3,int param_4)
   local_8 = 0;
   if (param_3 != 0) {
     do {
-      uVar4 = FUN_0048e350();
+      uVar4 = global_bad_shift_rng();
       lVar1 = (longlong)(int)((uVar4 & 0x3fff) + 0x8000) * (longlong)param_2;
-      uVar4 = FUN_0048e350();
+      uVar4 = global_bad_shift_rng();
       lVar2 = (longlong)(int)((uVar4 >> 8) % 0xc000 - 0x6000) * (longlong)param_2;
       iVar8 = *param_1 + ((uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10);
-      uVar4 = FUN_0048e350();
+      uVar4 = global_bad_shift_rng();
       lVar2 = (longlong)(int)((uVar4 >> 8) % 0xc000 - 0x6000) * (longlong)param_2;
       iVar5 = ((uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10) + param_1[1];
-      uVar4 = FUN_0048e350();
+      uVar4 = global_bad_shift_rng();
       lVar2 = (longlong)(int)((uVar4 >> 8) % 0xc000 - 0x6000) * (longlong)param_2;
       iVar7 = param_1[2] + ((uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10);
       iVar6 = FUN_0041b790(&DAT_005b32b0,7,&DAT_005b31c0);
@@ -50,9 +50,9 @@ void FUN_00422aa0(int *param_1,int param_2,uint param_3,int param_4)
       else {
         *(undefined1 *)(iVar6 + 0x7f) = 1;
       }
-      uVar4 = FUN_0048e350();
+      uVar4 = global_bad_shift_rng();
       *(uint *)(iVar6 + 0x54) = (uVar4 >> 8 & 0x1ff) << 0x10;
-      FUN_004b2950(iVar6 + 0x18,0);
+      Model_SelectState(iVar6 + 0x18,0);
       *(int *)(iVar6 + 0xa0) = iVar8 - *param_1;
       *(int *)(iVar6 + 0xa4) = iVar5 - param_1[1];
       iVar5 = param_1[2];

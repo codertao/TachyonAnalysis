@@ -13,7 +13,7 @@ void FUN_00474010(int param_1)
     else if (iVar1 < DAT_00577f00) {
       DAT_00577f00 = iVar1;
     }
-    Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseCFG_0054ffc8,0,0);
+    Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseCFG_0054ffc8,0,0);
     FUN_00473500();
     return;
   }

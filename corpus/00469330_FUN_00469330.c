@@ -27,11 +27,11 @@ int FUN_00469330(void)
             if (*(int *)(iVar4 + 0x84) != 0) {
               iVar2 = iVar1 + 0x40;
               do {
-                iVar3 = FUN_004c67c0(iVar1,s_PLAYER_MAIN_VARS_00534198);
+                iVar3 = str_cmp(iVar1,s_PLAYER_MAIN_VARS_00534198);
                 if (iVar3 == 0) {
-                  iVar3 = FUN_004c67c0(iVar2 + -0x20,s_CURRENT_WINGMAN_0054a954);
+                  iVar3 = str_cmp(iVar2 + -0x20,s_CURRENT_WINGMAN_0054a954);
                   if (iVar3 == 0) {
-                    iVar3 = FUN_004c67c0(iVar2,local_4);
+                    iVar3 = str_cmp(iVar2,local_4);
                     if (iVar3 == 0) {
                       return iVar4;
                     }

@@ -64,7 +64,7 @@ LAB_004c65de:
             local_8 = 0xffffffff;
             if (&stack0x00000000 != (undefined1 *)0x3c) {
               if (param_6 == 0) {
-                param_6 = DAT_00565138;
+                param_6 = GLBL_use_locale_str_funcs;
               }
               local_1c = &stack0xffffffc4;
               *(short *)(&stack0xffffffc4 + param_3 * 2) = -1;

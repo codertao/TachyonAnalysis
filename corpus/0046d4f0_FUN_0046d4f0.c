@@ -10,9 +10,9 @@ void FUN_0046d4f0(int param_1)
                  *(undefined4 *)(param_1 + 0x118),*(undefined4 *)(param_1 + 0x11c),0xff);
     return;
   }
-  iVar1 = FUN_0043fa70(DAT_005879a0,param_1 + 0xcc);
+  iVar1 = find_ui_elem_by_id_(DAT_005879a0,param_1 + 0xcc);
   if (iVar1 != 0) {
-    FUN_0043f620(DAT_005879a0,param_1 + 0xcc,0x20000);
+    set_flag_10c_on_elem_by_id(DAT_005879a0,param_1 + 0xcc,0x20000);
   }
   return;
 }

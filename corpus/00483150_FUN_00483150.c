@@ -39,7 +39,7 @@ void FUN_00483150(undefined4 param_1)
         local_74 = (longlong)ROUND(local_78 * _DAT_0052e548);
         *(undefined4 *)(iVar2 + 0x160) = (undefined4)local_74;
         Cbin_GetParamN_Ctx(s_CALLOUT_0055786c,0,0,(undefined4 *)(iVar2 + 0x164),1,0xd,local_6c);
-        iVar3 = FUN_0043bf10(&DAT_00583420,iVar2);
+        iVar3 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,iVar2);
         if (iVar3 == 0) {
           str_sprintf(iVar2 + 0x80,iVar2);
         }

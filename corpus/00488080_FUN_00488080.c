@@ -28,7 +28,7 @@ void FUN_00488080(void)
   local_2c4 = 0x1bf;
   local_2c0 = 0x2c;
   puVar1 = (undefined4 *)FUN_004699f0(s_SLOT_TICKER_005581e0);
-  iVar2 = FUN_0043ba90(&DAT_00583420,s_LCD10tickerb_005581d0);
+  iVar2 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,s_LCD10tickerb_005581d0);
   if (puVar1 == (undefined4 *)0x0) {
     puVar1 = &local_2cc;
   }
@@ -62,7 +62,7 @@ void FUN_00488080(void)
         uVar4 = (uVar4 - 1 | 0xffffff80) + 1;
       }
       str_sprintf(&DAT_005a41e0,s_SLOT_TICKER__d_005581c0,uVar4);
-      iVar2 = FUN_0043bf10(&DAT_00583420,&DAT_005a41e0);
+      iVar2 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,&DAT_005a41e0);
       if (iVar2 != 0) {
         if (uVar4 != DAT_00557e90) break;
         iVar2 = 0;

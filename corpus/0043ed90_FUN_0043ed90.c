@@ -8,7 +8,7 @@ void FUN_0043ed90(int param_1,int param_2,int param_3,undefined4 param_4)
   int iVar2;
   
   if ((((param_2 != 0) && (DAT_005a548c != '\0')) && (DAT_005a5480 != 0)) &&
-     (iVar2 = FUN_004c67c0(&DAT_005a548c,param_2), iVar2 == 0)) {
+     (iVar2 = str_cmp(&DAT_005a548c,param_2), iVar2 == 0)) {
     return;
   }
   if (param_1 == 0) {
@@ -40,7 +40,7 @@ void FUN_0043ed90(int param_1,int param_2,int param_3,undefined4 param_4)
     if (iVar1 != 0) {
       DAT_005a5480 = iVar1;
       if (DAT_005a5484 != 0) {
-        FUN_0049c530(DAT_005a5484);
+        OurFreeMem(DAT_005a5484);
       }
       str_sprintf(&DAT_005a548c,param_2);
       DAT_005a54ec = *(undefined4 *)(iVar2 + 0x166c);

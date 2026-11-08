@@ -17,10 +17,10 @@ void FUN_004e67df(void)
   char *unaff_ESI;
   int unaff_EDI;
   
-  if (DAT_00604440 == 0) {
+  if (GLBL_some_str == 0) {
     return;
   }
-  DAT_004e54a0 = unaff_EBX * DAT_00604490 + in_EAX * DAT_0060448c + DAT_00604440;
+  DAT_004e54a0 = unaff_EBX * DAT_00604490 + in_EAX * DAT_0060448c + GLBL_some_str;
   DAT_004e5550 = *(int *)(unaff_EDI + 0x14);
   _DAT_004e5494 = (undefined1 *)register0x00000010;
   DAT_004e54b8 = in_EAX;

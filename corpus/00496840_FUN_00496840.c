@@ -52,7 +52,7 @@ int FUN_00496840(int *param_1,int *param_2,undefined4 *param_3)
   *(undefined4 *)(iVar3 + 0xd4) = 0xff;
   *(undefined4 *)(iVar3 + 0xec) = 0;
   *(undefined4 *)(iVar3 + 0xf8) = 0;
-  FUN_004b2950(puVar1,0);
+  Model_SelectState(puVar1,0);
   *puVar1 = *puVar1 & 0xfffffbff;
   *(undefined1 *)(iVar3 + 0xc3) = 1;
   *(int *)(iVar3 + 0xd0) = DAT_00565460;
@@ -67,12 +67,12 @@ int FUN_00496840(int *param_1,int *param_2,undefined4 *param_3)
     *(undefined4 *)(iVar3 + 0xd8) = 0;
     *(undefined1 **)(iVar3 + 0x6c) = &LAB_004966e0;
   }
-  FUN_004957a0(iVar3,param_1[3],param_1[5],param_1[6]);
+  Proj_Launch(iVar3,param_1[3],param_1[5],param_1[6]);
   local_18 = *(int *)(iVar3 + 0x34) + *param_2;
   local_14 = *(int *)(iVar3 + 0x38) + param_2[1];
   local_10 = *(int *)(iVar3 + 0x3c) + param_2[2];
-  iVar4 = FUN_00418d10(&local_18,iVar3 + 0x34,&local_c,*(int *)(iVar3 + 100) + 0x14,iVar3,param_1[1]
-                       ,0,&LAB_00494910);
+  iVar4 = Coll_SegmentCast(&local_18,iVar3 + 0x34,&local_c,*(int *)(iVar3 + 100) + 0x14,iVar3,
+                           param_1[1],0,&LAB_00494910);
   if (iVar4 != 0) {
     if (param_1[8] == 0) {
       if (*(int *)(iVar3 + 0xd8) == 1) {

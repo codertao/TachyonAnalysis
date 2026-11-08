@@ -15,11 +15,11 @@ void __fastcall FUN_00483000(uint param_1)
       if (*piVar3 == 0) {
         if (piVar3[2] == 0) {
           str_sprintf(&DAT_005a41e0,s_TxtSPCallout_d_0055785c,uVar2);
-          FUN_0043e6a0(&DAT_00583420,&DAT_005a41e0,piVar3 + -0x38);
-          FUN_0043e6f0(&DAT_00583420,&DAT_005a41e0,piVar3[-0x18],piVar3[-0x17]);
-          FUN_0043e580(&DAT_00583420,&DAT_005a41e0,piVar3 + -0x48);
-          FUN_0043e670(&DAT_00583420,&DAT_005a41e0,0x10000);
-          FUN_0043b990(&DAT_00583420,piVar3 + -0x48,piVar3 + -0x38,0,&local_4);
+          FUN_0043e6a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,piVar3 + -0x38);
+          FUN_0043e6f0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,piVar3[-0x18],piVar3[-0x17]);
+          FUN_0043e580(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,piVar3 + -0x48);
+          clr_label_flags_11c(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,0x10000);
+          FUN_0043b990(&GLBL_UI_ELEM_LIST,piVar3 + -0x48,piVar3 + -0x38,0,&local_4);
           local_4 = local_4 >> 1;
           piVar1 = piVar3 + -0x10;
           FUN_00483f60(piVar3[-0x18] + -5,local_4 + piVar3[-0x17],piVar3[-0x16],piVar3[-0x15],piVar1

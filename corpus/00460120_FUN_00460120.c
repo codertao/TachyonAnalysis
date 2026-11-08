@@ -20,7 +20,7 @@ void FUN_00460120(undefined4 *param_1)
       local_10 = 8;
       local_c = 0;
       local_8 = 1;
-      FUN_0048ddc0(&local_18,*(undefined4 *)(DAT_0058b064 + 100));
+      Mission_PostEvent(&local_18,*(undefined4 *)(DAT_0058b064 + 100));
     }
   }
   return;

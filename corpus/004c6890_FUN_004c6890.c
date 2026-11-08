@@ -12,10 +12,10 @@ undefined4 FUN_004c6890(byte *param_1,char *param_2,int param_3)
   bool bVar8;
   uint uVar9;
   
-  iVar2 = DAT_006caedc;
+  iVar2 = GLBL_locale_inprocess_gauge;
   uVar6 = 0;
   if (param_3 != 0) {
-    if (DAT_00565138 == 0) {
+    if (GLBL_use_locale_str_funcs == 0) {
       do {
         bVar3 = *param_1;
         cVar1 = *param_2;
@@ -52,14 +52,14 @@ LAB_004c68ef:
     }
     else {
       LOCK();
-      DAT_006caedc = DAT_006caedc + 1;
+      GLBL_locale_inprocess_gauge = GLBL_locale_inprocess_gauge + 1;
       UNLOCK();
-      bVar8 = 0 < DAT_006caed8;
+      bVar8 = 0 < GLBL_locale_counter;
       if (bVar8) {
         LOCK();
         UNLOCK();
-        DAT_006caedc = iVar2;
-        FUN_004c15cd(0x13);
+        GLBL_locale_inprocess_gauge = iVar2;
+        init_andor_enter_crit_section_idx(0x13);
       }
       uVar9 = (uint)bVar8;
       uVar5 = 0;
@@ -87,11 +87,11 @@ LAB_004c6965:
       }
       if (uVar9 == 0) {
         LOCK();
-        DAT_006caedc = DAT_006caedc + -1;
+        GLBL_locale_inprocess_gauge = GLBL_locale_inprocess_gauge + -1;
         UNLOCK();
       }
       else {
-        FUN_004c162e(0x13);
+        leave_crit_section_idx(0x13);
       }
     }
   }

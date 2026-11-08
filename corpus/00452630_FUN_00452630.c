@@ -16,7 +16,7 @@ void FUN_00452630(int param_1,int param_2)
     local_8 = 0xffffffff;
     local_4 = 0xffffffff;
     local_c = 0;
-    FUN_0048ddc0(&local_18,*(undefined4 *)(param_1 + 100));
+    Mission_PostEvent(&local_18,*(undefined4 *)(param_1 + 100));
   }
   return;
 }

@@ -39,7 +39,7 @@ void FUN_00423270(int param_1,undefined4 *param_2,undefined4 *param_3,int param_
     else {
       *(undefined4 *)(iVar3 + 0x1c) = 0x40000;
     }
-    FUN_004b2950(iVar3 + 0x18,0);
+    Model_SelectState(iVar3 + 0x18,0);
     *(undefined4 *)(iVar3 + 0x9c) = *(undefined4 *)(&DAT_005359d0 + iVar1);
     *(int *)(iVar3 + 0x98) = param_1;
     *(undefined4 *)(iVar3 + 0x90) = 2;

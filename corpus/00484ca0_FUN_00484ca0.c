@@ -24,9 +24,9 @@ void FUN_00484ca0(void)
     FUN_004abcc0(0x1d,*(undefined4 *)(iVar3 + 0x40),*(undefined4 *)(iVar3 + 0x44),
                  *(undefined4 *)(iVar3 + 0x48));
   }
-  uVar4 = Ui_FindWindowDef(&DAT_00583420,s_WndStarBaseShipBuy_00557938);
-  uVar5 = Ui_FindButton(&DAT_00583420,s_BtnSPTxtUp_00557a20);
-  uVar6 = Ui_FindButton(&DAT_00583420,s_BtnSPTxtDown_00557a10);
+  uVar4 = Ui_FindWindowDef(&GLBL_UI_ELEM_LIST,s_WndStarBaseShipBuy_00557938);
+  uVar5 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnSPTxtUp_00557a20);
+  uVar6 = Ui_FindButton(&GLBL_UI_ELEM_LIST,s_BtnSPTxtDown_00557a10);
   FUN_00465880(&DAT_00556e70,uVar4,uVar5,uVar6);
   return;
 }

@@ -37,15 +37,15 @@ int FUN_004a9760(int param_1)
                 if ((iVar3 == -1) || (iVar3 = FUN_004a1490(&local_c,4), iVar3 == -1))
                 goto LAB_004a993f;
                 if ((local_4 != 0x20746d66) && (local_4 != 0x20544d46)) break;
-                iVar3 = FUN_0049c3b0(local_c,4,0,s_WaveFormatChunk_0055e7ec);
+                iVar3 = mem_GetMemEx_probably_alloc(local_c,4,0,s_WaveFormatChunk_0055e7ec);
                 if (iVar3 == 0) goto LAB_004a993f;
                 iVar4 = FUN_004a1490(iVar3,local_c);
                 if (iVar4 == -1) {
-                  FUN_0049c530(iVar3);
+                  OurFreeMem(iVar3);
                   goto LAB_004a993f;
                 }
                 uVar6 = *(uint *)(iVar3 + 8);
-                FUN_0049c530(iVar3);
+                OurFreeMem(iVar3);
                 bVar2 = false;
               }
               if ((local_4 != 0x41544144) && (local_4 != 0x61746164)) break;

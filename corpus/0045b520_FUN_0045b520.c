@@ -6,7 +6,7 @@ void FUN_0045b520(void)
   
   if (DAT_0058f1c0 != 0) {
     pcVar1 = *(code **)(DAT_0058f1c0 + 0x13c);
-    FUN_0045b430(DAT_0058f1c0);
+    Scene_Finish(DAT_0058f1c0);
     FUN_004107c0(0,0);
     DAT_0058f1d8 = 0;
     DAT_0058f1d4 = 0;

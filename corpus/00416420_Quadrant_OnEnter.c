@@ -18,7 +18,7 @@ void Quadrant_OnEnter(undefined4 *param_1)
     (*DAT_005b8f6c)();
     DAT_005b8f6c = (code *)0x0;
   }
-  DAT_005b3338 = DAT_005b31f0;
+  glbl_maybe_camera.y = DAT_005b31f0;
   DAT_005b3394 = 1;
   DAT_005b31f0 = (uint)*(ushort *)((int)param_1 + 0x12);
   DAT_005b39b0 = (uint)*(ushort *)((int)param_1 + 0x12);
@@ -53,9 +53,9 @@ void Quadrant_OnEnter(undefined4 *param_1)
   }
   DAT_005b3308 = DAT_005b3308 + 1;
   FUN_00416300();
-  iVar2 = DAT_005b3300;
+  iVar2 = GLBL_SOME_CONTEXT;
   if (DAT_005b39a0 == 0) {
-    *(undefined4 *)(DAT_005b3300 + 0xa0) = 0;
+    *(undefined4 *)(GLBL_SOME_CONTEXT + 0xa0) = 0;
     *(undefined4 *)(iVar2 + 0xa4) = 0;
     *(undefined4 *)(iVar2 + 0xa8) = 0;
   }
@@ -71,11 +71,11 @@ void Quadrant_OnEnter(undefined4 *param_1)
       FUN_0045d9d0(auStack_40,0);
     }
     Bdf_LoadAndApply(&DAT_005b3a04);
-    uVar3 = FUN_0045aea0(param_1 + 9,0,0x3c,&LAB_004165e0,0,0);
-    FUN_0045c500(uVar3);
+    uVar3 = Scene_Load(param_1 + 9,0,0x3c,&LAB_004165e0,0,0);
+    Scene_Play(uVar3);
   }
   DAT_005b39f0 = 0;
-  FUN_004163e0(2,0,0);
+  Tach_SendSnapshotAck(2,0,0);
   return;
 }
 

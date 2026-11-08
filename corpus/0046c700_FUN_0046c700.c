@@ -179,10 +179,10 @@ undefined4 FUN_0046c700(undefined4 param_1,undefined4 param_2)
       iVar3 = iVar3 + 0x88;
     } while (iVar2 != 0);
   }
-  DAT_005879a8 = FUN_0049df00(&DAT_005879d4,0xa100);
-  DAT_005879ac = FUN_0049df00(&DAT_005879e4,0xa100);
-  DAT_005879b0 = FUN_0049df00(&DAT_005879c4,0xa100);
-  DAT_005879b4 = FUN_0049df00(&DAT_005879f4,0xa100);
+  DAT_005879a8 = load_rtxt_bin(&DAT_005879d4,0xa100);
+  DAT_005879ac = load_rtxt_bin(&DAT_005879e4,0xa100);
+  DAT_005879b0 = load_rtxt_bin(&DAT_005879c4,0xa100);
+  DAT_005879b4 = load_rtxt_bin(&DAT_005879f4,0xa100);
   FUN_0046c1b0(s_item_cfg_0054aeb4,0);
   FUN_0046c0d0();
   FUN_00468eb0(local_b4);

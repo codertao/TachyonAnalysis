@@ -44,7 +44,7 @@ undefined4 Flight_UpdateWorld(void)
     FUN_00415060();
     FUN_0045bfa0();
   }
-  if (DAT_005b3300 != 0) {
+  if (GLBL_SOME_CONTEXT != 0) {
     Camera_Update();
   }
   if (DAT_005b90a0 != (code *)0x0) {

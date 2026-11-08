@@ -7,7 +7,7 @@ void FUN_0042c8d0(char *param_1,int param_2,undefined4 param_3,undefined4 param_
   
   if ((((param_1 != (char *)0x0) && (param_2 != 0)) && ((*(uint *)(DAT_005b95e0 + 0xc) & 4) != 0))
      && ((*(uint *)(DAT_005b95e0 + 0xc) & 0x20) == 0)) {
-    iVar1 = FUN_004b7870(&DAT_005b01ac);
+    iVar1 = something_list_related_get_next(&DAT_005b01ac);
     if (iVar1 != 0) {
       _strncpy((char *)(iVar1 + 0x1c),param_1,0x80);
       *(undefined4 *)(iVar1 + 0xa8) = param_6;

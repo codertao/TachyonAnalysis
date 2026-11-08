@@ -33,7 +33,7 @@ void FUN_004e8e70(void)
   undefined1 in_MM2_Bd;
   undefined8 uVar18;
   
-  if (DAT_00604440 == 0) {
+  if (GLBL_some_str == 0) {
     return;
   }
   if (DAT_00604488 == 0x20) {

@@ -31,7 +31,8 @@ int FUN_004a71a0(int param_1,int *param_2,int param_3)
     if (*psVar7 == 2) {
       uVar8 = 0x32;
     }
-    puVar6 = (undefined4 *)FUN_0049c3b0(uVar8,4,0,s_AUDIO_Temp_WaveformatEx_0055e474);
+    puVar6 = (undefined4 *)mem_GetMemEx_probably_alloc(uVar8,4,0,s_AUDIO_Temp_WaveformatEx_0055e474)
+    ;
     if (puVar6 != (undefined4 *)0x0) {
       puVar9 = puVar6;
       for (uVar5 = uVar8 >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {
@@ -62,7 +63,7 @@ int FUN_004a71a0(int param_1,int *param_2,int param_3)
         iVar4 = acmStreamSize(param_1,piVar3[3],piVar1,0);
         piVar3[0xd] = iVar4;
         if ((iVar4 == 0) && (*piVar1 != 0)) {
-          iVar4 = FUN_0049c3b0(*piVar1 + param_3,4,0,s_AUDIO_ADPCM_BUFFER_0055e460);
+          iVar4 = mem_GetMemEx_probably_alloc(*piVar1 + param_3,4,0,s_AUDIO_ADPCM_BUFFER_0055e460);
           piVar3[5] = iVar4;
           if (iVar4 != 0) {
             iStack_48 = piVar3[2];
@@ -93,7 +94,7 @@ int FUN_004a71a0(int param_1,int *param_2,int param_3)
                   iVar4 = acmStreamClose(param_1,0);
                   piVar3[0xd] = iVar4;
                   if (iVar4 == 0) {
-                    FUN_0049c530(puVar6);
+                    OurFreeMem(puVar6);
                     return piVar3[5];
                   }
                 }
@@ -104,8 +105,8 @@ int FUN_004a71a0(int param_1,int *param_2,int param_3)
       }
     }
   }
-  FUN_0049c530(puVar6);
-  FUN_0049c530(piVar3[5]);
+  OurFreeMem(puVar6);
+  OurFreeMem(piVar3[5]);
   piVar3[5] = 0;
   return 0;
 }

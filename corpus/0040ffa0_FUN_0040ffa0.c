@@ -10,7 +10,7 @@ void FUN_0040ffa0(int param_1)
   local_18 = DAT_005b95e8;
   local_14 = DAT_005b95ec;
   local_10 = DAT_005b95f0;
-  if (param_1 == DAT_005b3300) {
+  if (param_1 == GLBL_SOME_CONTEXT) {
     *(undefined4 *)(param_1 + 0x58) = *(undefined4 *)(DAT_005b1f0c + 0x290);
   }
   FUN_0040f920(param_1);

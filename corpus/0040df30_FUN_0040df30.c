@@ -9,7 +9,7 @@ void FUN_0040df30(void)
   if (iVar1 == 0) {
     FUN_0040df00();
     FUN_0044fc30();
-    FUN_0045d740();
+    SrvSend_RoundResume();
     return;
   }
   FUN_0040df00();

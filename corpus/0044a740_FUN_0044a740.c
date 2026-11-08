@@ -13,7 +13,7 @@ int FUN_0044a740(int param_1)
     *(undefined4 *)(iVar1 + 0x54) = *(undefined4 *)(param_1 + 0xaa0);
     *(undefined4 *)(param_1 + 0xa9c) = 0;
     *(undefined4 *)(param_1 + 0xaa0) = 0;
-    FUN_0043f620(&g_UiManager,param_1 + 0xf8,0x20000);
+    set_flag_10c_on_elem_by_id(&g_UiManager,param_1 + 0xf8,0x20000);
     Var_SetStr(g_PlayerVarStore,local_80,param_1 + 0x20,s_NO_CARD_0053644c);
     Var_SetStr(g_PlayerVarStore,local_80,param_1 + 0x40,&DAT_00547904);
     return iVar1;

@@ -14,7 +14,7 @@ void CmdLine_Dispatch(char *param_1)
     *puVar3 = 0;
     puVar3 = puVar3 + 1;
   }
-  FUN_004c82b6(param_1);
+  to_uppercase(param_1);
   DAT_005b8f48 = 0;
   FUN_00433130(param_1);
   iVar2 = FUN_00432b70(1);
@@ -36,7 +36,7 @@ void CmdLine_Dispatch(char *param_1)
       FUN_0042f320(0);
       StateMachine_Run(&g_Mode_InFlight);
     }
-    FUN_00419a90();
+    snapshot_to_spacesav();
     FUN_004a5b50(DAT_005a68a0);
   }
   FUN_0049e7b0();

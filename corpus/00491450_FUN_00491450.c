@@ -29,11 +29,11 @@ void FUN_00491450(void)
     if ((DAT_00565a38 == '\0') && (DAT_0056589c == DAT_00565890)) {
       FUN_00491450();
     }
-    if (*(code **)(DAT_005b1dc4 + 0x90) == (code *)0x0) break;
+    if (*(code **)(g_ActiveRules + 0x90) == (code *)0x0) break;
     if (DAT_00565a34._3_1_ != '\0') {
       return;
     }
-    iVar1 = (**(code **)(DAT_005b1dc4 + 0x90))();
+    iVar1 = (**(code **)(g_ActiveRules + 0x90))();
     if (iVar1 == 0) {
       return;
     }

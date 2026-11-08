@@ -10,7 +10,7 @@ void Object_ParseHardpoints(int param_1,int param_2)
   uint uVar4;
   
   iVar1 = param_1;
-  FUN_0048e380(param_1,0x94);
+  clr_bytes(param_1,0x94);
   iVar2 = param_2;
   if (param_2 != 0) {
     iVar3 = Cbin_GetScalar(s_CONNECT_0054a20c,s_LAND_POINT_0054a214,0,0,&param_1);

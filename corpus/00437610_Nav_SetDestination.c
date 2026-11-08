@@ -30,7 +30,7 @@ void Nav_SetDestination(undefined4 param_1,undefined4 param_2,undefined4 param_3
       FUN_0045d9d0(local_40,0);
     }
   }
-  FUN_0045ebb0(param_4,param_3,param_1,param_2);
+  SrvSend_NavPrimary(param_4,param_3,param_1,param_2);
   return;
 }
 

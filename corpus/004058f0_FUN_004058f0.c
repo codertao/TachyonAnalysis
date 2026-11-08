@@ -25,7 +25,7 @@ uint FUN_004058f0(int param_1,int param_2,undefined4 param_3)
   }
   if (DAT_005a6730 != 0) {
     str_sprintf(local_40,s_WAYGROUP__d_NOT_FOUND_005326ac,param_1);
-    FUN_0045d900(local_40,0,0,0,0,param_3,DAT_005a6320._2_1_);
+    SrvSend_TextMsg(local_40,0,0,0,0,param_3,DAT_005a6320._2_1_);
   }
   return 0;
 }

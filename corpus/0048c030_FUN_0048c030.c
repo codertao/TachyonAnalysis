@@ -23,15 +23,15 @@ undefined4 FUN_0048c030(int param_1)
     piVar1 = (int *)(&DAT_0056abc4 + iVar6);
     *(undefined4 *)(&DAT_0056abfc + iVar6) = *(undefined4 *)(&DAT_0056abd4 + iVar6);
     if (*piVar1 != 0) {
-      FUN_0049c530(*piVar1);
+      OurFreeMem(*piVar1);
       *piVar1 = 0;
     }
     if (*(int *)(&DAT_0056abc0 + iVar6) != 0) {
-      FUN_0049c530(*(int *)(&DAT_0056abc0 + iVar6));
+      OurFreeMem(*(int *)(&DAT_0056abc0 + iVar6));
       *(undefined4 *)(&DAT_0056abc0 + iVar6) = 0;
     }
     if (*(int *)(&DAT_0056aba4 + iVar6) != 0) {
-      FUN_0049c530(*(int *)(&DAT_0056aba4 + iVar6));
+      OurFreeMem(*(int *)(&DAT_0056aba4 + iVar6));
       *(undefined4 *)(&DAT_0056aba4 + iVar6) = 0;
     }
     uVar4 = 0xffffffff;

@@ -12,8 +12,8 @@ void FUN_00477c80(void)
   pcVar5 = s_IAInvKey1_00550668;
   cVar2 = s_IAInvKey1_00550668[0];
   while (cVar2 != '\0') {
-    FUN_0043f620(&DAT_00583420,pcVar5,0x20000);
-    FUN_0043ce50(&DAT_00583420,pcVar5 + 0x40,8);
+    set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,pcVar5,0x20000);
+    set_button_state(&GLBL_UI_ELEM_LIST,pcVar5 + 0x40,8);
     pcVar1 = pcVar5 + 0x84;
     pcVar5 = pcVar5 + 0x84;
     cVar2 = *pcVar1;
@@ -22,12 +22,12 @@ void FUN_00477c80(void)
   while ((iVar3 != 0 && (*pcVar5 != '\0'))) {
     if ((*(int *)(iVar3 + 0x80) != 0) &&
        ((*(int *)(iVar3 + 0x7c) != 0 && (*(int *)(iVar3 + 0x78) == 1)))) {
-      FUN_0043f6e0(&DAT_00583420,pcVar5,*(int *)(iVar3 + 0x7c));
-      FUN_0043f840(&DAT_00583420,pcVar5,0x20000);
-      FUN_0043ce50(&DAT_00583420,pcVar5 + 0x40,1);
-      iVar4 = Ui_FindButton(&DAT_00583420,pcVar5 + 0x40);
+      FUN_0043f6e0(&GLBL_UI_ELEM_LIST,pcVar5,*(int *)(iVar3 + 0x7c));
+      FUN_0043f840(&GLBL_UI_ELEM_LIST,pcVar5,0x20000);
+      set_button_state(&GLBL_UI_ELEM_LIST,pcVar5 + 0x40,1);
+      iVar4 = Ui_FindButton(&GLBL_UI_ELEM_LIST,pcVar5 + 0x40);
       if (iVar4 != 0) {
-        FUN_0043f650(&DAT_00583420,pcVar5,*(undefined4 *)(iVar4 + 0xd4),
+        FUN_0043f650(&GLBL_UI_ELEM_LIST,pcVar5,*(undefined4 *)(iVar4 + 0xd4),
                      *(undefined4 *)(iVar4 + 0xd8));
       }
       *(int *)(pcVar5 + 0x80) = iVar3;

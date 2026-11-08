@@ -14,7 +14,7 @@ uint FUN_004c1e2a(undefined4 param_1)
     uVar3 = 1;
   }
   else {
-    iVar2 = FUN_004c67c0(DAT_00565188,local_7c);
+    iVar2 = str_cmp(DAT_00565188,local_7c);
     if (iVar2 == 0) {
       iVar2 = FUN_004c1f30(uVar1);
       if (iVar2 != 0) {

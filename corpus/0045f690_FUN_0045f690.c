@@ -32,16 +32,16 @@ void FUN_0045f690(int param_1,int param_2)
     *(undefined4 *)(iVar2 + 0x38) = local_8;
     *(undefined4 *)(iVar2 + 0x3c) = local_4;
     FUN_0045f460(DAT_0058b068,iVar1);
-    FUN_0045ed20(&local_c,&local_14,iVar1,0,1,0,DAT_0058b068);
+    SrvSend_EnterQuadrant(&local_c,&local_14,iVar1,0,1,0,DAT_0058b068);
     *(int *)(DAT_0058b064 + 0x4c) = CONCAT22(uStack_12,local_14) << 0x10;
     *(int *)(DAT_0058b064 + 0x50) = CONCAT22(local_10,uStack_12) << 0x10;
     *(uint *)(DAT_0058b064 + 0x54) = (uint)local_10 << 0x10;
-    FUN_0048e380(DAT_0058b064 + 0xa0,0xc);
+    clr_bytes(DAT_0058b064 + 0xa0,0xc);
     if (DAT_005653a0 != 0) {
       *(int *)(DAT_005653a0 + 0x4c) = CONCAT22(uStack_12,local_14) << 0x10;
       *(int *)(DAT_005653a0 + 0x50) = CONCAT22(local_10,uStack_12) << 0x10;
       *(uint *)(DAT_005653a0 + 0x54) = (uint)local_10 << 0x10;
-      FUN_0048e380(DAT_005653a0 + 0xa0,0xc);
+      clr_bytes(DAT_005653a0 + 0xa0,0xc);
       FUN_00499170(DAT_005653a0,&local_c,*(undefined4 *)(DAT_005653a0 + 0xf8));
       iVar1 = DAT_005653a0;
       *(undefined4 *)(DAT_005653a0 + 0x34) = local_c;

@@ -6,14 +6,14 @@ void FUN_00468810(uint *param_1,uint *param_2)
   uint uVar2;
   uint uVar3;
   
-  bVar1 = FUN_0048e350();
-  uVar2 = FUN_0048e350();
+  bVar1 = global_bad_shift_rng();
+  uVar2 = global_bad_shift_rng();
   uVar2 = uVar2 % 0x9b + 100 >> (bVar1 & 7);
   if (uVar2 < 0x5a) {
     uVar2 = 0x5a;
   }
-  uVar3 = FUN_0048e350();
-  bVar1 = FUN_0048e350();
+  uVar3 = global_bad_shift_rng();
+  bVar1 = global_bad_shift_rng();
   uVar3 = ((uVar3 & 0x1f) >> (bVar1 & 1)) + 8 + uVar2;
   if (0xff < uVar3) {
     uVar3 = 0xff;

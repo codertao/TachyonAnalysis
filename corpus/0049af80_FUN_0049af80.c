@@ -10,7 +10,7 @@ undefined4 * FUN_0049af80(undefined4 param_1,undefined4 *param_2,undefined4 *par
     if (param_2 == param_3) {
       if (param_4 != 0) {
         do {
-          iVar1 = FUN_004c67c0(param_1,*param_3);
+          iVar1 = str_cmp(param_1,*param_3);
           if (iVar1 == 0) {
             return param_3;
           }

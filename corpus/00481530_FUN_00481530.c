@@ -9,8 +9,8 @@ void FUN_00481530(void)
   DAT_00571180 = 0;
   netcomm_PlaybackShutdown();
   Ui_RefreshWindow(DAT_00571280,s_WndStarBaseOptions_00556bf0,0,0);
-  FUN_0043ce50(DAT_00571280,s_BtnOptP5VonTest_00556d5c,1);
-  FUN_004b55f0(DAT_005b2d0c);
+  set_button_state(DAT_00571280,s_BtnOptP5VonTest_00556d5c,1);
+  set_some_glbl_scalar(GLBL_spacesav[0x53]);
   iVar1 = FUN_0043a7a0(DAT_00571280,s_ImageOptionVonTest1_00556d80);
   if (iVar1 != 0) {
     FUN_00439cc0(DAT_00571280,iVar1,*(undefined4 *)(iVar1 + 0x1680),0);

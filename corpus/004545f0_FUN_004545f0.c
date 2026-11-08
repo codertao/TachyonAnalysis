@@ -5,7 +5,7 @@ void FUN_004545f0(int param_1)
   undefined4 uVar1;
   
   *(code **)(param_1 + 0x68) = PlayerDcb_Think;
-  *(undefined1 **)(param_1 + 0x6c) = &LAB_004535b0;
+  *(code **)(param_1 + 0x6c) = PlayerShip_CollisionPostThink;
   *(undefined4 *)(param_1 + 0x58) = *(undefined4 *)(DAT_005b1f0c + 0x290);
   *(undefined4 *)(param_1 + 0xd4) = *(undefined4 *)(param_1 + 0x34);
   *(undefined4 *)(param_1 + 0xd8) = *(undefined4 *)(param_1 + 0x38);

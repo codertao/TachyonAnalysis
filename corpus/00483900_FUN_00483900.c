@@ -10,7 +10,7 @@ char * FUN_00483900(undefined4 param_1)
   uVar3 = 0;
   do {
     if (*pcVar2 != '\0') {
-      iVar1 = FUN_004c67c0(param_1,pcVar2);
+      iVar1 = str_cmp(param_1,pcVar2);
       if (iVar1 == 0) {
         return pcVar2;
       }

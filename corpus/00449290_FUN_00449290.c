@@ -22,7 +22,7 @@ void FUN_00449290(int param_1)
           }
         }
         else {
-          FUN_0043ce50(&g_UiManager,pcVar4,1);
+          set_button_state(&g_UiManager,pcVar4,1);
         }
       }
       pcVar1 = pcVar4 + 0x174;

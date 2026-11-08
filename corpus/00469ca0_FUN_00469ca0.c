@@ -29,7 +29,7 @@ undefined4 FUN_00469ca0(int param_1)
         }
       }
       if (local_20[0] != '\0') {
-        iVar2 = FUN_004c67c0(local_20,param_1 + 0x40);
+        iVar2 = str_cmp(local_20,param_1 + 0x40);
         if (iVar2 == 0) {
           return 1;
         }

@@ -19,7 +19,7 @@ void FUN_00432f60(void)
   FUN_0049e700(local_10,DAT_005b2b44,1,DAT_005b2b48);
   FUN_0049e6e0(1);
   FUN_00457700();
-  if (DAT_005b2d08 != 0) {
+  if (GLBL_spacesav[0x52] != 0) {
     FUN_0049e790(DAT_005b2b40,local_10);
   }
   FUN_004a7590(0);

@@ -7,7 +7,7 @@ void FUN_00435e10(int param_1,int param_2)
   int iVar3;
   
   psVar1 = (short *)(param_2 + 0x30);
-  FUN_0048e380(psVar1,0x20);
+  clr_bytes(psVar1,0x20);
   puVar2 = (undefined4 *)(param_1 + 0x164);
   iVar3 = 8;
   do {

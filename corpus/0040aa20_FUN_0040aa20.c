@@ -27,8 +27,9 @@ void FUN_0040aa20(uint param_1,uint param_2)
                                  iVar1,iVar3,0,uVar4), iVar5 != 0)) {
           FUN_0040a980(iVar3,*(undefined4 *)(uVar6 + 0x44));
           FUN_0040a9d0(iVar3,iVar5);
-          FUN_0045e7d0(*(undefined4 *)(iVar3 + 0x78),*(undefined4 *)(uVar6 + 0x44),
-                       *(undefined4 *)(iVar5 + 0x78),*(undefined4 *)(iVar3 + 100));
+          SrvSend_SubpartAttach
+                    (*(undefined4 *)(iVar3 + 0x78),*(undefined4 *)(uVar6 + 0x44),
+                     *(undefined4 *)(iVar5 + 0x78),*(undefined4 *)(iVar3 + 100));
           param_1 = param_1 + 1;
           if (param_2 <= param_1) {
             return;

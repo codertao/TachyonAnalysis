@@ -30,7 +30,7 @@ void FUN_00491bd0(void)
   local_10 = 0;
   local_28 = (uint)((longlong)DAT_005a67e4 * 0xa0) >> 0x10 |
              (int)((ulonglong)((longlong)DAT_005a67e4 * 0xa0) >> 0x20) << 0x10;
-  if (((((g_FlightStateFlags & 4) == 0) && (DAT_005b2c58 != 0)) && (DAT_00565880 != '\0')) &&
+  if (((((g_FlightStateFlags & 4) == 0) && (GLBL_spacesav[0x26] != 0)) && (DAT_00565880 != '\0')) &&
      ((DAT_00565881 != '\0' && ((char)DAT_00565a34 != '\0')))) {
     piVar7 = local_254;
     for (iVar6 = 0x80; iVar6 != 0; iVar6 = iVar6 + -1) {
@@ -108,11 +108,11 @@ void FUN_00491bd0(void)
         cVar1 = *(char *)((int)&DAT_00565934 + iVar6);
         iVar6 = (int)puVar2 + local_24;
         FUN_00451fc0(0x1e2,puVar2,0x26b,iVar6,1);
-        FUN_004add80(&DAT_005a67a0);
+        copy_str32_to_some_global(&DAT_005a67a0);
         FUN_0048e970(local_14,DAT_005657c0,0x1e2,puVar2,
                      (-(uint)(cVar1 != '\0') & 0xff01ff00) + 0xff0000,0xffff,0x10000,2);
         FUN_00452070(DAT_005657ec,DAT_005657f0,DAT_005657f4,DAT_005657f8,1);
-        FUN_004add80(&DAT_005657fc);
+        copy_str32_to_some_global(&DAT_005657fc);
         local_20 = local_20 + 1;
         local_14 = (undefined1 *)iVar6;
         local_1c = local_1c + -1;

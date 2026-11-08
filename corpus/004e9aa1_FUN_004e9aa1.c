@@ -12,7 +12,7 @@ void __fastcall FUN_004e9aa1(int param_1,int param_2)
   undefined4 unaff_ESI;
   undefined4 unaff_EDI;
   
-  if (DAT_00604440 == 0) {
+  if (GLBL_some_str == 0) {
     return;
   }
   if ((unaff_EBP & 2) == 0) {

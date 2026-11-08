@@ -20,12 +20,12 @@ void FUN_00441b70(void)
   
   if (((DAT_005a41b4 != 0) && (DAT_005a41a8 != 0)) && (DAT_005a41b0 != 0)) {
     DAT_005a4120 = DAT_005a680c;
-    FUN_004add80(&DAT_005a4120);
+    copy_str32_to_some_global(&DAT_005a4120);
     iVar10 = DAT_005a4190;
     iVar9 = DAT_005a418c;
     iVar8 = DAT_005a4188;
     iVar7 = DAT_005a4184;
-    DAT_005a4120 = DAT_00604440;
+    DAT_005a4120 = GLBL_some_str;
     DAT_005a41b0 = 0;
     local_8 = 1;
     iVar11 = DAT_005a41b4;
@@ -85,7 +85,7 @@ LAB_00441dff:
     }
 LAB_00441e13:
     _DAT_005a41ac = local_8;
-    FUN_004add80(&DAT_005a67a0);
+    copy_str32_to_some_global(&DAT_005a67a0);
     FUN_00452150();
   }
   return;

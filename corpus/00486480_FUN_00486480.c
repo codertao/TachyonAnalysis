@@ -22,8 +22,8 @@ void FUN_00486480(void)
     if (cVar1 == '\0') {
       return;
     }
-    iVar2 = FUN_0043a7a0(&DAT_00583420,pcVar5);
-    FUN_00439cc0(&DAT_00583420,iVar2,*(undefined4 *)(iVar2 + 0x1680),0xff00ff);
+    iVar2 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,pcVar5);
+    FUN_00439cc0(&GLBL_UI_ELEM_LIST,iVar2,*(undefined4 *)(iVar2 + 0x1680),0xff00ff);
     uVar6 = 0;
     local_8 = (uint)(longlong)ROUND(*(float *)(pcVar5 + 0x44) * _DAT_0052ec38 + _DAT_0052e594);
     if (local_8 != 0) {

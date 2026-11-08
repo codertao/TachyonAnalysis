@@ -21,7 +21,7 @@ void FUN_00433640(int param_1)
   FUN_00492ba0(param_1,*(undefined4 *)(param_1 + 100));
   FUN_0048b330(param_1);
   FUN_0048b140(param_1);
-  FUN_0045db70(param_1);
+  SrvSend_Despawn(param_1);
   FUN_0045d1c0(param_1,*(int *)(param_1 + 100) + 0x14);
   FUN_00462300(param_1);
   FUN_0041b8c0(param_1);

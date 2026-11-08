@@ -28,7 +28,7 @@ undefined4 FUN_004396c0(undefined4 param_1,undefined4 param_2)
   FUN_004381d0(param_2);
   FUN_004393e0(param_2);
   if (DAT_005a4300 != 0) {
-    FUN_0049c530(DAT_005a4300);
+    OurFreeMem(DAT_005a4300);
   }
   FUN_0048e3d0(&DAT_005a4300,0x10000,4,s_mnu_FontLine_Buffer_0053fe3c,0xa000);
   FUN_0049eca0();

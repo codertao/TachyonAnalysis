@@ -11,15 +11,15 @@ void FUN_00442330(uint param_1)
   undefined4 uVar7;
   
   bVar6 = (param_1 & 0xff00) == 0;
-  ppuVar4 = &PTR_DAT_005400c0;
+  ppuVar4 = &PTR_GLBL_spacesav_89__005400c0;
   if (!bVar6) {
     param_1 = param_1 & 0xff;
   }
   puVar5 = (undefined *)(param_1 - 1);
-  if (PTR_DAT_005400c0 == (undefined *)0x0) {
+  if (PTR_GLBL_spacesav_89__005400c0 == (undefined *)0x0) {
     return;
   }
-  while ((ppuVar4[2] != puVar5 || (ppuVar4[1] != DAT_005b2c0c))) {
+  while ((ppuVar4[2] != puVar5 || (ppuVar4[1] != GLBL_spacesav[0x13]))) {
     ppuVar1 = ppuVar4 + 0x25;
     ppuVar4 = ppuVar4 + 0x25;
     if (*ppuVar1 == (undefined *)0x0) {

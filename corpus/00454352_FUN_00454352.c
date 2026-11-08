@@ -14,7 +14,7 @@ void __thiscall FUN_00454352(int param_1)
   iVar2 = FUN_00401440(in_stack_00000010,&stack0x00000000,DAT_005b1f0c + 0x598);
   if (iVar2 != 0) {
     DAT_005b3344 = 0;
-    *(code **)(DAT_005b3300 + 0x68) = PlayerDcb_Think;
+    *(code **)(GLBL_SOME_CONTEXT + 0x68) = PlayerDcb_Think;
     FUN_0041c3e0(1);
     uVar3 = FUN_00454100(DAT_005b3340);
     FUN_00415970(uVar3);

@@ -23,7 +23,7 @@ void FUN_00432830(void)
     do {
       if ((piVar8[-1] == 1) && (iVar1 = *piVar8, iVar1 != -1)) {
         *psVar7 = (short)iVar1 + 1;
-        uVar3 = FUN_00493120(iVar1,uVar6);
+        uVar3 = WeaponDef_Get(iVar1,uVar6);
         sVar2 = FUN_00492b40(uVar3);
         iVar4 = DAT_005b1f0c;
         psVar7[1] = sVar2;
@@ -39,7 +39,7 @@ void FUN_00432830(void)
   FUN_004547e0(&DAT_005b8fa0,&DAT_005b1f10,iVar4);
   FUN_00453190();
   FUN_004986a0(&DAT_005b214c);
-  FUN_00414f10(*(undefined4 *)(DAT_005b1f0c + 0x638),&DAT_005b8fa0,DAT_005b2154);
+  Tach_SendLoadout(*(undefined4 *)(DAT_005b1f0c + 0x638),&DAT_005b8fa0,DAT_005b2154);
   return;
 }
 

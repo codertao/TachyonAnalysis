@@ -101,7 +101,7 @@ void PlayerControl_ProcessInput(int param_1)
   _DAT_005b1e98 = _DAT_005b1e98 + local_18;
   _DAT_005b1e9c = _DAT_005b1e9c + local_14;
   _DAT_005b1ea0 = _DAT_005b1ea0 + local_4;
-  if (DAT_005b2cb8 == 0) {
+  if (GLBL_spacesav[0x3e] == 0) {
     local_20 = (uint)(longlong)
                      ROUND(_DAT_005b1e98 * *(float *)(DAT_005b1f0c + 0xb4) * (float)_DAT_0052e788);
     *(uint *)(param_1 + 0x54) = *(int *)(param_1 + 0x54) + local_20;
@@ -163,7 +163,7 @@ void PlayerControl_ProcessInput(int param_1)
     fVar3 = _DAT_0052e770;
   }
   _DAT_005b1eb8 = _DAT_005b1eb8 + fVar3;
-  if ((DAT_005b1f00 != 0) && (*(int *)(DAT_005b3300 + 0x90) != 0)) {
+  if ((DAT_005b1f00 != 0) && (*(int *)(GLBL_SOME_CONTEXT + 0x90) != 0)) {
     DAT_005b1ee0 = FlightModel_SolveThrottle
                              (DAT_005b1f0c + 0x84,DAT_005b39fc,&DAT_005b20e0,DAT_005b2154 & 0x400,
                               DAT_005b9020);

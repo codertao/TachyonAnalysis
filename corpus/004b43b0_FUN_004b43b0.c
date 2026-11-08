@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void FUN_004b43b0(byte *param_1,int param_2,int param_3)
 
 {
@@ -28,17 +26,18 @@ void FUN_004b43b0(byte *param_1,int param_2,int param_3)
       uVar13 = 0;
       if (*(int *)(param_3 + 0x28) != 0) {
         do {
-          fVar9 = _DAT_0062c110;
-          fVar7 = DAT_0062c104;
+          fVar9 = GLBL_3VEC3_output[4];
+          fVar7 = GLBL_3VEC3_output[1];
           fVar12 = pfVar14[0xb];
           fVar5 = pfVar14[10];
           fVar6 = pfVar14[9];
           *pfVar14 = (float)iVar1 +
-                     _DAT_0062c118 * fVar12 + _DAT_0062c10c * fVar5 + DAT_0062c100 * fVar6;
-          fVar10 = _DAT_0062c114;
-          fVar8 = _DAT_0062c108;
-          pfVar14[1] = (float)iVar2 + _DAT_0062c11c * fVar12 + fVar9 * fVar5 + fVar7 * fVar6;
-          fVar12 = (float)iVar3 + fVar8 * fVar6 + fVar10 * fVar5 + _DAT_0062c120 * fVar12;
+                     GLBL_3VEC3_output[6] * fVar12 +
+                     GLBL_3VEC3_output[3] * fVar5 + GLBL_3VEC3_output[0] * fVar6;
+          fVar10 = GLBL_3VEC3_output[5];
+          fVar8 = GLBL_3VEC3_output[2];
+          pfVar14[1] = (float)iVar2 + GLBL_3VEC3_output[7] * fVar12 + fVar9 * fVar5 + fVar7 * fVar6;
+          fVar12 = (float)iVar3 + fVar8 * fVar6 + fVar10 * fVar5 + GLBL_3VEC3_output[8] * fVar12;
           iVar4 = (int)ROUND(fVar12);
           pfVar14[2] = fVar12;
           *(undefined2 *)(pfVar14 + 7) = 1;
@@ -69,17 +68,18 @@ void FUN_004b43b0(byte *param_1,int param_2,int param_3)
       uVar13 = 0;
       if (*(int *)(param_3 + 0x28) != 0) {
         do {
-          fVar9 = _DAT_0062c110;
-          fVar7 = DAT_0062c104;
+          fVar9 = GLBL_3VEC3_output[4];
+          fVar7 = GLBL_3VEC3_output[1];
           fVar12 = pfVar14[0xb];
           fVar5 = pfVar14[10];
           fVar6 = pfVar14[9];
           *pfVar14 = (float)iVar1 +
-                     _DAT_0062c118 * fVar12 + _DAT_0062c10c * fVar5 + DAT_0062c100 * fVar6;
-          fVar10 = _DAT_0062c114;
-          fVar8 = _DAT_0062c108;
-          pfVar14[1] = (float)iVar2 + _DAT_0062c11c * fVar12 + fVar9 * fVar5 + fVar7 * fVar6;
-          fVar12 = (float)iVar3 + fVar8 * fVar6 + fVar10 * fVar5 + _DAT_0062c120 * fVar12;
+                     GLBL_3VEC3_output[6] * fVar12 +
+                     GLBL_3VEC3_output[3] * fVar5 + GLBL_3VEC3_output[0] * fVar6;
+          fVar10 = GLBL_3VEC3_output[5];
+          fVar8 = GLBL_3VEC3_output[2];
+          pfVar14[1] = (float)iVar2 + GLBL_3VEC3_output[7] * fVar12 + fVar9 * fVar5 + fVar7 * fVar6;
+          fVar12 = (float)iVar3 + fVar8 * fVar6 + fVar10 * fVar5 + GLBL_3VEC3_output[8] * fVar12;
           iVar4 = (int)ROUND(fVar12);
           pfVar14[2] = fVar12;
           uVar11 = FUN_004baeb0(pfVar14,*(undefined2 *)(param_1 + 0x1a));

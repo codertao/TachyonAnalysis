@@ -12,7 +12,7 @@ void FUN_0042b140(int param_1,int param_2)
   undefined4 local_84;
   char local_80 [128];
   
-  if (*(int *)(DAT_005b3300 + 0x110) == 0) {
+  if (*(int *)(GLBL_SOME_CONTEXT + 0x110) == 0) {
     pcVar3 = (char *)FUN_0042af60(param_2);
     if (pcVar3 != (char *)0x0) {
       uVar5 = 0xffffffff;
@@ -37,7 +37,7 @@ void FUN_0042b140(int param_1,int param_2)
         pcVar3 = pcVar3 + 1;
         pcVar7 = pcVar7 + 1;
       }
-      FUN_004c82b6(local_80);
+      to_uppercase(local_80);
       local_84 = FUN_0042a620(param_2,1);
       FUN_004281a0(local_80,*(undefined4 *)(param_1 + 0x71c),*(undefined4 *)(param_1 + 0x714),
                    *(undefined4 *)(param_1 + 0x718),local_84,0,*(undefined4 *)(param_1 + 0x724));
@@ -68,12 +68,12 @@ void FUN_0042b140(int param_1,int param_2)
         pcVar3 = pcVar3 + 1;
         pcVar7 = pcVar7 + 1;
       }
-      FUN_004c82b6(local_80);
+      to_uppercase(local_80);
       local_84 = FUN_0042a620(param_2,1);
       FUN_004281a0(local_80,*(undefined4 *)(param_1 + 0x738),*(undefined4 *)(param_1 + 0x730),
                    *(undefined4 *)(param_1 + 0x734),local_84,0,*(undefined4 *)(param_1 + 0x740));
     }
-    pcVar3 = (char *)FUN_0042af60(*(undefined4 *)(DAT_005b3300 + 0x110));
+    pcVar3 = (char *)FUN_0042af60(*(undefined4 *)(GLBL_SOME_CONTEXT + 0x110));
     if (pcVar3 != (char *)0x0) {
       uVar5 = 0xffffffff;
       do {
@@ -97,7 +97,7 @@ void FUN_0042b140(int param_1,int param_2)
         pcVar3 = pcVar3 + 1;
         pcVar7 = pcVar7 + 1;
       }
-      FUN_004c82b6(local_80);
+      to_uppercase(local_80);
       local_84 = FUN_0042a620(param_2,1);
       FUN_004281a0(local_80,*(undefined4 *)(param_1 + 0x71c),*(undefined4 *)(param_1 + 0x714),
                    *(undefined4 *)(param_1 + 0x718),0xff8000,0,*(undefined4 *)(param_1 + 0x724));
@@ -107,7 +107,7 @@ void FUN_0042b140(int param_1,int param_2)
     local_80[0] = '\0';
     (**(code **)(*(int *)(param_2 + 0x8c) + 0x4c))(param_2,3,local_80);
     if (local_80[0] != '\0') {
-      FUN_004c82b6(local_80);
+      to_uppercase(local_80);
       FUN_004281a0(local_80,*(undefined4 *)(param_1 + 0x754),*(undefined4 *)(param_1 + 0x74c),
                    *(undefined4 *)(param_1 + 0x750),local_84,0,*(undefined4 *)(param_1 + 0x75c));
     }

@@ -12,7 +12,7 @@ short * FUN_00434700(int param_1,undefined4 param_2)
     if (*(int *)(param_1 + 0x14) != 0) {
       do {
         if (((*psVar3 == 3) && (*(int *)(psVar3 + 0x2e) != -1)) &&
-           (iVar1 = FUN_004c67c0(param_2,*(int *)(psVar3 + 0x2e) * 0x20 + *(int *)(param_1 + 0xf8)),
+           (iVar1 = str_cmp(param_2,*(int *)(psVar3 + 0x2e) * 0x20 + *(int *)(param_1 + 0xf8)),
            iVar1 == 0)) {
           return psVar3;
         }

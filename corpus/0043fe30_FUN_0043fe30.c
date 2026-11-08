@@ -25,7 +25,7 @@ void FUN_0043fe30(undefined4 param_1,int *param_2,uint param_3,int param_4,int p
           if ((piVar2 == (int *)0x0) || (*piVar2 == 0)) {
             return;
           }
-          local_8 = FUN_0049ec30();
+          local_8 = some_iter_over_list();
           if (local_8 == 0) {
             return;
           }

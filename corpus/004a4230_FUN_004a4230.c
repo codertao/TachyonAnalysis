@@ -12,7 +12,7 @@ FUN_004a4230(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4
     return 0xffffffff;
   }
   FUN_004a4070(param_3,1,param_5);
-  FUN_004a4040(param_2,param_4,param_5);
+  read_some_bytes_and_update_seek_ptr(param_2,param_4,param_5);
   *(undefined4 *)(param_5 + 0xb4) = 0;
   return param_4;
 }

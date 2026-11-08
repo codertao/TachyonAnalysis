@@ -40,10 +40,10 @@ void FUN_0048a0c0(void)
   uVar7 = DAT_00563e28;
   cVar3 = s_BtnWing0_00558948[0];
   while (DAT_00563e28 = uVar7, cVar3 != '\0') {
-    iVar6 = Ui_FindButton(&DAT_00583420,pcVar9);
+    iVar6 = Ui_FindButton(&GLBL_UI_ELEM_LIST,pcVar9);
     if (iVar6 != 0) {
-      FUN_0043f650(&DAT_00583420,pcVar9 + 0x40,*(int *)(iVar6 + 0xd4) + 2,*(int *)(iVar6 + 0xd8) + 2
-                  );
+      FUN_0043f650(&GLBL_UI_ELEM_LIST,pcVar9 + 0x40,*(int *)(iVar6 + 0xd4) + 2,
+                   *(int *)(iVar6 + 0xd8) + 2);
     }
     pcVar2 = pcVar9 + 0x84;
     pcVar9 = pcVar9 + 0x84;
@@ -60,21 +60,21 @@ void FUN_0048a0c0(void)
       if (*(int *)(iVar6 + 0x10) != 0) {
         piVar1 = piVar10 + -0x20;
         *piVar10 = iVar6;
-        FUN_0043ce50(&DAT_00583420,piVar1,1);
-        Ui_SetButtonFlag(&DAT_00583420,piVar1,4);
+        set_button_state(&GLBL_UI_ELEM_LIST,piVar1,1);
+        Ui_SetButtonFlag(&GLBL_UI_ELEM_LIST,piVar1,4);
         if ((DAT_0056c488 != (undefined4 *)0x0) &&
-           (iVar5 = FUN_004c67c0(*piVar10,DAT_0056c488), iVar5 == 0)) {
-          FUN_0043ce50(&DAT_00583420,piVar1,0x10);
+           (iVar5 = str_cmp(*piVar10,DAT_0056c488), iVar5 == 0)) {
+          set_button_state(&GLBL_UI_ELEM_LIST,piVar1,0x10);
         }
         piVar1 = piVar10 + -0x10;
-        iVar5 = FUN_0043fa70(&DAT_00583420,piVar1);
+        iVar5 = find_ui_elem_by_id_(&GLBL_UI_ELEM_LIST,piVar1);
         if (iVar5 != 0) {
           iVar4 = *piVar10;
-          FUN_0046d770(&DAT_00583420,piVar1,iVar4 + 0xa8,1,*(undefined4 *)(iVar4 + 200),
+          FUN_0046d770(&GLBL_UI_ELEM_LIST,piVar1,iVar4 + 0xa8,1,*(undefined4 *)(iVar4 + 200),
                        *(undefined4 *)(iVar4 + 0xcc),*(undefined4 *)(iVar5 + 0xc4),
                        *(undefined4 *)(iVar5 + 200),0);
         }
-        FUN_0043f620(&DAT_00583420,piVar1,0x80000);
+        set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,piVar1,0x80000);
         piVar10 = piVar10 + 0x21;
       }
       uVar7 = uVar7 + 1;

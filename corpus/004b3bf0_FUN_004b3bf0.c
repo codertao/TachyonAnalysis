@@ -24,7 +24,7 @@ undefined4 FUN_004b3bf0(uint *param_1)
     }
     lVar2 = (longlong)*(int *)(*puVar1 + 0x30) * (longlong)(int)param_1;
     uVar5 = (uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10;
-    if ((int)(puVar3[0xc] - uVar5) <= DAT_00666ae8) {
+    if ((int)(puVar3[0xc] - uVar5) <= GLBL_R_DIST_MAX_VAL) {
       iVar6 = FUN_004baf20(puVar3 + 10,uVar5);
       if (iVar6 != 0) {
         uVar4 = FUN_004bafa0(puVar3 + 10,uVar5);

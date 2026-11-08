@@ -14,7 +14,7 @@ int FUN_0044ba00(undefined4 param_1)
     if (cVar1 == '\0') {
       return 0;
     }
-    iVar2 = FUN_004c67c0(pcVar3,param_1);
+    iVar2 = str_cmp(pcVar3,param_1);
     if (iVar2 == 0) break;
     cVar1 = pcVar3[0x18];
     pcVar3 = pcVar3 + 0x18;

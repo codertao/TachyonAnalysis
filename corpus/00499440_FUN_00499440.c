@@ -74,7 +74,7 @@ LAB_0049950f:
     goto switchD_0049945f_default;
   }
   if ((pcVar3 != (char *)0x0) && (DAT_005653b0 != '\0')) {
-    FUN_0041f0e0(&DAT_005653b0,pcVar3,0xfa,*(undefined4 *)(iVar1 + 100));
+    some_kind_of_play_sound(&DAT_005653b0,pcVar3,0xfa,*(undefined4 *)(iVar1 + 100));
   }
 switchD_0049945f_default:
   return uVar4;

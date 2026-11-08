@@ -12,14 +12,14 @@ void FUN_00445920(int param_1)
   if (DAT_00545bd0 == iVar1) {
     FUN_0043e770(&g_UiManager,s_BtnMPBWSide1_00545bf4,s_MPCFG_PRIMARY_00545c04);
     FUN_0043e770(&g_UiManager,s_BtnMPBWSide2_00545bd4,s_MPCFG_SECONDARY_00545be4);
-    FUN_0043ce50(&g_UiManager,s_BtnMPBWSide1_00545bf4,0x10);
-    FUN_0043ce50(&g_UiManager,s_BtnMPBWSide2_00545bd4,1);
+    set_button_state(&g_UiManager,s_BtnMPBWSide1_00545bf4,0x10);
+    set_button_state(&g_UiManager,s_BtnMPBWSide2_00545bd4,1);
     return;
   }
   FUN_0043e770(&g_UiManager,s_BtnMPBWSide2_00545bd4,s_MPCFG_PRIMARY_00545c04);
   FUN_0043e770(&g_UiManager,s_BtnMPBWSide1_00545bf4,s_MPCFG_SECONDARY_00545be4);
-  FUN_0043ce50(&g_UiManager,s_BtnMPBWSide2_00545bd4,0x10);
-  FUN_0043ce50(&g_UiManager,s_BtnMPBWSide1_00545bf4,1);
+  set_button_state(&g_UiManager,s_BtnMPBWSide2_00545bd4,0x10);
+  set_button_state(&g_UiManager,s_BtnMPBWSide1_00545bf4,1);
   return;
 }
 

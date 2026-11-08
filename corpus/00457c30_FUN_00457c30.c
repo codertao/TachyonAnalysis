@@ -9,7 +9,7 @@ int * FUN_00457c30(int param_1,int param_2)
   uVar1 = 0;
   do {
     if (*piVar2 == 0) {
-      FUN_0048e380(piVar2,0x28);
+      clr_bytes(piVar2,0x28);
       *piVar2 = 1;
       piVar2[1] = param_2;
       piVar2[9] = (int)&DAT_005320b0;

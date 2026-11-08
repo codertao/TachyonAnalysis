@@ -2,7 +2,7 @@
 void FUN_004a9600(undefined4 param_1,int param_2)
 
 {
-  if ((param_2 == 0x3bd) && (DAT_00563e98 != 0)) {
+  if ((param_2 == 0x3bd) && (GLBL_audio_running != 0)) {
     if (DAT_005f9e10 == 1) {
       DAT_005f9d60 = DAT_005f9e04;
       FUN_004cc708();

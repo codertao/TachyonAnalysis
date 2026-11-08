@@ -22,8 +22,8 @@ undefined4 * FUN_0048d280(undefined4 *param_1)
     puVar4 = puVar4 + 1;
     puVar5 = puVar5 + 1;
   }
-  param_1[0xae] = DAT_0056aac0;
-  DAT_0056aac0 = param_1;
+  param_1[0xae] = GLBL_llist_large_thing;
+  GLBL_llist_large_thing = param_1;
   if (DAT_00564ae4 != 0) {
     iVar3 = param_1[0x80];
     if (*(int *)(iVar3 + 0x238) != 0) {

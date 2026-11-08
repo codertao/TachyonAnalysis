@@ -44,7 +44,7 @@ void FUN_0042ac10(int param_1,int param_2)
     _DAT_005b01a8 = DAT_005a6800;
     FUN_0042a420(*(undefined4 *)(param_1 + 0x6ac),*(undefined4 *)(param_1 + 0x6b0),
                  *(undefined4 *)(param_1 + 0x6b4),*(undefined4 *)(param_1 + 0x6b8),&DAT_005b0148);
-    FUN_004b1940(&local_c,DAT_005b3300 + 0x4c);
+    FUN_004b1940(&local_c,GLBL_SOME_CONTEXT + 0x4c);
     *(undefined4 *)(param_2 + 0x40) = 0;
     *(undefined4 *)(param_2 + 0x44) = 0;
     pcVar1 = *(code **)(*(int *)(param_2 + 0x8c) + 0x44);
@@ -64,7 +64,7 @@ void FUN_0042ac10(int param_1,int param_2)
       FUN_004b1ab0(iVar2 + 0x18,1);
     }
     else {
-      (*pcVar1)(iVar2,DAT_005b3300 + 0x4c);
+      (*pcVar1)(iVar2,GLBL_SOME_CONTEXT + 0x4c);
     }
     FUN_004af2d0(0);
     thunk_FUN_004babf0();

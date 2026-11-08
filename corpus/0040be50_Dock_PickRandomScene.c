@@ -10,7 +10,7 @@ void Dock_PickRandomScene(int param_1)
   
   uVar1 = Cbin_CountEntries(&DAT_00532af4,s_DOCK_SCENE_00532ebc);
   if (uVar1 != 0) {
-    uVar2 = FUN_0048e350();
+    uVar2 = global_bad_shift_rng();
     iVar3 = uVar2 % uVar1 + 1;
     Cbin_SelectGroup(&DAT_00532af4);
     if (iVar3 != 0) {
@@ -22,7 +22,7 @@ void Dock_PickRandomScene(int param_1)
   }
   uVar1 = Cbin_CountEntries(&DAT_00532af4,s_UNDOCK_SCENE_00532eac);
   if (uVar1 != 0) {
-    uVar2 = FUN_0048e350();
+    uVar2 = global_bad_shift_rng();
     iVar3 = uVar2 % uVar1 + 1;
     Cbin_SelectGroup(&DAT_00532af4);
     if (iVar3 != 0) {

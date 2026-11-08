@@ -26,9 +26,9 @@ void FUN_00487b90(int param_1)
         iVar3 = _rand();
         *(undefined4 **)(param_1 + 0x40) = &DAT_0056c560 + (iVar3 % 100) * 0x11;
       } while (iVar2 == (&DAT_0056c560)[(iVar3 % 100) * 0x11]);
-      FUN_0043f6e0(&DAT_00583420,param_1,&DAT_0056c564 + (iVar3 % 100) * 0x44);
-      FUN_0043f6e0(&DAT_00583420,param_1 + 0x44,*(int *)(param_1 + 0x84) + 4);
-      FUN_0043f6e0(&DAT_00583420,param_1 + 0x88,*(int *)(param_1 + 200) + 4);
+      FUN_0043f6e0(&GLBL_UI_ELEM_LIST,param_1,&DAT_0056c564 + (iVar3 % 100) * 0x44);
+      FUN_0043f6e0(&GLBL_UI_ELEM_LIST,param_1 + 0x44,*(int *)(param_1 + 0x84) + 4);
+      FUN_0043f6e0(&GLBL_UI_ELEM_LIST,param_1 + 0x88,*(int *)(param_1 + 200) + 4);
     }
     else {
       *(int *)(param_1 + 0xd8) = *(int *)(param_1 + 0xd8) + -1;

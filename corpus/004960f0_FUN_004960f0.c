@@ -53,7 +53,7 @@ int FUN_004960f0(int *param_1)
   *(undefined4 *)(iVar3 + 0x2c) = 0xff;
   *(undefined4 *)(iVar3 + 0x5c) = 0;
   *(undefined4 *)(iVar3 + 0x18) = 0x90;
-  FUN_004b2950((undefined4 *)(iVar3 + 0x18),0);
+  Model_SelectState((undefined4 *)(iVar3 + 0x18),0);
   *(undefined4 *)(iVar3 + 0xcc) = *(undefined4 *)(*(int *)(iVar3 + 0xdc) + 0x9c);
   *(undefined4 *)(iVar3 + 0xec) = 0x30000;
   *(undefined4 *)(iVar3 + 0xd4) = 0xa28000;
@@ -67,8 +67,8 @@ int FUN_004960f0(int *param_1)
         (*(code *)puVar1[0x40])(iVar2 + 0x11c,puVar1);
       }
     }
-    FUN_0045e360(*(undefined4 *)(param_1[1] + 0x78),*(undefined4 *)(iVar3 + 0x78),*puVar1,0x4e20000,
-                 local_4,*(undefined4 *)(iVar3 + 100),1);
+    SrvSend_EntityFired(*(undefined4 *)(param_1[1] + 0x78),*(undefined4 *)(iVar3 + 0x78),*puVar1,
+                        0x4e20000,local_4,*(undefined4 *)(iVar3 + 100),1);
     return iVar3;
   }
   *(undefined4 *)(iVar3 + 0xd8) = 1;

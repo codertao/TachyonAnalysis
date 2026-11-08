@@ -28,10 +28,10 @@ void FUN_004757e0(void)
     str_sprintf(puVar5 + 0x58,s_IACFGWeapIcon_d_0054784c,iVar3);
     str_sprintf(puVar5 + -0x40,s_TxtCFGWeap_d_0054783c,iVar2);
     str_sprintf(puVar5,&DAT_00562b14);
-    FUN_0043e6a0(&DAT_00583420,puVar5 + -0x40,puVar5);
-    FUN_0043e610(&DAT_00583420,puVar4 + 0x20,0x10000);
-    FUN_0043f620(&DAT_00583420,puVar5 + 0x18,0x20000);
-    FUN_0043f620(&DAT_00583420,puVar5 + 0x58,0x20000);
+    FUN_0043e6a0(&GLBL_UI_ELEM_LIST,puVar5 + -0x40,puVar5);
+    sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,puVar4 + 0x20,0x10000);
+    set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,puVar5 + 0x18,0x20000);
+    set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,puVar5 + 0x58,0x20000);
     puVar4 = puVar4 + 0xab4;
     puVar5 = puVar5 + 0xab4;
     iVar3 = iVar2;
@@ -49,8 +49,8 @@ void FUN_004757e0(void)
     *(uint *)(puVar4 + -4) = uVar6;
     str_sprintf(puVar4,s_IACFGCardBG_d_0054782c,uVar6);
     str_sprintf(puVar4 + 0x40,s_IACFGCardIcon_d_0054781c,uVar6);
-    FUN_0043f620(&DAT_00583420,puVar4,0x20000);
-    FUN_0043f620(&DAT_00583420,puVar4 + 0x40,0x20000);
+    set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,puVar4,0x20000);
+    set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,puVar4 + 0x40,0x20000);
     puVar4 = puVar4 + 0xab4;
     uVar6 = uVar1;
   } while (uVar1 < 0x10);

@@ -31,7 +31,7 @@ void FUN_0044df90(LPCSTR param_1,char *param_2,undefined4 *param_3,DWORD *param_
       bVar2 = true;
     }
     else {
-      FUN_0049c530(*puVar3);
+      OurFreeMem(*puVar3);
     }
     CloseHandle(hFile);
     if (bVar2) {

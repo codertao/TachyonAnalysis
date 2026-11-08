@@ -17,7 +17,7 @@ void FUN_0044ccc0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
   FUN_0043a990(DAT_00592804,&DAT_00592848);
   Ui_ShowWindow(DAT_00592804,&DAT_00592808,0);
   FUN_0043a8d0(DAT_00592804,&DAT_00592808);
-  DAT_005a3848 = FUN_0041fd80(s_borders2_box_005410dc,0xa000);
+  DAT_005a3848 = load_box_file(s_borders2_box_005410dc,0xa000);
   DAT_005928d8 = FUN_0043a860(DAT_00592804,&DAT_00592808,&LAB_0044cb80);
   return;
 }

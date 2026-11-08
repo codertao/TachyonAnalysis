@@ -12,8 +12,8 @@ void FUN_0045b2c0(int param_1,uint *param_2)
     do {
       iVar2 = *(int *)(pbVar3 + -4);
       if ((iVar2 != 0) && ((*pbVar3 & 0x10) == 0)) {
-        FUN_0048e380(iVar2 + 0xa0,0xc);
-        FUN_0048e380(iVar2 + 0xac,0xc);
+        clr_bytes(iVar2 + 0xa0,0xc);
+        clr_bytes(iVar2 + 0xac,0xc);
       }
       uVar1 = uVar1 + 1;
       pbVar3 = pbVar3 + 100;

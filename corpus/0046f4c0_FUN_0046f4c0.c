@@ -6,11 +6,11 @@ void FUN_0046f4c0(void)
 {
   int iVar1;
   
-  FUN_0048e380(&DAT_00587900,0x90);
+  clr_bytes(&DAT_00587900,0x90);
   FUN_0046f390(0);
-  _DAT_0058794c = FUN_0041fd80(s_borders_box_0053365c,0xa100);
+  _DAT_0058794c = load_box_file(s_borders_box_0053365c,0xa100);
   FUN_004ade60(s_shdw_10_pcx_00534eb0,&DAT_00587958,0x20000,0xa100);
-  iVar1 = FUN_0043ba90(&DAT_00583420,s_SMALL320_0054b0a8);
+  iVar1 = FUN_0043ba90(&GLBL_UI_ELEM_LIST,s_SMALL320_0054b0a8);
   _DAT_00587954 = *(undefined4 *)(iVar1 + 0x238);
   FUN_00437b40(&LAB_0046f4a0);
   FUN_00437b50(&LAB_0046f4b0);

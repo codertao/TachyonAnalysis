@@ -26,7 +26,7 @@ void FUN_0042cb60(uint *param_1)
       FUN_0049b930(s_IMAGE_005355d4,local_a0,0x10,0,4,3);
       FUN_0049b930(s_IMAGE_005355d4,local_80,0x80,0,4,4);
       uVar2 = FUN_0042c960(local_80,&PTR_s_ALPHACOLOR_005364e0);
-      iVar3 = FUN_004c67c0(local_a0,s_NOPAL_00536824);
+      iVar3 = str_cmp(local_a0,s_NOPAL_00536824);
       if (iVar3 == 0) {
         puVar5 = (undefined1 *)0x0;
       }

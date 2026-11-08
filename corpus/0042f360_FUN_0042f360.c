@@ -9,7 +9,7 @@ void FUN_0042f360(void)
   undefined **ppuVar3;
   
   if (DAT_00562ba4 == 0) {
-    DAT_00562ba4 = FUN_0049df00(s_helptext_bin_0053cb20,0xe0000);
+    DAT_00562ba4 = load_rtxt_bin(s_helptext_bin_0053cb20,0xe0000);
     if (DAT_00562ba4 == 0) {
       return;
     }

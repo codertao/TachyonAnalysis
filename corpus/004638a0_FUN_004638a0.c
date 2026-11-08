@@ -28,7 +28,7 @@ void FUN_004638a0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 p
       iVar3 = iVar3 + 0x1c;
     } while (uVar2 < local_7c);
   }
-  FUN_00493460(param_3,local_78,local_7c,uVar1);
+  WeaponMounts_Init(param_3,local_78,local_7c,uVar1);
   FUN_00493590(param_2,param_3,0xffff,1);
   return;
 }

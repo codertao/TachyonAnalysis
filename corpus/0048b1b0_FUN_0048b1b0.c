@@ -18,7 +18,8 @@ int FUN_0048b1b0(int param_1,uint param_2,uint *param_3)
           (((*(int *)(iVar1 + 0x8c) == 0 ||
             (pcVar2 = *(code **)(*(int *)(iVar1 + 0x8c) + 0x5c), pcVar2 == (code *)0x0)) ||
            (iVar3 = (*pcVar2)(iVar1), iVar3 != 0)))) &&
-         (uVar4 = FUN_0048e440(param_1 + 0x34,iVar1 + 0x34), uVar4 < uVar6)) {
+         (uVar4 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(iVar1 + 0x34)), uVar4 < uVar6))
+      {
         iVar5 = iVar1;
         uVar6 = uVar4;
       }

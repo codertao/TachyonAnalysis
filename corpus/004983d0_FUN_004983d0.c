@@ -33,14 +33,14 @@ int FUN_004983d0(int param_1,undefined4 *param_2,undefined4 *param_3,int param_4
   *(undefined4 *)(iVar1 + 0x58) = **(undefined4 **)(param_1 + 0x74);
   *(undefined1 *)(iVar1 + 0x7e) = *(undefined1 *)(*(int *)(param_1 + 0x74) + 4);
   if (param_6 == 1) {
-    *(undefined1 **)(iVar1 + 0x68) = &LAB_004945b0;
+    *(undefined1 **)(iVar1 + 0x68) = &Sapper_ThinkPredicted;
     *(undefined4 *)(iVar1 + 0x70) = *(undefined4 *)(param_1 + 0x94);
-    FUN_004b2950(iVar1 + 0x18,0);
+    Model_SelectState(iVar1 + 0x18,0);
     FUN_0041b850(iVar1);
     return iVar1;
   }
   *(undefined1 *)(iVar1 + 0xc3) = 1;
-  *(code **)(iVar1 + 0x68) = FUN_004944f0;
+  *(code **)(iVar1 + 0x68) = Sapper_ThinkServer;
   FUN_0041b850(iVar1);
   return iVar1;
 }

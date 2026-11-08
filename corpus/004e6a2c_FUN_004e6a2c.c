@@ -10,7 +10,7 @@ uint __fastcall FUN_004e6a2c(undefined4 param_1,uint param_2)
   undefined4 *unaff_EBP;
   undefined4 unaff_EDI;
   
-  if (DAT_00604440 == 0) {
+  if (GLBL_some_str == 0) {
     return in_EAX;
   }
   if (DAT_004e5ec6 == '\0') {

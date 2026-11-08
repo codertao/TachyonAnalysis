@@ -14,7 +14,7 @@ void FUN_00479690(int param_1)
   }
   FUN_00478b90();
   FUN_00478930();
-  Ui_RefreshWindow(&DAT_00583420,s_WndStarBaseJobs_00552160,&DAT_0055207c,0);
+  Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobs_00552160,&DAT_0055207c,0);
   return;
 }
 

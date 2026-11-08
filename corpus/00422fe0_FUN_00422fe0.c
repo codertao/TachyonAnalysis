@@ -7,7 +7,7 @@ void FUN_00422fe0(undefined4 *param_1,undefined4 param_2,int param_3,int param_4
   uint uVar3;
   int iVar4;
   
-  uVar3 = FUN_0048e350();
+  uVar3 = global_bad_shift_rng();
   lVar2 = (longlong)param_3 * (longlong)(int)((uVar3 >> 8 & 0x7fff) + 0xc000);
   iVar4 = FUN_0041b790(&DAT_005b32b0,7,&DAT_005b31c0);
   if (iVar4 != 0) {
@@ -31,7 +31,7 @@ void FUN_00422fe0(undefined4 *param_1,undefined4 param_2,int param_3,int param_4
     else {
       *(undefined1 *)(iVar4 + 0x7f) = 1;
     }
-    uVar3 = FUN_0048e350();
+    uVar3 = global_bad_shift_rng();
     *(uint *)(iVar4 + 0x54) = (uVar3 >> 8 & 0x1ff) << 0x10;
     *(undefined4 *)(iVar4 + 0x9c) = 0xfffffff6;
     *(undefined4 *)(iVar4 + 0xa0) = 0;
@@ -41,7 +41,7 @@ void FUN_00422fe0(undefined4 *param_1,undefined4 param_2,int param_3,int param_4
     *(undefined1 **)(iVar4 + 0x68) = &LAB_00422f50;
     *(code **)(iVar4 + 0x70) = FUN_00422f80;
     *(undefined4 *)(iVar4 + 0x8c) = 100;
-    FUN_004b2950((undefined4 *)(iVar4 + 0x18),0);
+    Model_SelectState((undefined4 *)(iVar4 + 0x18),0);
   }
   return;
 }

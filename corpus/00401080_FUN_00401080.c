@@ -16,7 +16,7 @@ undefined4 FUN_00401080(int param_1,uint param_2)
   *(uint *)(param_1 + 0x104) = param_2;
   *(undefined1 *)(param_1 + 0x325) = *(undefined1 *)(puVar2 + 3);
   *(undefined4 *)(param_1 + 0x304) = puVar2[1];
-  *(undefined1 **)(param_1 + 0x6c) = &LAB_00404aa0;
+  *(code **)(param_1 + 0x6c) = Ai_CollisionLookahead;
   return uVar1;
 }
 

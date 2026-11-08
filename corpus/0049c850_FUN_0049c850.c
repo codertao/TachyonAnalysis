@@ -7,7 +7,7 @@ void FUN_0049c850(int *param_1,int *param_2,int *param_3,int param_4)
   *param_1 = 0;
   *param_2 = 0;
   *param_3 = 0;
-  piVar1 = *(int **)(PTR_DAT_0055d7cc + 8);
+  piVar1 = *(int **)(PTR_global_mem_pool_root + 8);
   if (param_4 == -1) {
     for (; piVar1 != (int *)0x0; piVar1 = (int *)piVar1[3]) {
       *param_1 = *param_1 + 1;

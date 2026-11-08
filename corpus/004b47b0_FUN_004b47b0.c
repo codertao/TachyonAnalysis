@@ -1,6 +1,4 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
 void FUN_004b47b0(byte *param_1,int *param_2)
 
 {
@@ -21,14 +19,14 @@ void FUN_004b47b0(byte *param_1,int *param_2)
       uVar5 = 0;
       if (*(int *)(iVar1 + 0x28) != 0) {
         do {
-          *pfVar6 = DAT_0062c100 * pfVar6[9] +
-                    _DAT_0062c118 * pfVar6[0xb] + _DAT_0062c10c * pfVar6[10] +
+          *pfVar6 = GLBL_3VEC3_output[0] * pfVar6[9] +
+                    GLBL_3VEC3_output[6] * pfVar6[0xb] + GLBL_3VEC3_output[3] * pfVar6[10] +
                     (float)*(int *)(iVar2 + 0x30);
-          pfVar6[1] = DAT_0062c104 * pfVar6[9] +
-                      _DAT_0062c11c * pfVar6[0xb] + _DAT_0062c110 * pfVar6[10] +
+          pfVar6[1] = GLBL_3VEC3_output[1] * pfVar6[9] +
+                      GLBL_3VEC3_output[7] * pfVar6[0xb] + GLBL_3VEC3_output[4] * pfVar6[10] +
                       (float)*(int *)(iVar2 + 0x34);
-          fVar4 = _DAT_0062c108 * pfVar6[9] +
-                  _DAT_0062c120 * pfVar6[0xb] + _DAT_0062c114 * pfVar6[10] +
+          fVar4 = GLBL_3VEC3_output[2] * pfVar6[9] +
+                  GLBL_3VEC3_output[8] * pfVar6[0xb] + GLBL_3VEC3_output[5] * pfVar6[10] +
                   (float)*(int *)(iVar2 + 0x38);
           pfVar6[2] = fVar4;
           local_c = (int)(longlong)ROUND(fVar4);
@@ -60,14 +58,14 @@ void FUN_004b47b0(byte *param_1,int *param_2)
       uVar5 = 0;
       if (*(int *)(iVar1 + 0x28) != 0) {
         do {
-          *pfVar6 = DAT_0062c100 * pfVar6[9] +
-                    _DAT_0062c118 * pfVar6[0xb] + _DAT_0062c10c * pfVar6[10] +
+          *pfVar6 = GLBL_3VEC3_output[0] * pfVar6[9] +
+                    GLBL_3VEC3_output[6] * pfVar6[0xb] + GLBL_3VEC3_output[3] * pfVar6[10] +
                     (float)*(int *)(iVar2 + 0x30);
-          pfVar6[1] = DAT_0062c104 * pfVar6[9] +
-                      _DAT_0062c11c * pfVar6[0xb] + _DAT_0062c110 * pfVar6[10] +
+          pfVar6[1] = GLBL_3VEC3_output[1] * pfVar6[9] +
+                      GLBL_3VEC3_output[7] * pfVar6[0xb] + GLBL_3VEC3_output[4] * pfVar6[10] +
                       (float)*(int *)(iVar2 + 0x34);
-          fVar4 = _DAT_0062c108 * pfVar6[9] +
-                  _DAT_0062c120 * pfVar6[0xb] + _DAT_0062c114 * pfVar6[10] +
+          fVar4 = GLBL_3VEC3_output[2] * pfVar6[9] +
+                  GLBL_3VEC3_output[8] * pfVar6[0xb] + GLBL_3VEC3_output[5] * pfVar6[10] +
                   (float)*(int *)(iVar2 + 0x38);
           pfVar6[2] = fVar4;
           local_14 = (int)(longlong)ROUND(fVar4);

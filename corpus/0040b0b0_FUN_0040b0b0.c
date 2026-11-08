@@ -30,7 +30,7 @@ int FUN_0040b0b0(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undef
   *(undefined1 *)(iVar1 + 0xc2) = param_6;
   *(undefined4 *)(iVar1 + 0xec) = 0xffffffff;
   FUN_00409e80(iVar1,param_1,0,0);
-  FUN_0040ae80(iVar1,param_1);
+  CapPartReplica_Init(iVar1,param_1);
   uVar2 = FUN_0040a610(*(undefined4 *)(param_5 + 0xe8),param_1[0x11]);
   *(undefined4 *)(iVar1 + 0xe8) = uVar2;
   if ((g_FlightStateFlags & 4) != 0) {

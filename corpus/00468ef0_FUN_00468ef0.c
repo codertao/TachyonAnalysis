@@ -12,8 +12,8 @@ void FUN_00468ef0(undefined4 param_1,undefined4 param_2)
     FUN_004b5500();
     iVar1 = FUN_004b5650();
   }
-  FUN_00450770(param_1,param_2);
-  FUN_004b55f0(DAT_005b2d0c);
+  load_sbf_and_bin(param_1,param_2);
+  set_some_glbl_scalar(GLBL_spacesav[0x53]);
   return;
 }
 

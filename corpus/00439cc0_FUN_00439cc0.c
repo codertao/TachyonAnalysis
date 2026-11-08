@@ -15,18 +15,18 @@ void FUN_00439cc0(uint param_1,int param_2,uint param_3,undefined4 param_4)
   uint local_4;
   
   iVar2 = param_2;
-  if ((param_2 != 0) && (iVar3 = FUN_004c67c0(param_2,&DAT_0053f1e4), iVar3 != 0)) {
-    iVar3 = FUN_004c67c0(iVar2 + 0x40,&DAT_0053f1e4);
+  if ((param_2 != 0) && (iVar3 = str_cmp(param_2,&DAT_0053f1e4), iVar3 != 0)) {
+    iVar3 = str_cmp(iVar2 + 0x40,&DAT_0053f1e4);
     if (iVar3 != 0) {
       if (*(int *)(iVar2 + 0x1674) != 0) {
         FUN_00439f70(param_1,iVar2);
       }
-      iVar3 = FUN_004ad650(iVar2 + 0x1654);
+      iVar3 = Pal_Load(iVar2 + 0x1654);
       *(int *)(iVar2 + 0x1650) = iVar3;
       if (iVar3 == 0) {
         FUN_0049cb20(s_palref_mem_0053fe60);
       }
-      FUN_004ad900(*(undefined4 *)(iVar2 + 0x1650),0x80,0x80,0x80,0x80,0x80);
+      Pal_Remap(*(undefined4 *)(iVar2 + 0x1650),0x80,0x80,0x80,0x80,0x80);
       local_c = FUN_004a2eb0(iVar2 + 0x40);
       *(undefined4 *)(iVar2 + 0x1664) = _DAT_00603100;
       *(undefined4 *)(iVar2 + 0x1668) = DAT_00603104;
@@ -83,7 +83,7 @@ void FUN_00439cc0(uint param_1,int param_2,uint param_3,undefined4 param_4)
                     );
           }
           if (local_c != 0) {
-            FUN_0049c530(local_c);
+            OurFreeMem(local_c);
           }
         }
       }

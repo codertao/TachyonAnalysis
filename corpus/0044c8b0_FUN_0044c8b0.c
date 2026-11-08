@@ -10,7 +10,7 @@ bool FUN_0044c8b0(void)
     *puVar2 = 0;
     puVar2 = puVar2 + 1;
   }
-  FUN_004a6d00(0);
+  Net_SelectTransport(0);
   FUN_004a6de0();
   iVar1 = thunk_FUN_004aa260();
   return iVar1 == 0;

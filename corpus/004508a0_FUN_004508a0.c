@@ -6,7 +6,7 @@ int FUN_004508a0(undefined4 *param_1,int param_2)
   int iVar2;
   undefined4 *puVar3;
   
-  iVar1 = FUN_004b7870(param_2);
+  iVar1 = something_list_related_get_next(param_2);
   if (iVar1 == 0) {
     return 0;
   }

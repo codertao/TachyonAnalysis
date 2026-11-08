@@ -15,12 +15,12 @@ void FUN_0041c0e0(int param_1)
   local_20 = 0;
   local_1c = 0;
   local_18 = 0;
-  if ((((*DAT_005b95e0 != 0) && (DAT_005b2c78 != 0)) && (DAT_005b27ec != 0)) &&
+  if ((((*DAT_005b95e0 != 0) && (GLBL_spacesav[0x2e] != 0)) && (DAT_005b27ec != 0)) &&
      ((0x400 < DAT_005b9624 && (*(int *)(DAT_005b9084 + 0xdc) == 0)))) {
     if (DAT_005b27f4 != DAT_005b3304) {
       DAT_005b27f4 = DAT_005b3304;
       iVar1 = *DAT_005b95e0;
-      iVar2 = FUN_004e0462(iVar1 + 0xa0);
+      iVar2 = call_approx_vec_length(iVar1 + 0xa0);
       local_8 = iVar2 * 0x40;
       if (local_8 < 0x10000) {
         local_8 = 0x10000;

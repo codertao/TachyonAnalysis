@@ -20,7 +20,7 @@ void FUN_004183c0(void)
   FUN_0049d0f0(&DAT_005a61e0);
   FUN_00425180();
   FUN_00468770();
-  FUN_0048e380(&DAT_005b31c0,0x5ea0);
+  clr_bytes(&DAT_005b31c0,0x5ea0);
   FUN_0049e7d0(0xff);
   FUN_0049c690(0xd000,0xe000);
   FUN_0049cca0(s_clntclos_txt_00534350);

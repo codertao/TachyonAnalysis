@@ -17,7 +17,7 @@ undefined4 FUN_00452590(int param_1)
     uVar5 = uVar5 + 1;
     iVar2 = *piVar1;
   }
-  uVar4 = FUN_0048e350();
+  uVar4 = global_bad_shift_rng();
   return *(undefined4 *)(*(int *)(param_1 + 4) + (uVar4 % uVar5) * 4);
 }
 
