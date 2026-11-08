@@ -76,8 +76,26 @@ main_end:
 | 0x28 | u32 | runtime transform-buffer pointer (0 on disk) |
 
 - **Hierarchy:** part 0 is the root.
-- **No per-part translation:** every part's geometry is authored in model space. Rotations are about
-  the **model origin**, combined up the parent chain.
+
+**Part placement [c]** (`Pak_Relocate 0x4affb0`, `Part_ComputeTransform 0x4b3f90`, `FUN_004b3eb0`):
+- **Load fix-up:** for each LOD with more than one part, part 0 gets `children = nparts − 1` and
+  `first child = part 1`, whatever the file says. A stored parent offset of 0 (part 0) becomes
+  null, so other parts' parent pointers only survive when they name a part ≥ 1 (turret barrels,
+  STARDISC's sub-tree).
+- **Matrix:** `M = R(own) · R(parent) · … · S`, climbing parent pointers and skipping parents with
+  flag `0x100`. The root's rotation never reaches the others, because their parent is null. Then the
+  object rotation is applied. Billboards (`0x40`) get `S` only.
+- **Position:** each part's vertices are relative to its own position. The root sits at the object
+  origin. Parts in index order then write their children's positions,
+  `child.pos = pos + M · mesh.points54[k]`, so explicit sub-trees overwrite the root's blanket list.
+  Billboards don't place children.
+- **Examples:**
+  - The Cutlass engine glows (parts 1–2) are centred on 0 and sit at the root's two points54, at
+    the engines.
+  - The Claw's four prongs reach forward from the nose.
+  - BTURRET: base → head (pivot 15.5 up) → barrels (pivot on the head).
+- Rotation angles are engine units: **512 per turn** (`math_todo_with_rotation 0x52d9cd` masks
+  with `0x1ffffff` and its sine table has cos at +0x80).
 - **Example:** Enforcer root → 7 children (four arms 1–4 and three glow cards 5–7). Each arm → a
   segment (8–11), and each segment → a glow card (12–15). `solpatrl.anm` names parts 1–4.
 
@@ -86,7 +104,7 @@ main_end:
 |---|---|
 | `0x02` | apply tint `+0x1c` at load |
 | `0x08` | ? (6 parts) |
-| `0x40` | **billboard**: drawn with no rotation matrix, only scale (glows, cockpit glare; e.g. the Cutlass `COCKPIT_GLARE: 1` part) **[l]** |
+| `0x40` | **billboard**: drawn with no rotation matrix, only scale (glows, cockpit glare; e.g. the Cutlass `COCKPIT_GLARE: 1` part, the green orb `GOALGWAY.PAK` in `GOAL.OCF`). `Part_ComputeTransform 0x4b3f90` skips every rotation when part flag `0x40` (or object flag bit 4) is set and keeps only the scale, so the mesh's axes become the camera's axes around the part's position **[c]** |
 | `0x80` | runtime: hidden (toggled by state "blink" animators) |
 | `0x100` | don't pass this part's rotation on to its children |
 | `0x200` | ignore the object's rotation (alternative transform path) **[?]** |
@@ -112,7 +130,7 @@ Sections are contiguous, in that order:
 | vertices | 0x2c | `fx x, y, z`; 5 × u32 runtime scratch (0); `fx u, v`; u32 runtime "used" flag (0) |
 | faces | 0x20 | `u32 0`; `u32 material` (byte offset into materials); `u32 v0, v1, v2` (byte offsets into vertices); `u32 n0, n1, n2` (byte offsets into normals) |
 | normals | 0x10 | `fx x, y, z` with length about 0.5 (so 1.0 = 0x8000), u32 0. Per face corner; flat faces repeat one normal |
-| points54 | 0xc | `fx x, y, z`: unknown point set (2 on the Cutlass near the engines; doesn't track engine count) **[?]** |
+| points54 | 0xc | `fx x, y, z`: **child pivots**. Child `k` of a part using this mesh is placed at `part.pos + part.matrix · points54[k]` (`FUN_004b3eb0`; see "Part placement" below) **[c]** |
 | attach points | 0x10 | `fx x, y, z` + 1 word that is **overwritten at load** with a pointer to the point's transformed position. These are the indices used by `.des` `connect` (`LAND_POINT`, `ENGINE_POINT`, `SPAWN_POINT`, …) and OCF `ATTACH` (`Pak_GetAttachPoint 0x4b1db0`) |
 
 - **Triangles only.**
@@ -128,14 +146,14 @@ Sections are contiguous, in that order:
 | 0x00 | char[12] | texture name (`IMSID01H.PCX`), matched by name to the texture section or global cache. May have junk after the NUL |
 | 0x0c | u8 | 0 |
 | 0x0d, 0x0e | u8 | 8, 8 (two exceptions are 0) **[?]** |
-| 0x0f | u8 | alpha / translucency level (0, 128, 255, 64, 200 …). Load maps 0xff → 0xfe; `}` materials force 0x7f **[l]** |
+| 0x0f | u8 | **self-illumination**: 0 = lit by the sector light; else unlit at brightness min(2·alpha, 255) (`FUN_004b4cf0` → `FUN_004b4c10`; 128 = full, on glow/light/emitter textures). Load maps 0xff → 0xfe; `}` decals force 0x7f **[c]** |
 | 0x10 | u8[3] | flat colour RGB for untextured materials (flag 8 clear). At runtime this slot becomes the texture pointer |
-| 0x14 | u8 | 0 or 5–9 **[?]** |
-| 0x15 | u8 | 0 or 2–3; non-zero adds render flag 0x10000 **[?]** |
+| 0x14 | u8 | specular shift (5–9): highlight = (128·cosᵖ << shift) >> 7, grey, added after the texture (D3D vertex specular, `FUN_004b4b80`) **[c]** |
+| 0x15 | u8 | **specular power** (lit materials only): 1/2/3 → cos, cos², cos⁴ of N·H with H = normalize(V + 2L) (`FUN_004b49d0`). Data uses 2–3. Non-zero also adds render flag 0x10000 (see "Blend modes") **[c]**. Set on whole hulls (Claw, ATK), canopies, gates and the arena windows |
 | 0x16 | u16 | material flags (shared with texture flags, below) |
 | 0x18 | u8 | 0 |
 | 0x19 | u8 | **animation frames** (2 / 4 / 8 / 16 / 32): this and the following `n − 1` materials are the frames |
-| 0x1a | u8 | animation counter slot. Frame = `counter[slot] % frames` (`0x4b4e90`); counters come from the state block. `0x7d '}'` / 0x7e / 0x7f are special (125 is common: 980 materials) **[?]** |
+| 0x1a | u8 | animation counter slot. Frame = `counter[slot] % frames` (`0x4b4e90`); counters come from the state block. `0x7d '}'` / 0x7e / 0x7f mark a **two-layer material** (see "Blend modes") **[l]** |
 | 0x1b | u8 | 0 |
 
 **Material and texture flags (u16)**, from `Tex_FlagsToRenderState 0x4af590` and
@@ -152,8 +170,69 @@ Sections are contiguous, in that order:
 | `0x4000`, `0x6000`, `0x4100`, `0x2100`, `0x0110`, `0x0088` | transparency / additive modes, mapped to hardware state bits by `Pak_LoadTexture 0x4b02d0` **[l]** |
 | `0x8000` | ? (set on glow textures `0xa948`/`0xa108`) |
 
-Common values: 0x8 (plain), 0x4048, 0x2148, 0x2108, 0xa108/0xa148/0xa948 (glows), 0x58 (shadow
-cards), 0xc008, 0x0 (flat colour).
+Common values: 0x8 (plain), 0x4048, 0x2148, 0x2108, 0xa108/0xa148/0xa948 (glows), 0x58
+(cutouts, not shadows: see below), 0xc008, 0x0 (flat colour). The real shadow cards are 0x88.
+
+### Blend modes [l]
+How the flags composite on screen. The evidence is the loader's special cases, the 3dfx driver,
+and the shipped textures; it hasn't been checked in a running game.
+
+- **Loader precedence:** `Pak_LoadTexture 0x4b02d0` rewrites special combos before
+  `Tex_FlagsToRenderState 0x4af590`, testing in this order:
+  - `0x4100`, `0x6000`, `0x2100`, `0x4000` → internal bit `0x10000000`;
+  - `0x6000` also sets `0x1000000`, the per-texel "ALPHA_PAL_IMAGE" path;
+  - `0x110` → `0x400000`, which skips the palette remap;
+  - `0x88` → `0x20000`, which zeroes the palette pointer.
+- **3dfx driver:**
+  - Blend table: `Hw_3dfx.dll 0x10003b10` picks blend mode 1 (opaque), 2
+    (`SRC_ALPHA, ONE_MINUS_SRC_ALPHA`) or 3 (`SRC_ALPHA, ONE`, additive) from the state word.
+    `0x10002c30` maps modes 1–8 to `grAlphaBlendFunction` pairs.
+  - Texel upload (`0x10002700`, generic path): ARGB1555 with **palette index 0 → alpha 0**, so
+    index 0 is a colour key.
+  - I couldn't fully reconcile the driver's bit tests with the engine's state word: read
+    literally, plain textures (`0x20400`) would take the alpha-only path. So the per-class
+    meanings below come from the texture survey.
+- **Texture survey** (all 1,160 paks: share of index-0 texels, mean palette brightness):
+
+| flags | class | evidence |
+|---|---|---|
+| plain (`0x0008`, `0x0048`, `0x0808`…) | opaque, **index 0 not keyed** | 1% index 0. Keying it punched holes in rock and hull textures (`BORAMINE.OCF`) |
+| `& 0x10` (`0x0018`, `0x0058`, `0x0118`, `0x8018`…) | **cutout** (index 0 = hole) | 45–96% index 0, normal brightness: windows, trees, gratings |
+| `0x2100`, `0x4000`, `0x4100`, `0x6000` combos (`0x2108`, `0x2148`, `0xa1x8`, `0x4048`, `0xc008`, `0x6018` explosions) | **additive** | dark (brightness 0.07–0.17), palette 0 black: flares, thrusters, beacons, bolts, TV screens |
+| `0x88` (`*SHDW.PCX`) | **shadow**: darkens what's behind | palette entirely black, 61% index 0 |
+| `0x8000` | full-bright (unlit) | lit windows and glow strips; the loader gives these a separate palette pass (`FUN_004ada90(pal, 2)`) |
+
+- **Material alpha** (`+0x0f`) is self-illumination, not translucency (`FUN_004b4cf0`, 2026-11-08)
+  **[c]**: non-zero → vertex colour = grey `min(2·alpha, 255)` (with fog), ignoring the light;
+  zero → the sector shade ramp (plus specular if `+0x15` ≠ 0). Counts over all PAKs: 0 ×10,937,
+  128 ×5,213, 255 ×363, and a few 20–200. Additive materials with alpha 0 are therefore lit (dim
+  in dark sectors).
+- **Two-layer materials** (anim slot `0x7d`/`0x7e`/`0x7f`):
+  - All 1,045 have `frames = 2`. The "second frame" is not an animation frame but a decal drawn
+    over the same faces.
+  - The decals are additive (`0x2108`, `0x4008`, `0xc008`, `0xa108`: 626) or cutout (`0x18`,
+    `0x8018`, `0x58`, `0x118`).
+  - Examples: `IDOME.PAK` = ribbed cutout `IDOME_H` + blue `IDOMEB_M` (`0x2108`, alpha 160), which
+    makes tinted dome glass. `IHABMAIN.PAK` = hull `IHABM_H` + `IHABM2_H` (`0xa108`, 97% index 0),
+    which makes lit windows.
+  - The loader forces alpha `0x7f` on the decal (`MeshClone_BuildTriList`), so the decal is
+    self-lit at brightness 254/255, whatever the sector light.
+- **Render flag `0x10000` = specular enable (resolved 2026-11-08) [c]:**
+  - `Tex_AdjustRenderState 0x4af640` sets it when `+0x15` ≠ 0; `Tex_FlagsToRenderState` also sets
+    it for untextured materials with flag `0x100` (state `0x110102`).
+  - `Hw_d3d.dll` state setup (`0x10009c63`) copies it to `0x1001b2a0`, and the applier
+    (`0x1000919a`) issues `SetRenderState(0x1d = D3DRENDERSTATE_SPECULARENABLE, flag)`. So it adds
+    the vertex specular colour that `FUN_004b4b80` computes; nothing else.
+  - `Hw_3dfx.dll 0x10004b45` emulates it on Glide with a second blended pass (Glide has no
+    separate specular).
+- **Untextured + flag `0x100` [c]:** state `0x110102` = blend mode 2, which `Hw_d3d` maps to
+  `SRCALPHA, ONE` (`0x10006f96`; plain alpha blend on cards without that mode), with alpha forced
+  to 0xff (`0x100000`). So the face is added to what's behind. The `ARENA.PAK` windows are black,
+  so only their specular highlight shows: clear glass with glints.
+- `Hw_d3d` blend modes (state `& 7`, `0x10006f50`): 0 opaque, 1 `SRCALPHA/INVSRCALPHA`,
+  2 `SRCALPHA/ONE`, 3 `ZERO/INVSRCALPHA`, 4 `DESTCOLOR/ONE`, 5 `SRCALPHA/ZERO`, 6 `ZERO/SRCCOLOR`,
+  7 `ZERO/ONE`.
+- Implemented in `TachyonAssetViewer/src/pak.rs` (`BlendMode::for_material`, `Material::is_layered`).
 
 ### Texture section (at `main_end`) [c]
 `u32 count`, then `count` records:
@@ -200,16 +279,37 @@ also have `OFF`.
 | 0x24 | curve | glow intensity |
 | 0x38, 0x4c, 0x60 | curve | scale x, y, z |
 
+**Texture animation timing [c]:**
+- `State_UpdateCounters 0x4b2750` sets `counter = (rate × DAT_00668fdc) >> 32`.
+- `DAT_00668fdc = DAT_00668fd4 × ticks`, where `DAT_00668fd4 = 0x10000 / 50` (`FUN_004b1870(0x32)` / `FUN_004b1890`). So the counter is `rate × seconds`, i.e. **rate is frames per second** (shipped values are 2–30, often 18).
+- Slot 0 is not in the table. It is the per-entity u16 at entity `+0x30`, set through `FUN_004b19f0` / `FUN_004b1ab0`. Most entity types set it to `ticks >> 2` (12.5 fps). A few use +1 per frame, `>> 1` or `>> 3`.
+- Shipped data: 428 animated materials use slot 0, 36 use a slot that's in state 0's counters, and 2 have no counter at all.
+
 **Curve (0x14):**
 - `{u32 mode, fx a, fx b, fx c, fx d}`.
 - Mode 1: `a + c × random`. Mode 2: alternate `a`/`b` by frame parity. Mode 4: `a + c × sin(d × t)`.
 - Otherwise the value is the constant `b` (`0x4b25a0`).
+- The sine mode indexes a 256-entry table with `(d × t) & 0xff`. The parity mode flips on the
+  game's frame counter.
+- Scale curves overwrite the object's scale (`State_EvalCurves 0x4b2640`). The glow curve sets
+  the global glow level `0x668f38` (scaled by the instance's glow byte).
 
 **Part animator (0x2c):**
 - `{u32 part, u32 mode, fx rot_rate[3], u32 threshold, u32 other, u32 period, fx base_rot[3]}`.
-- **Rotation:** `rot = base + rate × time`, e.g. spinning radar dishes.
-- **Mode bits:** 1 random blink, 2 periodic blink (`threshold` vs phase), 4 copy part `other`'s
-  visibility. These toggle the part's hidden bit.
+- **Rotation:** `rot = base + rate × seconds` (16.16, 512 units per turn), e.g. a rate of 85.33
+  is 60°/s. Every animator in the state sets its part's rotation, whatever its mode.
+- **Mode bits** (toggle the part's hidden bit `0x80`):
+  - **1 random:** hidden when `threshold < rand16`, re-rolled every update. So it's visible
+    `threshold/65536` of the time (welding sparks, lightning, reactor arcs).
+  - **2 periodic:** hidden when `threshold < (other + period × seconds) & 0xffff`. `period` is
+    16.16 cycles per second, `other` is the phase offset, and the part is lit for
+    `threshold/65536` of each cycle. Staggered offsets make the chasing arrows and beacon runs.
+  - **4 copy:** take part `other`'s hidden bit (paired flash cards).
+- **Who uses it:**
+  - 30 PAKs spin parts and 26 blink parts (the full list is in the asset viewer
+    README).
+  - Only three OCFs contain any: SBASE_N (IBDBEACN), SBASE_B (REACTORA) and GMINE1 (SINPLS,
+    SINZAP).
 - **Selection:** `Model_SelectState 0x4b2950` picks the state (e.g. asteroids use state 0), and
   `Model_UpdateState 0x4b27d0` animates it.
 
@@ -219,10 +319,11 @@ also have `OFF`.
 - MTL with diffuse maps or flat colours;
 - one PNG per embedded texture.
 
-Billboard parts (flag 0x40) come out as flat cards. Animated materials export frame 0 only.
+Billboard parts (flag 0x40) come out as flat cards (the asset viewer turns them to face the camera).
+The exporter doesn't apply part positions (points54 pivots), so child parts land at the origin. Animated materials export frame 0 only.
 
 ## Open
-- `points54` purpose; material bytes `+0x0d/+0x0e/+0x14/+0x15`; full meaning of flag bits
+- Material bytes `+0x0d/+0x0e`; flag bits
   0x10/0x80/0x100/0x800/0x1000/0x8000 (needs the hardware DLLs `Hw_d3d.dll`/`Hw_3dfx.dll`, which
   receive the translated state).
 - Part flags 0x08 and 0x200.

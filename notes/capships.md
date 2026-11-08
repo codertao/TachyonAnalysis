@@ -22,6 +22,27 @@ Confidence tags: **[c]** confirmed, **[l]** likely, **[?]** unclear. Angles are 
 
 Default part hitpoints are 20,000; credit powerplants get 400,000.
 
+### Part placement (OCF assembly) [c]
+- **Part record** (0x80 bytes, filled by `Ocf_ParsePart`):
+  - `+0` model; `+0xc` SCALE (×0x10000);
+  - `+0x10..0x18` ANGLES (degrees → engine units);
+  - `+0x1c` parent part; `+0x20` parent attach index; `+0x24` own attach index (`ATTACH: parent, i, j`).
+- **Offset** (`0x4099d0` / `0x409c40`, at load):
+  - root = 0;
+  - otherwise `offset = parent.offset + M(parent)·parentPak.attach[i] − M(self)·ownPak.attach[j]`.
+  - M = rotation(ANGLES)·scale, applied by `0x4b21c0` → `0x4b1fb0`.
+  - Attach points come from the LOD0 mesh (`Pak_GetAttachPoint`; an out-of-range index uses point 0).
+- **Orientation** (`0x408ef0`, per frame): each part's own ANGLES composed with the **root's**
+  orientation only, not the parent's. Position = root position + the precomputed offset.
+- **Euler convention** (`math_todo_with_rotation 0x52d9cd` gives sin/cos of each angle;
+  `some_rotate_by_global 0x4b24d0` applies them): `v' = Ry(a1)·Rx(−a2)·Rz(a3)·v` in engine axes.
+  a1, a2, a3 are the three stored angles (yaw, pitch, roll).
+  - Check: with this convention, 550 of 563 rotated turrets across all OCFs face away from their
+    mount part's centre. Flipping any one sign scores 423–521.
+- **Handedness:** left-handed (x right, y up, z forward). A positive yaw rate selects the
+  Enforcer's `YAW_RIGHT` pose (`animation.md`), and `Ry(+a)` turns +z toward +x **[l]**.
+- Implemented in `TachyonAssetViewer/src/ocf.rs`.
+
 ## Every part is its own server entity [c]
 `CapShip_SpawnParts 0x4125e0` allocates one DCB from the AI pool for **each** OCF part, chained
 through `+0xe0`:

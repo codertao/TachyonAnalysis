@@ -78,8 +78,27 @@ Chain: `Bdf_LoadBackdrop(name) 0x444e60 → Bdf_LoadAndApply 0x468180 → Bdf_Ge
 | (DAT_0054a5c8) | 2×+1 | +0x118 | defaults 0x40000000,0x10,0xa0 |
 | fog pcx | string | +0x124 | default `fog1_01.pcx` |
 
-`IMAGE` entry params (from `mnu.bdf.inf`): `pak, pal, posX(f), posY(f), distance(i), scale/spin(f)`
-→ 0x64-byte record (exact layout TBD in `Bdf_ParseImageEntry`).
+`IMAGE` / `SUN` entry params: `pak, pal, yaw, pitch, distance, scale` → 0x64-byte record **[c]**
+(`Bdf_ParseImageEntry 0x467840`):
+- `+0x00`: model, from the FX pool, not remapped.
+- `+0x0c` vec3: the offset `R(yaw, pitch, 0) · (0, 0, distance)`. Angles are degrees → engine
+  units; distance and scale are ×65536.
+- `+0x18`: an object instance (flags `0x50`, scale `+0x1c` = `scale`, `+0x28` = 8), put in
+  state 0.
+- `SUN` is parsed first, with its distance forced to 1300 (`0x5140000`). Then come `count(IMAGE)`
+  records.
+
+**Drawing [c]** (`FUN_00468440`):
+- The `SPACE_PAK` model goes around the camera at scale 2 (`0x20000`), rotated by `SPACE_ROT`
+  (yaw, pitch), with near/far set to 100 / 12000.
+- Then each image at `offset + camera position` (`0x5b9600`).
+- Then the world. Both backdrop layers follow the camera, so they never get closer.
+- Sizes: sky models have radius ~1,100–1,600 (×2). Images are ~10-unit models scaled by
+  2–200 at distances of 400–10,000, so many sit beyond the sky shell. The sky can't be occluding
+  them; the asset viewer draws the sky without depth writes, then the images, then clears depth
+  for the world.
+
+Lightning, clouds, fog and the lens flare are separate effects, not drawn by the asset viewer.
 
 ### Per-sector palette re-tint (investigated 2026-11-08) [c]
 No palette *swapping*: every model keeps the one `.pal` its `.des`/`.bdf` names. What changes per
@@ -118,6 +137,89 @@ sector is a **recomputed copy** of that palette.
   "Pak %s in not REMAPPED" if the pak header flag `+0x28 & 2` is clear.
 - **Data:** all 88 `.bdf` files set their own `RGB`; GAMMA is almost always 128 (exceptions:
   MYSTER7 = 58, MYSTER8 = 133, NEUTRA4 = 143, NEUTRA7 = 138), and SATURATION ranges 78–208.
+
+### Sector lighting (2026-11-08) [c unless tagged]
+Per-vertex colours are rebuilt each frame by `FUN_004b4ed0` per material (`FUN_004b4cf0`):
+- **Diffuse** (`FUN_004b4b20`): `d = clamp(128·N·L, 0, 127)` (dot >> 14, `FUN_004b4af0`); colour
+  `= ramp[256 + bias + 2d]` from `Light_BuildShadeRamp 0x4b37a0` (table `0x610480`, 767 entries):
+  - `i ≥ 0`: `(amb·RGB + i·LIGHT_RGB) / 256`; `i < 0`: `(amb + i)·RGB / 256`;
+  - then the brightness/contrast globals `0x6691f8/0x6691fc` (neutral 0x80) and
+    `FUN_004aef50`, clamped to 4..252.
+  - `amb = AMBIENT_LIGHT >> 1`; `RGB` = the BDF sector tint; `LIGHT_RGB` = the light colour.
+- **L** = the direction of the BDF `SUN` image (`FUN_0048a960`); `LIGHTNING_LIGHT_SRC` replaces
+  it when `LIGHTNING` is on, and between flashes the diffuse is scaled by
+  `LIGHTNING_AMBIENT_LIGHT / 512` (`FUN_00468320`, `FUN_004b4df0`); see "Lightning" below.
+- **Self-lit materials** (alpha `+0x0f` ≠ 0, `FUN_004b4c10`): grey `table_0x60f880[fog + v]`
+  with `v = min(2·alpha, 255)`; that table is `clamp(i − 256)` at neutral brightness, so the
+  brightness is ≈ v.
+- **Specular** (`+0x15` ≠ 0, `FUN_004b4b80`): H = normalize(V + 2L); grey highlight
+  `(128·cosᵖ(N·H) << +0x14) >> 7` written to the vertex specular colour (added after the texture).
+  Not clamped in code; the data keeps it in range.
+- The palette side (`GAMMA`, `SATURATION`) is in "Per-sector palette re-tint" above.
+- **Depth fog** (fog sectors): `FUN_004b47b0` / `FUN_004b4230` put
+  `255·(z − MIN)/(MAX − MIN)` (0 below MIN, 255 beyond MAX) in the vertex specular alpha, which
+  the driver uses as the fog amount towards fog colour slot 3 (`FUN_004ad0c0`). `z` = view depth.
+  Self-lit materials are also darkened through the grey table (`FUN_004b4c10`).
+
+### Lightning (`FUN_00468320`, once per 50 Hz world tick, `LIGHTNING` sectors) [c]
+- State: `level` (16.16, `0x5b9088`), flash `counter` (`0x5b908c`), bolt number (`0x5b9090`).
+- Each tick:
+  1. With probability 5/1000: `counter = 12 + rand % 12`, bolt = `rand & 15`, plus a thunder
+     sound (`FUN_00466590(7, 5, 0, 16 + (rand & 99))`) and `FUN_0042e140(2·counter, 0xff)` (a
+     screen effect, **[?]**).
+  2. If `counter > 0`: decrement it and set `level = 100 + rand % 156`.
+  3. Move `level` at most 6 towards `LIGHTNING_AMBIENT_LIGHT >> 1`. `DAT_00668f8c = level >> 8`.
+- Diffuse is `(128·N·L)·level/256` (`FUN_004b4df0`), so between flashes the scale is
+  `LIGHTNING_AMBIENT_LIGHT / 512`.
+- While `level` > ambient, `FUN_00468440` draws `LIGHTNING_PAK` right after the sky, with the
+  sky's rotation and scale 2. It uses instance flags `0x90`:
+  - `+0x14 = min(level, 255)`: with flag 0x80, self-lit materials use this brightness instead
+    of `2·alpha` (`FUN_004b4cf0`).
+  - `+0x18 =` bolt number: the slot-0 animation counter, so the 8-frame bolt material
+    (`GLD4ZAP0..7`, `S5ZAP_00..07`) shows frame `bolt % 8`.
+- Only BORA5, BORA7 and EARTH05 have a `LIGHTNING_PAK` (`gold4zap.pak` ×2, `s5zap.pak` ×1); the
+  other lightning sectors just flicker the light.
+
+### Fog (`[fog]` group, 2026-11-08) [c unless tagged]
+The BDF, not the SPX, configures fog: 20 BDFs (BORA6, DISPUT7, MYSTER1–5/7, NOVAWO*, BW*b3_*).
+```
+[fog]
+  ENABLED: 1
+  MIN: 1000          ; +0xe0, fog start (view depth)
+  MAX: 5000          ; +0xe4, full fog
+  RGB: 180, 60, 20   ; +0xe8, fog colour = clear colour
+  CLOUD_RGB: ...     ; +0xf4 (unused: FUN_00445720, the cloud draw, is an empty stub)
+  BACK_RGB: ...      ; +0x100, default 0x40 (stored by FUN_004b91c0; no reader found)
+  FRONT_RGB: ...     ; +0x10c, default 0x80: fog-sheet tint
+  DOA: f, i, i       ; +0x118, default 2.0, 16, 160 (FUN_004b91e0; no reader found)
+  PCX: foglorng.pcx  ; +0x124, default fog1_01.pcx: fog-sheet texture
+```
+- **Load** (`Bdf_LoadAndApply`): `FUN_004b23a0(1, MAX, MIN)` enables the depth fog,
+  `FUN_004ad0c0(RGB)` sets driver colour slot 3 (fog colour), `FUN_004abd30(RGB)` the clear
+  colour, and `FUN_00424ee0` loads the PCX as texture slot "FOGPCX" and enables the sheets (D3D
+  only, and only if option `0x5b8f48` is on).
+- **Backdrop:** `FUN_00468440` skips the sky, images and lightning overlay, and sets far =
+  MAX + 250.
+- **Fog sheets** (`FUN_004b9250`, called from the render sequence at `0x458574`, after the world
+  and lens flare, before the HUD):
+  - Up to five screen-filling quads (a 5-vertex fan) at depths `d = near + 50k`, with `near` kept
+    in (1, 51]. Sheets with `d ≥ 200` are skipped.
+  - Brightness `f(d)`: 0 at d = 1, rising to 60 at 41, flat to 80, 30 at 160, 0 at 200. Vertex
+    colour = `FRONT_RGB·f/256`, alpha 0xff, z = `clamp(10/d, 0.0001, 0.9999)`.
+  - Texture stage 0 at `uv = R(roll)·p·d·0.01/384 + offset`, where `p` is the pixel offset from
+    the screen centre (scaled to 640 wide). Stage 1 samples the same texture at `(v, u)/3`.
+    Render state `0x100602`: additive (`SRCALPHA, ONE`, alpha 0xff).
+  - `offset = slot[k] + scroll + k·(0.28, 0.14) + strafe`.
+- **Camera feed** (`FUN_0040edd0` → `FUN_004b9a50`, `FUN_0040f070` → `FUN_004b9b70`):
+  - Translation (world units × 0.4, on the camera axes): `strafe += (16x, −16y)`, `near −= z`.
+    When `near` leaves (1, 51] it steps by 50, the slots shift by one and `scroll` moves
+    ∓(0.28, 0.14), so the sheets stay continuous.
+  - Rotation (quarter-turn units): yaw and pitch add `(8·yaw, −8·pitch)·d·0.01/384` (after
+    roll) to every slot, so turning slides all sheets together. Roll rotates `R`. Slots and
+    `scroll` wrap at ±3.
+- Effect: a parallax stack of drifting mist that the camera flies through, recycled endlessly.
+  **[l]** How z = 10/d compares with the world's depth values is unconfirmed; the viewer puts
+  each sheet 2.5·d world units ahead (the forward feed rate).
 
 ## .des — object/ship definition (CBIN; DESC_TYPE picks the class)
 A `.des` is a CBIN whose `main.DESC_TYPE` selects the entity class (see `flight.md`:
@@ -253,6 +355,18 @@ object's **orientation**, not velocity — it is fed to the Euler→matrix build
 +0x5c s32  ? (-1/0/10/11/13 seen; earlier guessed "object id" but triggers use +0x20)
  ...tail  per-kind params (e.g. gate link ids at +0x48/+0x50 = {u16 kind, u16 id})
 ```
+**Position unit [l]:** 16.16 fixed point, the same scale as PAK vertices.
+- `Sped_ConstructEntity` copies `+0x08..+0x10` straight into the entity position. Part pivots
+  (16.16) are added to that position (`FUN_004b3eb0`).
+- The asset viewer places BORA05's shuttle and cargo crate right at the station's surfaces at this
+  scale.
+
+**Model lookup [l]** (asset viewer):
+- alias → `desnames.cfg` `DES: alias, file` → `.des` `[main]` `OCF_FILE` (stations, capital
+  ships), else `EXTERIOR_PAK`. Hyper gates also have `CENTER_PAK` / `FLARE_PAK` / `SPED_PAK`.
+- Player-ship aliases (DART, CLAW, MANTA, RIPPER) are not in `desnames.cfg`.
+- Placements with decl index −1 are the kind-0 null records.
+
 **Orientation unit.** The three Euler angles are in **512 units per full revolution** (0.703125°/unit,
 so 128 = 90°, 256 = 180°). On disk they are plain integers; `Sped_ConstructEntity`'s `<<16` promotes
 them to 16.16 so the trig routine (`g_SinCosTable 0x52cbe4`, indexed by `angle>>16` & 0x1FF) can

@@ -43,6 +43,11 @@ result into the topic note.
 - [ ] `RGB` tint feeds the light shade ramp (`Light_BuildShadeRamp 0x4b37a0`), not palettes.
 - [ ] What `DEF_GAMMA` / `DEF_BRIGHT` / `GAME_GAMMA_INC/DEC` control (hardware gamma?).
 
+- [ ] Fog sheets: how deep they sit relative to world geometry (z = 10/d; viewer assumes
+      2.5·d world units), and whether the two texture stages modulate.
+- [ ] What `FUN_0042e140(2·counter, 0xff)` does at a lightning flash (screen shake / static?).
+- [ ] Render option `0x5b8f48` that gates fog sheets: which menu setting?
+
 ## Collision (`collision.md`)
 - [ ] Player bounces off a station or capital ship hull: break `PlayerShip_OnCollision 0x4532e0`.
   Check velocity ×−0.95 and the 50-frame cooldown; ramming an AI ship should deflect or bounce
