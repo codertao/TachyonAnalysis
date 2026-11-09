@@ -71,7 +71,8 @@ Chain: `Bdf_LoadBackdrop(name) 0x444e60 → Bdf_LoadAndApply 0x468180 → Bdf_Ge
 | `LENS_FLARE` (images) | int | +0xa8 | |
 | `IMAGE`/`SUN` count | — | +0xc8 | `Cbin_CountEntries("IMAGES","IMAGE")` |
 | image records | — | +0xcc | array of count × 0x64, tag "BDF_IMAGES"; parsed by `Bdf_ParseImageEntry 0x467840` |
-| `LIGHTNING` enabled | int | +0xd8/+0xdc | gates the lightning/cloud block |
+| `LIGHTNING` enabled | int | +0xd8 | gates the lightning/cloud block |
+| `[fog] ENABLED` | int | +0xdc | gates the fog block; also turns off space debris |
 | `CLOUD_RGB` | 3×int | +0xf4..+0xfc | |
 | `BACK_RGB` | 3×int | +0x100 | default 0x40 |
 | `FRONT_RGB` | 3×int | +0x10c | default 0x80 |
@@ -416,3 +417,23 @@ TODO: correlate with in-game loaders (`CreateFileA`/`ReadFile` callers) when we 
 
 ### .PAK (3DPK model)
 Full spec in `notes/pak.md`; parser/exporter `TachyonFileFormats/src/pak.py`.
+
+## Space debris (flight-time dust) [c]
+
+The streaking specks seen when moving. Not sector data: it is a client effect, toggled by the
+"Space Debris" option (`GLBL_spacesav[0x2e]`, default on; `cbOptDebris`).
+
+- **Setup** (`FUN_0041c3f0`, from `init_flight_start`): loads `moveroid.pak`/`.pal` and fills a
+  60-slot "Debris DCBS" pool (`FUN_0041c330` → `FUN_0041c2f0`). Each speck is that model at scale
+  0.25 (`0x4000`), placed at a random point in a 16-unit cube (`FUN_0041c210`, `rand & 0xfffff`).
+- **Cube** (`FUN_0041bff0`, once per tick): centred 8 units (`0x52e698` = 524288.0) ahead of the
+  camera along its view direction, ±8 on each axis.
+- **Per tick** (`LAB_0041c280`): each speck's position wraps into the cube
+  (`(p − min) & 0xfffff + min`), so specks the camera passes reappear ahead.
+- **Draw** (`FUN_0041c0e0`): only when the player exists, the option is on, debris is enabled
+  (`DAT_005b27ec`), speed > `0x400` (1/64 unit per tick) and the sector has no fog
+  (BDF `+0xdc` == 0). All specks are aligned to the player's velocity and stretched along it
+  by `clamp(speed·64, 1, 64) · 0.25` (0.25–16), so they become streaks at speed.
+- **Enable flag** (`FUN_0041c3e0`): cleared on hyperspace entry (`Hyper_Enter`) and by
+  `FUN_00454400`; set again by `Anim_Finish` and `FUN_0045b340`.
+
