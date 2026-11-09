@@ -101,6 +101,36 @@ round-robins: on tick *t* it sends only to player slots with `(slot & 15) == (t 
 (`FUN_004b87b0(16)`), so each client gets ~1 packet per 16 server ticks. Frame/tick rate itself is
 not yet pinned.
 
+**Client send path:**
+- `Flight_UpdateWorld` calls `Net_CyclePump 0x4b8f30` once per 50 Hz update. It sends when
+  `(counter & 15) == 0`, so **one packet every 16 ticks = 320 ms** (about 3 Hz). The counter
+  starts offset by half an interval.
+- There is no other send path: events (fire 0x2001, hit 0x2003, collision 0x2009, …) are queued
+  (`NetCli_QueueEvent`) and wait for the next scheduled packet, up to 320 ms.
+- There's also no per-event rate limit or cooldown in the net layer. Fire rate is limited only
+  by the client's weapon code; the server checks ammo but not cooldown.
+
+**Packet contents** (`NetCli_BuildAndSend 0x4b8ef0`), in order:
+1. `seq, ack` (8 bytes);
+2. MSG_PLAYERDATA (4 + 12 + 0x4C = 92 bytes), always;
+3. **every pending event**, copied whole (`NetCli_WriteQueuedEvents`), each `{u16 type, u16 size,
+   u32 tag}` + body.
+
+**Event retirement:**
+- An event stays in the list and rides in **every** packet until its resend budget runs out, or
+  a server packet acks a seq at or after the one it was first sent in (`+0x1c`).
+- Server packets arrive only every 320 ms, so with a 200 ms round trip a reliable event is
+  usually sent 2–3 times. The receiver drops duplicates by tag (128-entry ring).
+
+**Limits:**
+- No coalescing, delta or compression (the `CMPRSS??.DLL` plugin doesn't ship).
+- The 16 KB client send buffer (`NetCli_Init`: 0x4000, event pool 0x200 nodes × 0x114) isn't
+  bounds-checked while packing **[c: no check in the writer]**.
+
+**Size:** a quiet client packet is about 100 bytes of payload, about 140 bytes on the wire with
+the netsock and UDP/IP headers. That's roughly 0.45 KB/s up per player. Snapshots are a few
+hundred bytes per 320 ms down. Both fit a 28.8k modem.
+
 ## Motion smoothing and latency **[c]**
 **Your own ship** is simulated only by your client. Movement is client-authoritative, and the
 snapshot builder skips the player's own entity, so the server never corrects it. Local flight
