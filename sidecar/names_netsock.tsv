@@ -1,0 +1,20 @@
+addr	name	comment
+0x100052e0	ns_RecvDatagram	CRC check + de-obfuscate
+0x10005020	ns_SendDatagram	CRC + obfuscate + sendto
+0x10005240	ns_SendTo	send to explicit port
+0x10003680	ns_EnumThread	
+0x10003960	ns_JoinThread	
+0x10003300	ns_ClientThread	
+0x10004930	ns_ServerThread	
+0x100034a0	ns_SendEnum	0x1010
+0x10003630	ns_OnEnumReply	0x1011
+0x10003770	ns_SendJoin	0x1020
+0x10003840	ns_OnJoinReply	0x1021
+0x100030a0	ns_SendCreatePlayer	0x1030
+0x10002f50	ns_ClientDispatch	
+0x100046c0	ns_ServerDispatch	
+0x10003f00	ns_SrvOnEnum	
+0x100040c0	ns_SrvOnJoin	
+0x10004340	ns_SrvOnCreatePlayer	
+0x10004420	ns_SrvOnGameData	
+0x10004830	ns_SrvTimeouts	120 s

@@ -15,8 +15,19 @@ Layers, bottom to top:
 
 1. **Netsock.dll**: UDP socket, CRC, session/join/enum/ping, per-player slots. Optional compression
    via `CMPRSS??.DLL` plugin, but **no such DLL ships**, so compression is effectively off **[c]**.
-2. **Transport driver vtable** in space.exe: `0x55e8c8` (Netsock TCP/IP) or `0x55e800` (the other
-   transport; DirectPlay/IPX path **[l]**), picked by `FUN_004a6d00`, active pointer `0x55e458`.
+2. **Transport driver vtable** in space.exe: `0x55e8c8` (Netsock TCP/IP) or `0x55e800`
+   (**DirectPlay over IPX** **[c]**: a lobby address with `DPAID_ServiceProvider` =
+   `DPSPGUID_IPX`, `FUN_004aa260`). Picked by `FUN_004a6d00`, active pointer `0x55e458`.
+   - The multiplayer menu's **LAN** button (`BtnMPSysLan`, `GLBL_spacesav[0x11]` = 0) picks
+     DirectPlay/IPX. GoG ships `ipxwrapper.dll`, which tunnels IPX over **UDP 54792**, so a LAN
+     host shows only that port and an ephemeral one.
+   - The **network** button (`BtnMPSysNW`, `[0x11]` = 1, `FUN_0044c950`) picks Netsock. The port
+     comes from a string at `0x591600` (`netsock_SetPorts`); observed default **UDP 2766**
+     (0xace). Dynamic port use is on.
+   - **Network** hosts are always "advertised" (`DAT_005a4040` = 1). They pick a random game ID
+     `1000..9999` (`DAT_005a40b4`), heartbeat it to the master server as `AppId=`, and kick (4)
+     remote joiners whose join blob `+0x78` doesn't match. The ID is shown as "ID: N" only on
+     the dedicated-server status screen (`FUN_004625a0`).
    Facade wrappers `0x4a6d40..0x4a7180` call through it.
 3. **Generic message engine** (`0x4b7840..0x4b9110`): packet framing, sequence/ack, reliable-event
    resend, per-client round-robin, debug dump. Game-agnostic; it calls game callbacks.
@@ -38,14 +49,134 @@ gets the CRC back from the LSB differences. It's a checksum, not encryption.
 
 Netsock message carrying game data **[c]** (`netsock_SendToServer/SendToClient`):
 ```
-u16  type = 0x1080   ; "game data" (other values = session control: join/enum/ping [l])
+u16  type = 0x1080   ; "game data" (other values: session control, below)
 u16  length          ; payload_len + 12
-u32  ?               ; not written by SendTo*; filled elsewhere or stale [?]
-u8   payload[...]    ; the engine packet below
+u32  ?               ; never written: stale buffer contents. Receivers ignore it
+u8   payload[length - 12]   ; the engine packet below
+u8   junk[4]         ; length counts 4 bytes past the payload; receivers ignore them
 ```
 Sends go through a lock-protected ring queue (0x4000 entries, "QUE FULL" at 0xff5), drained by a
 worker that calls `sendto`. The engine-side wrappers (`0x4ab920`/`0x4ab990`) retry up to 0x800
 times on result `0x10` (busy), pumping the message loop between tries.
+
+## Netsock session protocol **[c]** (decompiled `decomp/corpus_netsock/`)
+
+Netsock.dll has its own Ghidra project at `decomp/ghidra_netsock/` (import plus `DefineFuncs` for
+the four `_beginthread` targets). Every message starts `u16 type, u16 length` (length includes
+the header). All values are little-endian.
+
+**Datagram receive** (`FUN_100052e0`):
+- If the first u32 is 0, it's the compressed form (header length in byte 9; unused, since no
+  `CMPRSS` DLL ships).
+- Otherwise it's `u32 crc` + message, with the ≥32-byte obfuscation described above.
+- A bad CRC drops the datagram. An IP filter (`FUN_10005280`, `LoadIPFilterFile`) can drop
+  senders.
+
+**Ports.**
+- `netsock_Init` defaults both ports to **0xf22 = 3874**. space.exe overrides them from
+  `DAT_005b2b08` (`FUN_0044c550`).
+- The socket binds the port. If it's in use, the bind retries at +0x1000 steps (`FUN_10004c80`).
+- The **server always replies to the datagram's source address and port** (`FUN_10005240`), and
+  identifies a connection by (IP, port). So a client may use any local port, and two programs on
+  one machine can share it.
+
+**App GUID** (space.exe `0x52e8c0`): `a1 f8 af 01 89 07 d3 11 af 07 00 c0 f0 30 12 85`.
+
+**Session record** (0x100 bytes, filled by `netsock_HostSession`, built in space.exe `FUN_004ab570`):
+
+| off | field |
+|---|---|
+| +0x00 | u32 0x100 (record size) |
+| +0x04 | u32 flags: 7, plus 8 if there's a password |
+| +0x08 | u32 max players |
+| +0x0c | u32 current players |
+| +0x10 | char name[128] |
+| +0x90 | char password[64] (zeroed in enum replies when flag 8 is set) |
+| +0xd0 | 16-byte session GUID (used by the client to pick a session) |
+| +0xe0 | 16-byte app GUID |
+| +0xf0..+0xfc | 4 × u32 game data (space.exe passes them to the session list) |
+
+### Client → server
+| type | len | body | when |
+|---|---|---|---|
+| 0x1010 | 0x14 | app GUID[16] | enumerate. Sent every ~1 s to the host IP (or to the broadcast IP on 16 ports, base + n×0x1000) (`FUN_100034a0`) |
+| 0x1020 | 0x54 | app GUID[16], password[64] | join, every 1 s until answered (`FUN_10003770`) |
+| 0x1030 | 0xa0 + n | `u32 requestNo`, then 0x98 bytes `{char name[128], u32 dataPtr, u32 dataSize, char custId[16]}`, then `data[n]` | create player, resent every ~1 s until 0x1031 (`FUN_100030a0`). `dataSize` must be right: the server reads the data from +0xa0. `custId` comes from an optional `CUST_ID.DAT`. For Tachyon the data is the 0xc4-byte join blob |
+| 0x1032 | 8 | `u32 playerId` | destroy player (leave), every 0.5 s until 0x1033 |
+| 0x1040 | 4 | — | close the connection, every 0.25 s until 0x1041 |
+| 0x1080 | n + 12 | game data (above) | |
+| 0x1012 | 8 | `u16 timeHi?, u16 timeLo?` | network ping to the ping server (`FUN_100020d0`). Not part of a game |
+
+### Server → client
+| type | len | body |
+|---|---|---|
+| 0x1011 | 0x104 | session record (0x100) |
+| 0x1021 | 0xc | `u16 status` (1 accept, 2 refuse), `u16 reason` (refuse: 1 wrong password, 2 wrong app GUID, 3 full), `u32` |
+| 0x1031 | 0xc | `u32 result` (0 ok), `u32 playerId` (the id the game sees as the connection) |
+| 0x1033 | 8 | `u32 result` (reply to 0x1032) |
+| 0x1041 | 8 | `u32 result` (reply to 0x1040) |
+| 0x1052 | 4 | the server is closing |
+| 0x1080 | n + 12 | game data |
+
+- Joining doesn't need a prior enumerate: the server only checks the app GUID (and the password, if
+  set). A repeated 0x1030 from the same address gets the existing player id back.
+- **Timeouts:**
+  - The server drops a connection after **120 s** without a datagram (`FUN_10004830`, 1 s ticks).
+  - The client warns the game at 15 s of silence (a local 0x1053 `{u32 seconds}`, every 15 s)
+    and disconnects at 120 s (a local 0x1052).
+  - There's no separate keepalive: the game's 3 Hz traffic covers it.
+- What the game sees on the server: 0x1050 player joined, 0x1051 left, 0x1052 closed, 0x1053 lag
+  warning (space.exe `FUN_004ab7a0`). The join blob is read with `netsock_GetPlayerName`
+  (`{name[128], dataPtr, dataSize}`).
+
+### Engine details used by a client (space.exe `0x4b8970..0x4b8fd0`)
+- **Initial state:** `seq` starts at 1, `ack` at 0, the client frame at 100 and the session id at
+  −1 (`NetCli_Init`).
+- **PLAYERDATA header:** `{u16 3, u16 size, u32 playerId (from STARTUPDATA +0xc), u32
+  clientFrame, u32 sessionId}`. The server ignores it unless `sessionId` matches its current
+  session and `clientFrame` is newer.
+- **STARTUPDATA** (4): `u32 stage @+4, u32 sessionId @+8, u32 playerId @+0xc`, blob at +0x10.
+  The client takes the session id from here. On a new stage it acks with event 0x103
+  `{u16 1, u32 stage}` (size 14 with the header, resend budget 0x800).
+- **PLAYERINFO** (6): `u32 netTick @+4, u32 sessionId @+8`, then `u32 gameFrame @+0xc` (server
+  callback `FUN_00461b20` = `DAT_005897e4`; the client keeps the max in `DAT_005b39cc` via
+  `FUN_00417e50`). The net tick runs 100 ahead of the game frame (observed live). 0x1002 shots are
+  stamped with and aged against the **game frame**.
+- **GAMEDATA** (2): the game blob starts right after the 4-byte sub-header.
+- **Kick** (7): `u8 reason` at +4, size 8.
+- **Event tags:** they come from the message pool and step by 2 (`something_list_related_get_next`).
+  The receiver only needs them to be unique among its last 128.
+- An event is retired when the peer acks a seq ≥ the first seq it rode in, or when its budget
+  runs out.
+
+### Stage 2 records
+- **kind 1** (0x34 bytes):
+  - `char quadrantName[14] @+4`, `char sectorName[16] @+0x12`;
+  - `u32 yourEntityId @+0x22`;
+  - `u32 rules value @+0x26`;
+  - `u16 sectorIdx @+0x2a`, `u16 quadrantId @+0x2c`, `u16 yourSlot @+0x2e`, `u16 @+0x30`;
+  - `u16 rules arg @+0x32`.
+- **kind 4** (0x50 bytes, `FUN_004257e0` → `PlayerDcb_Init`): `u16 @+0x12` (race index [l]),
+  `vec3 pos @+0x18`, `vec3 angles @+0x24` (32-bit, `>> 17` gives the PLAYERDATA u8).
+
+**Observed against a live Network deathmatch host (TachyonBot, 2026-11-09):**
+- The startup stages arrive numbered **1..6**, one per server packet (~320 ms apart).
+- The stage records are: 1 model table, 2 descriptor table, 3 kinds 1 + 4 (+8), 4 kind 6,
+  5 roster, 6 settings.
+- No 0x1007 was sent after 0x2012, but snapshots flowed anyway.
+
+### Client follow-ups during startup
+1. 0x1111 → the client sends **0x2012** (`FUN_00415aa0`), unless the rules have a `+0x8c` hook.
+2. The server re-enters you into your quadrant (`Ent_EnterQuadrant`) → **0x1007**.
+3. 0x1007 (`Quadrant_OnEnter`) → the client sends **0x2008 `{u16 2, u32 0, u16 0}`**: ready
+   for snapshots.
+4. Every snapshot with a page list → 0x2008 `{u16 1, u32 pageListId, u16 pageCount}`
+   (`Dcb_ApplySnapshot`).
+5. After death (0x1006), respawning is **0x2011 `{u16 0}`** (`FUN_004157d0`), unless the rules
+   have a `+0x88` hook.
+
+**Teams** are indices into `race.cfg` `races`: 0 agt, 1 bora, 2 galspan, 3 pirate, 4 tourist, …
+(`FUN_004580c0`).
 
 ## Engine packet (space.exe)
 
@@ -69,7 +200,7 @@ Packets with `seq <= last seen` are dropped whole (no reordering) **[c]**.
 | 3 | MSG_PLAYERDATA | C→S | `u32 startupStage, u32 clientFrame, u32 sessionId` + PLAYERDATA |
 | 4 | MSG_STARTUPDATA | S→C | `u32 stage, u32 sessionId, u32 slot` + stage blob |
 | 5 | MSG_STATICDATA | none seen | |
-| 6 | MSG_PLAYERINFO | S→C | `u32 serverFrame, u32 sessionId` + `u32 rosterVersion` |
+| 6 | MSG_PLAYERINFO | S→C | `u32 netTick, u32 sessionId` + `u32 gameFrame` |
 | 7 | MSG_PACKETHEADER | S→C | used as **kick/disconnect**: `u8 reason` (player+0x89) |
 | 0x103 | (startup ack) | C→S | `u16 1, u32 stage`, reliable |
 | ≥ 8 | "APP_SPECIFIC_MSG" | both | reliable game events (tables below) |
@@ -230,8 +361,18 @@ is just position, velocity and angles, taken as "now".
 
 ## Join / startup handshake **[c]**
 
-1. Netsock join (`netsock_JoinSession`), engine allocates a player slot (`FUN_004b7bf0`; name from
-   Netsock, default `"JAKE_LOGAN"` if unavailable).
+1. Netsock join (`netsock_JoinSession`, with the session password if the session needs one), then
+   `netsock_CreatePlayer(name, joinBlob, 0xc4)` (`FUN_0044cdd0` → `FUN_004a6f70` → driver `+0x48`).
+   The 0xc4-byte **join blob** (below) rides as Netsock player data; it is not a game packet. The
+   client then waits up to 1500 for the server (`HOST_MSG_ERR_TIMEOUT` / `_SERVER` / `_CPLAYER` /
+   `_SESSION_FULL` / `_PW` on failure). The server allocates a player slot (`FUN_004b7bf0`; name
+   from Netsock, default `"JAKE_LOGAN"`) and hands the blob to the join callback `FUN_00461280`.
+   A listen server joins its own client the same way, in-process (`FUN_004b8780`).
+   - The server checks the blob (`FUN_00461100`): `+0x7c` must be `0x1002` (else kick reason 5),
+     and on a server advertised to the master server, `+0x78` must equal the server's random
+     game ID `1000..9999` (`DAT_005a40b4`, shown as "ID: %d"; else kick reason 4).
+   - Then it creates the player's DCB, the mode's join hook places the ship (see "Join data"
+     below), "%s is entering the game" is broadcast, and the roster and scoreboard go out.
 2. While `player+0x88` (in-startup) is set, the server sends **MSG_STARTUPDATA** with the current
    stage instead of game data. The client acks each stage with **0x103**, and the server advances
    (`FUN_004b8030` → callback `0x462080`). Stage blobs (`Tach_SrvWriteStartupStage 0x461f80`,
@@ -245,6 +386,42 @@ is just position, velocity and angles, taken as "now".
    - stage 5: kind 7, session settings (`u32,u16,u8` @ `0x6af7ec`)
 3. After the stage 5 ack the server sends app event **0x1111** (startup complete) and normal
    GAMEDATA begins.
+
+### Join data: ship and loadout **[c]**
+
+Built by `Profile_LoadoutInit 0x44bd40` into `0x591660` from the pilot's profile (the campaign save's
+var store). Everything in it is taken on trust; the server never checks the ship or weapons
+against what the pilot owns or can afford.
+
+| Offset | Field |
+|---|---|
+| +0x00 | `char[32]` GALSPAN-side ship for team games (desnames alias; default `GALSPAN_ORION`) |
+| +0x20 | `char[32]` BORA-side ship for team games (default `BORA_CUTLASS`) |
+| +0x40 | u32 preferred team (→ conn `+0x140`) |
+| +0x44 | `char[16]` portrait (sent to everyone with `SrvSend_PlayerPortrait`) |
+| +0x54 | u32 installed-systems bitmask (from `SHIP_nn_DATA` `SLOT_1..16`; → conn `+0x158`) |
+| +0x58 | 8 × u16 weapon per mount (`SHIP_nn_DATA` `MOUNT_1..8`) |
+| +0x68 | u16 voice-chat port (→ conn `+0xc4`) |
+| +0x6c..+0x74 | three ids from `Ent_CreateMiscObject` |
+| +0x78 | u32 game ID the client is joining (parsed from a string at `0x591120`) |
+| +0x7c | u32 `0x1002`: protocol/build magic |
+| +0xa0 | u32 faction of the campaign ship (`GALSPAN` or `BORA`) |
+| +0xa4 | `char[32]` the pilot's **current campaign ship** (desnames alias) |
+
+The game mode's join hook (rules `+0x20` = `FUN_0044ff40`, which calls the mode's `+0x5c`, then
+`+0x10`) decides which ship you fly:
+- **Deathmatch** (`FUN_0041bf50`): team = `+0xa0` and ship = `+0xa4`, so you fly the ship your
+  campaign pilot owns now. `Spx_ResolveDesName` maps the alias to a `.des`, `Desc_CreateByType`
+  makes it the player DCB's descriptor, and 0x1107 tells every client. Then `FUN_0041bb90` puts
+  you in the first sector of the mode's sector table.
+- **Base wars / default** (`FUN_0040e3e0`): the server picks your team (`FUN_0040e340`, starting
+  from `+0x40`) and uses `+0x00` or `+0x20` to match it.
+- Then for every mode: the portrait goes out, weapons are set from `+0x58` with each weapon's
+  maximum ammo (`FUN_0044fec0` / `FUN_00492b40`), and the systems bits set shields etc.
+
+Later changes, after the in-game loadout screen closes, come as event **0x2028**
+(`Tach_SendLoadout 0x414f10`): systems bitmask plus a weapon/ammo list. The server's
+`FUN_004607b0` applies it as sent, also on trust.
 
 ### Startup name tables (stages 0 and 1) **[c]**
 
@@ -396,7 +573,7 @@ it in.
 | 0x18 | client frame counter (`0x5b3304`) |
 | 0x1C | current target: `u32 id, u16, u16` subtarget (0 = none) |
 | 0x24 | speed scalar (`0x5b1ecc`) |
-| 0x28 | throttle (`g_Throttle`), or `-1` when afterburner is on |
+| 0x28 | throttle (`g_Throttle`, 0..1024), or `-1` when afterburner is on. The server stores `>> 3` in `DCB+0xc1` (snapshot byte 6) |
 | 0x2C | `0x5b20ec` (energy/power-distribution setting [l]) |
 | 0x34 | one-shot interaction request: `u32 objId, u32 action` (cleared after send) |
 | 0x3C | velocity (world position delta) x,y,z |
@@ -427,8 +604,8 @@ Entity record, 24 bytes (28 with flag 0x08):
 | 0 | u32 entity id |
 | 4 | u8 model slot (into the stage-0 model table, `g_ObjModelPool`) |
 | 5 | u8 flags: 0x01 ?, 0x02 ship-like (has team/class), 0x04 ?, 0x08 extended/paged record, 0x10 far record (slow refresh), 0x20 ? |
-| 6 | u8 team / class |
-| 7 | u8 game-defined (callback `0x5b1dc4+0x1c`) |
+| 6 | u8 throttle / engine FX (`DCB+0xc1`): 0..128 throttle (128 = full), 255 = afterburner **[c, seen live]** |
+| 7 | u8 team: the rules' `+0x1c` hook; in MP (`FUN_0044feb0`) that's `DCB+0xc2`, the `race.cfg` index set at join (`Tach_SrvWriteEntityRecord 0x4614e0`; the client stores bytes 6/7 at `+0xc1`/`+0xc2`) |
 | 8 | pos dx,dy,dz relative to origin, **f16** |
 | 0xE | velocity x,y,z, **f16** |
 | 0x14 | orientation u8 x3 |
@@ -445,7 +622,7 @@ Client→server (`0x2xxx`). Sender functions `0x414ee0..0x415c70`, server dispat
 | type | size | R | meaning | evidence |
 |---|---|---|---|---|
 | 0x1116 | 0x24 | 800 | request chained scene/mission (strings) | `Sector_LaunchMission` [c] |
-| 0x2001 | 0x1c | 800 | **fire bolt**: `vec3 pos, u16 angles[3], u16 clientFrame @0x12, u8 slot @0x14, u8 weapon @0x16, u8 @0x17` | ammo check only, relays 0x1002; no server projectile [c] |
+| 0x2001 | 0x1c | 800 | **fire bolt**: `vec3 pos, u16 angles[3], u16 clientFrame @0x12, u8 slot @0x14, u8 weapon @0x16, u8 volume @0x17` (0x80 = full; receivers scale the shot sound by `volume*2/256`, so 0 is silent). The server checks the slot holds a weapon with ammo (`conn+0x164 + slot*0xc`, ammo in the 3rd dword, set only by 0x2028) | ammo check only, relays 0x1002; no server projectile [c] |
 | 0x2002 | 4 | 800 | request info on unknown entity id (sent when spawning a flag-0x04 record) | [l] |
 | 0x2003 | 0x14 | 4 | **hit report**: `vec3 hitPos, u32 targetId @0xc, u8 weapon @0x10, u8 kind @0x11, u16 dmgScale>>2 @0x12`. Server trusts it (see Weapons) | [c] |
 | 0x2004 | 0x24 | 800 | **fire missile**: pos, angles, f16 offset @0x12, `u32 clientFrame @0x18, u32 targetId @0x1c, u8 weapon @0x20, u8 @0x21, u8 lockFlag @0x22, u8 slot @0x23` | server spawns the real missile [c] |
@@ -469,7 +646,7 @@ Client→server (`0x2xxx`). Sender functions `0x414ee0..0x415c70`, server dispat
 | 0x2025 | 2 | 800 | `0x499440(u16)` | [?] |
 | 0x2026 | 4 | 800 | game-mode callback `+0x5c` | [?] |
 | 0x2027 | 0x16 | 4 | **capital ship part hit report**: like 0x2003 + `u16 partId @0x10`; server `CapShip_DamagePartById 0x40a420` | [c] |
-| 0x2028 | var | 800 | **loadout**: `u32 ship, u16 n, {u16 weapon, u16 ammo}[n]` | [c] |
+| 0x2028 | var | 800 | **loadout**: `u32 systemsBits, u16 n, {u16 weapon+1, u16 ammo}[n]`; applied as sent (`FUN_004607b0`) | [c] |
 
 Server→client (`0x10xx/0x11xx`). Senders `0x45d700..0x45ed20` (plus `0x40d9e0`, `0x4515e0`,
 `0x4611f0`, `0x461610`, `0x462030`), client dispatch `0x416fc0`. All 49 types are below. Columns: body
@@ -480,7 +657,7 @@ marked f16. "angles" are the high 16 bits of 16.16 angles (`<<16` on receipt).
 ### Combat and effects
 | type | size | R | to | layout / meaning | conf |
 |---|---|---|---|---|---|
-| 0x1002 | 0x1c | 1 | Q r4000 +sync | **projectile fired**: `vec3 pos, u16 angles[3] @0xc, u16 age @0x12` (server frame − fire frame, so the client fast-forwards it), `u8 weaponType @0x16, u8 @0x17, u32 targetId @0x18` | c |
+| 0x1002 | 0x1c | 1 | Q r4000 +sync −shooter | **projectile fired**: `vec3 pos, u16 angles[3] @0xc, u16 serverFrame @0x12` (the client fast-forwards by PLAYERINFO `gameFrame` (max seen) minus this; `Proj_CreateBolt` and `Proj_SpawnRemoteVisual` both call `Proj_Launch` with that age, so it's applied **twice**), `u8 weaponType @0x16, u8 volume @0x17` (copied from 0x2001), `u32 shooterId @0x18` (the client also calls the shooter's desc `+0x80` callback with event 8) | c |
 | 0x1003 | 0x16 | 4 | Q r(type) [-P] | **entity destroyed + explosion**: `vec3 pos, u32 deadId @0xc, u32 relatedId @0x10, u8 effect @0x14` (0..11, handler table `0x535a68`), `u8 @0x15`. Client plays the effect and removes `deadId` | c |
 | 0x1004 | 0x1c | 4 | Q r375 [-P] | **projectile impact**: `vec3 pos, u32 hitId @0xc, u32 projectileId @0x10, u16 @0x14, u16 hitDir[3] @0x16`. Client removes the projectile and plays the shield/hull hit effect (throttled to 1 per 12 frames per entity) | c |
 | 0x1020 | 0x18 | 800 | Q | **entity/turret fired**: `u8 weaponType, u8 fromSubpart, f16 pos[3] @2, f16 dir[3] @8, u32 shooterId @0xe, u32 targetId @0x12, u16 subpartIdx @0x16`. Mirrors client→server 0x2017 | c |
