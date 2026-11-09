@@ -76,3 +76,5 @@ result into the topic note.
 ## Single-player / netcode (`singleplayer.md`, `multiplayer.md`)
 - [ ] Real-time server tick rate: is it one `NetSrv_Tick` per 50 Hz fixed step?
 - [ ] Startup name tables (stages 0/1): capture and decode the actual STARTUPDATA blob.
+- [ ] Replica lag in a real MP session: break in `TachCli_ReplicaThink 0x415430` and compare the replica's `+0x34` with `+0x108`. At steady velocity, expect
+  `+0x108 − +0x34 ≈ 15 × +0xa0`. Also confirm the 16-tick snapshot interval per client.

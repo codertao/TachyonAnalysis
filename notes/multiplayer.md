@@ -101,6 +101,103 @@ round-robins: on tick *t* it sends only to player slots with `(slot & 15) == (t 
 (`FUN_004b87b0(16)`), so each client gets ~1 packet per 16 server ticks. Frame/tick rate itself is
 not yet pinned.
 
+## Motion smoothing and latency **[c]**
+**Your own ship** is simulated only by your client. Movement is client-authoritative, and the
+snapshot builder skips the player's own entity, so the server never corrects it. Local flight
+has no added latency.
+
+**Replicas** (`TachCli_ReplicaThink 0x415430`; projectile replicas use the same
+code in `FUN_00497d00`) keep two positions:
+- **Network target:** `+0x108`. Each snapshot sets it to the record's position, and stores the
+  record's velocity in `+0xa0` and its angles in `+0xac..+0xb4`.
+- **Shown position:** `+0x34`.
+
+Every 50 Hz tick:
+```
+target += velocity                    // dead reckoning (velocity is per tick)
+pos    += (target - pos) >> 4         // ease 1/16 per tick
+angle  += (targetAngle - angle) / 32  // ×0x80 >> 12; the ×128 overflow wraps the difference,
+                                      // so it turns the short way. No angular velocity is sent.
+```
+
+**Behaviour of that filter:**
+- At constant velocity the shown position trails the dead-reckoned one by 15 ticks of motion
+  (300 ms).
+- A correction is 64% done after 16 ticks and 95% after about 46 ticks (0.9 s).
+- Angles ease with a time constant of about 32 ticks (0.64 s).
+- The wire carries angles at 8 bits (1.4°), and position and velocity as f16 (12-bit mantissa,
+  relative to the client's camera).
+
+**Single player:** the replica is linked to its server DCB (`+0xf4`) and copies it exactly
+each tick, with no smoothing.
+
+**The server's copy of a player** (`FUN_00460d90`, installed by `0x4552a0`) runs the same
+filter:
+- `Tach_SrvReadPlayerData` sets the target (`+0x158`), velocity and angles (`+0x164`).
+- Each tick: target += velocity, pos += (target − pos) >> 4, and angles ease at 1/8 (×0x80 >> 10).
+
+**What the server sends:** the snapshot (`Tach_SrvWriteEntityRecord 0x4614e0`) carries the
+server's *shown* `+0x34`, so another player passes through two filters.
+
+**Rates:** each client sends PLAYERDATA every 16 frames, and the server sends each client a
+snapshot every 16 ticks (round robin). That's 320 ms each way at 50 Hz, assuming one
+`NetSrv_Tick` per fixed step (see `to_verify.md`).
+
+**Example with a 200 ms round trip (100 ms each way), constant velocity:**
+- An **AI ship** is server-simulated, so its server position is exact. On your screen it trails
+  by about 100 ms (transit) + 300 ms (your smoothing) ≈ **0.4 s** of motion.
+- **Another player:** 100 ms (their packet to the server) + 300 ms (server smoothing) + 100 ms
+  (snapshot to you) + 300 ms (your smoothing) ≈ **0.8 s** of motion behind where they really
+  are. Dead reckoning stops this growing between packets, but nothing compensates for transit
+  time; the `clientFrame` field isn't used for positions.
+
+**A maneuver** (another player turns):
+- The news reaches you after 0–320 ms (their send slot) + 100 ms + 0–320 ms (your snapshot slot)
+  + 100 ms. That's about 0.5 s on average and up to about 0.85 s.
+- Until then both filters dead-reckon along the old velocity, so the replica overshoots.
+- When the new target arrives it jumps to the new path and the shown ship curves back over
+  about 1 s, so the replica swings wide and rubber-bands.
+- Orientation follows separately and lazily (0.64 s time constant, no rotation rate), so the
+  nose can visibly lag the direction of travel.
+
+**Combat consequences** (see Weapons below):
+- Bolt hits are decided by the shooter's client against the shown replica. You aim at what you
+  see with no lag lead, and the server trusts the report.
+- So the target is hit where it was about 0.4–0.8 s ago, from its own point of view.
+- Server-side shots (AI, missiles) are tested against the server's copies. Those trail a moving
+  player by about 0.4 s (transit + server smoothing), which makes players slightly harder for AI
+  to hit than they appear.
+
+### Interest management and refresh rates **[c]**
+**No timestamp:** snapshots have no timestamp that the client uses. `NetCli_HandleGameData`
+passes an estimated frame count to the callback, but `Dcb_ApplySnapshot` ignores it. A record
+is just position, velocity and angles, taken as "now".
+
+**Radii** are set per connection in `Ent_SetQuadrant 0x4577d0`:
+
+| Radius | Value |
+|---|---|
+| near (`+0x15c`) | 3750 units |
+| far (`+0x160`) | 10000 units (5000 with `g_FlightStateFlags & 4`) |
+| both, in quadrants with descriptor flag 2 | 3000 units |
+
+**What each snapshot carries** (`Tach_SrvWriteSnapshot 0x461870`):
+1. **Near:** entities within the near radius of your camera, **at most 8** (2 during startup).
+   - They're taken in the quadrant's entity-list order, **not** by distance.
+   - With more than 8 nearby, the same list-order entities win every time.
+2. **Your target**, if it hasn't been sent already.
+3. **Far:** a cursor walks a list of everything within the far radius (rebuilt each time the
+   cursor reaches the end). Each snapshot sends the next **2** not already sent, with flag 0x10.
+   - This is also the only way near entities past the cap of 8 get updated.
+4. **Persistent objects:** a page of them (descriptor records, acked with 0x2008).
+
+**Client expiry** (`Dcb_ApplyRecord` / `TachCli_ExpireReplicas`):
+- A normal record sets the replica's life to 1. It's deleted after two consecutive snapshots
+  without it (about 0.64 s).
+- A far record sets the life to 1000 / send interval = 62 snapshots (about 20 s).
+- So far-only entities dead-reckon in straight lines for (far-list size / 2) snapshots between
+  refreshes. With 30 ships within 10000 units that's about 5 s.
+
 ## Join / startup handshake **[c]**
 
 1. Netsock join (`netsock_JoinSession`), engine allocates a player slot (`FUN_004b7bf0`; name from
@@ -176,6 +273,86 @@ count x {
 
 Ordering matters: stage 0 is sent first so that by the time descriptors (stage 1) and the player's
 own ship (stage 2) are created, every model slot they reference already exists on the client.
+
+## Ship-to-ship collisions and death **[c]**
+**Collisions:** each client tests only **its own ship** against its replicas (see `collision.md`,
+"Player ship collision").
+- On a hit it bounces or deflects locally and reports 0x2009 `{its speed, other id}`.
+- The server (`TachSrv_OnCollision 0x45fd70`) damages the reporter by
+  `maxShield × clamp(speed / maxSpeed × 0.95, 0.2, 1.25)`, and the **other** ship takes the same
+  amount (`TachSrv_DamageEntityById`, type 0x26).
+- Nothing moves the other ship; positions are client-owned.
+
+**Consequences in MP:**
+- Whether a collision happened is decided on the reporter's screen, against a lagged replica.
+- If A rams B's replica, A bounces. B loses the same shields or hull with no bounce, possibly at
+  a point where on B's screen A was nowhere near.
+- If both clients see the contact, both report it, and each ship takes damage twice: its own
+  report plus the other's. Each report uses the reporter's own speed.
+- The cooldown (50 / 100 frames) is per client, so each side reports at most once per cooldown.
+
+**Death is server-side.** The client's hull, shield and energy meters are whatever GAMEDATA says
+(`Tach_ReadGameData`). `TachSrv_OnShipKilled 0x45fc30` runs when the server's copy reaches
+hull ≤ 0 after any damage:
+- a trusted bolt hit report (0x2003 → victim `+0x80` = `TachSrv_DamagePlayer 0x460f60`);
+- a collision report, from either party;
+- server weapons (AI bolts, missiles, sappers, beams);
+- sector hazard damage (`FUN_00460c20`: when the quadrant flag `+0x88 & 1` is set, 150 every 16
+  ticks).
+
+**What the kill handler does:**
+- Sends 0x1006 to the victim, 0x1003 (explosion, effect 3) and 0x1014 op 8 (remove) to the
+  quadrant.
+- Marks the ship dead (`+0xc3 = 1`, des `+0x1d0 = 1`, so no collision damage while dead), and
+  counts deaths.
+- Credits the kill to the last damager (`0x5653f4`, set by whichever handler dealt the blow), or
+  calls a collision / suicide hook.
+- Calls the rules hook `+0x24` and broadcasts the scoreboard (0x1112).
+
+**Respawn:** the client asks with 0x2011 (`FUN_0045ff10`). The rules hook `+0x3c` places the
+ship and 0x1012 teleports it.
+
+**Timing:** the victim keeps flying (and firing) until 0x1006 arrives: 0–320 ms waiting for its
+packet slot, plus one-way latency. Whether the server drops hit reports from a dead shooter
+isn't checked here **[?]**.
+
+## Sector loading and quadrant entry **[c]**
+**Only the server reads `.SPX` files.**
+- Every `Spx_LoadSector` caller is on the server side:
+  - `Gate_SpawnAndPreload` (a gate preloads its linked sector, so the server holds neighbouring
+    sectors as live quadrants);
+  - `Sector_Transition`, from `Gate_JumpToSector` and `Sector_LaunchMission` (via
+    `Tach_SrvDispatchEvent`);
+  - `Sector_StartMP` (via the round-start paths that also send `SrvSend_RoundResume`).
+- A remote client never parses the sector layout, its triggers or its placements. In single
+  player and on a listen host the "client" is in-process with the server, so it still sees the
+  loaded world.
+
+**MP gate jump** (`FUN_0045f880` → `FUN_0045f690`, when the gate has no hard sector transition):
+- The server moves just that player between already-loaded quadrants (`Ent_LeaveQuadrant` /
+  `Ent_SetQuadrant`), places them at the exit, and builds that connection's **static object list**
+  (`FUN_0045f460`, "PLAYER_STATIC_OBJ_LIST").
+  - The list holds the quadrant's entities with `+0xc3 & 3 == 3`, sorted by distance from the
+    player. `FUN_0045f3c0` can override an entity's distance.
+- It then sends `SrvSend_EnterQuadrant`: position, angles, quadrant, BDF name, and optional scene
+  name.
+
+**Client** (`Quadrant_OnEnter 0x416420`, via `Tach_CliDispatchEvent`):
+- Places the player ship and clears local world state (`FUN_00416300`: threat list, replica
+  pools, hostile count).
+- Loads the BDF backdrop, and if a scene name was sent, plays that `.SEN` (the gate / hyperspace
+  sequence; `NEWQUADRANT: SCENE PLAY(%s)`).
+- Then **immediately** acks with 0x2008 kind 2 ("ready for snapshots").
+
+**Filling the world:** statics then arrive inside the normal snapshots.
+- Each snapshot carries **4** extended records (12 during startup state 2) from the static list,
+  nearest first (`FUN_004616c0`).
+- The client acks each page with 0x2008 kind 1 before the next is sent.
+- So a sector with N statics takes about N/4 snapshots to fill: 60 statics is 15 × 320 ms ≈ 5 s
+  at the steady rate. Much of that is hidden by the scene playing.
+- Each record names a descriptor slot, and `TachCli_SpawnFromDesc` builds the full class object
+  (model, collision mesh, class behaviour) from the client's own copy of the `.des`.
+- Ships and other dynamic entities come through the normal near / far interest selection above.
 
 ## PLAYERDATA (C→S, 0x4C bytes) **[c]** (writer `0x417eb0`, reader `0x460b30`)
 
@@ -375,6 +552,15 @@ the server pool".
    - On the client that handler is a `*_ReportHit` stub. It sends **0x2003** `{hitPos, targetId,
      weapon, shield/hull, dmgScale}` (or **0x2027** with a part id for capital ship parts) and
      plays the spark locally.
+   - The cast uses the target replica's **displayed** pose: `Coll_SegmentVsSphere` reads entity
+     `+0x34`, and `Coll_SegmentVsModel` uses model-instance `+0x1c` / `+0x34`, which are entity
+     `+0x34` / `+0x4c`. That's the eased position and angles, not the network target `+0x108`.
+     You hit what you see, including a replica's dead-reckoning overshoot.
+   - **Victims have no say.** On the target's own client the bolt is a `Proj_PostThinkVisual`
+     copy: if it touches the local ship (or anything), it's just freed (`FUN_0041b8c0` →
+     `FUN_004b79a0`) with no damage, report or spark **[l: no effect]**. If the shooter's replica
+     of the victim didn't cross the bolt, it's a miss, even though the victim saw the bolt reach
+     them and vanish.
 5. **Server** (`TachSrv_OnHitReport 0x45f180`):
    - **Trusts the report.** It doesn't check that the shot was fired, the range, or line of sight.
    - Recomputes the damage as `def+0x14 × scale` and calls the real `+0x80` damage handler.
