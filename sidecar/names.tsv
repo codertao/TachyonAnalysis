@@ -1031,3 +1031,19 @@
 0x4b25a0	Curve_Eval	mode 1 a+c*rand, 2 a/b by frame parity, 4 a+c*sin(d*t), else b
 0x4b2580	Rng_Pak	rotate-add RNG for model effects
 0x4b4e90	Mat_GetAnimFrame	material + (counter[+0x1a] % frames[+0x19]) * 0x1c
+0x415060	Music_UpdateFlightVars	in-flight music vars: 0 hostiles, 2 job status, 3 shield state, 4 ?, 5 dialog timer, 6 region*1000+sector, 7 CURRENT_JOB (notes/music.md)
+0x4b5320	Music_SelectSegment	SBF entry -> stream cursor; index >= count plays entry 0; sets the per-read volume step
+0x4b53b0	Music_StreamTick	feeds 4 KB ADPCM reads to the stream; runs the script when the segment ends
+0x4b5510	Music_Stop
+0x4b5620	Music_SetFadeOut	master fade speed (Hyper_Enter: 0x20)
+0x4b5670	Music_SetVar	script global slot = value (FUN_004b5b20)
+0x4b5690	Music_GetVar
+0x4b56b0	Music_PlaySegment	script opcodes 0x3d/0x3e
+0x4b56e0	MusNat_GEcho
+0x4b5700	MusNat_GSV	set volume now (0..255)
+0x4b5740	MusNat_GSDV	set target volume, reached by the segment end
+0x4b5770	MusScr_ResolveNative	name -> native table (0x55ed28, 0x24-byte records)
+0x4b59f0	MusScr_Start	find script by name, alloc globals+locals, enter start state
+0x4b5b80	MusScr_Run	run the script once (event entry at script+0x40)
+0x4b5c10	MusScr_Interp	stack-VM loop: ESI ip, EBP data stack, EDI call stack; 32-op budget; CF = yield; opcode table 0x55ee5c
+0x4b6200	MusNat_GGRnd	rand in [lo, hi]: rol11+add, rol2 generator, seed 0xbabeface at 0x55ef7c

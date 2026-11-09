@@ -63,6 +63,7 @@ Naming source of truth: `decomp/sidecar/names.tsv`.
 | Addr | Role |
 |---|---|
 | `0x4a90a0` | streaming-audio refill (16×16KB ring buffer, 16→8-bit, WAV loop at 0x2c) |
+| `0x4b53b0` | in-flight music: `Ttfmusic.sbf` ADPCM segments sequenced by the `TTFMUSIC.BIN` script VM (`notes/music.md`) |
 | `0x44bd40` | profile/loadout init; default ships `BORA_CUTLASS` (0x547ef0), `GALSPAN_ORION` (0x547f00) |
 
 ## Recovery status (verified via FnStats.java)

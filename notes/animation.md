@@ -154,7 +154,92 @@ All three copy the gate's position and orientation.
   - The stargate's `GATE_OPEN` runs about 16.3 s, including a 6 s PAUSE on its first keyframe that matches the
     centre's and flare's 6 s waits. Its `GATE_CLOSE` runs 12.5 s.
   - The anm's `particle_path`s stream smoke / violet particles from the pylon tips to the centre
-    during the transition.
+    during the transition (see "Particle paths").
+
+## Particle paths [c]
+
+Both gate body anms (`stargate.anm`, `Megagate.anm`) have them. Particle types come from
+`particle_paks` (`BLUE_PARTICLE` = `smoke.pak`, `VIOLET_PARTICLE` = `vlt_part.pak`; each is one
+quad, additive), loaded into the FX pool by `Anim_LoadParticlePaks 0x405e20`.
+
+**Record** (`Anim_ParseParticlePath 0x4068c0`, 0x9c bytes):
+
+| offset | field | units |
+|---|---|---|
+| +0x00 | WAIT | ticks |
+| +0x04 | LIFETIME | ticks |
+| +0x08 | particle model | |
+| +0x0c, +0x10 | SRC_PART part, attach index | |
+| +0x14..+0x1c | SRC_START (intensity, scale, spread) | 16.16 |
+| +0x20 | VOLUME_START | int << 16 |
+| +0x24 | PARTICLE_LIFE_START | × 50 × 65536, i.e. 16.16 ticks |
+| +0x28..+0x38 | SRC_END / VOLUME_END / LIFE_END | replaced by per-tick steps |
+| +0x3c..+0x4c | current src values, volume, life | |
+| +0x50, +0x54 | DEST_PART part, attach index | |
+| +0x58..+0x60 | DEST_START | 16.16 |
+| +0x6c..+0x74 | DEST_END | replaced by steps |
+| +0x80..+0x88 | current dest values | |
+| +0x94, +0x98 | wait and life countdowns | |
+
+`FUN_00406840` turns each `_END` into a per-tick step, `(end − start) / LIFETIME`.
+
+**Per tick** (`Anim_StepParticlePath 0x407760`, from `FUN_00407820` in `Anim_Think`, after
+`Anim_StepFrame` has posed the model):
+1. Count down WAIT.
+2. Then, for LIFETIME ticks, add the steps.
+3. Emit if `rand % 50 <= volume`.
+
+**Emit** (`Anim_EmitParticle 0x407610`):
+- The particle is a new entity (DCB pool `0x5b32d8`) with instance flags 0x94: self-lit, scaled,
+  and flag 4, which is a whole-instance billboard (`Part_ComputeTransform` skips rotation).
+- Life is `n = life >> 16` ticks. Scale `+0x1c` = src scale, and intensity `+0x2c` = src
+  intensity, raw 16.16.
+- Scale and intensity step towards the dest values over n ticks.
+- Positions come from `FUN_00407560`: the part's attach point (the transformed position that the
+  loader-patched pointer in the attach record points to; the entity origin if the index is out of
+  range) plus the entity position. Each axis adds `rand % spread − spread / 2`.
+- The particle moves `(dest − src) / n` per tick.
+- Its think, `0x4074f0`, adds the steps and frees the particle after n ticks. Particles outlive
+  the animation.
+
+**Intensity** is clamped to 0..255 when shaded (`FUN_004b19f0` → `FUN_004b4c10`). The stored
+value is 16.16, so any intensity above 1/256 draws at full brightness. In practice the particles
+are always full-bright except at the very start of a path whose source intensity is 0.
+
+**stargate `GATE_OPEN`:**
+- 18 paths from `TIP_A..F` (attach 0–2) to `CENTER` during the 6 s wait.
+- Two centre bursts at 6 s, with spread 0.1 → 30, scale 6 → 1, and particle life 0.3–0.8 s.
+
+**`GATE_CLOSE`:** similar streams start at 3.4 s, and the bursts come at 8 s.
+
+## Gate sounds [c]
+**Keyframe sounds** (`Anim_StepFrame`):
+- Reaching a keyframe loads its SOUND label and delay (ticks).
+- The delay counts down each tick, pauses included. At zero, the label → sample name goes
+  through `sound_labels` and plays via `FUN_00466710` → `FUN_00466440`.
+- Reaching the next keyframe overwrites a pending sound, so a delay longer than the keyframe's
+  TIME + PAUSE is lost.
+- Labels with no `sound_labels` entry are silent (stargate `SPHERE_CONTRACT`, `SPHERE_FLASH`).
+- stargate `GATE_OPEN` fires `GATE_OPEN_2` at tick 455 and `GATE_OPEN_3` at 570 and 683.
+  `GATE_CLOSE` fires `GATE_CLOSE` at tick 1, and gate_flr `GATEWAY_OPEN` fires `GATE_OPEN_1` at
+  tick 1. The Megagate anms have no sounds.
+- These one-shots are 2D: volume = 255 − distance/2 (world units), with pan from the bearing.
+
+**Ring loop.** Gate creation calls `FUN_00426700` → `FUN_00466160` → `FUN_00466000`, which
+starts a looping 3D sound from the des `[sound]` group. The keys are read through the table at
+`0x535ec8`:
+- `INNER_RING_SOUND` gives the sample.
+- `INNER_FALLOFF a, b` gives max distance = `a << 13` (16.16) and min = `b << 13`, or max/25 if
+  b is 0. For the stargate that is 2500 and 43.75 units.
+- `INNER_PITCH` is 16.16.
+- Volume is 0xff. The loop is culled beyond max.
+- The table has no `OUTER_*` keys, so the megagate's `OUTER_RING_SOUND` is never read.
+
+**SPACE.PWF** (PWF2):
+- Header (0x1c bytes): +0 header size, "PWF2", sample count (334), trigger count (76), total
+  size.
+- Then 0x34-byte records: name[0x18], offset, size, volume (0xff00 = full).
+- Then 0xc-byte trigger records, then RIFF WAVs: mostly 22,050 Hz 8-bit mono PCM, one MS-ADPCM.
 
 ## Open
 - (Resolved) degree → engine angle is `× 512/360 × 65536`, i.e. 2^25 per turn.
