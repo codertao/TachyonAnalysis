@@ -30,9 +30,9 @@ int FUN_0046b520(undefined4 param_1,int param_2)
         Cbin_GetField_Ctx(&DAT_00532af4,s_TT_ID_TITLE_0054ad80,iVar6 + -0x20,0x1f,0,local_6c);
         Cbin_GetField_Ctx(&DAT_00532af4,s_FONT_SHORT_0054ac68,iVar6,0x1f,0,local_6c);
         Cbin_GetField_Ctx(&DAT_00532af4,s_TICKER_BAR_0054ad74,0,0,iVar6 + 0xa8,local_6c);
-        uVar4 = FUN_0049e0d0(DAT_005879ac,&DAT_0054ad6c,iVar6 + -0x40);
+        uVar4 = Rtxt_Lookup(DAT_005879ac,&DAT_0054ad6c,iVar6 + -0x40);
         *(undefined4 *)(iVar6 + 0x68) = uVar4;
-        uVar4 = FUN_0049e0d0(DAT_005879ac,&DAT_0054ad6c,iVar6 + -0x20);
+        uVar4 = Rtxt_Lookup(DAT_005879ac,&DAT_0054ad6c,iVar6 + -0x20);
         *(undefined4 *)(iVar6 + 0x6c) = uVar4;
         Cbin_GetField_Ctx(&DAT_00532af4,s_AUDIO_ICON_0054ad60,0,0,iVar6 + 100,local_6c);
         Cbin_GetField_Ctx(&DAT_00532af4,s_AUDIO_HEADLINE_0054ad50,iVar6 + 0x20,0x1f,0,local_6c);

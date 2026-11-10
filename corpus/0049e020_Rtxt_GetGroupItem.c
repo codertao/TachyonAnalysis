@@ -1,5 +1,7 @@
 
-undefined4 FUN_0049e020(undefined4 param_1,undefined4 *param_2,uint param_3)
+/* (rt, grpHdr, i) -> record of the i-th key in group (re-found by key name) */
+
+undefined4 Rtxt_GetGroupItem(undefined4 param_1,undefined4 *param_2,uint param_3)
 
 {
   char cVar1;
@@ -14,7 +16,7 @@ undefined4 FUN_0049e020(undefined4 param_1,undefined4 *param_2,uint param_3)
   }
   do {
     if (param_3 == 0) {
-      uVar3 = FUN_0049e2e0(param_1,pcVar2);
+      uVar3 = Rtxt_FindKey(param_1,pcVar2);
       return uVar3;
     }
     uVar4 = 0xffffffff;

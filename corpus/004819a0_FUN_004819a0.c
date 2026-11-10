@@ -91,7 +91,7 @@ void FUN_004819a0(void)
     FUN_0043e6a0(DAT_00571280,s_TxtOptP4MsgTxt_00556da8,&DAT_00562b14);
   }
   else {
-    piVar5 = (int *)FUN_0049e0d0(DAT_00563d68,s_remap_messages_00556db8,s_INPUT_REMAPPED_00556dd4);
+    piVar5 = (int *)Rtxt_Lookup(DAT_00563d68,s_remap_messages_00556db8,s_INPUT_REMAPPED_00556dd4);
     if ((piVar5 != (int *)0x0) && (*piVar5 != 0)) {
       FUN_0043e6a0(DAT_00571280,s_TxtOptP4MsgTxt_00556da8,*piVar5);
     }

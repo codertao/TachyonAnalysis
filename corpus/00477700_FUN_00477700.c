@@ -14,7 +14,7 @@ void FUN_00477700(void)
   DAT_00563638 = (char *)0x0;
   if (iVar2 != 0) {
     if ((*(char *)(iVar2 + 0xf4) != '\0') &&
-       (puVar3 = (undefined4 *)FUN_0049e0d0(DAT_005879a8,&DAT_00534280,iVar2 + 0xf4),
+       (puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005879a8,&DAT_00534280,iVar2 + 0xf4),
        puVar3 != (undefined4 *)0x0)) {
       uVar4 = 0xffffffff;
       pcVar6 = (char *)*puVar3;

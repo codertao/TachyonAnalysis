@@ -20,7 +20,7 @@ void FUN_0042ce90(int param_1)
     puVar5 = puVar3 + 2;
     do {
       FUN_0049bdb0(&DAT_00536860,local_98,0x18,0,4,1);
-      uVar2 = FUN_0049e340(DAT_005a6140,local_98);
+      uVar2 = Rtxt_KeyIndex(DAT_005a6140,local_98);
       *puVar3 = uVar2;
       FUN_0049b930(&DAT_00536860,0,0,puVar5 + -1,1,2);
       FUN_0049b930(&DAT_00536860,0,0,puVar5,1,3);

@@ -26,7 +26,8 @@ key = rol32(key, 7);  byte ^= (key & 0xff);   // key carried forward across byte
 ```
 u32 group_count
 group_count × { u32 group_id;  u32 entry_count }     // group_id = 1-based index into string table
-entries  (per group: entry_count+1 records, last is a {0,0} terminator)
+entries  (per group with entry_count > 0: entry_count+1 records, last is a {0,0} terminator;
+          an empty group contributes nothing)
          { u32 entry_id;   u32 param_count }          // entry_id = 1-based string index
 params   { union{i32; f32} value;  u32 type }         // type: 1=int, 2=float, 4=string(1-based strIdx)
 string table @ text_offset: text_count × NUL-terminated ASCII
@@ -309,22 +310,53 @@ allocates the sector object and reads `buf+0`/the section descriptors), not the 
 +0x10 u32  SPED offset  (0x1a4)     /
 +0x14 u32  placement count   (5)    \   object placement / SPED-def section
 +0x18 u32  placement offset  (0x338) }  (the x/y/z spawn data; variable-stride records)
-+0x1c u32  ?                  (0x14)  /
-+0x20 u32  trigger count  (1)        \   MISSION TRIGGER TABLE (Spx_RelocParamSection 0x48dac0;
++0x1c u32  trigger recSize (0x14)    \
++0x20 u32  trigger count  (1)         }  MISSION TRIGGER TABLE (Spx_RelocParamSection 0x48dac0;
 +0x24 u32  trigger offset (0x2dc)    /    trigger 0x14, condition 0x28, action 0x10; see missions.md)
-+0x2c u32  sub-sector count  (2)     \   sub-sector "stage" section (conditional; stride 0x2c)
++0x28 u32  sub-sector recSize (0x2c) \
++0x2c u32  sub-sector count  (2)      }  sub-sector "stage" section (conditional)
 +0x30 u32  sub-sector offset (0x234) /
 +0x34 char QUAD name[] (e.g. "QUAD_05") = this sector's QUADRANT id (galaxy: Region -> Quadrant);
                                            resolved via Sector_GetQuadrantName 0x457ba0
-+0x58 u32  dialog count / +0x5c offset: .SCR dialog names, stride 0x10 (trigger action 2, event 7)
-+0x64 u32  scene count  / +0x68 offset: .SEN cutscene names, stride 0x10 (trigger action 3)
-+0x70/+0x74  further relocated section (count 2 in BORA05; unidentified)
-+0x78 char BDF backdrop[] (e.g. "BORA5.BDF")
-+0x8c u32  SPED-instance count       \   SPED instance-data (Spx_InitSectionC 0x435550; stride 0x14,
-+0x90 u32  SPED-instance offset      /    each with a sub-array stride 0x20; see Sector_GetSpedRecord)
-+0xe8 u32  link count                \   link / cross-reference section (Spx_LinkSection 0x435690;
-+0xec u32  link offset               /    variable stride)
++0x54 u32  dialog recSize (0x10) / +0x58 count / +0x5c offset: .SCR dialog names (trigger action 2, event 7)
++0x60 u32  scene recSize (0x10)  / +0x64 count / +0x68 offset: .SEN cutscene names (trigger action 3)
++0x6c u32  label recSize (0x20)  / +0x70 count / +0x74 offset: mission/script labels (BFGF_05...);
+                                   relocated at load, consumer not found yet
++0x78 char BDF backdrop[0x10] (e.g. "BORA5.BDF")
++0x88 u32  sector flags: bit0 RADIATION (Sector_RadiationTick 0x460c20: 150 dmg / 16 ticks unless
+           des +0x158 & 8), bit1 FOG (Ent_SetQuadrant 0x4577d0: sensor/vis range 60000|10000 -> 3000
+           unless des +0x158 & 0x40). The bits are probably the RADIATION SCREEN / FOG RADAR items [l].
+           Gameplay fog only; the BDF [fog] block does the rendering.
++0x8c u32  route count               \   waypoint ROUTES ("waygroups"; Spx_InitSectionC 0x435550):
++0x90 u32  route offset              /    hdr 0x14 {nPts, ptsOff, tag, 0, 0}, point 0x20 (below)
++0xa0 u32  number of kind-2 placements (editor bookkeeping; true in all 302 files)
++0xa4 u32  ? (0..12+)
++0xe8 u32  spawn-list count          \   group SPAWN LISTS (Spx_LinkSection 0x435690): variable-size
++0xec u32  spawn-list offset         /    {recSize, entSize=28, id, nEnt, entOff}; id = trigger group id
++0xf0 u32  alias recSize (0x20) / +0xf4 count / +0xf8 offset: AI callsign aliases ("Python 1")
++0xfc u32  region id   \  passed to the sector registry (FUN_00457e60) when a main SPX loads
++0x100 u32 sector id   /
++0x104 u32 group-name recSize (0x20) / +0x108 count / +0x10c offset: FG_*, CONT_*, ship names
++0x110 s32 -1
++0x118 u32 BaseWars base sector, +0x11c base race (0 none, 1 Bora, 2 GalSpan; NovaResearch's
+           reading, set only in BW maps, no reader found)
 +0x1a0 u32 runtime reloc base (= buf + 0x1a4 - first_offset; added to every section offset at load)
+```
+The header is variable length (`first_offset` = 0x1a4 in 296 files, 0x11c in 4, 0x108 in 2); fields
+past it are absent. Loader relocates +0x10/18/24/30/5c/68/74/ec/f8/10c. Labels, aliases, group names,
+spawn lists, region ids, the 0x88 flag and the BW fields were first identified by NovaHQ's
+NovaResearch SPX doc (github.com/Novahq-net/NovaResearch) and checked here against data/code.
+
+**Route point** (0x20): `vec3 pos; s32 action; s32 param; 3 × s32 ?`. On arrival
+`Nav_RunWaypointAction 0x4017b0`: 0 = change route to `param` (tag<<16|point), 1 = hyperspace out,
+2 = ACTIVATE, 3 = ENTERGATE `param` (group members instead get AI order `param`), 4 = UNSPAWN;
+anything else (−1 is common) advances to the next point, wrapping to the first.
+**Routes have an index and a tag.** Placements pick their initial route by index (placement
+`+0x48 {route, point}`, `Nav_InitRoute 0x4349a0`). Everything else uses the tag: the
+waypoint-reached event posts `tag<<16 | pointIndex` (`Nav_ReachedWaypoint 0x4018a0`), and
+`Nav_ChangeRoute 0x405990` (point action 0 and CHANGE_WP) resolves the tag with
+`Nav_FindRouteByTag 0x4058f0` (debug: `WAYGROUP %d NOT FOUND`). In 176 of 302 files tags ≠ indices.
+```
 ```
 Load-time parse (`Spx_LoadSector 0x4356e0`): relocate the section offsets by `*(buf+0x1a0)`, then
 **`Spx_SpawnDecls (0x4351a0)`** + **`Spx_ApplyPlacements (0x4351e0)`**.
@@ -411,8 +443,44 @@ class struct. The **flight-handling** groups and their runtime homes:
 
 (Key names dumped from `BARSHUT.DES` via the decrypt in `cbin.py`.)
 
+## RTXT — compiled string tables (`.bin`)
+23 files in Tachyon.pff: JOBS, ITEMS, NEWS, WINGMEN, HELPTEXT, SHIPTEXT, ingame, front, MPGAMES,
+CINEMA, Credits, MAP, SPACEMNU, NOVAWORL, BASE0 and the region tables (BORA, EARTH, ...).
+Parser `TachyonFileFormats/src/rtxt.py`, spec `ksy/rtxt.ksy`. Not encrypted. **[c]**
+```
++0x00 "RTXT"   +0x04 u32 groupTableOff   +0x08 u32 groupTableLen (excludes the u32 groupCount)
++0x0c u32 n
++0x10 n × 16  { u32 valueOff (rel. to end of this table = 16+16n); s16 x; s16 y; s16 group; 6×0 }
+       value strings (NUL-terminated)
+@groupTableOff: u32 groupCount; groupCount × { u32 keysOff (rel. groupTableOff+4); u32 nEntries }
+       groupCount names, then n key names in record order
+```
+Records are global (0..n−1); group g owns the next `nEntries`. So it is an INI: `[group] key=value`.
+In all Tachyon files x = y = 0, `group` = owning group index, and the engine reads only the value.
+
+**Engine.** `load_rtxt_bin 0x49df00 (name, allocTag)` loads the whole file through the normal
+file layer (`load_a_file_probably`, so disk or PFF), then `markup_rtxtbin_as_ptrs 0x49dea0`
+patches every record's value offset and every group's keys offset into a pointer in place.
+There is no magic check (same as SPX). Accessors, all string compares over the flat key list:
+
+| fn | does |
+|---|---|
+| `Rtxt_Lookup 0x49e0d0 (rt, group, key)` | the main one: find group by name, then key within it → record |
+| `Rtxt_FindKey 0x49e2e0 (rt, key)` / `Rtxt_KeyIndex 0x49e340` | key anywhere → record / global index |
+| `Rtxt_GetRecord 0x49df40 (rt, i)` / `Rtxt_GetKeyName 0x49df60` / `Rtxt_GetCount 0x49dfa0` | by index |
+| `Rtxt_GroupBaseIndex 0x49e260`, `Rtxt_GetGroupItemByName 0x49e160 (rt, group, i)` | group-relative |
+| `Rtxt_FindValueInGroup 0x49e1e0 (rt, group, value)` | reverse lookup: value → global index (−1) |
+
+Callers take `*record` (the value string). Examples: `Map_UpdateSectorText` looks up
+`QUADRANT_NAMES` / `SECTOR_CONTENTS`; `Job_ParseBriefingBlock` and `Job_LoadAll` resolve `TT_ID_*`
+ids in JOBS.BIN; `.BAS` `TEXT_TOOL_*BIN` keys name a region's tables. The second argument
+(`0xa100`, `0xcccc`, `0xd520`, ...) is only a memory-allocation tag.
+
 ## PFF / SBF / PAK / PCX
 See `TachyonFileFormats` (PFF = tar-like archive, 32/36/40-byte entries; extracted to `pff/`).
+Tachyon.pff is `PFF3`, header size 20, 36-byte entries; the extra entry dword is a
+**CRC-32/BZIP2** of the body (MSB-first, poly 0x04C11DB7, init/xorout ~0; all entries match).
+Footer: big-endian packer IP, 0, `KING`.
 TODO: correlate with in-game loaders (`CreateFileA`/`ReadFile` callers) when we reach them.
 
 ### .PAK (3DPK model)

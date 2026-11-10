@@ -77,7 +77,7 @@ void FUN_004415c0(undefined4 param_1,undefined4 param_2)
           local_23c[0] = '\0';
         }
         else {
-          piVar2 = (int *)FUN_0049e0d0(DAT_005a41c8,s_Credits_00540020,local_108);
+          piVar2 = (int *)Rtxt_Lookup(DAT_005a41c8,s_Credits_00540020,local_108);
           if ((piVar2 == (int *)0x0) || (pcVar3 = (char *)*piVar2, pcVar3 == (char *)0x0)) {
             pcVar3 = _strstr(local_108,&DAT_0053ebe0);
             while (pcVar3 != (char *)0x0) {

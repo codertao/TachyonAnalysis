@@ -84,7 +84,7 @@ void FUN_0047bc40(int param_1)
     }
     if (DAT_00563688 != 0) {
       str_sprintf(&DAT_00571b80,&DAT_005a41e0);
-      puVar6 = (undefined4 *)FUN_0049e0d0(DAT_00563688,s_QUADRANT_NAMES_005526f0,param_1);
+      puVar6 = (undefined4 *)Rtxt_Lookup(DAT_00563688,s_QUADRANT_NAMES_005526f0,param_1);
       if (puVar6 != (undefined4 *)0x0) {
         str_sprintf(&DAT_00571b00,&DAT_00536768,*puVar6);
         iVar7 = FUN_0047a830(param_1 + 0x60);

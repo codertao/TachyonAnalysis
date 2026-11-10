@@ -102,3 +102,6 @@ result into the topic note.
   check that the server regenerates at 4× (it doesn't clamp).
 - [ ] **0x2005 op 3 amount.** Send `{3, 0xffff}` and check that both shields jump on the server
   with no laser cost.
+- [ ] **SPX sector flags vs hardware items.** `+0x88` bit0 radiation damage is skipped when des
+  `+0x158 & 8`, bit1 fog range cap when `+0x158 & 0x40`. Buy RADIATION SCREEN / FOG RADAR and
+  check those bits get set (guess from JOBS.BIN unlock text; see formats.md SPX).

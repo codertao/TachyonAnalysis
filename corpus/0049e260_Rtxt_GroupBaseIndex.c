@@ -1,5 +1,7 @@
 
-int FUN_0049e260(uint *param_1,undefined4 param_2)
+/* (rt, group) -> global index of the group's first record */
+
+int Rtxt_GroupBaseIndex(uint *param_1,undefined4 param_2)
 
 {
   uint *puVar1;

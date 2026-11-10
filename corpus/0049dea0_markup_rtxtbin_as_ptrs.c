@@ -1,4 +1,7 @@
 
+/* RTXT: relocate in place: record value offsets -> ptrs (base + off + (n+1)*16), group keys_offset
+   -> ptr (grouptable + off + 4). No magic check */
+
 void markup_rtxtbin_as_ptrs(int *param_1)
 
 {

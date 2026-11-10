@@ -1,5 +1,6 @@
 
-/* entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64) */
+/* entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64). SPX +0x88 bit1
+   (fog) caps sensor/vis range to 3000 unless +0x158 & 0x40 (FOG RADAR item? [l]) */
 
 void Ent_SetQuadrant(int param_1,int param_2,int param_3)
 

@@ -1,5 +1,7 @@
 
-undefined4 FUN_0049e0d0(int param_1,undefined4 param_2,undefined4 param_3)
+/* (rt, group, key) -> record; the main accessor (JOBS/QUADRANT_NAMES/SECTOR_CONTENTS/...) */
+
+undefined4 Rtxt_Lookup(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   uint *puVar1;
@@ -23,7 +25,7 @@ undefined4 FUN_0049e0d0(int param_1,undefined4 param_2,undefined4 param_3)
       do {
         iVar3 = str_cmp(puVar8,param_2);
         if (iVar3 == 0) {
-          uVar4 = FUN_0049dfb0(param_1,puVar6,param_3,local_8);
+          uVar4 = Rtxt_FindKeyInGroupHdr(param_1,puVar6,param_3,local_8);
           return uVar4;
         }
         uVar5 = 0xffffffff;

@@ -36,8 +36,8 @@ void FUN_004783a0(int param_1,int param_2)
   FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtInvItemBanner_00550a94,&DAT_00562b14);
   FUN_0048b6f0(0);
   if (((DAT_0056363c != 0) && (param_1 != 0)) && (param_2 != 0)) {
-    piVar2 = (int *)FUN_0049e0d0(DAT_0056363c,s_CARGO_00533fe8,param_1);
-    piVar3 = (int *)FUN_0049e0d0(DAT_0056363c,s_CARGO_00533fe8,param_2);
+    piVar2 = (int *)Rtxt_Lookup(DAT_0056363c,s_CARGO_00533fe8,param_1);
+    piVar3 = (int *)Rtxt_Lookup(DAT_0056363c,s_CARGO_00533fe8,param_2);
     if (piVar2 != (int *)0x0) {
       param_1 = *piVar2;
     }

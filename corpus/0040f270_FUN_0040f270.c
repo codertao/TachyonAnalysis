@@ -34,7 +34,7 @@ void FUN_0040f270(int param_1)
   default:
     goto switchD_0040f2e4_default;
   }
-  piVar1 = (int *)FUN_0049e0d0(DAT_005a6140,s_CAMERA_LABELS_00533db8,pcVar2);
+  piVar1 = (int *)Rtxt_Lookup(DAT_005a6140,s_CAMERA_LABELS_00533db8,pcVar2);
   if ((piVar1 != (int *)0x0) && (*piVar1 != 0)) {
     FUN_0048e970(*piVar1,DAT_005b1870,0x140,0x1db,0xff,0xffff,0x10000,0x26);
   }

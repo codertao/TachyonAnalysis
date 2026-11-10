@@ -11,7 +11,7 @@ char * FUN_0042af90(int param_1)
     pcVar2 = (char *)(*pcVar1)(param_1,4,0);
     if (pcVar2 != (char *)0x0) {
       if (*pcVar2 != '\0') {
-        puVar3 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,s_AFFILIATION_00536780,pcVar2);
+        puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,s_AFFILIATION_00536780,pcVar2);
         if (puVar3 != (undefined4 *)0x0) {
           return (char *)*puVar3;
         }

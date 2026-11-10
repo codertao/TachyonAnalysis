@@ -56,7 +56,7 @@ void FUN_0046ba50(char *param_1,int param_2)
           _Dest[0x9e] = '\0';
           _Dest[0x9f] = '\0';
         }
-        uVar5 = FUN_0049e0d0(DAT_005879b0,s_ITEMS_0054ae3c,_Dest + 0x20);
+        uVar5 = Rtxt_Lookup(DAT_005879b0,s_ITEMS_0054ae3c,_Dest + 0x20);
         *(undefined4 *)(_Dest + 0x60) = uVar5;
         Job_ParseVarDirectives(_Dest + 0x68,local_6c);
         if (GLBL_cheat_related2 == 0) {

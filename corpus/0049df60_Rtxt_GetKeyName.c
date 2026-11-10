@@ -1,5 +1,7 @@
 
-char * FUN_0049df60(int param_1,uint param_2)
+/* (rt, idx) -> key string of record idx (walks the flat key list from group 0) */
+
+char * Rtxt_GetKeyName(int param_1,uint param_2)
 
 {
   char cVar1;

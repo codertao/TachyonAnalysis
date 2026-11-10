@@ -1,5 +1,8 @@
 
-undefined4 FUN_0049dfb0(undefined4 param_1,undefined4 *param_2,undefined4 param_3,int param_4)
+/* (rt, grpHdr, key, baseIdx) -> record for key within one group */
+
+undefined4
+Rtxt_FindKeyInGroupHdr(undefined4 param_1,undefined4 *param_2,undefined4 param_3,int param_4)
 
 {
   char cVar1;
@@ -16,7 +19,7 @@ undefined4 FUN_0049dfb0(undefined4 param_1,undefined4 *param_2,undefined4 param_
     do {
       iVar2 = str_cmp(pcVar6,param_3);
       if (iVar2 == 0) {
-        uVar3 = FUN_0049df40(param_1,param_4);
+        uVar3 = Rtxt_GetRecord(param_1,param_4);
         return uVar3;
       }
       uVar4 = 0xffffffff;

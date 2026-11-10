@@ -1,5 +1,7 @@
 
-uint FUN_0049e340(int param_1,undefined4 param_2)
+/* (rt, key) -> global record index */
+
+uint Rtxt_KeyIndex(int param_1,undefined4 param_2)
 
 {
   char cVar1;

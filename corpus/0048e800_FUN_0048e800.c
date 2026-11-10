@@ -5,7 +5,7 @@ undefined4 FUN_0048e800(int param_1,undefined4 param_2)
   undefined4 *puVar1;
   
   if (param_1 != 0) {
-    puVar1 = (undefined4 *)FUN_0049df40(param_1,param_2);
+    puVar1 = (undefined4 *)Rtxt_GetRecord(param_1,param_2);
     if (puVar1 != (undefined4 *)0x0) {
       return *puVar1;
     }

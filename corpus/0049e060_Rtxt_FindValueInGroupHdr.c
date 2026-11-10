@@ -1,5 +1,7 @@
 
-undefined4 FUN_0049e060(undefined4 param_1,undefined4 *param_2,undefined4 param_3)
+/* (rt, grpHdr, value) -> global index of first key whose value == value, else -1 */
+
+undefined4 Rtxt_FindValueInGroupHdr(undefined4 param_1,undefined4 *param_2,undefined4 param_3)
 
 {
   char cVar1;
@@ -15,11 +17,11 @@ undefined4 FUN_0049e060(undefined4 param_1,undefined4 *param_2,undefined4 param_
   pcVar7 = (char *)*param_2;
   if (param_2[1] != 0) {
     do {
-      piVar2 = (int *)FUN_0049e2e0(param_1,pcVar7);
+      piVar2 = (int *)Rtxt_FindKey(param_1,pcVar7);
       if ((piVar2 != (int *)0x0) && (*piVar2 != 0)) {
         iVar3 = str_cmp(*piVar2,param_3);
         if (iVar3 == 0) {
-          uVar4 = FUN_0049e340(param_1,pcVar7);
+          uVar4 = Rtxt_KeyIndex(param_1,pcVar7);
           return uVar4;
         }
       }

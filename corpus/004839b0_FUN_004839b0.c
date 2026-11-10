@@ -79,7 +79,7 @@ void FUN_004839b0(void)
         pcVar1 = puVar8 + -0x20;
         Cbin_GetParam_Ctx(s_STARBASE_00532c20,s_SHIP_YARD_DESC_005578f0,pcVar1,0x1f,0,4,1,local_6c);
         if (*pcVar1 != '\0') {
-          uVar4 = FUN_0049e0d0(DAT_0056363c,s_OTHER_SHIP_NAMES_00533a5c,pcVar1);
+          uVar4 = Rtxt_Lookup(DAT_0056363c,s_OTHER_SHIP_NAMES_00533a5c,pcVar1);
           *(undefined4 *)(puVar8 + 0x20) = uVar4;
         }
         iVar2 = Cbin_CountEntries_Ctx(s_STARBASE_00532c20,s_VAR_CHECK_0054abac,local_6c);

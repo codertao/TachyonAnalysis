@@ -8,7 +8,7 @@ void FUN_0042cd70(undefined4 param_1,undefined4 param_2,undefined4 *param_3,unde
   undefined1 local_80 [128];
   
   Cbin_GetParam(param_1,param_2,local_98,0x18,0,4,1);
-  uVar1 = FUN_0049e340(DAT_005a6140,local_98);
+  uVar1 = Rtxt_KeyIndex(DAT_005a6140,local_98);
   *param_3 = uVar1;
   Cbin_GetParam(param_1,param_2,0,0,param_3 + 1,1,2);
   Cbin_GetParam(param_1,param_2,0,0,param_3 + 2,1,3);

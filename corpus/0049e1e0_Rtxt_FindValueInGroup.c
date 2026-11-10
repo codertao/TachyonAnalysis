@@ -1,5 +1,7 @@
 
-undefined4 FUN_0049e1e0(int param_1,undefined4 param_2,undefined4 param_3)
+/* (rt, group, value) -> global index, else -1 */
+
+undefined4 Rtxt_FindValueInGroup(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
   uint *puVar1;
@@ -21,7 +23,7 @@ undefined4 FUN_0049e1e0(int param_1,undefined4 param_2,undefined4 param_3)
       do {
         iVar3 = str_cmp(puVar7,param_2);
         if (iVar3 == 0) {
-          uVar4 = FUN_0049e060(param_1,local_4,param_3);
+          uVar4 = Rtxt_FindValueInGroupHdr(param_1,local_4,param_3);
           return uVar4;
         }
         uVar5 = 0xffffffff;

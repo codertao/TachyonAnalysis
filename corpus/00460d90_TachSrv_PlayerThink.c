@@ -47,7 +47,7 @@ void TachSrv_PlayerThink(int param_1)
   if (*(int *)(param_1 + 0x90) != 0) {
     FUN_00455b40(param_1,*(int *)(param_1 + 0x90));
   }
-  FUN_00460c20(param_1);
+  Sector_RadiationTick(param_1);
   if (*(int *)(param_1 + 0x110) != 0) {
     FUN_00460cb0(param_1);
   }

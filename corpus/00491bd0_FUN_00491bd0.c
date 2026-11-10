@@ -38,7 +38,7 @@ void FUN_00491bd0(void)
       piVar7 = piVar7 + 1;
     }
     FUN_00492400(&local_c,&local_10,local_254);
-    puVar3 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,&DAT_00559ee4,s_VON_VON_00559ee8);
+    puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00559ee4,s_VON_VON_00559ee8);
     puVar8 = local_54;
     for (iVar6 = 10; iVar6 != 0; iVar6 = iVar6 + -1) {
       *puVar8 = 0;

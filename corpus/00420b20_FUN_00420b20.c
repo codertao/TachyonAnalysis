@@ -20,7 +20,7 @@ void FUN_00420b20(void)
   undefined4 local_2c;
   uint local_28 [10];
   
-  puVar2 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,&DAT_00535990,s_QUITTING_FAIL_005359b8);
+  puVar2 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00535990,s_QUITTING_FAIL_005359b8);
   local_38 = 0;
   uStack_36 = 0;
   local_34 = 0;
@@ -55,7 +55,7 @@ void FUN_00420b20(void)
   local_28[1] = (DAT_005a67a8 * local_28[1]) / 0x1e0;
   uStack_32 = (undefined2)iVar4;
   local_30 = CONCAT22(local_30._2_2_,(short)iVar3);
-  puVar2 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,&DAT_00535990,s_EXIT_FAIL_005359ac);
+  puVar2 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00535990,s_EXIT_FAIL_005359ac);
   FUN_004ae5e0(*puVar2,DAT_005b2180,&local_3c,2,local_28);
   uVar6 = 0;
   pcVar7 = local_3c;
@@ -75,7 +75,7 @@ void FUN_00420b20(void)
       uVar6 = uVar6 + 1;
     } while (uVar6 < uStack_36);
   }
-  puVar2 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,&DAT_00535990,&DAT_005359a8);
+  puVar2 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00535990,&DAT_005359a8);
   FUN_0048e970(*puVar2,DAT_005b2180,0x140,iVar4,0xff0000,0xffff,0x10000,6);
   return;
 }

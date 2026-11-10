@@ -15,11 +15,11 @@ void FUN_0043bc70(int param_1,undefined4 param_2)
   uVar1 = load_rtxt_bin(param_2,0xa000);
   *(undefined4 *)(param_1 + 4) = uVar1;
   iVar5 = 0;
-  for (iVar2 = FUN_0049dfa0(uVar1); iVar2 != 0; iVar2 = iVar2 + -1) {
-    while (iVar3 = FUN_0049df40(*(undefined4 *)(param_1 + 4),iVar5), iVar3 == 0) {
+  for (iVar2 = Rtxt_GetCount(uVar1); iVar2 != 0; iVar2 = iVar2 + -1) {
+    while (iVar3 = Rtxt_GetRecord(*(undefined4 *)(param_1 + 4),iVar5), iVar3 == 0) {
       iVar5 = iVar5 + 1;
     }
-    iVar3 = FUN_0049df60(*(undefined4 *)(param_1 + 4),iVar5);
+    iVar3 = Rtxt_GetKeyName(*(undefined4 *)(param_1 + 4),iVar5);
     if (iVar3 != 0) {
       puVar6 = local_90;
       for (iVar4 = 0x24; iVar4 != 0; iVar4 = iVar4 + -1) {

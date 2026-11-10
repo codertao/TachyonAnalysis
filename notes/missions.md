@@ -177,7 +177,7 @@ Other SPX sections the triggers refer to **[c]**:
 | cat | subject (`sub`) | codes |
 |---|---|---|
 | 0 PLAYER | 0 | 0 damage% ≥ v · 1 within v of obj `b` · 2 entered sector · 3 player joined (MP) · 4 docked with `b` · 5 undocked · 6 dock-menu action v on `b` · 7 interacted / picked up `b` · 8 triggered `b` · 9 left sector / aborted · 10 credits changed **[c]** |
-| 1 OBJ | object id | 0 attacked by player **[l]** · 2 destroyed · 3 damage% ≥ v · 4 second damage% ≥ v (shield?) · 5 reached waypoint v = route<<16\|point · 6 AI activated · 7 docked · 15 spawned **[c]**; 10–14 seen in data, meaning **[?]** (13 with `b` = carrier looks like "entered bay of b") |
+| 1 OBJ | object id | 0 attacked by player **[l]** · 2 destroyed · 3 damage% ≥ v · 4 second damage% ≥ v (shield?) · 5 reached waypoint v = route **tag**<<16\|point · 6 AI activated · 7 docked · 15 spawned **[c]**; 10–14 seen in data, meaning **[?]** (13 with `b` = carrier looks like "entered bay of b") |
 | 2 GATE | gate id | 0 state changed **[l]** |
 | 3 VAR | category<<16 \| index | 0/1 == v · 2 > v · 3 < v **[c]** |
 | 4 ENEMIES | 0 | 0 all dead · 1 % killed ≥ v **[c]** |
@@ -197,9 +197,9 @@ dialog line reached, group member destroyed, player entered sector.
 | 2 DIALOG | dialog-list index | 0 play from line arg2 (`TrigAct_PlayDialog`) |
 | 3 SCENE | – | 0 play cutscene `scene[arg2]` (`SrvSend_PlayScene`) |
 | 4 COUNTER | var | 0 start · 1 stop |
-| 5 OBJ | object id | 0 spawn · 1 spawn by class (arg2 = parent/carrier) · 2 dock with arg2 · 3 hyperspace in · 4 hyperspace out · 5/6 activate/deactivate · 7 explode · 8.. named Sped actions: CHANGE_RACE(arg2=side), DOCK_WITH_OBJ, UNDOCK, ENTER_OBJ_BAY, TAKEOFF, CHANGE_WP(arg2 = route<<16), ADD/REMOVE_AS_OBJECTIVE, BEAM_AWAY, weapons on/off, UNSPAWN, RESTORE_POWERPLANT, TIMED_EXPLODE |
+| 5 OBJ | object id | 0 spawn · 1 spawn by class (arg2 = parent/carrier) · 2 dock with arg2 · 3 hyperspace in · 4 hyperspace out · 5/6 activate/deactivate · 7 explode · 8.. named Sped actions: CHANGE_RACE(arg2=side), DOCK_WITH_OBJ, UNDOCK, ENTER_OBJ_BAY, TAKEOFF, CHANGE_WP(arg2 = route tag<<16 | point, via `Nav_ChangeRoute 0x405990`), ADD/REMOVE_AS_OBJECTIVE, BEAM_AWAY, weapons on/off, UNSPAWN, RESTORE_POWERPLANT, TIMED_EXPLODE |
 | 6 GROUP | group id | 0 spawn · 1 spawn staggered (150 apart) · 2/6 activate/deactivate · 3 set AI order arg2 · 4 CHANGE_RACE · 5 ENTER_OBJ_BAY · 7 launch next member · 8 CHANGE_WP |
-| 7 NAV | route<<16\|point | set the player's nav destination |
+| 7 NAV | region<<16\|sector | set the player's nav destination: `Nav_SetDestination 0x437610` writes `PLAYER_MAIN_VARS.DESTINATION_REGION/SECTOR` and sends it to the client (not a route) |
 | 8 ORDER+ | – | add objective of type `code` about object `arg2` (HUD orders list, `quadrant+0x60`) |
 | 9 ORDER- | – | remove objective (type 10 = clear all; code 11 = reset orders) → S→C 0x1017 op 2 |
 | 10 ORDER✓ | – | mark objective complete → S→C 0x1017 op 1 |

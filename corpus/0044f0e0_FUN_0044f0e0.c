@@ -35,8 +35,7 @@ void FUN_0044f0e0(void)
     str_sprintf(local_a4,s_PLAYERS_ONLINE___d_005484c8,uVar5);
     FUN_0048e970(local_a4,DAT_00590d48,0x11c,0x38,0xffffff,0xffff,0x10000,2);
     FUN_0044f010(DAT_00590d5c + 0x38);
-    piVar6 = (int *)FUN_0049e0d0(DAT_005a6140,s_MULTI_STRINGS_005484a4,s_PLAYERLIST_FOOTER_005484b4)
-    ;
+    piVar6 = (int *)Rtxt_Lookup(DAT_005a6140,s_MULTI_STRINGS_005484a4,s_PLAYERLIST_FOOTER_005484b4);
     if ((piVar6 != (int *)0x0) && (*piVar6 != 0)) {
       FUN_0048e970(*piVar6,DAT_00590d48,0x1c2,0x111,0xff0000,0xffff,0x10000,0x26);
     }

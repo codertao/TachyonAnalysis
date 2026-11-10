@@ -18,7 +18,7 @@ void FUN_0042f360(void)
   if (PTR_s_VON_TALK_00536dbc != (undefined *)0x0) {
     ppuVar3 = &PTR_s_VON_TALK_00536dbc;
     do {
-      puVar2 = (undefined4 *)FUN_0049e0d0(DAT_00562ba4,ppuVar3[-1],*ppuVar3);
+      puVar2 = (undefined4 *)Rtxt_Lookup(DAT_00562ba4,ppuVar3[-1],*ppuVar3);
       if (puVar2 == (undefined4 *)0x0) {
         ppuVar3[1] = *ppuVar3;
       }
@@ -32,7 +32,7 @@ void FUN_0042f360(void)
   if (PTR_s_KEY_NONE_0053768c != (undefined *)0x0) {
     ppuVar3 = &PTR_s_KEY_NONE_0053768c;
     do {
-      puVar2 = (undefined4 *)FUN_0049e0d0(DAT_00562ba4,ppuVar3[-1],*ppuVar3);
+      puVar2 = (undefined4 *)Rtxt_Lookup(DAT_00562ba4,ppuVar3[-1],*ppuVar3);
       if (puVar2 == (undefined4 *)0x0) {
         ppuVar3[1] = *ppuVar3;
       }
@@ -46,7 +46,7 @@ void FUN_0042f360(void)
   if (PTR_s_MOD_NONE_005399ec != (undefined *)0x0) {
     ppuVar3 = &PTR_s_MOD_NONE_005399ec;
     do {
-      puVar2 = (undefined4 *)FUN_0049e0d0(DAT_00562ba4,ppuVar3[-1],*ppuVar3);
+      puVar2 = (undefined4 *)Rtxt_Lookup(DAT_00562ba4,ppuVar3[-1],*ppuVar3);
       if (puVar2 == (undefined4 *)0x0) {
         ppuVar3[1] = *ppuVar3;
       }

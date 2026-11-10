@@ -35,7 +35,7 @@ void FUN_0047c6d0(int param_1)
         puVar4 = puVar4 + 2;
       } while (uVar6 < *(uint *)(iVar2 + 0x20));
       if ((local_40[0] != '\0') && (GLBL_ingame_rtxt != 0)) {
-        puVar4 = (undefined4 *)FUN_0049e0d0(GLBL_ingame_rtxt,s_REGION_NAMES_005527f4,local_40);
+        puVar4 = (undefined4 *)Rtxt_Lookup(GLBL_ingame_rtxt,s_REGION_NAMES_005527f4,local_40);
         if (puVar4 == (undefined4 *)0x0) {
           if (iVar1 == 0) {
             pcVar5 = s__High_Lighted_Region_00552810;

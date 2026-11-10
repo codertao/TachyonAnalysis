@@ -25,7 +25,7 @@ void FUN_00459550(int param_1)
       iVar1 = FUN_0049bdb0(&DAT_00536860,local_40,0x20,0,4,1);
       if (iVar1 == 0) break;
       FUN_0049b930(&DAT_00536860,local_20,0x20,0,4,2);
-      uVar2 = FUN_0049e0d0(DAT_005a614c,local_40,local_20);
+      uVar2 = Rtxt_Lookup(DAT_005a614c,local_40,local_20);
       puVar3[0xe] = uVar2;
       FUN_0049b930(&DAT_00536860,local_40,0x20,0,4,3);
       uVar2 = FUN_004594b0(param_1,local_40);

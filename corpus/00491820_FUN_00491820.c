@@ -35,7 +35,7 @@ void FUN_00491820(undefined4 param_1)
         DAT_00563e58 = 0;
         FUN_00491530();
       }
-      puVar2 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,&DAT_00559ee4,s_VON_VON_00559ee8);
+      puVar2 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00559ee4,s_VON_VON_00559ee8);
       puVar7 = local_28;
       for (iVar5 = 10; iVar5 != 0; iVar5 = iVar5 + -1) {
         *puVar7 = 0;
@@ -54,14 +54,14 @@ void FUN_00491820(undefined4 param_1)
       iVar5 = DAT_0056589c;
       local_28[0] = (DAT_005a67a8 * local_28[0]) / 0x280;
       local_28[1] = (DAT_005a67a8 * local_28[1]) / 0x1e0;
-      puVar2 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,&DAT_00559ee4,s_VON_TO_00559edc);
+      puVar2 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00559ee4,s_VON_TO_00559edc);
       FUN_0048e970(*puVar2,DAT_005657c0,0x1e2,0xa3,0xc0c0c0,0xffff,0x10000,2);
       DAT_005657ec = DAT_005a67c0;
       DAT_005657f0 = DAT_005a67c4;
       DAT_005657f4 = DAT_005a67c8;
       DAT_005657f8 = DAT_005a67cc;
       if (iVar5 < 0) {
-        puVar2 = (undefined4 *)FUN_0049e0d0(DAT_005a6140,&DAT_00559ee4,s_VON_UNKNOWN_00559ed0);
+        puVar2 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00559ee4,s_VON_UNKNOWN_00559ed0);
         uVar4 = *puVar2;
         local_2a = 0x8f;
         FUN_0048e970(&local_2a,DAT_005657c0,0x278,0xa3,0xff0000,0xffff,0x10000,10);

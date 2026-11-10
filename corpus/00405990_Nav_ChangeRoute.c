@@ -12,8 +12,8 @@ void Nav_ChangeRoute(int param_1,undefined4 param_2,uint param_3)
                 *(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x20),param_3 >> 0x10,param_3 & 0xffff);
     FUN_0045d9d0(local_40,0);
   }
-  uVar1 = FUN_004058f0(param_3 >> 0x10,*(undefined4 *)(param_1 + 0xd8),
-                       *(undefined4 *)(param_1 + 100));
+  uVar1 = Nav_FindRouteByTag(param_3 >> 0x10,*(undefined4 *)(param_1 + 0xd8),
+                             *(undefined4 *)(param_1 + 100));
   Sector_GetSpedRecord
             (param_1,*(undefined4 *)(param_1 + 0xd8),param_2,*(undefined4 *)(param_1 + 100),uVar1,
              param_3 & 0xffff);

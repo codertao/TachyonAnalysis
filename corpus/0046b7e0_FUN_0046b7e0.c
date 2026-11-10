@@ -33,7 +33,7 @@ int FUN_0046b7e0(undefined4 param_1,int param_2)
         Cbin_FindParam(s_THUMBNAIL_0054ac1c,iVar5 + 0x74,0x1f,0,4,1,local_6c);
         Cbin_GetParamN_Ctx(s_THUMBNAIL_0054ac1c,0,0,iVar5 + 0x94,1,2,local_6c);
         Cbin_GetParamN_Ctx(s_THUMBNAIL_0054ac1c,0,0,iVar5 + 0x98,1,3,local_6c);
-        uVar3 = FUN_0049e0d0(DAT_005879b4,s_WINGMEN_0054adb0,iVar5 + -0x20);
+        uVar3 = Rtxt_Lookup(DAT_005879b4,s_WINGMEN_0054adb0,iVar5 + -0x20);
         *(undefined4 *)(iVar5 + 0x40) = uVar3;
         Job_ParseVarDirectives(iVar5 + 0x44,local_6c);
         iVar2 = *piVar1;

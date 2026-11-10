@@ -1,5 +1,7 @@
 
-int FUN_0049df40(int param_1,uint param_2)
+/* (rt, idx) -> &record[idx] (16 B; +0 value char*), 0 if out of range */
+
+int Rtxt_GetRecord(int param_1,uint param_2)
 
 {
   if (param_1 == 0) {

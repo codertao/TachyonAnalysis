@@ -54,7 +54,7 @@ void Job_ParseBriefingBlock
   if (iVar3 == 0) {
     str_sprintf(param_1,param_5);
   }
-  uVar4 = FUN_0049e0d0(param_3,local_20,param_1 + 0x20);
+  uVar4 = Rtxt_Lookup(param_3,local_20,param_1 + 0x20);
   *(undefined4 *)(param_1 + 0x90) = uVar4;
   Cbin_FindSection(uVar1,fVar2);
   iVar3 = Cbin_FindParam(s_TEXT_RECT_0054aad0,0,0,(undefined4 *)(param_1 + 0x94),1,1,fVar2);

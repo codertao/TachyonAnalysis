@@ -49,7 +49,7 @@ void FUN_00438870(void)
         }
         else if (*(int *)(pcVar3 + 0x8c) == 2) {
           uVar4 = FUN_004bd32f(pcVar3 + 0x48);
-          puVar5 = (undefined4 *)FUN_0049df40(*(undefined4 *)(in_stack_00001724 + 4),uVar4);
+          puVar5 = (undefined4 *)Rtxt_GetRecord(*(undefined4 *)(in_stack_00001724 + 4),uVar4);
           *(undefined4 *)(pcVar3 + 0x40) = *puVar5;
         }
         pcVar6 = _strstr(*(char **)(pcVar3 + 0x40),s__hot__0053fdc4);

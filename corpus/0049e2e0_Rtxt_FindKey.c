@@ -1,5 +1,7 @@
 
-undefined4 FUN_0049e2e0(int param_1,undefined4 param_2)
+/* (rt, key) -> record, searching all keys regardless of group */
+
+undefined4 Rtxt_FindKey(int param_1,undefined4 param_2)
 
 {
   char cVar1;
@@ -17,7 +19,7 @@ undefined4 FUN_0049e2e0(int param_1,undefined4 param_2)
       do {
         iVar2 = str_cmp(pcVar6,param_2);
         if (iVar2 == 0) {
-          uVar3 = FUN_0049df40(param_1,uVar5);
+          uVar3 = Rtxt_GetRecord(param_1,uVar5);
           return uVar3;
         }
         uVar4 = 0xffffffff;

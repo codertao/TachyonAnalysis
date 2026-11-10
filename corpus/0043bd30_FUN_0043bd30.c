@@ -35,7 +35,7 @@ LAB_0043bd77:
         return pcVar1;
       }
       uVar3 = FUN_004bd32f(param_2 + 0x12);
-      puVar4 = (undefined4 *)FUN_0049df40(*(undefined4 *)(param_1 + 4),uVar3);
+      puVar4 = (undefined4 *)Rtxt_GetRecord(*(undefined4 *)(param_1 + 4),uVar3);
       *(undefined4 *)(pcVar1 + 0x40) = *puVar4;
       return pcVar1;
     }
@@ -62,7 +62,7 @@ LAB_0043bd77:
             return pcVar1;
           }
           uVar3 = FUN_004bd32f(param_2 + 0x12);
-          puVar4 = (undefined4 *)FUN_0049df40(*(undefined4 *)(param_1 + 4),uVar3);
+          puVar4 = (undefined4 *)Rtxt_GetRecord(*(undefined4 *)(param_1 + 4),uVar3);
           *(undefined4 *)(pcVar1 + 0x40) = *puVar4;
           return pcVar1;
         }

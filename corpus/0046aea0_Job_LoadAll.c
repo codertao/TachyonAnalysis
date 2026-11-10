@@ -61,9 +61,9 @@ int Job_LoadAll(undefined4 param_1,uint param_2)
         Cbin_FindParam(s_THUMBNAIL_0054ac1c,iVar3 + 0x150,0x1f,0,4,1,local_6c);
         Cbin_GetParamN_Ctx(s_THUMBNAIL_0054ac1c,0,0,iVar3 + 0x170,1,2,local_6c);
         Cbin_GetParamN_Ctx(s_THUMBNAIL_0054ac1c,0,0,iVar3 + 0x174,1,3,local_6c);
-        uVar2 = FUN_0049e0d0(DAT_005879a8,&DAT_00534280,iVar3 + 0x94);
+        uVar2 = Rtxt_Lookup(DAT_005879a8,&DAT_00534280,iVar3 + 0x94);
         *(undefined4 *)(iVar3 + 0x114) = uVar2;
-        uVar2 = FUN_0049e0d0(DAT_005879a8,s_EMPLOYERS_0054ac10,iVar3 + 0xb4);
+        uVar2 = Rtxt_Lookup(DAT_005879a8,s_EMPLOYERS_0054ac10,iVar3 + 0xb4);
         *(undefined4 *)(iVar3 + 0x118) = uVar2;
         Job_ParseVarDirectives(iVar3 + 0x11c,local_6c);
         iVar1 = *(int *)(iVar3 + 0x17c);

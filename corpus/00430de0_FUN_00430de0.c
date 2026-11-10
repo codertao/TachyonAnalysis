@@ -28,11 +28,11 @@ void FUN_00430de0(void)
     puVar3 = puVar3 + 8;
     iVar2 = *piVar1;
   }
-  puVar3 = (undefined4 *)FUN_0049e0d0(DAT_005a6150,s_key_misc_0053ebc4,&DAT_0053ebd0);
+  puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,s_key_misc_0053ebc4,&DAT_0053ebd0);
   if (puVar3 != (undefined4 *)0x0) {
     DAT_005aed94 = *puVar3;
   }
-  puVar3 = (undefined4 *)FUN_0049e0d0(DAT_005a6150,s_key_misc_0053ebc4,s_seperator_0053ebb8);
+  puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,s_key_misc_0053ebc4,s_seperator_0053ebb8);
   if (puVar3 != (undefined4 *)0x0) {
     DAT_005aed98 = *puVar3;
   }

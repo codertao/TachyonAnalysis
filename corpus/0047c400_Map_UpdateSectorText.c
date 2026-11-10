@@ -74,7 +74,7 @@ void Map_UpdateSectorText(char *param_1)
     }
     if (DAT_00563688 != 0) {
       str_sprintf(&DAT_00571b80,&DAT_005a41e0);
-      puVar5 = (undefined4 *)FUN_0049e0d0(DAT_00563688,s_QUADRANT_NAMES_005526f0,param_1);
+      puVar5 = (undefined4 *)Rtxt_Lookup(DAT_00563688,s_QUADRANT_NAMES_005526f0,param_1);
       if (puVar5 == (undefined4 *)0x0) {
         if (iVar2 == 0) {
           pcVar4 = s__High_Lighted_Sector_005527a4;
@@ -146,7 +146,7 @@ void Map_UpdateSectorText(char *param_1)
         pcVar4 = pcVar4 + 1;
         pcVar10 = pcVar10 + 1;
       }
-      puVar5 = (undefined4 *)FUN_0049e0d0(iVar2,s_SECTOR_CONTENTS_00552784,&DAT_005a41e0);
+      puVar5 = (undefined4 *)Rtxt_Lookup(iVar2,s_SECTOR_CONTENTS_00552784,&DAT_005a41e0);
       if (puVar5 == (undefined4 *)0x0) {
         if (iVar3 == 0) {
           pcVar4 = s__Sector_Contents__00552770;

@@ -1,5 +1,8 @@
 
-void FUN_00460c20(int param_1)
+/* SPX header +0x88 bit0 (radiation): 150 shield/hull damage every 16 ticks unless ship
+   +0xdc->+0x158 & 8 (RADIATION SCREEN item? [l]) */
+
+void Sector_RadiationTick(int param_1)
 
 {
   uint *puVar1;

@@ -1,4 +1,6 @@
 
+/* RTXT: read whole file (alloc tag arg), then markup_rtxtbin_as_ptrs. Returns the buffer */
+
 int load_rtxt_bin(undefined4 file_name,undefined4 flags_or_key_or_other)
 
 {

@@ -329,7 +329,7 @@
 0x435ca0	Ingame_LoadBaseLocation	read BASE_QUADRANT (0x5a5520) + REGION (0x5a5dd0) from ingame.cfg [INGAME] -> galaxy start location
 0x437610	Nav_SetDestination	set DESTINATION_REGION/DESTINATION_SECTOR vars + dest-quadrant display name (Sector_GetQuadrantName), log "DEST QUADRANT SET TO %s"
 0x416420	Quadrant_OnEnter	on quadrant entry: set g_CurrentQuadrant (0x5b31f0) from galaxy-rec+0x12; play NEWQUADRANT scene
-0x4577d0	Ent_SetQuadrant	entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64)
+0x4577d0	Ent_SetQuadrant	entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64). SPX +0x88 bit1 (fog) caps sensor/vis range to 3000 unless +0x158 & 0x40 (FOG RADAR item? [l])
 0x457a10	Ent_EnterQuadrant	entity ENTER_QUADRANT event handler
 0x457940	Ent_LeaveQuadrant	entity LEAVE_QUADRANT event handler
 
@@ -381,8 +381,8 @@
 0x49c530	OurFreeMem
 0x49c670	mark_alloc_memory_with_flags
 0x49cd50	maybe_cleanup
-0x49dea0	markup_rtxtbin_as_ptrs
-0x49df00	load_rtxt_bin
+0x49dea0	markup_rtxtbin_as_ptrs	RTXT: relocate in place: record value offsets -> ptrs (base + off + (n+1)*16), group keys_offset -> ptr (grouptable + off + 4). No magic check
+0x49df00	load_rtxt_bin	RTXT: read whole file (alloc tag arg), then markup_rtxtbin_as_ptrs. Returns the buffer
 0x49ec30	some_iter_over_list
 0x4a0d60	lcreat_file_and_do_error_stuff
 0x4a0e10	openfile
@@ -1152,3 +1152,18 @@
 0x532fc8	g_PowerRegenLevelScale	{256,256,256,256,307,307,307,358,358,358,409} by level +0xfc
 0x532ff4	g_HullLevelScale	{256,256,307,307,307,358,358,358,409,409,409}
 0x5b20e0	g_PlayerPower	client power struct: [0] laser [1] rate, [2] FRONT shield [3] rate, [4] REAR shield [5] rate, [6] burner [7] rate, [8] speed factor, [9] hull, [10] hull2, [11] upgrade flags
+0x49df30	Rtxt_Load	load_rtxt_bin(name, -1)
+0x49df40	Rtxt_GetRecord	(rt, idx) -> &record[idx] (16 B; +0 value char*), 0 if out of range
+0x49df60	Rtxt_GetKeyName	(rt, idx) -> key string of record idx (walks the flat key list from group 0)
+0x49dfa0	Rtxt_GetCount	(rt) -> record count
+0x49dfb0	Rtxt_FindKeyInGroupHdr	(rt, grpHdr, key, baseIdx) -> record for key within one group
+0x49e020	Rtxt_GetGroupItem	(rt, grpHdr, i) -> record of the i-th key in group (re-found by key name)
+0x49e060	Rtxt_FindValueInGroupHdr	(rt, grpHdr, value) -> global index of first key whose value == value, else -1
+0x49e0d0	Rtxt_Lookup	(rt, group, key) -> record; the main accessor (JOBS/QUADRANT_NAMES/SECTOR_CONTENTS/...)
+0x49e160	Rtxt_GetGroupItemByName	(rt, group, i) -> record of i-th key in named group
+0x49e1e0	Rtxt_FindValueInGroup	(rt, group, value) -> global index, else -1
+0x49e260	Rtxt_GroupBaseIndex	(rt, group) -> global index of the group's first record
+0x49e2e0	Rtxt_FindKey	(rt, key) -> record, searching all keys regardless of group
+0x49e340	Rtxt_KeyIndex	(rt, key) -> global record index
+0x4058f0	Nav_FindRouteByTag	(tag, def, quadrant) -> index of SPX route (waygroup) whose +0x08 tag == tag; logs WAYGROUP %d NOT FOUND, returns 0
+0x460c20	Sector_RadiationTick	SPX header +0x88 bit0 (radiation): 150 shield/hull damage every 16 ticks unless ship +0xdc->+0x158 & 8 (RADIATION SCREEN item? [l])

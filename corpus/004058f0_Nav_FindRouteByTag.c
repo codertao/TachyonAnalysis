@@ -1,5 +1,8 @@
 
-uint FUN_004058f0(int param_1,int param_2,undefined4 param_3)
+/* (tag, def, quadrant) -> index of SPX route (waygroup) whose +0x08 tag == tag; logs WAYGROUP %d
+   NOT FOUND, returns 0 */
+
+uint Nav_FindRouteByTag(int param_1,int param_2,undefined4 param_3)
 
 {
   int iVar1;

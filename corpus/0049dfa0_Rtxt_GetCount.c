@@ -1,5 +1,7 @@
 
-undefined4 FUN_0049dfa0(int param_1)
+/* (rt) -> record count */
+
+undefined4 Rtxt_GetCount(int param_1)
 
 {
   if (param_1 == 0) {

@@ -26,8 +26,8 @@ void FUN_00481c40(void)
   undefined1 local_120 [32];
   BYTE local_100 [256];
   
-  puVar3 = (undefined4 *)FUN_0049e0d0(DAT_00563d68,s_key_misc_0053ebc4,s_SEPERATOR_00556e18);
-  puVar4 = (undefined4 *)FUN_0049e0d0(DAT_00563d68,s_key_misc_0053ebc4,&DAT_00556e10);
+  puVar3 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,s_key_misc_0053ebc4,s_SEPERATOR_00556e18);
+  puVar4 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,s_key_misc_0053ebc4,&DAT_00556e10);
   pBVar15 = local_100;
   for (iVar10 = 0x40; iVar10 != 0; iVar10 = iVar10 + -1) {
     pBVar15[0] = '\0';
@@ -49,7 +49,7 @@ void FUN_00481c40(void)
       puVar5 = (undefined4 *)FUN_0042f5c0(*puVar8);
       if (puVar5 != (undefined4 *)0x0) {
         str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
-        puVar5 = (undefined4 *)FUN_0049e0d0(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
+        puVar5 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
         if ((puVar5 == (undefined4 *)0x0) ||
            (puVar9 = (undefined1 *)*puVar5, puVar9 == (undefined1 *)0x0)) {
           puVar9 = &DAT_00562b14;
@@ -63,7 +63,7 @@ void FUN_00481c40(void)
           uVar2 = (ushort)local_144;
           if (((uVar2 < 0x21) || (0x7e < uVar2)) && ((uVar2 < 0xa1 || (0xff < uVar2)))) {
             str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
-            piVar7 = (int *)FUN_0049e0d0(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
+            piVar7 = (int *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
             if (piVar7 != (int *)0x0) {
               iVar10 = *piVar7;
               goto joined_r0x00481e4f;
@@ -77,7 +77,7 @@ LAB_00481e5f:
             puVar5 = (undefined4 *)FUN_0042f540(puVar8[1]);
             if (puVar5 != (undefined4 *)0x0) {
               str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
-              piVar7 = (int *)FUN_0049e0d0(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
+              piVar7 = (int *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
               if ((piVar7 != (int *)0x0) && (*piVar7 != 0)) {
                 if (puVar4 == (undefined4 *)0x0) {
                   puVar9 = &DAT_0053ebe0;
@@ -115,7 +115,7 @@ LAB_00481e5f:
         }
         else {
           str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
-          piVar7 = (int *)FUN_0049e0d0(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
+          piVar7 = (int *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
           if (piVar7 != (int *)0x0) {
             iVar10 = *piVar7;
 joined_r0x00481e4f:
@@ -129,7 +129,7 @@ joined_r0x00481e4f:
       if ((puVar8[3] != 0) &&
          (puVar5 = (undefined4 *)FUN_0042f590(puVar8[3]), puVar5 != (undefined4 *)0x0)) {
         str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
-        puVar5 = (undefined4 *)FUN_0049e0d0(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
+        puVar5 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
         if ((puVar5 != (undefined4 *)0x0) && (pcVar14 = (char *)*puVar5, pcVar14 != (char *)0x0)) {
           iVar10 = -1;
           pcVar17 = pcVar13;
@@ -205,7 +205,7 @@ joined_r0x00481e4f:
       if ((puVar8[2] != -1) &&
          (puVar8 = (undefined4 *)FUN_0042f560(puVar8[2]), puVar8 != (undefined4 *)0x0)) {
         str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar8);
-        puVar8 = (undefined4 *)FUN_0049e0d0(DAT_00563d68,&DAT_005a41e0,puVar8[1]);
+        puVar8 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar8[1]);
         if ((puVar8 != (undefined4 *)0x0) && (pcVar14 = (char *)*puVar8, pcVar14 != (char *)0x0)) {
           iVar10 = -1;
           pcVar17 = pcVar13;
