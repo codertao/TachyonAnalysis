@@ -19,8 +19,8 @@ void FUN_00401d10(int param_1,int param_2)
       *(undefined1 *)(param_1 + 0x327) = 0;
     }
     if ((uVar3 < 0x64000) && (param_2 != 0)) {
-      FUN_00401c30(param_1);
-      FUN_00401080(param_1,0xc);
+      AiState_TightFormation(param_1);
+      Ai_SetState(param_1,0xc);
       return;
     }
     if (uVar3 < 0x96000) {

@@ -38,10 +38,10 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
     *(int *)(param_1 + 0x28) = iVar6;
     *(undefined4 *)(param_1 + 0x2c) = 1;
     if (*(int *)(param_1 + 0x68) == 0) {
-      *(undefined **)(iVar6 + 0x33c) = &DAT_005322b8;
+      *(undefined **)(iVar6 + 0x33c) = &g_AiStatesDefault;
     }
     else {
-      *(undefined **)(iVar6 + 0x33c) = &DAT_005321c8;
+      *(undefined **)(iVar6 + 0x33c) = &g_AiStatesWingman;
     }
     uVar2 = FUN_00434530(param_1);
     *(undefined1 *)(iVar6 + 0xf6) = uVar2;
@@ -91,15 +91,15 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
     {
       *(undefined2 *)(iVar6 + 0x310) = 3;
     }
-    *(undefined1 **)(iVar6 + 0x68) = &LAB_004039c0;
+    *(code **)(iVar6 + 0x68) = Dcb_Think_AiFighter;
     *(code **)(iVar6 + 0x6c) = Ai_CollisionLookahead;
     *(code **)(iVar6 + 0x80) = AiShip_OnDamage;
     if ((*(int *)(param_1 + 0x68) == 0) && ((*(byte *)(param_1 + 0x24) & 0x10) == 0)) {
-      FUN_00401e20(iVar6);
+      Ai_ReturnToDefault(iVar6);
       FUN_00423e80(iVar6,*(float *)(*(int *)(iVar6 + 0x8c) + 0xbc) * *(float *)(iVar6 + 300));
     }
     else {
-      FUN_00401080(iVar6,0xb);
+      Ai_SetState(iVar6,0xb);
       *(undefined4 *)(iVar6 + 0x6c) = 0;
     }
     *(undefined4 *)(iVar6 + 800) = DAT_005a5540;
@@ -117,7 +117,7 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
                    *(undefined4 *)(param_2 + 0x564),1);
     }
     uVar8 = FUN_00455dd0(*(undefined4 *)(param_2 + 0x564));
-    FUN_004560a0(iVar6 + 0x10c,*(int *)(iVar6 + 0x8c) + 0xd0,1,uVar8,1);
+    Power_Init(iVar6 + 0x10c,*(int *)(iVar6 + 0x8c) + 0xd0,1,uVar8,1);
     FUN_00434630(uVar5,*(undefined4 *)(param_1 + 0x5c),iVar6 + 0x10c);
     FUN_0045cff0(iVar6,*(int *)(iVar6 + 100) + 0x14);
     FUN_00434960(iVar6,param_1);
@@ -133,7 +133,7 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
     FUN_00434a30(iVar6,puVar1,uVar5,uVar9);
     FUN_00457df0(param_3,*(undefined4 *)(param_1 + 0x54),*(undefined4 *)(param_2 + 0x1c));
     if ((*(byte *)(param_1 + 0x24) & 0x20) == 0) {
-      FUN_0048b090(iVar6,3,2);
+      Ent_SetEngageLimits(iVar6,3,2);
     }
     else {
       *(byte *)(iVar6 + 0xc0) = *(byte *)(iVar6 + 0xc0) & 0xfe;

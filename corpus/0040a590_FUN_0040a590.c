@@ -11,7 +11,7 @@ void FUN_0040a590(int param_1)
       *(undefined1 **)(param_1 + 0x80) = &LAB_0040a400;
     }
     *(undefined4 *)(param_1 + 0xbc) = *(undefined4 *)(iVar1 + 0x5c);
-    FUN_0048b090(param_1,4,4);
+    Ent_SetEngageLimits(param_1,4,4);
     *(byte *)(param_1 + 0xc0) = *(byte *)(param_1 + 0xc0) | 1;
     FUN_0041b870(param_1);
     return;

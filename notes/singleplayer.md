@@ -140,7 +140,7 @@ look like faction/round game types layered on top **[l]**.)
 
 - **Difficulty** (`spacesav[0x2f]`, 0/1/2):
   - `Sp_ApplyDifficulty` sets `DAT_0058b078 = 2*d + 1` into player ship `+0xca`. That caps how
-    many AI may engage the player at once (1/3/5), checked in `Ai_CanEngageTarget 0x404110`
+    many AI may engage the player at once (1/3/5), checked in the target search `Ent_FindTarget 0x48b450` (see `ai.md`)
     against the target's attacker count at `+0xc8`.
   - On hard, `Sped_ConstructEntity` bumps each spawned entity's skill `+0x310` (max 3).
   - On easy, damage to the player is scaled by ×0.687 (`TachSrv_DamagePlayer 0x460f60`).

@@ -39,7 +39,7 @@ uint CapShip_OnMessage(int param_1,undefined4 param_2,uint param_3)
     return 0;
   case 0x11:
     if ((param_3 & 4) != 0) {
-      FUN_00456140(param_1 + 0x144,4,0x50);
+      Power_DrainShields(param_1 + 0x144,4,0x50);
       return 0;
     }
     break;

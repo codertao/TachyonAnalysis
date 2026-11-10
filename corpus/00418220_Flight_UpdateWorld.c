@@ -41,7 +41,7 @@ undefined4 Flight_UpdateWorld(void)
     FUN_0041da00();
     FUN_00468320();
     FUN_00425720();
-    FUN_00415060();
+    Music_UpdateFlightVars();
     FUN_0045bfa0();
   }
   if (GLBL_SOME_CONTEXT != 0) {

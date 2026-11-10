@@ -56,7 +56,7 @@ int CapShip_SpawnPart(int param_1,undefined4 *param_2,undefined4 param_3,int par
     FUN_0045cbd0(iVar1,*(int *)(iVar1 + 100) + 0x14);
     Dcb_SetRangeFlags(iVar1 + 0x144,*(int *)(iVar1 + 0x8c) + 0xd0,iVar1);
     if (param_2[7] != 0) {
-      FUN_004560a0(iVar1 + 0x144,*(int *)(iVar1 + 0x8c) + 0xd0,1,0,1);
+      Power_Init(iVar1 + 0x144,*(int *)(iVar1 + 0x8c) + 0xd0,1,0,1);
     }
   }
   else {
@@ -65,7 +65,7 @@ int CapShip_SpawnPart(int param_1,undefined4 *param_2,undefined4 param_3,int par
   uVar2 = FUN_00412200(param_2[0xd]);
   *(undefined4 *)(iVar1 + 0x6c) = uVar2;
   if (((param_2[0xd] & 0x20) == 0) && ((param_2[0xd] & 0x118) == 0)) {
-    FUN_0048b090(iVar1,8,7);
+    Ent_SetEngageLimits(iVar1,8,7);
   }
   if (param_5 != 0) {
     *(int *)(param_5 + 0xe0) = iVar1;

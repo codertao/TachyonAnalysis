@@ -8,7 +8,7 @@ void FUN_0041e850(int param_1,int param_2,int param_3,undefined4 param_4)
   
   if (DAT_00590e48 == 0) {
     if (*(int *)(param_2 + 0x34) != 0) {
-      FUN_004b5670(*(int *)(param_2 + 0x34),*(undefined4 *)(param_2 + 0x38));
+      Music_SetVar(*(int *)(param_2 + 0x34),*(undefined4 *)(param_2 + 0x38));
     }
     iVar1 = FUN_00466960(param_2 + 0x10,GLBL_spacesav[0x55],param_4);
     iVar2 = FUN_0048e850(DAT_005a5dc8,param_2);

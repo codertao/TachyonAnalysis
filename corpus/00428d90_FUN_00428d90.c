@@ -13,7 +13,7 @@ void FUN_00428d90(int param_1,int *param_2)
     *param_2 = 4;
     return;
   }
-  iVar3 = FUN_00497560(iVar2,&DAT_005b20e0);
+  iVar3 = FUN_00497560(iVar2,&g_PlayerPower);
   piVar1 = param_2;
   iVar3 = (-(uint)(iVar3 != 0) & 0xfffffffe) + 3;
   *param_2 = iVar3;

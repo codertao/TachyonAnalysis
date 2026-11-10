@@ -4,7 +4,7 @@ void Hyper_Enter(void)
 {
   int iVar1;
   
-  FUN_004b5620(0x20);
+  Music_SetFadeOut(0x20);
   FUN_0049e8b0();
   Bdf_SetNeutralLighting(1);
   if (DAT_005b00b0 == 0) {

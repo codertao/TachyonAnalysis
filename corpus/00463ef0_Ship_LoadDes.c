@@ -33,11 +33,11 @@ undefined4 Ship_LoadDes(undefined4 param_1,undefined4 *param_2,int param_3)
       _DAT_00563244 = FUN_004580c0(local_80);
       _DAT_00562d18 = FUN_0048e820(DAT_005a6144,s_OTHER_SHIP_NAMES_00533a5c,&DAT_00563508);
       _DAT_00562d1c = FUN_00463cf0();
-      FUN_00463a50(&DAT_00562d00);
+      ShipDes_ParseAiClasses(&DAT_00562d00);
       FUN_00462d70(&DAT_00563254);
       DAT_00562df0 = DAT_005a6638 * DAT_00562df0 >> 8;
       DAT_00562dd8 = DAT_00562dd8 * DAT_005a6638 >> 8;
-      FUN_00463bd0(&DAT_00562d00);
+      ShipDes_Finalize(&DAT_00562d00);
       _DAT_00562e1c = _DAT_00562e08 * _DAT_00562dbc;
       _DAT_00562f28 = DAT_00562f30 - DAT_00562f2c;
       _DAT_00562f5c = DAT_00562f58 - DAT_00562f54;
@@ -77,9 +77,9 @@ undefined4 Ship_LoadDes(undefined4 param_1,undefined4 *param_2,int param_3)
       if (DAT_0056332c != 0) {
         _DAT_00563264 = _DAT_00563264 | 0x800;
       }
-      _DAT_0056325c = FUN_00462cc0(&DAT_00563538);
+      _DAT_0056325c = ShipDes_ParseSkill(&DAT_00563538);
       Cbin_Close();
-      _DAT_00563284 = FUN_004012e0;
+      _DAT_00563284 = Ai_TargetFilter;
       puVar4 = &DAT_00562d00;
       for (iVar1 = 0x1b2; iVar1 != 0; iVar1 = iVar1 + -1) {
         *param_2 = *puVar4;

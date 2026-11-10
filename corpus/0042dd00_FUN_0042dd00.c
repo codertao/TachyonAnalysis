@@ -16,7 +16,7 @@ undefined4 FUN_0042dd00(undefined4 param_1)
   FUN_0042d2c0(&DAT_005b01e0);
   FUN_0042d3c0(&DAT_005b01e0);
   FUN_0042d490(&DAT_005b01e0);
-  FUN_0042d570(&DAT_005b01e0);
+  HudCfg_ReadShieldStatus(&DAT_005b01e0);
   FUN_0042d5d0(&DAT_005b01e0);
   FUN_0042d7e0(&DAT_005b01e0);
   FUN_0042db90(&DAT_005b01e0);

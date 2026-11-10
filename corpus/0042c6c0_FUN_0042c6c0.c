@@ -40,7 +40,7 @@ void FUN_0042c6c0(void)
   FUN_0042b600();
   FUN_0042b3d0(&DAT_005b01e0,*(undefined4 *)(GLBL_SOME_CONTEXT + 0x90));
   FUN_0042b720(&DAT_005b01e0);
-  FUN_0042bda0(&DAT_005b01e0);
+  Hud_DrawEnergyBars(&DAT_005b01e0);
   FUN_0042bea0(&DAT_005b01e0,*(undefined4 *)(GLBL_SOME_CONTEXT + 0x90));
   if (*(int *)(GLBL_SOME_CONTEXT + 0x110) != 0) {
     FUN_0042bea0(&DAT_005b01e0,*(int *)(GLBL_SOME_CONTEXT + 0x110));

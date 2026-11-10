@@ -48,6 +48,8 @@ Naming source of truth: `decomp/sidecar/names.tsv`.
 | Netcode (protocol) | engine `0x4b7840..0x4b9110`, game callbacks `0x418150` (client) / `0x462180` (server); see `notes/multiplayer.md`; single-player = same code in-process, see `notes/singleplayer.md` |
 | Part animation (`.anm`) | loader `0x406e80`, player `0x407890..0x407bc0`, ship hook `Ship_PreRender 0x462fd0`; see `notes/animation.md` |
 | Capital ships / turrets | OCF parts `Ocf_ParsePart 0x4094a0`, `CapShip_SpawnParts 0x4125e0`, turret AI `Turret_Think 0x404c00`, weapons `g_WeaponDefs 0x55a560`; see `notes/capships.md` |
+| Ship AI / skill | `Dcb_Think_AiFighter 0x4039c0`, states `g_AiStatesDefault 0x5322b8` / wingman `0x5321c8`, dogfight `AiThink_Attack 0x402cc0`, evade `Ai_BreakOff 0x402910`, targeting `Ent_FindTarget 0x48b450`, skill tables `0x5323a8..0x5323c8`; see `notes/ai.md` |
+| Shields / power | struct `g_PlayerPower 0x5b20e0` (front `+8`, rear `+0x10`), player dmg `TachSrv_DamagePlayer 0x460f60` → `Shield_SplitFrontRear 0x4192c0` (world-bearing split), regen `Power_Regen 0x4561b0`, power ops 0x2005 `TachSrv_OnPowerOp 0x45f2a0`; see `notes/shields.md` |
 | Collision / avoidance | player `PlayerShip_CollisionPostThink 0x4535b0` → event 0x2009 → `TachSrv_OnCollision 0x45fd70`; AI `Ai_CollisionLookahead 0x404aa0`; cast `Coll_SegmentCast 0x418d10`; see `notes/collision.md` |
 | Weapons netcode | fire 0x2001/0x2004, hit 0x2003/0x2027; `TachSrv_OnHitReport 0x45f180`, `Proj_CreateMissile 0x495960`, `Proj_PostThinkOwned 0x4949e0`; see `notes/multiplayer.md` "Weapons and projectiles" |
 | PAK model format | `Pak_Load 0x4b14b0`, `Mesh_Relocate 0x4afbd0`, `Pak_LoadTexture 0x4b02d0`, states `Model_UpdateState 0x4b27d0`; spec `notes/pak.md`, tool `TachyonFileFormats/src/pak.py` |

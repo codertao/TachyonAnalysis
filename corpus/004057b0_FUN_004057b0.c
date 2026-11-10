@@ -19,7 +19,7 @@ void FUN_004057b0(int param_1)
   local_3c.y = 0;
   local_3c.z = 0;
   if (iVar1 == 0) {
-    FUN_00401e20(param_1);
+    Ai_ReturnToDefault(param_1);
     return;
   }
   *(undefined1 *)(param_1 + 0x327) = 0;
@@ -36,7 +36,7 @@ void FUN_004057b0(int param_1)
     uVar2 = *(int *)(param_1 + 0x38) - local_48.y;
     uVar3 = (int)uVar2 >> 0x1f;
     if ((int)((uVar2 ^ uVar3) - uVar3) < 0x64000) {
-      *(undefined1 **)(param_1 + 0x304) = &LAB_004056b0;
+      *(code **)(param_1 + 0x304) = FUN_004056b0;
     }
   }
   return;

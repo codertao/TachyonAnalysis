@@ -165,7 +165,7 @@ void PlayerControl_ProcessInput(int param_1)
   _DAT_005b1eb8 = _DAT_005b1eb8 + fVar3;
   if ((DAT_005b1f00 != 0) && (*(int *)(GLBL_SOME_CONTEXT + 0x90) != 0)) {
     DAT_005b1ee0 = FlightModel_SolveThrottle
-                             (DAT_005b1f0c + 0x84,DAT_005b39fc,&DAT_005b20e0,DAT_005b2154 & 0x400,
+                             (DAT_005b1f0c + 0x84,DAT_005b39fc,&g_PlayerPower,DAT_005b2154 & 0x400,
                               DAT_005b9020);
   }
   return;

@@ -9,7 +9,7 @@ undefined4 actual2_load_sbf_and_bin(LPCSTR sbf_file,LPCSTR bin_file)
   DWORD local_4;
   
   if (DAT_006af504 != 0) {
-    FUN_004b5510();
+    Music_Stop();
     DAT_006af504 = 0;
   }
   if (DAT_006af508 != 0) {

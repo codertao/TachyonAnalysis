@@ -626,7 +626,7 @@ Client→server (`0x2xxx`). Sender functions `0x414ee0..0x415c70`, server dispat
 | 0x2002 | 4 | 800 | request info on unknown entity id (sent when spawning a flag-0x04 record) | [l] |
 | 0x2003 | 0x14 | 4 | **hit report**: `vec3 hitPos, u32 targetId @0xc, u8 weapon @0x10, u8 kind @0x11, u16 dmgScale>>2 @0x12`. Server trusts it (see Weapons) | [c] |
 | 0x2004 | 0x24 | 800 | **fire missile**: pos, angles, f16 offset @0x12, `u32 clientFrame @0x18, u32 targetId @0x1c, u8 weapon @0x20, u8 @0x21, u8 lockFlag @0x22, u8 slot @0x23` | server spawns the real missile [c] |
-| 0x2005 | 4 | 800 | power/energy distribution change (sub-op 1..6) | [l] |
+| 0x2005 | 4 | 800 | power op `{u16 op, u16 amount}`: 1 shields front→rear, 2 rear→front, 3 laser→shields, 4 burner→shields, 5 shields→laser, 6 shields→burner. Amount is client-chosen and unchecked (`TachSrv_OnPowerOp`, see `shields.md`) | [c] |
 | 0x2006 | 4 | 800 | use jump gate (gate id) | `Gate_JumpToSector` [c] |
 | 0x2007 | 2 | 800 | arrived in quadrant | `Ent_EnterQuadrant` [c] |
 | 0x2008 | 8 | 800 | kind1: ack page of persistent objects; kind2: ready for snapshots | [c] |
@@ -692,7 +692,7 @@ marked f16. "angles" are the high 16 bits of 16.16 angles (`<<16` on receipt).
 | 0x1015 | 0x28 | 800 | Q / 1 | **primary nav target**: `u32 targetId, u32 route, char name[32] @8` (route via `0x427310`; sender caller `Nav_SetDestination`) | c |
 | 0x1028 | 0x28 | 800 | Q / 1 | **secondary nav target**: same layout; cleared if it equals the primary | c |
 | 0x1124 | 4 | 800 | 1 | **ammo**: `u16 weaponSlot, u16 count` | c |
-| 0x1117 | 6 | 800 | 1 | **resupply/repair notice**: `u16 code, u32 amount`. 3 = +pool A (`0x5b20e0`), 4 = +pool B (`0x5b20f8`), 8 = fill both, 9 = +both, 1/2/5-7/10 = sound cue only (pools are shield/energy [l]) | c |
+| 0x1117 | 6 | 800 | 1 | **resupply/repair notice**: `u16 code, u32 amount`. 3 = +laser energy (`g_PlayerPower[0]` `0x5b20e0`), 4 = +afterburner energy (`[6]` `0x5b20f8`), 8 = fill both, 9 = +both, 1/2/5-7/10 = sound cue only (see `shields.md`) | c |
 | 0x1107 | 0x10 | 800 | all | **ship descriptor for team**: `char desName[14], u16 classId` (picks the BORA or GALSPAN variant, `0x40e3e0`) | c |
 
 ### Players, score, round

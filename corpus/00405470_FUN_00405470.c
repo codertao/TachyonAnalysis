@@ -12,7 +12,7 @@ void FUN_00405470(int param_1,undefined4 param_2)
       if (pcVar1 != (code *)0x0) {
         iVar2 = (*pcVar1)(iVar2,3,0);
         if (iVar2 != 0) {
-          FUN_00401080(param_1,8);
+          Ai_SetState(param_1,8);
           *(int *)(param_1 + 0x90) = iVar2;
           return;
         }

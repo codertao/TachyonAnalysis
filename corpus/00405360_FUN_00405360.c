@@ -33,7 +33,7 @@ void FUN_00405360(int param_1)
     local_30.z = local_30.z + local_24.z;
     uVar3 = distance_between((vec3 *)(param_1 + 0x34),&local_30);
     if (uVar3 < 0x3e8000) {
-      *(undefined1 **)(param_1 + 0x304) = &LAB_00405280;
+      *(code **)(param_1 + 0x304) = FUN_00405280;
     }
     FUN_0040f380((vec3 *)(param_1 + 0x34),&local_30,param_1 + 0xdc);
   }

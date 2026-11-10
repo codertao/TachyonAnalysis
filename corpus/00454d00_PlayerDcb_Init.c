@@ -43,7 +43,7 @@ void PlayerDcb_Init(int param_1)
   FUN_004280d0(DAT_005b1f0c + 0x160);
   DAT_005b2154 = *(undefined4 *)(param_1 + 0x14);
   FUN_004545f0(iVar1);
-  FUN_004548b0();
+  PlayerPower_LoadRates();
   *(code **)(iVar1 + 0x68) = PlayerDcb_Think;
   *(undefined4 *)(iVar1 + 0x6c) = 0;
   if (DAT_005b3398 == 0) {

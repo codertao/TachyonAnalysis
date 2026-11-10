@@ -2,7 +2,7 @@
 void FUN_00402020(int param_1,int param_2)
 
 {
-  if (param_1 == DAT_005653a0) {
+  if (param_1 == g_Wingman) {
     FUN_00499670(param_1);
   }
   FUN_0048b330(param_1);

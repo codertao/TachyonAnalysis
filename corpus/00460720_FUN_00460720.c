@@ -16,8 +16,8 @@ void FUN_00460720(void)
   local_10 = 9;
   local_c = 0;
   Mission_PostEventAll(&local_18);
-  if (DAT_005653a0 != 0) {
-    FUN_00498da0();
+  if (g_Wingman != 0) {
+    WingCmd_FormOnMe();
   }
   return;
 }

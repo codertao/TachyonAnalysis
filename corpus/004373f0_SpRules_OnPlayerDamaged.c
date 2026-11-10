@@ -22,7 +22,7 @@ void SpRules_OnPlayerDamaged(int param_1)
   local_14 = 0;
   local_10 = 0;
   Mission_PostEvent(&local_18,*(undefined4 *)(param_1 + 100));
-  iVar2 = FUN_00455e60(param_1 + 0x11c,*(int *)(param_1 + 0x8c) + 0xd0,1);
+  iVar2 = Power_GetHullMax(param_1 + 0x11c,*(int *)(param_1 + 0x8c) + 0xd0,1);
   if (*(int *)(param_1 + 0x140) < iVar2 >> 2) {
     Chatter_PlayRandom(0);
   }

@@ -5,7 +5,7 @@ BOOL FUN_004b5550(void)
   BOOL BVar1;
   
   if (DAT_006af504 != 0) {
-    FUN_004b5510();
+    Music_Stop();
   }
   if (DAT_006af508 != 0) {
     FUN_004b5900();

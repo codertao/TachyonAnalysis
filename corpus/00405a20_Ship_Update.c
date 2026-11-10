@@ -54,7 +54,7 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
     return 0;
   case 0x11:
     if ((param_3 & 4) != 0) {
-      FUN_00456140(param_1 + 0x10c,4,0x50);
+      Power_DrainShields(param_1 + 0x10c,4,0x50);
     }
     *(uint *)(param_1 + 0x338) = *(uint *)(param_1 + 0x338) | param_3;
     return 0;

@@ -2,7 +2,7 @@
 void FUN_00499620(int param_1)
 
 {
-  DAT_005653a0 = 0;
+  g_Wingman = 0;
   FUN_0048b330(param_1);
   FUN_0048b140(param_1);
   FUN_0045cf80(param_1,*(int *)(param_1 + 100) + 0x14);

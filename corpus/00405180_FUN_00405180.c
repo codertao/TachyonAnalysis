@@ -35,7 +35,7 @@ void FUN_00405180(int param_1)
   iVar2 = FUN_00401350(param_1,(undefined4 *)(iVar3 + 0x4c),&local_24,
                        *(int *)(param_1 + 0x8c) + 0x598);
   if (iVar2 != 0) {
-    FUN_00401080(param_1,0xb);
+    Ai_SetState(param_1,0xb);
     iVar3 = FUN_00405d60(iVar3);
     if (iVar3 != 0) {
       uStack_14 = *(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x20);

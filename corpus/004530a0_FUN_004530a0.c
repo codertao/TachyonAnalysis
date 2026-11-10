@@ -19,7 +19,7 @@ void FUN_004530a0(int param_1)
       }
     }
     if (iVar1 != (&DAT_005b20d4)[param_1]) {
-      FUN_00497cb0(GLBL_SOME_CONTEXT,&DAT_005b1f10 + iVar1 * 0xe,&DAT_005b20e0);
+      FUN_00497cb0(GLBL_SOME_CONTEXT,&DAT_005b1f10 + iVar1 * 0xe,&g_PlayerPower);
       FUN_00466590(1,10,0,0xff);
     }
   }

@@ -78,3 +78,27 @@ result into the topic note.
 - [ ] Startup name tables (stages 0/1): capture and decode the actual STARTUPDATA blob.
 - [ ] Replica lag in a real MP session: break in `TachCli_ReplicaThink 0x415430` and compare the replica's `+0x34` with `+0x108`. At steady velocity, expect
   `+0x108 − +0x34 ≈ 15 × +0xa0`. Also confirm the 16-tick snapshot interval per client.
+
+## Ship AI and skill (`ai.md`)
+- [ ] **Skill values.** Break in `Sped_ConstructEntity 0x434ac0` after the hard-mode bump
+  (`0x434ca9`) and read `+0x310` for a few ships. Placement override (`+0x39`) should win over
+  `.des` SKILL; missing SKILL should give 2 (ACE).
+- [ ] **Lead jitter.** In `AiThink_Attack 0x402cc0` at `0x402dd5`, `ebp` = jitter mask {127,63,31,0}
+  by skill. An ELITE should lead perfectly; watch where its shots land vs a ROOKIE.
+- [ ] **Patience / break-off.** Watch `+0x328` climb while you out-turn an AI; at 20/40/60/80 it
+  should call `Ai_BreakOff 0x402910` with arg 10.
+- [ ] **Attacker cap.** On easy (cap 1) only one AI should be in Attack on the player at a time;
+  others should pick other targets or fly free. Read player `+0xc8`/`+0xca`.
+- [ ] **TARGET_RANGE units.** The `.des` range is stored `<<13`; compare the acquisition distance
+  against `.des` TARGET_RANGE (×1 or ×2 world units?).
+- [ ] **Call for help / Star Patrol.** Hit a neutral ship 16 times in a row and check whether a
+  `SOLPTRLF` patrol ship engages (`Ai_PatrolRespond 0x404070`).
+
+## Shields (`shields.md`)
+- [ ] **Front/rear split is world-relative.** Break in `Shield_SplitFrontRear 0x4192c0` and read
+  arg 0 (bearing) and the ship's yaw `+0x4c`. Take fire from the same world side while facing two
+  opposite headings: if the same pool drains both times, the split ignores facing.
+- [ ] **Client-sent shield rate.** PLAYERDATA `+0x2c` → server `+0x128/+0x130`. Send 0x40000 and
+  check that the server regenerates at 4× (it doesn't clamp).
+- [ ] **0x2005 op 3 amount.** Send `{3, 0xffff}` and check that both shields jump on the server
+  with no laser cost.

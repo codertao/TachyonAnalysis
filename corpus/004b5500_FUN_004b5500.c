@@ -8,7 +8,7 @@ void FUN_004b5500(void)
     (*GLBL_MAYBE_AUDIO_CB_5)();
     return;
   }
-  FUN_004b53b0();
+  Music_StreamTick();
   return;
 }
 

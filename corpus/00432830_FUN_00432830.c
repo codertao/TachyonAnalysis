@@ -14,7 +14,7 @@ void FUN_00432830(void)
   psVar7 = &DAT_005b8fa0;
   DAT_005b2154 = FUN_004327f0();
   uVar3 = FUN_00455dd0(DAT_005b2154);
-  FUN_00456090(&DAT_005b20e0,uVar3);
+  FUN_00456090(&g_PlayerPower,uVar3);
   uVar6 = DAT_005b2154 & 0x100000;
   uVar5 = 0;
   iVar4 = DAT_005b1f0c;

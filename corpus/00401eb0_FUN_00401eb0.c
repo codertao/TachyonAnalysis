@@ -25,7 +25,7 @@ void FUN_00401eb0(int param_1,int param_2)
       *(int *)(iVar2 + 0xf8) = param_2;
     }
     if ((*(int *)(param_2 + 0x104) == 0xc) || (*(int *)(param_2 + 0x104) == 4)) {
-      FUN_00401e20(param_2);
+      Ai_ReturnToDefault(param_2);
     }
     FUN_00457d70(*(undefined4 *)(param_2 + 100),*(undefined4 *)(*(int *)(param_2 + 0xd8) + 0x54),
                  param_2);

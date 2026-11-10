@@ -14,7 +14,7 @@ void FUN_00435db0(void)
   FUN_0048e090();
   DAT_005a5e1c = DAT_005a5584;
   DAT_005a5e20 = DAT_005a5588;
-  FUN_00498a20();
+  Wingman_Init();
   return;
 }
 

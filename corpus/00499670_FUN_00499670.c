@@ -4,7 +4,7 @@ void FUN_00499670(void)
 {
   int iVar1;
   
-  DAT_005653a0 = 0;
+  g_Wingman = 0;
   iVar1 = Var_GetTable(s_WINGMEN_0054adb0);
   if (iVar1 != 0) {
     iVar1 = Var_GetKeyByIndex(iVar1,DAT_005653a8);

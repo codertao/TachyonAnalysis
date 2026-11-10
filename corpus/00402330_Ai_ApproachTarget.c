@@ -9,7 +9,7 @@ void Ai_ApproachTarget(int param_1)
   
   iVar1 = *(int *)(param_1 + 0x90);
   if (iVar1 == 0) {
-    FUN_00401e20(param_1);
+    Ai_ReturnToDefault(param_1);
     return;
   }
   *(undefined1 *)(param_1 + 0x327) = 0;

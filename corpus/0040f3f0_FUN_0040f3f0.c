@@ -13,7 +13,7 @@ void FUN_0040f3f0(vec3 *param_1,int param_2)
   some_rotate_by_global(&local_24,&local_24);
   FUN_004b1be0(local_18,param_2);
   FUN_004b2410(&local_24,&local_24);
-  uVar1 = FUN_004e086c(local_24.x,-local_24.y);
+  uVar1 = Math_Atan2(local_24.x,-local_24.y);
   *(undefined4 *)(param_2 + 8) = uVar1;
   return;
 }

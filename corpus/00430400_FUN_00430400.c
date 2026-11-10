@@ -4,7 +4,7 @@ void FUN_00430400(void)
 {
   int iVar1;
   
-  if (DAT_005653a0 == 0) {
+  if (g_Wingman == 0) {
     FUN_00466590(1,9,0,0xff);
   }
   else {

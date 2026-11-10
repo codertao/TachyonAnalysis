@@ -14,7 +14,7 @@ int FUN_0040ed40(int *param_1,int *param_2)
   call_math_todo_with_rotation(local_18,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
   call_copy_mathresult_to_global(local_18);
   FUN_004b2410(&local_24,&local_24);
-  iVar1 = FUN_004e086c(local_24,-local_1c);
+  iVar1 = Math_Atan2(local_24,-local_1c);
   return iVar1 >> 0x10;
 }
 

@@ -19,7 +19,7 @@ undefined4 FUN_00456bd0(int param_1,int param_2)
     FUN_004568a0(0x66,*(undefined4 *)(param_2 + 0xdc));
     break;
   case 2:
-    iVar2 = FUN_00455e60(param_2 + 0x11c,iVar2,*(undefined4 *)(param_2 + 0xfc));
+    iVar2 = Power_GetHullMax(param_2 + 0x11c,iVar2,*(undefined4 *)(param_2 + 0xfc));
     if (iVar2 <= *(int *)(param_2 + 0x140)) {
       return 0;
     }

@@ -16,7 +16,7 @@ void FUN_00424d00(SpED *param_1)
   DAT_005aeebc = 0;
   DAT_005b1ee0 = 0x400;
   Entity_ApplyTurnControl
-            (DAT_005b1eec,DAT_005b1ecc,&DAT_005b1ed0,DAT_005b1f0c + 0x84,0x400,&DAT_005b20e0,
+            (DAT_005b1eec,DAT_005b1ecc,&DAT_005b1ed0,DAT_005b1f0c + 0x84,0x400,&g_PlayerPower,
              DAT_005b2154 & 0x400,DAT_005b9020);
   Entity_ThrustToWorld(param_1,DAT_005b1ed0,DAT_005b1f0c + 0x84,&DAT_005b1ecc);
   FUN_004248e0(param_1);

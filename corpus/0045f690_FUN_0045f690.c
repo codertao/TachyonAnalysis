@@ -20,8 +20,8 @@ void FUN_0045f690(int param_1,int param_2)
       FUN_004271a0(param_1);
     }
     Ent_LeaveQuadrant(DAT_0058b064,param_2);
-    if (DAT_005653a0 != 0) {
-      FUN_00457ac0(DAT_005653a0,param_2);
+    if (g_Wingman != 0) {
+      FUN_00457ac0(g_Wingman,param_2);
     }
     Ent_SetQuadrant(DAT_0058b064,DAT_0058b068,iVar1);
     uVar3 = FUN_00427010(*(int *)(param_2 + 0x3c) + 0xc,iVar1,&local_c,&local_14,
@@ -37,14 +37,14 @@ void FUN_0045f690(int param_1,int param_2)
     *(int *)(DAT_0058b064 + 0x50) = CONCAT22(local_10,uStack_12) << 0x10;
     *(uint *)(DAT_0058b064 + 0x54) = (uint)local_10 << 0x10;
     clr_bytes(DAT_0058b064 + 0xa0,0xc);
-    if (DAT_005653a0 != 0) {
-      *(int *)(DAT_005653a0 + 0x4c) = CONCAT22(uStack_12,local_14) << 0x10;
-      *(int *)(DAT_005653a0 + 0x50) = CONCAT22(local_10,uStack_12) << 0x10;
-      *(uint *)(DAT_005653a0 + 0x54) = (uint)local_10 << 0x10;
-      clr_bytes(DAT_005653a0 + 0xa0,0xc);
-      FUN_00499170(DAT_005653a0,&local_c,*(undefined4 *)(DAT_005653a0 + 0xf8));
-      iVar1 = DAT_005653a0;
-      *(undefined4 *)(DAT_005653a0 + 0x34) = local_c;
+    if (g_Wingman != 0) {
+      *(int *)(g_Wingman + 0x4c) = CONCAT22(uStack_12,local_14) << 0x10;
+      *(int *)(g_Wingman + 0x50) = CONCAT22(local_10,uStack_12) << 0x10;
+      *(uint *)(g_Wingman + 0x54) = (uint)local_10 << 0x10;
+      clr_bytes(g_Wingman + 0xa0,0xc);
+      FUN_00499170(g_Wingman,&local_c,*(undefined4 *)(g_Wingman + 0xf8));
+      iVar1 = g_Wingman;
+      *(undefined4 *)(g_Wingman + 0x34) = local_c;
       *(undefined4 *)(iVar1 + 0x38) = local_8;
       *(undefined4 *)(iVar1 + 0x3c) = local_4;
     }

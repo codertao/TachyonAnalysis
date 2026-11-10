@@ -55,7 +55,7 @@ void Tach_SrvDispatchEvent(uint param_1,undefined4 param_2,int param_3,int param
         }
         if (param_1 < 0x2006) {
           if (param_1 == 0x2005) {
-            FUN_0045f2a0(param_2);
+            TachSrv_OnPowerOp(param_2);
             return;
           }
           if (param_1 == 0x1116) {

@@ -29,9 +29,9 @@ void AiShip_OnDamage(SpED *param_1)
                *(undefined4 *)&param_1->field_0x114,uVar3);
     DAT_005653fc = FUN_00420eb0(*(int *)(*(int *)&param_1->field_0x8c + 0x544) == 2,DAT_005653e4);
     Weapon_PlayImpact(DAT_005653dc,0,uVar2,0,1);
-    iVar1 = FUN_004042c0(param_1,DAT_005653f4);
+    iVar1 = Ai_ShouldEvadeHit(param_1,DAT_005653f4);
     if (iVar1 != 0) {
-      FUN_00402910(param_1,2);
+      Ai_BreakOff(param_1,2);
     }
     if (DAT_005653f4 != 0) {
       if (*(int *)&param_1[2].field_0x74 == DAT_005653f4) {
@@ -43,7 +43,7 @@ void AiShip_OnDamage(SpED *param_1)
       iVar1 = DAT_005653f4;
       *(int *)&param_1[2].field_0x74 = DAT_005653f4;
       if (0xf < *(int *)&param_1[2].field_0x54) {
-        Ai_CanEngageTarget(param_1,iVar1);
+        Ai_CallForHelp(param_1,iVar1);
       }
       Mission_PostAttackedByPlayer
                 (*(undefined4 *)&param_1->field_0xd8,&param_1->field_0xdc,DAT_005653f4,

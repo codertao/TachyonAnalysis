@@ -75,7 +75,7 @@ int * load_bin_scr_file(char *bin_file)
     puVar11 = (undefined4 *)GLBL_bin_content[6];
     if (0 < GLBL_bin_content[4]) {
       do {
-        uVar5 = FUN_004b5770(pcVar9 + 1);
+        uVar5 = MusScr_ResolveNative(pcVar9 + 1);
         *puVar11 = uVar5;
         pcVar9 = pcVar9 + *pcVar9;
         puVar11 = puVar11 + 1;

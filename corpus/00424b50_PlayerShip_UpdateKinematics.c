@@ -34,7 +34,7 @@ void PlayerShip_UpdateKinematics(SpED *param_1)
     iVar1 = (-(uint)((DAT_005b8f58 & 1) != 0) & 0x401) - 1;
   }
   Entity_ApplyTurnControl
-            (DAT_005b1eec,DAT_005b1ecc,&DAT_005b1ed0,DAT_005b1f0c + 0x84,iVar1,&DAT_005b20e0,
+            (DAT_005b1eec,DAT_005b1ecc,&DAT_005b1ed0,DAT_005b1f0c + 0x84,iVar1,&g_PlayerPower,
              DAT_005b2154 & 0x400,DAT_005b9020);
   if (DAT_005b1edc == 0) {
     Entity_ThrustToWorld(param_1,DAT_005b1ed0,DAT_005b1f0c + 0x84,&DAT_005b1ecc);

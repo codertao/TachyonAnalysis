@@ -11,9 +11,9 @@ void FUN_0045f8e0(void)
   
   *(undefined4 *)(DAT_0058b068 + 0x13c) = 0;
   Ent_EnterQuadrant(DAT_0058b064,*(undefined4 *)(DAT_0058b064 + 100));
-  if (DAT_005653a0 != 0) {
-    *(undefined4 *)(DAT_005653a0 + 100) = *(undefined4 *)(DAT_0058b064 + 100);
-    FUN_00457a70(DAT_005653a0,*(undefined4 *)(DAT_005653a0 + 100));
+  if (g_Wingman != 0) {
+    *(undefined4 *)(g_Wingman + 100) = *(undefined4 *)(DAT_0058b064 + 100);
+    FUN_00457a70(g_Wingman,*(undefined4 *)(g_Wingman + 100));
   }
   if (*(int *)(DAT_0058b068 + 0x1cc) != 0) {
     FUN_004269b0(*(int *)(DAT_0058b068 + 0x1cc) + 0x34,*(undefined4 *)(DAT_0058b064 + 100),

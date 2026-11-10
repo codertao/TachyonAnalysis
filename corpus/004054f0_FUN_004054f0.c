@@ -30,7 +30,7 @@ void FUN_004054f0(int param_1)
       Mission_PostEvent(&local_18,*(undefined4 *)(param_1 + 100));
     }
   }
-  FUN_00401e20(param_1);
+  Ai_ReturnToDefault(param_1);
   return;
 }
 

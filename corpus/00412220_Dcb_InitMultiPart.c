@@ -30,7 +30,7 @@ void Dcb_InitMultiPart(int param_1,int param_2,undefined4 param_3)
   }
   uVar1 = FUN_00434530(param_2);
   *(undefined1 *)(param_1 + 0x106) = uVar1;
-  FUN_004560a0(param_1 + 0x144,*(int *)(param_1 + 0x8c) + 0xd0,1,0,1);
+  Power_Init(param_1 + 0x144,*(int *)(param_1 + 0x8c) + 0xd0,1,0,1);
   *(int *)(param_1 + 0x150) = *(int *)(param_1 + 0x150) << 2;
   *(int *)(param_1 + 0x158) = *(int *)(param_1 + 0x158) << 2;
   uVar3 = FUN_00434850(param_1,*(undefined4 *)(param_2 + 0x5c),param_1 + 0x144);
