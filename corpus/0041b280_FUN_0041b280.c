@@ -8,8 +8,8 @@ void FUN_0041b280(SpED *param_1,undefined4 param_2,undefined4 param_3)
   
   clr_bytes(&GLBL_some_sped_ll_head,0xd4);
   DAT_005b29c8 = param_2;
-  FUN_00434f10(param_1,param_3);
-  iVar1 = FUN_004348d0(&(param_1->position).z);
+  Spx_RemapPlacementNames(param_1,param_3);
+  iVar1 = Spx_TestVar(&(param_1->position).z);
   if ((iVar1 != 0) && ((param_1->field_0x24 & 8) == 0)) {
     FUN_00419dd0(param_3);
     DAT_005b29cc = param_3;

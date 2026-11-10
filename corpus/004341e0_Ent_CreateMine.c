@@ -17,7 +17,7 @@ undefined4 * Ent_CreateMine(undefined4 param_1,undefined4 param_2,int param_3)
   undefined1 *local_60;
   code *local_58;
   undefined4 local_54;
-  undefined1 *local_50;
+  code *local_50;
   undefined1 *local_4c;
   undefined4 local_48;
   code *local_3c;
@@ -42,7 +42,7 @@ undefined4 * Ent_CreateMine(undefined4 param_1,undefined4 param_2,int param_3)
   local_58 = FUN_00433bd0;
   local_64 = FUN_00433c90;
   local_60 = &LAB_00433d30;
-  local_50 = &LAB_00433ec0;
+  local_50 = Mine_OnMessage;
   local_3c = FUN_00433d80;
   local_38 = &LAB_004341a0;
   local_34 = FUN_004646f0;

@@ -150,7 +150,7 @@ Load fix-up: `cat 0, code 1` (proximity) has its value multiplied by 10.
 Other SPX sections the triggers refer to **[c]**:
 - `+0x58/+0x5c` **dialog list**, stride 0x10: `.SCR` names (`PLAYER.SCR`, `LAREF.SCR`, ...).
 - `+0x64/+0x68` **scene list**, stride 0x10: `.SEN` cutscenes (read from the main SPX).
-- Placement record `+0x20` = **object id**, `+0x54` = **group id** (-1 = none).
+- Placement record `+0x20` = **object id**, `+0x54` = **group** (-1 = none; stored as a group-name-table index, remapped at load to the SHIPTEXT.BIN `[FLIGHT_GROUPS]` id that triggers use, see formats.md).
 
 ### Runtime **[c]**
 1. Game code posts an event `{cat, sub, code, value, a, b}` with `Mission_PostEvent(ev, quadrant)`

@@ -16,7 +16,7 @@ undefined4 * Ent_CreateAsteroid(undefined4 param_1,undefined4 param_2)
   code *local_68;
   undefined4 local_64;
   undefined4 local_60;
-  undefined1 *local_5c;
+  code *local_5c;
   
   puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 == (undefined4 *)0x0) {
@@ -25,7 +25,7 @@ undefined4 * Ent_CreateAsteroid(undefined4 param_1,undefined4 param_2)
     local_70 = 0xcc;
     local_6c = 0xffff;
     local_78 = param_1;
-    local_5c = &LAB_00407f30;
+    local_5c = Asteroid_SpawnAtLoad;
     local_68 = Asteroid_InitClient;
     local_64 = 0;
     local_60 = 0;

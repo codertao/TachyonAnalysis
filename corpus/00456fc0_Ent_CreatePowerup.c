@@ -14,8 +14,8 @@ undefined4 * Ent_CreatePowerup(undefined4 param_1,undefined4 param_2,int param_3
   undefined4 local_6c;
   undefined4 local_68;
   code *local_64;
-  undefined1 *local_60;
-  undefined1 *local_58;
+  code *local_60;
+  code *local_58;
   undefined4 local_54;
   code *local_50;
   undefined4 local_48;
@@ -38,9 +38,9 @@ undefined4 * Ent_CreatePowerup(undefined4 param_1,undefined4 param_2,int param_3
   local_6c = 0xb8;
   local_68 = 0xffff;
   local_74 = param_1;
-  local_58 = &LAB_004567a0;
+  local_58 = FUN_004567a0;
   local_64 = FUN_004567c0;
-  local_60 = &LAB_004567f0;
+  local_60 = FUN_004567f0;
   local_50 = Ent_CreateMiscObject;
   local_3c = &LAB_0040e930;
   local_38 = FUN_004645c0;

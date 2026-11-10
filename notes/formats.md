@@ -331,8 +331,8 @@ allocates the sector object and reads `buf+0`/the section descriptors), not the 
 +0x90 u32  route offset              /    hdr 0x14 {nPts, ptsOff, tag, 0, 0}, point 0x20 (below)
 +0xa0 u32  number of kind-2 placements (editor bookkeeping; true in all 302 files)
 +0xa4 u32  ? (0..12+)
-+0xe8 u32  spawn-list count          \   group SPAWN LISTS (Spx_LinkSection 0x435690): variable-size
-+0xec u32  spawn-list offset         /    {recSize, entSize=28, id, nEnt, entOff}; id = trigger group id
++0xe8 u32  target-rule list count    \   per-group AI TARGET RULES (Spx_LinkSection 0x435690; NovaResearch
++0xec u32  target-rule list offset   /    calls them spawn lists): {recSize 20, ruleSize 28, groupId, n, off}
 +0xf0 u32  alias recSize (0x20) / +0xf4 count / +0xf8 offset: AI callsign aliases ("Python 1")
 +0xfc u32  region id   \  passed to the sector registry (FUN_00457e60) when a main SPX loads
 +0x100 u32 sector id   /
@@ -344,7 +344,7 @@ allocates the sector object and reads `buf+0`/the section descriptors), not the 
 ```
 The header is variable length (`first_offset` = 0x1a4 in 296 files, 0x11c in 4, 0x108 in 2); fields
 past it are absent. Loader relocates +0x10/18/24/30/5c/68/74/ec/f8/10c. Labels, aliases, group names,
-spawn lists, region ids, the 0x88 flag and the BW fields were first identified by NovaHQ's
+target-rule lists, region ids, the 0x88 flag and the BW fields were first identified by NovaHQ's
 NovaResearch SPX doc (github.com/Novahq-net/NovaResearch) and checked here against data/code.
 
 **Route point** (0x20): `vec3 pos; s32 action; s32 param; 3 × s32 ?`. On arrival
@@ -367,27 +367,75 @@ registry (`desnames.cfg`); the `.des`'s `DESC_TYPE` selects the entity class (se
 `Desc_CreateByType` registers the class and stores it back in `decl+0x20`.
 
 **SPED placement / def record** — *this is where per-object x/y/z lives* (section @ +0x14 count /
-+0x18 offset; **variable stride** = `u16` at `+0x02`). `Spx_ApplyPlacements` walks it and calls
-`class+0x2c` (= `Sped_ConstructEntity 0x434ac0`) with the record as the *def*. (`+0x14/18/1c` is the
-object's **orientation**, not velocity — it is fed to the Euler→matrix builder at runtime; see
-`flight.md`.)
++0x18 offset; **variable stride** = `u16` at `+0x02`). **[c]** unless marked.
+
+Two class hooks consume it (class record = the 0x74-byte struct each `Ent_Create*` registers):
+- **class +0x1c "spawn at sector load"**: `Ship_SpawnAtLoad 0x434e80` (all kind-3 classes have one of
+  the same shape), `Gate_SpawnAndPreload 0x426400`, `Asteroid_SpawnAtLoad 0x407f30`, the powerup's
+  `0x4567a0 → Powerup_Spawn 0x456680`. Kind-3 ones remap names (`Spx_RemapPlacementNames`), then
+  construct unless running as an MP client, the spawn var test fails, or flags & 8.
+- **class +0x2c "construct"** (`Spx_ApplyPlacements → Spx_ConstructPlacement`, and trigger spawns):
+  `Sped_ConstructEntity 0x434ac0` (SHIP), `0x412630` (capital ship), `0x413ad0` (cargo), starbase
+  `0x40a880`, mine `0x4339b0`, beacon `Ent_SpawnAiDcb`, speed ring `0x458760`.
+
+Common head (0x38 bytes):
 ```
-+0x00 u16  kind tag               (editor metadata, NOT read at load: 0=null 1=gate 2=roid/debris
-                                    3=ship/station 4=MP-pickup; correlates with the record-size family)
++0x00 u16  kind   0 null/marker (56 B, flags 0x1002) · 1 gate (156/160) · 2 asteroid/debris (116)
+                  3 AI object: ship/capship/starbase/mine/cargo/beacon/ring (160/164) · 4 MP pickup (116/120)
+                  Set by the editor; the class comes from the SPED alias's .des. Trig_SpawnGroup and
+                  TrigAct_GroupTakeoffNext only act on kind 3.
 +0x02 u16  record size (stride)
-+0x04 u32  SPED-decl index         (which alias from the decl section to instantiate)
-+0x08 s32  pos.x    +0x0c s32 pos.y    +0x10 s32 pos.z     (world units)
-+0x14 s32  orient.x +0x18 s32 orient.y +0x1c s32 orient.z  (Euler angles, <<16 at runtime; NOT velocity -
-                                                            stationary objects carry non-zero facing here)
-+0x20 s32  OBJECT ID (sector-unique; what triggers, Sped_FindDef and spawn actions refer to)
-+0x24 u32  flags    (0x2, 0x4, 0x82, 0xc2, …; bit tested 0x1000 etc. in ctor)
-+0x28 u32  runtime entity ptr      (0 on disk)
-+0x2c u32  runtime "constructed"   (0 on disk)
-+0x38 ...  PER-KIND: ships -> u8 team/side (0=default); gates -> dest sector .spx name string
-+0x54 s32  GROUP ID (-1 = none; trigger group conditions/actions; Trig_SpawnGroup)
-+0x5c s32  ? (-1/0/10/11/13 seen; earlier guessed "object id" but triggers use +0x20)
- ...tail  per-kind params (e.g. gate link ids at +0x48/+0x50 = {u16 kind, u16 id})
++0x04 s32  SPED-decl index (-1 for kind 0)
++0x08 vec3 position (16.16)          +0x14 vec3 orientation (512/turn, <<16 at runtime)
++0x20 s32  OBJECT ID (sector-unique; triggers, Sped_FindDef, target rules)
++0x24 u32  flags: 0x1 use the player's ship class · 0x2 label index is in the MAIN SPX · 0x4 ? (no reader)
+           0x8 don't spawn at load · 0x10 start inactive (AI state 0xb) · 0x20 passive (no engage limits)
+           0x40 → entity +0xf6 · 0x80 has cargo contents · 0x200 gate proximity think fn
+           0x400 → entity +0xc0 |= 0x20 · 0x800 gate id lookup (NovaResearch, unverified) · 0x1000 never built
++0x28 runtime entity · +0x2c runtime constructed · +0x30 runtime "names remapped" · +0x34 0
 ```
+**Kind 3 body** (AI objects):
+```
++0x38 u8   side+1 (0 = .des default)       +0x39 u8 skill+1 (0 = default; +1 on hardest, max 3)
++0x3a u8   BaseWars min faction level: starbase parts / mines activate when the side's level >= this
+           (faction progress → Faction_SendLevel 0x40cb80 → message 0x1f → Starbase/Mine_OnFactionLevel)
++0x3b u8   ? (always 0)
++0x3c {s16 section, s16 key} + 0x40 s32 value: spawn at load only if var == value (Spx_TestVar)
++0x44 s32  label index (−1): entity bound to that label (Sped_BindLabel)
++0x48 s32  initial route INDEX (−1)        +0x4c s32 start point
++0x54 s32  group: index into the SPX group-name table; at load → SHIPTEXT.BIN key − [FLIGHT_GROUPS] base
+           = the group id triggers and target rules use (e.g. NEUT04C FG_NERGAL = 227)
++0x58 s32  ? (0..5, mostly fighters; no reader found)
++0x5c s32  alias index (−1): callsign; aliased ships keep power/damage across visits and stay dead
++0x60 s32  contents name (CONT_*; group-name index → SHIPTEXT key) shown on the HUD when flags & 0x80
++0x64 s32  special display name (COURAGE...; same remap; −1 → "<group> <n>")
++0x68...   runtime (+0x68 wingman flag), zero on disk
+```
+**Kind 1 body** (gates): `+0x38 char dest[16]` (local destination .spx) · `+0x48 {s16,s16}` open-state
+var (open when ≥ 1; `TrigAct_GateSet` writes it) · `+0x50 {s16,s16}` var, == 1 sets gate flag 1 ·
+`+0x54` usually 1 (?) · `+0x58` regional gate (jump via `Gate_JumpToSector`) · `+0x5c` regional
+destination (→ `Sector_Transition`; name = ingame.bin record 0x7d + v) · `+0x64` ? (−1 / small).
+**Kind 2 body**: `+0x38` 16.16 scale (radius = int(scale) × des radius).
+**Kind 4 body**: `+0x38` respawn seconds (×50; type-10 pickups halved/doubled by the MP setting),
+`+0x3c` position jitter (± jitter×0x1000 per axis).
+
+**Group target rules** (header +0xe8/+0xec): one list per group, stored in the quadrant's group slot
+(`Quad_SetGroupTargetRules`; slots are `quadrant+0x58`, 0x40 × 0x28). `Ai_TryAssignTarget` first
+checks side hostility, then `Ai_TargetFilter` → `Ai_RunTargetRules` ORs the rules
+`{s32 type, s32 target, 5 × 0}` through table `0x53219c`:
+
+| type | rule | result |
+|---|---|---|
+| 0 | any | 1 |
+| 1 / 2 | target in group / is object `target` | 1 |
+| 3 / 4 | same, preferred | 5 (AI +0x324 = 2) |
+| 5 / 6 | same, never attack | 2 (stops) |
+| 7 / 8 | no handler | 0 |
+| 9 | target is a player (pool type 1) | 2 |
+
+A list with no matching rule forbids the target. Example, BORA03A: FG_WASP attacks FG_LIGHTNING and
+FG_LYNX and prefers object 1299; FG_CLAW never attacks 1299.
+
 **Position unit [l]:** 16.16 fixed point, the same scale as PAK vertices.
 - `Sped_ConstructEntity` copies `+0x08..+0x10` straight into the entity position. Part pivots
   (16.16) are added to that position (`FUN_004b3eb0`).

@@ -18,7 +18,7 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
   undefined4 local_5c;
   code *local_58;
   undefined1 *local_54;
-  undefined1 *local_50;
+  code *local_50;
   undefined1 *local_4c;
   undefined1 *local_40;
   code *local_3c;
@@ -48,7 +48,7 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
   local_64 = FUN_0040b360;
   local_60 = &LAB_0040b3e0;
   local_5c = 0;
-  local_50 = &LAB_0040b5f0;
+  local_50 = Starbase_OnMessage;
   local_3c = FUN_0040b880;
   local_2c = &LAB_0040b920;
   local_c = &LAB_0040ba50;

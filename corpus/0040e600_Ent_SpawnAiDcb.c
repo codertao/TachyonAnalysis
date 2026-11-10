@@ -9,7 +9,7 @@ undefined4 Ent_SpawnAiDcb(int param_1,int param_2,undefined4 param_3,undefined4 
   int iVar3;
   
   uVar2 = Sped_GetDefList(param_1,param_3);
-  iVar3 = FUN_004345f0(uVar2,*(undefined4 *)(param_1 + 0x5c));
+  iVar3 = Sped_AliasCanSpawn(uVar2,*(undefined4 *)(param_1 + 0x5c));
   if (iVar3 == 0) {
     return 0;
   }

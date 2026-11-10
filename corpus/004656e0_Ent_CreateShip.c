@@ -45,7 +45,7 @@ int Ent_CreateShip(undefined4 param_1,undefined4 param_2,int param_3,int param_4
   local_6c = 0x6c8;
   local_68 = 0xffff;
   local_74 = param_1;
-  local_58 = FUN_00434e80;
+  local_58 = Ship_SpawnAtLoad;
   local_64 = ShipReplica_Init;
   local_60 = &LAB_00463690;
   local_5c = 0;

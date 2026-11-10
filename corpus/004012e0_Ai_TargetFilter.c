@@ -23,7 +23,7 @@ undefined4 Ai_TargetFilter(int param_1,int param_2)
   if (iVar2 == 0) {
     return 1;
   }
-  uVar3 = FUN_00401270(param_1,iVar2,param_2);
+  uVar3 = Ai_RunTargetRules(param_1,iVar2,param_2);
   return uVar3;
 }
 

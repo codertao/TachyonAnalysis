@@ -10,7 +10,7 @@ undefined4 FUN_00413ad0(int param_1,int param_2,undefined4 param_3,undefined4 *p
   
   iVar1 = param_1;
   uVar4 = Sped_GetDefList(param_1,param_3);
-  iVar5 = FUN_004345f0(uVar4,*(undefined4 *)(param_1 + 0x5c));
+  iVar5 = Sped_AliasCanSpawn(uVar4,*(undefined4 *)(param_1 + 0x5c));
   if (iVar5 == 0) {
     return 0;
   }

@@ -25,13 +25,13 @@ undefined4 FUN_00499560(undefined2 param_1)
     break;
   case 4:
     if (g_Wingman != 0) {
-      uVar1 = FUN_004010e0();
+      uVar1 = TargetRule_Any();
       return uVar1;
     }
     break;
   case 5:
     if (g_Wingman != 0) {
-      uVar1 = FUN_004010e0();
+      uVar1 = TargetRule_Any();
       return uVar1;
     }
     break;

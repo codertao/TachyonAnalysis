@@ -4,7 +4,7 @@ void FUN_00457d30(undefined4 param_1,undefined4 param_2,undefined4 *param_3,unde
 {
   int iVar1;
   
-  iVar1 = FUN_00457c70(param_1,param_2);
+  iVar1 = Quad_FindGroupSlot(param_1,param_2);
   if (iVar1 != 0) {
     if (param_3 != (undefined4 *)0x0) {
       *param_3 = *(undefined4 *)(iVar1 + 0xc);

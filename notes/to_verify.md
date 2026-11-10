@@ -105,3 +105,6 @@ result into the topic note.
 - [ ] **SPX sector flags vs hardware items.** `+0x88` bit0 radiation damage is skipped when des
   `+0x158 & 8`, bit1 fog range cap when `+0x158 & 0x40`. Buy RADIATION SCREEN / FOG RADAR and
   check those bits get set (guess from JOBS.BIN unlock text; see formats.md SPX).
+- [ ] **SPX placement unknowns.** Kind-3 `+0x58` (0..5, mostly fighters) and flag 0x4 (most common
+  bit) have no static reader; gate `+0x54` (usually 1) and `+0x64`. Watch reads with a hardware
+  breakpoint on a loaded placement (formats.md SPX).

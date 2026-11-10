@@ -46,13 +46,13 @@ void Gate_SpawnAndPreload(int param_1,int param_2,undefined4 param_3)
     *(undefined4 *)(iVar1 + 0xbc) = 0;
     FUN_0045cbf0(iVar1,*(int *)(iVar1 + 100) + 0x14);
     if ((*(char *)(param_1 + 0x38) == '\0') || (*(int *)(param_1 + 0x58) != 0)) {
-      FUN_00426310(iVar1,param_1);
+      Gate_InitRegional(iVar1,param_1);
       *(undefined4 *)(iVar1 + 0x110) = 0xffffffff;
     }
     else {
       iVar2 = Spx_LoadSector(param_1 + 0x38,0);
       if (iVar2 != 0) {
-        FUN_004262b0(iVar1,param_1,iVar2);
+        Gate_InitLocal(iVar1,param_1,iVar2);
         *(undefined4 *)(iVar1 + 0x110) = *(undefined4 *)(iVar2 + 0x30);
       }
     }

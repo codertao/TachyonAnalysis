@@ -10,7 +10,7 @@ void FUN_0040d500(void)
   *(undefined1 **)(g_ActiveRules + 0x7c) = &LAB_0040c4d0;
   *(undefined1 **)(g_ActiveRules + 0x78) = &LAB_0040d450;
   *(undefined1 **)(g_ActiveRules + 0x88) = &LAB_0040d470;
-  *(code **)(g_ActiveRules + 0x90) = FUN_004010e0;
+  *(code **)(g_ActiveRules + 0x90) = TargetRule_Any;
   *(undefined1 **)(g_ActiveRules + 0x98) = &LAB_0040d4d0;
   FUN_0048cd90(0x19);
   FUN_00431ef0();

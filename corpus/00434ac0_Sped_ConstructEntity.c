@@ -16,7 +16,7 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
   uint uVar9;
   
   uVar5 = Sped_GetDefList(param_1,param_3);
-  iVar6 = FUN_004345f0(uVar5,*(undefined4 *)(param_1 + 0x5c));
+  iVar6 = Sped_AliasCanSpawn(uVar5,*(undefined4 *)(param_1 + 0x5c));
   if (iVar6 == 0) {
     return 0;
   }
@@ -118,9 +118,9 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
     }
     uVar8 = FUN_00455dd0(*(undefined4 *)(param_2 + 0x564));
     Power_Init(iVar6 + 0x10c,*(int *)(iVar6 + 0x8c) + 0xd0,1,uVar8,1);
-    FUN_00434630(uVar5,*(undefined4 *)(param_1 + 0x5c),iVar6 + 0x10c);
+    Sped_SyncAliasPower(uVar5,*(undefined4 *)(param_1 + 0x5c),iVar6 + 0x10c);
     FUN_0045cff0(iVar6,*(int *)(iVar6 + 100) + 0x14);
-    FUN_00434960(iVar6,param_1);
+    Sped_BindLabel(iVar6,param_1);
     Nav_InitRoute(iVar6,param_1,puVar1,param_3,param_1 + 0x48,uVar5);
     if (param_4 == (undefined4 *)0x0) {
       uVar5 = *(undefined4 *)(param_1 + 0x54);
@@ -130,7 +130,7 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
       uVar5 = *(undefined4 *)(param_1 + 0x54);
       uVar9 = 1;
     }
-    FUN_00434a30(iVar6,puVar1,uVar5,uVar9);
+    Sped_JoinGroup(iVar6,puVar1,uVar5,uVar9);
     FUN_00457df0(param_3,*(undefined4 *)(param_1 + 0x54),*(undefined4 *)(param_2 + 0x1c));
     if ((*(byte *)(param_1 + 0x24) & 0x20) == 0) {
       Ent_SetEngageLimits(iVar6,3,2);

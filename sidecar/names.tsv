@@ -1167,3 +1167,36 @@
 0x49e340	Rtxt_KeyIndex	(rt, key) -> global record index
 0x4058f0	Nav_FindRouteByTag	(tag, def, quadrant) -> index of SPX route (waygroup) whose +0x08 tag == tag; logs WAYGROUP %d NOT FOUND, returns 0
 0x460c20	Sector_RadiationTick	SPX header +0x88 bit0 (radiation): 150 shield/hull damage every 16 ticks unless ship +0xdc->+0x158 & 8 (RADIATION SCREEN item? [l])
+0x401240	Ai_EvalTargetRule	dispatch one 28-B SPX target rule via table 0x53219c[type] -> bits 1 allow / 4 prefer / 2 forbid
+0x401270	Ai_RunTargetRules	(me, list, target): OR the rules of the group's SPX target-rule list (+0xc count, +0x10 rules, stride 0x1c); 2 = forbid
+0x4010e0	TargetRule_Any	rule 0: always 1
+0x4010f0	TargetRule_IgnorePlayers	rule 9: 2 if target DCB pool type (+0x76) == 1 (player)
+0x401110	TargetRule_GroupMatch	rule 1: 1 if target group slot id == rule target
+0x401140	TargetRule_ObjectMatch	rule 2: 1 if target placement object id (+0xd8 -> +0x20) == rule target
+0x401180	TargetRule_PreferGroup	rule 3: group match -> 5
+0x4011b0	TargetRule_PreferObject	rule 4: object match -> 5
+0x4011e0	TargetRule_IgnoreGroup	rule 5: group match -> 2
+0x401210	TargetRule_IgnoreObject	rule 6: object match -> 2
+0x434e80	Ship_SpawnAtLoad	SHIP class +0x1c: remap ids, then construct if !MP-client, spawn var test (+0x3c) holds and !(flags & 8)
+0x4348d0	Spx_TestVar	{s16 section, s16 key} at p, value at p+4: true if section == -1 or var == value
+0x434920	Spx_ReadVarRef	{s16 section, s16 key}: var value, or -1 if section == -1
+0x434ed0	Spx_GroupNameToShiptextIdx	SPX group-name-table index -> SHIPTEXT.BIN global key index (-1 if none)
+0x434f10	Spx_RemapPlacementNames	once per placement (+0x30 latch): +0x54 group -> FLIGHT_GROUPS-relative id, +0x60 contents / +0x64 special name -> SHIPTEXT key idx
+0x4345b0	Sped_FindAliasState	persistent per-alias state list DAT_005a5e08 (by alias name)
+0x4345f0	Sped_AliasCanSpawn	placement +0x5c alias: false if the alias's persistent state says dead
+0x434630	Sped_SyncAliasPower	copy 0x30 B of power/damage state between the entity and its alias record
+0x434960	Sped_BindLabel	placement +0x44 label index -> label list of main (flags & 2) or sub SPX; binds entity to it
+0x434a30	Sped_JoinGroup	add entity to quadrant group slot (+0x54 id); stores slot at entity +0x100
+0x457c30	Quad_AllocGroupSlot	quadrant +0x58: 0x40 slots x 0x28 {used, id, leader, alive, spawned, ?, rules, rules, name, defname}
+0x457c70	Quad_FindGroupSlot	(quadrant, group id) -> slot or 0
+0x457dc0	Quad_SetGroupTargetRules	Spx_LinkSection: slot(+0x18/+0x1c) = SPX target-rule list
+0x407f30	Asteroid_SpawnAtLoad	ASTEROID class +0x1c: placement +0x38 = 16.16 scale (radius = int(scale) * des radius)
+0x456680	Powerup_Spawn	placement +0x38 respawn seconds (x50, MP-scaled for type 10), +0x3c position jitter
+0x4565e0	Powerup_PickPosition	placement pos +- rand(jitter*0x2000) - jitter*0x1000 per axis
+0x40b5f0	Starbase_OnMessage	starbase-part message switch; 0x1f = faction level changed
+0x40b5c0	Starbase_OnFactionLevel	active (+0xfc) when level >= placement +0x3a (BaseWars)
+0x433e80	Mine_OnFactionLevel	armed when level >= placement +0x3a (BaseWars)
+0x40cb80	Faction_SendLevel	send message 0x1f {level} to every entity of the side with pool type 0xc/0x10
+0x426310	Gate_InitRegional	gate name from ingame.bin record 0x7d + placement +0x5c; +0x50 var == 1 -> flag 1
+0x4262b0	Gate_InitLocal	gate name = destination quadrant name; +0x50 var == 1 -> flag 1
+0x433ec0	Mine_OnMessage	mine message switch; 0x1f = faction level changed

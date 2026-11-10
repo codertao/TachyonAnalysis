@@ -13,7 +13,7 @@ undefined4 * Ent_CreateSpeedRing(undefined4 param_1,undefined4 param_2,int param
   undefined4 local_6c;
   undefined4 local_68;
   undefined1 *local_64;
-  undefined1 *local_60;
+  code *local_60;
   code *local_58;
   undefined4 local_54;
   code *local_50;
@@ -37,7 +37,7 @@ undefined4 * Ent_CreateSpeedRing(undefined4 param_1,undefined4 param_2,int param
   local_74 = param_1;
   local_58 = FUN_004588a0;
   local_64 = &LAB_004589e0;
-  local_60 = &LAB_00458a30;
+  local_60 = FUN_00458a30;
   local_3c = &LAB_0040e930;
   local_38 = FUN_004645c0;
   local_34 = FUN_004646f0;
