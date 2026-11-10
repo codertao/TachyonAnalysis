@@ -609,7 +609,7 @@ Entity record, 24 bytes (28 with flag 0x08):
 | 8 | pos dx,dy,dz relative to origin, **f16** |
 | 0xE | velocity x,y,z, **f16** |
 | 0x14 | orientation u8 x3 |
-| 0x18 | (flag 0x08) u16 scale/lifetime (`dcb+0x1c >> 8`), s16 descriptor slot (stage-1 table) or -1 |
+| 0x18 | (flag 0x08) u16 model scale, 8.8 fixed (`dcb+0x1c >> 8`; `+0x1c` is the 16.16 render scale, used when model flag `+0x18 & 0x10`). For asteroids this is the SPX placement scale (`Asteroid_SpawnAtLoad`); the client restores it as `rec << 8` in `TachCli_SpawnReplica`. Then s16 descriptor slot (stage-1 table) or -1 |
 
 **f16** = custom 16-bit float (`0x48e870` encode / `0x48e8c0` decode): bit0 sign, bits1-3
 exponent (even shifts), bits4-15 = top 12 mantissa bits.
