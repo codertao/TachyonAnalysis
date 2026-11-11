@@ -240,7 +240,6 @@
 0x415e10	Dcb_FindById	look up active client DCB by id (scans g_DcbActiveList 0x5b3280)
 0x4584d0	Dcb_RenderPass	in-flight render pass: for 3 depth buckets build visible list (Dcb_BuildVisibleList) then call each DCB render method (*(dcb+0x70))(dcb)
 0x458460	Dcb_BuildVisibleList	build/sort visible DCB list into scratch 0x6240e8 (from 0x5b31c0 + g_DcbActiveList 0x5b3280) for a depth bucket
-0x403480	Dcb_SetRangeFlags	set dcb+0xc0 bits 0x40/0x80 by comparing range fields (called by +0x68 think methods)
 0x40e600	Ent_SpawnAiDcb	spawn AI DCB from Server AI pool (0x58af9c): +0x68=0x40a570, +0x80=no-op
 0x412a70	Dcb_SpawnProjectile	spawn projectile/bolt DCB (type 0xd) from client pool 0x5b3288; set methods +0x68/+0x70/+0x80/+0x84; link into g_DcbActiveList
 0x41b7d0	DcbPool_Alloc	pop a DCB from a pool free-list; assign id; dec free count
@@ -1200,3 +1199,66 @@
 0x426310	Gate_InitRegional	gate name from ingame.bin record 0x7d + placement +0x5c; +0x50 var == 1 -> flag 1
 0x4262b0	Gate_InitLocal	gate name = destination quadrant name; +0x50 var == 1 -> flag 1
 0x433ec0	Mine_OnMessage	mine message switch; 0x1f = faction level changed
+0x497b20	Weapon_PreFire	call def+0xdc (charge/arm callback) -> out dmg scale (default 1.0) ; ret 1 fire, 2 abort
+0x497b70	Weapon_TryFireWithScale	slot+0x34 u16 -> 0x56579c; Weapon_PreFire scale -> Weapon_TryFire(scale) -> 0x565794 -> bolt +0xf0
+0x4978f0	Weapon7_ChargeScale	def+0xdc of weapon 7: +1 per frame held while energy >= def+0x58 (drains it), cap def+0xe4 (500); release -> scale = n/def+0xe4
+0x497860	Weapon10_HoldGate	def+0xdc of weapon 0x10: hold < 25 frames fires, > 49 aborts (ret 2)
+0x497a60	Weapon1b_BeamGate	def+0xdc of weapon 0x1b: scale 1.0, sustained while held, drains def+0x58/frame
+0x4b1c10	Model_LocalToWorld	vec: rotate by instance +0x34 angles, add instance pos +0x1c (seg-cast hit back to world)
+0x430840	Cheat_KillTarget	debug: 250000 dmg to current target via its +0x80
+0x452f70	PlayerCmd_FireGroup	builds weapon slot(s) with g_PlayerPower, Weapon_TryFireWithScale per linked slot
+0x423270	ShieldFx_Spawn	client: shield-hit effect DCB (type 9, client pool) from g_ShieldFxTable[variant]: model, sound, flags 1=at hit pt / 2=fixed scale 4.0; else centred on target, scale = target radius*0.61, follows target
+0x4233e0	ShieldFx_SpawnLocal	client: angles = Vec_DirAngles(src, hitPos) -> ShieldFx_Spawn(target, hitPos, angles, variant)
+0x423420	ShieldFx_Broadcast	server: angles from 0x5653c0 -> hitPos, SrvSend_ProjectileImpact 0x1004 {hitPos, hitId=0x5653d8, ...}
+0x40f380	Vec_DirAngles	(a,b) -> yaw=atan2(dx,dz), pitch=atan2(dy,-|dxz|) of a-b (halved), roll 0
+0x420eb0	ShieldFx_PickVariant	(team==2 galspan, weapon shieldFactor): shf<=32 -> 1 / 3 else 0 / 2
+0x420fd0	ShieldFx_Think	follow target pos unless flag 1; intensity +0x2c += 10/frame to 127 then -10 to 0 -> free (~26 frames)
+0x4212a0	ShieldFx_Render	+0x70: draw shield mesh at 2x model radius with per-draw anim counter
+0x5359c8	g_ShieldFxTable	{model**, sound id, flags} x7: 0 shield2, 1 shield6, 2 shield3, 3 shield4, 4 shield7, 5 shield6@hit fixed, 6 shield4@hit fixed
+0x53ec80	g_FxModelLoadTable	{pak, dest**, pal, name, 0} x N: explode7, shield2/6/3/4/7, shockwav ...
+0x493ad0	Weapon_CountHit	server: shooter +0xec (class 0x11) or +0xf4 hit counters
+0x403480	Dcb_SetRangeFlags	+0xc0: 0x40 front shield > 1%, 0x80 rear shield > 1% (server think; sent in snapshot byte 5)
+0x498900	Weapon_DumpStats	debug (flag 0x5a6730): write 'weapon_desc' with name, fire rate, shield/hull dmg, DPS, energy/ammo per weapon
+0x492c90	WeaponName_ToId	internal name ("GALSPAN_LIGHT_LASER") -> id via g_WeaponNameTable
+0x492d00	WeaponId_ToName	id -> internal name (default "NO WEAPON")
+0x55a3c0	g_WeaponNameTable	{char* internal name, id} x 0x1c, NULL-terminated
+0x4936c0	WeaponDefs_DeriveStats	startup: +0x44=-1 -> +0x40; shield/hull/system DPS at +0x24..+0x38; +0xcc = speed*life
+0x492f40	Ai_PickWeaponByShieldDps	best weapon slot by def+0x30 matching role/target/range/aim, energy or ammo available
+0x493000	Ai_PickWeaponByHullDps	as Ai_PickWeaponByShieldDps but by def+0x34
+0x4043f0	AiShip_CanBeDamagedBy	player/unknown shooter -> yes; AI shooter -> only if victim race friendMask(+8) & shooter race bit == 0
+0x493ce0	Blast_DamagePlayers	blast sphere vs player list (skip owner if def+0xd8&1): StageDamage scale = intensity<<8, call +0x80
+0x493de0	Blast_DamageList	blast sphere vs entity list (no owner skip)
+0x493ec0	Blast_PostThink	every 16 frames while intensity>15: radius = model r * scale; damage players, AI list, 3x3 cells
+0x494160	Blast_Init	scale 2.0, intensity 255, growth def+0x9c, decay 3.0, 7-frame hold (think 0x494130 -> 0x494080)
+0x494080	Blast_Think	scale += growth (-1250/frame); reservoir -= decay (-128/frame, min 1.0); intensity = min(255, res>>16); free at 0
+0x5a663c	g_PlayerDamageScale	0xa6 (166/256) set in CmdLine_ParseSwitches; applied to every TachSrv_DamagePlayer hit
+0x5a6638	g_ShipDesStatScale	0x99 (153/256) applied to SHIP .des shield max (+0xd8) and hull (+0xf0) in Ship_LoadDes
+0x40cb10	BaseWars_UpdateRank	rank (+0xfc, 1..10) = count of g_RankPointThresholds <= points (+0x100); msgs + SrvSend_RankChange on change
+0x40cf90	BaseWars_AddPoints	points += n (cap 3700), BaseWars_UpdateRank
+0x40d030	BaseWars_AwardKillPoints	[l] base spacesav[0x6e] x (1 + 0.5*(victimRank-killerRank)) or x (1 - 0.1*(killerRank-victimRank)), floor 0
+0x40c990	BaseWars_MsgRankUp	"YOU HAVE INCREASED YOUR RANK" + "SHIP UPGRADED: %s INCREASED" (0x533020 table)
+0x40ca50	BaseWars_MsgRankDown	"YOU HAVE LOST YOUR CURRENT RANK" + "SHIP DOWNGRADED" (0x53304c table)
+0x532ed8	g_RankPointThresholds	{0,100,250,400,700,1100,1600,2200,2900,3700}
+0x532f9c	g_RankSpeedScale	float x11 by rank: 1.0 x3, 1.05 x3, 1.10 x3, 1.15 x2 (top speed, flight model 0x424130/0x424150)
+0x414520	Cheat_ShipEnhanced	SP cheat (toggle_cheats 0x5b9268): rank 10, hull = Power_GetHullMax(level 10), "SHIP ENHANCED"
+0x427410	Systems_GetInstalledBits	OR of g_ShipSystemTable bits whose installed var is nonzero (SP join -> connection +0x158)
+0x5361b8	g_ShipSystemTable	{name, installed var*, bit} x21: ... 0x4000 SMART_SHIELDS, 0x20000 WEAPONS_INCREASE, 0x40000 SHIELD_INCREASE, 0x80000 BURNER_INCREASE, 0x100000 AMMO_HOLD
+0x455dd0	Systems_ToPowerUpgradeFlags	0x20000 -> 1 (laser), 0x40000 -> 4 (shield), 0x80000 -> 2 (burner)
+0x456090	Power_SetUpgradeFlags	power +0x2c = flags (max values switch to the x1.25 des fields; current values untouched)
+0x4607b0	TachSrv_OnLoadout	0x2028: connection +0x158 = systems bits (trusted), Power_SetUpgradeFlags, rebuild weapon/ammo list
+0x423e60	Speed_HudToRaw	int x 163.84 (65536/400): .des MAX_SPEED (HUD units) -> raw/frame
+0x424130	Flight_CruiseTopSpeed	rankSpeed[rank] x des+0x38 (MAX_SPEED raw)
+0x424150	Flight_BurnerTopSpeed	rankSpeed[rank] x des+0x98 (MAX_SPEED x TOP_SPEED_BOOST)
+0x428410	Hud_DrawSpeed	HUD speed = round(|v| raw/frame x 400/65536) + ' M' (= .des MAX_SPEED units)
+0x42b3d0	Hud_DrawTargetInfo	target box: hull/shield %, RANGE = Vec3_DistanceTo x 2^-23 ('%s: %2.2f'); see notes/units.md
+0x42d5d0	Hud_LoadTargetBox	HUD layout TARGET_BOX: BORDER/POINTER/SCREEN, text slots (SHIELDS, RANGE +0x6f4, TOP_NAME, GROUP_INFO, CONTENTS)
+0x48e550	Vec3_DistanceTo	exact |a-b| of two int vec3 (raw units)
+0x4297e0	Radar_DrawEntity	radar blip: rotate offset to ship space, project x/z,y/z (direction only; distance unused)
+0x4296d0	Radar_Project	perspective x/z, y/z onto radar sphere
+0x4292f0	Radar_PlotFront	front-hemisphere blip, disc radius 0xf80
+0x4294c0	Radar_PlotRear	rear-hemisphere blip, mirrored to outer ring (0x1f00-r)
+0x42d490	Hud_LoadRadar	HUD layout RADAR/SPHERE screen geometry
+0x4616a0	Tach_SrvNearCap	near-record cap: 8, or 2 while conn+0x13c == 2 (startup)
+0x461750	Tach_SrvBuildFarList	fill conn+0x134 with quadrant entities within conn+0x160 of camera conn+0x110 (-1 terminated); cursor conn+0x138
+0x4617e0	Tach_SrvWriteFarRecords	advance far cursor conn+0x138, write next 2 not yet stamped this packet (flag 0x10); cursor=0 at end -> rebuild
+0x4616c0	Tach_SrvWritePersistentPage	persistent-object page: list conn+0x128, total +0x124, acked +0x12c, page id +0x130 -> header u16[1..2]

@@ -17,7 +17,7 @@ void FUN_0040f510(int param_1)
     DAT_005b9600 = *(int *)(param_1 + 0x34) + local_24.x;
     DAT_005b9604 = *(int *)(param_1 + 0x38) + local_24.y;
     DAT_005b9608 = *(int *)(param_1 + 0x3c) + local_24.z;
-    FUN_0040f380(&DAT_005b9600,param_1 + 0x34,&DAT_005b95e8);
+    Vec_DirAngles(&DAT_005b9600,param_1 + 0x34,&DAT_005b95e8);
     FUN_0040f460(param_1,&DAT_005b95e8);
   }
   return;

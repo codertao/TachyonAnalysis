@@ -24,7 +24,7 @@ LAB_00402a5c:
   local_c = *param_3 * iVar2 + *param_2;
   local_4 = param_3[2] * iVar2 + param_2[2];
   local_8 = param_3[1] * iVar2 + param_2[1];
-  FUN_0040f380(param_1,&local_c,param_7);
+  Vec_DirAngles(param_1,&local_c,param_7);
   return;
 }
 

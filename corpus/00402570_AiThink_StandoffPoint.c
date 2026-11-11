@@ -18,7 +18,7 @@ void AiThink_StandoffPoint(int param_1)
       Ai_SetState(param_1,1);
       return;
     }
-    FUN_0040f380(pvVar1,(vec3 *)(param_1 + 0x344),param_1 + 0xdc);
+    Vec_DirAngles(pvVar1,(vec3 *)(param_1 + 0x344),param_1 + 0xdc);
     uVar2 = distance_between(pvVar1,(vec3 *)(param_1 + 0x344));
     if (uVar2 < 0x1f4000) {
       FUN_00402560(param_1);

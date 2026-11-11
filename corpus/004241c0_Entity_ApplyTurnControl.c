@@ -14,7 +14,7 @@ void Entity_ApplyTurnControl
   float10 fVar4;
   
   if (param_5 == -1) {
-    fVar4 = (float10)FUN_00424150(param_4,param_8);
+    fVar4 = (float10)Flight_BurnerTopSpeed(param_4,param_8);
     fVar4 = fVar4 * (float10)*(float *)(param_6 + 0x20);
     param_8 = *(float *)(param_4 + 0x80) * *(float *)(param_4 + 0x34);
     iVar3 = *(int *)(param_6 + 0x18) - *(int *)(param_4 + 0x94);
@@ -25,7 +25,7 @@ void Entity_ApplyTurnControl
     }
   }
   else {
-    fVar4 = (float10)FUN_00424130(param_4,param_8);
+    fVar4 = (float10)Flight_CruiseTopSpeed(param_4,param_8);
     param_8 = *(float *)(param_4 + 0x34);
     fVar4 = fVar4 * (float10)*(float *)(param_6 + 0x20);
   }

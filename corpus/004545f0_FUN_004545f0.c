@@ -15,7 +15,7 @@ void FUN_004545f0(int param_1)
   DAT_005b3344 = 0;
   FUN_004a0a90();
   FUN_00492ba0(param_1,&DAT_005b31c0);
-  uVar1 = FUN_00455dd0(DAT_005b2154);
+  uVar1 = Systems_ToPowerUpgradeFlags(DAT_005b2154);
   Power_Init(&g_PlayerPower,DAT_005b1f0c + 0xd0,0,uVar1,DAT_005b9020);
   FUN_004986a0(&DAT_005b214c);
   FUN_0042de70();

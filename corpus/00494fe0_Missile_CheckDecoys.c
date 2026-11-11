@@ -18,7 +18,7 @@ void Missile_CheckDecoys(int param_1)
   do {
     uVar1 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(iVar4 + 0x34));
     if (uVar1 < 0xa28000) {
-      FUN_0040f380((vec3 *)(param_1 + 0x34),(vec3 *)(iVar4 + 0x34),&local_c);
+      Vec_DirAngles((vec3 *)(param_1 + 0x34),(vec3 *)(iVar4 + 0x34),&local_c);
       iVar2 = local_c * 0x80 + *(int *)(param_1 + 0x4c) * -0x80;
       iVar3 = local_8 * 0x80 + *(int *)(param_1 + 0x50) * -0x80;
       uVar1 = iVar2 >> 0x1f;

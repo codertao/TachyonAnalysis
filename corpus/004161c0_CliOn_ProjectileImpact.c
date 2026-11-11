@@ -18,7 +18,7 @@ void CliOn_ProjectileImpact(int param_1)
     local_8 = (uint)*(ushort *)(param_1 + 0x18) << 0x10;
     local_4 = (uint)*(ushort *)(param_1 + 0x1a) << 0x10;
     uVar2 = FUN_0049d620(2);
-    FUN_00423270(iVar1,param_1,&local_c,*(undefined2 *)(param_1 + 0x14));
+    ShieldFx_Spawn(iVar1,param_1,&local_c,*(undefined2 *)(param_1 + 0x14));
     FUN_0049d620(uVar2);
   }
   return;

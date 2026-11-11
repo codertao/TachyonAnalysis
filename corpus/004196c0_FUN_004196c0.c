@@ -36,7 +36,7 @@ int FUN_004196c0(int param_1,int *param_2,int *param_3,undefined4 param_4)
                                     *(undefined4 *)(param_1 + 0xc4));
         iVar3 = DAT_005b2d88;
         if ((iVar2 != 0) &&
-           ((FUN_004b1c10(param_1 + 0x18,param_4), DAT_005b3190 == (code *)0x0 ||
+           ((Model_LocalToWorld(param_1 + 0x18,param_4), DAT_005b3190 == (code *)0x0 ||
             (iVar2 = (*DAT_005b3190)(DAT_005b2d80,param_1), iVar3 = DAT_005b2d88, iVar2 != 0)))) {
           return param_1;
         }

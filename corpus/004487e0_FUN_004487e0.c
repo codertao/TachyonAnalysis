@@ -67,7 +67,7 @@ void FUN_004487e0(void)
   FUN_004493d0(0);
   FUN_00447070();
   FUN_00446ac0(&DAT_00546c38);
-  FUN_004936c0();
+  WeaponDefs_DeriveStats();
   FUN_00446dc0(0);
   FUN_0043a820(&g_UiManager,s_WndMPShipDM_0054767c,&LAB_00448c10);
   FUN_004af2e0();

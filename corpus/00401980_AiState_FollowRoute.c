@@ -22,7 +22,7 @@ void AiState_FollowRoute(int param_1)
        *(code **)(param_1 + 0x304) != AiState_FollowRoute)) {
       return;
     }
-    FUN_0040f380((vec3 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0xf0),param_1 + 0xdc);
+    Vec_DirAngles((vec3 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0xf0),param_1 + 0xdc);
     if (*(int *)(param_1 + 0x90) == 0) {
       iVar2 = Ai_FindTarget(param_1);
       *(int *)(param_1 + 0x90) = iVar2;

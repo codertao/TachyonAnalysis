@@ -58,7 +58,7 @@ bool Coll_SegmentVsSphere
   local_18 = ((uint)((longlong)param_5[2] * (longlong)iVar5) >> 0x10 |
              (int)((ulonglong)((longlong)param_5[2] * (longlong)iVar5) >> 0x20) << 0x10) +
              param_1[2];
-  iVar5 = FUN_0048e550(&local_20,local_8);
+  iVar5 = Vec3_DistanceTo(&local_20,local_8);
   return iVar5 <= (int)uVar3;
 }
 

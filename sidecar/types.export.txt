@@ -1,0 +1,615 @@
+struct IMAGE_DOS_HEADER  size=0xe8  cat=/DOS
+  +0x000  char[2]                  e_magic   // Magic number
+  +0x002  word                     e_cblp   // Bytes of last page
+  +0x004  word                     e_cp   // Pages in file
+  +0x006  word                     e_crlc   // Relocations
+  +0x008  word                     e_cparhdr   // Size of header in paragraphs
+  +0x00a  word                     e_minalloc   // Minimum extra paragraphs needed
+  +0x00c  word                     e_maxalloc   // Maximum extra paragraphs needed
+  +0x00e  word                     e_ss   // Initial (relative) SS value
+  +0x010  word                     e_sp   // Initial SP value
+  +0x012  word                     e_csum   // Checksum
+  +0x014  word                     e_ip   // Initial IP value
+  +0x016  word                     e_cs   // Initial (relative) CS value
+  +0x018  word                     e_lfarlc   // File address of relocation table
+  +0x01a  word                     e_ovno   // Overlay number
+  +0x01c  word[4]                  e_res[4]   // Reserved words
+  +0x024  word                     e_oemid   // OEM identifier (for e_oeminfo)
+  +0x026  word                     e_oeminfo   // OEM information; e_oemid specific
+  +0x028  word[10]                 e_res2[10]   // Reserved words
+  +0x03c  dword                    e_lfanew   // File address of new exe header
+  +0x040  byte[168]                e_program   // Actual DOS program
+typedef ImageBaseOffset32 -> pointer32  cat=/
+struct IMAGE_DATA_DIRECTORY  size=0x8  cat=/PE
+  +0x000  ImageBaseOffset32        VirtualAddress
+  +0x004  dword                    Size
+struct IMAGE_FILE_HEADER  size=0x14  cat=/PE
+  +0x000  word                     Machine   // 332
+  +0x002  word                     NumberOfSections
+  +0x004  dword                    TimeDateStamp
+  +0x008  dword                    PointerToSymbolTable
+  +0x00c  dword                    NumberOfSymbols
+  +0x010  word                     SizeOfOptionalHeader
+  +0x012  word                     Characteristics
+struct IMAGE_NT_HEADERS32  size=0xf8  cat=/PE
+  +0x000  char[4]                  Signature
+  +0x004  IMAGE_FILE_HEADER        FileHeader
+  +0x018  IMAGE_OPTIONAL_HEADER32  OptionalHeader
+struct IMAGE_OPTIONAL_HEADER32  size=0xe0  cat=/PE
+  +0x000  word                     Magic
+  +0x002  byte                     MajorLinkerVersion
+  +0x003  byte                     MinorLinkerVersion
+  +0x004  dword                    SizeOfCode
+  +0x008  dword                    SizeOfInitializedData
+  +0x00c  dword                    SizeOfUninitializedData
+  +0x010  ImageBaseOffset32        AddressOfEntryPoint
+  +0x014  ImageBaseOffset32        BaseOfCode
+  +0x018  ImageBaseOffset32        BaseOfData
+  +0x01c  pointer32                ImageBase
+  +0x020  dword                    SectionAlignment
+  +0x024  dword                    FileAlignment
+  +0x028  word                     MajorOperatingSystemVersion
+  +0x02a  word                     MinorOperatingSystemVersion
+  +0x02c  word                     MajorImageVersion
+  +0x02e  word                     MinorImageVersion
+  +0x030  word                     MajorSubsystemVersion
+  +0x032  word                     MinorSubsystemVersion
+  +0x034  dword                    Win32VersionValue
+  +0x038  dword                    SizeOfImage
+  +0x03c  dword                    SizeOfHeaders
+  +0x040  dword                    CheckSum
+  +0x044  word                     Subsystem
+  +0x046  word                     DllCharacteristics
+  +0x048  dword                    SizeOfStackReserve
+  +0x04c  dword                    SizeOfStackCommit
+  +0x050  dword                    SizeOfHeapReserve
+  +0x054  dword                    SizeOfHeapCommit
+  +0x058  dword                    LoaderFlags
+  +0x05c  dword                    NumberOfRvaAndSizes
+  +0x060  IMAGE_DATA_DIRECTORY[16] DataDirectory
+struct IMAGE_SECTION_HEADER  size=0x28  cat=/PE
+  +0x000  char[8]                  Name
+  +0x008  Misc                     Misc
+  +0x00c  ImageBaseOffset32        VirtualAddress
+  +0x010  dword                    SizeOfRawData
+  +0x014  dword                    PointerToRawData
+  +0x018  dword                    PointerToRelocations
+  +0x01c  dword                    PointerToLinenumbers
+  +0x020  word                     NumberOfRelocations
+  +0x022  word                     NumberOfLinenumbers
+  +0x024  SectionFlags             Characteristics
+union Misc size=0x4 cat=/PE
+enum SectionFlags size=4 cat=/PE
+typedef ATOM -> WORD  cat=/WinDef.h
+typedef BOOL -> int  cat=/WinDef.h
+typedef BYTE -> uchar  cat=/WinDef.h
+typedef DWORD -> ulong  cat=/WinDef.h
+typedef FARPROC -> FARPROC *  cat=/WinDef.h
+typedef FILETIME -> _FILETIME  cat=/WinDef.h
+typedef HBITMAP -> HBITMAP__ *  cat=/WinDef.h
+struct HBITMAP__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef HBRUSH -> HBRUSH__ *  cat=/WinDef.h
+struct HBRUSH__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef HCURSOR -> HICON  cat=/WinDef.h
+typedef HDC -> HDC__ *  cat=/WinDef.h
+struct HDC__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef HFILE -> int  cat=/WinDef.h
+typedef HGDIOBJ -> void *  cat=/WinDef.h
+typedef HGLOBAL -> HANDLE  cat=/WinDef.h
+typedef HICON -> HICON__ *  cat=/WinDef.h
+struct HICON__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef HINSTANCE -> HINSTANCE__ *  cat=/WinDef.h
+struct HINSTANCE__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef HLOCAL -> HANDLE  cat=/WinDef.h
+typedef HMENU -> HMENU__ *  cat=/WinDef.h
+struct HMENU__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef HMODULE -> HINSTANCE  cat=/WinDef.h
+typedef HPALETTE -> HPALETTE__ *  cat=/WinDef.h
+struct HPALETTE__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef HWND -> HWND__ *  cat=/WinDef.h
+struct HWND__  size=0x4  cat=/WinDef.h
+  +0x000  int                      unused
+typedef LPARAM -> LONG_PTR  cat=/WinDef.h
+typedef LPBOOL -> BOOL *  cat=/WinDef.h
+typedef LPBYTE -> BYTE *  cat=/WinDef.h
+typedef LPCVOID -> void *  cat=/WinDef.h
+typedef LPDWORD -> DWORD *  cat=/WinDef.h
+typedef LPPOINT -> tagPOINT *  cat=/WinDef.h
+typedef LPRECT -> tagRECT *  cat=/WinDef.h
+typedef LPVOID -> void *  cat=/WinDef.h
+typedef LPWORD -> WORD *  cat=/WinDef.h
+typedef LRESULT -> LONG_PTR  cat=/WinDef.h
+typedef PBYTE -> BYTE *  cat=/WinDef.h
+typedef POINT -> tagPOINT  cat=/WinDef.h
+typedef RECT -> tagRECT  cat=/WinDef.h
+typedef UINT -> uint  cat=/WinDef.h
+typedef WORD -> ushort  cat=/WinDef.h
+typedef WPARAM -> UINT_PTR  cat=/WinDef.h
+struct _FILETIME  size=0x8  cat=/WinDef.h
+  +0x000  DWORD                    dwLowDateTime
+  +0x004  DWORD                    dwHighDateTime
+struct tagPOINT  size=0x8  cat=/WinDef.h
+  +0x000  LONG                     x
+  +0x004  LONG                     y
+struct tagRECT  size=0x10  cat=/WinDef.h
+  +0x000  LONG                     left
+  +0x004  LONG                     top
+  +0x008  LONG                     right
+  +0x00c  LONG                     bottom
+struct SpED  size=0x160  cat=/auto_structs
+  +0x034  vec3                     position
+  +0x090  undefined4               suspected_tgt
+  +0x0c8  undefined1               ll_next   // Created by Rename Structure Field action
+  +0x0f4  undefined4               currX
+  +0x0f8  undefined4               currY
+  +0x0fc  undefined4               currZ
+  +0x138  vec3                     lastPos
+  +0x144  vec3                     someVec
+  +0x150  undefined4               
+  +0x158  undefined1               collision_radius   // Created by Rename Structure Field action
+struct oooovec3  size=0xc  cat=/auto_structs
+  +0x000  undefined4               lastX
+  +0x004  undefined4               lastY
+  +0x008  undefined4               lastZ
+struct somevec  size=0xc  cat=/auto_structs
+  +0x000  undefined4               
+  +0x004  undefined4               
+  +0x008  undefined4               
+struct vec3  size=0xc  cat=/auto_structs
+  +0x000  int                      x
+  +0x004  int                      y
+  +0x008  int                      z
+typedef DWORD_PTR -> ULONG_PTR  cat=/basetsd.h
+typedef LONG_PTR -> long  cat=/basetsd.h
+typedef SIZE_T -> ULONG_PTR  cat=/basetsd.h
+typedef UINT_PTR -> uint  cat=/basetsd.h
+typedef ULONG_PTR -> ulong  cat=/basetsd.h
+typedef errno_t -> int  cat=/crtdefs.h
+typedef size_t -> uint  cat=/crtdefs.h
+struct _CONTEXT  size=0x2cc  cat=/excpt.h
+  +0x000  DWORD                    ContextFlags
+  +0x004  DWORD                    Dr0
+  +0x008  DWORD                    Dr1
+  +0x00c  DWORD                    Dr2
+  +0x010  DWORD                    Dr3
+  +0x014  DWORD                    Dr6
+  +0x018  DWORD                    Dr7
+  +0x01c  FLOATING_SAVE_AREA       FloatSave
+  +0x08c  DWORD                    SegGs
+  +0x090  DWORD                    SegFs
+  +0x094  DWORD                    SegEs
+  +0x098  DWORD                    SegDs
+  +0x09c  DWORD                    Edi
+  +0x0a0  DWORD                    Esi
+  +0x0a4  DWORD                    Ebx
+  +0x0a8  DWORD                    Edx
+  +0x0ac  DWORD                    Ecx
+  +0x0b0  DWORD                    Eax
+  +0x0b4  DWORD                    Ebp
+  +0x0b8  DWORD                    Eip
+  +0x0bc  DWORD                    SegCs
+  +0x0c0  DWORD                    EFlags
+  +0x0c4  DWORD                    Esp
+  +0x0c8  DWORD                    SegSs
+  +0x0cc  BYTE[512]                ExtendedRegisters
+struct _EXCEPTION_POINTERS  size=0x8  cat=/excpt.h
+  +0x000  PEXCEPTION_RECORD        ExceptionRecord
+  +0x004  PCONTEXT                 ContextRecord
+struct _EXCEPTION_RECORD  size=0x50  cat=/excpt.h
+  +0x000  DWORD                    ExceptionCode
+  +0x004  DWORD                    ExceptionFlags
+  +0x008  _EXCEPTION_RECORD *      ExceptionRecord
+  +0x00c  PVOID                    ExceptionAddress
+  +0x010  DWORD                    NumberParameters
+  +0x014  ULONG_PTR[15]            ExceptionInformation
+typedef GUID -> _GUID  cat=/guiddef.h
+typedef IID -> GUID  cat=/guiddef.h
+struct _GUID  size=0x10  cat=/guiddef.h
+  +0x000  ulong                    Data1
+  +0x004  ushort                   Data2
+  +0x006  ushort                   Data3
+  +0x008  uchar[8]                 Data4
+typedef FILE -> _iobuf  cat=/mbstring.h
+struct _iobuf  size=0x20  cat=/mbstring.h
+  +0x000  char *                   _ptr
+  +0x004  int                      _cnt
+  +0x008  char *                   _base
+  +0x00c  int                      _flag
+  +0x010  int                      _file
+  +0x014  int                      _charbuf
+  +0x018  int                      _bufsiz
+  +0x01c  char *                   _tmpfname
+typedef HMIDIOUT -> HMIDIOUT__ *  cat=/mmsystem.h
+struct HMIDIOUT__  size=0x4  cat=/mmsystem.h
+  +0x000  int                      unused
+typedef HMIDISTRM -> HMIDISTRM__ *  cat=/mmsystem.h
+struct HMIDISTRM__  size=0x4  cat=/mmsystem.h
+  +0x000  int                      unused
+typedef HMIXER -> HMIXER__ *  cat=/mmsystem.h
+typedef HMIXEROBJ -> HMIXEROBJ__ *  cat=/mmsystem.h
+struct HMIXEROBJ__  size=0x4  cat=/mmsystem.h
+  +0x000  int                      unused
+struct HMIXER__  size=0x4  cat=/mmsystem.h
+  +0x000  int                      unused
+typedef HWAVEOUT -> HWAVEOUT__ *  cat=/mmsystem.h
+struct HWAVEOUT__  size=0x4  cat=/mmsystem.h
+  +0x000  int                      unused
+typedef LPCWAVEFORMATEX -> WAVEFORMATEX *  cat=/mmsystem.h
+typedef LPHMIDISTRM -> HMIDISTRM *  cat=/mmsystem.h
+typedef LPHMIXER -> HMIXER *  cat=/mmsystem.h
+typedef LPHWAVEOUT -> HWAVEOUT *  cat=/mmsystem.h
+typedef LPJOYCAPSA -> tagJOYCAPSA *  cat=/mmsystem.h
+typedef LPJOYINFOEX -> joyinfoex_tag *  cat=/mmsystem.h
+typedef LPMIDIHDR -> midihdr_tag *  cat=/mmsystem.h
+typedef LPMIXERCAPSA -> tagMIXERCAPSA *  cat=/mmsystem.h
+typedef LPMIXERCONTROLA -> tagMIXERCONTROLA *  cat=/mmsystem.h
+typedef LPMIXERCONTROLDETAILS -> tMIXERCONTROLDETAILS *  cat=/mmsystem.h
+typedef LPMIXERLINEA -> tagMIXERLINEA *  cat=/mmsystem.h
+typedef LPMIXERLINECONTROLSA -> tagMIXERLINECONTROLSA *  cat=/mmsystem.h
+typedef LPTIMECALLBACK -> TIMECALLBACK *  cat=/mmsystem.h
+typedef LPTIMECAPS -> timecaps_tag *  cat=/mmsystem.h
+typedef LPUINT -> UINT *  cat=/mmsystem.h
+typedef LPWAVEHDR -> wavehdr_tag *  cat=/mmsystem.h
+typedef MCIDEVICEID -> UINT  cat=/mmsystem.h
+typedef MCIERROR -> DWORD  cat=/mmsystem.h
+typedef MMRESULT -> UINT  cat=/mmsystem.h
+typedef MMVERSION -> UINT  cat=/mmsystem.h
+typedef TIMECALLBACK -> TIMECALLBACK  cat=/mmsystem.h
+typedef WAVEFORMATEX -> tWAVEFORMATEX  cat=/mmsystem.h
+struct _struct_1081  size=0x30  cat=/mmsystem.h
+  +0x000  DWORD                    dwType
+  +0x004  DWORD                    dwDeviceID
+  +0x008  WORD                     wMid
+  +0x00a  WORD                     wPid
+  +0x00c  MMVERSION                vDriverVersion
+  +0x010  CHAR[32]                 szPname
+struct _struct_1086  size=0x8  cat=/mmsystem.h
+  +0x000  LONG                     lMinimum
+  +0x004  LONG                     lMaximum
+struct _struct_1087  size=0x8  cat=/mmsystem.h
+  +0x000  DWORD                    dwMinimum
+  +0x004  DWORD                    dwMaximum
+union _union_1085 size=0x18 cat=/mmsystem.h
+union _union_1088 size=0x18 cat=/mmsystem.h
+union _union_1095 size=0x4 cat=/mmsystem.h
+union _union_1099 size=0x4 cat=/mmsystem.h
+struct joyinfoex_tag  size=0x34  cat=/mmsystem.h
+  +0x000  DWORD                    dwSize
+  +0x004  DWORD                    dwFlags
+  +0x008  DWORD                    dwXpos
+  +0x00c  DWORD                    dwYpos
+  +0x010  DWORD                    dwZpos
+  +0x014  DWORD                    dwRpos
+  +0x018  DWORD                    dwUpos
+  +0x01c  DWORD                    dwVpos
+  +0x020  DWORD                    dwButtons
+  +0x024  DWORD                    dwButtonNumber
+  +0x028  DWORD                    dwPOV
+  +0x02c  DWORD                    dwReserved1
+  +0x030  DWORD                    dwReserved2
+struct midihdr_tag  size=0x40  cat=/mmsystem.h
+  +0x000  LPSTR                    lpData
+  +0x004  DWORD                    dwBufferLength
+  +0x008  DWORD                    dwBytesRecorded
+  +0x00c  DWORD_PTR                dwUser
+  +0x010  DWORD                    dwFlags
+  +0x014  midihdr_tag *            lpNext
+  +0x018  DWORD_PTR                reserved
+  +0x01c  DWORD                    dwOffset
+  +0x020  DWORD_PTR[8]             dwReserved
+struct tMIXERCONTROLDETAILS  size=0x18  cat=/mmsystem.h
+  +0x000  DWORD                    cbStruct
+  +0x004  DWORD                    dwControlID
+  +0x008  DWORD                    cChannels
+  +0x00c  _union_1099              u
+  +0x010  DWORD                    cbDetails
+  +0x014  LPVOID                   paDetails
+struct tWAVEFORMATEX  size=0x12  cat=/mmsystem.h
+  +0x000  WORD                     wFormatTag
+  +0x002  WORD                     nChannels
+  +0x004  DWORD                    nSamplesPerSec
+  +0x008  DWORD                    nAvgBytesPerSec
+  +0x00c  WORD                     nBlockAlign
+  +0x00e  WORD                     wBitsPerSample
+  +0x010  WORD                     cbSize
+struct tagJOYCAPSA  size=0x194  cat=/mmsystem.h
+  +0x000  WORD                     wMid
+  +0x002  WORD                     wPid
+  +0x004  CHAR[32]                 szPname
+  +0x024  UINT                     wXmin
+  +0x028  UINT                     wXmax
+  +0x02c  UINT                     wYmin
+  +0x030  UINT                     wYmax
+  +0x034  UINT                     wZmin
+  +0x038  UINT                     wZmax
+  +0x03c  UINT                     wNumButtons
+  +0x040  UINT                     wPeriodMin
+  +0x044  UINT                     wPeriodMax
+  +0x048  UINT                     wRmin
+  +0x04c  UINT                     wRmax
+  +0x050  UINT                     wUmin
+  +0x054  UINT                     wUmax
+  +0x058  UINT                     wVmin
+  +0x05c  UINT                     wVmax
+  +0x060  UINT                     wCaps
+  +0x064  UINT                     wMaxAxes
+  +0x068  UINT                     wNumAxes
+  +0x06c  UINT                     wMaxButtons
+  +0x070  CHAR[32]                 szRegKey
+  +0x090  CHAR[260]                szOEMVxD
+struct tagMIXERCAPSA  size=0x30  cat=/mmsystem.h
+  +0x000  WORD                     wMid
+  +0x002  WORD                     wPid
+  +0x004  MMVERSION                vDriverVersion
+  +0x008  CHAR[32]                 szPname
+  +0x028  DWORD                    fdwSupport
+  +0x02c  DWORD                    cDestinations
+struct tagMIXERCONTROLA  size=0x94  cat=/mmsystem.h
+  +0x000  DWORD                    cbStruct
+  +0x004  DWORD                    dwControlID
+  +0x008  DWORD                    dwControlType
+  +0x00c  DWORD                    fdwControl
+  +0x010  DWORD                    cMultipleItems
+  +0x014  CHAR[16]                 szShortName
+  +0x024  CHAR[64]                 szName
+  +0x064  _union_1085              Bounds
+  +0x07c  _union_1088              Metrics
+struct tagMIXERLINEA  size=0xa8  cat=/mmsystem.h
+  +0x000  DWORD                    cbStruct
+  +0x004  DWORD                    dwDestination
+  +0x008  DWORD                    dwSource
+  +0x00c  DWORD                    dwLineID
+  +0x010  DWORD                    fdwLine
+  +0x014  DWORD_PTR                dwUser
+  +0x018  DWORD                    dwComponentType
+  +0x01c  DWORD                    cChannels
+  +0x020  DWORD                    cConnections
+  +0x024  DWORD                    cControls
+  +0x028  CHAR[16]                 szShortName
+  +0x038  CHAR[64]                 szName
+  +0x078  _struct_1081             Target
+struct tagMIXERLINECONTROLSA  size=0x18  cat=/mmsystem.h
+  +0x000  DWORD                    cbStruct
+  +0x004  DWORD                    dwLineID
+  +0x008  _union_1095              u
+  +0x00c  DWORD                    cControls
+  +0x010  DWORD                    cbmxctrl
+  +0x014  LPMIXERCONTROLA          pamxctrl
+struct timecaps_tag  size=0x8  cat=/mmsystem.h
+  +0x000  UINT                     wPeriodMin
+  +0x004  UINT                     wPeriodMax
+struct wavehdr_tag  size=0x20  cat=/mmsystem.h
+  +0x000  LPSTR                    lpData
+  +0x004  DWORD                    dwBufferLength
+  +0x008  DWORD                    dwBytesRecorded
+  +0x00c  DWORD_PTR                dwUser
+  +0x010  DWORD                    dwFlags
+  +0x014  DWORD                    dwLoops
+  +0x018  wavehdr_tag *            lpNext
+  +0x01c  DWORD_PTR                reserved
+struct IUnknown  size=0x4  cat=/unknwn.h
+  +0x000  IUnknownVtbl *           lpVtbl
+struct IUnknownVtbl  size=0xc  cat=/unknwn.h
+  +0x000  _func_5021 *             QueryInterface
+  +0x004  _func_5022 *             AddRef
+  +0x008  _func_5023 *             Release
+typedef LPUNKNOWN -> IUnknown *  cat=/unknwn.h
+typedef LPCRITICAL_SECTION -> PRTL_CRITICAL_SECTION  cat=/winbase.h
+typedef LPOVERLAPPED -> _OVERLAPPED *  cat=/winbase.h
+typedef LPPROCESS_INFORMATION -> _PROCESS_INFORMATION *  cat=/winbase.h
+typedef LPSECURITY_ATTRIBUTES -> _SECURITY_ATTRIBUTES *  cat=/winbase.h
+typedef LPSTARTUPINFOA -> _STARTUPINFOA *  cat=/winbase.h
+typedef LPSYSTEMTIME -> _SYSTEMTIME *  cat=/winbase.h
+typedef LPTIME_ZONE_INFORMATION -> _TIME_ZONE_INFORMATION *  cat=/winbase.h
+typedef LPWIN32_FIND_DATAA -> _WIN32_FIND_DATAA *  cat=/winbase.h
+typedef SYSTEMTIME -> _SYSTEMTIME  cat=/winbase.h
+struct _OVERLAPPED  size=0x14  cat=/winbase.h
+  +0x000  ULONG_PTR                Internal
+  +0x004  ULONG_PTR                InternalHigh
+  +0x008  _union_518               u
+  +0x010  HANDLE                   hEvent
+struct _PROCESS_INFORMATION  size=0x10  cat=/winbase.h
+  +0x000  HANDLE                   hProcess
+  +0x004  HANDLE                   hThread
+  +0x008  DWORD                    dwProcessId
+  +0x00c  DWORD                    dwThreadId
+struct _SECURITY_ATTRIBUTES  size=0xc  cat=/winbase.h
+  +0x000  DWORD                    nLength
+  +0x004  LPVOID                   lpSecurityDescriptor
+  +0x008  BOOL                     bInheritHandle
+struct _STARTUPINFOA  size=0x44  cat=/winbase.h
+  +0x000  DWORD                    cb
+  +0x004  LPSTR                    lpReserved
+  +0x008  LPSTR                    lpDesktop
+  +0x00c  LPSTR                    lpTitle
+  +0x010  DWORD                    dwX
+  +0x014  DWORD                    dwY
+  +0x018  DWORD                    dwXSize
+  +0x01c  DWORD                    dwYSize
+  +0x020  DWORD                    dwXCountChars
+  +0x024  DWORD                    dwYCountChars
+  +0x028  DWORD                    dwFillAttribute
+  +0x02c  DWORD                    dwFlags
+  +0x030  WORD                     wShowWindow
+  +0x032  WORD                     cbReserved2
+  +0x034  LPBYTE                   lpReserved2
+  +0x038  HANDLE                   hStdInput
+  +0x03c  HANDLE                   hStdOutput
+  +0x040  HANDLE                   hStdError
+struct _SYSTEMTIME  size=0x10  cat=/winbase.h
+  +0x000  WORD                     wYear
+  +0x002  WORD                     wMonth
+  +0x004  WORD                     wDayOfWeek
+  +0x006  WORD                     wDay
+  +0x008  WORD                     wHour
+  +0x00a  WORD                     wMinute
+  +0x00c  WORD                     wSecond
+  +0x00e  WORD                     wMilliseconds
+struct _TIME_ZONE_INFORMATION  size=0xac  cat=/winbase.h
+  +0x000  LONG                     Bias
+  +0x004  WCHAR[32]                StandardName
+  +0x044  SYSTEMTIME               StandardDate
+  +0x054  LONG                     StandardBias
+  +0x058  WCHAR[32]                DaylightName
+  +0x098  SYSTEMTIME               DaylightDate
+  +0x0a8  LONG                     DaylightBias
+struct _WIN32_FIND_DATAA  size=0x140  cat=/winbase.h
+  +0x000  DWORD                    dwFileAttributes
+  +0x004  FILETIME                 ftCreationTime
+  +0x00c  FILETIME                 ftLastAccessTime
+  +0x014  FILETIME                 ftLastWriteTime
+  +0x01c  DWORD                    nFileSizeHigh
+  +0x020  DWORD                    nFileSizeLow
+  +0x024  DWORD                    dwReserved0
+  +0x028  DWORD                    dwReserved1
+  +0x02c  CHAR[260]                cFileName
+  +0x130  CHAR[14]                 cAlternateFileName
+struct _struct_519  size=0x8  cat=/winbase.h
+  +0x000  DWORD                    Offset
+  +0x004  DWORD                    OffsetHigh
+union _union_518 size=0x8 cat=/winbase.h
+typedef BITMAPINFO -> tagBITMAPINFO  cat=/wingdi.h
+typedef BITMAPINFOHEADER -> tagBITMAPINFOHEADER  cat=/wingdi.h
+typedef LOGPALETTE -> tagLOGPALETTE  cat=/wingdi.h
+typedef LPPALETTEENTRY -> tagPALETTEENTRY *  cat=/wingdi.h
+typedef PALETTEENTRY -> tagPALETTEENTRY  cat=/wingdi.h
+typedef RGBQUAD -> tagRGBQUAD  cat=/wingdi.h
+struct tagBITMAPINFO  size=0x2c  cat=/wingdi.h
+  +0x000  BITMAPINFOHEADER         bmiHeader
+  +0x028  RGBQUAD[1]               bmiColors
+struct tagBITMAPINFOHEADER  size=0x28  cat=/wingdi.h
+  +0x000  DWORD                    biSize
+  +0x004  LONG                     biWidth
+  +0x008  LONG                     biHeight
+  +0x00c  WORD                     biPlanes
+  +0x00e  WORD                     biBitCount
+  +0x010  DWORD                    biCompression
+  +0x014  DWORD                    biSizeImage
+  +0x018  LONG                     biXPelsPerMeter
+  +0x01c  LONG                     biYPelsPerMeter
+  +0x020  DWORD                    biClrUsed
+  +0x024  DWORD                    biClrImportant
+struct tagLOGPALETTE  size=0x8  cat=/wingdi.h
+  +0x000  WORD                     palVersion
+  +0x002  WORD                     palNumEntries
+  +0x004  PALETTEENTRY[1]          palPalEntry
+struct tagPALETTEENTRY  size=0x4  cat=/wingdi.h
+  +0x000  BYTE                     peRed
+  +0x001  BYTE                     peGreen
+  +0x002  BYTE                     peBlue
+  +0x003  BYTE                     peFlags
+struct tagRGBQUAD  size=0x4  cat=/wingdi.h
+  +0x000  BYTE                     rgbBlue
+  +0x001  BYTE                     rgbGreen
+  +0x002  BYTE                     rgbRed
+  +0x003  BYTE                     rgbReserved
+typedef LCTYPE -> DWORD  cat=/winnls.h
+typedef LOCALE_ENUMPROCA -> LOCALE_ENUMPROCA *  cat=/winnls.h
+typedef LPCPINFO -> _cpinfo *  cat=/winnls.h
+struct _cpinfo  size=0x14  cat=/winnls.h
+  +0x000  UINT                     MaxCharSize
+  +0x004  BYTE[2]                  DefaultChar
+  +0x006  BYTE[12]                 LeadByte
+typedef CHAR -> char  cat=/winnt.h
+typedef CONTEXT -> _CONTEXT  cat=/winnt.h
+typedef EXCEPTION_RECORD -> _EXCEPTION_RECORD  cat=/winnt.h
+typedef FLOATING_SAVE_AREA -> _FLOATING_SAVE_AREA  cat=/winnt.h
+typedef HANDLE -> void *  cat=/winnt.h
+typedef HRESULT -> long  cat=/winnt.h
+typedef LCID -> DWORD  cat=/winnt.h
+typedef LIST_ENTRY -> _LIST_ENTRY  cat=/winnt.h
+typedef LONG -> long  cat=/winnt.h
+typedef LPCCH -> CHAR *  cat=/winnt.h
+typedef LPCH -> CHAR *  cat=/winnt.h
+typedef LPCSTR -> CHAR *  cat=/winnt.h
+typedef LPCWSTR -> WCHAR *  cat=/winnt.h
+typedef LPOSVERSIONINFOA -> _OSVERSIONINFOA *  cat=/winnt.h
+typedef LPSTR -> CHAR *  cat=/winnt.h
+typedef LPWCH -> WCHAR *  cat=/winnt.h
+typedef LPWSTR -> WCHAR *  cat=/winnt.h
+typedef PCNZCH -> CHAR *  cat=/winnt.h
+typedef PCNZWCH -> WCHAR *  cat=/winnt.h
+typedef PCONTEXT -> CONTEXT *  cat=/winnt.h
+typedef PCSTR -> CHAR *  cat=/winnt.h
+typedef PEXCEPTION_RECORD -> EXCEPTION_RECORD *  cat=/winnt.h
+typedef PLONG -> LONG *  cat=/winnt.h
+typedef PRTL_CRITICAL_SECTION -> _RTL_CRITICAL_SECTION *  cat=/winnt.h
+typedef PRTL_CRITICAL_SECTION_DEBUG -> _RTL_CRITICAL_SECTION_DEBUG *  cat=/winnt.h
+typedef PVOID -> void *  cat=/winnt.h
+typedef WCHAR -> wchar_t  cat=/winnt.h
+struct _FLOATING_SAVE_AREA  size=0x70  cat=/winnt.h
+  +0x000  DWORD                    ControlWord
+  +0x004  DWORD                    StatusWord
+  +0x008  DWORD                    TagWord
+  +0x00c  DWORD                    ErrorOffset
+  +0x010  DWORD                    ErrorSelector
+  +0x014  DWORD                    DataOffset
+  +0x018  DWORD                    DataSelector
+  +0x01c  BYTE[80]                 RegisterArea
+  +0x06c  DWORD                    Cr0NpxState
+struct _LIST_ENTRY  size=0x8  cat=/winnt.h
+  +0x000  _LIST_ENTRY *            Flink
+  +0x004  _LIST_ENTRY *            Blink
+struct _OSVERSIONINFOA  size=0x94  cat=/winnt.h
+  +0x000  DWORD                    dwOSVersionInfoSize
+  +0x004  DWORD                    dwMajorVersion
+  +0x008  DWORD                    dwMinorVersion
+  +0x00c  DWORD                    dwBuildNumber
+  +0x010  DWORD                    dwPlatformId
+  +0x014  CHAR[128]                szCSDVersion
+struct _RTL_CRITICAL_SECTION  size=0x18  cat=/winnt.h
+  +0x000  PRTL_CRITICAL_SECTION_DEBUG DebugInfo
+  +0x004  LONG                     LockCount
+  +0x008  LONG                     RecursionCount
+  +0x00c  HANDLE                   OwningThread
+  +0x010  HANDLE                   LockSemaphore
+  +0x014  ULONG_PTR                SpinCount
+struct _RTL_CRITICAL_SECTION_DEBUG  size=0x20  cat=/winnt.h
+  +0x000  WORD                     Type
+  +0x002  WORD                     CreatorBackTraceIndex
+  +0x004  _RTL_CRITICAL_SECTION *  CriticalSection
+  +0x008  LIST_ENTRY               ProcessLocksList
+  +0x010  DWORD                    EntryCount
+  +0x014  DWORD                    ContentionCount
+  +0x018  DWORD                    Flags
+  +0x01c  WORD                     CreatorBackTraceIndexHigh
+  +0x01e  WORD                     SpareWORD
+typedef LPMSG -> tagMSG *  cat=/winuser.h
+typedef LPPAINTSTRUCT -> tagPAINTSTRUCT *  cat=/winuser.h
+typedef MSG -> tagMSG  cat=/winuser.h
+typedef PAINTSTRUCT -> tagPAINTSTRUCT  cat=/winuser.h
+typedef WNDCLASSA -> tagWNDCLASSA  cat=/winuser.h
+typedef WNDPROC -> WNDPROC *  cat=/winuser.h
+struct tagMSG  size=0x1c  cat=/winuser.h
+  +0x000  HWND                     hwnd
+  +0x004  UINT                     message
+  +0x008  WPARAM                   wParam
+  +0x00c  LPARAM                   lParam
+  +0x010  DWORD                    time
+  +0x014  POINT                    pt
+struct tagPAINTSTRUCT  size=0x40  cat=/winuser.h
+  +0x000  HDC                      hdc
+  +0x004  BOOL                     fErase
+  +0x008  RECT                     rcPaint
+  +0x018  BOOL                     fRestore
+  +0x01c  BOOL                     fIncUpdate
+  +0x020  BYTE[32]                 rgbReserved
+struct tagWNDCLASSA  size=0x28  cat=/winuser.h
+  +0x000  UINT                     style
+  +0x004  WNDPROC                  lpfnWndProc
+  +0x008  int                      cbClsExtra
+  +0x00c  int                      cbWndExtra
+  +0x010  HINSTANCE                hInstance
+  +0x014  HICON                    hIcon
+  +0x018  HCURSOR                  hCursor
+  +0x01c  HBRUSH                   hbrBackground
+  +0x020  LPCSTR                   lpszMenuName
+  +0x024  LPCSTR                   lpszClassName
+typedef ULONG -> DWORD  cat=/wtypes.h

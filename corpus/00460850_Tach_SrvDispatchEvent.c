@@ -40,7 +40,7 @@ void Tach_SrvDispatchEvent(uint param_1,undefined4 param_2,int param_3,int param
         TachSrv_OnPartHitReport(param_2);
         break;
       case 0x2028:
-        FUN_004607b0(param_2);
+        TachSrv_OnLoadout(param_2);
       }
     }
     if (param_1 < 0x2015) {

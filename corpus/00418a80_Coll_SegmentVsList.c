@@ -32,7 +32,7 @@ int Coll_SegmentVsList(int param_1,int *param_2,int *param_3,undefined4 param_4)
         iVar2 = Coll_SegmentVsModel(param_3,param_2,param_1 + 0x18,param_4,iVar2,
                                     *(undefined4 *)(param_1 + 0xc4));
         if ((iVar2 != 0) &&
-           ((FUN_004b1c10(param_1 + 0x18,param_4), DAT_005b3190 == (code *)0x0 ||
+           ((Model_LocalToWorld(param_1 + 0x18,param_4), DAT_005b3190 == (code *)0x0 ||
             (iVar2 = (*DAT_005b3190)(DAT_005b2d80,param_1), iVar2 != 0)))) {
           return param_1;
         }

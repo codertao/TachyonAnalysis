@@ -31,7 +31,7 @@ void FUN_0040d7a0(int param_1,undefined4 param_2)
         SrvSend_EntityDestroyed(iVar3 + 0x34,10,0,0,0,0,0,*(undefined4 *)(iVar3 + 100));
       }
     }
-    FUN_0040cf90(iVar1,iVar2 / 10);
+    BaseWars_AddPoints(iVar1,iVar2 / 10);
   }
   return;
 }

@@ -15,7 +15,7 @@ void FUN_004638a0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 p
   str_sprintf(local_70,s_WEAP__d_0054a270,param_1 + 1);
   Cbin_GetScalar(local_70,s_NUM_MOUNTS_0054a264,0,0,&local_7c);
   Cbin_GetScalar(local_70,s_AI_WEAPON_0054a258,local_60,0x1f,0);
-  uVar1 = FUN_00492c90(local_60);
+  uVar1 = WeaponName_ToId(local_60);
   FUN_0048e3d0(&local_78,local_7c * 0x1c,4,s_mount_data_0054a24c,0xffff);
   uVar2 = 0;
   iVar3 = local_78;

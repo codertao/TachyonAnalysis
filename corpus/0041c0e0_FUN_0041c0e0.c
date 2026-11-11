@@ -30,7 +30,7 @@ void FUN_0041c0e0(int param_1)
       }
       DAT_005b27f8 = (uint)((longlong)(int)local_8 * 0x4000) >> 0x10 |
                      (int)((ulonglong)((longlong)(int)local_8 * 0x4000) >> 0x20) << 0x10;
-      FUN_0040f380(&local_20,iVar1 + 0xa0,&local_14);
+      Vec_DirAngles(&local_20,iVar1 + 0xa0,&local_14);
       FUN_0040f3f0(&local_14,&local_14);
       DAT_005b27fc = local_14;
       DAT_005b2800 = local_10;

@@ -149,7 +149,7 @@ void FUN_004854e0(void)
             local_b4 = local_b4 + piVar8[2];
           }
           piVar8 = (int *)(puVar10 + 0x134);
-          FUN_0040f380(piVar2,&local_bc,piVar8);
+          Vec_DirAngles(piVar2,&local_bc,piVar8);
           local_a0 = (longlong)ROUND(*(float *)(puVar10 + 0xb4) * _DAT_0052e544);
           local_74 = DAT_0056e360 + -0x10000;
           *(int *)(puVar10 + 0x16c) = *piVar2;

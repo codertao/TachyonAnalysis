@@ -64,7 +64,7 @@ void loadout_enter(void)
   FUN_00468f50(g_NextMode);
   Shipyard_SelectShip(0);
   FUN_004718e0();
-  FUN_004936c0();
+  WeaponDefs_DeriveStats();
   FUN_00471630(0);
   FUN_0043a820(&GLBL_UI_ELEM_LIST,s_WndStarBaseCFG_0054ffc8,&LAB_00473dd0);
   FUN_004af2e0();

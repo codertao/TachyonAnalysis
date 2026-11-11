@@ -9,7 +9,7 @@ void FUN_0041a280(void)
   undefined4 local_8;
   
   pfVar1 = (float *)(DAT_005b1f0c + 0xbc);
-  iVar2 = FUN_00423e60(600);
+  iVar2 = Speed_HudToRaw(600);
   local_8 = (undefined4)
             (longlong)
             ROUND((float)(int)((GLBL_iter_cnt % 0xf) * 0x32 + 0x15f9 + _DAT_005b29c4 * 100) /

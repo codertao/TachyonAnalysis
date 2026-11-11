@@ -27,7 +27,7 @@ short * Tach_SrvWriteSnapshot(int param_1,int *param_2)
   if (*(int *)(param_1 + 0x1d4) != 0) {
     _DAT_0058b080 = _DAT_0058b080 + 1;
     if (*(int *)(param_1 + 0x138) == 0) {
-      FUN_00461750(param_1);
+      Tach_SrvBuildFarList(param_1);
     }
     DAT_0062c0e8 = 0;
     param_2 = &DAT_006240e8;
@@ -41,7 +41,7 @@ short * Tach_SrvWriteSnapshot(int param_1,int *param_2)
         DAT_0062c0e8 = DAT_0062c0e8 + 1;
       }
     }
-    uVar3 = FUN_004616a0(param_1);
+    uVar3 = Tach_SrvNearCap(param_1);
     if (DAT_0062c0e8 < uVar3) {
       uVar3 = DAT_0062c0e8;
     }
@@ -57,8 +57,8 @@ short * Tach_SrvWriteSnapshot(int param_1,int *param_2)
       psVar4 = (short *)Tach_SrvWriteEntityRecord(iVar1,param_1 + 0x110,psVar4,0);
       *psVar2 = *psVar2 + 1;
     }
-    uVar5 = FUN_004617e0(param_1,psVar4,param_1 + 0x110,psVar2);
-    psVar4 = (short *)FUN_004616c0(param_1,param_1 + 0x110,uVar5,psVar2);
+    uVar5 = Tach_SrvWriteFarRecords(param_1,psVar4,param_1 + 0x110,psVar2);
+    psVar4 = (short *)Tach_SrvWritePersistentPage(param_1,param_1 + 0x110,uVar5,psVar2);
     return psVar4;
   }
   return psVar4;

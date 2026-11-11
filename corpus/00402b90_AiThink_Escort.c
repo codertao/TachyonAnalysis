@@ -29,7 +29,7 @@ void AiThink_Escort(int param_1)
     vStack_24.y = *(int *)(iVar3 + 0x38) + vStack_30.y;
     vStack_24.z = *(int *)(iVar3 + 0x3c) + vStack_30.z;
     pvVar1 = (vec3 *)(param_1 + 0x34);
-    FUN_0040f380(pvVar1,&vStack_24,param_1 + 0xdc);
+    Vec_DirAngles(pvVar1,&vStack_24,param_1 + 0xdc);
     FUN_0040f460(iVar3,param_1 + 0xdc);
     uVar2 = distance_between(pvVar1,&vStack_24);
     if (uVar2 < 0x258000) {

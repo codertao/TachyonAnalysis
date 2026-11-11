@@ -6,8 +6,8 @@ undefined * FUN_004273d0(undefined4 param_1)
   int iVar2;
   undefined **ppuVar3;
   
-  ppuVar3 = &PTR_s_TARGET_LEAD_PIP_005361b8;
-  puVar1 = PTR_s_TARGET_LEAD_PIP_005361b8;
+  ppuVar3 = &g_ShipSystemTable;
+  puVar1 = g_ShipSystemTable;
   while( true ) {
     if (puVar1 == (undefined *)0x0) {
       return (undefined *)0x0;

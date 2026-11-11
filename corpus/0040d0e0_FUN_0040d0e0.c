@@ -9,7 +9,7 @@ void FUN_0040d0e0(int param_1)
   if (*piVar1 < 0) {
     *(undefined4 *)(param_1 + 0x100) = 0;
   }
-  FUN_0040cb10(param_1);
+  BaseWars_UpdateRank(param_1);
   FUN_0040ce10(param_1);
   return;
 }

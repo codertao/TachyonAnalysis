@@ -11,7 +11,7 @@ void FUN_00431bb0(void)
   FUN_0048ccf0();
   FUN_004257a0();
   FUN_00445720();
-  FUN_00498900();
+  Weapon_DumpStats();
   return;
 }
 

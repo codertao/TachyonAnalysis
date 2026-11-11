@@ -7,8 +7,8 @@ void FUN_00427440(undefined4 param_1,undefined4 param_2)
   int iVar3;
   undefined **ppuVar4;
   
-  ppuVar4 = &PTR_s_TARGET_LEAD_PIP_005361b8;
-  puVar2 = PTR_s_TARGET_LEAD_PIP_005361b8;
+  ppuVar4 = &g_ShipSystemTable;
+  puVar2 = g_ShipSystemTable;
   while (puVar2 != (undefined *)0x0) {
     iVar3 = str_cmp(*ppuVar4,param_1);
     if (iVar3 == 0) {

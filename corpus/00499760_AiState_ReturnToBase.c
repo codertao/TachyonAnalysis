@@ -20,7 +20,7 @@ void AiState_ReturnToBase(int param_1)
     if (iVar2 < 0x1f4000) {
       FUN_004996f0(param_1,iVar1);
     }
-    FUN_0040f380((vec3 *)(param_1 + 0x34),(vec3 *)(iVar1 + 0x34),param_1 + 0xdc);
+    Vec_DirAngles((vec3 *)(param_1 + 0x34),(vec3 *)(iVar1 + 0x34),param_1 + 0xdc);
   }
   return;
 }

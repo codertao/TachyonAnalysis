@@ -58,7 +58,7 @@ void Bdf_ParseImageEntry(float param_1,undefined4 *param_2,int param_3)
     puVar2[0x16] = *puVar2;
     puVar2[10] = 8;
     Model_SelectState(puVar2 + 6,0);
-    FUN_0040f380(fvec,&local_50,puVar2 + 0x13);
+    Vec_DirAngles(fvec,&local_50,puVar2 + 0x13);
   }
   return;
 }

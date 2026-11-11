@@ -34,7 +34,7 @@ void FUN_00435f80(int param_1,undefined4 param_2)
   *(undefined4 *)(iVar2 + 0x118) = uVar5;
   *(undefined4 *)(iVar2 + 0xd0) = *(undefined4 *)(*piVar1 + 0x548);
   FUN_004277a0(0);
-  uVar5 = FUN_00427410();
+  uVar5 = Systems_GetInstalledBits();
   *(undefined4 *)(param_1 + 0x158) = uVar5;
   FUN_00435e60(param_1,param_2);
   FUN_0041f590(s_PLAYER_SCR_0053fa3c,iVar2,&DAT_005a5dd0);

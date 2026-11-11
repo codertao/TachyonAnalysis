@@ -12,8 +12,8 @@ void CmdLine_ParseSwitches(char *param_1)
   if (pcVar1 != (char *)0x0) {
     GLBL_spacesav[0x2b] = 0;
   }
-  DAT_005a6638 = 0x99;
-  DAT_005a663c = 0xa6;
+  g_ShipDesStatScale = 0x99;
+  g_PlayerDamageScale = 0xa6;
   pcVar1 = _strstr(param_1,s__VLOG_0053f41c);
   if (pcVar1 != (char *)0x0) {
     _DAT_005a6644 = 1;

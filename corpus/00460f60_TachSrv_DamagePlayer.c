@@ -21,8 +21,8 @@ void TachSrv_DamagePlayer(uint param_1)
     }
     uVar3 = Vec_BearingXZ(iVar1 + 0x34,&DAT_005653cc);
     Shield_SplitFrontRear(uVar3,DAT_005653e0,&param_1,&local_8);
-    param_1 = DAT_005a663c * param_1 >> 8;
-    local_8 = DAT_005a663c * local_8 >> 8;
+    param_1 = g_PlayerDamageScale * param_1 >> 8;
+    local_8 = g_PlayerDamageScale * local_8 >> 8;
     if ((GLBL_spacesav[0x2f] == 0) && ((g_FlightStateFlags & 4) != 0)) {
       param_1 = (uint)((longlong)(int)param_1 * 45000) >> 0x10 |
                 (int)((ulonglong)((longlong)(int)param_1 * 45000) >> 0x20) << 0x10;

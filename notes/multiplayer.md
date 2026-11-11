@@ -338,7 +338,7 @@ is just position, velocity and angles, taken as "now".
 
 | Radius | Value |
 |---|---|
-| near (`+0x15c`) | 3750 units |
+| near (`+0x15c`) | 3750 units (29.3 on the range readout; `units.md`) |
 | far (`+0x160`) | 10000 units (5000 with `g_FlightStateFlags & 4`) |
 | both, in quadrants with descriptor flag 2 | 3000 units |
 
@@ -613,6 +613,13 @@ Entity record, 24 bytes (28 with flag 0x08):
 
 **f16** = custom 16-bit float (`0x48e870` encode / `0x48e8c0` decode): bit0 sign, bits1-3
 exponent (even shifts), bits4-15 = top 12 mantissa bits.
+Decode = `(v & 0xfff0) << ((v & 0xe) | 1)`, then ones'-complement negate if bit0 is set. The shift is
+odd (1..15), so the range is the full int32 and the step is `2^(shift+4)` raw. Encode truncates toward zero
+(shift = max(msb-15, 0) | 1), so the relative error is ≤ about 1/1024.
+Examples:
+- ship velocity 540 on the speed readout ≈ 88k raw/frame: step 32 raw/frame
+- 3750 units (near radius): step 2 units (1/64 range)
+- 10000 units (far radius): step 8 units (1/16 range)
 
 ## App event catalogue
 
@@ -772,6 +779,21 @@ the server pool".
    - **Trusts the report.** It doesn't check that the shot was fired, the range, or line of sight.
    - Recomputes the damage as `def+0x14 × scale` and calls the real `+0x80` damage handler.
    - Broadcasts **0x1004** impact (r375, except the shooter). Kills produce **0x1003**.
+   - 0x2003 fields, in detail (2026-11-10):
+     - `targetId` = network id (entity `+0x78`); the server looks it up in its pools (`0x45d680`).
+     - `hitPos` = **world-space 16.16 point**. `Coll_SegmentVsModel` casts in model space against
+       the triangle list, then `Model_LocalToWorld 0x4b1c10` rotates and translates it back using
+       the shooter's displayed replica pose. No triangle or part info is sent (except the
+       0x2027 part id).
+     - `weapon` = index into the compiled-in `g_WeaponDefs` table. Every copy of `space.exe` has
+       the same stats; nothing loads them from config. The shop/loadout maps a weapon name
+       through the `WEAPON_TYPES` var table to id+1 **[l]**.
+     - `dmgScale` = bolt `+0xf0`, sent as u16 of `scale >> 2` (server `<< 2`, so max ≈ 4.0×).
+       It is set when firing: `Weapon_PreFire 0x497b20` calls the per-weapon callback at
+       `def+0xdc`, defaulting to 1.0. Only **weapon 7** varies (`Weapon7_ChargeScale`: charge
+       +1 per frame held at 10 energy per frame, up to 500 frames; released early → n/500). So
+       legit values are 1.0, or 0–1.0 for the charge weapon. The server uses it unchecked:
+       `dmg = def+0x14 × scale >> 16`.
 6. **No timeout message.** Every copy expires on its own after `def+0x3c` frames. Bolts have
    `+0xc3 & 1`, so the snapshot builder (`0x461870`) skips them.
 

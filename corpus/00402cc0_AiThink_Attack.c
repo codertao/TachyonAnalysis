@@ -77,7 +77,7 @@ void AiThink_Attack(int param_1)
   iStack_40 = *(int *)(iVar7 + 0xa0) * iVar8 + *(int *)(iVar7 + 0x34);
   iStack_3c = *(int *)(iVar7 + 0xa4) * iVar8 + *(int *)(iVar7 + 0x38);
   iStack_38 = *(int *)(iVar7 + 0xa8) * iVar8 + *(int *)(iVar7 + 0x3c);
-  FUN_0040f380(param_1 + 0x34,&iStack_40,&iStack_4c);
+  Vec_DirAngles(param_1 + 0x34,&iStack_40,&iStack_4c);
   FUN_0040f460(iVar7,&iStack_4c);
   *(int *)(param_1 + 0xdc) = iStack_4c;
   *(undefined4 *)(param_1 + 0xe0) = uStack_48;

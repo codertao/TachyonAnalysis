@@ -1,5 +1,5 @@
 
-/* set dcb+0xc0 bits 0x40/0x80 by comparing range fields (called by +0x68 think methods) */
+/* +0xc0: 0x40 front shield > 1%, 0x80 rear shield > 1% (server think; sent in snapshot byte 5) */
 
 void Dcb_SetRangeFlags(int param_1,int param_2,int param_3)
 

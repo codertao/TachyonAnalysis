@@ -18,7 +18,7 @@ void FUN_0040c0c0(undefined4 param_1,vec3 *param_2,undefined4 param_3)
   some_rotate_by_global(&local_30,&local_30);
   FUN_004b1be0(local_18,param_1);
   FUN_004b2410(&local_30,&local_30);
-  FUN_0040f380(&local_24,&local_30,param_3);
+  Vec_DirAngles(&local_24,&local_30,param_3);
   return;
 }
 

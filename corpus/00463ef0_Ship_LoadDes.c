@@ -35,8 +35,8 @@ undefined4 Ship_LoadDes(undefined4 param_1,undefined4 *param_2,int param_3)
       _DAT_00562d1c = FUN_00463cf0();
       ShipDes_ParseAiClasses(&DAT_00562d00);
       FUN_00462d70(&DAT_00563254);
-      DAT_00562df0 = DAT_005a6638 * DAT_00562df0 >> 8;
-      DAT_00562dd8 = DAT_00562dd8 * DAT_005a6638 >> 8;
+      DAT_00562df0 = g_ShipDesStatScale * DAT_00562df0 >> 8;
+      DAT_00562dd8 = DAT_00562dd8 * g_ShipDesStatScale >> 8;
       ShipDes_Finalize(&DAT_00562d00);
       _DAT_00562e1c = _DAT_00562e08 * _DAT_00562dbc;
       _DAT_00562f28 = DAT_00562f30 - DAT_00562f2c;

@@ -20,7 +20,7 @@ undefined4 Ai_IsBehind(int param_1,int param_2,int *param_3)
   local_30 = local_30 + *(int *)(param_2 + 0x34);
   local_2c = local_2c + *(int *)(param_2 + 0x38);
   local_28 = local_28 + *(int *)(param_2 + 0x3c);
-  FUN_0040f380((int *)(param_2 + 0x34),&local_30,&local_24);
+  Vec_DirAngles((int *)(param_2 + 0x34),&local_30,&local_24);
   if (param_3 != (int *)0x0) {
     *param_3 = local_24;
     param_3[1] = local_20;

@@ -32,7 +32,7 @@ void FUN_00401d10(int param_1,int param_2)
     else {
       *(undefined2 *)(param_1 + 0x312) = 0x400;
     }
-    FUN_0040f380((vec3 *)(param_1 + 0x34),&local_c,param_1 + 0xdc);
+    Vec_DirAngles((vec3 *)(param_1 + 0x34),&local_c,param_1 + 0xdc);
   }
   return;
 }

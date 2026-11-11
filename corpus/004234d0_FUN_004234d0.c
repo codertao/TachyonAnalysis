@@ -9,7 +9,7 @@ void FUN_004234d0(undefined4 *param_1,undefined4 param_2)
     FUN_0041b8b0(iVar1);
     *(undefined2 *)(iVar1 + 0x74) = 2;
     *(undefined4 *)(iVar1 + 0x58) = param_2;
-    *(code **)(iVar1 + 0x70) = FUN_004212a0;
+    *(code **)(iVar1 + 0x70) = ShieldFx_Render;
     *(undefined4 *)(iVar1 + 0x5c) = 0;
     *(undefined4 *)(iVar1 + 0x34) = *param_1;
     *(undefined4 *)(iVar1 + 0x38) = param_1[1];

@@ -17,7 +17,7 @@ void FUN_004933f0(int param_1,int param_2)
     clr_bytes(param_1 + 0xc,0xc);
     return;
   }
-  FUN_0040f380(param_1,&local_14,param_1 + 0xc);
+  Vec_DirAngles(param_1,&local_14,param_1 + 0xc);
   return;
 }
 

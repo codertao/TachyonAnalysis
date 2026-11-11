@@ -27,7 +27,7 @@ void FUN_0041d500(void)
     iVar1 = bVar2 + 0x41;
     fVar4 = (float)DAT_005b9604 * _DAT_0052e6c0;
     fVar5 = (float)DAT_005b9608 * _DAT_0052e6c0;
-    uVar7 = FUN_0048e550(&DAT_005b9600,&DAT_0058f204);
+    uVar7 = Vec3_DistanceTo(&DAT_005b9600,&DAT_0058f204);
     str_sprintf(local_88,s_CAMERA_X____2_2f__Y____2_2f__Z___00535094,(double)fVar3,(double)fVar4,
                 (double)fVar5,(double)((float)uVar7 * _DAT_0052e6c0));
     FUN_0048e970(local_88,DAT_005b2770,10,iVar1,0xff2020,0xffff,0x10000,0);

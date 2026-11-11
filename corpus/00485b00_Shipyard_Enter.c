@@ -38,7 +38,7 @@ void Shipyard_Enter(void)
   FUN_00485330();
   FUN_004854e0();
   FUN_00484df0(DAT_0056e3a4);
-  FUN_0040f380(&DAT_0056e3ac,DAT_0056e3a8 + 0x134,&DAT_0056e3c4);
+  Vec_DirAngles(&DAT_0056e3ac,DAT_0056e3a8 + 0x134,&DAT_0056e3c4);
   FUN_00468f50(g_NextMode);
   iVar1 = FUN_00432b70(0);
   if (iVar1 == 0) {

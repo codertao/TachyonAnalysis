@@ -35,10 +35,10 @@ void FUN_0042c6c0(void)
   FUN_0042bcf0();
   FUN_00427930();
   FUN_0042b6a0();
-  FUN_00428410(&DAT_005b01e0);
+  Hud_DrawSpeed(&DAT_005b01e0);
   FUN_0042b5f0();
   FUN_0042b600();
-  FUN_0042b3d0(&DAT_005b01e0,*(undefined4 *)(GLBL_SOME_CONTEXT + 0x90));
+  Hud_DrawTargetInfo(&DAT_005b01e0,*(undefined4 *)(GLBL_SOME_CONTEXT + 0x90));
   FUN_0042b720(&DAT_005b01e0);
   Hud_DrawEnergyBars(&DAT_005b01e0);
   FUN_0042bea0(&DAT_005b01e0,*(undefined4 *)(GLBL_SOME_CONTEXT + 0x90));

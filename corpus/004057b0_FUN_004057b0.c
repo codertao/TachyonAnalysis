@@ -32,7 +32,7 @@ void FUN_004057b0(int param_1)
     local_48.x = local_48.x + *(int *)(param_1 + 0x34);
     local_48.z = local_48.z + *(int *)(param_1 + 0x3c);
     local_48.y = iStack_2c;
-    FUN_0040f380(param_1 + 0x34,&local_48,param_1 + 0xdc);
+    Vec_DirAngles(param_1 + 0x34,&local_48,param_1 + 0xdc);
     uVar2 = *(int *)(param_1 + 0x38) - local_48.y;
     uVar3 = (int)uVar2 >> 0x1f;
     if ((int)((uVar2 ^ uVar3) - uVar3) < 0x64000) {

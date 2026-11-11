@@ -35,7 +35,7 @@ void FUN_00405360(int param_1)
     if (uVar3 < 0x3e8000) {
       *(code **)(param_1 + 0x304) = FUN_00405280;
     }
-    FUN_0040f380((vec3 *)(param_1 + 0x34),&local_30,param_1 + 0xdc);
+    Vec_DirAngles((vec3 *)(param_1 + 0x34),&local_30,param_1 + 0xdc);
   }
   return;
 }

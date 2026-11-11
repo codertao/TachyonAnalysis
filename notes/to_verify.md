@@ -95,6 +95,8 @@ result into the topic note.
   `SOLPTRLF` patrol ship engages (`Ai_PatrolRespond 0x404070`).
 
 ## Shields (`shields.md`)
+- [ ] **Player damage scale.** A 1000-damage, shield-factor-1.0 hit from world −z should drop the front shield by 648 (×0.648), or 445 on SP easy. Also check that EMP Projector hits on a player with shields down change nothing but shields, and disable an AI ship once its meter is drained.
+- [ ] **Shield-hit FX in MP.** a third client within 375 units of a player-vs-player hit should see **no** shield bubble (0x1004 hitId 0), only hull sparks; the victim never sees its own bubble. AI-turret hits on a player should show the bubble to bystanders. Capture 0x1004 bodies and check `+0xc` == 0 for player fire.
 - [ ] **Front/rear split is world-relative.** Break in `Shield_SplitFrontRear 0x4192c0` and read
   arg 0 (bearing) and the ship's yaw `+0x4c`. Take fire from the same world side while facing two
   opposite headings: if the same pool drains both times, the split ignores facing.

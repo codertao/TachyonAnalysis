@@ -11,7 +11,7 @@ FUN_00418a20(undefined4 param_1,int param_2,undefined4 param_3,undefined4 param_
     iVar1 = Coll_SegmentVsModel(param_4,param_3,param_2 + 0x18,param_5,param_6,
                                 *(undefined4 *)(param_2 + 0xc4));
     if (iVar1 != 0) {
-      FUN_004b1c10(param_2 + 0x18,param_5);
+      Model_LocalToWorld(param_2 + 0x18,param_5);
       return 1;
     }
   }

@@ -22,7 +22,7 @@ void FUN_004218a0(int *param_1,undefined4 param_2,undefined4 param_3,undefined4 
     local_10 = param_1[2];
   }
   else {
-    FUN_004b1c10(param_5 + 0x18,&local_18);
+    Model_LocalToWorld(param_5 + 0x18,&local_18);
   }
   local_c = local_18 - *(int *)(param_5 + 0x34);
   local_4 = local_10 - *(int *)(param_5 + 0x3c);

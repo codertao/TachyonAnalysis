@@ -28,7 +28,7 @@ void FUN_004056b0(int param_1)
     vStack_30.x = vStack_30.x + vStack_3c.x;
     vStack_30.y = vStack_30.y + vStack_3c.y;
     vStack_30.z = vStack_30.z + vStack_3c.z;
-    FUN_0040f380((vec3 *)(param_1 + 0x34),&vStack_30,param_1 + 0xdc);
+    Vec_DirAngles((vec3 *)(param_1 + 0x34),&vStack_30,param_1 + 0xdc);
     uVar2 = distance_between((vec3 *)(param_1 + 0x34),&vStack_30);
     if (uVar2 < 0xc8000) {
       *(code **)(param_1 + 0x304) = FUN_004055b0;

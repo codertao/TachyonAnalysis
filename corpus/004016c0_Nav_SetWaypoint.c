@@ -13,7 +13,7 @@ void Nav_SetWaypoint(int param_1,int param_2,int param_3)
     *(undefined4 *)(param_2 + 0x2c) = 0;
   }
   else {
-    iVar3 = FUN_0048e550(param_1 + 0x34,param_3);
+    iVar3 = Vec3_DistanceTo(param_1 + 0x34,param_3);
     lVar2 = (longlong)*(int *)(param_3 + 0x14) * 0x32;
     pcVar1 = *(code **)(*(int *)(param_1 + 0x8c) + 0x34);
     if (pcVar1 != (code *)0x0) {

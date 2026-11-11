@@ -44,7 +44,7 @@ bool FUN_00418910(int *param_1,undefined4 param_2,int param_3,int param_4,int *p
   local_18 = param_1[2] +
              ((uint)((longlong)param_5[2] * (longlong)iVar3) >> 0x10 |
              (int)((ulonglong)((longlong)param_5[2] * (longlong)iVar3) >> 0x20) << 0x10);
-  iVar3 = FUN_0048e550(&local_20,local_8);
+  iVar3 = Vec3_DistanceTo(&local_20,local_8);
   return iVar3 <= (int)uVar2;
 }
 

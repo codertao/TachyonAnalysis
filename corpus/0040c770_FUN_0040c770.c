@@ -25,7 +25,7 @@ void FUN_0040c770(int param_1)
   local_30 = 0;
   local_2c = 0;
   local_28 = 0;
-  FUN_0040f380(iVar1,&local_30,iVar2 + 0x4c);
+  Vec_DirAngles(iVar1,&local_30,iVar2 + 0x4c);
   return;
 }
 

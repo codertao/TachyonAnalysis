@@ -57,7 +57,7 @@ void FUN_00455090(void)
       *(undefined4 *)(GLBL_SOME_CONTEXT + 0x90) = uVar1;
       return;
     }
-    FUN_0040f380(GLBL_SOME_CONTEXT + 0x34,&local_3c,GLBL_SOME_CONTEXT + 0x4c);
+    Vec_DirAngles(GLBL_SOME_CONTEXT + 0x34,&local_3c,GLBL_SOME_CONTEXT + 0x4c);
     *(undefined4 *)(GLBL_SOME_CONTEXT + 0x54) = 0;
     FUN_004102c0(6);
     FUN_00423e80(GLBL_SOME_CONTEXT,_DAT_005b2100 * *(float *)(DAT_005b1f0c + 0xbc));

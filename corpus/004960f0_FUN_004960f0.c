@@ -59,7 +59,7 @@ int FUN_004960f0(int *param_1)
   *(undefined4 *)(iVar3 + 0xd4) = 0xa28000;
   if ((*(byte *)(param_1 + 4) & 1) != 0) {
     *(undefined4 *)(iVar3 + 0xd8) = 0;
-    *(code **)(iVar3 + 0x6c) = FUN_00493ec0;
+    *(code **)(iVar3 + 0x6c) = Blast_PostThink;
     iVar2 = param_1[1];
     if (*(short *)(iVar2 + 0x76) == 1) {
       local_4 = *(undefined4 *)(iVar2 + 0xdc);

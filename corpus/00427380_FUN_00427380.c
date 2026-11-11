@@ -6,8 +6,8 @@ char * FUN_00427380(byte param_1)
   undefined **ppuVar2;
   char *pcVar3;
   
-  ppuVar2 = &PTR_s_TARGET_LEAD_PIP_005361b8;
-  puVar1 = PTR_s_TARGET_LEAD_PIP_005361b8;
+  ppuVar2 = &g_ShipSystemTable;
+  puVar1 = g_ShipSystemTable;
   while( true ) {
     if (puVar1 == (undefined *)0x0) {
       return s_UNKNOWN_CARD_00536404;

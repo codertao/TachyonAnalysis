@@ -26,7 +26,7 @@ void FUN_00499220(int param_1,int param_2)
     else {
       *(undefined2 *)(param_1 + 0x312) = 0x400;
     }
-    FUN_0040f380((vec3 *)(param_1 + 0x34),&local_c,param_1 + 0xdc);
+    Vec_DirAngles((vec3 *)(param_1 + 0x34),&local_c,param_1 + 0xdc);
     *(undefined4 *)(param_1 + 0xe4) = *(undefined4 *)(param_2 + 0x54);
   }
   return;

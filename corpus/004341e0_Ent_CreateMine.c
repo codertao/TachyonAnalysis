@@ -77,7 +77,7 @@ undefined4 * Ent_CreateMine(undefined4 param_1,undefined4 param_2,int param_3)
     _DAT_005a5fc8 = 0x26;
   }
   else {
-    _DAT_005a5fc8 = FUN_00492c90(&DAT_005a6040);
+    _DAT_005a5fc8 = WeaponName_ToId(&DAT_005a6040);
   }
   ModelPool_Load(&DAT_005a5f80,&DAT_005a5f60,0,&DAT_005a5f70,&g_ObjModelPool,1);
   FUN_00433fd0(&DAT_005a5e40);

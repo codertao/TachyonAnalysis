@@ -6,7 +6,7 @@ void FUN_0040fe10(int param_1,int param_2,int param_3)
   int local_8;
   int local_4;
   
-  FUN_0040f380(&DAT_005b9600,param_1 + 0x34,&local_c);
+  Vec_DirAngles(&DAT_005b9600,param_1 + 0x34,&local_c);
   if (param_2 != 0) {
     FUN_0040f460(param_1,&local_c);
   }

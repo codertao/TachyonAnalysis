@@ -25,7 +25,7 @@ int FUN_00464e70(int param_1,int param_2,int param_3)
   }
   FUN_0048e970(local_80,DAT_005b2770,0x1c,param_3,uVar4,0xffff,0x10000,2);
   if (*(int *)(param_2 + 0x10) != 0) {
-    uVar2 = FUN_0048e550(param_1 + 0x34,*(undefined4 *)(param_2 + 0x14));
+    uVar2 = Vec3_DistanceTo(param_1 + 0x34,*(undefined4 *)(param_2 + 0x14));
     str_sprintf(local_80,s_DIST_TO_WAYPOINT___2_2f_0054a424,(double)((float)uVar2 * _DAT_0052e824));
     param_3 = param_3 + uVar3;
     FUN_0048e970(local_80,DAT_005b2770,0x1c,param_3,uVar4,0xffff,0x10000,2);

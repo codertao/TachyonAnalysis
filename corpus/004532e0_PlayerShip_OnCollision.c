@@ -36,7 +36,7 @@ void PlayerShip_OnCollision(int param_1,float param_2)
       if (DAT_005b1ecc < _DAT_0052e598) {
         param_2 = 0.0;
       }
-      fVar6 = (float10)FUN_00424130(DAT_005b1f0c + 0x84,DAT_005b9020);
+      fVar6 = (float10)Flight_CruiseTopSpeed(DAT_005b1f0c + 0x84,DAT_005b9020);
       fVar6 = ((float10)param_2 / fVar6) * (float10)_DAT_0052e594;
       if (fVar6 < (float10)_DAT_0052e648) {
         fVar6 = (float10)_DAT_0052e648;

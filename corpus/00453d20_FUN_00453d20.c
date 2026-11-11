@@ -35,7 +35,7 @@ void FUN_00453d20(int param_1)
         return;
       }
       iVar3 = GLBL_SOME_CONTEXT;
-      uVar4 = FUN_0048e550(GLBL_SOME_CONTEXT + 0x34,(int *)(param_1 + 0x34));
+      uVar4 = Vec3_DistanceTo(GLBL_SOME_CONTEXT + 0x34,(int *)(param_1 + 0x34));
       if (DAT_005b2144 < uVar4) {
         _DAT_005b2140 = 0;
         DAT_005b2138 = DAT_005b213c;

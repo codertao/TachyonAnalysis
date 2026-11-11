@@ -27,7 +27,7 @@ void FUN_00405280(int param_1)
       Ai_SetState(param_1,9);
     }
     *(ushort *)(param_1 + 0x312) = (-(ushort)(uVar3 < 0xbb8000) & 0xfd00) + 0x400;
-    FUN_0040f380((vec3 *)(param_1 + 0x34),&vStack_c,param_1 + 0xdc);
+    Vec_DirAngles((vec3 *)(param_1 + 0x34),&vStack_c,param_1 + 0xdc);
   }
   return;
 }

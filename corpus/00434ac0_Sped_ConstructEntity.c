@@ -116,7 +116,7 @@ undefined4 Sped_ConstructEntity(int param_1,int param_2,int param_3,undefined4 *
       FUN_004935c0(iVar6 + 0x13c,*(int *)(iVar6 + 0x8c) + 0x4d0,iVar7,0,0xd500,
                    *(undefined4 *)(param_2 + 0x564),1);
     }
-    uVar8 = FUN_00455dd0(*(undefined4 *)(param_2 + 0x564));
+    uVar8 = Systems_ToPowerUpgradeFlags(*(undefined4 *)(param_2 + 0x564));
     Power_Init(iVar6 + 0x10c,*(int *)(iVar6 + 0x8c) + 0xd0,1,uVar8,1);
     Sped_SyncAliasPower(uVar5,*(undefined4 *)(param_1 + 0x5c),iVar6 + 0x10c);
     FUN_0045cff0(iVar6,*(int *)(iVar6 + 100) + 0x14);

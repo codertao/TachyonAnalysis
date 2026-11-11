@@ -13,7 +13,7 @@ void FUN_00484e40(void)
   local_c = DAT_0056e3ac;
   local_8 = DAT_0056e3b0;
   local_4 = DAT_0056e3b4;
-  uVar1 = FUN_0048e550(&DAT_0056e3ac,&DAT_0056e3b8);
+  uVar1 = Vec3_DistanceTo(&DAT_0056e3ac,&DAT_0056e3b8);
   if (uVar1 < 0x100) {
     DAT_0056e3ac = DAT_0056e3b8;
     DAT_0056e3b0 = DAT_0056e3bc;

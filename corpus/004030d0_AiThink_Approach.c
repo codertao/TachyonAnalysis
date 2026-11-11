@@ -16,7 +16,7 @@ void AiThink_Approach(int param_1)
       Ai_ReacquireTarget(param_1);
       return;
     }
-    FUN_0040f380(param_1 + 0x34,(vec3 *)(iVar1 + 0x34),param_1 + 0xdc);
+    Vec_DirAngles(param_1 + 0x34,(vec3 *)(iVar1 + 0x34),param_1 + 0xdc);
     FUN_0040f460(iVar1,param_1 + 0xdc);
     if ((*(int *)(iVar1 + 0x8c) == 0) ||
        (pcVar2 = *(code **)(*(int *)(iVar1 + 0x8c) + 0x60), pcVar2 == (code *)0x0)) {

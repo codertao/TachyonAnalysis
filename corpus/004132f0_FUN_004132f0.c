@@ -9,7 +9,7 @@ void FUN_004132f0(int param_1,int param_2)
   pvVar1 = (vec3 *)(param_2 + 0x34);
   iVar2 = Coll_SegmentVsModel(pvVar1,(vec3 *)(param_1 + 0x34),param_1 + 0x18,&vStack_c,0,0);
   if (iVar2 != 0) {
-    FUN_004b1c10(param_1 + 0x18,&vStack_c);
+    Model_LocalToWorld(param_1 + 0x18,&vStack_c);
     distance_between(pvVar1,&vStack_c);
     return;
   }

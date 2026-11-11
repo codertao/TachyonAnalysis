@@ -61,7 +61,7 @@ undefined4 * Ent_CreateSpeedRing(undefined4 param_1,undefined4 param_2,int param
   Cbin_Open(param_1);
   FUN_0049bfc0(&PTR_DAT_00548dd8);
   ModelPool_Load(&DAT_0058f2c4,&DAT_0058f2a4,0,&DAT_0058f2b4,&g_ObjModelPool,1);
-  DAT_0058f2d0 = FUN_00423e60(DAT_0058f2d0);
+  DAT_0058f2d0 = Speed_HudToRaw(DAT_0058f2d0);
   Cbin_Close();
   puVar3 = &DAT_0058f220;
   puVar4 = puVar1;
