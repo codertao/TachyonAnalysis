@@ -5,7 +5,7 @@ int FUN_004960f0(int *param_1)
   undefined4 *puVar1;
   int iVar2;
   int iVar3;
-  undefined *puVar4;
+  Pool *pPVar4;
   undefined4 *puVar5;
   undefined4 local_4;
   
@@ -13,13 +13,13 @@ int FUN_004960f0(int *param_1)
   local_4 = 0;
   if ((*(byte *)(param_1 + 4) & 1) == 0) {
     puVar5 = &DAT_005b31c0;
-    puVar4 = &DAT_005b32b0;
+    pPVar4 = (Pool *)&DAT_005b32b0;
   }
   else {
     puVar5 = *(undefined4 **)(param_1[1] + 100);
-    puVar4 = &DAT_0058b03c;
+    pPVar4 = &g_PoolCommon;
   }
-  iVar3 = DcbPool_Alloc(puVar4,3,puVar5);
+  iVar3 = DcbPool_Alloc(pPVar4,3,puVar5);
   if (iVar3 == 0) {
     return 0;
   }

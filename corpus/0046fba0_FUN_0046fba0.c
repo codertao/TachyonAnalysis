@@ -88,13 +88,13 @@ LAB_0046fee8:
     iVar2 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_MISC_SLOT_0054e694);
     pcVar3 = s_SNDEVNT_SCREENROLL_UP_0054e6ec;
 LAB_0046ff08:
-    FUN_00440460(&GLBL_UI_ELEM_LIST,pcVar3);
+    Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,pcVar3);
     goto LAB_0046ff15;
   default:
     goto switchD_0046fbfc_default;
   }
   iVar2 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,pcVar3);
-  FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_SCREENROLL_UP_0054e6ec);
+  Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_SCREENROLL_UP_0054e6ec);
 LAB_0046ff15:
   if ((iVar2 != 0) && (DAT_005635e0 == 0)) {
     FUN_0043e640(&GLBL_UI_ELEM_LIST,s_TxtMainItemSel_0054e684,*(undefined1 *)(iVar2 + 0x88));

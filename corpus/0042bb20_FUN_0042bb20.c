@@ -8,11 +8,11 @@ void FUN_0042bb20(int param_1)
   undefined4 local_8;
   
   if (((byte)DAT_005b2154 & 4) != 0) {
-    FUN_00428cf0(param_1 + 0x178,DAT_005b20fc,0x20000);
+    FUN_00428cf0(param_1 + 0x178,g_PlayerPower.burnerRate,0x20000);
   }
-  FUN_00428cf0(param_1 + 0x1cc,DAT_005b20e4,0x20000);
-  FUN_00428cf0(param_1 + 0x220,DAT_005b20ec,0x20000);
-  local_8 = (undefined4)(longlong)ROUND(_DAT_005b2100 * _DAT_0052e544);
+  FUN_00428cf0(param_1 + 0x1cc,g_PlayerPower.laserRate,0x20000);
+  FUN_00428cf0(param_1 + 0x220,g_PlayerPower.shieldFrontRate,0x20000);
+  local_8 = (undefined4)(longlong)ROUND(g_PlayerPower.speedFactor * _DAT_0052e544);
   FUN_00428cf0(param_1 + 0x274,local_8,0x10000);
   uVar1 = DAT_005b1ee0;
   if (0x400 < DAT_005b1ee0) {

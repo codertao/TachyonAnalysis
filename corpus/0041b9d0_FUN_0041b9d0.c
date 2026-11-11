@@ -1,14 +1,14 @@
 
-void FUN_0041b9d0(int param_1,uint param_2)
+void FUN_0041b9d0(SpED *param_1,uint param_2)
 
 {
-  int iVar1;
+  SpED *ent;
   
-  while (iVar1 = param_1, iVar1 != 0) {
-    param_1 = *(int *)(iVar1 + 8);
-    if (*(ushort *)(iVar1 + 0x76) == param_2) {
-      FUN_0041b950(iVar1);
-      FUN_0041b9b0(iVar1);
+  while (ent = param_1, ent != (SpED *)0x0) {
+    param_1 = ent->next;
+    if ((ushort)ent->poolType == param_2) {
+      Quad_UnlinkDynamic(ent);
+      FUN_0041b9b0(ent);
     }
   }
   return;

@@ -1,20 +1,21 @@
 
-void FUN_004979d0(int *param_1,int param_2,int param_3)
+void FUN_004979d0(undefined4 *param_1,int param_2,Pool *param_3)
 
 {
-  int iVar1;
-  int iVar2;
+  SpED *pSVar1;
+  Pool *pPVar2;
+  SpED *ent;
   
-  iVar1 = *param_1;
-  while (iVar2 = iVar1, iVar2 != 0) {
-    iVar1 = *(int *)(iVar2 + 8);
-    if (((*(short *)(iVar2 + 0x76) == 3) && (*(int *)(iVar2 + 200) == param_2)) &&
-       (**(int **)(iVar2 + 0xdc) == param_3)) {
-      if (*(int *)(iVar2 + 0xd8) == 1) {
-        FUN_004156d0(*(undefined4 *)(iVar2 + 0x78),**(int **)(iVar2 + 0xdc),0);
+  pSVar1 = (SpED *)*param_1;
+  while (ent = pSVar1, ent != (SpED *)0x0) {
+    pSVar1 = ent->next;
+    if (((ent->poolType == 3) && (*(int *)&ent->field_0xc8 == param_2)) &&
+       (pPVar2 = (ent[1].next)->pool, pPVar2 == param_3)) {
+      if (ent[1].prev == (SpED *)0x1) {
+        FUN_004156d0(ent->netId,pPVar2,0);
       }
-      FUN_0041b950(iVar2);
-      FUN_0041b9b0(iVar2);
+      Quad_UnlinkDynamic(ent);
+      FUN_0041b9b0(ent);
     }
   }
   return;

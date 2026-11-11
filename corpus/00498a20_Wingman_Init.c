@@ -144,7 +144,8 @@ void Wingman_Init(void)
                       puVar8 = puVar8 + 1;
                     }
                   }
-                  Sped_ConstructEntity(&DAT_00565320,local_34,DAT_005a5548,&DAT_00563e78,0);
+                  Sped_ConstructEntity
+                            (&DAT_00565320,local_34,g_SectorTable[0].quadrant,&DAT_00563e78,0);
                   iVar4 = DAT_00565348;
                   g_Wingman = DAT_00565348;
                   DAT_005653a4 = &DAT_00565320;

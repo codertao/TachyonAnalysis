@@ -20,7 +20,7 @@ uint FUN_004bd00a(uint param_1)
         uVar2 = (byte)PTR_DAT_00561258[param_1 * 2] & 2;
       }
       else {
-        uVar2 = FUN_004bc62d(param_1,2);
+        uVar2 = Crt_isctype(param_1,2);
       }
       if (uVar2 == 0) {
         return uVar1;

@@ -74,7 +74,7 @@ LAB_0044cf17:
             _DAT_005916c8 = (undefined2)DAT_005b2b04;
           }
         }
-        iVar1 = FUN_004a6f70(&DAT_005a6080,0,&DAT_00591660,0xc4);
+        iVar1 = FUN_004a6f70(&DAT_005a6080,0,&g_JoinBlob,0xc4);
         if (iVar1 == 1) {
           pcVar6 = s_HOST_MSG_ERR_CPLAYER_00540f08;
         }

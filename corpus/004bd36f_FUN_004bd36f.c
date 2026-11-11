@@ -14,7 +14,7 @@ float10 FUN_004bd36f(byte *param_1)
       uVar1 = (byte)PTR_DAT_00561258[(uint)*param_1 * 2] & 8;
     }
     else {
-      uVar1 = FUN_004bc62d(*param_1,8);
+      uVar1 = Crt_isctype(*param_1,8);
     }
     if (uVar1 == 0) break;
     param_1 = param_1 + 1;

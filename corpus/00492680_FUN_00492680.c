@@ -24,10 +24,10 @@ void FUN_00492680(void)
   }
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar3 = FUN_004ae560(*puVar2,DAT_005657a0,local_34 | 2,local_28);
+  iVar3 = Text_GlyphHeight(*puVar2,DAT_005657a0,local_34 | 2,local_28);
   local_28[0] = 0x14000;
   local_28[1] = 0x14000;
-  iVar4 = FUN_004ae560(*puVar2,DAT_005657a4,local_34 | 2,local_28);
+  iVar4 = Text_GlyphHeight(*puVar2,DAT_005657a4,local_34 | 2,local_28);
   FUN_0041f6e0(DAT_005657a8,200,0xb4,0xfa,0x82,0x80,DAT_005657a4,*puVar2,0xff0000,0x14000,2);
   iVar7 = iVar4 + 0xb4;
   if (PTR_s_VON_OPTIONS_00559ef0 != (undefined *)0x0) {

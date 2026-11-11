@@ -11,7 +11,7 @@ undefined4 FUN_10003730(void)
     *puVar2 = 0;
     puVar2 = puVar2 + 1;
   }
-  _beginthread(FUN_10003680,0,(void *)0x0);
+  _beginthread(ns_EnumThread,0,(void *)0x0);
   DAT_100199b8 = 1;
   return 0;
 }

@@ -21,11 +21,11 @@ void FUN_0047e7c0(void)
       goto LAB_0047e894;
     }
   }
-  FUN_0046e980();
+  Cfg_ClearScratch();
   FUN_0047c0f0(0,0);
 LAB_0047e894:
   if (DAT_00571340 != 0) {
-    FUN_004376f0(local_4,local_8,*(undefined4 *)(DAT_0058b064 + 100));
+    FUN_004376f0(local_4,local_8,g_SrvCurShip->quadrant);
     if (GLBL_spacesav[0x33] == 1) {
       GLBL_spacesav[0x33] = 2;
     }

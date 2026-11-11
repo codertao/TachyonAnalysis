@@ -2,7 +2,7 @@
 void FUN_00497430(void)
 
 {
-  undefined4 *local_2c;
+  WeaponDef *local_2c;
   undefined4 local_28;
   undefined *local_24;
   undefined *local_20;
@@ -17,13 +17,13 @@ void FUN_00497430(void)
   local_28 = DAT_00565420;
   local_8 = DAT_00565458;
   local_10 = DAT_00565450;
-  local_2c = &g_WeaponDefs + DAT_0056544c * 0x44;
+  local_2c = g_WeaponDefs + DAT_0056544c;
   local_20 = &DAT_0056543c;
   local_1c = 2;
   local_18 = &DAT_00565430;
   local_24 = &DAT_00565424;
   local_4 = DAT_0056545c;
-  (*(code *)(&PTR_Proj_CreateBolt_0055a5d0)[DAT_0056544c * 0x44])(&local_2c);
+  (*g_WeaponDefs[DAT_0056544c].create)(&local_2c);
   return;
 }
 

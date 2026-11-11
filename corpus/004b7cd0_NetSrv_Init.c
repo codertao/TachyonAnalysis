@@ -45,7 +45,7 @@ void NetSrv_Init(int *param_1,undefined4 param_2)
     puVar2 = (undefined4 *)((int)puVar2 + 1);
   }
   DAT_006af668 = FUN_0049c500(param_1[2],4,0,s_Server_send_buffer_0055f04c,DAT_006af7e8);
-  FUN_004b7840(&GLBL_maybe_mem_pool_of_size,param_1[3],DAT_006af79c,s_Server_Event_Buffer_0055f038);
+  Pool_InitDefault(&g_NetEventPool,param_1[3],DAT_006af79c,0x55f038);
   DAT_006af674 = 100;
   NetBridge_Init(1);
   return;

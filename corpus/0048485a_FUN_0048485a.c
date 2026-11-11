@@ -21,7 +21,7 @@ void __fastcall FUN_0048485a(undefined4 param_1,undefined1 *param_2)
       uVar3 = Var_GetKeyByIndex(in_stack_00000020,in_stack_0000001c);
       iVar2 = FUN_004690b0(uVar3);
       if ((iVar2 != 0) && (*(int *)(iVar2 + 0x58) != 0)) {
-        FUN_0046be30();
+        Player_AddVarInt();
       }
     }
     do {
@@ -32,7 +32,7 @@ void __fastcall FUN_0048485a(undefined4 param_1,undefined1 *param_2)
           Var_SetStr(g_PlayerVarStore,s_PLAYER_MAIN_VARS_00534198,s_CURRENT_SHIP_00534b18,
                      &DAT_00562b14);
           *(undefined4 *)(unaff_EBX + 0xf0) = 0;
-          FUN_004699d0(*(undefined4 *)(unaff_EBX + 0xec));
+          Player_AddCredits(*(undefined4 *)(unaff_EBX + 0xec));
           FUN_00484230();
           FUN_00484b20(&DAT_00562b14);
           FUN_00484a40();
@@ -48,7 +48,7 @@ void __fastcall FUN_0048485a(undefined4 param_1,undefined1 *param_2)
           iVar2 = FUN_004690b0(uVar3);
           if ((iVar2 != 0) && (*(int *)(iVar2 + 0x58) != 0)) {
             if (*(int *)(*(int *)(iVar2 + 0x58) + 0x9c) == 1) {
-              FUN_0046be30();
+              Player_AddVarInt();
             }
             else {
               str_sprintf();
@@ -56,7 +56,7 @@ void __fastcall FUN_0048485a(undefined4 param_1,undefined1 *param_2)
                                 );
               if (iVar1 != 0) {
                 Var_SetInt(g_PlayerVarStore);
-                FUN_0046be30(iVar2 + 0x20,iVar2,in_stack_0000001c);
+                Player_AddVarInt(iVar2 + 0x20,iVar2,in_stack_0000001c);
               }
             }
           }

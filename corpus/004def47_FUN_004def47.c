@@ -8,7 +8,7 @@ undefined8 __fastcall FUN_004def47(undefined4 param_1,undefined4 param_2)
   int iVar3;
   undefined4 *puVar4;
   
-  puVar4 = &DAT_004c9402;
+  puVar4 = &g_SndVoices;
   iVar3 = 0x18;
   do {
     if (*(char *)(puVar4 + 0xf) != '\0') {

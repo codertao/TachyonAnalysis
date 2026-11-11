@@ -14,7 +14,7 @@ void FUN_00445b60(void)
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
   }
   FUN_004e4b65(1);
-  FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   Ui_ShowWindow(&g_UiManager,s_WndMPShipBW_00545c14,0);
   FUN_0043a8d0(&g_UiManager,s_WndMPShipBW_00545c14);

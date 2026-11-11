@@ -2,28 +2,35 @@
 /* AI/drone ship think (DCB +0x68, installed by 0x4036f0): Entity_ApproachVelocity + staggered turn
    FX + Dcb_WorldDelta + Euler integrate */
 
-void Dcb_Think_AiShip(int param_1)
+void Dcb_Think_AiShip(SpED *param_1)
 
 {
-  Entity_TurnToward(param_1,param_1 + 0xdc,*(int *)(param_1 + 0x8c) + 0x84,
-                    *(undefined4 *)(param_1 + 0x338));
-  *(undefined1 *)(param_1 + 0x326) = 0;
-  *(undefined2 *)(param_1 + 0x312) = 0;
-  *(undefined1 *)(param_1 + 0x327) = 0;
-  if (((*(uint *)(param_1 + 800) ^ DAT_005897e4) & 0xf) == 0) {
+  uint uVar1;
+  int iVar2;
+  int iVar3;
+  
+  Entity_TurnToward(param_1,(vec3 *)&param_1[1].next,(ShipFlight *)(param_1->desc + 1),
+                    (byte)*(undefined4 *)&param_1[3].field_0xbc);
+  uVar1 = param_1[3].vel.y;
+  *(undefined1 *)((int)&param_1[3].vel.z + 2) = 0;
+  *(undefined2 *)((int)&param_1[3].qNext2 + 2) = 0;
+  *(undefined1 *)((int)&param_1[3].vel.z + 3) = 0;
+  if (((uVar1 ^ DAT_005897e4) & 0xf) == 0) {
     Entity_ApplyTurnControl
-              (0,*(undefined4 *)(param_1 + 0xd4),param_1 + 0xe8,*(int *)(param_1 + 0x8c) + 0x84,0,
-               param_1 + 0x10c,0,1);
-    *(char *)(param_1 + 0xc1) = (char)((int)(uint)*(ushort *)(param_1 + 0x312) >> 3);
+              (0,(float)param_1[1].pool,(float *)&param_1[1].linked,
+               (ShipFlight *)(param_1->desc + 1),0,(PowerBlock *)&param_1[1].pos.y,0,1.4013e-45);
+    param_1->throttle = (byte)((int)(uint)*(ushort *)((int)&param_1[3].qNext2 + 2) >> 3);
   }
   Dcb_WorldDelta(param_1);
-  *(int *)(param_1 + 0x34) = *(int *)(param_1 + 0x34) + *(int *)(param_1 + 0xa0);
-  *(int *)(param_1 + 0x38) = *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4);
-  *(int *)(param_1 + 0x3c) = *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8);
-  *(int *)(param_1 + 0x4c) = *(int *)(param_1 + 0x4c) + *(int *)(param_1 + 0xac);
-  *(int *)(param_1 + 0x50) = *(int *)(param_1 + 0x50) + *(int *)(param_1 + 0xb0);
-  *(int *)(param_1 + 0x54) = *(int *)(param_1 + 0x54) + *(int *)(param_1 + 0xb4);
-  Dcb_SetRangeFlags(param_1 + 0x10c,*(int *)(param_1 + 0x8c) + 0xd0,param_1);
+  (param_1->pos).x = (param_1->pos).x + (param_1->vel).x;
+  iVar2 = (param_1->ang).x;
+  (param_1->pos).y = (param_1->pos).y + (param_1->vel).y;
+  iVar3 = (param_1->ang).y;
+  (param_1->pos).z = (param_1->pos).z + (param_1->vel).z;
+  (param_1->ang).x = iVar2 + (param_1->angVel).x;
+  (param_1->ang).y = iVar3 + (param_1->angVel).y;
+  (param_1->ang).z = (param_1->ang).z + (param_1->angVel).z;
+  Dcb_SetRangeFlags((PowerBlock *)&param_1[1].pos.y,&param_1->desc[1].getText,param_1);
   return;
 }
 

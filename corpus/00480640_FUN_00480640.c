@@ -8,7 +8,7 @@ void FUN_00480640(void)
   if (g_MpModeFlag == 0) {
     DAT_00571280 = &g_UiManager;
   }
-  FUN_00440460(DAT_00571280,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(DAT_00571280,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   g_TitleMenu_ExitFlag = 0;
   DAT_0056c480 = 0;
   FUN_0043ab40(DAT_00571280);

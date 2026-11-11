@@ -1,119 +1,119 @@
 
 /* client->server 0x2xxx app events */
 
-void Tach_SrvDispatchEvent(uint param_1,undefined4 param_2,int param_3,int param_4)
+void __cdecl Tach_SrvDispatchEvent(int type,void *data,TachConn *conn,int live)
 
 {
-  DAT_0058b068 = param_3;
-  DAT_0058b064 = *(undefined4 *)(param_3 + 200);
-  if (param_4 != 0) {
-    if (*(int *)(param_3 + 0x1d0) == 0) {
-      switch(param_1) {
+  g_SrvCurConn = conn;
+  g_SrvCurShip = conn->ship;
+  if (live != 0) {
+    if (conn->dead == 0) {
+      switch(type) {
       case 0x2001:
-        TachSrv_OnFire(param_2);
+        TachSrv_OnFire(data);
         break;
       case 0x2003:
-        TachSrv_OnHitReport(param_2);
+        TachSrv_OnHitReport(data);
         break;
       case 0x2004:
-        TachSrv_OnFireGuided(param_2);
+        TachSrv_OnFireGuided(data);
         break;
       case 0x2006:
-        FUN_0045f880(param_2);
+        FUN_0045f880(data);
         break;
       case 0x2009:
-        TachSrv_OnCollision(param_2);
+        TachSrv_OnCollision(data);
         break;
       case 0x2018:
-        FUN_00460460(param_2);
+        FUN_00460460(data);
         break;
       case 0x2019:
-        FUN_00460480(param_2);
+        FUN_00460480(data);
         break;
       case 0x2020:
-        FUN_004604f0(param_2);
+        FUN_004604f0(data);
         break;
       case 0x2026:
-        FUN_00460790(param_2);
+        FUN_00460790(data);
         break;
       case 0x2027:
-        TachSrv_OnPartHitReport(param_2);
+        TachSrv_OnPartHitReport(data);
         break;
       case 0x2028:
-        TachSrv_OnLoadout(param_2);
+        TachSrv_OnLoadout(data);
       }
     }
-    if (param_1 < 0x2015) {
-      if (param_1 == 0x2014) {
-        FUN_00460300(param_2);
+    if ((uint)type < 0x2015) {
+      if (type == 0x2014) {
+        FUN_00460300(data);
         return;
       }
-      if (param_1 < 0x2009) {
-        if (param_1 == 0x2008) {
-          FUN_0045fa10(param_2);
+      if ((uint)type < 0x2009) {
+        if (type == 0x2008) {
+          FUN_0045fa10(data);
           return;
         }
-        if (param_1 < 0x2006) {
-          if (param_1 == 0x2005) {
-            TachSrv_OnPowerOp(param_2);
+        if ((uint)type < 0x2006) {
+          if (type == 0x2005) {
+            TachSrv_OnPowerOp(data);
             return;
           }
-          if (param_1 == 0x1116) {
-            Sector_LaunchMission(param_2);
+          if (type == 0x1116) {
+            Sector_LaunchMission(data);
             return;
           }
-          if (param_1 == 0x2002) {
-            FUN_0045f150(param_2);
+          if (type == 0x2002) {
+            FUN_0045f150(data);
             return;
           }
         }
-        else if (param_1 == 0x2007) {
-          FUN_0045f8e0(param_2);
+        else if (type == 0x2007) {
+          FUN_0045f8e0(data);
           return;
         }
       }
       else {
-        switch(param_1) {
+        switch(type) {
         case 0x2010:
-          FUN_0045ff00(param_2);
+          FUN_0045ff00(data);
           return;
         case 0x2011:
-          FUN_0045ff80(param_2);
+          FUN_0045ff80(data);
           return;
         case 0x2012:
-          FUN_0045ffa0(param_2);
+          FUN_0045ffa0(data);
           return;
         case 0x2013:
-          FUN_00460000(param_2);
+          FUN_00460000(data);
           return;
         }
       }
     }
     else {
-      switch(param_1) {
+      switch(type) {
       case 0x2015:
-        FUN_00460220(param_2);
+        FUN_00460220(data);
         return;
       case 0x2016:
-        FUN_004601a0(param_2);
+        FUN_004601a0(data);
         return;
       case 0x2017:
-        TachSrv_OnAttach(param_2);
+        TachSrv_OnAttach(data);
         return;
       case 0x2021:
-        FUN_00460530(param_2);
+        FUN_00460530(data);
         return;
       case 0x2022:
-        FUN_00460600(param_2);
+        FUN_00460600(data);
         return;
       case 0x2023:
-        FUN_00460120(param_2);
+        FUN_00460120(data);
         return;
       case 0x2024:
-        FUN_00460720(param_2);
+        FUN_00460720(data);
         return;
       case 0x2025:
-        FUN_00460770(param_2);
+        FUN_00460770(data);
       }
     }
   }

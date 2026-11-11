@@ -38,14 +38,14 @@ undefined4 FUN_00449750(void)
                  *(undefined4 *)(iVar2 + 100),local_24 + -0x14,local_28 + 0x19,0);
     FUN_0043f840(&g_UiManager,s_IACFGLoadHalo_005478bc,0x20000);
   }
-  if (DAT_00598580 == 0) {
-    FUN_004498e0();
+  if (g_CfgMode == 0) {
+    MpCfg_RefreshWeaponMounts();
     FUN_00449630();
     Cbin_Close();
     return 1;
   }
-  if (DAT_00598580 == 1) {
-    FUN_00449fc0();
+  if (g_CfgMode == 1) {
+    MpCfg_RefreshHwSlots();
   }
   Cbin_Close();
   return 1;

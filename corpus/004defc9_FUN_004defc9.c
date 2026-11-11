@@ -6,7 +6,7 @@ int FUN_004defc9(void)
   int iVar1;
   undefined4 *puVar2;
   
-  puVar2 = &DAT_004c9402;
+  puVar2 = &g_SndVoices;
   iVar1 = 0x18;
   do {
     if (puVar2[4] == in_EAX) {

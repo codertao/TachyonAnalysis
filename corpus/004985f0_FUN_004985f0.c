@@ -2,18 +2,18 @@
 void FUN_004985f0(int *param_1,int param_2)
 
 {
-  int iVar1;
+  SpED *ent;
   
-  iVar1 = *param_1;
-  if (iVar1 != 0) {
-    while ((*(short *)(iVar1 + 0x76) != 3 || (*(int *)(iVar1 + 0x114) != param_2))) {
-      iVar1 = *(int *)(iVar1 + 8);
-      if (iVar1 == 0) {
+  ent = (SpED *)*param_1;
+  if (ent != (SpED *)0x0) {
+    while ((ent->poolType != 3 || (*(int *)&ent[1].field_0x40 != param_2))) {
+      ent = ent->next;
+      if (ent == (SpED *)0x0) {
         return;
       }
     }
-    FUN_0041b950(iVar1);
-    FUN_0041b9b0(iVar1);
+    Quad_UnlinkDynamic(ent);
+    FUN_0041b9b0(ent);
   }
   return;
 }

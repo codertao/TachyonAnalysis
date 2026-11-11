@@ -14,7 +14,7 @@ int __cdecl FUN_10005860(char *param_1,int param_2,undefined4 param_3)
     iVar2 = iVar2 + 1;
   }
   if (param_2 + 4U <= iVar2 + 10U) {
-    iVar2 = FUN_10005020(param_1,param_2,param_3);
+    iVar2 = ns_SendDatagram(param_1,param_2,param_3);
     return iVar2;
   }
   iVar2 = FUN_10005120((char *)&DAT_10009854,iVar2,param_3,1);

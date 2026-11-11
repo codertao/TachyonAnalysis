@@ -2,9 +2,9 @@
 void Tach_ReadGameData(undefined4 *param_1,undefined4 param_2)
 
 {
-  DAT_005b20e8 = (uint)*(ushort *)(param_1 + 2);
-  DAT_005b20f0 = (uint)*(ushort *)((int)param_1 + 10);
-  DAT_005b2104 = (uint)*(ushort *)(param_1 + 3);
+  g_PlayerPower.shieldFront = (int)*(ushort *)(param_1 + 2);
+  g_PlayerPower.shieldRear = (int)*(ushort *)((int)param_1 + 10);
+  g_PlayerPower.hull = (int)*(ushort *)(param_1 + 3);
   DAT_005b39fc = *param_1;
   DAT_005b39f4 = (int)*(char *)(param_1 + 1);
   DAT_005b39f8 = (int)*(char *)((int)param_1 + 5);

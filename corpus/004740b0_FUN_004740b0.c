@@ -15,7 +15,7 @@ void FUN_004740b0(int param_1)
         return;
       }
     }
-    FUN_00474010(uVar1 - DAT_00577f00);
+    Loadout_ScrollList(uVar1 - DAT_00577f00);
   }
   return;
 }

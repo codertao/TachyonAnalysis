@@ -4,14 +4,14 @@
 void Dcb_GC(void)
 
 {
-  FUN_0041b900(&DAT_0058af9c);
-  FUN_0041b900(&DAT_0058afc4);
-  FUN_0041b900(&DAT_0058afec);
-  FUN_0041b900(&DAT_0058b03c);
-  FUN_0041b8d0(&DAT_0058af9c);
-  FUN_0041b8d0(&DAT_0058afc4);
-  FUN_0041b8d0(&DAT_0058afec);
-  FUN_0041b8d0(&DAT_0058b03c);
+  Pool_FlushKills(&g_PoolAI);
+  Pool_FlushKills(&g_PoolDrone);
+  Pool_FlushKills(&g_PoolBase);
+  Pool_FlushKills(&g_PoolCommon);
+  Pool_FlushPending(&g_PoolAI);
+  Pool_FlushPending(&g_PoolDrone);
+  Pool_FlushPending(&g_PoolBase);
+  Pool_FlushPending(&g_PoolCommon);
   return;
 }
 

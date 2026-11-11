@@ -36,14 +36,14 @@ undefined4 FUN_00475a60(void)
                  *(undefined4 *)(iVar2 + 0x60),*(undefined4 *)(iVar2 + 100),local_24,local_28,0);
     FUN_0043f840(&GLBL_UI_ELEM_LIST,s_IACFGLoadHalo_005478bc,0x20000);
   }
-  if (DAT_00598580 == 0) {
-    FUN_00475be0();
+  if (g_CfgMode == 0) {
+    Loadout_RefreshWeaponMounts();
     FUN_00475950();
     Cbin_Close();
     return 1;
   }
-  if (DAT_00598580 == 1) {
-    FUN_004762b0();
+  if (g_CfgMode == 1) {
+    Loadout_RefreshHwSlots();
   }
   Cbin_Close();
   return 1;

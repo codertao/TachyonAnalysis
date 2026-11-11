@@ -37,7 +37,7 @@ void FUN_00442f60(undefined *param_1)
     if (*ppuVar3 == (undefined *)0x5b2c0c) {
       DAT_005a4020 = 0;
       FUN_00443440();
-      iVar2 = FUN_0043ca90(&g_UiManager,s_BtnHostGameSlot0_00540db8);
+      iVar2 = Ui_GetButtonState(&g_UiManager,s_BtnHostGameSlot0_00540db8);
       if (iVar2 != 8) {
         set_button_state(&g_UiManager,s_BtnHostGameSlot0_00540db8,4);
       }

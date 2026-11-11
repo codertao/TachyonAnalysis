@@ -4,25 +4,25 @@
 void Mission_OnVarChanged(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  int *piVar1;
-  int iVar2;
+  Quadrant *pQVar1;
+  SpED *pSVar2;
   uint uVar3;
-  undefined4 *puVar4;
+  SectorRec *pSVar4;
   
   uVar3 = 0;
-  puVar4 = &DAT_005a5548;
-  if (DAT_005a5544 != 0) {
+  pSVar4 = g_SectorTable;
+  if (g_SectorCount != 0) {
     do {
-      piVar1 = (int *)*puVar4;
-      for (iVar2 = *piVar1; iVar2 != 0; iVar2 = *(int *)(iVar2 + 8)) {
-        if (*(short *)(iVar2 + 0x76) == 10) {
-          Gate_UpdateCollideState(iVar2);
+      pQVar1 = pSVar4->quadrant;
+      for (pSVar2 = pQVar1->dynamicList; pSVar2 != (SpED *)0x0; pSVar2 = pSVar2->next) {
+        if (pSVar2->poolType == 10) {
+          Gate_UpdateCollideState(pSVar2);
         }
       }
-      Mission_PostVarChange(param_1,param_2,param_3,piVar1);
+      Mission_PostVarChange(param_1,param_2,param_3,pQVar1);
       uVar3 = uVar3 + 1;
-      puVar4 = puVar4 + 0x11;
-    } while (uVar3 < DAT_005a5544);
+      pSVar4 = pSVar4 + 1;
+    } while (uVar3 < g_SectorCount);
   }
   return;
 }

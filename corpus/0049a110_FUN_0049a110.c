@@ -16,7 +16,7 @@ int FUN_0049a110(int param_1,undefined4 param_2,int param_3)
   uVar1 = *(undefined4 *)(param_3 + 8);
   *(undefined4 *)(param_1 + 8) = uVar1;
   iVar3 = 0;
-  iVar2 = FUN_004bd452(uVar1,s________________0055d720,local_100,local_200);
+  iVar2 = Crt_sscanf(uVar1,s________________0055d720,local_100,local_200);
   if (iVar2 == 2) {
     iVar2 = FUN_004bcef7(local_200,&local_204);
     while (iVar2 != 0) {

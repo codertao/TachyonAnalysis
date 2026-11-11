@@ -1,47 +1,47 @@
 
-int FUN_004983d0(int param_1,undefined4 *param_2,undefined4 *param_3,int param_4,undefined4 param_5,
-                int param_6)
+SpED * FUN_004983d0(SpED *param_1,undefined4 *param_2,int *param_3,int param_4,undefined4 param_5,
+                   int param_6)
 
 {
-  int iVar1;
-  undefined *puVar2;
-  undefined4 uVar3;
+  SpED *ent;
+  Pool *pPVar1;
+  undefined4 uVar2;
   
   if (param_6 == 0) {
-    uVar3 = *(undefined4 *)(param_4 + 100);
-    puVar2 = &DAT_0058b03c;
+    uVar2 = *(undefined4 *)(param_4 + 100);
+    pPVar1 = &g_PoolCommon;
   }
   else {
-    uVar3 = *(undefined4 *)(param_4 + 100);
-    puVar2 = &DAT_005b32b0;
+    uVar2 = *(undefined4 *)(param_4 + 100);
+    pPVar1 = (Pool *)&DAT_005b32b0;
   }
-  iVar1 = DcbPool_Alloc(puVar2,3,uVar3);
-  if (iVar1 == 0) {
-    return 0;
+  ent = (SpED *)DcbPool_Alloc(pPVar1,3,uVar2);
+  if (ent == (SpED *)0x0) {
+    return (SpED *)0x0;
   }
-  *(int *)(iVar1 + 0xdc) = param_1;
-  *(undefined4 *)(iVar1 + 0xfc) = *param_2;
-  *(undefined4 *)(iVar1 + 0x100) = param_2[1];
-  *(undefined4 *)(iVar1 + 0x104) = param_2[2];
-  *(undefined4 *)(iVar1 + 0x108) = *param_3;
-  *(undefined4 *)(iVar1 + 0x10c) = param_3[1];
-  *(undefined4 *)(iVar1 + 0x110) = param_3[2];
-  *(int *)(iVar1 + 0xf4) = param_4;
-  *(undefined4 *)(iVar1 + 0x114) = param_5;
-  *(undefined4 *)(iVar1 + 200) = DAT_00565420;
-  *(undefined4 *)(iVar1 + 0xd4) = *(undefined4 *)(param_1 + 0xf8);
-  *(undefined4 *)(iVar1 + 0x58) = **(undefined4 **)(param_1 + 0x74);
-  *(undefined1 *)(iVar1 + 0x7e) = *(undefined1 *)(*(int *)(param_1 + 0x74) + 4);
+  ent[1].next = param_1;
+  *(undefined4 *)&ent[1].field_0x28 = *param_2;
+  *(undefined4 *)&ent[1].field_0x2c = param_2[1];
+  *(undefined4 *)&ent[1].field_0x30 = param_2[2];
+  ent[1].pos.x = *param_3;
+  ent[1].pos.y = param_3[1];
+  ent[1].pos.z = param_3[2];
+  *(int *)&ent[1].field_0x20 = param_4;
+  *(undefined4 *)&ent[1].field_0x40 = param_5;
+  *(undefined4 *)&ent->field_0xc8 = DAT_00565420;
+  ent[1].pool = *(Pool **)&param_1[1].field_0x24;
+  *(undefined4 *)&ent->field_0x58 = **(undefined4 **)&param_1->field_0x74;
+  ent->field_0x7e = *(undefined1 *)(*(int *)&param_1->field_0x74 + 4);
   if (param_6 == 1) {
-    *(undefined1 **)(iVar1 + 0x68) = &Sapper_ThinkPredicted;
-    *(undefined4 *)(iVar1 + 0x70) = *(undefined4 *)(param_1 + 0x94);
-    Model_SelectState(iVar1 + 0x18,0);
-    FUN_0041b850(iVar1);
-    return iVar1;
+    ent->think = &Sapper_ThinkPredicted;
+    ent->render = param_1->qNext2;
+    Model_SelectState(&ent->field_0x18,0);
+    Quad_LinkDynamic(ent);
+    return ent;
   }
-  *(undefined1 *)(iVar1 + 0xc3) = 1;
-  *(code **)(iVar1 + 0x68) = Sapper_ThinkServer;
-  FUN_0041b850(iVar1);
-  return iVar1;
+  ent->netFlags = 1;
+  ent->think = Sapper_ThinkServer;
+  Quad_LinkDynamic(ent);
+  return ent;
 }
 

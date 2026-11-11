@@ -16,7 +16,7 @@ void FUN_00448d40(void)
   FUN_0048b6f0(2);
   FUN_0046dd30(0,0);
   DAT_00562c70 = 0;
-  FUN_00447570();
+  MpCfg_EndDrag();
   return;
 }
 

@@ -8,7 +8,7 @@ void FUN_00470930(void)
   DAT_005635e0 = 0;
   DAT_0054e4d8 = 0x10;
   FUN_00445720();
-  iVar1 = FUN_00470050();
+  iVar1 = Starbase_Init();
   if (iVar1 == 0) {
     FUN_004715f0();
     return;

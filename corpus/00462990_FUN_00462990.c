@@ -2,11 +2,11 @@
 void FUN_00462990(void)
 
 {
-  FUN_0041b720(&DAT_0058af9c);
-  FUN_0041b720(&DAT_0058afc4);
-  FUN_0041b720(&DAT_0058afec);
-  FUN_0041b720(&DAT_0058b014);
-  FUN_0041b720(&DAT_0058b03c);
+  FUN_0041b720(&g_PoolAI);
+  FUN_0041b720(&g_PoolDrone);
+  FUN_0041b720(&g_PoolBase);
+  FUN_0041b720(&g_PoolRoid);
+  FUN_0041b720(&g_PoolCommon);
   return;
 }
 

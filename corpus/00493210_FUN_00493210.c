@@ -13,8 +13,8 @@ void FUN_00493210(uint *param_1,uint *param_2,uint *param_3)
   uVar6 = 0;
   uVar7 = 0;
   uVar5 = 0;
-  if (g_WeaponDefs != 0x1c) {
-    piVar4 = &DAT_0055a574;
+  if (g_WeaponDefs[0].id != 0x1c) {
+    piVar4 = &g_WeaponDefs[0].damage;
     do {
       iVar2 = *piVar4;
       uVar3 = piVar4[2] * iVar2 >> 8;

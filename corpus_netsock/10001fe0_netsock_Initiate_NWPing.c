@@ -1,4 +1,6 @@
 
+/* (ip, port): default 208.231.90.229:3875; type-0x1012 ping every 1.5 s */
+
 undefined4 __cdecl netsock_Initiate_NWPing(int param_1,short param_2)
 
 {

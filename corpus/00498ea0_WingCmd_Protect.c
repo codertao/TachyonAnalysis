@@ -4,12 +4,12 @@
 undefined4 WingCmd_Protect(void)
 
 {
-  int iVar1;
+  SpED *pSVar1;
   
-  iVar1 = *(int *)(DAT_0058b064 + 0x90);
-  if (iVar1 != 0) {
+  pSVar1 = g_SrvCurShip->target;
+  if (pSVar1 != (SpED *)0x0) {
     *(undefined1 *)(g_Wingman + 0x324) = 1;
-    *(int *)(g_Wingman + 0x354) = iVar1;
+    *(SpED **)(g_Wingman + 0x354) = pSVar1;
     Ai_SetState(g_Wingman,0xd);
     return 1;
   }

@@ -1,4 +1,6 @@
 
+/* set the usage-record app id (15 chars); space.exe has a wrapper 0x4abb80 but never calls it */
+
 undefined4 __cdecl netsock_SetOnlineAppIDString(undefined4 *param_1)
 
 {

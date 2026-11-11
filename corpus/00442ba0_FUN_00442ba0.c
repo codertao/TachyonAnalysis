@@ -27,7 +27,7 @@ void FUN_00442ba0(void)
       iVar2 = FUN_0044c8b0();
     }
     else {
-      iVar2 = FUN_0044c950();
+      iVar2 = NW_ConnectToHost();
     }
     iVar6 = GLBL_spacesav[0];
     if (iVar2 == 0) {
@@ -81,13 +81,13 @@ void FUN_00442ba0(void)
           pcVar7 = pcVar7 + 1;
         }
         if (bVar8) {
-          DAT_005a4040 = 1;
+          g_NwAdvert = 1;
           _strncpy(&DAT_005a4054,(char *)(GLBL_spacesav + 1),0x1f);
           _strncpy(&DAT_005a4074,(char *)(GLBL_spacesav + 9),0x1f);
           DAT_005a4050 = GLBL_spacesav[0];
           iVar2 = _rand();
-          DAT_005a40b4 = (int)(CONCAT44(iVar2 >> 0x1f,iVar2 >> 4) % 9000) + 1000;
-          DAT_005a4048 = FUN_0044c8e0(s_12_166_151_201_00534900);
+          g_NwGameId = (int)(CONCAT44(iVar2 >> 0x1f,iVar2 >> 4) % 9000) + 1000;
+          g_NwMasterIp = FUN_0044c8e0(s_12_166_151_201_00534900);
           str_sprintf(&DAT_005a41e0,s_HOST_GAMETYPE__d_00540f20,GLBL_spacesav[0x13]);
           iVar2 = FUN_0043bf10(&g_UiManager,&DAT_005a41e0);
           if ((iVar2 == 0) || (pcVar9 = *(char **)(iVar2 + 0x40), pcVar9 == (char *)0x0)) {
@@ -102,7 +102,7 @@ void FUN_00442ba0(void)
         FUN_004a7180(&DAT_005a41e0);
         iVar2 = FUN_004a6fa0(&DAT_005a6080,1);
         if (iVar2 != 1) {
-          DAT_005a64f4 = &DAT_00591660;
+          DAT_005a64f4 = &g_JoinBlob;
           DAT_005a64f8 = 0xc4;
           if (g_PlayerVarStore != 0) {
             VarStore_Save(&DAT_005a60a0,g_PlayerVarStore);

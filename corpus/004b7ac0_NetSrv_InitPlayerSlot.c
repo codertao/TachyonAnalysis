@@ -1,47 +1,48 @@
 
 /* zero slot, set connection id, copy player name */
 
-void NetSrv_InitPlayerSlot(undefined4 *param_1,undefined4 param_2)
+void __cdecl NetSrv_InitPlayerSlot(TachConn *slot,uint connId)
 
 {
   char cVar1;
   char *pcVar2;
   uint uVar3;
   uint uVar4;
-  undefined4 *puVar5;
+  TachConn *pTVar5;
   char *pcVar6;
   
   uVar4 = DAT_006af78c;
-  DAT_006af7e0 = param_1;
-  puVar5 = param_1;
+  DAT_006af7e0 = slot;
+  pTVar5 = slot;
   for (uVar3 = DAT_006af78c >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
-    *puVar5 = 0;
-    puVar5 = puVar5 + 1;
+    pTVar5->active = 0;
+    pTVar5 = (TachConn *)&pTVar5->hasRegName;
   }
   for (uVar4 = uVar4 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {
-    *(undefined1 *)puVar5 = 0;
-    puVar5 = (undefined4 *)((int)puVar5 + 1);
+    *(undefined1 *)&pTVar5->active = 0;
+    pTVar5 = (TachConn *)((int)&pTVar5->active + 1);
   }
-  param_1[2] = param_2;
-  FUN_004b7a50(param_1);
-  *param_1 = 1;
-  param_1[0x2d] = 1;
-  param_1[3] = DAT_0055e404;
+  slot->connId = connId;
+  FUN_004b7a50(slot);
+  slot->active = 1;
+  *(undefined4 *)&slot->field_0xb4 = 1;
+  *(int *)&slot->field_0xc = DAT_0055e404;
   if (DAT_0055e404 == 0) {
-    param_1[1] = 0;
+    slot->hasRegName = 0;
   }
   else {
-    param_1[1] = 1;
+    slot->hasRegName = 1;
   }
   pcVar2 = DAT_006af7e4;
-  if ((param_1[1] != 0) && (pcVar2 = (char *)FUN_004a70a0(param_1[3]), pcVar2 == (char *)0x0)) {
-    param_1[0xf] = s_JAKE_LOGAN_0055f02c._0_4_;
-    param_1[0x10] = s_JAKE_LOGAN_0055f02c._4_4_;
-    *(undefined2 *)(param_1 + 0x11) = s_JAKE_LOGAN_0055f02c._8_2_;
+  if ((slot->hasRegName != 0) &&
+     (pcVar2 = (char *)FUN_004a70a0(*(undefined4 *)&slot->field_0xc), pcVar2 == (char *)0x0)) {
+    *(undefined4 *)slot->name = s_JAKE_LOGAN_0055f02c._0_4_;
+    *(undefined4 *)(slot->name + 4) = s_JAKE_LOGAN_0055f02c._4_4_;
+    *(undefined2 *)(slot->name + 8) = s_JAKE_LOGAN_0055f02c._8_2_;
     cVar1 = s_JAKE_LOGAN_0055f02c[10];
-    param_1[0x2f] = 1;
-    param_1[0x30] = 0;
-    *(char *)((int)param_1 + 0x46) = cVar1;
+    slot->txSeq = 1;
+    slot->rxAck = 0;
+    slot->name[10] = cVar1;
     return;
   }
   uVar4 = 0xffffffff;
@@ -55,7 +56,7 @@ void NetSrv_InitPlayerSlot(undefined4 *param_1,undefined4 param_2)
   } while (cVar1 != '\0');
   uVar4 = ~uVar4;
   pcVar2 = pcVar6 + -uVar4;
-  pcVar6 = (char *)(param_1 + 0xf);
+  pcVar6 = slot->name;
   for (uVar3 = uVar4 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
     *(undefined4 *)pcVar6 = *(undefined4 *)pcVar2;
     pcVar2 = pcVar2 + 4;
@@ -66,8 +67,8 @@ void NetSrv_InitPlayerSlot(undefined4 *param_1,undefined4 param_2)
     pcVar2 = pcVar2 + 1;
     pcVar6 = pcVar6 + 1;
   }
-  param_1[0x30] = 0;
-  param_1[0x2f] = 1;
+  slot->rxAck = 0;
+  slot->txSeq = 1;
   return;
 }
 

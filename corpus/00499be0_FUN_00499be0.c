@@ -20,7 +20,7 @@ switchD_00499c40_caseD_21:
       uVar4 = (byte)PTR_DAT_00561258[*param_1 * 2] & 4;
     }
     else {
-      uVar4 = FUN_004bc62d((int)*param_1,4);
+      uVar4 = Crt_isctype((int)*param_1,4);
     }
     if (uVar4 != 0) break;
     switch(*param_1) {
@@ -57,7 +57,7 @@ switchD_00499c40_caseD_21:
       uVar4 = (byte)PTR_DAT_00561258[cVar3 * 2] & 4;
     }
     else {
-      uVar4 = FUN_004bc62d((int)cVar3,4);
+      uVar4 = Crt_isctype((int)cVar3,4);
     }
     pcVar5 = param_1;
     if (uVar4 == 0) break;

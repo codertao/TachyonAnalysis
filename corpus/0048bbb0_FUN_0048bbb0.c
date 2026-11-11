@@ -35,9 +35,9 @@ void FUN_0048bbb0(int param_1)
     }
     else {
       *(uint *)(&DAT_0056abf4 + iVar5) = (uint)*(uint3 *)(&DAT_0056ac03 + iVar5);
-      FUN_004ae5e0(*(undefined4 *)(&DAT_0056abc0 + iVar5),(&DAT_0056abcc)[param_1 * 0x5c],
-                   &DAT_0056aba4 + iVar5,*(undefined4 *)(&DAT_0056abe8 + iVar5),
-                   &DAT_0056abd8 + iVar5);
+      Text_WordWrap(*(undefined4 *)(&DAT_0056abc0 + iVar5),(&DAT_0056abcc)[param_1 * 0x5c],
+                    &DAT_0056aba4 + iVar5,*(undefined4 *)(&DAT_0056abe8 + iVar5),
+                    &DAT_0056abd8 + iVar5);
     }
     piVar6 = (int *)(&DAT_0056aba4 + iVar5);
     if (*(uint *)(&DAT_0056acec + iVar5) != (uint)*(ushort *)(&DAT_0056abaa + iVar5)) {

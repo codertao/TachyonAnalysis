@@ -12,7 +12,7 @@ void FUN_00460300(undefined4 *param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  iVar2 = FUN_0045d680(*param_1,*(undefined4 *)(DAT_0058b064 + 100));
+  iVar2 = FUN_0045d680(*param_1,g_SrvCurShip->quadrant);
   if (iVar2 != 0) {
     pcVar1 = *(code **)(*(int *)(iVar2 + 0x8c) + 0x58);
     if (pcVar1 != (code *)0x0) {
@@ -29,7 +29,7 @@ void FUN_00460300(undefined4 *param_1)
       uStack_10 = 7;
       uStack_c = 0;
       uStack_8 = 1;
-      Mission_PostEvent(&uStack_18,*(undefined4 *)(DAT_0058b064 + 100));
+      Mission_PostEvent(&uStack_18,g_SrvCurShip->quadrant);
     }
     pcVar1 = *(code **)(*(int *)(iVar2 + 0x8c) + 0x34);
     if (pcVar1 != (code *)0x0) {

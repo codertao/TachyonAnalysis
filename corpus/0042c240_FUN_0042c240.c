@@ -10,7 +10,7 @@ void FUN_0042c240(void)
   if (DAT_005b1870 != 0) {
     FUN_00452180(1);
     uVar1 = Power_GetHullMax(&g_PlayerPower,DAT_005b1f0c + 0xd0,DAT_005b9020);
-    uVar2 = FUN_0048ec30(DAT_005b2104,uVar1);
+    uVar2 = FUN_0048ec30(g_PlayerPower.hull,uVar1);
     if (uVar2 < 0x19) {
       FUN_0042c0e0(&DAT_005b1874);
     }

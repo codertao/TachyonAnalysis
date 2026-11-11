@@ -1,36 +1,36 @@
 
-void FUN_00425fe0(int param_1,int param_2)
+void FUN_00425fe0(Pool *param_1,Desc *param_2)
 
 {
-  int iVar1;
+  SpED *ent;
   
-  iVar1 = DcbPool_Alloc(&DAT_005b32b0,10,&DAT_005b31c0);
-  if (iVar1 != 0) {
-    FUN_0041b850(iVar1);
-    *(int *)(iVar1 + 0x8c) = param_2;
-    *(undefined4 *)(iVar1 + 0xd0) = 0;
-    *(code **)(iVar1 + 0x70) = FUN_00425d10;
-    *(code **)(iVar1 + 0x5c) = FUN_00425c70;
-    *(int *)(iVar1 + 0x60) = iVar1;
-    *(undefined4 *)(iVar1 + 0x58) = *(undefined4 *)(param_2 + 0x134);
-    *(undefined4 *)(iVar1 + 0x2c) = 0xff;
-    *(undefined1 *)(iVar1 + 0x7e) = *(undefined1 *)(param_2 + 0x120);
-    *(undefined4 *)(iVar1 + 0x34) = *(undefined4 *)(param_1 + 0x34);
-    *(undefined4 *)(iVar1 + 0x38) = *(undefined4 *)(param_1 + 0x38);
-    *(undefined4 *)(iVar1 + 0x3c) = *(undefined4 *)(param_1 + 0x3c);
-    *(undefined4 *)(iVar1 + 0x4c) = *(undefined4 *)(param_1 + 0x4c);
-    *(undefined4 *)(iVar1 + 0x50) = *(undefined4 *)(param_1 + 0x50);
-    *(undefined4 *)(iVar1 + 0x54) = *(undefined4 *)(param_1 + 0x54);
-    *(undefined4 *)(iVar1 + 0x68) = 0;
-    *(undefined4 *)(iVar1 + 0x6c) = 0;
-    *(undefined4 *)(iVar1 + 0x88) = 0;
-    *(undefined4 *)(iVar1 + 0x18) = 0x90;
-    *(undefined4 *)(iVar1 + 0x1c) = 0x10000;
-    *(undefined4 *)(iVar1 + 0x2c) = 0xff;
-    *(undefined4 *)(iVar1 + 0x80) = 0;
-    *(int *)(iVar1 + 0xd4) = param_1;
-    *(int *)(param_1 + 0xd8) = iVar1;
-    Model_SelectState((undefined4 *)(iVar1 + 0x18),0);
+  ent = (SpED *)DcbPool_Alloc(&DAT_005b32b0,10,&DAT_005b31c0);
+  if (ent != (SpED *)0x0) {
+    Quad_LinkDynamic(ent);
+    ent->desc = param_2;
+    *(undefined4 *)&ent->field_0xd0 = 0;
+    ent->render = FUN_00425d10;
+    ent->preRender = FUN_00425c70;
+    *(SpED **)&ent->field_0x60 = ent;
+    *(void **)&ent->field_0x58 = param_2[2].spawnAtLoad;
+    *(undefined4 *)&ent->field_0x2c = 0xff;
+    ent->field_0x7e = (char)param_2[2].otherNameCount;
+    (ent->pos).x = (int)param_1[1].killList;
+    (ent->pos).y = param_1[1].count;
+    (ent->pos).z = param_1[1].elemSize;
+    (ent->ang).x = (int)param_1[2].freeHead;
+    (ent->ang).y = *(int *)&param_1[2].field_0x8;
+    (ent->ang).z = (int)param_1[2].pending;
+    ent->think = (void *)0x0;
+    ent->postThink = (void *)0x0;
+    ent->onCollide = (void *)0x0;
+    *(undefined4 *)&ent->field_0x18 = 0x90;
+    ent->scale = 0x10000;
+    *(undefined4 *)&ent->field_0x2c = 0xff;
+    ent->onDamage = (void *)0x0;
+    ent[1].pool = param_1;
+    param_1[6].mem = ent;
+    Model_SelectState(&ent->field_0x18,0);
   }
   return;
 }

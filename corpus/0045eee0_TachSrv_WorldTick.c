@@ -5,38 +5,38 @@
 void TachSrv_WorldTick(void)
 
 {
-  int iVar1;
-  int iVar2;
+  SpED *pSVar1;
+  SpED *pSVar2;
   uint uVar3;
-  int *piVar4;
+  Quadrant *pQVar4;
   
   if (g_CutsceneActive == 0) {
     Dcb_GC();
     uVar3 = 0;
-    piVar4 = &DAT_005897f0;
+    pQVar4 = g_Quadrants;
     if (DAT_0058af70 != 0) {
       do {
-        if (piVar4[0xd] != 0) {
+        if (pQVar4->occupied != 0) {
           if (*(code **)(g_ActiveRules + 0x44) != (code *)0x0) {
-            (**(code **)(g_ActiveRules + 0x44))(piVar4);
+            (**(code **)(g_ActiveRules + 0x44))(pQVar4);
           }
-          iVar1 = *piVar4;
-          while (iVar2 = iVar1, iVar2 != 0) {
-            iVar1 = *(int *)(iVar2 + 8);
-            if (*(code **)(iVar2 + 0x68) != (code *)0x0) {
-              (**(code **)(iVar2 + 0x68))(iVar2);
+          pSVar1 = pQVar4->dynamicList;
+          while (pSVar2 = pSVar1, pSVar2 != (SpED *)0x0) {
+            pSVar1 = pSVar2->next;
+            if (pSVar2->think != (code *)0x0) {
+              (*pSVar2->think)(pSVar2);
             }
           }
-          iVar1 = *piVar4;
-          while (iVar2 = iVar1, iVar2 != 0) {
-            iVar1 = *(int *)(iVar2 + 8);
-            if (*(code **)(iVar2 + 0x6c) != (code *)0x0) {
-              (**(code **)(iVar2 + 0x6c))(iVar2);
+          pSVar1 = pQVar4->dynamicList;
+          while (pSVar2 = pSVar1, pSVar2 != (SpED *)0x0) {
+            pSVar1 = pSVar2->next;
+            if (pSVar2->postThink != (code *)0x0) {
+              (*pSVar2->postThink)(pSVar2);
             }
           }
         }
         uVar3 = uVar3 + 1;
-        piVar4 = piVar4 + 0x2f;
+        pQVar4 = pQVar4 + 1;
       } while (uVar3 < DAT_0058af70);
     }
     Dcb_GC();

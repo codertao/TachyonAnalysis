@@ -14,8 +14,8 @@ void FUN_004b7a50(int param_1)
     puVar1 = puVar1 + 1;
   }
   *(undefined4 *)(param_1 + 0x80) = 0;
-  FUN_004b7800(param_1 + 0x18,DAT_006af798,DAT_006af79c + -0x14,s_player_event_list_0055f000,
-               *(undefined4 *)(param_1 + 0x10));
+  Pool_Init((Pool *)(param_1 + 0x18),DAT_006af798,DAT_006af79c + -0x14,0x55f000,
+            *(uint *)(param_1 + 0x10));
   return;
 }
 

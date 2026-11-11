@@ -17,7 +17,7 @@ void Shipyard_SelectShip(int param_1)
   undefined1 local_100 [128];
   undefined1 local_80 [128];
   
-  iVar1 = FUN_0046e900();
+  iVar1 = Player_GetCurrentShip();
   iVar2 = FUN_00490080(s_PLAYER_SHIPS_00548b00);
   local_10c = 1;
   iVar3 = Var_GetTable(s_SHIP_TYPE_0053fbd0);
@@ -39,8 +39,8 @@ void Shipyard_SelectShip(int param_1)
 LAB_004756a4:
     FUN_00475a60();
     Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseCFG_0054ffc8,0,0);
-    DAT_00563610 = 0;
-    uVar4 = FUN_0046e900();
+    g_HasAmmoHold = 0;
+    uVar4 = Player_GetCurrentShip();
     str_sprintf(local_80,s_SHIP__02d_DATA_0053643c,uVar4);
     uVar5 = 0;
     do {
@@ -54,17 +54,17 @@ LAB_004756a4:
           uVar4 = Var_GetKeyByIndex(*(int *)(iVar1 + 8),local_108);
           iVar1 = FUN_004690b0(uVar4);
           if ((iVar1 != 0) && (iVar1 = str_cmp(iVar1,s_AMMO_HOLD_005362c0), iVar1 == 0)) {
-            DAT_00563610 = 1;
+            g_HasAmmoHold = 1;
           }
         }
       }
     } while (uVar5 < 0x10);
-    FUN_00476c80();
+    Loadout_ResetMountHighlights();
     if (DAT_005635f8 != 0) {
-      FUN_00476d90(DAT_005635f8);
+      Loadout_HighlightMounts(DAT_005635f8);
     }
     if (DAT_005635fc != 0) {
-      FUN_00476d90(DAT_005635fc);
+      Loadout_HighlightMounts(DAT_005635fc);
     }
     DAT_0054f88c = 0;
     DAT_0054f890 = 0;

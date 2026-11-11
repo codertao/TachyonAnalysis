@@ -24,10 +24,10 @@ FUN_0049b2e0(undefined4 param_1,int param_2,undefined4 param_3,undefined4 *param
   do {
     do {
       iVar3 = FUN_0049aed0(local_200,0x100,param_5);
-      if ((iVar3 == 0) || (iVar3 = FUN_004bd452(local_200,&DAT_0055d734,local_300), iVar3 != 0)) {
+      if ((iVar3 == 0) || (iVar3 = Crt_sscanf(local_200,&DAT_0055d734,local_300), iVar3 != 0)) {
         return 0;
       }
-      iVar3 = FUN_004bd452(local_200,s_______________0055d7bc,local_300,&local_100);
+      iVar3 = Crt_sscanf(local_200,s_______________0055d7bc,local_300,&local_100);
     } while (iVar3 == 0);
     uVar4 = 0xffffffff;
     pcVar6 = local_300;

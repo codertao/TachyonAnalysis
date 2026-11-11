@@ -11,7 +11,7 @@ void FUN_0044acd0(void)
   g_TitleMenu_ExitFlag = 0;
   _DAT_00562c00 = 0;
   DAT_00592e64 = 1;
-  FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   FUN_00437b30(FUN_0044afd0);
   FUN_00437b10(FUN_0044b030);

@@ -29,11 +29,11 @@ void Sector_DebugOverlay(void)
   FUN_0048e970(local_100,DAT_005b2770,0x1c,0x2c,0xffffff,0xffff,0x10000,2);
   iVar9 = uVar7 + 0x2c;
   local_10c = 0;
-  if (DAT_005a5544 != 0) {
-    piVar8 = &DAT_005a5550;
+  if (g_SectorCount != 0) {
+    piVar8 = (int *)&g_SectorTable[0].field_0x8;
     do {
-      iVar3 = ((piVar8[-2] != *(int *)(DAT_0058b064 + 100)) - 1 & 0xdeffe0) + 0x20ff20;
-      uVar2 = Sector_GetQuadrantName(piVar8[-2]);
+      iVar3 = (((Quadrant *)piVar8[-2] != g_SrvCurShip->quadrant) - 1 & 0xdeffe0) + 0x20ff20;
+      uVar2 = Sector_GetQuadrantName((Quadrant *)piVar8[-2]);
       str_sprintf(local_100,&DAT_00534e38,uVar2);
       FUN_0048e970(local_100,DAT_005b2770,0x1c,iVar9,iVar3,0xffff,0x10000,2);
       str_sprintf(local_100,s_Main_SPX__s_00534e24,piVar8 + 1);
@@ -77,7 +77,7 @@ void Sector_DebugOverlay(void)
       iVar9 = iVar9 + uVar7 + uVar7;
       local_10c = local_10c + 1;
       piVar8 = piVar8 + 0x11;
-    } while (local_10c < DAT_005a5544);
+    } while (local_10c < g_SectorCount);
   }
   return;
 }

@@ -34,7 +34,7 @@ int FUN_0040b0b0(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undef
   uVar2 = FUN_0040a610(*(undefined4 *)(param_5 + 0xe8),param_1[0x11]);
   *(undefined4 *)(iVar1 + 0xe8) = uVar2;
   if ((g_FlightStateFlags & 4) != 0) {
-    uVar2 = FUN_0045d680(uVar2,*(undefined4 *)(DAT_0058b064 + 100));
+    uVar2 = FUN_0045d680(uVar2,g_SrvCurShip->quadrant);
     *(undefined4 *)(iVar1 + 0xf4) = uVar2;
   }
   FUN_0041b890(iVar1,&DAT_005b3280);

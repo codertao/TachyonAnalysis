@@ -1,70 +1,70 @@
 
-void FUN_004260c0(int param_1,int param_2,undefined4 param_3,char *param_4,undefined4 param_5,
-                 undefined4 param_6)
+void FUN_004260c0(Pool *param_1,Desc *param_2,undefined4 param_3,char *param_4,int param_5,
+                 int param_6)
 
 {
   char cVar1;
-  int iVar2;
+  SpED *ent;
+  uint uVar2;
   uint uVar3;
-  uint uVar4;
+  char *pcVar4;
   char *pcVar5;
-  char *pcVar6;
   
-  iVar2 = DcbPool_Alloc(&DAT_005b32b0,10,&DAT_005b31c0);
-  if (iVar2 != 0) {
-    FUN_0041b850(iVar2);
-    *(int *)(iVar2 + 0x8c) = param_2;
-    *(undefined4 *)(iVar2 + 0xd0) = 0;
-    *(code **)(iVar2 + 0x70) = FUN_00425d60;
-    *(code **)(iVar2 + 0x5c) = FUN_00425c10;
-    *(int *)(iVar2 + 0x60) = iVar2;
-    *(undefined4 *)(iVar2 + 0x58) = *(undefined4 *)(param_2 + 0x128);
-    *(undefined1 *)(iVar2 + 0x7e) = *(undefined1 *)(param_2 + 0x120);
-    *(undefined4 *)(iVar2 + 0x34) = *(undefined4 *)(param_1 + 0x34);
-    *(undefined4 *)(iVar2 + 0x38) = *(undefined4 *)(param_1 + 0x38);
-    *(undefined4 *)(iVar2 + 0x3c) = *(undefined4 *)(param_1 + 0x3c);
-    *(undefined4 *)(iVar2 + 0x4c) = *(undefined4 *)(param_1 + 0x4c);
-    *(undefined4 *)(iVar2 + 0x50) = *(undefined4 *)(param_1 + 0x50);
-    *(undefined4 *)(iVar2 + 0x54) = *(undefined4 *)(param_1 + 0x54);
-    *(undefined4 *)(iVar2 + 0x2c) = 0xff;
-    *(undefined4 *)(iVar2 + 0x68) = 0;
-    *(undefined4 *)(iVar2 + 0x6c) = 0;
-    *(undefined4 *)(iVar2 + 0x88) = 0;
-    *(undefined4 *)(iVar2 + 0x18) = 0x90;
-    *(undefined4 *)(iVar2 + 0x1c) = 0x10000;
-    *(undefined4 *)(iVar2 + 0x80) = 0;
-    *(int *)(iVar2 + 0xd4) = param_1;
-    *(int *)(param_1 + 0xd8) = iVar2;
-    *(undefined4 *)(iVar2 + 0xb8) = 0;
-    *(undefined4 *)(iVar2 + 0xbc) = 0;
-    FUN_0045cda0(iVar2,&DAT_005b31d4);
-    *(undefined4 *)(iVar2 + 0x110) = param_5;
-    uVar3 = 0xffffffff;
-    *(undefined4 *)(iVar2 + 0xe8) = param_3;
-    *(undefined4 *)(iVar2 + 0xe4) = param_6;
+  ent = (SpED *)DcbPool_Alloc(&DAT_005b32b0,10,&DAT_005b31c0);
+  if (ent != (SpED *)0x0) {
+    Quad_LinkDynamic(ent);
+    ent->desc = param_2;
+    *(undefined4 *)&ent->field_0xd0 = 0;
+    ent->render = FUN_00425d60;
+    ent->preRender = FUN_00425c10;
+    *(SpED **)&ent->field_0x60 = ent;
+    *(void **)&ent->field_0x58 = param_2[2].clientInit;
+    ent->field_0x7e = (char)param_2[2].otherNameCount;
+    (ent->pos).x = (int)param_1[1].killList;
+    (ent->pos).y = param_1[1].count;
+    (ent->pos).z = param_1[1].elemSize;
+    (ent->ang).x = (int)param_1[2].freeHead;
+    (ent->ang).y = *(int *)&param_1[2].field_0x8;
+    (ent->ang).z = (int)param_1[2].pending;
+    *(undefined4 *)&ent->field_0x2c = 0xff;
+    ent->think = (void *)0x0;
+    ent->postThink = (void *)0x0;
+    ent->onCollide = (void *)0x0;
+    *(undefined4 *)&ent->field_0x18 = 0x90;
+    ent->scale = 0x10000;
+    ent->onDamage = (void *)0x0;
+    ent[1].pool = param_1;
+    param_1[6].mem = ent;
+    *(undefined4 *)&ent->field_0xb8 = 0;
+    *(undefined4 *)&ent->field_0xbc = 0;
+    FUN_0045cda0(ent,&DAT_005b31d4);
+    ent[1].pos.z = param_5;
+    uVar2 = 0xffffffff;
+    *(undefined4 *)&ent[1].linked = param_3;
+    ent[1].poolSerial = param_6;
     do {
-      pcVar5 = param_4;
-      if (uVar3 == 0) break;
-      uVar3 = uVar3 - 1;
-      pcVar5 = param_4 + 1;
+      pcVar4 = param_4;
+      if (uVar2 == 0) break;
+      uVar2 = uVar2 - 1;
+      pcVar4 = param_4 + 1;
       cVar1 = *param_4;
-      param_4 = pcVar5;
+      param_4 = pcVar4;
     } while (cVar1 != '\0');
-    uVar3 = ~uVar3;
-    pcVar5 = pcVar5 + -uVar3;
-    pcVar6 = (char *)(iVar2 + 0xf8);
-    for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {
-      *(undefined4 *)pcVar6 = *(undefined4 *)pcVar5;
+    uVar2 = ~uVar2;
+    pcVar4 = pcVar4 + -uVar2;
+    pcVar5 = &ent[1].field_0x24;
+    for (uVar3 = uVar2 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
+      *(undefined4 *)pcVar5 = *(undefined4 *)pcVar4;
+      pcVar4 = pcVar4 + 4;
       pcVar5 = pcVar5 + 4;
-      pcVar6 = pcVar6 + 4;
     }
-    for (uVar3 = uVar3 & 3; uVar3 != 0; uVar3 = uVar3 - 1) {
-      *pcVar6 = *pcVar5;
+    for (uVar2 = uVar2 & 3; uVar2 != 0; uVar2 = uVar2 - 1) {
+      *pcVar5 = *pcVar4;
+      pcVar4 = pcVar4 + 1;
       pcVar5 = pcVar5 + 1;
-      pcVar6 = pcVar6 + 1;
     }
-    FUN_00425fe0(iVar2,param_2);
-    Model_SelectState((undefined4 *)(iVar2 + 0x18),0);
+    FUN_00425fe0(ent,param_2);
+    Model_SelectState(&ent->field_0x18,0);
   }
   return;
 }

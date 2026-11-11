@@ -21,7 +21,7 @@ void FUN_0048fe20(undefined4 param_1,undefined4 param_2)
         uVar2 = *(ushort *)(PTR_DAT_00561258 + local_60[0] * 2) & 0x103;
       }
       else {
-        uVar2 = FUN_004bc62d((int)local_60[0],0x103);
+        uVar2 = Crt_isctype((int)local_60[0],0x103);
       }
       if (uVar2 == 0) {
         uVar3 = FUN_004bd32f(local_60);

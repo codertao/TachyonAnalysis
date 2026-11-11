@@ -25,7 +25,7 @@ void TitleMenu_Enter(void)
     DAT_00562ca8 = 0;
     FUN_00437bc0(0);
   }
-  FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   Ui_ShowWindow(&g_UiManager,s_WndMainTitle_00544480,0);
   FUN_0043a8d0(&g_UiManager,s_WndMainTitle_00544480);

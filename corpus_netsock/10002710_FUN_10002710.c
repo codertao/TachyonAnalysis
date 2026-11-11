@@ -110,7 +110,7 @@ LAB_1000277e:
       *(undefined2 *)((int)piVar5 + 0x46) = uVar1;
       *(ushort *)(piVar5 + 5) = *(ushort *)(piVar5 + 5) | local_38;
       *(short *)((int)piVar5 + 0x46) = *(short *)((int)piVar5 + 0x46) + local_6;
-      FUN_10002620(piVar5,0);
+      NwUsage_SendRecord(piVar5,0);
     }
     DAT_10019874 = timeGetTime();
     _DAT_1001986c = 0;

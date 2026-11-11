@@ -1,13 +1,12 @@
 
 /* init a DCB pool (count,elemsize,name); server pools named Server_*_DCBS */
 
-void DcbPool_Init(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                 undefined4 param_5)
+void DcbPool_Init(Pool *param_1,int param_2,int param_3,uint param_4,void *param_5)
 
 {
   clr_bytes(param_1,0x28);
-  *(undefined4 *)(param_1 + 0x24) = param_5;
-  FUN_004b7840(param_1,param_2,param_3,param_4);
+  param_1[1].mem = param_5;
+  Pool_InitDefault(param_1,param_2,param_3,param_4);
   return;
 }
 

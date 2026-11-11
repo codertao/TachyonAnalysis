@@ -29,7 +29,7 @@ void FUN_00481b90(void)
     DAT_00563d68 = load_rtxt_bin(s_helptext_bin_0053cb20,0xa100);
     if (DAT_00563d68 != 0) {
       FUN_0049c840(DAT_00563d68,s_helptext_bin_0053cb20);
-      FUN_00481c40();
+      Options_RefreshKeyMapPage();
       return;
     }
   }

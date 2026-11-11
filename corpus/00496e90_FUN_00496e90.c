@@ -8,7 +8,7 @@ int FUN_00496e90(int *param_1,int *param_2,undefined4 *param_3,undefined4 param_
   undefined4 uVar4;
   int iVar5;
   int iVar6;
-  undefined *puVar7;
+  Pool *pPVar7;
   undefined4 *puVar8;
   int local_24;
   int local_20;
@@ -24,13 +24,13 @@ int FUN_00496e90(int *param_1,int *param_2,undefined4 *param_3,undefined4 param_
   local_14 = 0;
   if ((*(byte *)(param_1 + 4) & 1) == 0) {
     puVar8 = &DAT_005b31c0;
-    puVar7 = &DAT_005b32b0;
+    pPVar7 = (Pool *)&DAT_005b32b0;
   }
   else {
     puVar8 = *(undefined4 **)(param_1[1] + 100);
-    puVar7 = &DAT_0058b03c;
+    pPVar7 = &g_PoolCommon;
   }
-  iVar5 = FUN_0041b790(puVar7,3,puVar8);
+  iVar5 = FUN_0041b790(pPVar7,3,puVar8);
   if (iVar5 == 0) {
     return 0;
   }

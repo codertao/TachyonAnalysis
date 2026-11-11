@@ -37,7 +37,7 @@ void Nav_SetOverrideSector(int param_1,undefined4 param_2)
     }
   }
   if (DAT_00571340 != 0) {
-    FUN_004376f0(param_1,param_2,*(undefined4 *)(DAT_0058b064 + 100));
+    FUN_004376f0(param_1,param_2,g_SrvCurShip->quadrant);
   }
   Var_SetInt(g_GameVarStore,s_PLAYER_MAIN_VARS_00534198,s_OVERRIDE_REGION_00552710,param_1);
   Var_SetInt(g_GameVarStore,s_PLAYER_MAIN_VARS_00534198,s_OVERRIDE_SECTOR_00552700,param_2);

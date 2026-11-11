@@ -10,7 +10,7 @@ void FUN_10002510(void)
   
   DAT_1000769c = 0;
   DAT_10007698 = (void *)0x0;
-  iVar1 = FUN_10002330();
+  iVar1 = NwUsage_LoadCfg();
   if (iVar1 != -1) {
     DAT_1000769c = 0x80;
     DAT_10007698 = calloc(0x80,0x4a);

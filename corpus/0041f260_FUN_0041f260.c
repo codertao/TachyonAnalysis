@@ -2,62 +2,62 @@
 void FUN_0041f260(int param_1)
 
 {
+  Pool *pool;
   int iVar1;
   int iVar2;
-  int iVar3;
-  int iVar4;
-  undefined4 uVar5;
-  int iVar6;
+  void *pvVar3;
+  undefined4 uVar4;
+  int iVar5;
   undefined4 local_18;
-  undefined4 local_14;
+  SpED *local_14;
   undefined4 local_10;
-  undefined4 local_c;
+  SpED *local_c;
   undefined4 local_8;
   undefined4 local_4;
   
-  iVar1 = *(int *)(param_1 + 0x5c);
-  if (*(int *)(iVar1 + 0x28) == 0) {
-    iVar4 = *(int *)(iVar1 + 0x24);
-    if (iVar4 != 0) {
-      iVar2 = *(int *)(iVar4 + 0x18);
-      iVar3 = *(int *)(iVar4 + 0x1c);
-      if (((*(byte *)(iVar2 + 0x58) & 1) != 0) && (*(int *)(iVar2 + 0x6c) == 0)) {
-        FUN_0041f1c0(iVar1,param_1);
+  pool = *(Pool **)(param_1 + 0x5c);
+  if (pool[1].freeHead == (void *)0x0) {
+    pvVar3 = pool[1].mem;
+    if (pvVar3 != (void *)0x0) {
+      iVar1 = *(int *)((int)pvVar3 + 0x18);
+      iVar2 = *(int *)((int)pvVar3 + 0x1c);
+      if (((*(byte *)(iVar1 + 0x58) & 1) != 0) && (*(int *)(iVar1 + 0x6c) == 0)) {
+        FUN_0041f1c0(pool,param_1);
         return;
       }
-      uVar5 = FUN_004a0d50(0);
+      uVar4 = FUN_004a0d50(0);
       FUN_0044eaa0();
-      iVar6 = FUN_0049ead0(iVar3 + 0x10,0x10000);
-      *(uint *)(iVar1 + 0x28) =
-           ((iVar6 * 0x19 & 0x7fffffffU) >> 0xf) + 0x19 + *(int *)(iVar4 + 0x20);
+      iVar5 = FUN_0049ead0(iVar2 + 0x10,0x10000);
+      pool[1].freeHead =
+           (void *)(((iVar5 * 0x19 & 0x7fffffffU) >> 0xf) + 0x19 + *(int *)((int)pvVar3 + 0x20));
       FUN_0044eab0();
-      FUN_004a0d50(uVar5);
-      if (*(int *)(iVar2 + 0x6c) == 0) {
-        uVar5 = 0;
+      FUN_004a0d50(uVar4);
+      if (*(int *)(iVar1 + 0x6c) == 0) {
+        uVar4 = 0;
       }
       else {
-        uVar5 = *(undefined4 *)(*(int *)(iVar2 + 0x6c) + 0x78);
+        uVar4 = *(undefined4 *)(*(int *)(iVar1 + 0x6c) + 0x78);
       }
-      SrvSend_PlayNamedSound(iVar2 + 0x10,iVar3,0,uVar5,param_1);
-      *(undefined4 *)(iVar1 + 0x2c) = *(undefined4 *)(iVar4 + 0x24);
-      *(undefined4 *)(iVar1 + 0x30) = *(undefined4 *)(iVar4 + 0x28);
-      *(undefined4 *)(iVar1 + 0x34) = *(undefined4 *)(iVar4 + 0x2c);
-      FUN_004b7930(iVar4,iVar1 + 0x24);
-      FUN_004b78a0(iVar1,iVar4);
+      SrvSend_PlayNamedSound(iVar1 + 0x10,iVar2,0,uVar4,param_1);
+      *(undefined4 *)&pool[1].field_0x8 = *(undefined4 *)((int)pvVar3 + 0x24);
+      pool[1].pending = *(SpED **)((int)pvVar3 + 0x28);
+      pool[1].killList = *(SpED **)((int)pvVar3 + 0x2c);
+      List_Remove(pvVar3,&pool[1].mem);
+      Pool_Free(pool,pvVar3);
     }
   }
   else {
-    iVar4 = *(int *)(iVar1 + 0x28) + -1;
-    *(int *)(iVar1 + 0x28) = iVar4;
-    if ((iVar4 == 0) && (*(int *)(iVar1 + 0x2c) != 0)) {
-      local_14 = *(undefined4 *)(iVar1 + 0x30);
-      local_c = *(undefined4 *)(iVar1 + 0x34);
+    pvVar3 = (void *)((int)pool[1].freeHead + -1);
+    pool[1].freeHead = pvVar3;
+    if ((pvVar3 == (void *)0x0) && (*(int *)&pool[1].field_0x8 != 0)) {
+      local_14 = pool[1].pending;
+      local_c = pool[1].killList;
       local_8 = 0xffffffff;
       local_4 = 0xffffffff;
       local_18 = 7;
       local_10 = 0;
       Mission_PostEvent(&local_18,param_1);
-      *(undefined4 *)(iVar1 + 0x2c) = 0;
+      *(undefined4 *)&pool[1].field_0x8 = 0;
       return;
     }
   }

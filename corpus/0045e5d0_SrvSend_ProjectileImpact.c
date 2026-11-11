@@ -3,38 +3,35 @@
 
 void SrvSend_ProjectileImpact
                (undefined4 *param_1,undefined4 param_2,undefined4 *param_3,undefined2 param_4,
-               int param_5,undefined4 param_6,undefined4 param_7)
+               TachConn *param_5,undefined4 param_6,Quadrant *param_7)
 
 {
-  undefined4 *puVar1;
-  uint uVar2;
-  undefined4 local_18;
-  uint local_14;
-  undefined4 local_10;
-  int local_c;
-  undefined4 local_4;
+  undefined4 *payload;
+  uint uVar1;
+  EventSpec local_18;
   
-  uVar2 = 0;
-  puVar1 = (undefined4 *)maybe_take_some_mem();
-  if (puVar1 != (undefined4 *)0x0) {
-    if (param_5 != 0) {
-      uVar2 = 2;
+  uVar1 = 0;
+  payload = (undefined4 *)NetSrv_AllocEvent();
+  if (payload != (undefined4 *)0x0) {
+    if (param_5 != (TachConn *)0x0) {
+      uVar1 = 2;
     }
-    puVar1[3] = param_2;
-    puVar1[4] = param_6;
-    *(short *)((int)puVar1 + 0x16) = (short)((uint)*param_3 >> 0x10);
-    *(short *)(puVar1 + 6) = (short)((uint)param_3[1] >> 0x10);
-    *(short *)((int)puVar1 + 0x1a) = (short)((uint)param_3[2] >> 0x10);
-    *(undefined2 *)(puVar1 + 5) = param_4;
-    *puVar1 = *param_1;
-    puVar1[1] = param_1[1];
-    puVar1[2] = param_1[2];
-    local_c = param_5;
-    local_14 = uVar2 | 0x61;
-    local_18 = 4;
-    local_10 = 0x1770000;
-    local_4 = param_7;
-    NetSrv_QueueEvent(puVar1,0x1004,0x1c,&local_18);
+    payload[3] = param_2;
+    payload[4] = param_6;
+    *(short *)((int)payload + 0x16) = (short)((uint)*param_3 >> 0x10);
+    *(short *)(payload + 6) = (short)((uint)param_3[1] >> 0x10);
+    *(short *)((int)payload + 0x1a) = (short)((uint)param_3[2] >> 0x10);
+    *(undefined2 *)(payload + 5) = param_4;
+    *payload = *param_1;
+    payload[1] = param_1[1];
+    payload[2] = param_1[2];
+    local_18.target = param_5;
+    local_18._4_4_ = uVar1 | 0x61;
+    local_18.resend = 4;
+    local_18._2_2_ = 0;
+    local_18.radius = 0x1770000;
+    local_18.quadrant = param_7;
+    NetSrv_QueueEvent(payload,0x1004,0x1c,&local_18);
   }
   return;
 }

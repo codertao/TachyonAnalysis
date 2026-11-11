@@ -18,7 +18,7 @@ void FUN_00486ed0(void)
     DAT_0056e318 = DAT_0056e318 + DAT_0056e000 / 100;
     DAT_0056e320 = DAT_0056e320 + DAT_0056e000;
     DAT_0056e004 = 0;
-    FUN_004699d0(DAT_0056e30c + DAT_0056e2ec + DAT_0056e2cc);
+    Player_AddCredits(DAT_0056e30c + DAT_0056e2ec + DAT_0056e2cc);
     DAT_0056e30c = 0;
     DAT_0056e2ec = 0;
     _DAT_0056e324 = (float)DAT_0056e31c / (float)DAT_0056e320;

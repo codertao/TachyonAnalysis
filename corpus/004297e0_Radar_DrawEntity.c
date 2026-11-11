@@ -12,17 +12,17 @@ void Radar_DrawEntity(SpED *self)
   undefined4 uStack_10;
   vec3 vStack_c;
   
-  if ((*(int *)&self->field_0x8c != 0) &&
-     ((pcVar1 = *(code **)(*(int *)&self->field_0x8c + 0x5c), pcVar1 == (code *)0x0 ||
+  if ((self->desc != (Desc *)0x0) &&
+     ((pcVar1 = self->desc->radarVisible, pcVar1 == (code *)0x0 ||
       (iVar2 = (*pcVar1)(self), iVar2 != 0)))) {
-    distance_between(&self->position,(vec3 *)(GLBL_SOME_CONTEXT + 0x34));
-    vStack_c.x = (self->position).x - *(int *)(GLBL_SOME_CONTEXT + 0x34);
-    vStack_c.y = (self->position).y - *(int *)(GLBL_SOME_CONTEXT + 0x38);
-    vStack_c.z = (self->position).z - *(int *)(GLBL_SOME_CONTEXT + 0x3c);
+    distance_between(&self->pos,(vec3 *)(GLBL_SOME_CONTEXT + 0x34));
+    vStack_c.x = (self->pos).x - *(int *)(GLBL_SOME_CONTEXT + 0x34);
+    vStack_c.y = (self->pos).y - *(int *)(GLBL_SOME_CONTEXT + 0x38);
+    vStack_c.z = (self->pos).z - *(int *)(GLBL_SOME_CONTEXT + 0x3c);
     FUN_004b2410(&vStack_c,&vStack_c);
-    pcVar1 = *(code **)(*(int *)&self->field_0x8c + 0x74);
+    pcVar1 = self->desc->radarColour;
     if (pcVar1 == (code *)0x0) {
-      uVar3 = FUN_00429750(self->field_0xc2);
+      uVar3 = FUN_00429750(self->team);
     }
     else {
       uVar3 = (*pcVar1)(self,0);

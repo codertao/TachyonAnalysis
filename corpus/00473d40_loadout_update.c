@@ -11,8 +11,8 @@ undefined4 loadout_update(void)
     FUN_0048bae0();
     FUN_00473cf0();
     FUN_00476ec0(s_SHADOW10b_00550034);
-    FUN_00472140(DAT_00603e40,DAT_00603e44);
-    FUN_00472260(DAT_00603e40,DAT_00603e44,DAT_00603e48);
+    Loadout_UpdateDragCursor(DAT_00603e40,DAT_00603e44);
+    Loadout_HandleMouse(DAT_00603e40,DAT_00603e44,DAT_00603e48);
     FUN_0046eac0(5);
     FUN_00471890();
     if (DAT_00589758 != (code *)0x0) {

@@ -22,8 +22,8 @@ void FUN_00448ff0(void)
     } while (iVar1 != 0);
   }
   DAT_00592fc8 = iVar3;
-  FUN_00448e20(0);
-  FUN_00448f10(0);
+  MpCfg_ScrollList(0);
+  MpCfg_SetMode(0);
   return;
 }
 

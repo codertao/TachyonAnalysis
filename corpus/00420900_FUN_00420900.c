@@ -43,10 +43,10 @@ void FUN_00420900(void)
   }
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar3 = FUN_004ae560(*puVar2,DAT_005b2180,2,local_28);
+  iVar3 = Text_GlyphHeight(*puVar2,DAT_005b2180,2,local_28);
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar5 = FUN_004ae560(*puVar2,DAT_005b2184,2,local_28);
+  iVar5 = Text_GlyphHeight(*puVar2,DAT_005b2184,2,local_28);
   FUN_0041f6e0(DAT_005b2188,200,0x46,0xf0,100,0x80,DAT_005b2184,*puVar2,0xff0000,0x10000,2);
   local_38 = (undefined2)((uint)(DAT_005a67a8 * 0xdc) / 0x280);
   iVar5 = iVar5 * 2 + 0x46;
@@ -61,7 +61,7 @@ void FUN_00420900(void)
   else {
     pcVar4 = (char *)(**(code **)(g_ActiveRules + 0x80))();
   }
-  FUN_004ae5e0(pcVar4,DAT_005b2180,&local_3c,2,local_28);
+  Text_WordWrap(pcVar4,DAT_005b2180,&local_3c,2,local_28);
   uStack_40 = 0;
   pcVar4 = local_3c;
   if (uStack_36 != 0) {

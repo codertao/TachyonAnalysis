@@ -27,10 +27,10 @@ void FUN_0047d980(void)
     _DAT_00571d28 = DAT_00571d4c;
     _DAT_00571d40 = 0;
     _DAT_00571d30 = DAT_00571d54;
-    uVar5 = FUN_004ae4c0(&DAT_00571ca0,DAT_00571d20,2,&DAT_00571d24);
+    uVar5 = Text_MeasureWidth(&DAT_00571ca0,DAT_00571d20,2,&DAT_00571d24);
     local_1c = (ulonglong)uVar5;
     fVar1 = (float)local_1c;
-    uVar5 = FUN_004ae560(&DAT_00571ca0,DAT_00571d20,2,&DAT_00571d24);
+    uVar5 = Text_GlyphHeight(&DAT_00571ca0,DAT_00571d20,2,&DAT_00571d24);
     local_1c = (ulonglong)uVar5;
     local_14 = (int)(longlong)
                     ROUND((float)(DAT_00571d5c - iVar3) * (float)fVar6 - fVar1 * _DAT_0052e594);

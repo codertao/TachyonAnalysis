@@ -6,16 +6,17 @@
 void TachSrv_OnFireGuided(undefined4 *param_1)
 
 {
-  int *piVar1;
-  uint uVar2;
+  undefined1 *puVar1;
+  byte *pbVar2;
+  SpED *pSVar3;
   
-  piVar1 = (int *)(DAT_0058b068 + 0x164 + (uint)*(byte *)((int)param_1 + 0x23) * 0xc);
-  if (*piVar1 != 0) {
-    if (*(int *)(*piVar1 + 0x50) != 0) {
-      if (piVar1[2] == 0) {
+  pbVar2 = g_SrvCurConn->weaponSlots + (uint)*(byte *)((int)param_1 + 0x23) * 0xc;
+  if (*(int *)pbVar2 != 0) {
+    if (*(int *)(*(int *)pbVar2 + 0x50) != 0) {
+      if (*(int *)(pbVar2 + 8) == 0) {
         return;
       }
-      piVar1[2] = piVar1[2] + -1;
+      *(int *)(pbVar2 + 8) = *(int *)(pbVar2 + 8) + -1;
     }
     _DAT_00565424 = *param_1;
     _DAT_00565428 = param_1[1];
@@ -26,18 +27,18 @@ void TachSrv_OnFireGuided(undefined4 *param_1)
     _DAT_00565444 = (uint)*(ushort *)(param_1 + 4) << 0x10;
     FUN_0048e930((int)param_1 + 0x12,&DAT_00565430);
     DAT_0056544c = (uint)*(byte *)(param_1 + 8);
-    DAT_00565448 = *(int *)(DAT_0058b068 + 0x11c) - param_1[6];
-    DAT_00565420 = *(undefined4 *)(DAT_0058b068 + 200);
+    DAT_00565448 = g_SrvCurConn->clientFrame - param_1[6];
+    DAT_00565420 = g_SrvCurConn->ship;
     if (param_1[7] == 0) {
-      uVar2 = *(uint *)(DAT_0058b064 + 0x90);
+      pSVar3 = g_SrvCurShip->target;
     }
     else {
-      uVar2 = FUN_0045d680(param_1[7],*(undefined4 *)(*(int *)(DAT_0058b068 + 200) + 100));
+      pSVar3 = (SpED *)FUN_0045d680(param_1[7],g_SrvCurConn->ship->quadrant);
     }
-    DAT_00565450 = -(uint)(*(char *)((int)param_1 + 0x22) != '\0') & uVar2;
+    DAT_00565450 = -(uint)(*(char *)((int)param_1 + 0x22) != '\0') & (uint)pSVar3;
     Proj_SpawnFromClientMissile();
-    piVar1 = (int *)(*(int *)(DAT_0058b068 + 200) + 0xf0);
-    *piVar1 = *piVar1 + 1;
+    puVar1 = &g_SrvCurConn->ship->field_0xf0;
+    *(int *)puVar1 = *(int *)puVar1 + 1;
   }
   return;
 }

@@ -7,6 +7,7 @@ void Gate_JumpToSector(int param_1,int param_2)
 {
   char cVar1;
   int iVar2;
+  Quadrant *quadrant;
   uint uVar3;
   uint uVar4;
   char *pcVar5;
@@ -70,13 +71,13 @@ void Gate_JumpToSector(int param_1,int param_2)
   *(undefined4 *)(GLBL_SOME_CONTEXT + 0x8c) = DAT_005b1f0c;
   FUN_0044eab0();
   FUN_0045d9d0(s_ENTERING_REGIONAL_GATE_005493dc,0);
-  iVar2 = FUN_00435390(local_20);
-  if (iVar2 != 0) {
-    Ent_SetQuadrant(DAT_0058b064,DAT_0058b068,iVar2);
-    FUN_0045f460(DAT_0058b068,iVar2);
-    FUN_00427010(local_10,iVar2,local_2c,local_34,0);
-    SrvSend_EnterQuadrant(local_2c,local_34,iVar2,0,1,1,DAT_0058b068);
-    *(undefined4 *)(DAT_0058b068 + 0x13c) = 1;
+  quadrant = (Quadrant *)FUN_00435390(local_20);
+  if (quadrant != (Quadrant *)0x0) {
+    Ent_SetQuadrant((SpED *)g_SrvCurShip,g_SrvCurConn,quadrant);
+    FUN_0045f460(g_SrvCurConn,quadrant);
+    FUN_00427010(local_10,quadrant,local_2c,local_34,0);
+    SrvSend_EnterQuadrant(local_2c,local_34,quadrant,0,1,1,g_SrvCurConn);
+    g_SrvCurConn->state = 1;
   }
   return;
 }

@@ -7,7 +7,7 @@ void FUN_00443ee0(void)
   DAT_005a3960 = 1;
   DAT_0054442c = 1;
   DAT_005635dc = 0;
-  FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   FUN_00437b30(FUN_004443d0);
   FUN_00437b10(Profile_StartGame);

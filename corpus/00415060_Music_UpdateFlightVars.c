@@ -43,16 +43,16 @@ void Music_UpdateFlightVars(void)
     FUN_004507d0(4,local_8c >> 0x10);
   }
   uVar2 = Power_GetHullMax(&g_PlayerPower,DAT_005b1f0c + 0xd0,DAT_005b9020);
-  uVar3 = FUN_0048ec30(DAT_005b2104,uVar2);
+  uVar3 = FUN_0048ec30(g_PlayerPower.hull,uVar2);
   if (uVar3 < 0x19) {
     local_8c = 2;
   }
   else {
     uVar2 = Shield_GetMax(&g_PlayerPower,DAT_005b1f0c + 0xd0);
-    uVar3 = FUN_0048ec30(DAT_005b20e8,uVar2);
+    uVar3 = FUN_0048ec30(g_PlayerPower.shieldFront,uVar2);
     if (uVar3 < 0x19) {
       uVar2 = Shield_GetMax(&g_PlayerPower,DAT_005b1f0c + 0xd0);
-      uVar3 = FUN_0048ec30(DAT_005b20f0,uVar2);
+      uVar3 = FUN_0048ec30(g_PlayerPower.shieldRear,uVar2);
       if (uVar3 < 0x19) {
         local_8c = 1;
         goto LAB_00415265;

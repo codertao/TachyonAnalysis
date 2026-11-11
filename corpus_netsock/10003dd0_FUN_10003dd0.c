@@ -6,7 +6,7 @@ void __cdecl FUN_10003dd0(char *param_1,int param_2,undefined4 param_3,undefined
     FUN_100058d0(param_1,param_2,param_3,param_4);
     return;
   }
-  FUN_10005240(param_1,param_2,param_3,param_4);
+  ns_SendTo(param_1,param_2,param_3,param_4);
   return;
 }
 

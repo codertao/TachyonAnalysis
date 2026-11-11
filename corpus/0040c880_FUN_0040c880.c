@@ -7,10 +7,9 @@ int FUN_0040c880(int param_1)
   uint uVar2;
   
   if (*(short *)(param_1 + 0x76) == 1) {
-    return CONCAT31((int3)((uint)in_EAX >> 8),
-                    *(char *)(param_1 + 0xc2) != *(char *)(DAT_0058b064 + 0xc2)) + 1;
+    return CONCAT31((int3)((uint)in_EAX >> 8),*(byte *)(param_1 + 0xc2) != g_SrvCurShip->team) + 1;
   }
-  iVar1 = (uint)*(byte *)(DAT_0058b064 + 0xc2) * 0x10 + DAT_0058f2e8;
+  iVar1 = (uint)g_SrvCurShip->team * 0x10 + DAT_0058f2e8;
   uVar2 = *(uint *)((uint)*(byte *)(param_1 + 0xc2) * 0x10 + DAT_0058f2e8);
   if ((*(uint *)(iVar1 + 4) & uVar2) != 0) {
     return CONCAT31((int3)((uint)iVar1 >> 8),2);

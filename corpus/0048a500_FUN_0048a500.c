@@ -16,7 +16,7 @@ LAB_0048a58f:
     uVar2 = 8;
   }
   else {
-    uVar1 = FUN_004699a0();
+    uVar1 = Player_GetCredits();
     if (uVar1 <= *(uint *)(DAT_0056c488 + 0xa0)) goto LAB_0048a58f;
     uVar2 = 1;
   }

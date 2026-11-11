@@ -86,9 +86,9 @@ undefined4 FUN_0048c030(int param_1)
           uVar3 = FUN_004e636c(*(undefined4 *)(&DAT_0056abc8 + iVar6));
         }
         else {
-          uVar3 = FUN_004ae560(*(undefined4 *)(&DAT_0056abbc + iVar6),
-                               (&DAT_0056abcc)[param_1 * 0x5c],
-                               *(undefined4 *)(&DAT_0056abe8 + iVar6),&DAT_0056abd8 + iVar6);
+          uVar3 = Text_GlyphHeight(*(undefined4 *)(&DAT_0056abbc + iVar6),
+                                   (&DAT_0056abcc)[param_1 * 0x5c],
+                                   *(undefined4 *)(&DAT_0056abe8 + iVar6),&DAT_0056abd8 + iVar6);
         }
         *(ushort *)(&DAT_0056abb0 + iVar6) = uVar3;
         *(int *)(&DAT_0056ace8 + iVar6) = *(int *)(&DAT_0056ace4 + iVar6) / (int)(uint)uVar3 + 1;

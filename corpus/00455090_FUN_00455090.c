@@ -60,7 +60,7 @@ void FUN_00455090(void)
     Vec_DirAngles(GLBL_SOME_CONTEXT + 0x34,&local_3c,GLBL_SOME_CONTEXT + 0x4c);
     *(undefined4 *)(GLBL_SOME_CONTEXT + 0x54) = 0;
     FUN_004102c0(6);
-    FUN_00423e80(GLBL_SOME_CONTEXT,_DAT_005b2100 * *(float *)(DAT_005b1f0c + 0xbc));
+    FUN_00423e80(GLBL_SOME_CONTEXT,g_PlayerPower.speedFactor * *(float *)(DAT_005b1f0c + 0xbc));
     _DAT_005b1e98 = 0;
     _DAT_005b1e9c = 0;
     _DAT_005b1ea0 = 0;

@@ -6,46 +6,46 @@
 void PlayerDcb_Init(int param_1)
 
 {
-  int iVar1;
+  SpED *pSVar1;
   
-  if (GLBL_SOME_CONTEXT == 0) {
-    GLBL_SOME_CONTEXT = DcbPool_Alloc(&DAT_005b3288,1,&DAT_005b31c0);
+  if (GLBL_SOME_CONTEXT == (SpED *)0x0) {
+    GLBL_SOME_CONTEXT = (SpED *)DcbPool_Alloc(&DAT_005b3288,1,&DAT_005b31c0);
   }
-  iVar1 = GLBL_SOME_CONTEXT;
-  FUN_0041b850(GLBL_SOME_CONTEXT);
+  pSVar1 = GLBL_SOME_CONTEXT;
+  Quad_LinkDynamic(GLBL_SOME_CONTEXT);
   clr_bytes(&DAT_005b1e80,0x2d8);
-  *(undefined2 *)(iVar1 + 0x74) = 1;
-  *(undefined4 *)(iVar1 + 0x34) = *(undefined4 *)(param_1 + 0x18);
-  *(undefined4 *)(iVar1 + 0x38) = *(undefined4 *)(param_1 + 0x1c);
-  *(undefined4 *)(iVar1 + 0x3c) = *(undefined4 *)(param_1 + 0x20);
-  *(undefined4 *)(iVar1 + 0x4c) = *(undefined4 *)(param_1 + 0x24);
-  *(undefined4 *)(iVar1 + 0x50) = *(undefined4 *)(param_1 + 0x28);
-  *(undefined4 *)(iVar1 + 0x54) = *(undefined4 *)(param_1 + 0x2c);
-  DAT_005b39d4 = *(undefined4 *)(param_1 + 0x18);
+  *(undefined2 *)&pSVar1->field_0x74 = 1;
+  (pSVar1->pos).x = *(int *)(param_1 + 0x18);
+  (pSVar1->pos).y = *(int *)(param_1 + 0x1c);
+  (pSVar1->pos).z = *(int *)(param_1 + 0x20);
+  (pSVar1->ang).x = *(int *)(param_1 + 0x24);
+  (pSVar1->ang).y = *(int *)(param_1 + 0x28);
+  (pSVar1->ang).z = *(int *)(param_1 + 0x2c);
+  DAT_005b39d4 = *(int *)(param_1 + 0x18);
   DAT_005b39d8 = *(undefined4 *)(param_1 + 0x1c);
   DAT_005b39dc = *(undefined4 *)(param_1 + 0x20);
-  DAT_005b39e0 = *(undefined4 *)(param_1 + 0x24);
+  DAT_005b39e0 = *(int *)(param_1 + 0x24);
   DAT_005b39e4 = *(undefined4 *)(param_1 + 0x28);
   DAT_005b39e8 = *(undefined4 *)(param_1 + 0x2c);
-  *(undefined1 **)(iVar1 + 0x70) = &LAB_00452d10;
-  *(code **)(iVar1 + 0x5c) = FUN_00452e40;
-  *(undefined4 *)(iVar1 + 0x18) = 0xc0;
-  *(int *)(iVar1 + 0x60) = iVar1;
-  *(undefined4 *)(iVar1 + 0x28) = DAT_00666afc;
-  FUN_004101c0(iVar1,1);
+  pSVar1->render = &LAB_00452d10;
+  pSVar1->preRender = FUN_00452e40;
+  *(undefined4 *)&pSVar1->field_0x18 = 0xc0;
+  *(SpED **)&pSVar1->field_0x60 = pSVar1;
+  *(undefined4 *)&pSVar1->field_0x28 = DAT_00666afc;
+  FUN_004101c0(pSVar1,1);
   FUN_00424dd0();
   FUN_00454870(param_1,&DAT_005b1f0c,&DAT_005b1f10);
-  *(undefined4 *)(iVar1 + 0x58) = *(undefined4 *)(DAT_005b1f0c + 0x290);
-  *(int *)(iVar1 + 0x8c) = DAT_005b1f0c;
+  *(undefined4 *)&pSVar1->field_0x58 = *(undefined4 *)&DAT_005b1f0c[4].field_0x80;
+  pSVar1->desc = DAT_005b1f0c;
   FUN_004549d0();
   FUN_0049c630(0xffff,0xcccc);
-  FUN_00463790(iVar1,DAT_005b1f0c);
-  FUN_004280d0(DAT_005b1f0c + 0x160);
+  FUN_00463790(pSVar1,DAT_005b1f0c);
+  FUN_004280d0(&DAT_005b1f0c[2].query);
   DAT_005b2154 = *(undefined4 *)(param_1 + 0x14);
-  FUN_004545f0(iVar1);
+  FUN_004545f0(pSVar1);
   PlayerPower_LoadRates();
-  *(code **)(iVar1 + 0x68) = PlayerDcb_Think;
-  *(undefined4 *)(iVar1 + 0x6c) = 0;
+  pSVar1->think = PlayerDcb_Think;
+  pSVar1->postThink = (void *)0x0;
   if (DAT_005b3398 == 0) {
     DAT_005b3398 = 1;
     if (*(code **)(g_ActiveRules + 0x94) != (code *)0x0) {

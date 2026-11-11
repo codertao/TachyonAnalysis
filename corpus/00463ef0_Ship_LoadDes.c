@@ -1,90 +1,93 @@
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* parse SHIP .des CBIN into 0x6c8 ship struct (rotation/speed/shields/hull/weapons/mounts) */
 
-undefined4 Ship_LoadDes(undefined4 param_1,undefined4 *param_2,int param_3)
+int __cdecl Ship_LoadDes(char *desName,ShipDesc *out,int loadInterior)
 
 {
   int iVar1;
-  undefined *puVar2;
-  uint uVar3;
-  undefined4 *puVar4;
-  undefined4 *puVar5;
-  undefined *puVar6;
+  uint uVar2;
+  ShipDesc *pSVar3;
+  ShipDesc *pSVar4;
+  int iVar5;
   undefined4 local_84;
   undefined1 local_80 [128];
   
-  clr_bytes(&DAT_00562d00,0x6c8);
+  clr_bytes(&g_ShipDesTemplate,0x6c8);
   clr_bytes(&DAT_005633c8,0x1a0);
-  puVar4 = param_2;
-  puVar5 = &DAT_00562d00;
+  pSVar3 = out;
+  pSVar4 = &g_ShipDesTemplate;
   for (iVar1 = 0x21; iVar1 != 0; iVar1 = iVar1 + -1) {
-    *puVar5 = *puVar4;
-    puVar4 = puVar4 + 1;
-    puVar5 = puVar5 + 1;
+    pSVar4->descType = pSVar3->descType;
+    pSVar3 = (ShipDesc *)&pSVar3->name;
+    pSVar4 = (ShipDesc *)&pSVar4->name;
   }
-  iVar1 = Cbin_Open(param_1);
+  iVar1 = Cbin_Open(desName);
   if (iVar1 != 0) {
-    iVar1 = FUN_0049bfc0(&PTR_DAT_00549728);
+    iVar1 = FUN_0049bfc0(&PTR_g_ShipDesTemplate_shipName_0__00549728);
     if (iVar1 != 0) {
-      ShipDes_ParseRotation(param_2 + 0x21);
-      _DAT_00562dfc = 20000;
+      ShipDes_ParseRotation(&out->flight);
+      g_ShipDesTemplate.flight.field_78 = 20000;
       Cbin_GetParam(&DAT_00532af4,&DAT_00532c10,local_80,0x7f,0,4,1);
-      _DAT_00563244 = FUN_004580c0(local_80);
-      _DAT_00562d18 = FUN_0048e820(DAT_005a6144,s_OTHER_SHIP_NAMES_00533a5c,&DAT_00563508);
-      _DAT_00562d1c = FUN_00463cf0();
-      ShipDes_ParseAiClasses(&DAT_00562d00);
-      FUN_00462d70(&DAT_00563254);
-      DAT_00562df0 = g_ShipDesStatScale * DAT_00562df0 >> 8;
-      DAT_00562dd8 = DAT_00562dd8 * g_ShipDesStatScale >> 8;
-      ShipDes_Finalize(&DAT_00562d00);
-      _DAT_00562e1c = _DAT_00562e08 * _DAT_00562dbc;
-      _DAT_00562f28 = DAT_00562f30 - DAT_00562f2c;
-      _DAT_00562f5c = DAT_00562f58 - DAT_00562f54;
-      _DAT_00562ec4 = DAT_00562ecc - DAT_00562ec8;
-      if (DAT_00562f3c == 0) {
-        DAT_00562f3c = 0xff;
+      g_ShipDesTemplate.field_544 = FUN_004580c0(local_80);
+      g_ShipDesTemplate.otherNameCount =
+           FUN_0048e820(DAT_005a6144,s_OTHER_SHIP_NAMES_00533a5c,&DAT_00563508);
+      g_ShipDesTemplate.field_1c = FUN_00463cf0();
+      ShipDes_ParseAiClasses(&g_ShipDesTemplate);
+      FUN_00462d70(0x563254);
+      g_ShipDesTemplate.flight.hull =
+           (uint)(g_ShipDesStatScale * g_ShipDesTemplate.flight.hull) >> 8;
+      g_ShipDesTemplate.flight.shieldMax =
+           (uint)(g_ShipDesTemplate.flight.shieldMax * g_ShipDesStatScale) >> 8;
+      ShipDes_Finalize(&g_ShipDesTemplate);
+      g_ShipDesTemplate.flight.burnerTopSpeed =
+           g_ShipDesTemplate.flight.burnerBoost * g_ShipDesTemplate.flight.maxSpeed;
+      g_ShipDesTemplate.intPitchRange = g_ShipDesTemplate.intPitch2 - g_ShipDesTemplate.intPitch1;
+      g_ShipDesTemplate.intVelPitchRange =
+           g_ShipDesTemplate.intVelPitch2 - g_ShipDesTemplate.intVelPitch1;
+      g_ShipDesTemplate.extPitchRange = g_ShipDesTemplate.extPitch2 - g_ShipDesTemplate.extPitch1;
+      if (g_ShipDesTemplate.extVolume == 0) {
+        g_ShipDesTemplate.extVolume = 0xff;
       }
-      ModelPool_Load(&DAT_00562f90,&DAT_00562fc8,&DAT_00562fd8,&DAT_00562fd8,&g_ObjModelPool,1);
-      if ((DAT_00562fa8 != '\0') && (param_3 != 0)) {
-        ModelPool_Load(&DAT_00562f9c,&DAT_00562fa8,0,&DAT_00562fb8,&g_ObjModelPool,1);
+      ModelPool_Load(0x562f90,0x562fc8,0x562fd8,0x562fd8,&g_ObjModelPool,1);
+      if ((g_ShipDesTemplate.interiorPak1[0] != '\0') && (loadInterior != 0)) {
+        ModelPool_Load(0x562f9c,0x562fa8,0,0x562fb8,&g_ObjModelPool,1);
       }
-      Object_ParseHardpoints(&DAT_00563298,DAT_00562f90);
-      FUN_00463db0(&DAT_00563338);
+      Object_ParseHardpoints(0x563298,g_ShipDesTemplate.extModel);
+      FUN_00463db0(0x563338);
       iVar1 = Cbin_GetScalar(s_CONNECT_0054a20c,s_LAND_POINT_0054a214,0,0,&local_84);
       if (iVar1 != 0) {
-        FUN_00462e30(DAT_00562f90,local_84,&DAT_00563298);
+        FUN_00462e30(g_ShipDesTemplate.extModel,local_84,0x563298);
       }
-      uVar3 = 0;
-      if (DAT_0056300c != 0) {
-        puVar2 = &DAT_00563010;
-        puVar6 = &DAT_005631d0;
+      uVar2 = 0;
+      if (g_ShipDesTemplate.totalMounts != 0) {
+        iVar1 = 0x563010;
+        iVar5 = 0x5631d0;
         do {
-          FUN_004638a0(uVar3,puVar2,puVar6,DAT_00562f90);
-          uVar3 = uVar3 + 1;
-          puVar6 = puVar6 + 0xc;
-          puVar2 = puVar2 + 0x38;
-        } while (uVar3 < DAT_0056300c);
+          FUN_004638a0(uVar2,iVar1,iVar5,g_ShipDesTemplate.extModel);
+          uVar2 = uVar2 + 1;
+          iVar5 = iVar5 + 0xc;
+          iVar1 = iVar1 + 0x38;
+        } while (uVar2 < (uint)g_ShipDesTemplate.totalMounts);
       }
-      FUN_004639c0(&DAT_00562d00,DAT_00562f90);
-      _DAT_00562f44 = FUN_00465f20(DAT_00562f38);
+      FUN_004639c0(&g_ShipDesTemplate,g_ShipDesTemplate.extModel);
+      g_ShipDesTemplate.falloffCurve = FUN_00465f20(g_ShipDesTemplate.falloff1);
       if (DAT_00563528 != '\0') {
-        _DAT_00563268 = Anim_LoadFile(&DAT_00563528,1);
+        g_ShipDesTemplate.anim = (void *)Anim_LoadFile(&DAT_00563528,1);
       }
-      _DAT_005633c4 = FUN_00462c80(&DAT_00563558);
-      FUN_00462dd0(&DAT_0056332c);
-      _DAT_00563264 = FUN_00463d50();
-      if (DAT_0056332c != 0) {
-        _DAT_00563264 = _DAT_00563264 | 0x800;
+      g_ShipDesTemplate.field_6c4 = FUN_00462c80(&DAT_00563558);
+      FUN_00462dd0(0x56332c);
+      g_ShipDesTemplate.classFlags = FUN_00463d50();
+      if (g_ShipDesTemplate._1580_4_ != 0) {
+        g_ShipDesTemplate.classFlags = g_ShipDesTemplate.classFlags | 0x800;
       }
-      _DAT_0056325c = ShipDes_ParseSkill(&DAT_00563538);
+      g_ShipDesTemplate.skill = ShipDes_ParseSkill(&DAT_00563538);
       Cbin_Close();
-      _DAT_00563284 = Ai_TargetFilter;
-      puVar4 = &DAT_00562d00;
+      g_ShipDesTemplate.aiTargetFilter = Ai_TargetFilter;
+      pSVar3 = &g_ShipDesTemplate;
       for (iVar1 = 0x1b2; iVar1 != 0; iVar1 = iVar1 + -1) {
-        *param_2 = *puVar4;
-        puVar4 = puVar4 + 1;
-        param_2 = param_2 + 1;
+        out->descType = pSVar3->descType;
+        pSVar3 = (ShipDesc *)&pSVar3->name;
+        out = (ShipDesc *)&out->name;
       }
       return 1;
     }

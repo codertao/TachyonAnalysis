@@ -24,7 +24,7 @@ void FUN_00412730(int param_1,int param_2,int *param_3)
   if (*(int *)(*(int *)(param_1 + 0xd8) + 100) != -1) {
     FUN_00436470(*(undefined4 *)(*(int *)(param_1 + 0x8c) + 0x18),*(int *)(param_1 + 0xd8),
                  param_1 + 0xec,auStack_40);
-    SrvSend_EntityLabel(*(undefined4 *)(param_1 + 0x78),auStack_40,DAT_0058b068);
+    SrvSend_EntityLabel(*(undefined4 *)(param_1 + 0x78),auStack_40,g_SrvCurConn);
   }
   if (*(char *)(param_1 + 0x106) != '\0') {
     *(uint *)(param_2 + 8) = *(uint *)(param_2 + 8) | 1;

@@ -14,7 +14,7 @@ void FUN_00429900(void)
     call_math_todo_with_rotation
               (local_18,-*(int *)(iVar1 + 0x4c),-*(int *)(iVar1 + 0x50),-*(int *)(iVar1 + 0x54));
     call_copy_mathresult_to_global(local_18);
-    for (self = DAT_005b31c8; self != (SpED *)0x0; self = *(SpED **)&self->field_0x94) {
+    for (self = DAT_005b31c8; self != (SpED *)0x0; self = self->qNext2) {
       Radar_DrawEntity(self);
     }
   }

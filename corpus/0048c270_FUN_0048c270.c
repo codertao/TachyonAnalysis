@@ -24,9 +24,9 @@ undefined4 FUN_0048c270(int param_1)
     }
     else {
       *(uint *)(&DAT_0056abf4 + iVar2) = (uint)*(uint3 *)(&DAT_0056ac03 + iVar2);
-      FUN_004ae5e0(*(undefined4 *)(&DAT_0056abc4 + iVar2),(&DAT_0056abcc)[param_1 * 0x5c],
-                   &DAT_0056aba4 + iVar2,*(undefined4 *)(&DAT_0056abe8 + iVar2),
-                   &DAT_0056abd8 + iVar2);
+      Text_WordWrap(*(undefined4 *)(&DAT_0056abc4 + iVar2),(&DAT_0056abcc)[param_1 * 0x5c],
+                    &DAT_0056aba4 + iVar2,*(undefined4 *)(&DAT_0056abe8 + iVar2),
+                    &DAT_0056abd8 + iVar2);
     }
     piVar1 = (int *)(&DAT_0056ac30 + iVar2);
     *(undefined4 *)(&DAT_0056ac2c + iVar2) = (&DAT_0056abb8)[param_1 * 0x5c];
@@ -62,11 +62,11 @@ undefined4 FUN_0048c270(int param_1)
             *(undefined4 *)(iVar7 + 0x2c) = uVar3;
           }
           else {
-            uVar3 = FUN_004ae4c0(iVar7,(&DAT_0056abcc)[param_1 * 0x5c],
-                                 *(undefined4 *)(&DAT_0056abe8 + iVar2),&DAT_0056abd8 + iVar2);
+            uVar3 = Text_MeasureWidth(iVar7,(&DAT_0056abcc)[param_1 * 0x5c],
+                                      *(undefined4 *)(&DAT_0056abe8 + iVar2),&DAT_0056abd8 + iVar2);
             *(undefined4 *)(iVar7 + 0x28) = uVar3;
-            uVar3 = FUN_004ae560(iVar7,(&DAT_0056abcc)[param_1 * 0x5c],
-                                 *(undefined4 *)(&DAT_0056abe8 + iVar2),&DAT_0056abd8 + iVar2);
+            uVar3 = Text_GlyphHeight(iVar7,(&DAT_0056abcc)[param_1 * 0x5c],
+                                     *(undefined4 *)(&DAT_0056abe8 + iVar2),&DAT_0056abd8 + iVar2);
             *(undefined4 *)(iVar7 + 0x2c) = uVar3;
             iVar6 = local_4;
           }

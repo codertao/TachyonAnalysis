@@ -1,20 +1,20 @@
 
 /* S->C 0x1006 */
 
-void SrvSend_YouDied(undefined4 param_1)
+void SrvSend_YouDied(TachConn *param_1)
 
 {
-  int iVar1;
-  undefined4 local_18;
-  undefined4 local_14;
-  undefined4 local_c;
+  void *payload;
+  EventSpec local_18;
   
-  iVar1 = maybe_take_some_mem();
-  if (iVar1 != 0) {
-    local_18 = 0x800;
-    local_14 = 4;
-    local_c = param_1;
-    NetSrv_QueueEvent(iVar1,0x1006,2,&local_18);
+  payload = (void *)NetSrv_AllocEvent();
+  if (payload != (void *)0x0) {
+    local_18.resend = 0x800;
+    local_18._2_2_ = 0;
+    local_18.flags = 4;
+    local_18._6_2_ = 0;
+    local_18.target = param_1;
+    NetSrv_QueueEvent(payload,0x1006,2,&local_18);
   }
   return;
 }

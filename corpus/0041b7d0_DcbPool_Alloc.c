@@ -1,7 +1,7 @@
 
 /* pop a DCB from a pool free-list; assign id; dec free count */
 
-undefined4 * DcbPool_Alloc(int param_1,undefined2 param_2,undefined4 param_3)
+undefined4 * DcbPool_Alloc(Pool *param_1,undefined2 param_2,undefined4 param_3)
 
 {
   undefined4 *puVar1;
@@ -12,7 +12,7 @@ undefined4 * DcbPool_Alloc(int param_1,undefined2 param_2,undefined4 param_3)
   undefined4 *puVar6;
   undefined4 local_18 [6];
   
-  puVar1 = (undefined4 *)something_list_related_get_next(param_1);
+  puVar1 = Pool_Alloc(param_1);
   if (puVar1 != (undefined4 *)0x0) {
     puVar5 = puVar1;
     puVar6 = local_18;
@@ -21,7 +21,7 @@ undefined4 * DcbPool_Alloc(int param_1,undefined2 param_2,undefined4 param_3)
       puVar5 = puVar5 + 1;
       puVar6 = puVar6 + 1;
     }
-    uVar4 = *(uint *)(param_1 + 0x18);
+    uVar4 = param_1->elemSize;
     puVar5 = puVar1;
     for (uVar3 = uVar4 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
       *puVar5 = 0;
@@ -38,9 +38,9 @@ undefined4 * DcbPool_Alloc(int param_1,undefined2 param_2,undefined4 param_3)
       puVar5 = puVar5 + 1;
       puVar6 = puVar6 + 1;
     }
-    if (*(uint **)(param_1 + 0x24) != (uint *)0x0) {
-      puVar1[0x1e] = **(uint **)(param_1 + 0x24) | 1;
-      **(int **)(param_1 + 0x24) = **(int **)(param_1 + 0x24) + 2;
+    if (param_1[1].mem != (uint *)0x0) {
+      puVar1[0x1e] = *(uint *)param_1[1].mem | 1;
+      *(int *)param_1[1].mem = *(int *)param_1[1].mem + 2;
     }
     *(undefined2 *)((int)puVar1 + 0x76) = param_2;
     puVar1[0x19] = param_3;

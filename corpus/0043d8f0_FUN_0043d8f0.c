@@ -20,9 +20,9 @@ void FUN_0043d8f0(int param_1,int param_2,undefined2 param_3,undefined2 param_4,
   if ((param_2 != 0) && (param_1 != 0)) {
     _DAT_005a4304 = param_5;
     _DAT_005a4308 = CONCAT22(param_4,param_3);
-    uVar5 = FUN_004ae560(param_1,param_2,0,param_9);
+    uVar5 = Text_GlyphHeight(param_1,param_2,0,param_9);
     DAT_005a430c = CONCAT22(DAT_005a430c._2_2_,uVar5);
-    FUN_004ae5e0(param_1,param_2,&DAT_005a4300,0,param_9);
+    Text_WordWrap(param_1,param_2,&DAT_005a4300,0,param_9);
     if (param_8 != (uint *)0x0) {
       *param_8 = (uint)DAT_005a4306;
     }

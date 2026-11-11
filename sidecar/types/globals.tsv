@@ -1,0 +1,18 @@
+# Tachyon sidecar: global data types, applied by ApplyTypes.java. Names come from names.tsv.
+# addr <TAB> type
+0x58b068	TachConn *
+0x58b064	SpED_SrvPlayer *
+0x58b0a0	TachConn[32]
+0x55a560	WeaponDef[38]
+0x5b20e0	PowerBlock
+0x5897f0	Quadrant[32]
+0x5a5548	SectorRec[32]
+0x562d00	ShipDesc
+0x58af9c	Pool
+0x58afc4	Pool
+0x58afec	Pool
+0x58b03c	Pool
+0x6af678	Pool
+0x58af74	Pool
+0x58b014	Pool
+0x6af69c	SrvEvent *

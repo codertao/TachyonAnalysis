@@ -5,39 +5,39 @@ void NetCli_ProcessPacket(uint *param_1,int param_2)
 
 {
   uint uVar1;
-  int iVar2;
-  int iVar3;
-  uint *puVar4;
+  void *pvVar2;
+  void *node;
+  uint *puVar3;
   
-  puVar4 = param_1 + 2;
+  puVar3 = param_1 + 2;
   if ((DAT_006af64c == 0) || (DAT_006af64c < *param_1)) {
     DAT_006af64c = *param_1;
     uVar1 = param_1[1];
-    iVar2 = DAT_006af62c;
-    while (iVar3 = iVar2, iVar3 != 0) {
-      iVar2 = *(int *)(iVar3 + 8);
-      if ((*(uint *)(iVar3 + 0x1c) != 0) && (*(uint *)(iVar3 + 0x1c) <= uVar1)) {
-        FUN_004b7930(iVar3,&DAT_006af62c);
-        FUN_004b78a0(&DAT_006af5e4,iVar3);
+    pvVar2 = DAT_006af62c;
+    while (node = pvVar2, node != (void *)0x0) {
+      pvVar2 = *(void **)((int)node + 8);
+      if ((*(uint *)((int)node + 0x1c) != 0) && (*(uint *)((int)node + 0x1c) <= uVar1)) {
+        List_Remove(node,&DAT_006af62c);
+        Pool_Free((Pool *)&DAT_006af5e4,node);
       }
     }
-    for (; puVar4 < (uint *)((int)param_1 + param_2);
-        puVar4 = (uint *)((int)puVar4 + (uint)*(ushort *)((int)puVar4 + 2))) {
-      switch((short)*puVar4) {
+    for (; puVar3 < (uint *)((int)param_1 + param_2);
+        puVar3 = (uint *)((int)puVar3 + (uint)*(ushort *)((int)puVar3 + 2))) {
+      switch((short)*puVar3) {
       case 2:
-        NetCli_HandleGameData(puVar4);
+        NetCli_HandleGameData(puVar3);
         break;
       default:
-        NetCli_HandleAppEvent(puVar4);
+        NetCli_HandleAppEvent(puVar3);
         break;
       case 4:
-        NetCli_HandleStartupData(puVar4);
+        NetCli_HandleStartupData(puVar3);
         break;
       case 6:
-        NetCli_HandlePlayerInfo(puVar4);
+        NetCli_HandlePlayerInfo(puVar3);
         break;
       case 7:
-        NetCli_HandleKick(puVar4);
+        NetCli_HandleKick(puVar3);
       }
     }
   }

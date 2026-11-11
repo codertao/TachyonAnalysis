@@ -31,11 +31,11 @@ Cbin_FindParam(char *param_1,int param_2,undefined4 param_3,float *param_4,int p
       if (iVar3 == 0) {
         return 0;
       }
-      iVar3 = FUN_004bd452(local_200,&DAT_0055d734,local_302 + 2);
+      iVar3 = Crt_sscanf(local_200,&DAT_0055d734,local_302 + 2);
       if (iVar3 != 0) {
         return 0;
       }
-      iVar3 = FUN_004bd452(local_200,s_______________0055d7bc,local_302 + 2,local_100);
+      iVar3 = Crt_sscanf(local_200,s_______________0055d7bc,local_302 + 2,local_100);
     } while (iVar3 == 0);
     uVar6 = 0xffffffff;
     pcVar4 = local_302 + 2;

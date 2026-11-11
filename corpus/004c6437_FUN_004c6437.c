@@ -27,7 +27,7 @@ undefined4 FUN_004c6437(int param_1,undefined4 param_2,undefined4 param_3,char *
           uVar6 = (byte)PTR_DAT_00561258[(uint)bVar1 * 2] & 4;
         }
         else {
-          uVar6 = FUN_004bc62d(bVar1,4);
+          uVar6 = Crt_isctype(bVar1,4);
         }
         if (uVar6 == 0) break;
         pbVar7 = pbVar7 + 2;

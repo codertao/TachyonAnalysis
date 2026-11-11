@@ -4,11 +4,11 @@
 int NetCli_AllocEvent(void)
 
 {
-  int iVar1;
+  void *pvVar1;
   
-  iVar1 = something_list_related_get_next(&DAT_006af5e4);
-  if (iVar1 != 0) {
-    return iVar1 + 0x28;
+  pvVar1 = Pool_Alloc((Pool *)&DAT_006af5e4);
+  if (pvVar1 != (void *)0x0) {
+    return (int)pvVar1 + 0x28;
   }
   return 0;
 }

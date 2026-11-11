@@ -39,7 +39,7 @@ void FUN_00479940(void)
     return;
   }
   g_TitleMenu_ExitFlag = 0;
-  FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   FUN_0043ab40(&GLBL_UI_ELEM_LIST);
   Ui_ShowWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobsComplete_0055227c,0);
   FUN_0043a8d0(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobsComplete_0055227c);
@@ -132,7 +132,7 @@ LAB_00479c64:
   local_8 = (ulonglong)uVar6;
   local_8 = (ulonglong)ROUND((float)local_8 * local_1c);
   iVar1 = (int)local_8;
-  FUN_004699d0((int)local_8);
+  Player_AddCredits((int)local_8);
   if (iVar3 != 0) {
     local_8 = (ulonglong)ROUND(*(float *)(iVar3 + 0xa4) * _DAT_0052ec38);
     str_sprintf(&DAT_00572010,s__d___d____00552388,uVar6 - iVar1,(int)local_8);
@@ -145,7 +145,7 @@ LAB_00479c64:
     FUN_0047a120();
   }
 LAB_00479e1e:
-  uVar5 = FUN_004699a0();
+  uVar5 = Player_GetCredits();
   str_sprintf(&DAT_00571fe0,&PTR_DAT_00552400,uVar5);
   FUN_00488200(local_c,s_SHADOW8g_0055230c);
   Var_SetStr(g_PlayerVarStore,s_PLAYER_MAIN_VARS_00534198,s_JOB_COMPLETED_0054a96c,s_NO_JOB_0054a964

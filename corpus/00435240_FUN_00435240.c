@@ -5,9 +5,9 @@ undefined4 FUN_00435240(undefined4 *param_1,int *param_2)
   int iVar1;
   uint uVar2;
   
-  iVar1 = *(int *)(DAT_005a554c + 0x18);
+  iVar1 = *(int *)((int)g_SectorTable[0].spx + 0x18);
   uVar2 = 0;
-  if (*(uint *)(DAT_005a554c + 0x14) != 0) {
+  if (*(uint *)((int)g_SectorTable[0].spx + 0x14) != 0) {
     do {
       if ((*(uint *)(iVar1 + 0x24) & 0x1000) != 0) {
         *param_1 = *(undefined4 *)(iVar1 + 8);
@@ -20,7 +20,7 @@ undefined4 FUN_00435240(undefined4 *param_1,int *param_2)
       }
       iVar1 = iVar1 + (uint)*(ushort *)(iVar1 + 2);
       uVar2 = uVar2 + 1;
-    } while (uVar2 < *(uint *)(DAT_005a554c + 0x14));
+    } while (uVar2 < *(uint *)((int)g_SectorTable[0].spx + 0x14));
   }
   return 0;
 }

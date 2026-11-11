@@ -16,7 +16,7 @@ int FUN_00499d30(undefined4 *param_1)
     return 0;
   }
   do {
-    iVar2 = FUN_004bd452(param_1[2],s____A_Z_0123456789__0055d70c,local_100);
+    iVar2 = Crt_sscanf(param_1[2],s____A_Z_0123456789__0055d70c,local_100);
     if (iVar2 != 0) {
       iVar4 = iVar4 + 1;
     }

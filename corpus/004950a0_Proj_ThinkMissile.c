@@ -12,8 +12,8 @@ void Proj_ThinkMissile(int param_1)
   iVar2 = *(int *)(param_1 + 0xdc);
   iVar3 = *(int *)(param_1 + 0x90);
   if (iVar3 != 0) {
-    FUN_00494db0(param_1,iVar3 + 0x34,iVar3 + 0x4c,*(undefined4 *)(iVar2 + 0x54),
-                 *(undefined4 *)(param_1 + 0xec));
+    Proj_SteerToward(param_1,iVar3 + 0x34,iVar3 + 0x4c,*(undefined4 *)(iVar2 + 0x54),
+                     *(undefined4 *)(param_1 + 0xec));
     if (*(short *)(iVar3 + 0x76) == 1) {
       puVar1 = (uint *)(*(int *)(iVar3 + 0xdc) + 0x1c4);
       *puVar1 = *puVar1 | 1;

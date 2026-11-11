@@ -27,7 +27,7 @@ void Flight_ServerShutdown(void)
   }
   FUN_00432980();
   FUN_0049cca0(s_srvrclos_txt_00549604);
-  FUN_00442930();
+  NW_Deregister();
   netcomm_Shutdown();
   FUN_00490180();
   return;

@@ -9,7 +9,7 @@ void FUN_004493d0(int param_1)
   int iVar5;
   int iVar6;
   
-  iVar2 = FUN_0046e900();
+  iVar2 = Player_GetCurrentShip();
   iVar3 = Var_GetTable(s_SHIP_TYPE_0053fbd0);
   if (iVar3 != 0) {
     iVar1 = *(int *)(iVar3 + 0x20) + -1;
@@ -27,12 +27,12 @@ void FUN_004493d0(int param_1)
 LAB_00449435:
     FUN_00449750();
     Ui_RefreshWindow(&g_UiManager,s_WndMPShipDM_0054767c,0,0);
-    FUN_0044a930();
+    MpCfg_ResetMountHighlights();
     if (DAT_00562c64 != 0) {
-      FUN_0044aa40(DAT_00562c64);
+      MpCfg_HighlightMounts(DAT_00562c64);
     }
     if (DAT_00562c68 != 0) {
-      FUN_0044aa40(DAT_00562c68);
+      MpCfg_HighlightMounts(DAT_00562c68);
     }
     FUN_0048b6f0(1);
     FUN_0048b6f0(2);
@@ -40,7 +40,7 @@ LAB_00449435:
     FUN_00446d40(&DAT_00546c38,uVar4);
     uVar4 = Ship_GetCurrentModel();
     str_sprintf(&DAT_005a6114,uVar4);
-    FUN_00448360();
+    MpCfg_RefreshInventoryList();
   }
   return;
 }

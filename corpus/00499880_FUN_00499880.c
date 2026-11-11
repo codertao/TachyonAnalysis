@@ -17,10 +17,10 @@ void FUN_00499880(void)
   }
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar2 = FUN_004ae560(*puVar1,DAT_00565300,2,local_28);
+  iVar2 = Text_GlyphHeight(*puVar1,DAT_00565300,2,local_28);
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar4 = FUN_004ae560(*puVar1,DAT_00565300,2,local_28);
+  iVar4 = Text_GlyphHeight(*puVar1,DAT_00565300,2,local_28);
   FUN_0041f6e0(DAT_00565308,0x1db,0xbb,0xa0,0x69,0x80,DAT_00565300,*puVar1,0xff0000,0x10000,2);
   local_28[0] = (DAT_005a67a8 * local_28[0]) / 0x280;
   local_28[1] = (DAT_005a67a8 * local_28[1]) / 0x1e0;

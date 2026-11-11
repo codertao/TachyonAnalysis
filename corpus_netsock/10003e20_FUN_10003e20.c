@@ -13,8 +13,8 @@ void FUN_10003e20(void)
     piVar3 = (int *)(DAT_10019afc + 0xa4);
     do {
       if ((piVar3[-2] != 0) && (piVar3[-3] != 0)) {
-        FUN_10005240(DAT_10019c5c,(uint)*(ushort *)(pcVar1 + 2),*(undefined4 *)(*piVar3 + 4),
-                     *(undefined2 *)(*piVar3 + 0x14));
+        ns_SendTo(DAT_10019c5c,(uint)*(ushort *)(pcVar1 + 2),*(undefined4 *)(*piVar3 + 4),
+                  *(undefined2 *)(*piVar3 + 0x14));
       }
       uVar2 = uVar2 + 1;
       piVar3 = piVar3 + 0x2f;

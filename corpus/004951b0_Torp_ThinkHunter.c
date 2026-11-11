@@ -1,0 +1,37 @@
+
+/* Hunter Torpedo: Proj_ThinkMissile, plus re-acquire nearest hostile within 250 units every 8
+   frames when unlocked */
+
+void Torp_ThinkHunter(int param_1)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  
+  Proj_ThinkMissile(param_1);
+  if (*(int *)(param_1 + 0x90) == 0) {
+    iVar1 = *(int *)(param_1 + 200);
+    if ((iVar1 != 0) &&
+       (((**(uint **)(*(int *)(param_1 + 100) + 0x1c) ^ *(uint *)(param_1 + 0xd0)) & 7) == 0)) {
+      uVar2 = Ent_FindNearestHostile
+                        (param_1,*(undefined4 *)
+                                  ((uint)*(byte *)(iVar1 + 0xc2) * 0x10 + 4 + DAT_0058f2e8),0,
+                         0xfa0000,iVar1,3);
+      *(undefined4 *)(param_1 + 0x90) = uVar2;
+    }
+  }
+  else {
+    if (0x400000 < (int)((DAT_005656bc ^ (int)DAT_005656bc >> 0x1f) - ((int)DAT_005656bc >> 0x1f)))
+    {
+      *(undefined4 *)(param_1 + 0x90) = 0;
+      return;
+    }
+    if (0x400000 < (int)((DAT_005656c0 ^ (int)DAT_005656c0 >> 0x1f) - ((int)DAT_005656c0 >> 0x1f)))
+    {
+      *(undefined4 *)(param_1 + 0x90) = 0;
+      return;
+    }
+  }
+  return;
+}
+

@@ -407,8 +407,8 @@
 0x4b5590	set_cb_functions_maybe_audio
 0x4b55f0	set_some_glbl_scalar
 0x4b57e0	load_bin_scr_file
-0x4b7870	something_list_related_get_next
-0x4b87d0	maybe_take_some_mem
+0x4b7870	Pool_Alloc	pop free node, stamp serial at +0x10 (was something_list_related_get_next)
+0x4b87d0	NetSrv_AllocEvent	SrvEvent from g_NetEventPool; returns payload (node+0x3c) (was maybe_take_some_mem)
 0x4b8880	set_global_some_game_mode
 0x4bc6a2	something_locale_related
 0x4bd3c6	maybe_find_in_list
@@ -501,7 +501,7 @@
 0x6af53c	GLBL_MAYBE_AUDIO_CB_4
 0x6af540	GLBL_MAYBE_AUDIO_CB_5
 0x6af658	GLBL_some_game_mode
-0x6af678	GLBL_maybe_mem_pool_of_size
+0x6af678	g_NetEventPool	SrvEvent pool (was GLBL_maybe_mem_pool_of_size)
 0x6caed8	GLBL_locale_counter
 0x6caedc	GLBL_locale_inprocess_gauge
 
@@ -1262,3 +1262,175 @@
 0x461750	Tach_SrvBuildFarList	fill conn+0x134 with quadrant entities within conn+0x160 of camera conn+0x110 (-1 terminated); cursor conn+0x138
 0x4617e0	Tach_SrvWriteFarRecords	advance far cursor conn+0x138, write next 2 not yet stamped this packet (flag 0x10); cursor=0 at end -> rebuild
 0x4616c0	Tach_SrvWritePersistentPage	persistent-object page: list conn+0x128, total +0x124, acked +0x12c, page id +0x130 -> header u16[1..2]
+0x461680	Tach_SrvPageSize	persistent records per snapshot: 12 during startup (state 2), else DAT_0058b070
+0x461280	Tach_SrvPlacePlayer	place a joined player: spawn, Ent_SetQuadrant, state=3, inQuadrant=1, '%s is entering the game', roster/scoreboard
+0x461400	Tach_SrvRemovePlayer	player left: destroy/leave quadrant, free conn+0x120, '%s has left the game'
+0x58b068	g_SrvCurConn	TachConn* of the client currently being processed (set by read/dispatch/write)
+0x58b064	g_SrvCurShip	that client's server ship (conn->ship)
+0x58b0a0	g_SrvConns	TachConn[32], 0x208 each (mpPlayerBuffer)
+0x58b080	g_SnapStamp	per-packet stamp; entity +0x7c == stamp means already in this snapshot
+0x4cc708	Snd_MixBlock	software mixer: 24 sample voices + 1 streamed channel -> 16-bit stereo at g_SndOut (DAT_005f9d80 frames). Self-modifying: patches per-voice step/sample-end immediates and volume-multiply snippets into its own unrolled loop
+0x4ce9f3	Snd_MixPrepare	per call: compute pitch-ramp deltas (target-current)>>2 and patch each voice's volume snippets (g_SndVolSnippets + exponent shl/sar) into Snd_MixBlock
+0x4a8a20	Snd_DSoundFill	DirectSound path: GetCurrentPosition/Lock ring buffer, Snd_MixBlock over the 1-2 regions, Unlock
+0x4a9600	Snd_WaveOutDone	waveOut path: on MM_WOM_DONE (0x3bd) mix the next of 3 buffers and waveOutWrite it
+0x4cec37	Snd_SetEffect	post-mix effect mode 0..3 (EAX) + level 0..3 (EBX, patched shift counts); clears 64KB delay buffers
+0x4decd4	SndFx_None	effect mode 0
+0x4decd5	SndFx_CrossDelay	effect mode 1: two delay lines, each fed by the other channel's output, feedback >>2 (stereo reverb/echo)
+0x4c9402	g_SndVoices	24 voices x 0x40: +0 sample end ptr, +8 step (22.10), +0xc pos (negative, counts up to 0), +0x24/+0x28 vol L/R, +0x2c end callback, +0x30 random start, +0x34 target step, +0x38 step delta, +0x3e ramp
+0x4ca002	g_SndVoiceNext	per-voice queued/loop record (0x3c each), copied in when a voice's sample ends
+0x4dfdd0	g_SndVolSnippets	32 x 8-byte x86 snippets: eax = ebx*k (k=0..31) via lea/shl/sub, patched into the mixer as the volume multiply
+0x4ae5e0	Text_WordWrap	(text, font, WrapOut{char *buf; u16 maxWidth @+4; u16 lineCount @+6}, ?, style): greedy wrap on space/tab into consecutive NUL-terminated lines; \r (CRLF) and \f force breaks; overlong words get their own line
+0x4ae4c0	Text_MeasureWidth	(str, font, ?, style) -> pixels: sum(glyph[c].width(+2, 12-byte glyphs) * scale>>16 + scale>>16); scale = style[0], rescaled when style[5] (target height) != font+0xc
+0x4ae560	Text_GlyphHeight	(str, font, ?, style) -> height of the first glyph (glyph +4) x vertical scale style[1] (rescaled by style[6] / font+0xc)
+0x44bfe0	MPSystem_Enter	multiplayer system screen (LAN / NovaWorld buttons); inits the in-game browser
+0x44c1c0	MPSystem_Update	per-frame: NovaWorld ping status (0x30 ok -> NW_OpenStartPage, 0x31 timeout -> Continue button); g_NwJoinPending -> join
+0x44c550	NW_StartPing	netsock init + netsock_Initiate_NWPing(nw.cfg PING_IP/PING_PORT, default 12.166.151.201:3875)
+0x44c4a0	NW_OpenStartPage	write lstartup.htm and ibrowse_OpenURL("file://lstartup.htm")
+0x44e080	NW_WriteLocalStartPage	startup.htm with the "qq" placeholder replaced by the cc.bin country code -> lstartup.htm
+0x44df10	NW_ReadCountryCode	cc.bin first 4 bytes (default "usqq": replace "qq" with "us")
+0x44df90	NW_LoadPageTemplate	read the template and substitute the code; MULTI_NW_ERROR1 text if missing
+0x44d390	NW_BrowserInit	ibrowse_InitEx 616x370, 6 IBROWSER MATERIAL 256x256 tiles, callbacks 5 render / 1 page loaded / 2,3 cursor, colours
+0x44d590	NW_BrowserShutdown	clear iBrowse callbacks
+0x44d860	NW_OnPageLoaded	iBrowse cb 1: page <title> commands: UC= run update.exe /force; UK=<hex> CRC(tachyon.cmd) -> meta GOODCRC/BADCRC url; NK=..&CK=..& join
+0x44da20	NW_OnBrowserRender	iBrowse cb 5: ibrowse_RenderEx into the buffer, upload to the 6 tiles
+0x44dab0	NW_OnLinkHover	iBrowse cb 2: hand cursor (Cursor2)
+0x44dad0	NW_OnLinkLeave	iBrowse cb 3: arrow cursor (Cursor1)
+0x44d6f0	NW_DecodeJoinTitle	NK=/CK= fields: out[i] = c - key[i] + '0', key "cfhdcegjigecjehcgjdhe"; NK -> host:port, CK -> game id
+0x44d640	NW_FileCrc	CRC of a whole file (tachyon.cmd), -1 if missing
+0x44c950	NW_ConnectToHost	select Netsock, ports from g_NwJoinPort (default 2766), netsock_InitTCPIP(g_NwJoinHost)
+0x442800	NW_Heartbeat	host advert every 1600 ticks: "ttfcus1|ttfpvt1 ServerName= GameType= Players= MaxPlayers= Port=-1 AppId=<id> " + rules +0x68 extra -> g_NwMasterIp:3875
+0x442930	NW_Deregister	3 heartbeats with Players=-1, 200 ms apart, then clear advert state
+0x5927a0	g_NwJoinHost	decoded NK host string
+0x591600	g_NwJoinPort	decoded NK port string
+0x591120	g_NwJoinKey	decoded CK string (game id); atoi -> g_JoinBlob+0x78
+0x591660	g_JoinBlob	client join blob (0xc4 bytes); +0x78 = NovaWorld game id
+0x5a4040	g_NwAdvert	host advert state block (0x78 bytes): +0 enabled, +4 tick countdown, +8 master ip, +0x10 max players, +0x14 name, +0x34 password, +0x54 game type, +0x74 game id
+0x5a40b4	g_NwGameId	random 1000..9999, AppId= in heartbeat, must match join blob +0x78
+0x5a4048	g_NwMasterIp	12.166.151.201 (hardcoded, not nw.cfg)
+0x562ca0	g_NwJoinPending	1 = join token received, leave browser for join; 2 = exit
+# pools / lists / quadrants / events (types session)
+0x4b7800	Pool_Init	(pool,count,elemSize,..)
+0x4b7840	Pool_InitDefault
+0x4b78a0	Pool_Free	push node on pool free list, ++freeCount
+0x4b78c0	List_PushFront	intrusive list via node+8 next / +4 prev
+0x4b78f0	List_Append
+0x4b7930	List_Remove	also clears node+0x14
+0x41b850	Quad_LinkDynamic	push ent onto ent->quadrant->dynamicList
+0x41b870	Quad_LinkStatic	push ent onto ent->quadrant->staticList
+0x41b950	Quad_UnlinkDynamic
+0x41b970	Quad_UnlinkStatic
+0x41b8d0	Pool_FlushPending	link every pending DCB (+0xc chain) into its quadrant dynamic list
+0x41b900	Pool_FlushKills	unlink + free every DCB on the kill list
+0x457e60	Quadrant_Init	clear 0xbc, FLIGHTGROUP_ARRAY, link SectorRec<->Quadrant
+0x5897f0	g_Quadrants	Quadrant[32], stride 0xbc, count g_SectorCount
+0x562d00	g_ShipDesTemplate	ShipDesc scratch filled by Ship_LoadDes
+0x6af69c	g_NetEventList	broadcast SrvEvent list (NetSrv_DistributeEvents)
+0x58af74	g_PoolPlayer
+0x58af9c	g_PoolAI
+0x58afc4	g_PoolDrone
+0x58afec	g_PoolBase
+0x58b014	g_PoolRoid
+0x58b03c	g_PoolCommon
+0x5a5544	g_SectorCount
+0x5a5548	g_SectorTable	SectorRec[32]
+# largest-unnamed pass
+0x4c2563	Crt_Input	MSVC CRT _input: scanf engine (stream, format, va_list); %[ sets, %n, MBCS via _isctype
+0x4bd452	Crt_sscanf	wraps a string in a fake FILE (flag 0x49) and calls Crt_Input
+0x4c2fbf	Crt_InputGetc	_inc: --cnt, read byte or _filbuf
+0x4c2fd9	Crt_InputUngetc	_un_inc: ungetc unless EOF
+0x4bed20	Crt_Output	MSVC CRT _output: printf engine behind str_sprintf / c_fprintf
+0x4bc62d	Crt_isctype	_isctype (MBCS-aware ctype table lookup)
+0x4c6f88	Crt_isspace
+0x4cb4c3	Snd_MixerReset	zero all mixer state (0x1be4 bytes from g_SndVoices): every voice/next/aux slot -> silence byte 0x4c9401, step 0x400 (1.0), vol 0x400; empty the 16-entry stream queue (0x4cac1a); Snd_EffectReset
+0x4cc6d6	Snd_MixerResetGuarded	set busy flag 0x5f9d5c around Snd_MixerReset so the mix callback skips
+0x4cebda	Snd_EffectReset	post-mix effect -> SndFx_None, default delay masks/levels
+0x4a8790	Snd_DSoundStart	create 1 s DirectSound buffer (22050 Hz 16-bit stereo, 0x15888 bytes), clear, Snd_MixerReset, prime two Snd_DSoundFill, set vol/freq/pan, Play(LOOPING)
+0x4a9260	Snd_WaveOutStart	waveOut fallback: open 22050/16/stereo, prepare + write 3 buffers ("Audio buffer 1..3"), Snd_MixerReset
+0x472260	Loadout_HandleMouse	starbase loadout (WndStarBaseCFG) mouse: (x,y,buttons). Click/drag/drop between store list and ship mounts, BtnCFGBuy/Sell rows, double-click (0x10-tick window), ammo/GATLING_GUN pricing, credits update
+0x47ace0	Map_LoadConfig	parse map.cfg: MAP_MAIN/MAP_GRID/MAP_RING1..3 images+palettes, MAP_COLORS, MAP_IMAGES, ICON_IMAGES, per-region MAP_DATA_<region> QUADRANT entries, MAP_CONNECTIONS CONNECT links
+0x47cae0	Map_Enter	galaxy map mode enter (starbase map or in-game map_mnu): Map_LoadConfig, show WndStarBaseMap, exit hook
+0x430ed0	KeyChart_Draw	in-game key chart overlay: KEYCHART heading, ACTION/MAPPING columns, up to 30 bindings (flag 4) from table 0x53cbc8 with key/joystick/mouse names via Rtxt, FOOTER
+0x4479f0	MpShipCfg_HandleMouse	MP deathmatch ship config (WndMPShipDM) mouse: like Loadout_HandleMouse but no credits/ammo; drag/drop weapons onto mounts and hardware into slots, remove rows, IACFGDrag cursor
+0x4487e0	MpShipCfg_Enter	mode enter for the MP deathmatch ship config screen (vars.cfg, IACFGDrag)
+0x448b90	MpShipCfg_Tick	mode tick: UI update, hover, MpShipCfg_HandleMouse
+0x4a1ef0	Input_AddJoystick	(kind 1 = DirectInput device, 2 = winmm joyId; name, product, ...) create device record, append to list 0x5640c4/0x5640c8 (count 0x5640cc); winmm path reads joyGetDevCaps
+0x4a2460	Input_EnumJoysticks	DirectInput EnumDevices if available, else joyGetNumDevs -> Input_AddJoystick(2,...)
+0x481c40	Options_RefreshKeyMapPage	options page 4 (WndStarBaseOptions): fill BtnOptP4KeyMap%02d / TxtOptP4Opt%02d rows from key binding table, SEPERATOR rows
+0x46c700	Starbase_LoadConfig	desnames.cfg, starbase CBIN (VOLUME, TEXT_TOOL_*BIN, BUY/SELL_MODIFYER, HANGER, DATA_RECTS, ICONS, LIGHTING, COLORS, LOBBY overlays), item.cfg, <region>/GLOBAL_NN.job, .nws news, wingmen
+0x470050	Starbase_Init	first-time starbase setup: backdrop, vars.cfg, tachyon.mnu, Starbase_LoadConfig, sbf
+# loadout (WndStarBaseCFG, SP) + MP deathmatch ship config (WndMPShipDM) helpers. Mount/slot records are 0xab4 bytes:
+#   +0x20 var key (card name), +0x40 var key (qty/state), +0xb0 enabled, +0xb8/+0xf8 UI elem ids, +0x148..0x158 icon rect,
+#   +0x19c 32 x 0x48 accept list {+0x40 capacity, +0x44 item name}, +0xa9c mounted item, +0xaa0 qty, +0xaa4 hit RECT.
+# Item: +0x20 var group, +0x50 mode (0 weapon/1 hardware), +0x54 drag qty, +0x58 def (+0x98 price, +0x9c ammo/stack size)
+0x477550	Ammo_ApplyHoldBonus	(count, hasAmmoHold): count * 1.25 when an AMMO_HOLD is mounted
+0x4699a0	Player_GetCredits	PLAYER_MAIN_VARS/CREDITS
+0x469070	Player_SetCredits
+0x4699d0	Player_AddCredits	clamped at 0
+0x46be00	Player_GetVarInt	(group, key) from g_PlayerVarStore
+0x46bde0	Player_SetVarInt
+0x46be30	Player_AddVarInt	clamped at 0
+0x46e900	Player_GetCurrentShip	PLAYER_MAIN_VARS/CURRENT_SHIP (SHIP_%02d_DATA)
+0x46e980	Cfg_ClearScratch	zero 0x3600 bytes at 0x584280
+0x43ca90	Ui_GetButtonState	button +0x1f8 (8 = disabled, 0x10 = hover)
+0x440460	Ui_PlaySoundEvent	(ui, SNDEVNT_* name)
+0x598580	g_CfgMode	ship config tab: 0 = weapons (BtnCFGModeWP), 1 = hardware (BtnCFGModeHW)
+0x563610	g_HasAmmoHold	set when AMMO_HOLD is mounted (Ammo_ApplyHoldBonus)
+0x563604	g_LoadoutDragItem
+0x56360c	g_LoadoutDragging
+0x572160	g_LoadoutWeaponMounts	8 x 0xab4
+0x577f80	g_LoadoutHwSlots	16 x 0xab4
+0x592fe0	g_MpCfgWeaponMounts	8 x 0xab4
+0x5985a0	g_MpCfgHwSlots	16 x 0xab4
+0x449f20	Mount_Accepts	(itemName, mount): item in mount's 32-entry accept list
+0x449f70	Mount_GetCapacity	(itemName, mount): accept-list capacity for item (0 = not accepted)
+0x476240	Loadout_MountCheck	weapons tab: Mount_Accepts; hardware tab: 1 = blocked (null, already installed, or listed)
+0x476e60	Loadout_HwAlreadyInstalled	any of the 16 hardware slots holds the same item def
+0x474190	Loadout_SetMode	switch weapons/hardware tab (g_CfgMode), rebuild lists
+0x448f10	MpCfg_SetMode
+0x473190	Loadout_RefreshStoreList	BtnCFGBuy rows: icon, price (MAINT_PRICE), availability
+0x473500	Loadout_RefreshInventoryList	BtnCFGSell rows: owned items + qty
+0x448360	MpCfg_RefreshInventoryList
+0x475be0	Loadout_RefreshWeaponMounts	MOUNT n / STORE n vars -> mount icons, WEAPON_CLASS filter, ammo counts
+0x4498e0	MpCfg_RefreshWeaponMounts
+0x4762b0	Loadout_RefreshHwSlots	SLOT n / SLOT n STATE vars -> slot icons, NOMOUNT_ITEM
+0x449fc0	MpCfg_RefreshHwSlots
+0x474010	Loadout_ScrollList	(delta) clamp scroll, refresh
+0x448e20	MpCfg_ScrollList
+0x474a40	Loadout_SelectStoreRow	(index) select buy row, show item info
+0x474b40	Loadout_SelectInventoryRow	(index) select sell row, show item info
+0x474c40	Loadout_ClearRowHover	hover (0x10) -> normal on all buy/sell rows
+0x474980	Loadout_SelectItem	(item, isStore) restart preview model anim, Loadout_ShowItemPrice
+0x4491e0	MpCfg_SelectItem
+0x4745f0	Loadout_ShowItemPrice	(item, isStore) price / buyback text, enable Purchase/Sell
+0x474430	Loadout_ClearItemInfo	blank TxtCFGItemLabel/Cost, stop preview
+0x449190	MpCfg_ClearItemInfo
+0x474490	Loadout_DisableBuySell
+0x4490b0	MpCfg_HideStoreUi	disable Purchase/Sell and hide availability/qty labels (no economy in MP)
+0x4744f0	Loadout_UpdatePurchaseBtn	enable Purchase if credits >= price
+0x474580	Loadout_UpdateSellBtn
+0x474dc0	Loadout_ShowSellConfirm	CFG_SELL_QUERY caution dialog ("Sell item for %d credits")
+0x4743c0	Loadout_UpdateCreditsLabel
+0x472030	Loadout_BeginDrag	(window, item) show IACFGDrag cursor, alloc drag scratch image
+0x4477c0	MpCfg_BeginDrag
+0x471de0	Loadout_EndDrag
+0x447570	MpCfg_EndDrag
+0x472140	Loadout_UpdateDragCursor	(x, y) move drag image, clamped to screen
+0x473110	Loadout_SetMountIcon	(elem, image, rect...) place item image in a mount/slot elem
+0x4482e0	MpCfg_SetMountIcon
+0x476d90	Loadout_HighlightMounts	(item) highlight mounts/slots that can take it
+0x44aa40	MpCfg_HighlightMounts
+0x476c80	Loadout_ResetMountHighlights
+0x44a930	MpCfg_ResetMountHighlights
+0x4768b0	Loadout_MountWeapon	(mount, item, image, qty) add up to capacity, excess back to item; GATLING_GUN ammo = Ammo_ApplyHoldBonus
+0x44a5a0	MpCfg_MountWeapon
+0x476b30	Loadout_InstallHw	(slot, item, image, qty) -> MOUNTED; AMMO_HOLD sets g_HasAmmoHold
+0x44a800	MpCfg_InstallHw
+0x476760	Loadout_TakeFromMount	(mount, qty) pick up from a weapon mount (GATLING_GUN takes full load)
+0x44a480	MpCfg_TakeFromMount
+0x476a70	Loadout_TakeHw	pick up from a hardware slot -> NO_CARD
+0x44a740	MpCfg_TakeHw
+0x477570	Loadout_ClampMountAmmo	after losing AMMO_HOLD: cap STORE n ammo per mount, return excess to inventory
+0x494db0	Proj_SteerToward	(proj, targetPos, targetAng, speed, maxTurn) clamp yaw/pitch error to maxTurn, re-point velocity along nose at speed; error left in 0x5656bc/0x5656c0
+0x4951b0	Torp_ThinkHunter	Hunter Torpedo: Proj_ThinkMissile, plus re-acquire nearest hostile within 250 units every 8 frames when unlocked
+0x495250	Torp_ThinkProximity	Blast Torpedo: unguided, after 50 frames proximity fuse 43.75 units (every 8 frames) -> Proj_OnHitSplash
+0x495310	Torp_ThinkAdvBlast	Adv Blast Torpedo: homes without the 45-degree lock-loss, decoys still apply; within 6.25 units or expiry -> splash

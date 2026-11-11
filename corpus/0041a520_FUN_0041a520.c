@@ -33,7 +33,7 @@ void FUN_0041a520(int param_1)
     local_94 = 0;
     local_90 = 10;
     local_8c = 0;
-    Mission_PostEvent(&local_98,*(undefined4 *)(DAT_0058b064 + 100));
+    Mission_PostEvent(&local_98,g_SrvCurShip->quadrant);
   }
   return;
 }

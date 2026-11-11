@@ -4,37 +4,38 @@
 void NetSrv_DistributeEvents(void)
 
 {
-  int iVar1;
+  SrvEvent *pSVar1;
   int iVar2;
+  SrvEvent *node;
   uint uVar3;
-  int *piVar4;
+  TachConn *conn;
   
-  if (DAT_006af69c != 0) {
+  if (g_NetEventList != (SrvEvent *)0x0) {
     uVar3 = 0;
-    iVar2 = DAT_006af69c;
-    piVar4 = DAT_006af660;
+    node = g_NetEventList;
+    conn = DAT_006af660;
     if (DAT_006af788 != 0) {
       do {
-        iVar1 = iVar2;
-        if (*piVar4 != 0) {
-          for (; iVar1 != 0; iVar1 = *(int *)(iVar1 + 8)) {
-            iVar2 = (*DAT_006af7cc)(piVar4,iVar1);
+        pSVar1 = node;
+        if (conn->active != 0) {
+          for (; pSVar1 != (SrvEvent *)0x0; pSVar1 = pSVar1->next) {
+            iVar2 = (*DAT_006af7cc)(conn,pSVar1);
             if (iVar2 != 0) {
-              NetSrv_QueueEventForPlayer(piVar4,iVar1);
+              NetSrv_QueueEventForPlayer(conn,pSVar1);
             }
-            iVar2 = DAT_006af69c;
+            node = g_NetEventList;
           }
         }
-        piVar4 = (int *)((int)piVar4 + DAT_006af78c);
+        conn = (TachConn *)(conn->name + DAT_006af78c + -0x3c);
         uVar3 = uVar3 + 1;
       } while (uVar3 < DAT_006af788);
     }
-    while (iVar2 != 0) {
-      iVar1 = *(int *)(iVar2 + 8);
-      FUN_004b78a0(&GLBL_maybe_mem_pool_of_size,iVar2);
-      iVar2 = iVar1;
+    while (node != (SrvEvent *)0x0) {
+      pSVar1 = node->next;
+      Pool_Free(&g_NetEventPool,node);
+      node = pSVar1;
     }
-    DAT_006af69c = 0;
+    g_NetEventList = (SrvEvent *)0x0;
   }
   return;
 }

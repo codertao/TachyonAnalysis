@@ -18,7 +18,7 @@ void FUN_00449630(void)
       FUN_004abcc0(0x1f,*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                    *(undefined4 *)(iVar1 + 0x48));
     }
-    FUN_0046e980();
+    Cfg_ClearScratch();
     piVar4 = &DAT_00593a90;
     do {
       Cbin_FindSection(piVar4 + -0x2ac,local_6c);

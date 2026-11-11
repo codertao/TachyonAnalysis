@@ -5,7 +5,7 @@ void FUN_004552a0(undefined4 param_1,int param_2,undefined4 param_3)
   int iVar1;
   undefined4 uVar2;
   
-  iVar1 = DcbPool_Alloc(&DAT_0058af74,1,param_1);
+  iVar1 = DcbPool_Alloc(&g_PoolPlayer,1,param_1);
   *(int *)(param_2 + 200) = iVar1;
   *(code **)(iVar1 + 0x68) = TachSrv_PlayerThink;
   *(code **)(iVar1 + 0x80) = TachSrv_DamagePlayer;

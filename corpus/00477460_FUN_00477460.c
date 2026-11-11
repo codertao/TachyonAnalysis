@@ -14,7 +14,7 @@ void FUN_00477460(void)
   iVar3 = DAT_0054fea8;
   do {
     if (iVar3 == -1) {
-      if (DAT_00563604 == 0) {
+      if (g_LoadoutDragItem == 0) {
         FUN_00465c20(&DAT_0054fea8);
       }
       return;

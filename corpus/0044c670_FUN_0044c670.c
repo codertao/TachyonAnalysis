@@ -15,7 +15,7 @@ void FUN_0044c670(int param_1)
     FUN_0044c860();
   }
   else if (param_1 == 1) {
-    FUN_0044c550();
+    NW_StartPing();
   }
   Ui_RefreshWindow(&g_UiManager,s_WndMPSystem_00547ea8,0,0);
   return;

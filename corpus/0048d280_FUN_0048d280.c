@@ -27,12 +27,12 @@ undefined4 * FUN_0048d280(undefined4 *param_1)
   if (DAT_00564ae4 != 0) {
     iVar3 = param_1[0x80];
     if (*(int *)(iVar3 + 0x238) != 0) {
-      uVar1 = FUN_004ae4c0(param_1,*(int *)(iVar3 + 0x238),*(undefined4 *)(iVar3 + 0x24c),
-                           iVar3 + 0x23c);
+      uVar1 = Text_MeasureWidth(param_1,*(int *)(iVar3 + 0x238),*(undefined4 *)(iVar3 + 0x24c),
+                                iVar3 + 0x23c);
       param_1[0x87] = uVar1;
       iVar3 = param_1[0x80];
-      uVar1 = FUN_004ae560(param_1,*(undefined4 *)(iVar3 + 0x238),*(undefined4 *)(iVar3 + 0x24c),
-                           iVar3 + 0x23c);
+      uVar1 = Text_GlyphHeight(param_1,*(undefined4 *)(iVar3 + 0x238),*(undefined4 *)(iVar3 + 0x24c)
+                               ,iVar3 + 0x23c);
       goto LAB_0048d36b;
     }
   }

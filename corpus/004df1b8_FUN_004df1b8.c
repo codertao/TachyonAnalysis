@@ -13,7 +13,7 @@ int __fastcall FUN_004df1b8(int param_1,int param_2)
   int unaff_ESI;
   undefined4 *puVar5;
   
-  puVar5 = &DAT_004c9402;
+  puVar5 = &g_SndVoices;
   piVar4 = &DAT_004c9a02;
   _DAT_004df1b4 = 0x18;
   do {
@@ -23,7 +23,7 @@ int __fastcall FUN_004df1b8(int param_1,int param_2)
     piVar4 = piVar4 + 0x10;
     _DAT_004df1b4 = _DAT_004df1b4 + -1;
   } while (_DAT_004df1b4 != 0);
-  puVar5 = &DAT_004c9402;
+  puVar5 = &g_SndVoices;
   piVar4 = &DAT_004c9a02;
   _DAT_004df1b4 = 0x18;
   while (((*(char *)((int)puVar5 + 0x3d) != '\0' || ((char)piVar4[0xf] != '\0')) ||

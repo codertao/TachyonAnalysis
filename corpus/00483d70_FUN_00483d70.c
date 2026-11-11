@@ -52,7 +52,7 @@ void FUN_00483d70(void)
   FUN_004e4b65(1);
   FUN_00482d00();
   FUN_00482a00(0);
-  FUN_0046e980();
+  Cfg_ClearScratch();
   FUN_00484230();
   FUN_004845f0();
   FUN_00484a40();

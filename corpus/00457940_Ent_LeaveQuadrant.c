@@ -1,24 +1,24 @@
 
 /* entity LEAVE_QUADRANT event handler */
 
-void Ent_LeaveQuadrant(int param_1,int param_2)
+void __cdecl Ent_LeaveQuadrant(SpED *ent,Quadrant *q)
 
 {
   int iVar1;
   
-  FUN_00445720(param_1,param_2,s_LEAVE_QUADRANT_00548d34);
-  *(undefined2 *)(param_1 + 200) = 0;
-  *(undefined2 *)(param_1 + 0xcc) = 0;
-  *(undefined4 *)(param_1 + 0x90) = 0;
-  FUN_00492ba0(param_1,*(undefined4 *)(param_1 + 100));
-  *(undefined4 *)(param_1 + 0x14c) = 0;
-  *(undefined4 *)(*(int *)(param_1 + 0xdc) + 0x138) = 0;
-  iVar1 = FUN_0045d080(param_1,param_2 + 0x14);
+  FUN_00445720(ent,q,s_LEAVE_QUADRANT_00548d34);
+  *(undefined2 *)&ent->field_0xc8 = 0;
+  ent->engageCount = 0;
+  ent->target = (SpED *)0x0;
+  FUN_00492ba0(ent,ent->quadrant);
+  ent[1].netId = 0;
+  ent[1].next[1].quadrant = (Quadrant *)0x0;
+  iVar1 = FUN_0045d080(ent,&q->staticSectorMap);
   if (iVar1 != 0) {
-    FUN_004578e0(param_1,param_2);
+    FUN_004578e0(ent,q);
   }
-  if (*(code **)(param_2 + 0x90) != (code *)0x0) {
-    (**(code **)(param_2 + 0x90))();
+  if (q->onLeave != (code *)0x0) {
+    (*q->onLeave)();
   }
   return;
 }

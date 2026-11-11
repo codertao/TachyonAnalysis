@@ -36,8 +36,8 @@ void FUN_00497ed0(int param_1)
   local_14.x = local_14.x + *(int *)(iVar2 + 0x34);
   local_14.y = local_14.y + *(int *)(iVar2 + 0x38);
   local_14.z = local_14.z + *(int *)(iVar2 + 0x3c);
-  FUN_00494db0(param_1,&local_14,&local_2c,*(undefined4 *)(iVar1 + 0x54),
-               *(undefined4 *)(iVar1 + 0x88));
+  Proj_SteerToward(param_1,&local_14,&local_2c,*(undefined4 *)(iVar1 + 0x54),
+                   *(undefined4 *)(iVar1 + 0x88));
   *(int *)(param_1 + 0x34) = *(int *)(param_1 + 0x34) + *(int *)(param_1 + 0xa0);
   *(int *)(param_1 + 0x38) = *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4);
   *(int *)(param_1 + 0x3c) = *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8);

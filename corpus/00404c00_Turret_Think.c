@@ -3,12 +3,12 @@
    def+0xc; every 32 frames (staggered by +0x154) re-solve lead, every 256 reacquire nearest hostile
     */
 
-void Turret_Think(SpED *self)
+void Turret_Think(SpED_Turret *self)
 
 {
   int iVar1;
-  int iVar2;
-  int *piVar3;
+  WeaponDef *pWVar2;
+  vec3 *pvVar3;
   int new_tgt;
   int dist_to_tgt;
   int iVar4;
@@ -26,8 +26,9 @@ void Turret_Think(SpED *self)
   SpED *tgt;
   vec3 *my_position;
   
-  iVar1 = *(int *)&self->field_0x100;
-  iVar4 = (self->lastPos).x * 0x80 + *(int *)&self->field_0x4c * -0x80;
+  iVar1 = (self->ang).x;
+  pWVar2 = self->weapon;
+  iVar4 = (self->aimAng).x * 0x80 + iVar1 * -0x80;
   uVar4_semihighbits = iVar4 >> 7;
   uvar4_highbits = iVar4 >> 0x1f;
   uVar7 = uVar4_semihighbits ^ uvar4_highbits;
@@ -39,9 +40,10 @@ void Turret_Think(SpED *self)
   else {
     uVar4_semihighbits = 0x20000;
   }
-  iVar4 = (self->lastPos).y;
-  *(uint *)&self->field_0x4c = *(int *)&self->field_0x4c + uVar4_semihighbits;
-  iVar4 = iVar4 * 0x80 + *(int *)&self->field_0x50 * -0x80;
+  iVar4 = (self->aimAng).y;
+  (self->ang).x = iVar1 + uVar4_semihighbits;
+  iVar1 = (self->ang).y;
+  iVar4 = iVar4 * 0x80 + iVar1 * -0x80;
   uVar5 = iVar4 >> 7;
   uVar6 = iVar4 >> 0x1f;
   uVar4_semihighbits = uVar5 ^ uVar6;
@@ -53,53 +55,52 @@ void Turret_Think(SpED *self)
   else {
     uVar5 = 0x20000;
   }
-  *(uint *)&self->field_0x50 = *(int *)&self->field_0x50 + uVar5;
-  if ((((int)((uVar7 - uvar4_highbits) + (uVar4_semihighbits - uVar6)) >> 1 < *(int *)(iVar1 + 0xc))
-      && (self->field291_0x150 != 0)) && (self->suspected_tgt != 0)) {
-    Weapon_TryFire(self,&self->field_0x100,&self->field_0x15c,0x10000,0);
+  (self->ang).y = iVar1 + uVar5;
+  if ((((int)((uVar7 - uvar4_highbits) + (uVar4_semihighbits - uVar6)) >> 1 < pWVar2->aimTolerance)
+      && (self->hasSolution != 0)) && (self->target != (SpED *)0x0)) {
+    Weapon_TryFire(self,&self->weapon,&self->power,0x10000,0);
   }
-  uVar4_semihighbits = *(uint *)&self->field_0x154 ^ DAT_005897e4;
+  uVar4_semihighbits = self->thinkSeed ^ DAT_005897e4;
   if ((uVar4_semihighbits & 0x1f) != 0) {
     return;
   }
-  if ((self->suspected_tgt == 0) || ((char)uVar4_semihighbits == '\0')) {
+  if ((self->target == (SpED *)0x0) || ((char)uVar4_semihighbits == '\0')) {
     new_tgt = Ent_FindNearestHostile
-                        (self,*(undefined4 *)
-                               ((uint)(byte)self->field_0xc2 * 0x10 + 4 + DAT_0058f2e8),0,
-                         *(undefined4 *)&self->collision_radius,self,*(undefined4 *)(iVar1 + 0x5c));
-    self->suspected_tgt = new_tgt;
+                        (self,*(undefined4 *)((uint)self->team * 0x10 + 4 + DAT_0058f2e8),0,
+                         self->range,self,pWVar2->aiTargetMask);
+    self->target = (SpED *)new_tgt;
     if (new_tgt == 0) goto LAB_00404eb3;
   }
-  tgt = (SpED *)self->suspected_tgt;
-  my_position = &self->position;
-  dist_to_tgt = distance_between(my_position,&tgt->position);
-  if (dist_to_tgt <= *(int *)&self->collision_radius) {
-    tgt_offset.x = (tgt->position).x - my_position->x;
-    tgt_offset.y = (tgt->position).y - (self->position).y;
-    tgt_offset.z = (tgt->position).z - (self->position).z;
-    local_30.x = -self->currX;
-    local_30.y = -self->currY;
-    local_30.z = -self->currZ;
+  tgt = self->target;
+  my_position = &self->pos;
+  dist_to_tgt = distance_between(my_position,&tgt->pos);
+  if (dist_to_tgt <= self->range) {
+    tgt_offset.x = (tgt->pos).x - my_position->x;
+    tgt_offset.y = (tgt->pos).y - (self->pos).y;
+    tgt_offset.z = (tgt->pos).z - (self->pos).z;
+    local_30.x = -(self->mountAng).x;
+    local_30.y = -(self->mountAng).y;
+    local_30.z = -(self->mountAng).z;
     FUN_004b1bb0(local_18,&local_30);
     FUN_004b2410(&tgt_offset,&tgt_offset);
-    FUN_004b2410(&tgt->field_0xa0,&local_24);
-    iVar4 = (self->position).z;
+    FUN_004b2410(&tgt->vel,&local_24);
+    iVar1 = (self->pos).z;
     tgt_offset.x = tgt_offset.x + my_position->x;
-    iVar2 = (self->position).y;
-    tgt_offset.y = tgt_offset.y + iVar2;
-    piVar3 = *(int **)&self->field_0x108;
-    tgt_offset.z = tgt_offset.z + iVar4;
-    local_48.x = *piVar3 + my_position->x;
-    local_48.z = piVar3[2] + iVar4;
-    local_48.y = piVar3[1] + iVar2;
-    Ai_LeadAimPoint(&local_48,&tgt_offset,&local_24,tgt,dist_to_tgt,*(undefined4 *)(iVar1 + 0x54),
-                    &local_3c,*(undefined4 *)&self[1].field_0x2c);
+    iVar4 = (self->pos).y;
+    tgt_offset.y = tgt_offset.y + iVar4;
+    pvVar3 = self->muzzleOffset;
+    tgt_offset.z = tgt_offset.z + iVar1;
+    local_48.x = pvVar3->x + my_position->x;
+    local_48.z = pvVar3->z + iVar1;
+    local_48.y = pvVar3->y + iVar4;
+    Ai_LeadAimPoint(&local_48,&tgt_offset,&local_24,tgt,dist_to_tgt,pWVar2->speed,&local_3c,
+                    *(undefined4 *)&self->field_0x18c);
     if ((0x71c70 < local_3c.y) && (local_3c.y < 0x800001)) {
-      (self->someVec).x = local_3c.x;
-      (self->someVec).y = local_3c.y;
-      (self->someVec).z = local_3c.z;
-      FUN_0048e720(&local_3c,(vec3 *)&self->currX,&self->lastPos);
-      self->field291_0x150 = 1;
+      (self->aimPoint).x = local_3c.x;
+      (self->aimPoint).y = local_3c.y;
+      (self->aimPoint).z = local_3c.z;
+      FUN_0048e720(&local_3c,&self->mountAng,&self->aimAng);
+      self->hasSolution = 1;
       return;
     }
   }

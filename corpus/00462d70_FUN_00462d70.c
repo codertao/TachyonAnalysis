@@ -5,9 +5,9 @@ void FUN_00462d70(int *param_1)
   int iVar1;
   
   clr_bytes(param_1,8);
-  FUN_0049bfc0(&PTR_DAT_005496e0);
-  *param_1 = DAT_00563254;
-  param_1[1] = DAT_00563258;
+  FUN_0049bfc0(&PTR_g_ShipDesTemplate_contentScanRange_005496e0);
+  *param_1 = g_ShipDesTemplate.contentScanRange;
+  param_1[1] = g_ShipDesTemplate.contentScanTime;
   iVar1 = *param_1;
   *param_1 = iVar1 << 0xd;
   if (iVar1 << 0xd == 0) {

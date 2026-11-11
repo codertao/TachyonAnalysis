@@ -1,21 +1,21 @@
 
 /* finalize app event {type,size,tag} + delivery spec, add to broadcast list 0x6af69c */
 
-void NetSrv_QueueEvent(int param_1,undefined2 param_2,short param_3,short *param_4)
+void __cdecl NetSrv_QueueEvent(void *payload,ushort type,short size,EventSpec *spec)
 
 {
-  if ((param_1 != 0) && (param_4 != (short *)0x0)) {
-    *(undefined2 *)(param_1 + -8) = param_2;
-    *(short *)(param_1 + -6) = param_3 + 8;
-    *(undefined4 *)(param_1 + -4) = *(undefined4 *)(param_1 + -0x2c);
-    *(int *)(param_1 + -0x24) = (int)*param_4;
-    *(undefined4 *)(param_1 + -0x20) = 0;
-    *(uint *)(param_1 + -0x1c) = (uint)(ushort)param_4[2];
-    *(undefined4 *)(param_1 + -0x14) = *(undefined4 *)(param_4 + 6);
-    *(short *)(param_1 + -0x10) = param_4[8];
-    *(undefined4 *)(param_1 + -0x18) = *(undefined4 *)(param_4 + 4);
-    *(undefined4 *)(param_1 + -0xc) = *(undefined4 *)(param_4 + 10);
-    FUN_004b78f0(param_1 + -0x3c,&DAT_006af69c);
+  if ((payload != (void *)0x0) && (spec != (EventSpec *)0x0)) {
+    *(ushort *)((int)payload + -8) = type;
+    *(short *)((int)payload + -6) = size + 8;
+    *(undefined4 *)((int)payload + -4) = *(undefined4 *)((int)payload + -0x2c);
+    *(int *)((int)payload + -0x24) = (int)spec->resend;
+    *(undefined4 *)((int)payload + -0x20) = 0;
+    *(uint *)((int)payload + -0x1c) = (uint)spec->flags;
+    *(TachConn **)((int)payload + -0x14) = spec->target;
+    *(short *)((int)payload + -0x10) = spec->teamOrGroup;
+    *(uint *)((int)payload + -0x18) = spec->radius;
+    *(Quadrant **)((int)payload + -0xc) = spec->quadrant;
+    List_Append((void *)((int)payload + -0x3c),&g_NetEventList);
   }
   return;
 }

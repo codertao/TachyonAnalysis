@@ -9,7 +9,7 @@ void FUN_004df05c(void)
   undefined4 *puVar4;
   undefined4 *puVar5;
   
-  puVar4 = &DAT_004c9402;
+  puVar4 = &g_SndVoices;
   puVar2 = &DAT_004c9a02;
   iVar1 = 0x18;
   do {
@@ -30,10 +30,10 @@ void FUN_004df05c(void)
     puVar2 = puVar2 + 0x10;
     iVar1 = iVar1 + -1;
   } while (iVar1 != 0);
-  puVar5 = &DAT_004ca002;
+  puVar5 = &g_SndVoiceNext;
   puVar3 = &DAT_004c9a02;
   puVar4 = &DAT_004ca5a2;
-  puVar2 = &DAT_004c9402;
+  puVar2 = &g_SndVoices;
   iVar1 = 0x18;
   do {
     if (puVar5[4] == in_EAX) {

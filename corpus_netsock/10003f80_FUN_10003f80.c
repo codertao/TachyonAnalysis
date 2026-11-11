@@ -21,7 +21,7 @@ FUN_10003f80(undefined2 param_1,undefined2 param_2,undefined4 param_3,undefined2
   else {
     *(undefined4 *)(pcVar1 + 8) = *(undefined4 *)(DAT_10019b00 + 0xa0);
   }
-  FUN_10005240(DAT_10019c5c,0xc,param_3,param_4);
+  ns_SendTo(DAT_10019c5c,0xc,param_3,param_4);
   return;
 }
 

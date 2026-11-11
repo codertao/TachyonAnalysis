@@ -12,7 +12,7 @@ undefined4 FUN_0044e5b0(void)
   _DAT_00590ef4 = 0;
   _DAT_00590ef8 = 0;
   _DAT_00590efc = 0;
-  FUN_0044c950();
+  NW_ConnectToHost();
   FUN_0044e270(s_HOST_MSG_2_00548298);
   DVar1 = timeGetTime();
   DAT_00590ee4 = DVar1 + 30000;

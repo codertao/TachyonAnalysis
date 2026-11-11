@@ -22,7 +22,7 @@ int FUN_00487ad0(int param_1)
     if (*piVar1 < 0) {
       *(undefined4 *)(param_1 + 0x14) = 0;
     }
-    FUN_004699d0(iVar3);
+    Player_AddCredits(iVar3);
     if (DAT_00563e18 == 0) {
       FUN_0049da00(s_SLOTS_PAYOFF_00558100,&DAT_005833e0,&DAT_00583498);
       DAT_00563e18 = 7;

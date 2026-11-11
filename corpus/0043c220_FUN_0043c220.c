@@ -48,7 +48,7 @@ void FUN_0043c220(undefined4 param_1,int param_2,int param_3,int param_4,uint pa
       if (*(int *)(param_2 + 0x1fc) == 4) {
         return;
       }
-      FUN_00440460(param_1,param_2 + 0xe0);
+      Ui_PlaySoundEvent(param_1,param_2 + 0xe0);
       return;
     }
   }
@@ -91,7 +91,7 @@ void FUN_0043c220(undefined4 param_1,int param_2,int param_3,int param_4,uint pa
           pcVar10 = s_SNDEVNT_BTN_ROLL_0053feac;
         }
       }
-      FUN_00440460(param_1,pcVar10);
+      Ui_PlaySoundEvent(param_1,pcVar10);
     }
   }
 LAB_0043c508:
@@ -141,7 +141,7 @@ LAB_0043c508:
         *(undefined4 *)(param_2 + 0x210) = 1;
       }
       else {
-        FUN_00440460(param_1,param_2 + 0xe0);
+        Ui_PlaySoundEvent(param_1,param_2 + 0xe0);
       }
     }
     if (((byte)DAT_00603e48 & 1) != 0) goto LAB_0043c708;
@@ -164,7 +164,7 @@ LAB_0043c508:
       *(undefined4 *)(param_2 + 0x210) = 1;
     }
     else {
-      FUN_00440460(param_1,param_2 + 0xe0);
+      Ui_PlaySoundEvent(param_1,param_2 + 0xe0);
     }
   }
 LAB_0043c708:

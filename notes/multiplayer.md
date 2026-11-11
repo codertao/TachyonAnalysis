@@ -583,8 +583,7 @@ it in.
 ## GAMEDATA (S→C) **[c]** (writer `0x461a30`, reader `0x417dc0`)
 
 24-byte player status header:
-`u16 @+8, u16 @+0xA, u16 @+0xC` (three ship meters from player DCB +0x124/+0x12C/+0x140 [l]
-hull/shield/energy), `u16 @+0x12`, `u32 flags @+0x14` (one-shot), `u32 targetId @+0`,
+`u16 @+8, u16 @+0xA, u16 @+0xC` (player DCB +0x124/+0x12C/+0x140 = front shield / rear shield / hull: the PowerBlock at DCB +0x11c), `u16 @+0x12`, `u32 flags @+0x14` (one-shot), `f32 targetSpeed @+0` (target DCB `+0xd4`; the client's match-speed autopilot feeds it to `FlightModel_SolveThrottle` when `DAT_005b1f00` is set),
 `u8 targetMeterA/B/C @+4..6` (target's hull/shield %, 0xFF = none).
 
 Then the **entity snapshot** (`FUN_00461870` → client `Dcb_ApplySnapshot 0x417ce0`):
@@ -878,3 +877,53 @@ the rest cost energy (`def+0x58`).
 4. **Drain:** the server sapper (`Sapper_ThinkServer 0x4944f0`) follows the target. Every 8 frames
    it sends order msg 0x11 with its kind (`def+0xf4`: 1 inertial, 2 power, 4 shield, 8 remote).
 5. So the drain is server-side. Only "did it stick" is decided by the client.
+
+## NovaWorld (online lobby)
+Three separate services, all UDP. None of NovaLogic's servers exist any more.
+
+| Service | Address | Who | What |
+|---|---|---|---|
+| Ping | `nw.cfg` `PING_IP`/`PING_PORT`, default **12.166.151.201:3875** (Netsock's own default 208.231.90.229:3875) | client, on pressing NovaWorld | netsock type `0x1012` every 1.5 s until a reply or 10 s |
+| Master (game list) | **12.166.151.201:3875**, hardcoded (`g_NwMasterIp`, not from `nw.cfg`) | host | text heartbeat below |
+| Usage | `NWUSAGE.CFG`, default 208.231.90.230:2827 | Netsock, both ends | 0x34-byte per-player usage records; app id stays `"???????????????"` (space.exe never sets it) |
+
+### Hosting: advertising the game
+When a **network** (not LAN) game is hosted (`0x442ba0`):
+- **Game ID:** `g_NwGameId` = rand 1000..9999.
+- **Advert fields** are copied into `g_NwAdvert`, with spaces turned into `+`:
+  - server name (`spacesav+4`)
+  - password (`spacesav+0x24`)
+  - max players
+  - game type text (`HOST_GAMETYPE_%d`)
+
+`NW_Heartbeat 0x442800` runs from the server update (`Flight_Update_Phase1`) and sends every 1600 ticks (about 32 s at 50 Hz):
+```
+ttfcus1 ServerName=<name> GameType=<type> Players=<n> MaxPlayers=<max> Port=-1 AppId=<gameId> <rules extra>
+```
+- `ttfpvt1` replaces `ttfcus1` when a password is set.
+- `Port=-1` presumably tells the master to use the packet's source address and port.
+- The rules hook `+0x68` can append more `key=value` text.
+- It's sent raw through `netsock_SendPacket` (transport `+0x90`) to port 3875.
+- On shutdown `NW_Deregister 0x442930` sends it 3 times with `Players=-1`, 200 ms apart.
+- The server kicks (reason 4) remote joiners whose join blob `+0x78` isn't `g_NwGameId`.
+
+### Browsing and joining
+1. **NovaWorld button** (`MPSystem_Enter 0x44bfe0`, `NW_StartPing 0x44c550`): ping the ping server.
+   - `MPSystem_Update 0x44c1c0` polls `netsock_Status_NWPing`.
+   - On `0x30` (reply) it opens the start page.
+   - On `0x31` (timeout) it shows the Continue button (`TxtMPNWPing2`).
+2. **Start page** (`NW_OpenStartPage 0x44c4a0`): `startup.htm` is copied to `lstartup.htm`, with the first `qq` replaced by the country code from `cc.bin` (GoG's file: `usqq0409us`, so `us`). Then iBrowse opens `file://lstartup.htm`. The original page presumably pointed at NovaWorld's site; GoG's copy just says "NovaWorld servers unavailable" (title `NW=TACHYON`).
+3. **iBrowse** (`Ibrowse.dll`, `NW_BrowserInit 0x44d390`) is a small HTML renderer.
+   - The game gives it the window (616×370) and callbacks: 5 = render, 1 = page loaded, 2/3 = link hover / leave (cursor change).
+   - It renders into a buffer, which the game uploads into six 256×256 `IBROWSER MATERIAL` textures (`NW_OnBrowserRender 0x44da20`).
+   - Mouse events are forwarded with `ibrowse_On*Mouse*`.
+4. **Commands in the page title.** Every page load calls `NW_OnPageLoaded 0x44d860`, which reads `ibrowse_GetTitle` and looks for:
+   - `UC=`: force an update. Runs `update.exe <hwnd> /force /log` (via the temp name `$$TMPEXE.$$`).
+   - `UK=<hex>`: version check. The CRC of the local `tachyon.cmd` is compared with the hex value, then the browser follows the page's `<meta name=GOODCRC>` or `<meta name=BADCRC>` URL.
+   - `NK=<enc>&CK=<enc>&`: **join a game**.
+     - Each character is decoded as `c - key[i] + '0'` with key `cfhdcegjigecjehcgjdhe` (`NW_DecodeJoinTitle 0x44d6f0`).
+     - `NK` decodes to `host:port` (`g_NwJoinHost` / `g_NwJoinPort`).
+     - `CK` decodes to the game ID (`g_NwJoinKey`, atoi into `g_JoinBlob+0x78` = `0x5916d8`).
+     - `g_NwJoinPending = 1` then leaves the browser for the join flow. `NW_ConnectToHost 0x44c950` selects Netsock, sets the port (default 2766) and targets the host. The join blob then carries the game ID the host checks.
+
+So a "join" link on the NovaWorld site just led to a page whose `<title>` was the encoded token. Nothing in the URL mattered to the game.

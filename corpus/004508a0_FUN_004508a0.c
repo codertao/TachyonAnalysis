@@ -1,23 +1,23 @@
 
-int FUN_004508a0(undefined4 *param_1,int param_2)
+void * FUN_004508a0(undefined4 *param_1,Pool *param_2)
 
 {
+  void *node;
   int iVar1;
-  int iVar2;
-  undefined4 *puVar3;
+  undefined4 *puVar2;
   
-  iVar1 = something_list_related_get_next(param_2);
-  if (iVar1 == 0) {
-    return 0;
+  node = Pool_Alloc(param_2);
+  if (node == (void *)0x0) {
+    return (void *)0x0;
   }
-  puVar3 = (undefined4 *)(iVar1 + 0x18);
-  for (iVar2 = 0x20; iVar2 != 0; iVar2 = iVar2 + -1) {
-    *puVar3 = *param_1;
+  puVar2 = (undefined4 *)((int)node + 0x18);
+  for (iVar1 = 0x20; iVar1 != 0; iVar1 = iVar1 + -1) {
+    *puVar2 = *param_1;
     param_1 = param_1 + 1;
-    puVar3 = puVar3 + 1;
+    puVar2 = puVar2 + 1;
   }
-  FUN_004b78c0(iVar1,param_2 + 0x24);
-  *(int *)(param_2 + 0x28) = *(int *)(param_2 + 0x28) + 1;
-  return iVar1;
+  List_PushFront(node,&param_2[1].mem);
+  param_2[1].freeHead = (void *)((int)param_2[1].freeHead + 1);
+  return node;
 }
 

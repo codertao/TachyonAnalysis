@@ -13,15 +13,15 @@ void Cheat_KillTarget(void)
      (*(int *)(iVar1 + 0x8c) != 0)) {
     DAT_005653e4 = 0x100;
     DAT_005653e8 = 0x100;
-    DAT_005653f8 = DAT_0058b068;
+    DAT_005653f8 = g_SrvCurConn;
     _DAT_00565404 = 0;
     DAT_005653dc = 0;
     DAT_005653e0 = 250000;
     DAT_005653ec = 0;
-    DAT_005653f4 = DAT_0058b064;
+    DAT_005653f4 = g_SrvCurShip;
     DAT_005653d8 = 0;
     DAT_00565400 = 0x10000;
-    DAT_0056540c = *(undefined4 *)(DAT_0058b064 + 100);
+    DAT_0056540c = g_SrvCurShip->quadrant;
     DAT_005653f0 = iVar1;
     if (*(code **)(iVar1 + 0x80) != (code *)0x0) {
       (**(code **)(iVar1 + 0x80))(iVar1);

@@ -18,7 +18,7 @@ void SmartShields_Tick(void)
     return;
   }
   iVar2 = Shield_GetMax(&g_PlayerPower,iVar1);
-  iVar3 = DAT_005b20f0 + DAT_005b20e8 >> 1;
+  iVar3 = g_PlayerPower.shieldRear + g_PlayerPower.shieldFront >> 1;
   if (iVar3 < iVar2 >> 1) {
     iVar2 = Power_GetRate(&g_PlayerPower,0);
     if (iVar2 == 0x20000) goto LAB_00454009;
@@ -37,8 +37,8 @@ void SmartShields_Tick(void)
   Power_SetRate(&g_PlayerPower,uVar4,0,iVar1);
   FUN_00466590(3,3,0,0xff);
 LAB_00454009:
-  if (DAT_005b20f0 >> 1 <= DAT_005b20e8) {
-    if (DAT_005b20f0 < DAT_005b20e8 >> 1) {
+  if (g_PlayerPower.shieldRear >> 1 <= g_PlayerPower.shieldFront) {
+    if (g_PlayerPower.shieldRear < g_PlayerPower.shieldFront >> 1) {
       PlayerCmd_ShieldBalance(1);
     }
     return;

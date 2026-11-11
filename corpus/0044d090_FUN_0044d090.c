@@ -42,7 +42,7 @@ void FUN_0044d090(void)
           local_8 = puVar6;
         }
         else {
-          iVar1 = FUN_0043ca90(&g_UiManager,piVar2 + -0x41);
+          iVar1 = Ui_GetButtonState(&g_UiManager,piVar2 + -0x41);
           *piVar2 = iVar1;
           if (iVar1 == 8) {
             *piVar2 = 1;

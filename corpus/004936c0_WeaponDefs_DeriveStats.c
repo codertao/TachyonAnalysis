@@ -9,8 +9,8 @@ void WeaponDefs_DeriveStats(void)
   int iVar3;
   int *piVar4;
   
-  if (g_WeaponDefs != 0x26) {
-    piVar4 = &DAT_0055a5a0;
+  if (g_WeaponDefs[0].id != 0x26) {
+    piVar4 = &g_WeaponDefs[0].refire;
     do {
       iVar3 = (int)(0x320000 / (longlong)*piVar4);
       if (piVar4[1] == -1) {

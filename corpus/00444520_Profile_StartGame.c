@@ -8,7 +8,7 @@ void Profile_StartGame(void)
   int local_4;
   
   local_4 = 0;
-  iVar1 = FUN_0043ca90(&g_UiManager,s_BtnLoginPlay_00541220);
+  iVar1 = Ui_GetButtonState(&g_UiManager,s_BtnLoginPlay_00541220);
   if (iVar1 != 8) {
     iVar1 = VarStore_Load(s_vars_cfg_005343c0,&g_CurrentSavPath,&g_PlayerVarStore,0xa010,1);
     if (iVar1 != 0) {

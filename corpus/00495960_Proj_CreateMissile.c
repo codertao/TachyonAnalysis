@@ -11,7 +11,7 @@ int Proj_CreateMissile(undefined4 *param_1)
   int iVar4;
   
   puVar1 = (undefined1 *)*param_1;
-  iVar4 = FUN_0041b790(&DAT_0058b03c,3,*(undefined4 *)(param_1[1] + 100));
+  iVar4 = FUN_0041b790(&g_PoolCommon,3,*(undefined4 *)(param_1[1] + 100));
   if (iVar4 == 0) {
     return 0;
   }
@@ -31,7 +31,7 @@ int Proj_CreateMissile(undefined4 *param_1)
   *(undefined4 *)(iVar4 + 0x4c) = *puVar3;
   *(undefined4 *)(iVar4 + 0x50) = puVar3[1];
   *(undefined4 *)(iVar4 + 0x54) = puVar3[2];
-  *(undefined1 **)(iVar4 + 0x68) = &Proj_ThinkMissileLaunch;
+  *(code **)(iVar4 + 0x68) = Proj_ThinkMissileLaunch;
   *(undefined4 *)(iVar4 + 0x18) = *(undefined4 *)(puVar1 + 0x78);
   *(undefined2 *)(iVar4 + 0x30) = 0;
   *(code **)(iVar4 + 0x80) = Missile_OnDamage;

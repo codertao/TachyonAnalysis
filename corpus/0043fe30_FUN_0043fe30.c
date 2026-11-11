@@ -37,7 +37,7 @@ void FUN_0043fe30(undefined4 param_1,int *param_2,uint param_3,int param_4,int p
             uVar5 = *(ushort *)(PTR_DAT_00561258 + (local_8._1_3_ & 0xff) * 2) & 0x157;
           }
           else {
-            uVar5 = FUN_004bc62d(local_8._1_3_ & 0xff,0x157);
+            uVar5 = Crt_isctype(local_8._1_3_ & 0xff,0x157);
           }
           if (uVar5 != 0) break;
           cVar1 = (char)local_8;

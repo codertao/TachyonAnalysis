@@ -1,7 +1,7 @@
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void FUN_0041a8d0(int param_1)
+void FUN_0041a8d0(SpED *param_1)
 
 {
   int iVar1;
@@ -22,17 +22,17 @@ void FUN_0041a8d0(int param_1)
       FUN_0045d9d0(auStack_40,0);
     }
   }
-  SrvSend_EntityDestroyed(param_1 + 0x34,1,0,0,0,DAT_00565408,0,*(undefined4 *)(param_1 + 100));
+  SrvSend_EntityDestroyed(&param_1->pos,1,0,0,0,DAT_00565408,0,param_1->quadrant);
   do {
     if (iVar1 == 0) {
 LAB_0041a9d5:
       SrvSend_Despawn(param_1);
-      FUN_0045d1c0(param_1,*(int *)(param_1 + 100) + 0x14);
-      FUN_0041b970(param_1);
+      FUN_0045d1c0(param_1,&param_1->quadrant->staticSectorMap);
+      Quad_UnlinkStatic(param_1);
       FUN_0041b9b0(param_1);
       return;
     }
-    if (*(int *)(iVar1 + 0xf4) == param_1) {
+    if (*(SpED **)(iVar1 + 0xf4) == param_1) {
       *(undefined4 *)(iVar1 + 0xf4) = 0;
       goto LAB_0041a9d5;
     }

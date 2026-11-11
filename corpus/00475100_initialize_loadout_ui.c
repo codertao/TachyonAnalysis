@@ -10,18 +10,18 @@ void initialize_loadout_ui(void)
      ((cVar1 != '\x11' && (uVar2 = uVar2 & 0xff, uVar2 != 0)))) {
     if ((uVar2 == 0x1b) || (uVar2 == GLBL_init_to_110)) {
       if (*(int *)(DAT_005635fc + 0x54) != 0) {
-        FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_TEXTCLICK_0054ffa8);
-        FUN_0046be30(DAT_005635fc + 0x20,DAT_005635fc,*(undefined4 *)(DAT_005635fc + 0x54));
+        Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_TEXTCLICK_0054ffa8);
+        Player_AddVarInt(DAT_005635fc + 0x20,DAT_005635fc,*(undefined4 *)(DAT_005635fc + 0x54));
         FUN_0043c150(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,0x80000);
         set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,1);
-        FUN_00473500();
+        Loadout_RefreshInventoryList();
       }
     }
     else {
       if (uVar2 != GLBL_init_to_127) {
         return;
       }
-      FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_LOADOUT_TAKE_00547688);
+      Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_LOADOUT_TAKE_00547688);
       FUN_00475390();
     }
     DAT_00562bd0 = 0;

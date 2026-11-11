@@ -1,7 +1,7 @@
 
 /* escalating secondary explosions; at 0 posts {OBJ, code 16} and removes */
 
-void CapShip_DeathThink(int param_1)
+void CapShip_DeathThink(SpED *param_1)
 
 {
   uint uVar1;
@@ -9,7 +9,7 @@ void CapShip_DeathThink(int param_1)
   uint uVar3;
   undefined4 uVar4;
   uint uVar5;
-  undefined4 uVar6;
+  Quadrant *pQVar6;
   undefined1 auStack_24 [12];
   undefined4 uStack_18;
   undefined4 uStack_14;
@@ -18,19 +18,19 @@ void CapShip_DeathThink(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  Dcb_SetRangeFlags(param_1 + 0x144,*(int *)(param_1 + 0x8c) + 0xd0,param_1);
-  uVar1 = *(int *)(param_1 + 300) - 1;
-  *(uint *)(param_1 + 300) = uVar1;
+  Dcb_SetRangeFlags((PowerBlock *)&param_1[1].render,&param_1->desc[1].getText,param_1);
+  uVar1 = *(int *)&param_1[1].field_0x58 - 1;
+  *(uint *)&param_1[1].field_0x58 = uVar1;
   if (uVar1 == 0) {
     FUN_00410a30(param_1);
-    SrvSend_EntityDestroyed(param_1 + 0x34,4,2,0,0,0xffffffff,0,*(undefined4 *)(param_1 + 100));
-    uStack_14 = *(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x20);
+    SrvSend_EntityDestroyed(&param_1->pos,4,2,0,0,0xffffffff,0,param_1->quadrant);
+    uStack_14 = *(undefined4 *)&(param_1[1].prev)->field_0x20;
     uStack_18 = 1;
     uStack_10 = 0x10;
     uStack_c = 0;
     uStack_8 = 0xffffffff;
     uStack_4 = 0xffffffff;
-    Mission_PostEvent(&uStack_18,*(undefined4 *)(param_1 + 100));
+    Mission_PostEvent(&uStack_18,param_1->quadrant);
     return;
   }
   if (uVar1 < 0x32) {
@@ -61,7 +61,7 @@ void CapShip_DeathThink(int param_1)
     uVar5 = 0xf;
   }
 LAB_00410cb1:
-  iVar2 = FUN_00412da0(param_1,*(undefined4 *)(param_1 + 0x8c),0);
+  iVar2 = FUN_00412da0(param_1,param_1->desc,0);
   uVar3 = iVar2 >> 0xd;
   if (uVar3 < 0xfa1) {
     if (uVar3 < 0xbb9) {
@@ -87,19 +87,19 @@ LAB_00410cb1:
     if ((uVar5 & uVar3 >> 8) == 0) {
       uVar4 = FUN_00410b80(param_1,auStack_24);
       FUN_00410910(uVar4);
-      SrvSend_EntityDestroyed(auStack_24,4,uVar1,0,0,0xffffffff,0,*(undefined4 *)(param_1 + 100));
+      SrvSend_EntityDestroyed(auStack_24,4,uVar1,0,0,0xffffffff,0,param_1->quadrant);
     }
   }
-  if (*(int *)(param_1 + 300) == 0x32) {
+  if (*(int *)&param_1[1].field_0x58 == 0x32) {
     if ((uVar1 & 0x20) == 0) {
-      uVar4 = *(undefined4 *)(param_1 + 100);
-      uVar6 = 0x10;
+      pQVar6 = param_1->quadrant;
+      uVar4 = 0x10;
     }
     else {
-      uVar4 = *(undefined4 *)(param_1 + 100);
-      uVar6 = 0x30;
+      pQVar6 = param_1->quadrant;
+      uVar4 = 0x30;
     }
-    SrvSend_EntityDestroyed(param_1 + 0x34,4,uVar6,0,0,0xffffffff,0,uVar4);
+    SrvSend_EntityDestroyed(&param_1->pos,4,uVar4,0,0,0xffffffff,0,pQVar6);
   }
   return;
 }

@@ -2,7 +2,7 @@
 void FUN_0045ff00(void)
 
 {
-  *(undefined4 *)(DAT_0058b068 + 0x13c) = 2;
+  g_SrvCurConn->state = 2;
   return;
 }
 

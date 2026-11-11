@@ -30,7 +30,7 @@ undefined4 FUN_0049be70(int *param_1,int param_2)
           }
           if ((uVar2 & 8) != 0) {
             Cbin_GetParam_Ctx(param_1[-4],param_1[-3],local_100,7,0,0,*param_1,param_2);
-            FUN_004bd452(local_100,&DAT_0053ebdc,param_1[-5]);
+            Crt_sscanf(local_100,&DAT_0053ebdc,param_1[-5]);
             if ((*(byte *)(param_1 + -2) & 0x10) != 0) {
               uVar6 = FUN_004bd7a3(*(undefined4 *)param_1[-5]);
               *(undefined4 *)param_1[-5] = uVar6;

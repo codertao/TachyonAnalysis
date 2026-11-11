@@ -37,16 +37,16 @@ void FUN_00474270(void)
       iVar4 = iVar4 + 1;
       piVar2 = piVar2 + 9;
       if (iVar3 == 0) {
-        FUN_00474190(0);
+        Loadout_SetMode(0);
         return;
       }
     }
     if (iVar3 != 0) {
       DAT_00577f00 = iVar4;
-      FUN_00474010(0);
+      Loadout_ScrollList(0);
     }
   }
-  FUN_00474190(0);
+  Loadout_SetMode(0);
   return;
 }
 

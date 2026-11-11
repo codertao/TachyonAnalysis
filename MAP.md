@@ -3,6 +3,11 @@
 Target: `GoG/space.exe` (sha256 `ee7f119e…`, ImageBase `0x400000`, PE32 x86).
 Authoritative project: `decomp/ghidra_proj` (Ghidra 12.1.4). Corpus: `decomp/corpus/`.
 Naming source of truth: `decomp/sidecar/names.tsv`.
+Types source of truth: `decomp/sidecar/types/` (`structs.tsv`, `sigs.tsv`, `globals.tsv`, applied by `ApplyTypes.java`).
+Key structs: `SpED` (entity header, 0xd4) + `SpED_SrvPlayer` / `SpED_Drone` / `SpED_Turret` / `SpED_Client`; `TachConn` (server
+per-client record, 0x208, `g_SrvConns`); `PowerBlock`; `WeaponDef`; `Desc` (class header, 0x84 incl. 25 method slots) / `ShipDesc`
+(0x6c8, .des fields, `ShipFlight` handling block at +0x84); `Quadrant` (0xbc, `g_Quadrants`) / `SectorRec` (0x44, `g_SectorTable`);
+`Pool` + intrusive `List_*`; S->C events `EventSpec` / `SrvEvent` (broadcast node, payload at +0x3c) / `ConnEvent` (per-conn copy).
 
 ## Segments
 | Seg | Range | Notes |
@@ -55,6 +60,7 @@ Naming source of truth: `decomp/sidecar/names.tsv`.
 | Units / HUD | range readout = raw × 2⁻²³ (= units/128), speed readout = raw/frame × 400/65536 (= u/s × 8); radar is direction-only; see `notes/units.md` |
 | Collision / avoidance | player `PlayerShip_CollisionPostThink 0x4535b0` → event 0x2009 → `TachSrv_OnCollision 0x45fd70`; AI `Ai_CollisionLookahead 0x404aa0`; cast `Coll_SegmentCast 0x418d10`; see `notes/collision.md` |
 | Weapons netcode | fire 0x2001/0x2004, hit 0x2003/0x2027; `TachSrv_OnHitReport 0x45f180`, `Proj_CreateMissile 0x495960`, `Proj_PostThinkOwned 0x4949e0`; see `notes/multiplayer.md` "Weapons and projectiles" |
+| NovaWorld | host heartbeat `NW_Heartbeat 0x442800` → 12.166.151.201:3875 (`AppId=` game id); client ping `NW_StartPing 0x44c550`, iBrowse page `NW_BrowserInit 0x44d390`, page-title commands `NW_OnPageLoaded 0x44d860` (`NK=`/`CK=` join token); see `notes/multiplayer.md` "NovaWorld" |
 | PAK model format | `Pak_Load 0x4b14b0`, `Mesh_Relocate 0x4afbd0`, `Pak_LoadTexture 0x4b02d0`, states `Model_UpdateState 0x4b27d0`; spec `notes/pak.md`, tool `TachyonFileFormats/src/pak.py` |
 | Runtime checks backlog | `notes/to_verify.md`: things to confirm in a gdb/wine session |
 | Voice chat | `Netcomm.dll` (`netcomm_*`) |

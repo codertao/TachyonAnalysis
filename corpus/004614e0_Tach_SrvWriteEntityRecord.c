@@ -1,36 +1,36 @@
 
 /* 24-byte record, f16 rel pos/vel, u8 orient */
 
-undefined4 * Tach_SrvWriteEntityRecord(int param_1,int *param_2,undefined4 *param_3,byte param_4)
+void * __cdecl Tach_SrvWriteEntityRecord(SpED *ent,vec3 *origin,void *out,byte flags)
 
 {
   undefined1 uVar1;
   undefined2 uVar2;
   
-  *param_3 = *(undefined4 *)(param_1 + 0x78);
-  *(undefined1 *)(param_3 + 1) = *(undefined1 *)(param_1 + 0x7e);
-  *(undefined1 *)((int)param_3 + 6) = *(undefined1 *)(param_1 + 0xc1);
+  *(uint *)out = ent->netId;
+  *(undefined1 *)((int)out + 4) = ent->field_0x7e;
+  *(byte *)((int)out + 6) = ent->throttle;
   if (*(code **)(g_ActiveRules + 0x1c) != (code *)0x0) {
-    uVar1 = (**(code **)(g_ActiveRules + 0x1c))(param_1);
-    *(undefined1 *)((int)param_3 + 7) = uVar1;
+    uVar1 = (**(code **)(g_ActiveRules + 0x1c))(ent);
+    *(undefined1 *)((int)out + 7) = uVar1;
   }
-  *(byte *)((int)param_3 + 5) = *(byte *)(param_1 + 0xc0) | param_4;
-  uVar2 = f16_Encode(*(int *)(param_1 + 0x34) - *param_2);
-  *(undefined2 *)(param_3 + 2) = uVar2;
-  uVar2 = f16_Encode(*(int *)(param_1 + 0x38) - param_2[1]);
-  *(undefined2 *)((int)param_3 + 10) = uVar2;
-  uVar2 = f16_Encode(*(int *)(param_1 + 0x3c) - param_2[2]);
-  *(undefined2 *)(param_3 + 3) = uVar2;
-  *(char *)(param_3 + 5) = (char)(*(int *)(param_1 + 0x4c) >> 0x11);
-  *(char *)((int)param_3 + 0x15) = (char)(*(int *)(param_1 + 0x50) >> 0x11);
-  *(char *)((int)param_3 + 0x16) = (char)(*(int *)(param_1 + 0x54) >> 0x11);
-  uVar2 = f16_Encode(*(undefined4 *)(param_1 + 0xa0));
-  *(undefined2 *)((int)param_3 + 0xe) = uVar2;
-  uVar2 = f16_Encode(*(undefined4 *)(param_1 + 0xa4));
-  *(undefined2 *)(param_3 + 4) = uVar2;
-  uVar2 = f16_Encode(*(undefined4 *)(param_1 + 0xa8));
-  *(undefined2 *)((int)param_3 + 0x12) = uVar2;
-  *(undefined2 *)(param_1 + 0x7c) = DAT_0058b080;
-  return param_3 + 6;
+  *(byte *)((int)out + 5) = ent->stateFlags | flags;
+  uVar2 = f16_Encode((ent->pos).x - origin->x);
+  *(undefined2 *)((int)out + 8) = uVar2;
+  uVar2 = f16_Encode((ent->pos).y - origin->y);
+  *(undefined2 *)((int)out + 10) = uVar2;
+  uVar2 = f16_Encode((ent->pos).z - origin->z);
+  *(undefined2 *)((int)out + 0xc) = uVar2;
+  *(char *)((int)out + 0x14) = (char)((ent->ang).x >> 0x11);
+  *(char *)((int)out + 0x15) = (char)((ent->ang).y >> 0x11);
+  *(char *)((int)out + 0x16) = (char)((ent->ang).z >> 0x11);
+  uVar2 = f16_Encode((ent->vel).x);
+  *(undefined2 *)((int)out + 0xe) = uVar2;
+  uVar2 = f16_Encode((ent->vel).y);
+  *(undefined2 *)((int)out + 0x10) = uVar2;
+  uVar2 = f16_Encode((ent->vel).z);
+  *(undefined2 *)((int)out + 0x12) = uVar2;
+  ent->snapStamp = g_SnapStamp;
+  return (void *)((int)out + 0x18);
 }
 

@@ -14,7 +14,7 @@ undefined4 FUN_004a2900(undefined4 param_1,undefined4 param_2)
   FUN_004a1d80(0);
   FUN_004a1c90();
   DirectInputCreateA(param_1,0x500,&DAT_005640d4,0);
-  FUN_004a2460();
+  Input_EnumJoysticks();
   uVar1 = FUN_004a2890();
   FUN_004a1d80(uVar1);
   FUN_004a29b0(3);

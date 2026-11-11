@@ -7,8 +7,8 @@ void FUN_004931d0(int *param_1)
   int iVar3;
   
   iVar3 = -1;
-  if (g_WeaponDefs != 0x1c) {
-    piVar2 = &DAT_0055a5a0;
+  if (g_WeaponDefs[0].id != 0x1c) {
+    piVar2 = &g_WeaponDefs[0].refire;
     do {
       if (*piVar2 < iVar3) {
         iVar3 = *piVar2;

@@ -5,17 +5,15 @@
 void Dcb_WorldDelta(SpED *param_1)
 
 {
-  undefined1 *puVar1;
+  SpED *pSVar1;
   
-  if (((*(uint *)&param_1[2].field_0x60 ^ DAT_005897e4) & 0x1f) == 0) {
-    puVar1 = &param_1->field_0xd4;
+  if (((param_1[3].vel.y ^ DAT_005897e4) & 0x1f) == 0) {
+    pSVar1 = param_1 + 1;
   }
   else {
-    puVar1 = (undefined1 *)0x0;
+    pSVar1 = (SpED *)0x0;
   }
-  Entity_ThrustToWorld
-            (param_1,*(undefined4 *)&param_1->field_0xe8,*(int *)&param_1->field_0x8c + 0x84,puVar1)
-  ;
+  Entity_ThrustToWorld(param_1,*(undefined4 *)&param_1[1].linked,param_1->desc + 1,pSVar1);
   return;
 }
 

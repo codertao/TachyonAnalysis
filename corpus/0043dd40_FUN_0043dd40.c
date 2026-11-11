@@ -220,7 +220,7 @@ LAB_0043df70:
     iVar9 = local_10;
     if (pcVar5 != (char *)0x0) {
       *pcVar5 = '\0';
-      local_c = FUN_004ae4c0(&DAT_005a41e0,local_10,0,iVar3 + 0x23c);
+      local_c = Text_MeasureWidth(&DAT_005a41e0,local_10,0,iVar3 + 0x23c);
       FUN_004ae1a0(&DAT_0053fec0,iVar9,param_3 + local_c + local_28 + param_6,param_7,
                    (local_38 << 8 | local_34) << 8 | local_30,0,iVar3 + 0x23c);
     }

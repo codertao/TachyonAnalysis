@@ -6,10 +6,10 @@ undefined4 FUN_004352b0(undefined4 param_1,undefined4 *param_2,int *param_3,unde
   short *psVar2;
   uint uVar3;
   
-  psVar2 = *(short **)(DAT_005a554c + 0x18);
-  iVar1 = *(int *)(DAT_005a554c + 0x10);
+  psVar2 = *(short **)((int)g_SectorTable[0].spx + 0x18);
+  iVar1 = *(int *)((int)g_SectorTable[0].spx + 0x10);
   uVar3 = 0;
-  if (*(uint *)(DAT_005a554c + 0x14) != 0) {
+  if (*(uint *)((int)g_SectorTable[0].spx + 0x14) != 0) {
     do {
       if ((*psVar2 == 3) && ((*(byte *)(psVar2 + 0x12) & 1) != 0)) {
         *param_2 = *(undefined4 *)(psVar2 + 4);
@@ -23,7 +23,7 @@ undefined4 FUN_004352b0(undefined4 param_1,undefined4 *param_2,int *param_3,unde
       }
       psVar2 = (short *)((int)psVar2 + (uint)(ushort)psVar2[1]);
       uVar3 = uVar3 + 1;
-    } while (uVar3 < *(uint *)(DAT_005a554c + 0x14));
+    } while (uVar3 < *(uint *)((int)g_SectorTable[0].spx + 0x14));
   }
   return 0;
 }

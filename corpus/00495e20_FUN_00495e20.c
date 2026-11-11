@@ -4,19 +4,19 @@ int FUN_00495e20(int *param_1)
 {
   int iVar1;
   int iVar2;
-  undefined *puVar3;
+  Pool *pPVar3;
   undefined4 *puVar4;
   
   iVar1 = *param_1;
   if ((*(byte *)(param_1 + 4) & 1) == 0) {
     puVar4 = &DAT_005b31c0;
-    puVar3 = &DAT_005b32b0;
+    pPVar3 = (Pool *)&DAT_005b32b0;
   }
   else {
     puVar4 = *(undefined4 **)(param_1[1] + 100);
-    puVar3 = &DAT_0058b03c;
+    pPVar3 = &g_PoolCommon;
   }
-  iVar2 = DcbPool_Alloc(puVar3,3,puVar4);
+  iVar2 = DcbPool_Alloc(pPVar3,3,puVar4);
   if (iVar2 == 0) {
     return 0;
   }

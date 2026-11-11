@@ -15,14 +15,14 @@ void PlayerCmd_PowerTransfer(undefined4 param_1)
   case 3:
     iVar1 = Power_GetLaserMax(&g_PlayerPower,iVar3);
     iVar2 = iVar1 >> 3;
-    if (g_PlayerPower < iVar1 >> 3) {
-      iVar2 = g_PlayerPower;
+    if (g_PlayerPower.laserEnergy < iVar1 >> 3) {
+      iVar2 = g_PlayerPower.laserEnergy;
     }
     iVar3 = Power_TransferCli(&g_PlayerPower,iVar3,3,iVar2);
     if (iVar3 == 0) {
       return;
     }
-    g_PlayerPower = g_PlayerPower - iVar2;
+    g_PlayerPower.laserEnergy = g_PlayerPower.laserEnergy - iVar2;
     uVar4 = 3;
     break;
   case 4:
@@ -31,14 +31,14 @@ void PlayerCmd_PowerTransfer(undefined4 param_1)
     }
     iVar1 = Power_GetBurnerMax(&g_PlayerPower,iVar3);
     iVar2 = iVar1 >> 3;
-    if (DAT_005b20f8 < iVar1 >> 3) {
-      iVar2 = DAT_005b20f8;
+    if (g_PlayerPower.burnerEnergy < iVar1 >> 3) {
+      iVar2 = g_PlayerPower.burnerEnergy;
     }
     iVar3 = Power_TransferCli(&g_PlayerPower,iVar3,4,iVar2);
     if (iVar3 == 0) {
       return;
     }
-    DAT_005b20f8 = DAT_005b20f8 - iVar2;
+    g_PlayerPower.burnerEnergy = g_PlayerPower.burnerEnergy - iVar2;
     uVar4 = 4;
     break;
   case 5:

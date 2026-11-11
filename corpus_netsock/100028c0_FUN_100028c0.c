@@ -23,7 +23,7 @@ void FUN_100028c0(void)
            (uVar2 = DVar1 - *(int *)((int)puVar5 + 0x3e), 15000 < uVar2)) {
           if (*(short *)(puVar5 + 4) == 1) {
             if (*(uint *)((int)puVar5 + 0x42) < 0x3c) {
-              FUN_10002620(puVar5,1);
+              NwUsage_SendRecord(puVar5,1);
             }
             else {
               puVar6 = puVar5;

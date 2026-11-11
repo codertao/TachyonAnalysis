@@ -9,7 +9,7 @@ void FUN_00457bc0(undefined4 param_1)
   uVar1 = FUN_0048e800(DAT_005a6140,0x5d,uVar1);
   str_sprintf(local_80,s__s___s__00548d54,uVar1);
   to_uppercase(local_80);
-  SrvSend_TextMsg(local_80,1,4,DAT_0058b068,0,0,0xffffffff);
+  SrvSend_TextMsg(local_80,1,4,g_SrvCurConn,0,0,0xffffffff);
   return;
 }
 

@@ -88,15 +88,15 @@ void FUN_0041f6e0(int param_1,int param_2,int param_3,int param_4,int param_5,un
         local_3c = 2;
         local_38 = 2;
       }
-      uVar1 = FUN_004ae560(param_8,param_7,0,local_5c);
+      uVar1 = Text_GlyphHeight(param_8,param_7,0,local_5c);
       local_34 = (DAT_005b2278 >> 1) + uVar3 + (uVar1 >> 1);
       local_10 = local_20;
       iVar6 = local_34 + (DAT_005b2288 >> 1);
-      iVar2 = FUN_004ae4c0(param_8,param_7,0,local_5c);
+      iVar2 = Text_MeasureWidth(param_8,param_7,0,local_5c);
       iVar6 = iVar6 + iVar2 + (uVar1 >> 1);
       local_30 = local_20 + (DAT_005b229c >> 1) + (uVar1 >> 2);
       local_28 = local_30 + (DAT_005b229c >> 1);
-      iVar2 = FUN_004ae560(param_8,param_7,0,local_5c);
+      iVar2 = Text_GlyphHeight(param_8,param_7,0,local_5c);
       local_28 = (uVar1 >> 3) + local_28 + iVar2;
       DAT_005b22b0 = *(int *)(param_1 + 0x98) + uVar3;
       DAT_005b22b4 = *(int *)(param_1 + 0x9c) + local_10;

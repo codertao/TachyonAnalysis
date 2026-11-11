@@ -11,8 +11,8 @@ void FUN_004625a0(void)
   bVar1 = *(byte *)(*DAT_0058b07c + 4);
   FUN_0044edc0(local_80);
   FUN_0048e970(local_80,DAT_0058b07c,0x140,2,0x20c4ff,0xffff,0x10000,4);
-  if (DAT_005a4040 != 0) {
-    str_sprintf(local_80,s_ID____d_005495fc,DAT_005a40b4);
+  if (g_NwAdvert != 0) {
+    str_sprintf(local_80,s_ID____d_005495fc,g_NwGameId);
     FUN_0048e970(local_80,DAT_0058b07c,0x1e0,2,0x20c4ff,0xffff,0x10000,4);
   }
   str_sprintf(local_80,s_PRESS__ESC__TO_END_SESSION_005495e0);

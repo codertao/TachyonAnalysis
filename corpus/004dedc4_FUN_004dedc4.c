@@ -6,7 +6,7 @@ int FUN_004dedc4(void)
   int iVar1;
   undefined4 *puVar2;
   
-  puVar2 = &DAT_004c9402;
+  puVar2 = &g_SndVoices;
   iVar1 = 0x18;
   while (puVar2[4] != in_EAX) {
     puVar2 = puVar2 + 0x10;
@@ -26,7 +26,7 @@ int FUN_004dedc4(void)
   }
   *(undefined1 *)((int)puVar2 + 0x3e) = 1;
   FUN_004dee48();
-  puVar2 = &DAT_004ca002;
+  puVar2 = &g_SndVoiceNext;
   iVar1 = 0x18;
   do {
     if (puVar2[4] == in_EAX) {

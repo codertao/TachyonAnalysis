@@ -13,8 +13,8 @@ void Weapon_DumpStats(void)
   undefined8 uVar5;
   
   if ((DAT_005a6730 != 0) && (iVar2 = c_fopen(), iVar2 != 0)) {
-    if (g_WeaponDefs != 0x26) {
-      piVar4 = &DAT_0055a5a0;
+    if (g_WeaponDefs[0].id != 0x26) {
+      piVar4 = &g_WeaponDefs[0].refire;
       do {
         uVar3 = WeaponId_ToName();
         uVar3 = FUN_0048e800(DAT_005a6140,piVar4[3],uVar3);

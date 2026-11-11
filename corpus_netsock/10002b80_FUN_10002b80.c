@@ -103,7 +103,7 @@ LAB_10002bfd:
       *(undefined2 *)((int)piVar6 + 0x46) = uVar1;
       *(ushort *)(piVar6 + 5) = *(ushort *)(piVar6 + 5) | local_38;
       *(short *)((int)piVar6 + 0x46) = *(short *)((int)piVar6 + 0x46) + local_6;
-      FUN_10002620(piVar6,0);
+      NwUsage_SendRecord(piVar6,0);
     }
     *(undefined4 *)(param_1 + 0xac) = 0;
     *(undefined4 *)(param_1 + 0xb0) = 0;

@@ -5,42 +5,43 @@ void SrvSend_TeamShipDesc(char *param_1,undefined2 param_2)
 
 {
   char cVar1;
-  char *pcVar2;
+  char *payload;
+  uint uVar2;
   uint uVar3;
-  uint uVar4;
+  char *pcVar4;
   char *pcVar5;
-  char *pcVar6;
-  undefined4 local_18;
-  undefined4 local_14;
+  EventSpec local_18;
   
-  pcVar2 = (char *)maybe_take_some_mem();
-  if (pcVar2 != (char *)0x0) {
-    uVar3 = 0xffffffff;
+  payload = (char *)NetSrv_AllocEvent();
+  if (payload != (char *)0x0) {
+    uVar2 = 0xffffffff;
     do {
-      pcVar5 = param_1;
-      if (uVar3 == 0) break;
-      uVar3 = uVar3 - 1;
-      pcVar5 = param_1 + 1;
+      pcVar4 = param_1;
+      if (uVar2 == 0) break;
+      uVar2 = uVar2 - 1;
+      pcVar4 = param_1 + 1;
       cVar1 = *param_1;
-      param_1 = pcVar5;
+      param_1 = pcVar4;
     } while (cVar1 != '\0');
-    uVar3 = ~uVar3;
-    pcVar5 = pcVar5 + -uVar3;
-    pcVar6 = pcVar2;
-    for (uVar4 = uVar3 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {
-      *(undefined4 *)pcVar6 = *(undefined4 *)pcVar5;
+    uVar2 = ~uVar2;
+    pcVar4 = pcVar4 + -uVar2;
+    pcVar5 = payload;
+    for (uVar3 = uVar2 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
+      *(undefined4 *)pcVar5 = *(undefined4 *)pcVar4;
+      pcVar4 = pcVar4 + 4;
       pcVar5 = pcVar5 + 4;
-      pcVar6 = pcVar6 + 4;
     }
-    for (uVar3 = uVar3 & 3; uVar3 != 0; uVar3 = uVar3 - 1) {
-      *pcVar6 = *pcVar5;
+    for (uVar2 = uVar2 & 3; uVar2 != 0; uVar2 = uVar2 - 1) {
+      *pcVar5 = *pcVar4;
+      pcVar4 = pcVar4 + 1;
       pcVar5 = pcVar5 + 1;
-      pcVar6 = pcVar6 + 1;
     }
-    *(undefined2 *)(pcVar2 + 0xe) = param_2;
-    local_18 = 0x800;
-    local_14 = 0;
-    NetSrv_QueueEvent(pcVar2,0x1107,0x10,&local_18);
+    *(undefined2 *)(payload + 0xe) = param_2;
+    local_18.resend = 0x800;
+    local_18._2_2_ = 0;
+    local_18.flags = 0;
+    local_18._6_2_ = 0;
+    NetSrv_QueueEvent(payload,0x1107,0x10,&local_18);
   }
   return;
 }

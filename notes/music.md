@@ -198,3 +198,31 @@ sectors. The structure comes out as if / while / match with no leftover jumps.
 - Slot 4's source (`FUN_0048b1b0(ctx, 2)`). The script only tests `> 3500` with hostiles
   present, to (re-)enter combat music, so it may be a threat or proximity measure.
 - Whether the menus use the same script with slot 0 as the theme.
+
+## Software mixer (`Snd_MixBlock 0x4cc708`)
+All game audio is mixed in software to 16-bit stereo at 22,050 Hz, then handed to either
+DirectSound (`Snd_DSoundFill 0x4a8a20`: lock the ring buffer between the last and current play
+position) or `waveOut` (`Snd_WaveOutDone 0x4a9600`: three buffers rotated on `MM_WOM_DONE`).
+
+- **24 sample voices** (`g_SndVoices 0x4c9402`, 0x40 each), unsigned 8-bit samples, plus **one
+  streamed channel** fed from a 16-entry buffer queue (`0x4cac1a`, 0x40 each; falls back to a
+  silence buffer when the queue runs dry).
+- **Self-modifying inner loop.** The loop is unrolled once per voice. Each voice's pitch step
+  (`add eax, imm32`) and sample pointer (`mov bl, [eax+disp32]`) are immediates patched into the
+  code, so the hot path does no memory lookups for voice state. The position is 22.10 fixed and
+  counts up from −length; the carry out of the `add` is the end-of-sample test (placeholders
+  `0x12345678` / `0xfedcba98` in the file).
+- **Volume without `imul`.** Each voice's left/right volume is a tiny float: a 5-bit mantissa picks one
+  of 32 eight-byte x86 snippets (`g_SndVolSnippets 0x4dfdd0`, `eax = ebx*k` using `lea`/`shl`/`sub`)
+  and an exponent picks a patched `shl`/`sar eax,n` (`0x4cb230`, shift per level `0x4cb370`).
+  `Snd_MixPrepare 0x4ce9f3` patches these in once per call. The streamed channel uses a plain `imul`.
+- **Pitch ramping.** Each call is mixed in 4 sub-blocks; between them each voice's step moves a
+  quarter of the way to its target (`+0x34`), which gives glides without clicks (engine pitch).
+- **End of sample.** Copy in the voice's queued/loop record (`0x4ca002`, 0x3c each), optionally
+  call an end callback, and optionally add a random start offset of 0–255 samples (rotating hash
+  `0x4cb478`). The offset stops several copies of the same loop from phasing.
+- **Output.** `L/R = sum + previous/4` (a light one-pole smoothing), then the post-mix effect hook,
+  then a clamp to ±0x7fff.
+- **Post-mix effect** (`Snd_SetEffect 0x4cec37`, modes 0–3, level 0–3 patched as shift counts, 64 KB
+  delay buffers): mode 0 off; mode 1 `SndFx_CrossDelay 0x4decd5` is two delay lines, each fed by the
+  opposite channel with ×¼ feedback (stereo echo/reverb); modes 2–3 at `0x4ded28` / `0x4ded7b` not yet read.

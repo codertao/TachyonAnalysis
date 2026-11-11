@@ -19,8 +19,8 @@ void FUN_00499220(int param_1,int param_2)
     }
     if (uVar2 < 0x7d0000) {
       uVar1 = FlightModel_SolveThrottle
-                        (*(int *)(param_1 + 0x8c) + 0x84,*(undefined4 *)(DAT_0058b064 + 0xd4),
-                         param_1 + 0x10c,*(uint *)(*(int *)(param_1 + 0x8c) + 0x564) & 0x400,1);
+                        (*(int *)(param_1 + 0x8c) + 0x84,g_SrvCurShip->speed,param_1 + 0x10c,
+                         *(uint *)(*(int *)(param_1 + 0x8c) + 0x564) & 0x400,1);
       *(undefined2 *)(param_1 + 0x312) = uVar1;
     }
     else {

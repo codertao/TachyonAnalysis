@@ -1,39 +1,38 @@
 
 /* delivery flags 0x01 radius,0x02 except,0x04 only,0x08 team,0x10,0x20 same quadrant,0x40,0x80 */
 
-undefined4 Tach_SrvEventFilter(int param_1,int param_2)
+int __cdecl Tach_SrvEventFilter(TachConn *conn,SrvEvent *evt)
 
 {
   uint uVar1;
   
-  uVar1 = *(uint *)(param_2 + 0x20);
-  if (((uVar1 & 0x80) != 0) && (*(char *)(param_1 + 0x88) != '\0')) {
+  uVar1 = evt->flags;
+  if (((uVar1 & 0x80) != 0) && (conn->kicked != 0)) {
     return 0;
   }
-  if (((uVar1 & 0x40) != 0) && (*(int *)(param_1 + 0x13c) != 0)) {
+  if (((uVar1 & 0x40) != 0) && (conn->state != 0)) {
     return 0;
   }
   if ((uVar1 & 1) != 0) {
-    uVar1 = distance_between((vec3 *)(param_1 + 0x110),(vec3 *)(param_2 + 0x3c));
-    if (*(uint *)(param_2 + 0x24) < uVar1) {
+    uVar1 = distance_between(&conn->camera,&evt->pos);
+    if (evt->radius < uVar1) {
       return 0;
     }
   }
-  uVar1 = *(uint *)(param_2 + 0x20);
-  if (((uVar1 & 2) != 0) && (param_1 == *(int *)(param_2 + 0x28))) {
+  uVar1 = evt->flags;
+  if (((uVar1 & 2) != 0) && (conn == evt->target)) {
     return 0;
   }
-  if (((uVar1 & 4) != 0) && (param_1 != *(int *)(param_2 + 0x28))) {
+  if (((uVar1 & 4) != 0) && (conn != evt->target)) {
     return 0;
   }
-  if (((uVar1 & 8) != 0) && (*(short *)(param_1 + 0x10c) != *(short *)(param_2 + 0x2c))) {
+  if (((uVar1 & 8) != 0) && (conn->teamId != evt->teamOrGroup)) {
     return 0;
   }
-  if (((uVar1 & 0x10) != 0) && (*(int *)(param_1 + 0x140) != (int)*(short *)(param_2 + 0x2c))) {
+  if (((uVar1 & 0x10) != 0) && (conn->groupId != (int)evt->teamOrGroup)) {
     return 0;
   }
-  if (((uVar1 & 0x20) != 0) && (*(int *)(*(int *)(param_1 + 200) + 100) != *(int *)(param_2 + 0x30))
-     ) {
+  if (((uVar1 & 0x20) != 0) && (conn->ship->quadrant != evt->quadrant)) {
     return 0;
   }
   return 1;

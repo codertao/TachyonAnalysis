@@ -39,7 +39,7 @@ void FUN_004842f0(int param_1)
     }
     str_sprintf(&DAT_0056f400,pcVar3,*(undefined4 *)(iVar1 + 0xe8));
     FUN_0043cc80(&GLBL_UI_ELEM_LIST,s_BtnSPPurchase_00557958,&DAT_0056f400);
-    uVar4 = FUN_004699a0();
+    uVar4 = Player_GetCredits();
     if (*(uint *)(iVar1 + 0xe8) <= uVar4) goto LAB_0048453e;
     pcVar3 = s_BtnSPPurchase_00557958;
   }

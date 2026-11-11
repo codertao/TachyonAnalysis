@@ -67,7 +67,7 @@ int TachCli_SpawnReplica(undefined4 *param_1)
     *(undefined4 *)(iVar2 + 0xf4) = 0;
   }
   else {
-    uVar4 = FUN_0045d680(uVar4,*(undefined4 *)(DAT_0058b064 + 100));
+    uVar4 = FUN_0045d680(uVar4,g_SrvCurShip->quadrant);
     *(undefined4 *)(iVar2 + 0xf4) = uVar4;
   }
   if ((*(byte *)((int)param_1 + 5) & 4) != 0) {

@@ -5,13 +5,13 @@ void FUN_00486cb0(int param_1)
   uint uVar1;
   
   if ((DAT_0056e000 < 300) || (param_1 < 1)) {
-    uVar1 = FUN_004699a0();
+    uVar1 = Player_GetCredits();
     if ((99 < uVar1) && ((DAT_0056e000 != 0 || (-1 < param_1)))) {
       DAT_0056e000 = DAT_0056e000 + param_1 * 100;
       if (300 < DAT_0056e000) {
         DAT_0056e000 = 300;
       }
-      FUN_004699d0(param_1 * -100);
+      Player_AddCredits(param_1 * -100);
       FUN_00486380();
       FUN_00486540();
       FUN_00486c60(&DAT_0056e2b8);

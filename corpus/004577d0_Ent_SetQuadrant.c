@@ -2,32 +2,31 @@
 /* entity SET_QUADRANT event: bind entity to a quadrant/sector context (entity+0x64). SPX +0x88 bit1
    (fog) caps sensor/vis range to 3000 unless +0x158 & 0x40 (FOG RADAR item? [l]) */
 
-void Ent_SetQuadrant(int param_1,int param_2,int param_3)
+void __cdecl Ent_SetQuadrant(SpED *ent,TachConn *conn,Quadrant *quadrant)
 
 {
   byte bVar1;
   
-  FUN_00445720(param_1,param_3,s_SET_QUADRANT_00548d24);
-  *(int *)(param_1 + 100) = param_3;
-  *(undefined4 *)(param_1 + 0x90) = 0;
-  *(undefined4 *)(param_2 + 0x138) = 0;
-  if (((*(byte *)(*(int *)(*(int *)(param_3 + 0x3c) + 4) + 0x88) & 2) == 0) ||
-     ((*(byte *)(param_2 + 0x158) & 0x40) != 0)) {
+  FUN_00445720(ent,quadrant,s_SET_QUADRANT_00548d24);
+  ent->quadrant = quadrant;
+  ent->target = (SpED *)0x0;
+  conn->farCursor = (SpED **)0x0;
+  if (((*(byte *)((int)quadrant->sector->spx + 0x88) & 2) == 0) || ((conn->systems & 0x40) != 0)) {
     bVar1 = g_FlightStateFlags & 4;
-    *(undefined4 *)(param_2 + 0x15c) = 0xea60000;
+    conn->nearRadius = 0xea60000;
     if (bVar1 == 0) {
-      *(undefined4 *)(param_2 + 0x160) = 0x27100000;
+      conn->farRadius = 0x27100000;
     }
     else {
-      *(undefined4 *)(param_2 + 0x160) = 0x13880000;
+      conn->farRadius = 0x13880000;
     }
   }
   else {
-    *(undefined4 *)(param_2 + 0x15c) = 0xbb80000;
-    *(undefined4 *)(param_2 + 0x160) = 0xbb80000;
+    conn->nearRadius = 0xbb80000;
+    conn->farRadius = 0xbb80000;
   }
   if ((g_FlightStateFlags & 4) != 0) {
-    FUN_00457790(DAT_005a5dcc,*(undefined4 *)(param_3 + 0x30));
+    FUN_00457790(DAT_005a5dcc,quadrant->sectorId);
   }
   return;
 }

@@ -23,7 +23,7 @@ void FUN_0046bf30(void)
     _Source = DAT_00589740;
     _Dest = DAT_00589748;
     do {
-      iVar2 = FUN_0046be00(local_4,_Source);
+      iVar2 = Player_GetVarInt(local_4,_Source);
       if (iVar2 != 0) {
         *(char **)(_Dest + 0x20) = _Source;
         _strncpy(_Dest,_Source,0x1f);

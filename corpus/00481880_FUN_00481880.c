@@ -12,7 +12,7 @@ void FUN_00481880(int param_1)
   else if (iVar1 < DAT_00563d60) {
     DAT_00563d60 = iVar1;
   }
-  FUN_00481c40();
+  Options_RefreshKeyMapPage();
   return;
 }
 

@@ -13,11 +13,11 @@ undefined4 maybe_sped_is_near_sortof(vec3 *search_pos,int some_idx)
       if (some_idx + -10 <= our_idx) {
         return 0;
       }
-      uVar1 = distance_between(search_pos,&sped_comparison->position);
+      uVar1 = distance_between(search_pos,&sped_comparison->pos);
       if (uVar1 < 0x7d0000) {
         return 1;
       }
-      sped_comparison = *(SpED **)&sped_comparison->ll_next;
+      sped_comparison = *(SpED **)&sped_comparison->field_0xc8;
       our_idx = our_idx + 1;
     } while (sped_comparison != (SpED *)0x0);
   }

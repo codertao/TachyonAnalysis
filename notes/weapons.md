@@ -104,6 +104,7 @@ shield damage). Sappers' damage is never applied (they attach and drain). Hull d
 - **Solaris Torpedo** (FORTIS, id 7): charge weapon (`Weapon7_ChargeScale`); 10 energy per frame held,
   up to 500 frames; damage × charge fraction. Its DPS figures assume full charge every 25 frames and are meaningless.
 - **Hunter / Adv Blast / Disruptor Torpedo** have turn rates (guided). Disruptor has hull factor 0 (shield only).
+  Guidance differs per torpedo; see "Missile and torpedo guidance" below.
 - **Tesla EMP Missile, EMP Projector, Tractor Wave**: hull factor 0, system factor 1.0.
 - **Chatter Cannon** (GATLING, id 0x18): shield factor 24/256, the only weapon ≤ 32, which also picks
   the alternate shield-hit FX (`shields.md`). 750 rounds.
@@ -112,3 +113,36 @@ shield damage). Sappers' damage is never applied (they attach and drain). Hull d
 - **Helios Rocket** and **Solaris**: AI only aims them at capships/starbases.
 - **Turrets 0x1d–0x25**: see `capships.md` (SUB_TYPE mapping). MINE BLAST (0x21) is the blast of a
   detonated mine.
+
+## Missile and torpedo guidance
+Every missile and torpedo is created by `Proj_CreateMissile`. It starts in `Proj_ThinkMissileLaunch`: straight flight for a
+launch phase from `0x55a51c[guidance*8]` (guidance 0 = 6 frames, guidance 1 = 2 frames). When that ends, life resets to
+def+0x3c and think switches to def+0x64. So the guidance class (+0x84) only sets the launch phase length. Behaviour comes
+from the per-weapon think. Frames are 50 Hz. Angles use 0x2000000 per turn.
+
+Shared steering (`Proj_SteerToward 0x494db0`): yaw/pitch toward the target, each clamped to the current turn rate
+(+0xec). Velocity is then re-pointed along the nose at def+0x54. The turn rate starts at 0 and ramps by def+0x8c per frame up to def+0x88.
+
+| Weapon | Think | Steering | Lock loss | Re-acquire | Detonation |
+|---|---|---|---|---|---|
+| Tiger / Sunspot / Tesla EMP / Swarm missiles (12-15), Disruptor Torpedo (11) | `Proj_ThinkMissile` | yes | error > 45 deg in yaw or pitch -> `Missile_LoseLock`, flies straight from then on; decoys (every 32 frames) | never | contact (post-think segment cast); expiry -> +0x118 hook, removed |
+| Hunter Torpedo (8) | `Torp_ThinkHunter 0x4951b0` = `Proj_ThinkMissile` + extra | yes | same | every 8 frames while unlocked: nearest hostile within 250 units (~1.95 range) | contact; expiry |
+| Blast Torpedo (9, also weapon 33) | `Torp_ThinkProximity 0x495250` | none (turn 0) | n/a | n/a | after the first 50 frames, every 8 frames: any hostile within 43.75 units -> splash (`Proj_OnHitSplash`); also splashes on expiry |
+| Adv Blast Torpedo (10) | `Torp_ThinkAdvBlast 0x495310` | yes | no 45-degree cutoff; decoys still break lock | never | within 6.25 units of the locked target or expiry -> splash; no +0x118 hook |
+
+Turn rates (max per frame; time to reach max from launch):
+
+| Weapon | Max turn | Ramp | Time to max |
+|---|---|---|---|
+| Tiger Missile | 22.5 deg/frame | 0.18 deg/frame per frame | 128 frames (2.56 s) |
+| Sunspot Missile | 14.1 | 0.35 | 40 (0.8 s) |
+| Tesla EMP / Swarm Missile | 11.25 | 0.18 | 64 (1.28 s) |
+| Hunter Torpedo | 7.0 | 0.09 | 80 (1.6 s) |
+| Adv Blast Torpedo | 16.9 | 0.18 | 96 (1.92 s) |
+| Disruptor Torpedo | 12.7 | 0.18 | 72 (1.44 s) |
+
+- Locking a player (target poolType 1) sets `TachConn.oneShotFlags |= 1` on that player's connection every frame. This is the
+  incoming-missile flag.
+- The Disruptor Torpedo uses exactly the missile think. Only its 2-frame launch phase and its stats differ.
+- The Helios Rocket (22) also has `Proj_ThinkMissile` as its think, with guidance 2 and turn 0. Its launch path was not checked.
+

@@ -24,8 +24,8 @@ void NetSrv_RegisterGameCallbacks(uint *param_1)
   param_1[8] = (uint)Tach_SrvDispatchEvent;
   param_1[9] = (uint)Tach_SrvReadPlayerData;
   param_1[10] = (uint)FUN_00445720;
-  param_1[0xb] = (uint)FUN_00461280;
-  param_1[0xc] = (uint)FUN_00461400;
+  param_1[0xb] = (uint)Tach_SrvPlacePlayer;
+  param_1[0xc] = (uint)Tach_SrvRemovePlayer;
   param_1[0xd] = (uint)FUN_00445720;
   param_1[0xe] = (uint)FUN_00445720;
   param_1[0xf] = (uint)Tach_SrvWriteGameData;
@@ -34,7 +34,7 @@ void NetSrv_RegisterGameCallbacks(uint *param_1)
   param_1[0x12] = (uint)FUN_00461b20;
   param_1[0x13] = (uint)Tach_SrvStartupStageDone;
   param_1[0x14] = (uint)Dcb_GC;
-  param_1[0x15] = (uint)&DAT_0058b0a0;
+  param_1[0x15] = (uint)g_SrvConns;
   if ((g_FlightStateFlags & 2) == 0) {
     set_global_some_game_mode(2);
   }

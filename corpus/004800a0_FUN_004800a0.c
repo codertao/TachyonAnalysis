@@ -25,7 +25,7 @@ void FUN_004800a0(int param_1,int param_2)
     if (piVar2 == GLBL_spacesav + 0x54) {
       if ((iVar1 != GLBL_spacesav[0x54]) &&
          (GLBL_spacesav[0x56] = GLBL_spacesav[0x54], iVar3 = FUN_0046d900(), iVar3 == 0)) {
-        FUN_00440460(DAT_00571280,s_SNDEVNT_BUTTONCLICK_00556c10);
+        Ui_PlaySoundEvent(DAT_00571280,s_SNDEVNT_BUTTONCLICK_00556c10);
         return;
       }
     }

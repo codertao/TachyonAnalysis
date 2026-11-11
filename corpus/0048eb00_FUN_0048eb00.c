@@ -38,16 +38,16 @@ undefined4 FUN_0048eb00(int param_1,int param_2,int param_3,byte param_4)
     }
     if ((param_4 & 4) == 0) {
       if ((param_4 & 8) != 0) {
-        FUN_004ae4c0(param_1,param_2,bVar5,local_2c);
+        Text_MeasureWidth(param_1,param_2,bVar5,local_2c);
       }
     }
     else {
-      FUN_004ae4c0(param_1,param_2,bVar5,local_2c);
+      Text_MeasureWidth(param_1,param_2,bVar5,local_2c);
     }
     if (((param_4 & 0x10) != 0) || ((param_4 & 0x20) != 0)) {
-      FUN_004ae560(param_1,param_2,bVar5,local_2c);
+      Text_GlyphHeight(param_1,param_2,bVar5,local_2c);
     }
-    uVar2 = FUN_004ae4c0(param_1,param_2,bVar5,local_2c);
+    uVar2 = Text_MeasureWidth(param_1,param_2,bVar5,local_2c);
     return uVar2;
   }
   return 0;

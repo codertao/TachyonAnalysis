@@ -17,14 +17,14 @@ void Profile_LoadoutInit(void)
   undefined1 local_100 [128];
   undefined1 local_80 [128];
   
-  puVar7 = &DAT_00591660;
+  puVar7 = &g_JoinBlob;
   for (iVar5 = 0x31; iVar5 != 0; iVar5 = iVar5 + -1) {
     *puVar7 = 0;
     puVar7 = puVar7 + 1;
   }
-  DAT_005a64f4 = &DAT_00591660;
+  DAT_005a64f4 = &g_JoinBlob;
   DAT_005a64f8 = 0xc4;
-  _DAT_005916d8 = FUN_004bd32f(&DAT_00591120);
+  _DAT_005916d8 = FUN_004bd32f(&g_NwJoinKey);
   if (g_PlayerVarStore != 0) {
     DAT_005a6148 = g_PlayerVarStore;
     FUN_004277a0(0);
@@ -47,7 +47,7 @@ void Profile_LoadoutInit(void)
     _DAT_00591700 = FUN_004580c0(pcVar8);
   }
 LAB_0044be16:
-  uVar1 = FUN_0046e900();
+  uVar1 = Player_GetCurrentShip();
   str_sprintf(local_80,s_SHIP__02d_DATA_0053643c,uVar1);
   iVar5 = 0;
   puVar6 = &DAT_005916b8;
@@ -80,10 +80,10 @@ LAB_0044be16:
   iVar5 = FUN_0046f0c0(&DAT_005a60d4);
   iVar2 = FUN_0046f0c0(&DAT_005a60f4);
   if (iVar5 == 0) {
-    str_sprintf(&DAT_00591660,s_GALSPAN_ORION_00547f00);
+    str_sprintf(&g_JoinBlob,s_GALSPAN_ORION_00547f00);
   }
   else {
-    _strncpy((char *)&DAT_00591660,(char *)(iVar5 + 0x20),0x1f);
+    _strncpy((char *)&g_JoinBlob,(char *)(iVar5 + 0x20),0x1f);
   }
   if (iVar2 == 0) {
     str_sprintf(&DAT_00591680,s_BORA_CUTLASS_00547ef0);

@@ -12,7 +12,7 @@ netsock_SendPacket(char *param_1,int param_2,undefined4 param_3,undefined2 param
   if (DAT_10019884 == 0) {
     return 0x200;
   }
-  uVar1 = FUN_10005240(param_1,param_2,param_3,param_4);
+  uVar1 = ns_SendTo(param_1,param_2,param_3,param_4);
   return uVar1;
 }
 

@@ -70,7 +70,7 @@ void Dcb_SpawnProjectile(int param_1,undefined4 *param_2,undefined4 param_3,unde
       *(undefined4 *)(iVar2 + 0xf4) = 0;
     }
     else {
-      uVar3 = FUN_0045d680(param_3,*(undefined4 *)(DAT_0058b064 + 100));
+      uVar3 = FUN_0045d680(param_3,g_SrvCurShip->quadrant);
       *(undefined4 *)(iVar2 + 0xf4) = uVar3;
     }
     *(undefined1 *)(iVar2 + 0xf0) = 1;

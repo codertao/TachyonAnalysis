@@ -46,12 +46,12 @@ void FUN_00491bd0(void)
     }
     local_54[0] = 0x10000;
     local_54[1] = 0x10000;
-    local_24 = FUN_004ae560(*puVar3,DAT_005657c0,2,local_54);
+    local_24 = Text_GlyphHeight(*puVar3,DAT_005657c0,2,local_54);
     local_2c = (uint)((longlong)local_24 * (longlong)DAT_005a67e4) >> 0x10 |
                (int)((ulonglong)((longlong)local_24 * (longlong)DAT_005a67e4) >> 0x20) << 0x10;
     local_54[0] = 0x10000;
     local_54[1] = 0x10000;
-    FUN_004ae560(*puVar3,DAT_005657c0,2,local_54);
+    Text_GlyphHeight(*puVar3,DAT_005657c0,2,local_54);
     iVar6 = FUN_00458080(*(undefined4 *)(DAT_005b1f0c + 0x544));
     FUN_0041f6e0(DAT_005657c8,0x1dd,0xbf,0xa0,0xa0,
                  &DAT_006a1f0f + (-(uint)(iVar6 != 2) & 0xffcee371),0,0,0,0,0);

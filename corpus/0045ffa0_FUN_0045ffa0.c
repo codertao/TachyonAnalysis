@@ -9,14 +9,14 @@ void FUN_0045ffa0(void)
   undefined4 local_8;
   undefined4 local_4;
   
-  Ent_EnterQuadrant(DAT_0058b064,*(undefined4 *)(*(int *)(DAT_0058b068 + 200) + 100));
+  Ent_EnterQuadrant((SpED *)g_SrvCurShip,g_SrvCurConn->ship->quadrant);
   local_18 = 0;
   local_14 = 0;
   local_c = 0;
   local_8 = 0xffffffff;
   local_4 = 0xffffffff;
   local_10 = 2;
-  Mission_PostEvent(&local_18,*(undefined4 *)(DAT_0058b064 + 100));
+  Mission_PostEvent(&local_18,g_SrvCurShip->quadrant);
   return;
 }
 

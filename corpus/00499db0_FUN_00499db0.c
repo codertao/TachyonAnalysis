@@ -20,10 +20,10 @@ void FUN_00499db0(int param_1,int param_2)
   uVar1 = *(undefined4 *)(param_2 + 8);
   *(undefined4 *)(param_1 + 8) = uVar1;
   if (uVar4 < *(uint *)(param_1 + 0x10)) {
-    iVar3 = FUN_004bd452(uVar1,&DAT_0055d734,local_200);
+    iVar3 = Crt_sscanf(uVar1,&DAT_0055d734,local_200);
     while (iVar3 == 0) {
-      iVar3 = FUN_004bd452(*(undefined4 *)(param_1 + 8),s________________0055d720,&local_300,
-                           local_100);
+      iVar3 = Crt_sscanf(*(undefined4 *)(param_1 + 8),s________________0055d720,&local_300,local_100
+                        );
       if (iVar3 == 2) {
         pcVar6 = &local_300;
         if (local_300 == ' ') {
@@ -81,7 +81,7 @@ void FUN_00499db0(int param_1,int param_2)
       if (*(uint *)(param_1 + 0x10) <= uVar4) {
         return;
       }
-      iVar3 = FUN_004bd452(*(undefined4 *)(param_1 + 8),&DAT_0055d734,local_200);
+      iVar3 = Crt_sscanf(*(undefined4 *)(param_1 + 8),&DAT_0055d734,local_200);
     }
   }
   return;

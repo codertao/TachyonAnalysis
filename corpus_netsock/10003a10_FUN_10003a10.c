@@ -12,7 +12,7 @@ undefined4 FUN_10003a10(void)
     *puVar2 = 0;
     puVar2 = puVar2 + 1;
   }
-  _beginthread(FUN_10003960,0,(void *)0x0);
+  _beginthread(ns_JoinThread,0,(void *)0x0);
   DAT_100199e4 = 1;
   DAT_100199ec = 9;
   return 0;

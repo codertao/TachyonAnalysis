@@ -11,7 +11,7 @@ void FUN_0044b030(void)
   bool bVar7;
   
   if (g_PlayerVarStore != 0) {
-    iVar2 = FUN_0043ca90(&g_UiManager,s_BtnMPLoginPlay_005479a0);
+    iVar2 = Ui_GetButtonState(&g_UiManager,s_BtnMPLoginPlay_005479a0);
     if (iVar2 != 8) {
       FUN_0044b180();
       uVar3 = 0xffffffff;

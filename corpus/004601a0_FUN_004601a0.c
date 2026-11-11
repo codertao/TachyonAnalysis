@@ -10,7 +10,7 @@ void FUN_004601a0(undefined4 *param_1)
   undefined4 local_8;
   undefined4 local_4;
   
-  iVar1 = FUN_0045d680(*param_1,*(undefined4 *)(DAT_0058b064 + 100));
+  iVar1 = FUN_0045d680(*param_1,g_SrvCurShip->quadrant);
   if (iVar1 != 0) {
     iVar1 = FUN_00405d60(iVar1);
     if (iVar1 != 0) {
@@ -20,7 +20,7 @@ void FUN_004601a0(undefined4 *param_1)
       local_14 = 0;
       local_10 = 6;
       local_8 = 1;
-      Mission_PostEvent(&local_18,*(undefined4 *)(DAT_0058b064 + 100));
+      Mission_PostEvent(&local_18,g_SrvCurShip->quadrant);
     }
   }
   return;

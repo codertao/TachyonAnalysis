@@ -15,7 +15,7 @@ uint FUN_00427210(int param_1,int param_2,int *param_3,int param_4,int param_5,i
   iVar3 = param_4;
   local_8 = 0x10000;
   local_4 = 0;
-  if ((DAT_005a5544 < param_7) || (iVar6 = *param_3, iVar6 == 0)) {
+  if ((g_SectorCount < param_7) || (iVar6 = *param_3, iVar6 == 0)) {
     *param_6 = 0;
     return 0x10000;
   }

@@ -15,7 +15,7 @@ void FUN_004bf5a3(char *param_1)
         uVar4 = (byte)PTR_DAT_00561258[*param_1 * 2] & 4;
       }
       else {
-        uVar4 = FUN_004bc62d((int)*param_1,4);
+        uVar4 = Crt_isctype((int)*param_1,4);
       }
     } while (uVar4 != 0);
   }

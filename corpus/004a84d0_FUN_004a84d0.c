@@ -24,7 +24,7 @@ void FUN_004a84d0(int param_1)
         }
         if ((unaff_EBX & 0x20) == 0) {
           FUN_004a86b0();
-          FUN_004a8790();
+          Snd_DSoundStart();
           GLBL_audio_running = 1;
           DAT_00563e9c = 1;
           return;
@@ -32,7 +32,7 @@ void FUN_004a84d0(int param_1)
         (**(code **)(*DAT_005f9d64 + 8))(DAT_005f9d64);
       }
     }
-    FUN_004a9260();
+    Snd_WaveOutStart();
     GLBL_audio_running = 1;
     DAT_00563e9c = 0;
     return;
@@ -49,7 +49,7 @@ void FUN_004a84d0(int param_1)
   }
 LAB_004a853c:
   FUN_004a86b0();
-  FUN_004a8790();
+  Snd_DSoundStart();
   GLBL_audio_running = 1;
   DAT_00563e9c = 1;
   return;

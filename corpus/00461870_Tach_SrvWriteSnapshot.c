@@ -2,63 +2,63 @@
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* interest-managed: <=8 in radius +0x15c of client camera, target, 2 far, persistent-object page */
 
-short * Tach_SrvWriteSnapshot(int param_1,int *param_2)
+short * __cdecl Tach_SrvWriteSnapshot(TachConn *conn,short *out)
 
 {
-  int iVar1;
-  short *psVar2;
+  SpED_SrvPlayer *pSVar1;
+  int iVar2;
+  SpED *ent;
+  short *hdr;
   uint uVar3;
   short *psVar4;
-  undefined4 uVar5;
-  undefined4 *puVar6;
+  void *out_00;
+  undefined4 *puVar5;
   
-  psVar2 = (short *)param_2;
-  iVar1 = **(int **)(*(int *)(param_1 + 200) + 100);
-  *(short *)param_2 = 0;
-  *(undefined4 *)((int)param_2 + 6) = *(undefined4 *)(param_1 + 0x110);
-  *(undefined4 *)((int)param_2 + 10) = *(undefined4 *)(param_1 + 0x114);
-  uVar5 = *(undefined4 *)(param_1 + 0x118);
-  *(short *)((int)param_2 + 2) = 0;
-  *(undefined4 *)((int)param_2 + 0xe) = uVar5;
-  psVar4 = (short *)((int)param_2 + 0x12);
-  if (*(int *)(param_1 + 0x13c) == 1) {
+  hdr = out;
+  pSVar1 = (SpED_SrvPlayer *)conn->ship->quadrant->dynamicList;
+  *out = 0;
+  *(int *)(out + 3) = (conn->camera).x;
+  *(int *)(out + 5) = (conn->camera).y;
+  iVar2 = (conn->camera).z;
+  out[1] = 0;
+  *(int *)(out + 7) = iVar2;
+  psVar4 = out + 9;
+  if (conn->state == 1) {
     return psVar4;
   }
-  if (*(int *)(param_1 + 0x1d4) != 0) {
-    _DAT_0058b080 = _DAT_0058b080 + 1;
-    if (*(int *)(param_1 + 0x138) == 0) {
-      Tach_SrvBuildFarList(param_1);
+  if (conn->inQuadrant != 0) {
+    _g_SnapStamp = _g_SnapStamp + 1;
+    if (conn->farCursor == (SpED **)0x0) {
+      Tach_SrvBuildFarList(conn);
     }
     DAT_0062c0e8 = 0;
-    param_2 = &DAT_006240e8;
-    for (; iVar1 != 0; iVar1 = *(int *)(iVar1 + 8)) {
-      if (((iVar1 != *(int *)(param_1 + 200)) && ((*(byte *)(iVar1 + 0xc3) & 1) == 0)) &&
-         (uVar3 = distance_between((vec3 *)(param_1 + 0x110),(vec3 *)(iVar1 + 0x34)),
-         uVar3 < *(uint *)(param_1 + 0x15c))) {
-        param_2[1] = uVar3;
-        *param_2 = iVar1;
-        param_2 = param_2 + 2;
+    out = (short *)&DAT_006240e8;
+    for (; pSVar1 != (SpED_SrvPlayer *)0x0; pSVar1 = (SpED_SrvPlayer *)pSVar1->next) {
+      if (((pSVar1 != conn->ship) && ((pSVar1->netFlags & 1) == 0)) &&
+         (uVar3 = distance_between(&conn->camera,&pSVar1->pos), uVar3 < conn->nearRadius)) {
+        *(uint *)((int)out + 4) = uVar3;
+        *(SpED_SrvPlayer **)out = pSVar1;
+        out = (short *)((int)out + 8);
         DAT_0062c0e8 = DAT_0062c0e8 + 1;
       }
     }
-    uVar3 = Tach_SrvNearCap(param_1);
+    uVar3 = Tach_SrvNearCap(conn);
     if (DAT_0062c0e8 < uVar3) {
       uVar3 = DAT_0062c0e8;
     }
-    puVar6 = &DAT_006240e8;
+    puVar5 = &DAT_006240e8;
     for (; uVar3 != 0; uVar3 = uVar3 - 1) {
-      psVar4 = (short *)Tach_SrvWriteEntityRecord(*puVar6,param_1 + 0x110,psVar4,0);
-      *psVar2 = *psVar2 + 1;
-      puVar6 = puVar6 + 2;
+      psVar4 = Tach_SrvWriteEntityRecord((SpED *)*puVar5,&conn->camera,psVar4,0);
+      *hdr = *hdr + 1;
+      puVar5 = puVar5 + 2;
     }
-    iVar1 = *(int *)(*(int *)(param_1 + 200) + 0x90);
-    if (((iVar1 != 0) && ((*(byte *)(iVar1 + 0xc3) & 1) == 0)) &&
-       (*(short *)(iVar1 + 0x7c) != DAT_0058b080)) {
-      psVar4 = (short *)Tach_SrvWriteEntityRecord(iVar1,param_1 + 0x110,psVar4,0);
-      *psVar2 = *psVar2 + 1;
+    ent = conn->ship->target;
+    if (((ent != (SpED *)0x0) && ((ent->netFlags & 1) == 0)) && (ent->snapStamp != g_SnapStamp)) {
+      psVar4 = Tach_SrvWriteEntityRecord(ent,&conn->camera,psVar4,0);
+      *hdr = *hdr + 1;
     }
-    uVar5 = Tach_SrvWriteFarRecords(param_1,psVar4,param_1 + 0x110,psVar2);
-    psVar4 = (short *)Tach_SrvWritePersistentPage(param_1,param_1 + 0x110,uVar5,psVar2);
+    out_00 = Tach_SrvWriteFarRecords(conn,psVar4,&conn->camera,hdr);
+    psVar4 = Tach_SrvWritePersistentPage(conn,&conn->camera,out_00,hdr);
     return psVar4;
   }
   return psVar4;

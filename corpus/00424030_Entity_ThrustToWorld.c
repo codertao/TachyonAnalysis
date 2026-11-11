@@ -6,13 +6,13 @@
 void Entity_ThrustToWorld(SpED *self,float param_2,int param_3,float *param_4)
 
 {
-  undefined1 *puVar1;
+  vec3 *pvVar1;
   uint uVar2;
   int iVar3;
   int iVar4;
   int iVar5;
   ulonglong local_34;
-  undefined4 local_2c;
+  int local_2c;
   vec3 local_24;
   vec3 local_18 [2];
   
@@ -20,23 +20,23 @@ void Entity_ThrustToWorld(SpED *self,float param_2,int param_3,float *param_4)
   local_24.x = 0;
   local_24.y = 0;
   local_24.z = (int)local_34;
-  FUN_004b1bb0(local_18,(vec3 *)&self->field_0x4c);
+  FUN_004b1bb0(local_18,&self->ang);
   some_rotate_by_global(&local_24,&local_24);
-  iVar3 = *(int *)&self->field_0xa0 + local_24.x;
-  puVar1 = &self->field_0xa0;
-  *(int *)puVar1 = iVar3;
-  iVar4 = *(int *)&self->field_0xa4 + local_24.y;
-  *(int *)&self->field_0xa4 = iVar4;
-  iVar5 = *(int *)&self->field_0xa8 + local_24.z;
-  *(int *)&self->field_0xa8 = iVar5;
-  local_2c = (undefined4)(longlong)ROUND((float)iVar3 * *(float *)(param_3 + 0x3c));
-  *(undefined4 *)puVar1 = local_2c;
-  local_2c = (undefined4)(longlong)ROUND((float)iVar4 * *(float *)(param_3 + 0x3c));
-  *(undefined4 *)&self->field_0xa4 = local_2c;
-  local_2c = (undefined4)(longlong)ROUND((float)iVar5 * *(float *)(param_3 + 0x3c));
-  *(undefined4 *)&self->field_0xa8 = local_2c;
+  iVar3 = (self->vel).x + local_24.x;
+  pvVar1 = &self->vel;
+  pvVar1->x = iVar3;
+  iVar4 = (self->vel).y + local_24.y;
+  (self->vel).y = iVar4;
+  iVar5 = (self->vel).z + local_24.z;
+  (self->vel).z = iVar5;
+  local_2c = (int)(longlong)ROUND((float)iVar3 * *(float *)(param_3 + 0x3c));
+  pvVar1->x = local_2c;
+  local_2c = (int)(longlong)ROUND((float)iVar4 * *(float *)(param_3 + 0x3c));
+  (self->vel).y = local_2c;
+  local_2c = (int)(longlong)ROUND((float)iVar5 * *(float *)(param_3 + 0x3c));
+  (self->vel).z = local_2c;
   if (param_4 != (float *)0x0) {
-    uVar2 = FUN_004e046f(puVar1);
+    uVar2 = FUN_004e046f(pvVar1);
     local_34 = (ulonglong)uVar2;
     *param_4 = (float)local_34;
   }

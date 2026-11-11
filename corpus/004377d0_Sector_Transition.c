@@ -20,7 +20,7 @@ void Sector_Transition(undefined4 param_1,undefined4 param_2)
   DAT_005a5dc8 = load_rtxt_bin(&DAT_005a5530,0xd100);
   Spx_LoadSectorTop(param_2);
   FUN_004375a0();
-  FUN_0041f590(s_PLAYER_SCR_0053fa3c,DAT_0058b064,&DAT_005a5dd0);
+  FUN_0041f590(s_PLAYER_SCR_0053fa3c,g_SrvCurShip,&DAT_005a5dd0);
   FUN_0048e090();
   return;
 }

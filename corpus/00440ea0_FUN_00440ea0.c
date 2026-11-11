@@ -13,7 +13,7 @@ void FUN_00440ea0(void)
   FUN_00444d80();
   iVar1 = FUN_00469a70(s_DefaultLight_0053ff6c);
   g_TitleMenu_ExitFlag = 0;
-  FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   FUN_00437b30(FUN_00441160);
   FUN_00437b10(FUN_00441160);

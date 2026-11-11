@@ -44,7 +44,7 @@ undefined4 * Tach_WritePlayerData(undefined4 *param_1)
     param_1[10] = 0xffffffff;
   }
   param_1[6] = DAT_005b3304;
-  param_1[0xb] = DAT_005b20ec;
+  param_1[0xb] = g_PlayerPower.shieldFrontRate;
   param_1[0xd] = DAT_005b8f5c;
   param_1[0xe] = DAT_005b8f60;
   DAT_005b8f5c = 0;

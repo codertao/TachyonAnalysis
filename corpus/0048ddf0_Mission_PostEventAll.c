@@ -4,20 +4,20 @@
 void Mission_PostEventAll(undefined4 param_1)
 
 {
-  int iVar1;
-  int *piVar2;
+  Quadrant *pQVar1;
+  SectorRec *pSVar2;
   uint uVar3;
   
   uVar3 = 0;
-  piVar2 = &DAT_005a5548;
-  if (DAT_005a5544 != 0) {
+  pSVar2 = g_SectorTable;
+  if (g_SectorCount != 0) {
     do {
-      iVar1 = *piVar2;
-      Mission_MatchTriggers(param_1,iVar1,*(undefined4 *)(*(int *)(iVar1 + 0x3c) + 4));
-      Mission_MatchTriggers(param_1,iVar1,*(undefined4 *)(*(int *)(iVar1 + 0x3c) + 8));
+      pQVar1 = pSVar2->quadrant;
+      Mission_MatchTriggers(param_1,pQVar1,pQVar1->sector->spx);
+      Mission_MatchTriggers(param_1,pQVar1,*(undefined4 *)&pQVar1->sector->field_0x8);
       uVar3 = uVar3 + 1;
-      piVar2 = piVar2 + 0x11;
-    } while (uVar3 < DAT_005a5544);
+      pSVar2 = pSVar2 + 1;
+    } while (uVar3 < g_SectorCount);
   }
   return;
 }

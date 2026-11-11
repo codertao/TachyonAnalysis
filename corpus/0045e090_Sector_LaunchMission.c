@@ -5,7 +5,7 @@
 void Sector_LaunchMission(int param_1)
 
 {
-  int iVar1;
+  Quadrant *quadrant;
   undefined1 local_18 [4];
   undefined4 local_14;
   undefined2 local_10;
@@ -25,11 +25,11 @@ void Sector_LaunchMission(int param_1)
   Desc_CreateByType(&DAT_005b8f74,&DAT_005b1f0c,1,local_18,1,0xffffffff);
   *(undefined4 *)(GLBL_SOME_CONTEXT + 0x8c) = DAT_005b1f0c;
   FUN_0044eab0();
-  iVar1 = FUN_00435390(param_1 + 0x10);
-  if (iVar1 != 0) {
-    Ent_SetQuadrant(DAT_0058b064,DAT_0058b068,iVar1);
-    FUN_0045f460(DAT_0058b068,iVar1);
-    SrvSend_EnterQuadrant(&local_c,&local_14,iVar1,param_1,1,1,DAT_0058b068);
+  quadrant = (Quadrant *)FUN_00435390(param_1 + 0x10);
+  if (quadrant != (Quadrant *)0x0) {
+    Ent_SetQuadrant((SpED *)g_SrvCurShip,g_SrvCurConn,quadrant);
+    FUN_0045f460(g_SrvCurConn,quadrant);
+    SrvSend_EnterQuadrant(&local_c,&local_14,quadrant,param_1,1,1,g_SrvCurConn);
     FUN_0044eab0();
   }
   return;

@@ -2,11 +2,11 @@
 /* DESC_TYPE SHIP (1): register SHIP class (entity size 0x6c8, ctor Sped_ConstructEntity, update
    Ship_Update) */
 
-int Ent_CreateShip(undefined4 param_1,undefined4 param_2,int param_3,int param_4)
+ShipDesc * Ent_CreateShip(char *param_1,undefined4 param_2,int param_3,int param_4)
 
 {
-  int iVar1;
-  undefined4 local_74;
+  ShipDesc *pSVar1;
+  char *local_74;
   undefined4 local_70;
   undefined4 local_6c;
   undefined4 local_68;
@@ -30,15 +30,15 @@ int Ent_CreateShip(undefined4 param_1,undefined4 param_2,int param_3,int param_4
   undefined1 *local_c;
   undefined1 *local_8;
   
-  iVar1 = DescReg_FindByName(param_1,0);
-  if (iVar1 != 0) {
+  pSVar1 = (ShipDesc *)DescReg_FindByName(param_1,0);
+  if (pSVar1 != (ShipDesc *)0x0) {
     if (param_3 != 0) {
-      FUN_00464210(iVar1);
+      FUN_00464210(pSVar1);
     }
     if (param_4 != 0) {
-      FUN_004642d0(iVar1,param_3);
+      FUN_004642d0(pSVar1,param_3);
     }
-    return iVar1;
+    return pSVar1;
   }
   clr_bytes(&local_74,0x74);
   local_70 = 1;
@@ -64,15 +64,15 @@ int Ent_CreateShip(undefined4 param_1,undefined4 param_2,int param_3,int param_4
   local_28 = FUN_004634c0;
   local_4c = &LAB_00465590;
   local_8 = &LAB_00465630;
-  iVar1 = DescReg_Alloc(&local_74,param_2);
-  if (iVar1 == 0) {
-    return 0;
+  pSVar1 = (ShipDesc *)DescReg_Alloc(&local_74,param_2);
+  if (pSVar1 == (ShipDesc *)0x0) {
+    return (ShipDesc *)0x0;
   }
-  Ship_LoadDes(param_1,iVar1,param_3);
+  Ship_LoadDes(param_1,pSVar1,param_3);
   FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
   if (param_4 != 0) {
-    FUN_004642d0(iVar1,param_3);
+    FUN_004642d0(pSVar1,param_3);
   }
-  return iVar1;
+  return pSVar1;
 }
 

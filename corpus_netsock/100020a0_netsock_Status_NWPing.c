@@ -1,4 +1,6 @@
 
+/* 9 busy, 8 never run, 0x30 reply, 0x31 timeout (10 s); out = server time */
+
 int __cdecl netsock_Status_NWPing(undefined4 *param_1)
 
 {

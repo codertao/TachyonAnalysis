@@ -11,7 +11,7 @@ void FUN_00482f80(void)
     *puVar3 = 0;
     puVar3 = puVar3 + 1;
   }
-  FUN_0046e980();
+  Cfg_ClearScratch();
   uVar2 = 0;
   do {
     str_sprintf(&DAT_005a41e0,s_TxtSPCallout_d_0055785c,uVar2);

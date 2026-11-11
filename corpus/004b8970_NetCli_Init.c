@@ -34,7 +34,7 @@ void NetCli_Init(undefined4 *param_1,undefined4 param_2)
     puVar2 = puVar2 + 1;
   }
   DAT_006af5e0 = 0;
-  FUN_004b7840(&DAT_006af5e4,param_1[1],DAT_006af588,s_Client_Msg_buffer_0055f18c);
+  Pool_InitDefault((Pool *)&DAT_006af5e4,param_1[1],DAT_006af588,0x55f18c);
   DAT_006af620 = 0xffffffff;
   DAT_006af640 = 100;
   NetBridge_Init(2);

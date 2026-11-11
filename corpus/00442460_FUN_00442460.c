@@ -13,7 +13,7 @@ void FUN_00442460(void)
   }
   FUN_00444d80();
   DAT_005a40b8 = load_rtxt_bin(s_mpgames_bin_00540e54,0xa000);
-  FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   FUN_00437b30(FUN_004427e0);
   FUN_00437b10(FUN_00442ba0);
@@ -50,7 +50,7 @@ void FUN_00442460(void)
   DAT_005a4020 = 0;
   MP_BuildMapList();
   FUN_00443440();
-  iVar1 = FUN_0043ca90(&g_UiManager,s_BtnHostGameSlot0_00540db8);
+  iVar1 = Ui_GetButtonState(&g_UiManager,s_BtnHostGameSlot0_00540db8);
   if (iVar1 != 8) {
     set_button_state(&g_UiManager,s_BtnHostGameSlot0_00540db8,4);
   }

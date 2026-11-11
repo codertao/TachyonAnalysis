@@ -54,22 +54,22 @@ void FUN_0048e970(int param_1,int param_2,uint param_3,uint param_4,undefined4 p
   }
   if ((param_8 & 4) == 0) {
     if ((param_8 & 8) != 0) {
-      uVar2 = FUN_004ae4c0(param_1,param_2,uVar4,local_30);
+      uVar2 = Text_MeasureWidth(param_1,param_2,uVar4,local_30);
       goto LAB_0048ea96;
     }
   }
   else {
-    uVar2 = FUN_004ae4c0(param_1,param_2,uVar4,local_30);
+    uVar2 = Text_MeasureWidth(param_1,param_2,uVar4,local_30);
     uVar2 = uVar2 >> 1;
 LAB_0048ea96:
     param_3 = param_3 - uVar2;
   }
   if ((param_8 & 0x10) == 0) {
     if ((param_8 & 0x20) == 0) goto LAB_0048ead3;
-    uVar2 = FUN_004ae560(param_1,param_2,uVar4,local_30);
+    uVar2 = Text_GlyphHeight(param_1,param_2,uVar4,local_30);
   }
   else {
-    uVar2 = FUN_004ae560(param_1,param_2,uVar4,local_30);
+    uVar2 = Text_GlyphHeight(param_1,param_2,uVar4,local_30);
     uVar2 = uVar2 >> 1;
   }
   param_4 = param_4 - uVar2;

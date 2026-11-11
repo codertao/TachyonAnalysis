@@ -1,13 +1,13 @@
 
-int FUN_00466ad0(void)
+void * FUN_00466ad0(void)
 
 {
-  int iVar1;
+  void *node;
   
-  iVar1 = something_list_related_get_next(&DAT_00589760);
-  if (iVar1 != 0) {
-    FUN_004b78c0(iVar1,&DAT_005897a4);
+  node = Pool_Alloc((Pool *)&DAT_00589760);
+  if (node != (void *)0x0) {
+    List_PushFront(node,(void **)&DAT_005897a4);
   }
-  return iVar1;
+  return node;
 }
 

@@ -18,3 +18,10 @@ addr	name	comment
 0x10004340	ns_SrvOnCreatePlayer	
 0x10004420	ns_SrvOnGameData	
 0x10004830	ns_SrvTimeouts	120 s
+0x10001fe0	netsock_Initiate_NWPing	(ip, port): default 208.231.90.229:3875; type-0x1012 ping every 1.5 s
+0x100020a0	netsock_Status_NWPing	9 busy, 8 never run, 0x30 reply, 0x31 timeout (10 s); out = server time
+0x100020d0	NwPing_Tick	resend 0x1012 every 1500 ms, time out after 10 s
+0x10002180	NwPing_OnReply	reply: store time offset, status 0x30
+0x10002330	NwUsage_LoadCfg	NWUSAGE.CFG: NWUSAGE_PORT / NWUSAGE_IPADDR / NWUSAGE_APPID (defaults 208.231.90.230:2827, "???????????????")
+0x10002620	NwUsage_SendRecord	0x34-byte per-player usage record to the usage server
+0x10001fb0	netsock_SetOnlineAppIDString	set the usage-record app id (15 chars); space.exe has a wrapper 0x4abb80 but never calls it

@@ -37,7 +37,7 @@ void __cdecl FUN_100029d0(int *param_1)
         local_4 = *(undefined4 *)(*(int *)(iVar1 + 0xa4) + 4);
       }
       if (DAT_10007060 != 0) {
-        FUN_10005240((char *)local_20,0x20,DAT_10007060,DAT_10007064);
+        ns_SendTo((char *)local_20,0x20,DAT_10007060,DAT_10007064);
         return;
       }
     }
@@ -82,7 +82,7 @@ void __cdecl FUN_100029d0(int *param_1)
             local_26 = (undefined2)piVar4[5];
             local_24 = piVar4[7];
             if (DAT_10007060 != 0) {
-              FUN_10005240((char *)local_3c,0x1c,DAT_10007060,DAT_10007064);
+              ns_SendTo((char *)local_3c,0x1c,DAT_10007060,DAT_10007064);
             }
             DVar2 = timeGetTime();
             *(DWORD *)((int)piVar4 + 0x3e) = DVar2;

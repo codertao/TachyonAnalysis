@@ -1,34 +1,34 @@
 
-void Tach_SrvReadPlayerData(int param_1,undefined4 *param_2)
+void __cdecl Tach_SrvReadPlayerData(TachConn *conn,uint *pd)
 
 {
-  int iVar1;
+  SpED_SrvPlayer *pSVar1;
   
-  iVar1 = *(int *)(param_1 + 200);
-  DAT_0058b068 = param_1;
-  DAT_0058b064 = iVar1;
-  if ((*(byte *)((int)param_2 + 0x4b) & 1) != 0) {
-    *(undefined4 *)(iVar1 + 0xa0) = param_2[0xf];
-    *(undefined4 *)(iVar1 + 0xa4) = param_2[0x10];
-    *(undefined4 *)(iVar1 + 0xa8) = param_2[0x11];
-    *(undefined4 *)(iVar1 + 0x158) = *param_2;
-    *(undefined4 *)(iVar1 + 0x15c) = param_2[1];
-    *(undefined4 *)(iVar1 + 0x160) = param_2[2];
-    *(uint *)(iVar1 + 0x164) = (uint)*(byte *)(param_2 + 0x12) << 0x11;
-    *(uint *)(iVar1 + 0x168) = (uint)*(byte *)((int)param_2 + 0x49) << 0x11;
-    *(uint *)(iVar1 + 0x16c) = (uint)*(byte *)((int)param_2 + 0x4a) << 0x11;
+  pSVar1 = conn->ship;
+  g_SrvCurConn = conn;
+  g_SrvCurShip = pSVar1;
+  if ((*(byte *)((int)pd + 0x4b) & 1) != 0) {
+    (pSVar1->vel).x = pd[0xf];
+    (pSVar1->vel).y = pd[0x10];
+    (pSVar1->vel).z = pd[0x11];
+    (pSVar1->netPos).x = *pd;
+    (pSVar1->netPos).y = pd[1];
+    (pSVar1->netPos).z = pd[2];
+    (pSVar1->netAng).x = (uint)(byte)pd[0x12] << 0x11;
+    (pSVar1->netAng).y = (uint)*(byte *)((int)pd + 0x49) << 0x11;
+    (pSVar1->netAng).z = (uint)*(byte *)((int)pd + 0x4a) << 0x11;
   }
-  *(undefined4 *)(param_1 + 0x110) = param_2[3];
-  *(undefined4 *)(param_1 + 0x114) = param_2[4];
-  *(undefined4 *)(param_1 + 0x118) = param_2[5];
-  *(undefined4 *)(param_1 + 0x11c) = param_2[6];
-  FUN_00455a50(iVar1,param_2);
-  *(undefined4 *)(iVar1 + 0xd4) = param_2[9];
-  *(undefined4 *)(iVar1 + 0x128) = param_2[0xb];
-  *(undefined4 *)(iVar1 + 0x130) = param_2[0xb];
-  *(char *)(iVar1 + 0xc1) = (char)((int)param_2[10] >> 3);
-  if (param_2[0xd] != 0) {
-    FUN_00460af0(param_2[0xd],param_2[0xe],*(undefined4 *)(iVar1 + 100));
+  (conn->camera).x = pd[3];
+  (conn->camera).y = pd[4];
+  (conn->camera).z = pd[5];
+  conn->clientFrame = pd[6];
+  FUN_00455a50(pSVar1,pd);
+  pSVar1->speed = (float)pd[9];
+  (pSVar1->power).shieldFrontRate = pd[0xb];
+  (pSVar1->power).shieldRearRate = pd[0xb];
+  pSVar1->throttle = (byte)((int)pd[10] >> 3);
+  if (pd[0xd] != 0) {
+    FUN_00460af0(pd[0xd],pd[0xe],pSVar1->quadrant);
   }
   return;
 }

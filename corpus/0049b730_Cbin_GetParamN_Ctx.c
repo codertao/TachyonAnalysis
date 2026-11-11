@@ -28,9 +28,8 @@ Cbin_GetParamN_Ctx(undefined4 param_1,int param_2,undefined4 param_3,float *para
     *param_4 = 0.0;
   }
   iVar3 = FUN_0049af30(local_200,0x100,param_7);
-  if (((iVar3 != 0) && (iVar3 = FUN_004bd452(local_200,&DAT_0055d734,local_302 + 2), iVar3 == 0)) &&
-     (iVar3 = FUN_004bd452(local_200,s_______________0055d7bc,local_302 + 2,local_100), iVar3 != 0))
-  {
+  if (((iVar3 != 0) && (iVar3 = Crt_sscanf(local_200,&DAT_0055d734,local_302 + 2), iVar3 == 0)) &&
+     (iVar3 = Crt_sscanf(local_200,s_______________0055d7bc,local_302 + 2,local_100), iVar3 != 0)) {
     uVar5 = 0xffffffff;
     pcVar6 = local_302 + 2;
     do {

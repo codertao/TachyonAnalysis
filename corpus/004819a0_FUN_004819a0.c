@@ -100,7 +100,7 @@ void FUN_004819a0(void)
 LAB_00481b48:
   str_sprintf(local_20,s_BtnOptP4KeyMap__2d_00556d94,DAT_00563d70);
   set_button_state(DAT_00571280,local_20,1);
-  FUN_00481c40();
+  Options_RefreshKeyMapPage();
   DAT_00556a20 = 0xf;
   return;
 }

@@ -10,14 +10,14 @@ void Hud_DrawEnergyBars(int param_1)
   
   uVar1 = *(undefined4 *)(param_1 + 0xa60);
   iVar3 = DAT_005b1f0c + 0xd0;
-  uVar2 = Power_GetLaserMax(&g_PlayerPower,iVar3,DAT_005b20e4,uVar1);
-  FUN_0042bd40(param_1 + 0xa28,g_PlayerPower,uVar2);
+  uVar2 = Power_GetLaserMax(&g_PlayerPower,iVar3,g_PlayerPower.laserRate,uVar1);
+  FUN_0042bd40(param_1 + 0xa28,g_PlayerPower.laserEnergy,uVar2);
   if (((byte)DAT_005b2154 & 4) != 0) {
-    uVar2 = Power_GetBurnerMax(&g_PlayerPower,iVar3,DAT_005b20fc,uVar1);
-    FUN_0042bd40(param_1 + 0xa0c,DAT_005b20f8,uVar2);
+    uVar2 = Power_GetBurnerMax(&g_PlayerPower,iVar3,g_PlayerPower.burnerRate,uVar1);
+    FUN_0042bd40(param_1 + 0xa0c,g_PlayerPower.burnerEnergy,uVar2);
   }
-  iVar3 = Shield_GetMax(&g_PlayerPower,iVar3,DAT_005b20ec,uVar1);
-  FUN_0042bd40(param_1 + 0xa44,DAT_005b20f0 + DAT_005b20e8,iVar3 << 1);
+  iVar3 = Shield_GetMax(&g_PlayerPower,iVar3,g_PlayerPower.shieldFrontRate,uVar1);
+  FUN_0042bd40(param_1 + 0xa44,g_PlayerPower.shieldRear + g_PlayerPower.shieldFront,iVar3 << 1);
   return;
 }
 

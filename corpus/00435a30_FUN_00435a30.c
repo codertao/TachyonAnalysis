@@ -2,20 +2,20 @@
 void FUN_00435a30(void)
 
 {
-  undefined4 *puVar1;
+  Quadrant *pQVar1;
   uint uVar2;
   
   Counters_Tick();
   FUN_0041f3d0();
   uVar2 = 0;
-  puVar1 = &DAT_005897f0;
+  pQVar1 = g_Quadrants;
   if (DAT_0058af70 != 0) {
     do {
-      if (puVar1[0xd] != 0) {
-        Counters_PostValues(puVar1);
+      if (pQVar1->occupied != 0) {
+        Counters_PostValues(pQVar1);
       }
       uVar2 = uVar2 + 1;
-      puVar1 = puVar1 + 0x2f;
+      pQVar1 = pQVar1 + 1;
     } while (uVar2 < DAT_0058af70);
   }
   return;

@@ -6,7 +6,7 @@ void FUN_00488b50(void)
   
   iVar1 = FUN_00469a70(s_DefaultLight_0053ff6c);
   g_TitleMenu_ExitFlag = 0;
-  FUN_00440460(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   FUN_0043ab40(&GLBL_UI_ELEM_LIST);
   FUN_0043a8d0(&GLBL_UI_ELEM_LIST,s_WndStarBaseStats_0055883c);
   Ui_ShowWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseStats_0055883c,0);

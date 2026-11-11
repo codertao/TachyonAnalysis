@@ -25,10 +25,10 @@ void FUN_00425270(void)
   }
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar4 = FUN_004ae560(*puVar3,GLBL_FONT_SHDW_08,local_34 | 2,local_28);
+  iVar4 = Text_GlyphHeight(*puVar3,GLBL_FONT_SHDW_08,local_34 | 2,local_28);
   local_28[0] = 0x14000;
   local_28[1] = 0x14000;
-  iVar5 = FUN_004ae560(*puVar3,GLBL_FONT_SHDW_12,local_34 | 2,local_28);
+  iVar5 = Text_GlyphHeight(*puVar3,GLBL_FONT_SHDW_12,local_34 | 2,local_28);
   FUN_0041f6e0(GLBL_BORDERS_BOX,0xaa,0x8c,0x136,0xdc,0x80,GLBL_FONT_SHDW_12,*puVar3,0xff0000,0x14000
                ,2);
   iVar8 = iVar5 + 0x8c;

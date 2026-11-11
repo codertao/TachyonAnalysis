@@ -38,7 +38,7 @@ void __fastcall FUN_004df37b(int param_1,int param_2)
   (&DAT_004ca5ce)[in_EAX * 0x10] = 0;
   (&DAT_004ca5d2)[iVar2] = 1;
   (&DAT_004ca5de)[iVar2] = 1;
-  if ((undefined *)(&DAT_004c9402)[in_EAX * 0x10] == &DAT_004c9401) {
+  if ((undefined *)(&g_SndVoices)[in_EAX * 0x10] == &DAT_004c9401) {
     (&DAT_004c940e)[in_EAX * 0x10] = 0xffffffff;
   }
   return;

@@ -1,28 +1,28 @@
 
 /* look up an already-loaded sector by spx name in the galaxy table (dedupe) */
 
-undefined4 * Spx_FindLoaded(undefined4 param_1)
+SectorRec * Spx_FindLoaded(undefined4 param_1)
 
 {
   int iVar1;
-  undefined4 *puVar2;
+  SectorRec *pSVar2;
   uint uVar3;
-  undefined *puVar4;
+  int iVar4;
   
   uVar3 = 0;
-  puVar2 = &DAT_005a5548;
-  if (DAT_005a5544 != 0) {
-    puVar4 = &DAT_005a5554;
+  pSVar2 = g_SectorTable;
+  if (g_SectorCount != 0) {
+    iVar4 = 0x5a5554;
     do {
-      iVar1 = str_cmp(param_1,puVar4);
+      iVar1 = str_cmp(param_1,iVar4);
       if (iVar1 == 0) {
-        return puVar2;
+        return pSVar2;
       }
       uVar3 = uVar3 + 1;
-      puVar2 = puVar2 + 0x11;
-      puVar4 = puVar4 + 0x44;
-    } while (uVar3 < DAT_005a5544);
+      pSVar2 = pSVar2 + 1;
+      iVar4 = iVar4 + 0x44;
+    } while (uVar3 < g_SectorCount);
   }
-  return (undefined4 *)0x0;
+  return (SectorRec *)0x0;
 }
 

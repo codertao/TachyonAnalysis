@@ -10,7 +10,7 @@ undefined4 FUN_004147e0(int param_1)
     uVar2 = *(ushort *)(PTR_DAT_00561258 + uVar1 * 2) & 0x157;
   }
   else {
-    uVar2 = FUN_004bc62d(uVar1,0x157);
+    uVar2 = Crt_isctype(uVar1,0x157);
   }
   if (uVar2 != 0) {
     FUN_00414900(uVar1);

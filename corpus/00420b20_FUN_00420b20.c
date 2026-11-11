@@ -43,10 +43,10 @@ void FUN_00420b20(void)
   }
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar3 = FUN_004ae560(*puVar2,DAT_005b2180,2,local_28);
+  iVar3 = Text_GlyphHeight(*puVar2,DAT_005b2180,2,local_28);
   local_28[0] = 0x10000;
   local_28[1] = 0x10000;
-  iVar4 = FUN_004ae560(*puVar2,DAT_005b2184,2,local_28);
+  iVar4 = Text_GlyphHeight(*puVar2,DAT_005b2184,2,local_28);
   FUN_0041f6e0(DAT_005b2188,0xa0,0x46,0x140,0x78,0x80,DAT_005b2184,*puVar2,0xff0000,0x10000,2);
   local_38 = (undefined2)((uint)(DAT_005a67a8 * 300) / 0x280);
   iVar4 = iVar4 * 2 + 0x46;
@@ -56,7 +56,7 @@ void FUN_00420b20(void)
   uStack_32 = (undefined2)iVar4;
   local_30 = CONCAT22(local_30._2_2_,(short)iVar3);
   puVar2 = (undefined4 *)Rtxt_Lookup(DAT_005a6140,&DAT_00535990,s_EXIT_FAIL_005359ac);
-  FUN_004ae5e0(*puVar2,DAT_005b2180,&local_3c,2,local_28);
+  Text_WordWrap(*puVar2,DAT_005b2180,&local_3c,2,local_28);
   uVar6 = 0;
   pcVar7 = local_3c;
   if (uStack_36 != 0) {

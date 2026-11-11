@@ -22,7 +22,7 @@ void FUN_0047a3a0(int *param_1)
     uVar3 = *(undefined4 *)(iVar2 + 0x28);
   }
   DAT_005524e0 = 1;
-  FUN_0046e980();
+  Cfg_ClearScratch();
   param_1 = (int *)0x3f;
   do {
     iVar2 = *piVar4;

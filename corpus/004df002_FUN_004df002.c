@@ -9,7 +9,7 @@ int FUN_004df002(void)
   
   iVar1 = in_EAX + *(int *)(in_EAX + 4) + 0x10;
   DAT_004cb474 = 0;
-  piVar3 = &DAT_004c9402;
+  piVar3 = &g_SndVoices;
   iVar2 = 0x18;
   do {
     if (((char)piVar3[0xf] != '\0') && (*piVar3 == iVar1)) {

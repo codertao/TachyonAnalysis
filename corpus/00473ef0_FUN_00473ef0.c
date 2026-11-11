@@ -8,11 +8,12 @@ void FUN_00473ef0(void)
   FUN_0048b6f0(1);
   FUN_0048b6f0(2);
   FUN_0046dd30(0,0);
-  if (DAT_00563604 != 0) {
-    FUN_0046be30(DAT_00563604 + 0x20,DAT_00563604,*(undefined4 *)(DAT_00563604 + 0x54));
+  if (g_LoadoutDragItem != 0) {
+    Player_AddVarInt(g_LoadoutDragItem + 0x20,g_LoadoutDragItem,
+                     *(undefined4 *)(g_LoadoutDragItem + 0x54));
   }
-  DAT_00563604 = 0;
-  FUN_00471de0();
+  g_LoadoutDragItem = 0;
+  Loadout_EndDrag();
   return;
 }
 

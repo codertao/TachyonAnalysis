@@ -13,7 +13,7 @@ int FUN_004bd2a4(byte *param_1)
       uVar1 = (byte)PTR_DAT_00561258[(uint)*param_1 * 2] & 8;
     }
     else {
-      uVar1 = FUN_004bc62d(*param_1,8);
+      uVar1 = Crt_isctype(*param_1,8);
     }
     if (uVar1 == 0) break;
     param_1 = param_1 + 1;
@@ -30,7 +30,7 @@ int FUN_004bd2a4(byte *param_1)
       uVar2 = (byte)PTR_DAT_00561258[uVar4 * 2] & 4;
     }
     else {
-      uVar2 = FUN_004bc62d(uVar4,4);
+      uVar2 = Crt_isctype(uVar4,4);
     }
     if (uVar2 == 0) break;
     iVar3 = (uVar4 - 0x30) + iVar3 * 10;

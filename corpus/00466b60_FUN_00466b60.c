@@ -1,14 +1,14 @@
 
-void FUN_00466b60(int param_1)
+void FUN_00466b60(void *param_1)
 
 {
   int iVar1;
   
-  if (param_1 != 0) {
+  if (param_1 != (void *)0x0) {
     iVar1 = FUN_00466b30(param_1);
     if (iVar1 != 0) {
-      FUN_004b7930(param_1,&DAT_005897a4);
-      FUN_004b78a0(&DAT_00589760,param_1);
+      List_Remove(param_1,(void **)&DAT_005897a4);
+      Pool_Free((Pool *)&DAT_00589760,param_1);
     }
   }
   return;

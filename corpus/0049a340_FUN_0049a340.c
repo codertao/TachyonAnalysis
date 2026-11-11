@@ -18,7 +18,7 @@ void FUN_0049a340(undefined4 *param_1)
   param_1[2] = *param_1;
   if (param_1[4] != 0) {
     do {
-      iVar2 = FUN_004bd452(param_1[2],s____A_Z_0123456789__0055d70c,local_100);
+      iVar2 = Crt_sscanf(param_1[2],s____A_Z_0123456789__0055d70c,local_100);
       if (iVar2 != 0) {
         uVar3 = 0xffffffff;
         pcVar4 = local_100;

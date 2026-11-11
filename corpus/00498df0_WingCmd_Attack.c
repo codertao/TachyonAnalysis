@@ -4,14 +4,14 @@
 undefined4 WingCmd_Attack(void)
 
 {
-  int iVar1;
+  SpED *pSVar1;
   
-  iVar1 = *(int *)(DAT_0058b064 + 0x90);
-  if (iVar1 != 0) {
+  pSVar1 = g_SrvCurShip->target;
+  if (pSVar1 != (SpED *)0x0) {
     *(undefined1 *)(g_Wingman + 0x324) = 1;
     *(undefined4 *)(g_Wingman + 0x354) = 0;
-    *(int *)(g_Wingman + 0x90) = iVar1;
-    *(short *)(iVar1 + 200) = *(short *)(iVar1 + 200) + 1;
+    *(SpED **)(g_Wingman + 0x90) = pSVar1;
+    *(short *)&pSVar1->field_0xc8 = *(short *)&pSVar1->field_0xc8 + 1;
     Ai_SetState(g_Wingman,1);
     return 1;
   }

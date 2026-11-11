@@ -13,7 +13,7 @@ void FUN_0048a5d0(void)
   else {
     pcVar3 = *(char **)(iVar1 + 0x40);
   }
-  uVar2 = FUN_004699a0();
+  uVar2 = Player_GetCredits();
   str_sprintf(&DAT_0056c400,pcVar3,uVar2);
   FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtWingCredits_00559730,&DAT_0056c400);
   return;

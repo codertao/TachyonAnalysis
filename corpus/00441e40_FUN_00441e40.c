@@ -6,7 +6,7 @@ void FUN_00441e40(void)
   int iVar2;
   
   g_TitleMenu_ExitFlag = 0;
-  FUN_00440460(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
+  Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   FUN_00437b30(FUN_00442070);
   FUN_0043e8f0(&g_UiManager,s_Cursor1_0053ff4c);
