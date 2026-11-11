@@ -162,13 +162,15 @@ int Pak_LoadTexture(int param_1,char *param_2)
       }
       if (bVar12) {
         if ((local_8 & 0x8000) == 0) {
-          FUN_004a2dc0(*(undefined4 *)(done_for + 0x28),
-                       (uint)*(ushort *)(done_for + 0x22) * (uint)*(ushort *)(done_for + 0x20));
+          Pal_RemapToGamePalette
+                    (*(undefined4 *)(done_for + 0x28),
+                     (uint)*(ushort *)(done_for + 0x22) * (uint)*(ushort *)(done_for + 0x20));
         }
         else {
           FUN_004ada90(DAT_00668f90,2);
-          FUN_004a2dc0(*(undefined4 *)(done_for + 0x28),
-                       (uint)*(ushort *)(done_for + 0x22) * (uint)*(ushort *)(done_for + 0x20));
+          Pal_RemapToGamePalette
+                    (*(undefined4 *)(done_for + 0x28),
+                     (uint)*(ushort *)(done_for + 0x22) * (uint)*(ushort *)(done_for + 0x20));
           FUN_004ada90(DAT_00668f90,1);
         }
       }

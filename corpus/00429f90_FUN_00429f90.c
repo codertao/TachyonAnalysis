@@ -11,7 +11,7 @@ void FUN_00429f90(int param_1)
   uint uVar7;
   int iVar8;
   int iVar9;
-  undefined1 local_34 [24];
+  float local_34 [6];
   int local_1c;
   int local_18;
   int local_14;
@@ -38,9 +38,9 @@ void FUN_00429f90(int param_1)
     local_1c = *(int *)(iVar9 + 0xa0) * param_1 + *(int *)(iVar9 + 0x34);
     local_18 = *(int *)(iVar9 + 0xa4) * param_1 + *(int *)(iVar9 + 0x38);
     local_14 = *(int *)(iVar9 + 0xa8) * param_1 + *(int *)(iVar9 + 0x3c);
-    call_math_todo_with_rotation
-              (local_34,-*(int *)(iVar8 + 0x4c),-*(int *)(iVar8 + 0x50),-*(int *)(iVar8 + 0x54));
-    call_copy_mathresult_to_global(local_34);
+    call_Math_SinCos3(local_34,-*(int *)(iVar8 + 0x4c),-*(int *)(iVar8 + 0x50),
+                      -*(int *)(iVar8 + 0x54));
+    call_Rot_SetSinCos(local_34);
     local_1c = local_1c - *(int *)(iVar8 + 0x34);
     local_18 = local_18 - *(int *)(iVar8 + 0x38);
     local_14 = local_14 - *(int *)(iVar8 + 0x3c);

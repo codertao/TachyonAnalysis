@@ -27,7 +27,7 @@ void FUN_0046ec00(undefined4 param_1)
                  (int)((ulonglong)((longlong)(int)puVar2[-0x13] * (longlong)DAT_005a67e4) >> 0x20)
                  << 0x10;
       local_c = puVar2[-0x14];
-      FUN_004abf90((uint)((longlong)local_c * (longlong)DAT_005a67e4) >> 0x10 |
+      Gfx_DrawLine((uint)((longlong)local_c * (longlong)DAT_005a67e4) >> 0x10 |
                    (int)((ulonglong)((longlong)local_c * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
                    local_10,(uint)((longlong)(int)puVar2[-0x10] * (longlong)DAT_005a67e4) >> 0x10 |
                             (int)((ulonglong)((longlong)(int)puVar2[-0x10] * (longlong)DAT_005a67e4)
@@ -38,14 +38,15 @@ void FUN_0046ec00(undefined4 param_1)
       if (((puVar2[4] != 0) && (puVar2[2] != 0)) && (puVar2[-4] != 0)) {
         FUN_00452180(4);
         local_10 = puVar2[-0x12];
-        FUN_004ace30((uint)((longlong)(int)local_10 * (longlong)DAT_005a67e4) >> 0x10 |
-                     (int)((ulonglong)((longlong)(int)local_10 * (longlong)DAT_005a67e4) >> 0x20) <<
-                     0x10,(uint)((longlong)(int)puVar2[-0x11] * (longlong)DAT_005a67e4) >> 0x10 |
-                          (int)((ulonglong)((longlong)(int)puVar2[-0x11] * (longlong)DAT_005a67e4)
-                               >> 0x20) << 0x10,
-                     (uint)((longlong)(int)puVar2[-4] * (longlong)DAT_005a67e4) >> 0x10 |
-                     (int)((ulonglong)((longlong)(int)puVar2[-4] * (longlong)DAT_005a67e4) >> 0x20)
-                     << 0x10,iVar1);
+        Gfx_DrawCircle((uint)((longlong)(int)local_10 * (longlong)DAT_005a67e4) >> 0x10 |
+                       (int)((ulonglong)((longlong)(int)local_10 * (longlong)DAT_005a67e4) >> 0x20)
+                       << 0x10,(uint)((longlong)(int)puVar2[-0x11] * (longlong)DAT_005a67e4) >> 0x10
+                               | (int)((ulonglong)
+                                       ((longlong)(int)puVar2[-0x11] * (longlong)DAT_005a67e4) >>
+                                      0x20) << 0x10,
+                       (uint)((longlong)(int)puVar2[-4] * (longlong)DAT_005a67e4) >> 0x10 |
+                       (int)((ulonglong)((longlong)(int)puVar2[-4] * (longlong)DAT_005a67e4) >> 0x20
+                            ) << 0x10,iVar1);
         iVar1 = puVar2[-4];
         local_20 = (puVar2[-0x12] - iVar1) + -1;
         local_18 = iVar1 + 1 + puVar2[-0x12];

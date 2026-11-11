@@ -5,7 +5,7 @@ void FUN_00486090(void)
   int iVar1;
   undefined4 *puVar2;
   
-  call_math_todo_with_rotation(&DAT_005b9628,0,0,0);
+  call_Math_SinCos3((float *)&DAT_005b9628,0,0,0);
   FUN_004b1940(&DAT_0056e3ac,&DAT_0056e3c4);
   set_global_near_far(0xa000,0x2ee0000);
   FUN_004b19a0(&DAT_0056e340);

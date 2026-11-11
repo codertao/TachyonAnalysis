@@ -16,7 +16,7 @@ void FUN_00492d90(int param_1)
   undefined4 local_3c;
   undefined4 local_38;
   undefined4 local_34;
-  undefined1 local_28 [24];
+  float local_28 [6];
   int local_10;
   int local_c;
   int local_8;
@@ -50,7 +50,7 @@ void FUN_00492d90(int param_1)
            (uint)((longlong)local_8 * (longlong)local_c) >> 0x10 |
            (int)((ulonglong)((longlong)local_8 * (longlong)local_c) >> 0x20) << 0x10;
       local_58[0].z = iVar4;
-      call_copy_mathresult_to_global(local_28);
+      call_Rot_SetSinCos(local_28);
       some_rotate_by_global(local_58,local_58);
       local_58[0].x = local_58[0].x + *(int *)(iVar2 + 0x34);
       local_58[0].y = local_58[0].y + *(int *)(iVar2 + 0x38);

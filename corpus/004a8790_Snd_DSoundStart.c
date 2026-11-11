@@ -62,7 +62,7 @@ undefined4 Snd_DSoundStart(void)
   _DAT_005f9e14 = 0;
   DAT_005f9d5c = 0;
   Snd_MixerReset();
-  FUN_004cb481(1);
+  Snd_SetStereo(1);
   Snd_DSoundFill();
   Snd_DSoundFill();
   FUN_004a8990();

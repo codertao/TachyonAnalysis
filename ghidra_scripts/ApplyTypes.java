@@ -1,6 +1,6 @@
 // Apply the sidecar type definitions to the program.
 //   sidecar/types/structs.tsv : structures (S rows) and their fields (F rows)
-//   sidecar/types/sigs.tsv    : function prototypes  (addr <TAB> C prototype)
+//   sidecar/types/sigs.tsv    : function prototypes  (addr <TAB> C prototype; "type name@EAX" = register param)
 //   sidecar/types/globals.tsv : global data types    (addr <TAB> type)
 // Arg: sidecar dir (default "sidecar"). Structs live in category /tachyon. An existing struct with the
 // same name anywhere in the DTM is updated in place (replaceWith), so existing references keep working.
@@ -145,20 +145,52 @@ public class ApplyTypes extends GhidraScript {
                 DataType ret = parse(m.group(1));
                 if (!fn.getName().equals(m.group(2)) && !fn.getName().startsWith("FUN_"))
                     warn(r[0] + ": prototype name " + m.group(2) + " != " + fn.getName() + " (names.tsv wins)");
-                List<ParameterImpl> ps = new ArrayList<>();
+                // params: "type name" (normal) or "type name@REG" (register storage, e.g. "int value@EAX").
+                // If any param names a register the whole signature uses custom storage: register params
+                // get their register, the rest get consecutive cdecl stack slots (+4, +8, ...).
+                List<String[]> praw = new ArrayList<>();   // {type, name, reg-or-null}
+                boolean custom = false;
                 String plist = m.group(3).trim();
                 if (!plist.isEmpty() && !plist.equals("void")) {
                     for (String p : plist.split(",")) {
-                        Matcher pm = param.matcher(p.trim());
+                        p = p.trim(); String reg = null;
+                        int at = p.lastIndexOf('@');
+                        if (at > 0) { reg = p.substring(at + 1).trim(); p = p.substring(0, at).trim(); custom = true; }
+                        Matcher pm = param.matcher(p);
                         if (!pm.matches() || pm.group(1).isBlank()) throw new Exception("bad param '" + p + "'");
-                        ps.add(new ParameterImpl(pm.group(2), parse(pm.group(1)), currentProgram));
+                        praw.add(new String[] { pm.group(1), pm.group(2), reg });
+                    }
+                }
+                List<ParameterImpl> ps = new ArrayList<>();
+                int stackOff = 4;
+                for (String[] pr : praw) {
+                    DataType pdt = parse(pr[0]);
+                    if (!custom) { ps.add(new ParameterImpl(pr[1], pdt, currentProgram)); continue; }
+                    if (pr[2] != null) {
+                        ghidra.program.model.lang.Register rg = currentProgram.getRegister(pr[2].toUpperCase());
+                        if (rg == null) throw new Exception("unknown register " + pr[2]);
+                        ps.add(new ParameterImpl(pr[1], pdt, rg, currentProgram));
+                    } else {
+                        ps.add(new ParameterImpl(pr[1], pdt, stackOff, currentProgram));
+                        stackOff += Math.max(4, (pdt.getLength() + 3) & ~3);
                     }
                 }
                 String cc = fn.getCallingConventionName();
                 if (cc == null || cc.equals("unknown") || cc.equals(Function.UNKNOWN_CALLING_CONVENTION_STRING)
                         || cc.equals(Function.DEFAULT_CALLING_CONVENTION_STRING)) cc = "__cdecl";
-                fn.updateFunction(cc, new ReturnParameterImpl(ret, currentProgram), ps,
-                    FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS, true, SourceType.USER_DEFINED);
+                if (custom) {
+                    ReturnParameterImpl rp = (ret instanceof VoidDataType || ret.getLength() <= 0)
+                        ? new ReturnParameterImpl(VoidDataType.dataType, ghidra.program.model.listing.VariableStorage.VOID_STORAGE, currentProgram)
+                        : (ret.getLength() <= 4
+                            ? new ReturnParameterImpl(ret, currentProgram.getRegister("EAX"), currentProgram)
+                            : null);
+                    if (rp == null) throw new Exception("custom storage: return types > 4 bytes not supported");
+                    fn.updateFunction(cc, rp, ps, FunctionUpdateType.CUSTOM_STORAGE, true, SourceType.USER_DEFINED);
+                } else {
+                    if (fn.hasCustomVariableStorage()) fn.setCustomVariableStorage(false);
+                    fn.updateFunction(cc, new ReturnParameterImpl(ret, currentProgram), ps,
+                        FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS, true, SourceType.USER_DEFINED);
+                }
                 nSigs++;
             } catch (Exception e) { warn("sig " + String.join("|", r) + ": " + e.getMessage()); }
         }

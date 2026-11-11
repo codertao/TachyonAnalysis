@@ -24,17 +24,15 @@ void FUN_0042a760(int param_1,int param_2,int param_3,int param_4,undefined4 par
   int local_74;
   int local_70;
   undefined4 local_6c;
-  undefined1 local_68 [24];
+  float local_68 [6];
   int local_50;
   int local_4c;
   int local_48;
-  undefined1 local_44 [12];
+  vec3 local_44;
   int local_38;
   int local_34;
   undefined4 local_30;
-  int local_2c;
-  int local_28;
-  undefined4 local_24;
+  vec3 local_2c;
   int local_20;
   int local_1c;
   uint local_18;
@@ -72,24 +70,24 @@ void FUN_0042a760(int param_1,int param_2,int param_3,int param_4,undefined4 par
     if ((-1 < (int)uVar1) && (uVar1 = FUN_0048e480(&local_14,&local_c), uVar1 < uVar2 << 7)) {
       return;
     }
-    local_2c = local_c - local_14;
-    local_28 = local_8 - local_10;
-    local_24 = 0;
-    FUN_004e054e(&local_2c);
-    call_math_todo_with_rotation(local_68,0,0,0x800000);
-    call_copy_mathresult_to_global(local_68);
-    FUN_0052dc76(&local_2c,local_44);
-    local_c = (((uint)((longlong)local_2c * (longlong)(int)uVar2) >> 0x10 |
-               (int)((ulonglong)((longlong)local_2c * (longlong)(int)uVar2) >> 0x20) << 0x10) +
+    local_2c.x = local_c - local_14;
+    local_2c.y = local_8 - local_10;
+    local_2c.z = 0;
+    call_Vec_NormalizeFast(&local_2c);
+    call_Math_SinCos3(local_68,0,0,0x800000);
+    call_Rot_SetSinCos(local_68);
+    call_Rot_AboutZ(&local_2c,&local_44);
+    local_c = (((uint)((longlong)local_2c.x * (longlong)(int)uVar2) >> 0x10 |
+               (int)((ulonglong)((longlong)local_2c.x * (longlong)(int)uVar2) >> 0x20) << 0x10) +
               DAT_005a67dc) * 0x80;
-    local_8 = (((uint)((longlong)local_28 * (longlong)(int)uVar2) >> 0x10 |
-               (int)((ulonglong)((longlong)local_28 * (longlong)(int)uVar2) >> 0x20) << 0x10) +
+    local_8 = (((uint)((longlong)local_2c.y * (longlong)(int)uVar2) >> 0x10 |
+               (int)((ulonglong)((longlong)local_2c.y * (longlong)(int)uVar2) >> 0x20) << 0x10) +
               DAT_005a67e0) * 0x80;
     uVar1 = (uint)((longlong)param_3 * 0x700) >> 0x10 |
             (int)((ulonglong)((longlong)param_3 * 0x700) >> 0x20) << 0x10;
     uVar2 = (uint)((longlong)param_3 * 0x700) >> 0x10 |
             (int)((ulonglong)((longlong)param_3 * 0x700) >> 0x20) << 0x10;
-    FUN_0042a550(local_d4,&local_c,-uVar1,uVar2,local_44,&local_2c);
+    FUN_0042a550(local_d4,&local_c,-uVar1,uVar2,&local_44,&local_2c);
     local_c4 = 0xffff00;
     local_d8 = 0x10000;
     iVar4 = -uVar2;
@@ -97,14 +95,14 @@ void FUN_0042a760(int param_1,int param_2,int param_3,int param_4,undefined4 par
                (0x10U - *(char *)(*(int *)(param_1 + 0x628) + 8) & 0x1f);
     local_c8 = *(int *)(param_1 + 0x638) <<
                (0x10U - *(char *)(*(int *)(param_1 + 0x628) + 9) & 0x1f);
-    FUN_0042a550(local_7c,&local_c,-uVar1,iVar4,local_44,&local_2c);
+    FUN_0042a550(local_7c,&local_c,-uVar1,iVar4,&local_44,&local_2c);
     local_6c = 0xffff00;
     local_80 = 0x10000;
     local_74 = *(int *)(param_1 + 0x634) <<
                (0x10U - *(char *)(*(int *)(param_1 + 0x628) + 8) & 0x1f);
     local_70 = *(int *)(param_1 + 0x640) + *(int *)(param_1 + 0x638) <<
                (0x10U - *(char *)(*(int *)(param_1 + 0x628) + 9) & 0x1f);
-    FUN_0042a550(local_a8,&local_c,uVar1,iVar4,local_44,&local_2c);
+    FUN_0042a550(local_a8,&local_c,uVar1,iVar4,&local_44,&local_2c);
     iVar4 = *(int *)(param_1 + 0x628);
     local_98 = 0xffff00;
     local_ac = 0x10000;
@@ -125,14 +123,15 @@ void FUN_0042a760(int param_1,int param_2,int param_3,int param_4,undefined4 par
     DAT_004e4ae0 = (uint)*(byte *)(*(int *)(param_1 + 0x628) + 9);
     DAT_004e4a2c = param_6;
     FUN_00452180(1);
-    FUN_004ac2f0(local_ec,local_94,local_c0,DAT_005a680c,*(undefined4 *)(param_1 + 0x628),
-                 DAT_004e4a28);
-    FUN_0042a550(local_7c,&local_c,uVar1,uVar1,local_44,&local_2c);
+    Gfx_DrawTriangleFlags
+              (local_ec,local_94,local_c0,DAT_005a680c,*(undefined4 *)(param_1 + 0x628),DAT_004e4a28
+              );
+    FUN_0042a550(local_7c,&local_c,uVar1,uVar1,&local_44,&local_2c);
     iVar4 = *(int *)(param_1 + 0x628);
     local_74 = *(int *)(param_1 + 0x634) + *(int *)(param_1 + 0x63c) <<
                (0x10U - *(char *)(iVar4 + 8) & 0x1f);
     local_70 = *(int *)(param_1 + 0x638) << (0x10U - *(char *)(iVar4 + 9) & 0x1f);
-    FUN_004ac2f0(local_94,local_ec,local_c0,DAT_005a680c,iVar4,DAT_004e4a28);
+    Gfx_DrawTriangleFlags(local_94,local_ec,local_c0,DAT_005a680c,iVar4,DAT_004e4a28);
   }
   return;
 }

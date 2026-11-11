@@ -13,10 +13,14 @@ per-client record, 0x208, `g_SrvConns`); `PowerBlock`; `WeaponDef`; `Desc` (clas
 | Seg | Range | Notes |
 |---|---|---|
 | `.text` | 0x401000–0x4c9000 | main code |
-| `_TEXT` | 0x4c9000–0x4e3000 | code |
-| `_text` | 0x4e3000–0x52e000 | code |
+| `_TEXT` | 0x4c9000–0x4e3000 | hand-written asm: software mixer (`Snd_*`, self-modifying), `Cpu_Detect`, vector helpers |
+| `_text` | 0x4e3000–0x52e000 | hand-written asm: software renderer (`Sw_*` rasterizer, `Pal_*` tables, `Font_*` text, `Pix_*` pixel formats, MMX spans ~0x502000–0x506000), `Rot_*`/`Math_SinCos3`, `SortPairs_*` |
 | `.rdata` | 0x52e000–0x532000 | const/vtables |
 | `.data` | 0x532000–0x6caee0 | globals, mode tables, strings |
+
+Asm calling convention: C reaches these through `pusha`/`popa` bridges named `call_X` (cdecl, stack args) that load
+registers for the asm routine `X` (prototypes use `type name@REG`). `Gfx_*` (0x4ab000–0x4ae000) picks the software routine
+or the hardware driver's function pointers (0x6044xx/0x6045xx).
 
 ## Entry / lifecycle (walk target for Phase 1)
 | Addr | Role |

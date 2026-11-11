@@ -8,9 +8,9 @@ void FUN_00468c50(void)
   float local_64;
   float local_60;
   longlong local_5c;
-  undefined1 local_54 [12];
-  undefined1 local_48 [12];
-  undefined1 local_3c [12];
+  vec3 local_54;
+  vec3 local_48;
+  vec3 local_3c;
   float local_30;
   float local_2c;
   float local_28;
@@ -25,19 +25,19 @@ void FUN_00468c50(void)
   int local_4;
   
   FUN_00452180(2);
-  call_copy_mathresult_to_global(&DAT_005b9628);
-  FUN_0052dc22(&DAT_0054a6b0,local_54);
-  FUN_0052dccb(local_54,local_54);
-  FUN_0052dc76(local_54,local_54);
-  FUN_0052dc22(&DAT_0054a6c0,local_48);
-  FUN_0052dccb(local_48,local_48);
-  FUN_0052dc76(local_48,local_48);
-  FUN_0052dc22(&DAT_0054a6d0,local_3c);
-  FUN_0052dccb(local_3c,local_3c);
-  FUN_0052dc76(local_3c,local_3c);
-  FUN_0048e410(local_54,&local_18);
-  FUN_0048e410(local_48,&local_30);
-  FUN_0048e410(local_3c,&local_24);
+  call_Rot_SetSinCos((float *)&DAT_005b9628);
+  call_Rot_AboutY((vec3 *)&DAT_0054a6b0,&local_54);
+  call_Rot_AboutX(&local_54,&local_54);
+  call_Rot_AboutZ(&local_54,&local_54);
+  call_Rot_AboutY((vec3 *)&DAT_0054a6c0,&local_48);
+  call_Rot_AboutX(&local_48,&local_48);
+  call_Rot_AboutZ(&local_48,&local_48);
+  call_Rot_AboutY((vec3 *)&DAT_0054a6d0,&local_3c);
+  call_Rot_AboutX(&local_3c,&local_3c);
+  call_Rot_AboutZ(&local_3c,&local_3c);
+  FUN_0048e410(&local_54,&local_18);
+  FUN_0048e410(&local_48,&local_30);
+  FUN_0048e410(&local_3c,&local_24);
   FUN_004abca0(0x8000000);
   iVar3 = 2000;
   pfVar2 = DAT_0058975c;
@@ -54,7 +54,7 @@ void FUN_00468c50(void)
       FUN_004b2e00(&local_c,&local_64);
       uVar1 = (uint)pfVar2[7] >> 7;
       FUN_004abcc0(0x1f,uVar1,uVar1,uVar1);
-      FUN_004abf90((int)local_64 >> 7,(int)local_60 >> 7,(int)local_64 >> 7,(int)local_60 >> 7,
+      Gfx_DrawLine((int)local_64 >> 7,(int)local_60 >> 7,(int)local_64 >> 7,(int)local_60 >> 7,
                    DAT_005a633f);
       pfVar2[3] = local_64;
       pfVar2[4] = local_60;

@@ -34,7 +34,7 @@ void FUN_00433130(char *param_1)
   FUN_004b1c80(0xffff,0xffff);
   FUN_004ad4a0(0x10000);
   FUN_004aecf0();
-  FUN_004e53d6(DAT_0060398c);
+  Sw_SelectRasterizer(DAT_0060398c);
   FUN_004a6de0();
   FUN_0049f7b0(0x100);
   FUN_0049f7d0(FUN_00433000);

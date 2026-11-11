@@ -14,7 +14,7 @@ void FUN_00480880(void)
   }
   if (DAT_00563d74 == &DAT_00556368) {
     if (DAT_00564ae4 == 0) {
-      FUN_004e4b29();
+      Sw_ClearZBuffer();
     }
     FUN_00482440();
     return;

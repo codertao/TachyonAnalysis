@@ -17,13 +17,13 @@ void FUN_00452260(void)
   DAT_005a62dc = 0;
   DAT_005a62e0 = DAT_005a67a8;
   DAT_005a62e4 = DAT_005a67c4;
-  FUN_004acfc0();
+  Gfx_FillViewport();
   DAT_005a62e4 = DAT_005a67ac - DAT_005a67cc;
   DAT_005a62dc = DAT_005a67cc;
   DAT_005a62e8 = (uint)DAT_005a632a;
   DAT_005a62d8 = 0;
   DAT_005a62e0 = DAT_005a67a8;
-  FUN_004acfc0();
+  Gfx_FillViewport();
   if (DAT_005b9084 != 0) {
     FUN_004ad0c0(*(undefined4 *)(DAT_005b9084 + 0xe8),*(undefined4 *)(DAT_005b9084 + 0xec),
                  *(undefined4 *)(DAT_005b9084 + 0xf0));

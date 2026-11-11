@@ -38,7 +38,7 @@ void init_flight_start(void)
   FUN_0042e910();
   FUN_0041c3f0();
   FUN_00424fd0();
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   DAT_005a6820 = 1;
   FUN_0049e7d0(0);
   FUN_004524a0(0xf1);

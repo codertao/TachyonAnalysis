@@ -12,7 +12,7 @@ int Coll_SegmentVsList(int param_1,int *param_2,int *param_3,undefined4 param_4)
   _DAT_005b3198 = param_2[1] - param_3[1];
   _DAT_005b319c = param_2[2] - param_3[2];
   DAT_005b31a0 = call_approx_vec_length(&DAT_005b3194);
-  FUN_004e04ba(&DAT_005b3194);
+  call_Vec_Normalize((vec3 *)&DAT_005b3194);
   do {
     if (param_1 == 0) {
       return 0;

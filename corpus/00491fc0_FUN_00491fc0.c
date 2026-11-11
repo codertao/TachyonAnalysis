@@ -23,7 +23,7 @@ void FUN_00491fc0(void)
   uVar7 = (uint)((longlong)DAT_005a67e4 * 0x22b) >> 0x10 |
           (int)((ulonglong)((longlong)DAT_005a67e4 * 0x22b) >> 0x20) << 0x10;
   FUN_004abcc0(0x1f,0xc0,0xc0,0xc0);
-  FUN_004abf90(uVar5 + 1,iVar6,uVar7 - 1,iVar6,DAT_005a633f);
+  Gfx_DrawLine(uVar5 + 1,iVar6,uVar7 - 1,iVar6,DAT_005a633f);
   DAT_005a62d0 = 0;
   DAT_005a62d4 = 0;
   DAT_005a62d8 = uVar5 + (((uVar7 - uVar3) - uVar5) * GLBL_spacesav[0x42] >> 8);

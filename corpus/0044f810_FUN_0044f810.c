@@ -40,7 +40,7 @@ int FUN_0044f810(char *param_1,undefined4 param_2)
   FUN_004ada90(puVar2,1);
   FUN_004a2e80();
   if (*piVar4 != 0) {
-    FUN_004a2dc0(*piVar4,DAT_00603104 * _DAT_00603100);
+    Pal_RemapToGamePalette(*piVar4,DAT_00603104 * _DAT_00603100);
   }
   uVar5 = 0xffffffff;
   do {

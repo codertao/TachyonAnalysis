@@ -8,7 +8,7 @@ void FUN_004790e0(void)
   FUN_00439f70(&GLBL_UI_ELEM_LIST,s_ImageJobsBg_0054e950);
   FUN_004788b0();
   FUN_00440c80();
-  FUN_004e4b65(0);
+  Sw_EnableZBuffer(0);
   FUN_0048b6f0(0);
   if (((DAT_00563644 != 0) && (iVar1 = *(int *)(DAT_00563644 + 0x180), iVar1 != 0)) &&
      (*(int *)(iVar1 + 200) != 0)) {

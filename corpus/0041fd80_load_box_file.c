@@ -30,7 +30,7 @@ int load_box_file(int param_1,int param_2)
   }
   mark_alloc_memory_with_flags(iVar4,uVar3);
   FUN_0049c840(*piVar1,s_DLGBOX_PCX_0053592c);
-  FUN_004e6f6d(*piVar1,&DAT_00602e00,DAT_00603108);
+  Image_ToLuminance((byte *)*piVar1,(byte *)&DAT_00602e00,DAT_00603108);
   iVar4 = param_1;
   *(uint *)(iVar2 + 0x138) = _DAT_00603100;
   *(uint *)(iVar2 + 0x13c) = DAT_00603104;

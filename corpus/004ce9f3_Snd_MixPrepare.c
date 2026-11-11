@@ -3,7 +3,7 @@
 /* per call: compute pitch-ramp deltas (target-current)>>2 and patch each voice's volume snippets
    (g_SndVolSnippets + exponent shl/sar) into Snd_MixBlock */
 
-void Snd_MixPrepare(void)
+void __cdecl Snd_MixPrepare(void)
 
 {
   byte bVar1;

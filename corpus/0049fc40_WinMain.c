@@ -28,7 +28,7 @@ void WinMain(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4
     *puVar3 = 0;
     puVar3 = puVar3 + 1;
   }
-  FUN_004dff4c(&DAT_00603984,&DAT_00603988,&DAT_0060398c);
+  call_Cpu_Detect((int *)&DAT_00603984,(int *)&DAT_00603988,&DAT_0060398c);
   DAT_00603950 = 0xf00000;
   DAT_00603954 = 0x100000;
   DAT_00603958 = 0x100000;

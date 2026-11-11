@@ -44,7 +44,7 @@ void FUN_0047f3b0(void)
              *(undefined4 *)(iVar1 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                *(undefined4 *)(iVar1 + 0x48));
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   FUN_0047f7f0();
   return;
 }

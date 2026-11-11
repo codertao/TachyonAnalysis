@@ -420,10 +420,10 @@
 0x4c82b6	to_uppercase
 0x4e0417	approx_vector_len
 0x4e0462	call_approx_vec_length
-0x52d9cd	math_todo_with_rotation
-0x52db6a	call_math_todo_with_rotation
-0x52db9a	copy_mathresult_to_global
-0x52dbcd	call_copy_mathresult_to_global
+0x52d9cd	Math_SinCos3	(out@ESI float[6], a0@EAX, a1@EBX, a2@ECX): sin/cos of three 25-bit angles, 512-entry table 0x52cbe4 with linear interp (was math_todo_with_rotation)
+0x52db6a	call_Math_SinCos3	(was call_math_todo_with_rotation)
+0x52db9a	Rot_SetSinCos	(sc@ESI) copy 6 floats to the current-rotation sin/cos globals 0x668f98 (was copy_mathresult_to_global)
+0x52dbcd	call_Rot_SetSinCos	(was call_copy_mathresult_to_global)
 
 # --- back-ported from Ghidra GUI 2026-11-08: data labels ---
 0x52cde4	g_some_trig_table
@@ -1434,3 +1434,107 @@
 0x4951b0	Torp_ThinkHunter	Hunter Torpedo: Proj_ThinkMissile, plus re-acquire nearest hostile within 250 units every 8 frames when unlocked
 0x495250	Torp_ThinkProximity	Blast Torpedo: unguided, after 50 frames proximity fuse 43.75 units (every 8 frames) -> Proj_OnHitSplash
 0x495310	Torp_ThinkAdvBlast	Adv Blast Torpedo: homes without the 45-degree lock-loss, decoys still apply; within 6.25 units or expiry -> splash
+# ---- hand-written asm (software renderer / mixer) and their pusha/popa C bridges. Convention: call_X = cdecl bridge, X = register-arg asm routine.
+# math / vectors
+0x4e047c	Vec_Normalize	(v@EAX) exact: divide by approx_vector_len, 16.16
+0x4e04ba	call_Vec_Normalize
+0x4e04d0	Vec_NormalizeFast	(v@EAX) float, reciprocal-sqrt approximation from exponent halving + table 0x4dffb0
+0x4e054e	call_Vec_NormalizeFast
+0x4e05a4	Vec_BasisToAngles	(up@ESI, fwd@EDI, outAng@EBP) Euler angles (yaw from fwd x/z, then pitch, then roll from up) via Math_Atan2Core; rotates the input vectors in place
+0x4e071b	call_Vec_BasisToAngles
+0x52d8ed	Vec_ProjectToScreen	(v@ESI, outXY@EDI) perspective: z clamped to near 0x666ae4, x*focal/z + cx, -y*focal/z + cy (focal 0x604470, centre 0x604474/78)
+0x52d92f	call_Vec_ProjectToScreen
+0x52dbe0	Rot_AboutY	(in@ESI, out@EDI) rotate by angle 0 of the current rotation (0x668f98/9c)
+0x52dc22	call_Rot_AboutY
+0x52dc88	Rot_AboutX	(in@ESI, out@EDI) rotate by angle 1 (0x668fa0/a4)
+0x52dccb	call_Rot_AboutX
+0x52dc34	Rot_AboutZ	(in@ESI, out@EDI) rotate by angle 2 (0x668fa8/ac)
+0x52dc76	call_Rot_AboutZ
+0x52ddf3	SortPairs_Desc	Shell sort of {value,key} pairs at 0x6240e8 (count 0x62c0e8), largest key first: back-to-front draw list (Dcb_BuildVisibleList)
+0x52de6f	call_SortPairs_Desc
+0x52de7b	SortPairs_Asc	same array, smallest key first (nearest-first lists built by 0x45f3f0)
+0x52def7	call_SortPairs_Asc
+0x4dfee2	Cpu_Detect	returns EAX = 0x386/0x486/0x586 (EFLAGS AC / ID bit tests), ECX = FPU present (fnstsw), EBX = MMX (CPUID.1 EDX bit 23)
+0x4dff4c	call_Cpu_Detect	(int *cpuType, int *hasFpu, int *hasMmx) -> 0x603984/88/8c from WinMain
+# palette tables (8-bit)
+0x4e3ef5	Pal_BuildShadeTableToColor	(pal, out) lighting ramp: lower half black->full, upper half full->colour 0x603480 (no callers found)
+0x4e432a	Pal_BuildShadeTableAdditive	(pal, out) like Pal_BuildShadeTableToColor, upper half brightens by saturating add (no callers found)
+0x4e459c	Pal_BuildTintTable	(pal, out, rgb) ramp of each colour towards rgb (no callers found)
+0x4e4202	Pal_BuildBlendTable	(out) 256x256 50/50 blend table over palette 0x603180 (no callers found)
+0x4e4168	Pal_BuildRemapTable	(dstPal@EDI, srcPal@ESI) nearest-colour remap into 0x603484 (cached when palettes match)
+0x4e42db	Pal_RemapPixels	(dstPal, srcPal, pixels, count) Pal_BuildRemapTable then remap pixels in place
+0x4e4810	Pal_SetMatchMode	(mode) select nearest-colour matcher 0x4e3053: 1 0x4e3c94, 2 0x4e3dbb, 3 0x4e3e58, else 0x4e3d34
+0x4a2dc0	Pal_RemapToGamePalette	(pixels, count) Pal_RemapPixels(0x603180, 0x602e00, ...): texture load
+0x4a2e60	Gfx_SetPalMatchMode
+# software rasterizer state
+0x4e4b56	Sw_SetZBuffer	(buf) -> 0x4e4b08; triangle setup copies it (probably the depth buffer)
+0x4e4b65	Sw_EnableZBuffer	(on) 1 in flight, 0 in menus
+0x4e4b29	Sw_ClearZBuffer	if enabled: zero width*height dwords
+0x4e4b74	Sw_SetRasterMode	(mode) span-routine set 0x4e4860: 1 0x521fd0, 2 0x523140 (+flag), 3 0x505180 (16 bpp), 5 0x502350 (32 bpp, +flag); Sw_ResetRasterState
+0x4e53c0	Sw_ResetRasterState	zero rasterizer state block 0x4e49a0..0x4e4a28
+0x4e53d6	Sw_SelectRasterizer	(alt) 32 bpp -> mode 5, 16 bpp -> 3, else alt ? 2 : 1
+0x4e5424	Sw_SetFogColor	(r, g, b) -> 0x502914 (0x00RRGGBB), read by the MMX span code; reached from Gfx_SetClearColor (BDF fog RGB)
+0x4e5454	Sw_SetColorReg2	(r, g, b) -> 0x502918 (no callers or readers found)
+0x4ec020	Sw_SetTexture	(tex, arg) tex +0 pixels, +8 log2 width, +9 log2 height
+# software drawing
+0x4e4bf0	Sw_DrawTriangle	(v0@EAX, v1@EBX, v2@ECX, surface@EDI, color@ESI) flags in 0x4e4a28
+0x4e4ecf	call_Sw_DrawTriangle
+0x4e4eea	call_Sw_DrawTriangleFlags	sets render flags 0x4e4a28 from arg 6 first
+0x5020a4	Sw_DrawPolyBatch	(verts, n, verts2, n2, flags) float vertices (x,y,z, colour +0x10/+0x14, u/v +0x18/+0x1c); flag nibbles at 0x4ec090.. (meaning of args 2-4 unconfirmed)
+0x4e9010	Sw_DrawLine	(x0@EAX, y0@EBX, x1@ECX, y1@EDX) colour 0x5a6308, clip rect 0x604460..6c; plotter by 0x5a6314/0x5a6318
+0x4e9334	call_Sw_DrawLine	(x0, y0, x1, y1, color)
+0x4e9aa1	Sw_DrawLineStyled	(x0@EAX, y0@EBX, x1@ECX, y1@EDX, pattern@ESI, patLen@EDI, flags@EBP) bit1 dashed, bit0 selects plotter
+0x4e9e28	call_Sw_DrawLineStyled
+0x4ebc01	Sw_DrawCircle	(cx@EAX, cy@EBX, r@ECX, colorIdx@DL) midpoint circle, per-bpp plotters
+0x4ebccb	call_Sw_DrawCircle
+0x4ea8ee	Sw_FillRect8	(color@EAX) fill clip rect 0x5a62d8.. (8 bpp)
+0x4ea969	Sw_FillRect16	(color@EAX) 16 bpp
+0x4eae51	Sw_FillViewport	fill with colour 0x5a62e8 via Sw_FillRect8/16
+0x4e9f7a	Sw_Blit	copy source surface 0x5a62c0 to the target, bpp 0x5a62fc
+0x4eae0f	call_Sw_Blit
+0x4e7c70	Pix_InitFormat	derive shifts/sizes from DirectDraw RGB masks 0x602338..
+0x4e7b40	call_Pix_InitFormat
+0x4e7e40	Pix_PaletteToNative	(pal@ESI, out@EDI) palette -> native 16/32-bit pixels
+0x4e7c30	call_Pix_PaletteToNative
+0x4e81dd	Pix_BuildShadeTable	(pal@ESI, out@EDI) 16 brightness levels x 256 colours in native pixels
+0x4e7c50	call_Pix_BuildShadeTable
+# gfx front-end (C): software path above, hardware path through driver pointers 0x6044xx/0x6045xx
+0x4ac210	Gfx_DrawTriangle
+0x4ac2f0	Gfx_DrawTriangleFlags
+0x4abd30	Gfx_SetClearColor	(r, g, b) BDF fog RGB; software: Sw_SetFogColor
+0x4abf90	Gfx_DrawLine
+0x4ac160	Gfx_DrawPoint
+0x4ace30	Gfx_DrawCircle
+0x4acfc0	Gfx_FillViewport
+0x4ad210	Gfx_SetTexture
+0x4ad1c0	Gfx_DrawPolyBatch
+# fonts / text
+0x4e6234	Font_Load	(src@ESI, font@EDI, flags@CL) free old bitmap, load (0x4a2eb0), dims from 0x603100; flag 2 -> Image_ToLuminance
+0x4e62ba	call_Font_Load
+0x4e62cf	Font_LoadTagged	Font_Load then tag both buffers with mark_alloc_memory_with_flags
+0x4e630b	Font_SetPalette16	(pal@ESI) via Pix_PaletteToNative into 0x4e56bc
+0x4e6316	Font_SetPalette32	(pal@ESI) RGB -> BGRA into 0x4e5abc
+0x4e6344	call_Font_SetPalette	(pal) per bpp
+0x4e67df	Font_DrawString	(text@ESI, font@EDI, x@EAX, y@EBX, color@CL, style@CH) unclipped; "~N" colour codes
+0x4e6890	call_Font_DrawString
+0x4e68cf	Font_DrawStringShadow	draw at (x+1, y+1) in colour 0x5a632a, then normally
+0x4e6bf9	Font_DrawStringClipped	(text@ESI, font@EDI, x@EAX, y@EBX, color@CL, style@CH, flags@EDX) clipped to 0x604460..6c
+0x4e68ae	call_Font_DrawStringClipped
+0x4e690a	Font_DrawStringClippedShadow
+0x4e6e39	Font_LayoutText	(text@ESI, font@EDI, layout@EBP) word-wrap into a line table; layout +6 = line count
+0x4e6f58	call_Font_LayoutText
+0x4e694b	Font_DrawLayout	(layout@EBP, font@EDI, color@CL, style@CH, firstLine@EBX, maxLines@EDX) each line via Font_DrawString
+0x4e6b11	call_Font_DrawLayout
+0x4e6a2c	Font_DrawLayoutClipped	same, lines via Font_DrawStringClipped
+0x4e6b33	call_Font_DrawLayoutClipped
+0x4e7194	Font_SetColorRamp	(fgR, fgG, fgB, bgR, bgG, bgB) anti-alias ramp; callees read these through the bridge's EBP frame
+0x4e6fca	Font_BuildColorRamp16	reads Font_SetColorRamp's stack args via its EBP
+0x4e70db	Font_BuildColorRampTrue	same, non-16-bpp path
+0x4e6f6d	Image_ToLuminance	(pixels, pal, count) index -> (2R+5G+B)/8, indices < 8 -> 0
+0x4eae8d	Image_ToLuminance2	duplicate of Image_ToLuminance (no callers found)
+# sound
+0x4cb481	Snd_SetStereo	(stereo) build pan table 0x4df8d0 from 0x4dfad0: stereo copies L/R pairs, mono uses |value|
+0x4dee48	Snd_SetVoiceVolPan	(voice@EDI, pan@EBX, vol@ECX, arg@EDX) -1 keeps current; pan via table 0x4df8d0, master volume 0x601e20
+0x4def47	Snd_RefreshAllVoices	re-apply vol/pan to all 24 voices, 24 aux and 24 queued records
+0x4dfed0	Asm_PostMainThreadCallback	(value@EAX) PostMessage(main window, WM_USER, 0x49ce90, value) so asm can run C code on the UI thread
+0x49cee0	Win_PostCallback	PostMessage(hwnd, 0x400, fn, arg)

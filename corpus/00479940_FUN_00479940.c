@@ -159,7 +159,7 @@ LAB_00479e1e:
              *(undefined4 *)(iVar2 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar2 + 0x40),*(undefined4 *)(iVar2 + 0x44),
                *(undefined4 *)(iVar2 + 0x48));
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   FUN_0047a250();
   set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAJobCompImage_0054e8b0,0x20000);
   return;

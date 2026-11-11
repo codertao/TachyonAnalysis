@@ -49,7 +49,7 @@ void FUN_00483d70(void)
   FUN_004b1940(&local_c,&local_18);
   FUN_004839b0();
   FUN_004835c0();
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   FUN_00482d00();
   FUN_00482a00(0);
   Cfg_ClearScratch();

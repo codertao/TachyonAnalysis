@@ -10,7 +10,7 @@ void FUN_004861e0(void)
     FUN_00471060();
   }
   FUN_004ad380(0);
-  FUN_004e4b65(0);
+  Sw_EnableZBuffer(0);
   return;
 }
 

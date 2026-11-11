@@ -7,7 +7,7 @@ void FUN_00458660(void)
   undefined4 local_8;
   
   FUN_00445720();
-  FUN_004e53d6(DAT_0060398c);
+  Sw_SelectRasterizer(DAT_0060398c);
   FUN_004aecf0();
   DAT_005b2b9c = GLBL_spacesav[0x35] * 0x2000;
   DAT_005a652c = &LAB_00458560;

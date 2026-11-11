@@ -8,13 +8,12 @@ void FUN_00410910(float param_1,vec3 *param_2)
   uint uVar4;
   int iVar5;
   int local_20;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   iVar3 = (int)param_1;
-  call_math_todo_with_rotation
-            (local_18,*(undefined4 *)((int)param_1 + 0x4c),*(undefined4 *)((int)param_1 + 0x50),
-             *(undefined4 *)((int)param_1 + 0x54));
-  call_copy_mathresult_to_global(local_18);
+  call_Math_SinCos3(local_18,*(int *)((int)param_1 + 0x4c),*(int *)((int)param_1 + 0x50),
+                    *(int *)((int)param_1 + 0x54));
+  call_Rot_SetSinCos(local_18);
   if (*(int *)((int)param_1 + 0xc4) == 0) {
     iVar5 = *(int *)(*(int *)((int)param_1 + 0x58) + 0x48);
   }

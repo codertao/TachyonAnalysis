@@ -16,7 +16,7 @@ void Bdf_SetNeutralLighting(int param_1)
     DAT_005b9084 = 0;
     FUN_004b23a0(1,DAT_005b2b9c,DAT_005b2b9c >> 1);
     FUN_004ad0c0(0,0,0);
-    FUN_004abd30(0,0,0);
+    Gfx_SetClearColor(0,0,0);
     FUN_004af290(0x80);
     DAT_00668f8c = 0x10000;
     FUN_004af220(200,0xff,0xff);

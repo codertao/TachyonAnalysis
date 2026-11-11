@@ -2,30 +2,28 @@
 void FUN_0040c770(int param_1)
 
 {
+  vec3 *out;
   int iVar1;
-  int iVar2;
-  undefined4 local_30;
-  undefined4 local_2c;
-  undefined4 local_28;
+  vec3 local_30;
   vec3 local_24;
   undefined1 local_18 [24];
   
-  iVar2 = *(int *)(param_1 + 200);
+  iVar1 = *(int *)(param_1 + 200);
   local_24.x = 0;
   local_24.y = 0;
   local_24.z = 0;
-  local_30 = 0;
-  local_2c = 0x2710000;
-  local_28 = 0x9c40000;
+  local_30.x = 0;
+  local_30.y = 0x2710000;
+  local_30.z = 0x9c40000;
   local_24.x = global_bad_shift_rng();
   local_24.x = local_24.x & 0x1ffffff;
   FUN_004b1bb0(local_18,&local_24);
-  iVar1 = iVar2 + 0x34;
-  FUN_0052dc22(&local_30,iVar1);
-  local_30 = 0;
-  local_2c = 0;
-  local_28 = 0;
-  Vec_DirAngles(iVar1,&local_30,iVar2 + 0x4c);
+  out = (vec3 *)(iVar1 + 0x34);
+  call_Rot_AboutY(&local_30,out);
+  local_30.x = 0;
+  local_30.y = 0;
+  local_30.z = 0;
+  Vec_DirAngles(out,&local_30,iVar1 + 0x4c);
   return;
 }
 

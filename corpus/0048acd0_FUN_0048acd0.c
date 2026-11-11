@@ -20,7 +20,7 @@ int FUN_0048acd0(int param_1)
   FUN_004b1bb0(local_34,(vec3 *)&DAT_0056c2d4);
   some_rotate_by_global(&local_1c,&local_1c);
   FUN_004b1bb0(local_34,(vec3 *)(param_1 + 0x4c));
-  FUN_004e054e(&local_10);
+  call_Vec_NormalizeFast(&local_10);
   some_rotate_by_global(&local_10,&local_10);
   iVar1 = FUN_004e058e(&local_1c,&local_10);
   uVar2 = (uint)((longlong)iVar1 * (longlong)DAT_0056c36c) >> 0x10 |

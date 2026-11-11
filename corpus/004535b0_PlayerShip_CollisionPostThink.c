@@ -13,7 +13,7 @@ undefined4 PlayerShip_CollisionPostThink(int param_1)
   int iStack_2c;
   int iStack_28;
   undefined1 auStack_24 [12];
-  undefined1 auStack_18 [24];
+  float afStack_18 [6];
   
   vStack_3c.x = 0;
   vStack_3c.y = 0;
@@ -24,10 +24,9 @@ undefined4 PlayerShip_CollisionPostThink(int param_1)
     *(undefined4 *)(param_1 + 0xd8) = *(undefined4 *)(param_1 + 0x38);
     *(undefined4 *)(param_1 + 0xdc) = *(undefined4 *)(param_1 + 0x3c);
     vStack_3c.z = *(int *)(*(int *)(DAT_005b1f0c + 0x290) + 0x30) + 0x2000;
-    call_math_todo_with_rotation
-              (auStack_18,*(undefined4 *)(param_1 + 0x4c),*(undefined4 *)(param_1 + 0x50),
-               *(undefined4 *)(param_1 + 0x54));
-    call_copy_mathresult_to_global(auStack_18);
+    call_Math_SinCos3(afStack_18,*(int *)(param_1 + 0x4c),*(int *)(param_1 + 0x50),
+                      *(int *)(param_1 + 0x54));
+    call_Rot_SetSinCos(afStack_18);
     some_rotate_by_global(&vStack_3c,&vStack_3c);
     iStack_30 = *piVar1 + vStack_3c.x;
     iStack_2c = *(int *)(param_1 + 0x38) + vStack_3c.y;
@@ -37,7 +36,7 @@ undefined4 PlayerShip_CollisionPostThink(int param_1)
       vStack_3c.x = 0;
       vStack_3c.y = 0;
       vStack_3c.z = -(*(int *)(*(int *)(DAT_005b1f0c + 0x290) + 0x30) >> 2);
-      call_copy_mathresult_to_global(auStack_18);
+      call_Rot_SetSinCos(afStack_18);
       some_rotate_by_global(&vStack_3c,&vStack_3c);
       iStack_30 = *piVar1 + vStack_3c.x;
       iStack_2c = *(int *)(param_1 + 0x38) + vStack_3c.y;
@@ -47,7 +46,7 @@ undefined4 PlayerShip_CollisionPostThink(int param_1)
         vStack_3c.x = -(*(int *)(*(int *)(DAT_005b1f0c + 0x290) + 0x30) >> 2);
         vStack_3c.y = 0;
         vStack_3c.z = 0;
-        call_copy_mathresult_to_global(auStack_18);
+        call_Rot_SetSinCos(afStack_18);
         some_rotate_by_global(&vStack_3c,&vStack_3c);
         iStack_30 = *piVar1 + vStack_3c.x;
         iStack_2c = *(int *)(param_1 + 0x38) + vStack_3c.y;
@@ -57,7 +56,7 @@ undefined4 PlayerShip_CollisionPostThink(int param_1)
           vStack_3c.x = 0;
           vStack_3c.y = *(int *)(*(int *)(DAT_005b1f0c + 0x290) + 0x30) >> 2;
           vStack_3c.z = 0;
-          call_copy_mathresult_to_global(auStack_18);
+          call_Rot_SetSinCos(afStack_18);
           some_rotate_by_global(&vStack_3c,&vStack_3c);
           iStack_30 = *piVar1 + vStack_3c.x;
           iStack_2c = *(int *)(param_1 + 0x38) + vStack_3c.y;
@@ -67,7 +66,7 @@ undefined4 PlayerShip_CollisionPostThink(int param_1)
             vStack_3c.x = 0;
             vStack_3c.y = -(*(int *)(*(int *)(DAT_005b1f0c + 0x290) + 0x30) >> 2);
             vStack_3c.z = 0;
-            call_copy_mathresult_to_global(auStack_18);
+            call_Rot_SetSinCos(afStack_18);
             some_rotate_by_global(&vStack_3c,&vStack_3c);
             iStack_30 = *piVar1 + vStack_3c.x;
             iStack_2c = *(int *)(param_1 + 0x38) + vStack_3c.y;
@@ -77,7 +76,7 @@ undefined4 PlayerShip_CollisionPostThink(int param_1)
               vStack_3c.x = *(uint *)(*(int *)(DAT_005b1f0c + 0x290) + 0x30) >> 2;
               vStack_3c.y = 0;
               vStack_3c.z = 0;
-              call_copy_mathresult_to_global(auStack_18);
+              call_Rot_SetSinCos(afStack_18);
               some_rotate_by_global(&vStack_3c,&vStack_3c);
               iStack_30 = *piVar1 + vStack_3c.x;
               iStack_2c = *(int *)(param_1 + 0x38) + vStack_3c.y;

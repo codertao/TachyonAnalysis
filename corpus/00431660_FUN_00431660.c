@@ -1,18 +1,18 @@
 
-void FUN_00431660(int *param_1)
+void FUN_00431660(undefined4 *param_1)
 
 {
-  int *piVar1;
-  int iVar2;
+  undefined4 *puVar1;
+  char *src;
   
-  iVar2 = *param_1;
-  while (iVar2 != 0) {
-    FUN_004e62cf(iVar2,param_1[1],param_1[2],0xcccc);
-    piVar1 = param_1 + 3;
+  src = (char *)*param_1;
+  while (src != (char *)0x0) {
+    Font_LoadTagged(src,(void *)param_1[1],param_1[2],0xcccc);
+    puVar1 = param_1 + 3;
     param_1 = param_1 + 3;
-    iVar2 = *piVar1;
+    src = (char *)*puVar1;
   }
-  FUN_004e7194(0,0xc9,0xff,0,0,0);
+  Font_SetColorRamp(0,0xc9,0xff,0,0,0);
   return;
 }
 

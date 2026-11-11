@@ -9,7 +9,7 @@ void FUN_004af070(undefined4 param_1,undefined4 param_2,undefined4 param_3,undef
   DAT_005a62e4 = param_4;
   DAT_005a62d0 = param_5;
   DAT_005a62d4 = param_6;
-  FUN_004eae0f();
+  call_Sw_Blit();
   return;
 }
 

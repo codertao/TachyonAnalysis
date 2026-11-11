@@ -4,12 +4,11 @@
    frames). Self-modifying: patches per-voice step/sample-end immediates and volume-multiply
    snippets into its own unrolled loop */
 
-undefined8 __fastcall Snd_MixBlock(undefined4 param_1,undefined4 param_2)
+void __cdecl Snd_MixBlock(void)
 
 {
   bool bVar1;
   char cVar2;
-  undefined4 in_EAX;
   uint uVar3;
   uint uVar4;
   char *pcVar5;
@@ -76,7 +75,7 @@ undefined8 __fastcall Snd_MixBlock(undefined4 param_1,undefined4 param_2)
       *puVar59 = 0;
       puVar59 = puVar59 + 1;
     }
-    return CONCAT44(param_2,in_EAX);
+    return;
   }
   _DAT_004cc6fc = DAT_005f9d80;
   DAT_004cc6f4 = DAT_005f9d80 + 4U >> 2;
@@ -89,7 +88,9 @@ undefined8 __fastcall Snd_MixBlock(undefined4 param_1,undefined4 param_2)
     uVar3 = DAT_004cc6f4;
     if ((iVar54 < (int)DAT_004cc6f4) &&
        (uVar3 = DAT_004cc6f4 + _DAT_004cc6fc,
-       uVar3 == 0 || SCARRY4(DAT_004cc6f4,_DAT_004cc6fc) != (int)uVar3 < 0)) break;
+       uVar3 == 0 || SCARRY4(DAT_004cc6f4,_DAT_004cc6fc) != (int)uVar3 < 0)) {
+      return;
+    }
     do {
       _DAT_004cc6f0 = uVar3;
       uVar3 = DAT_004cabae + _DAT_004cabaa;
@@ -1359,6 +1360,6 @@ undefined8 __fastcall Snd_MixBlock(undefined4 param_1,undefined4 param_2)
     iRam004ccd50 = DAT_004c998a;
     iRam004ccd90 = DAT_004c99ca;
   } while (_DAT_004cc6f8 != 0 && 0 < iVar54);
-  return CONCAT44(param_2,in_EAX);
+  return;
 }
 

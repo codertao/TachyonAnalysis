@@ -80,7 +80,7 @@ LAB_00478d35:
              *(undefined4 *)(iVar1 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                *(undefined4 *)(iVar1 + 0x48));
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   FUN_00468f50(g_NextMode);
   set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAJobImage_0054e8c0,0x20000);
   return;

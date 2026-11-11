@@ -16,10 +16,9 @@ void FUN_00455441(int param_1,int param_2,int param_3,int param_4,int param_5,in
     *(int *)(unaff_ESI + 0x3c) = *(int *)(unaff_ESI + 0x3c) + *(int *)(unaff_ESI + 0xa8);
     uVar1 = global_bad_shift_rng();
     if ((uVar1 & 0x7f) <= (uint)(*(int *)(unaff_ESI + 0xf8) * 2)) {
-      call_math_todo_with_rotation
-                (&stack0x0000001c,*(undefined4 *)(unaff_ESI + 0x4c),
-                 *(undefined4 *)(unaff_ESI + 0x50),*(undefined4 *)(unaff_ESI + 0x54));
-      call_copy_mathresult_to_global(&stack0x0000001c);
+      call_Math_SinCos3((float *)&stack0x0000001c,*(int *)(unaff_ESI + 0x4c),
+                        *(int *)(unaff_ESI + 0x50),*(int *)(unaff_ESI + 0x54));
+      call_Rot_SetSinCos((float *)&stack0x0000001c);
       some_rotate_by_global((vec3 *)&param_1,(vec3 *)&param_1);
       param_4 = param_1 + *(int *)(unaff_ESI + 0x34);
       param_5 = param_2 + *(int *)(unaff_ESI + 0x38);

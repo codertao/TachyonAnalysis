@@ -1,10 +1,10 @@
 
-void FUN_0040f5b0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+void FUN_0040f5b0(int param_1,int param_2,int param_3,int param_4)
 
 {
   int iVar1;
   vec3 local_24;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   local_24.x = 0;
   local_24.y = 0;
@@ -21,13 +21,11 @@ void FUN_0040f5b0(int param_1,undefined4 param_2,undefined4 param_3,undefined4 p
   DAT_005b95ec = param_3;
   DAT_005b95f0 = param_4;
   local_24.z = param_1;
-  call_math_todo_with_rotation(local_18,param_2,param_3,param_4);
-  call_copy_mathresult_to_global(local_18);
+  call_Math_SinCos3(local_18,param_2,param_3,param_4);
+  call_Rot_SetSinCos(local_18);
   some_rotate_by_global(&local_24,&local_24);
-  call_math_todo_with_rotation
-            (local_18,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
-             *(undefined4 *)(iVar1 + 0x54));
-  call_copy_mathresult_to_global(local_18);
+  call_Math_SinCos3(local_18,*(int *)(iVar1 + 0x4c),*(int *)(iVar1 + 0x50),*(int *)(iVar1 + 0x54));
+  call_Rot_SetSinCos(local_18);
   some_rotate_by_global(&local_24,&local_24);
   DAT_005b9600 = *(int *)(iVar1 + 0x34) - local_24.x;
   DAT_005b9604 = *(int *)(iVar1 + 0x38) - local_24.y;

@@ -8,7 +8,7 @@ void FUN_00485330(void)
   undefined4 *puVar2;
   
   FUN_00485240();
-  call_math_todo_with_rotation(&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
+  call_Math_SinCos3((float *)&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
   FUN_00445720();
   FUN_004b1c80(0xa103,0xa103);
   puVar2 = &DAT_0056e340;

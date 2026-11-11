@@ -41,7 +41,7 @@ void FUN_00480640(void)
   FUN_00468e40(*(undefined4 *)(DAT_00571184 + 0x40),*(undefined4 *)(DAT_00571184 + 0x44),
                *(undefined4 *)(DAT_00571184 + 0x48));
   FUN_004822b0();
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   FUN_0046d8d0(s_Scomp03_wav_00556c04,0);
   return;
 }

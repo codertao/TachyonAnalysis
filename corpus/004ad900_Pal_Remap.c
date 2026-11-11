@@ -6,36 +6,36 @@ void Pal_Remap(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undefin
               undefined4 param_5,undefined4 param_6)
 
 {
-  undefined4 *puVar1;
-  int iVar2;
-  undefined4 *puVar3;
-  undefined4 *puVar4;
+  byte *pal;
+  int iVar1;
+  undefined4 *puVar2;
+  byte *pbVar3;
   
   if (param_1 != (undefined4 *)0x0) {
     Pal_SetCurveParams(param_2,param_3,param_4,param_5,param_6);
-    puVar1 = param_1 + 0xc0;
-    puVar3 = param_1;
-    puVar4 = puVar1;
-    for (iVar2 = 0xc0; iVar2 != 0; iVar2 = iVar2 + -1) {
-      *puVar4 = *puVar3;
-      puVar3 = puVar3 + 1;
-      puVar4 = puVar4 + 1;
+    pal = (byte *)(param_1 + 0xc0);
+    puVar2 = param_1;
+    pbVar3 = pal;
+    for (iVar1 = 0xc0; iVar1 != 0; iVar1 = iVar1 + -1) {
+      *(undefined4 *)pbVar3 = *puVar2;
+      puVar2 = puVar2 + 1;
+      pbVar3 = pbVar3 + 4;
     }
-    Pal_SaturateAll(puVar1,param_1 + 0x180);
+    Pal_SaturateAll(pal,param_1 + 0x180);
     if (DAT_0055e964 == 0x10) {
-      FUN_004e7c30();
+      call_Pix_PaletteToNative(pal,(void *)param_1[0x1c2]);
       if (param_1[0x1c3] != 0) {
         FUN_004e7b69();
-        FUN_004e7c50(puVar1,param_1[0x1c3]);
+        call_Pix_BuildShadeTable(pal,(void *)param_1[0x1c3]);
       }
       if (param_1[0x1c4] != 0) {
         FUN_004e7b48();
-        FUN_004e7c50(puVar1,param_1[0x1c4]);
+        call_Pix_BuildShadeTable(pal,(void *)param_1[0x1c4]);
         return;
       }
     }
     else {
-      FUN_004ad8b0(puVar1,param_1[0x1c2]);
+      FUN_004ad8b0();
     }
   }
   return;

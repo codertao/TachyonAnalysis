@@ -3,7 +3,7 @@ void FUN_00473ef0(void)
 
 {
   g_NextMode = g_StarbaseScreen;
-  FUN_004e4b65(0);
+  Sw_EnableZBuffer(0);
   FUN_0048b6f0(0);
   FUN_0048b6f0(1);
   FUN_0048b6f0(2);

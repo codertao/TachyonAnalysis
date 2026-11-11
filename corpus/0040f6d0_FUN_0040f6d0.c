@@ -4,7 +4,7 @@ void FUN_0040f6d0(int param_1)
 {
   uint uVar1;
   int iVar2;
-  undefined1 local_2c [24];
+  float local_2c [6];
   vec3 local_14;
   int local_8;
   
@@ -27,13 +27,12 @@ void FUN_0040f6d0(int param_1)
     }
   }
   local_14.z = DAT_005b9640;
-  call_math_todo_with_rotation(local_2c,DAT_005b9648,DAT_005b964c,DAT_005b9650);
-  call_copy_mathresult_to_global(local_2c);
+  call_Math_SinCos3(local_2c,DAT_005b9648,DAT_005b964c,DAT_005b9650);
+  call_Rot_SetSinCos(local_2c);
   some_rotate_by_global(&local_14,&local_14);
-  call_math_todo_with_rotation
-            (local_2c,*(undefined4 *)(param_1 + 0x4c),*(undefined4 *)(param_1 + 0x50),
-             *(undefined4 *)(param_1 + 0x54));
-  call_copy_mathresult_to_global(local_2c);
+  call_Math_SinCos3(local_2c,*(int *)(param_1 + 0x4c),*(int *)(param_1 + 0x50),
+                    *(int *)(param_1 + 0x54));
+  call_Rot_SetSinCos(local_2c);
   some_rotate_by_global(&local_14,&local_14);
   DAT_005b9688 = ((*(int *)(param_1 + 0xa0) * 7 + *(int *)(param_1 + 0x34)) - DAT_005b9600) -
                  local_14.x >> 3;

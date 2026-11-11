@@ -2,7 +2,8 @@
 void __thiscall FUN_00421e40(undefined4 param_1,int param_2)
 
 {
-  int *piVar1;
+  vec3 *v;
+  undefined4 uVar1;
   byte bVar2;
   uint uVar3;
   int iVar4;
@@ -24,14 +25,16 @@ void __thiscall FUN_00421e40(undefined4 param_1,int param_2)
   *(uint *)(param_2 + 0x108) = uVar3;
   *(uint *)(param_2 + 0x124) = uVar3 >> 4;
   FUN_0048ecf0(*(undefined4 *)(param_2 + 0x104),(int *)(param_2 + 0x118));
-  piVar1 = (int *)(param_2 + 0x10c);
-  *piVar1 = *(int *)(param_2 + 0x118);
-  *(undefined4 *)(param_2 + 0x110) = *(undefined4 *)(param_2 + 0x11c);
+  uVar1 = *(undefined4 *)(param_2 + 0x11c);
+  v = (vec3 *)(param_2 + 0x10c);
+  v->x = *(int *)(param_2 + 0x118);
+  *(undefined4 *)(param_2 + 0x110) = uVar1;
   *(undefined4 *)(param_2 + 0x114) = *(undefined4 *)(param_2 + 0x120);
-  FUN_004e04ba(piVar1);
+  call_Vec_Normalize(v);
+  iVar4 = v->x;
   *(int *)(param_2 + 0x110) = *(int *)(param_2 + 0x110) >> 2;
   *(int *)(param_2 + 0x114) = *(int *)(param_2 + 0x114) >> 2;
-  *piVar1 = *piVar1 >> 2;
+  v->x = iVar4 >> 2;
   return;
 }
 

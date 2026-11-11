@@ -73,7 +73,7 @@ void loadout_enter(void)
              *(undefined4 *)(iVar1 + 0x54));
   FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                *(undefined4 *)(iVar1 + 0x48));
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   FUN_00477340();
   set_button_state(&GLBL_UI_ELEM_LIST,s_BtnItemBuy1_00547744,4);
   return;

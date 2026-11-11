@@ -1,8 +1,11 @@
 
-int FUN_004dedc4(void)
+int __fastcall FUN_004dedc4(int param_1,int param_2)
 
 {
   int in_EAX;
+  int vol;
+  int arg;
+  int unaff_EBX;
   int iVar1;
   undefined4 *puVar2;
   
@@ -25,12 +28,12 @@ int FUN_004dedc4(void)
     }
   }
   *(undefined1 *)((int)puVar2 + 0x3e) = 1;
-  FUN_004dee48();
+  Snd_SetVoiceVolPan(puVar2,unaff_EBX,param_1,param_2);
   puVar2 = &g_SndVoiceNext;
   iVar1 = 0x18;
   do {
     if (puVar2[4] == in_EAX) {
-      FUN_004dee48();
+      Snd_SetVoiceVolPan(puVar2,unaff_EBX,vol,arg);
       puVar2[2] = puVar2[0xd];
       return in_EAX;
     }

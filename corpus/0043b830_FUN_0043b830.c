@@ -31,7 +31,7 @@ char * FUN_0043b830(int param_1,undefined4 *param_2)
             pcVar8 = pcVar8 + 4;
           }
           if (iVar3 == 0) {
-            FUN_004e62cf(param_2 + 0x10,pcVar1 + 0x50,10,0xa000);
+            Font_LoadTagged((char *)(param_2 + 0x10),pcVar1 + 0x50,10,0xa000);
           }
           else {
             puVar7 = (undefined4 *)(iVar3 + 0x50);
@@ -70,7 +70,7 @@ char * FUN_0043b830(int param_1,undefined4 *param_2)
           pcVar8 = pcVar8 + 4;
         }
         if (iVar3 == 0) {
-          FUN_004e62cf(param_2 + 0x10,pcVar1 + 0x50,10,0xa000);
+          Font_LoadTagged((char *)(param_2 + 0x10),pcVar1 + 0x50,10,0xa000);
         }
         else {
           puVar7 = (undefined4 *)(iVar3 + 0x50);

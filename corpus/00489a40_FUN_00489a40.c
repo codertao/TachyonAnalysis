@@ -39,7 +39,7 @@ void FUN_00489a40(void)
   DAT_0056c488 = FUN_00469330();
   FUN_0048a620();
   FUN_0048a0c0();
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   FUN_00489750();
   FUN_00489440(0);
   if (DAT_0056c488 == 0) {

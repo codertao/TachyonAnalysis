@@ -230,7 +230,7 @@ LAB_004b9531:
         FUN_004ada40(DAT_006c90dc,0);
         FUN_004ada40(DAT_006c961c,1);
         FUN_004ad240(&DAT_006c90c0,DAT_006c90cc,&DAT_006c9600,DAT_006c960c,2);
-        FUN_004ad1c0(local_c8,5,&local_e0,4,DAT_006c90cc);
+        Gfx_DrawPolyBatch(local_c8,5,&local_e0,4,DAT_006c90cc);
       }
       local_f4 = local_f4 + _DAT_0052e548;
       local_e8 = local_e8 + 1;

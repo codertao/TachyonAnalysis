@@ -6,17 +6,17 @@ void FUN_00411e30(int param_1,undefined4 param_2)
 {
   int *piVar1;
   int iVar2;
-  undefined1 auStack_18 [24];
+  float afStack_18 [6];
   
   FUN_004b1ab0(param_1 + 0x18,2);
   iVar2 = *(int *)(param_1 + 0xd8);
-  FUN_004b1be0(auStack_18,param_2);
+  FUN_004b1be0(afStack_18,param_2);
   for (; iVar2 != 0; iVar2 = *(int *)(iVar2 + 0xd8)) {
     *(int *)(iVar2 + 0x40) = *(int *)(iVar2 + 0x34) - *(int *)(param_1 + 0x34);
     piVar1 = (int *)(iVar2 + 0x40);
     *(int *)(iVar2 + 0x44) = *(int *)(iVar2 + 0x38) - *(int *)(param_1 + 0x38);
     *(int *)(iVar2 + 0x48) = *(int *)(iVar2 + 0x3c) - *(int *)(param_1 + 0x3c);
-    call_copy_mathresult_to_global(auStack_18);
+    call_Rot_SetSinCos(afStack_18);
     FUN_004b2410(piVar1,piVar1);
     *piVar1 = *piVar1 + *(int *)(param_1 + 0x40);
     *(int *)(iVar2 + 0x44) = *(int *)(iVar2 + 0x44) + *(int *)(param_1 + 0x44);

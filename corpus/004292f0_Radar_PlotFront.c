@@ -43,12 +43,12 @@ void Radar_PlotFront(int param_1,int param_2,undefined4 param_3,int param_4)
     return;
   }
   FUN_00452180(2);
-  FUN_004abf90(uVar3,uVar2,uVar3 + 1,uVar2,param_3);
+  Gfx_DrawLine(uVar3,uVar2,uVar3 + 1,uVar2,param_3);
   iVar4 = uVar2 + 1;
-  FUN_004abf90(uVar3,iVar4,uVar3 + 1,iVar4,param_3);
+  Gfx_DrawLine(uVar3,iVar4,uVar3 + 1,iVar4,param_3);
   if (param_4 != 0) {
-    FUN_004abf90(uVar3 - 1,uVar2,uVar3 - 1,iVar4,DAT_005a6324 & 0xff);
-    FUN_004abf90(uVar3 + 2,uVar2,uVar3 + 2,iVar4,DAT_005a6324 & 0xff);
+    Gfx_DrawLine(uVar3 - 1,uVar2,uVar3 - 1,iVar4,DAT_005a6324 & 0xff);
+    Gfx_DrawLine(uVar3 + 2,uVar2,uVar3 + 2,iVar4,DAT_005a6324 & 0xff);
   }
   return;
 }

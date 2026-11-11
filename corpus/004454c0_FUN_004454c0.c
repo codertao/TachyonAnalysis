@@ -20,7 +20,7 @@ void FUN_004454c0(void)
     DAT_005b9604 = 0;
     DAT_005b95ec = 0;
     DAT_005b95f0 = 0;
-    call_math_todo_with_rotation(&DAT_005b9628,-DAT_00544420,0,0);
+    call_Math_SinCos3((float *)&DAT_005b9628,-DAT_00544420,0,0);
     local_18[0] = DAT_00544420;
     FUN_004b1940(local_18 + 3,local_18);
     FUN_004452e0();

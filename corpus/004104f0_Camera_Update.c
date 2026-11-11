@@ -25,7 +25,7 @@ void Camera_Update(void)
   local_4 = DAT_005b9608 - DAT_005b9614;
   DAT_005b9624 = call_approx_vec_length(&local_c);
   FUN_004103e0();
-  call_math_todo_with_rotation(&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
+  call_Math_SinCos3((float *)&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
   return;
 }
 

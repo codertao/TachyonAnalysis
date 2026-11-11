@@ -4,21 +4,19 @@ void FUN_00468890(float *param_1)
 {
   uint uVar1;
   uint uVar2;
-  int local_24;
-  int local_20;
-  int local_1c;
-  undefined1 local_18 [24];
+  vec3 local_24;
+  float local_18 [6];
   
   uVar1 = global_bad_shift_rng();
   uVar2 = global_bad_shift_rng();
-  call_math_todo_with_rotation(local_18,uVar1 & 0xffffff,uVar2 & 0x1ffffff,0);
-  call_copy_mathresult_to_global(local_18);
-  FUN_0052dccb(&DAT_0054a6a0,&local_24);
-  FUN_0052dc22(&local_24,&local_24);
+  call_Math_SinCos3(local_18,uVar1 & 0xffffff,uVar2 & 0x1ffffff,0);
+  call_Rot_SetSinCos(local_18);
+  call_Rot_AboutX((vec3 *)&DAT_0054a6a0,&local_24);
+  call_Rot_AboutY(&local_24,&local_24);
   FUN_00468790(&local_24,0x20000000);
-  *param_1 = (float)local_24;
-  param_1[1] = (float)local_20;
-  param_1[2] = (float)local_1c;
+  *param_1 = (float)local_24.x;
+  param_1[1] = (float)local_24.y;
+  param_1[2] = (float)local_24.z;
   FUN_00468810(param_1 + 5,param_1 + 6);
   uVar1 = global_bad_shift_rng();
   param_1[8] = (float)(uVar1 & 3);

@@ -39,7 +39,7 @@ void FUN_00466dc0(void)
         }
       }
     }
-    FUN_0052def7();
+    call_SortPairs_Asc();
     FUN_00466c60();
   }
   return;

@@ -4,10 +4,9 @@
    0x4c9401, step 0x400 (1.0), vol 0x400; empty the 16-entry stream queue (0x4cac1a);
    Snd_EffectReset */
 
-undefined8 __fastcall Snd_MixerReset(undefined4 param_1,undefined4 param_2)
+void __cdecl Snd_MixerReset(void)
 
 {
-  undefined4 in_EAX;
   int iVar1;
   undefined4 *puVar2;
   
@@ -641,6 +640,6 @@ undefined8 __fastcall Snd_MixerReset(undefined4 param_1,undefined4 param_2)
   DAT_004cabd6 = 0x1000;
   DAT_004cabda = 0;
   Snd_EffectReset();
-  return CONCAT44(param_2,in_EAX);
+  return;
 }
 

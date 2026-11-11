@@ -43,7 +43,7 @@ void FUN_00465970(int param_1)
     for (uVar6 = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;
         (int)uVar6 < (int)((uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10);
         uVar6 = uVar6 + 1) {
-      FUN_004abf90((uint)lVar3 >> 0x10 | (int)((ulonglong)lVar3 >> 0x20) << 0x10,uVar6,
+      Gfx_DrawLine((uint)lVar3 >> 0x10 | (int)((ulonglong)lVar3 >> 0x20) << 0x10,uVar6,
                    (uint)lVar4 >> 0x10 | (int)((ulonglong)lVar4 >> 0x20) << 0x10,uVar6,param_1);
     }
   }
@@ -64,7 +64,7 @@ void FUN_00465970(int param_1)
     uVar8 = (uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10;
     if ((int)uVar7 < (int)uVar8) {
       do {
-        FUN_004abf90(uVar7,uVar6,uVar7,
+        Gfx_DrawLine(uVar7,uVar6,uVar7,
                      ((uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10) + uVar6,param_1
                     );
         uVar7 = uVar7 + 1;

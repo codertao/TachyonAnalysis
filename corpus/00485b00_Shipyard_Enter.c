@@ -11,7 +11,7 @@ void Shipyard_Enter(void)
   
   iVar1 = FUN_00469a70(s_HangarLight_00557b18);
   FUN_004ad380(1);
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   g_TitleMenu_ExitFlag = 0;
   DAT_005635dc = 0;
   _DAT_00563e00 = 0x3f800000;

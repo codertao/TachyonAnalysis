@@ -18,7 +18,7 @@ void FUN_0048ab90(void)
     DAT_0056c374 = _DAT_0056c2c0 - DAT_005b9604;
     DAT_0056c378 = _DAT_0056c2c4 - DAT_005b9608;
     DAT_0056c368 = 0;
-    FUN_004e054e(&DAT_0056c370);
+    call_Vec_NormalizeFast((vec3 *)&DAT_0056c370);
   }
   return;
 }

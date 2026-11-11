@@ -10,7 +10,7 @@ void FUN_0045c0d0(int param_1,int param_2)
   int iVar3;
   int iVar4;
   undefined4 uVar5;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   uVar5 = GLBL_SOME_CONTEXT;
   if ((*(uint *)(param_2 + 0x34) & 1) == 0) {
@@ -30,10 +30,9 @@ LAB_0045c108:
     iVar1 = *(int *)(param_2 + 0x30);
     if ((*(byte *)(param_2 + 0x34) & 8) != 0) {
       iVar2 = *(int *)(param_1 + 0x144);
-      call_math_todo_with_rotation
-                (local_18,*(undefined4 *)(iVar2 + 0x4c),*(undefined4 *)(iVar2 + 0x50),
-                 *(undefined4 *)(iVar2 + 0x54));
-      call_copy_mathresult_to_global(local_18);
+      call_Math_SinCos3(local_18,*(int *)(iVar2 + 0x4c),*(int *)(iVar2 + 0x50),
+                        *(int *)(iVar2 + 0x54));
+      call_Rot_SetSinCos(local_18);
       fvec = (vec3 *)(iVar1 + 0x34);
       fvec->x = *(int *)(param_2 + 0x14);
       *(undefined4 *)(iVar1 + 0x38) = *(undefined4 *)(param_2 + 0x18);

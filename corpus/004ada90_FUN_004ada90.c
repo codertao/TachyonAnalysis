@@ -19,12 +19,12 @@ void FUN_004ada90(undefined4 *param_1,int param_2)
           }
         }
         FUN_004a2e30(param_1[0x1c0]);
-        FUN_004a2e60(1);
+        Gfx_SetPalMatchMode(1);
         DAT_00604588 = param_1;
         return;
       }
       FUN_004a2e40(param_1,param_1 + 0x180);
-      FUN_004a2e60(2);
+      Gfx_SetPalMatchMode(2);
       DAT_00604588 = param_1;
       return;
     }
@@ -39,12 +39,12 @@ void FUN_004ada90(undefined4 *param_1,int param_2)
         }
       }
       FUN_004a2e30(param_1[0x1c1]);
-      FUN_004a2e60(1);
+      Gfx_SetPalMatchMode(1);
       DAT_00604588 = param_1;
       return;
     }
     FUN_004a2e40(param_1,param_1 + 0x180);
-    FUN_004a2e60(3);
+    Gfx_SetPalMatchMode(3);
     DAT_00604588 = param_1;
   }
   return;

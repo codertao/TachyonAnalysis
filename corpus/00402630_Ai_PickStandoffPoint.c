@@ -7,9 +7,7 @@ void Ai_PickStandoffPoint(int param_1)
   vec3 *pvVar1;
   int iVar2;
   uint uVar3;
-  uint local_10;
-  uint local_c;
-  uint local_8;
+  vec3 local_10;
   
   iVar2 = *(int *)(param_1 + 0x90);
   pvVar1 = (vec3 *)(param_1 + 0x34);
@@ -18,19 +16,19 @@ void Ai_PickStandoffPoint(int param_1)
     Ai_SetState(param_1,1);
     return;
   }
-  local_10 = pvVar1->x - *(int *)(iVar2 + 0x34);
-  local_c = *(int *)(param_1 + 0x38) - *(int *)(iVar2 + 0x38);
-  local_8 = *(int *)(param_1 + 0x3c) - *(int *)(iVar2 + 0x3c);
-  FUN_004e054e(&local_10);
-  local_10 = (uint)((longlong)(int)local_10 * 0x4650000) >> 0x10 |
-             (int)((ulonglong)((longlong)(int)local_10 * 0x4650000) >> 0x20) << 0x10;
-  local_c = (uint)((longlong)(int)local_c * 0x4650000) >> 0x10 |
-            (int)((ulonglong)((longlong)(int)local_c * 0x4650000) >> 0x20) << 0x10;
-  local_8 = (uint)((longlong)(int)local_8 * 0x4650000) >> 0x10 |
-            (int)((ulonglong)((longlong)(int)local_8 * 0x4650000) >> 0x20) << 0x10;
-  *(uint *)(param_1 + 0x344) = local_10 + pvVar1->x;
-  *(uint *)(param_1 + 0x348) = local_c + *(int *)(param_1 + 0x38);
-  *(uint *)(param_1 + 0x34c) = *(int *)(param_1 + 0x3c) + local_8;
+  local_10.x = pvVar1->x - *(int *)(iVar2 + 0x34);
+  local_10.y = *(int *)(param_1 + 0x38) - *(int *)(iVar2 + 0x38);
+  local_10.z = *(int *)(param_1 + 0x3c) - *(int *)(iVar2 + 0x3c);
+  call_Vec_NormalizeFast(&local_10);
+  local_10.x = (uint)((longlong)local_10.x * 0x4650000) >> 0x10 |
+               (int)((ulonglong)((longlong)local_10.x * 0x4650000) >> 0x20) << 0x10;
+  local_10.y = (uint)((longlong)local_10.y * 0x4650000) >> 0x10 |
+               (int)((ulonglong)((longlong)local_10.y * 0x4650000) >> 0x20) << 0x10;
+  local_10.z = (uint)((longlong)local_10.z * 0x4650000) >> 0x10 |
+               (int)((ulonglong)((longlong)local_10.z * 0x4650000) >> 0x20) << 0x10;
+  *(int *)(param_1 + 0x344) = local_10.x + pvVar1->x;
+  *(int *)(param_1 + 0x348) = local_10.y + *(int *)(param_1 + 0x38);
+  *(int *)(param_1 + 0x34c) = *(int *)(param_1 + 0x3c) + local_10.z;
   FUN_00402600(param_1);
   return;
 }

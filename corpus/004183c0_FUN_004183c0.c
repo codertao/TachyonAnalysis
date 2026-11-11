@@ -15,7 +15,7 @@ void FUN_004183c0(void)
   FUN_00451e10(&DAT_005a67a0);
   FUN_004b8f60();
   FUN_00458260();
-  FUN_004e4b65(0);
+  Sw_EnableZBuffer(0);
   DAT_005a6820 = 0;
   FUN_0049d0f0(&DAT_005a61e0);
   FUN_00425180();

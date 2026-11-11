@@ -47,7 +47,7 @@ void FUN_0047e0b0(void)
         local_20 = (int)(longlong)ROUND(((float)*(int *)(iVar7 + 0x84) - (float)iVar4) * fVar1);
         FUN_004abcc0(0x1f,*(undefined4 *)(iVar9 + 0x40),*(undefined4 *)(iVar9 + 0x44),
                      *(undefined4 *)(iVar9 + 0x48));
-        FUN_004abf90((uint)((longlong)local_34 * (longlong)DAT_005a67e4) >> 0x10 |
+        Gfx_DrawLine((uint)((longlong)local_34 * (longlong)DAT_005a67e4) >> 0x10 |
                      (int)((ulonglong)((longlong)local_34 * (longlong)DAT_005a67e4) >> 0x20) << 0x10
                      ,(uint)((longlong)local_2c * (longlong)DAT_005a67e4) >> 0x10 |
                       (int)((ulonglong)((longlong)local_2c * (longlong)DAT_005a67e4) >> 0x20) <<

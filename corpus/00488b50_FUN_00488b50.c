@@ -23,7 +23,7 @@ void FUN_00488b50(void)
   FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
                *(undefined4 *)(iVar1 + 0x48));
   FUN_004885d0();
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   if (DAT_00590e24 != &g_Mode_StarbaseHub) {
     FUN_00488750();
     return;

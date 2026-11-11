@@ -136,7 +136,7 @@ void FUN_00408580(int *param_1,undefined4 param_2)
       local_7c = (uint)local_c;
       local_c = (ulonglong)ROUND((float)local_10 * (float)piVar4[0xe]);
       local_78 = (uint)local_c;
-      FUN_004ac210(local_9c,local_60,local_d8,param_2,piVar4[10]);
+      Gfx_DrawTriangle(local_9c,local_60,local_d8,param_2,piVar4[10]);
       if (bVar3) {
         local_e0 = (int)local_1c;
         local_dc = local_1c._4_4_;
@@ -150,7 +150,7 @@ void FUN_00408580(int *param_1,undefined4 param_2)
         local_f4 = (uint)local_c;
         local_c = (ulonglong)ROUND((float)local_1c._4_4_ * (float)piVar4[0xe]);
         local_f0 = (uint)local_c;
-        FUN_004ac210(local_9c,local_60,local_114,param_2,piVar4[10]);
+        Gfx_DrawTriangle(local_9c,local_60,local_114,param_2,piVar4[10]);
       }
       puVar7 = local_9c;
       puVar8 = local_60;

@@ -47,7 +47,7 @@ int FUN_0047de80(void)
       local_30 = (int)(longlong)ROUND(((float)piVar9[-0x11] - fVar3) * fVar1);
       iVar8 = local_30;
       local_30 = (int)(longlong)ROUND(((float)piVar9[-0xd] - fVar3) * fVar1);
-      FUN_004abf90((uint)((longlong)iVar7 * (longlong)DAT_005a67e4) >> 0x10 |
+      Gfx_DrawLine((uint)((longlong)iVar7 * (longlong)DAT_005a67e4) >> 0x10 |
                    (int)((ulonglong)((longlong)iVar7 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
                    (uint)((longlong)iVar8 * (longlong)DAT_005a67e4) >> 0x10 |
                    (int)((ulonglong)((longlong)iVar8 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
@@ -67,13 +67,13 @@ int FUN_0047de80(void)
         local_38 = (int)(longlong)ROUND(((float)piVar9[-0xf] - fVar3) * fVar1);
         iVar8 = local_38;
         local_38 = (int)(longlong)ROUND((float)local_44 * fVar1);
-        FUN_004ace30((uint)((longlong)iVar7 * (longlong)DAT_005a67e4) >> 0x10 |
-                     (int)((ulonglong)((longlong)iVar7 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
-                     (uint)((longlong)iVar8 * (longlong)DAT_005a67e4) >> 0x10 |
-                     (int)((ulonglong)((longlong)iVar8 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
-                     (uint)((longlong)local_38 * (longlong)DAT_005a67e4) >> 0x10 |
-                     (int)((ulonglong)((longlong)local_38 * (longlong)DAT_005a67e4) >> 0x20) << 0x10
-                     ,iVar10);
+        Gfx_DrawCircle((uint)((longlong)iVar7 * (longlong)DAT_005a67e4) >> 0x10 |
+                       (int)((ulonglong)((longlong)iVar7 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
+                       (uint)((longlong)iVar8 * (longlong)DAT_005a67e4) >> 0x10 |
+                       (int)((ulonglong)((longlong)iVar8 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
+                       (uint)((longlong)local_38 * (longlong)DAT_005a67e4) >> 0x10 |
+                       (int)((ulonglong)((longlong)local_38 * (longlong)DAT_005a67e4) >> 0x20) <<
+                       0x10,iVar10);
       }
       if ((local_1c == 0) && ((piVar9[-6] != 0 || (piVar9[-5] != 0)))) {
         local_1c = 1;

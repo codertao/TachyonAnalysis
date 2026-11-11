@@ -73,10 +73,10 @@ void FUN_004ade60(char *param_1,undefined4 *param_2,uint param_3,undefined4 para
     }
     param_2[0xc] = param_3;
     if ((param_3 & 0x100000) == 0) {
-      FUN_004e62ba(param_1,&DAT_00604420,10);
+      call_Font_Load(param_1,&DAT_00604420,10);
     }
     else {
-      FUN_004e62ba(param_1,&DAT_00604420,2);
+      call_Font_Load(param_1,&DAT_00604420,2);
       uVar5 = Pal_Load(param_1);
       param_2[2] = uVar5;
     }

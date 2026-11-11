@@ -29,7 +29,7 @@ void FUN_004b2e30(byte *param_1,undefined4 param_2,int param_3,undefined4 param_
   int local_24;
   int local_20;
   int local_1c;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   iVar1 = *(int *)(*(int *)(param_1 + 0x40) + 0x48);
   local_38 = iVar1;
@@ -45,16 +45,15 @@ void FUN_004b2e30(byte *param_1,undefined4 param_2,int param_3,undefined4 param_
       iStack_50 = 0;
       local_90 = (float)param_5 * _DAT_0052e5d8 * local_90;
     }
-    call_math_todo_with_rotation
-              (local_18,*(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x38),
-               *(undefined4 *)(param_1 + 0x3c));
+    call_Math_SinCos3(local_18,*(int *)(param_1 + 0x34),*(int *)(param_1 + 0x38),
+                      *(int *)(param_1 + 0x3c));
     DAT_005a6330 = 0x10;
     _DAT_005a6480 = 0x80ff;
     piVar4 = *(int **)(iVar1 + 0x18);
     local_4c = 0;
     if (*(int *)(iVar1 + 0xc) != 0) {
       do {
-        call_copy_mathresult_to_global(local_18);
+        call_Rot_SetSinCos(local_18);
         local_8c = (int)(longlong)ROUND(local_90 * *(float *)*piVar4);
         local_84.x = local_8c;
         local_8c = (int)(longlong)ROUND(local_90 * *(float *)(*piVar4 + 4));
@@ -85,7 +84,7 @@ void FUN_004b2e30(byte *param_1,undefined4 param_2,int param_3,undefined4 param_
         some_rotate_by_global(&local_60,&local_60);
         some_rotate_by_global(&local_6c,&local_6c);
         some_rotate_by_global(&local_78,&local_78);
-        call_copy_mathresult_to_global(&DAT_00666ac8);
+        call_Rot_SetSinCos((float *)&DAT_00666ac8);
         FUN_004b2410(&local_84,&local_84);
         FUN_004b2410(&local_60,&local_60);
         FUN_004b2410(&local_6c,&local_6c);
@@ -113,11 +112,11 @@ void FUN_004b2e30(byte *param_1,undefined4 param_2,int param_3,undefined4 param_
         FUN_004b2e00(&local_6c,&local_54);
         FUN_004b2e00(&local_78,&local_2c);
         FUN_004b2e00(&local_24,&local_34);
-        FUN_004abf90(local_40 >> 7,local_3c >> 7,local_48 >> 7,local_44 >> 7,param_2);
-        FUN_004abf90(local_40 >> 7,local_3c >> 7,(int)local_54 >> 7,iStack_50 >> 7,param_2);
-        FUN_004abf90((int)local_54 >> 7,iStack_50 >> 7,local_48 >> 7,local_44 >> 7,param_2);
+        Gfx_DrawLine(local_40 >> 7,local_3c >> 7,local_48 >> 7,local_44 >> 7,param_2);
+        Gfx_DrawLine(local_40 >> 7,local_3c >> 7,(int)local_54 >> 7,iStack_50 >> 7,param_2);
+        Gfx_DrawLine((int)local_54 >> 7,iStack_50 >> 7,local_48 >> 7,local_44 >> 7,param_2);
         if (param_3 != 0) {
-          FUN_004abf90(local_34 >> 7,local_30 >> 7,local_2c >> 7,local_28 >> 7,param_4);
+          Gfx_DrawLine(local_34 >> 7,local_30 >> 7,local_2c >> 7,local_28 >> 7,param_4);
         }
         local_4c = local_4c + 1;
         piVar4 = piVar4 + 0x12;

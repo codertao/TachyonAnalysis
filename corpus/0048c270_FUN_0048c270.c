@@ -16,11 +16,12 @@ undefined4 FUN_0048c270(int param_1)
   if (iVar2 != 0) {
     iVar2 = param_1 * 0x170;
     if ((&DAT_0056abcc)[param_1 * 0x5c] == 0) {
-      if (*(int *)(&DAT_0056abc8 + iVar2) == 0) {
+      if (*(void **)(&DAT_0056abc8 + iVar2) == (void *)0x0) {
         return 0;
       }
-      FUN_004e6f58(*(undefined4 *)(&DAT_0056abc4 + iVar2),*(int *)(&DAT_0056abc8 + iVar2),
-                   &DAT_0056aba4 + iVar2);
+      call_Font_LayoutText
+                (*(char **)(&DAT_0056abc4 + iVar2),*(void **)(&DAT_0056abc8 + iVar2),
+                 &DAT_0056aba4 + iVar2);
     }
     else {
       *(uint *)(&DAT_0056abf4 + iVar2) = (uint)*(uint3 *)(&DAT_0056ac03 + iVar2);

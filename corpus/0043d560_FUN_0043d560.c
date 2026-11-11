@@ -1,7 +1,7 @@
 
-void FUN_0043d560(undefined4 param_1,char *param_2,int param_3,int param_4,int *param_5,uint param_6
-                 ,uint param_7,uint param_8,undefined4 param_9,char param_10,undefined4 param_11,
-                 undefined4 param_12)
+void FUN_0043d560(undefined4 param_1,char *param_2,void *param_3,void *param_4,int *param_5,
+                 uint param_6,uint param_7,uint param_8,undefined4 param_9,char param_10,
+                 undefined4 param_11,undefined4 param_12)
 
 {
   char cVar1;
@@ -18,13 +18,13 @@ void FUN_0043d560(undefined4 param_1,char *param_2,int param_3,int param_4,int *
   char *pcVar12;
   undefined4 *puVar13;
   undefined4 local_c4 [16];
-  undefined4 local_84;
-  undefined4 local_80;
-  undefined4 local_7c;
+  int local_84;
+  int local_80;
+  int local_7c;
   undefined4 local_78 [16];
-  undefined4 local_38;
-  undefined4 local_34;
-  undefined4 local_30;
+  int local_38;
+  int local_34;
+  int local_30;
   uint local_2c;
   uint local_28;
   uint local_24;
@@ -61,8 +61,8 @@ void FUN_0043d560(undefined4 param_1,char *param_2,int param_3,int param_4,int *
              (int)((ulonglong)((longlong)local_10 * (longlong)DAT_005a67e4) >> 0x20) << 0x10) -
              local_28;
   local_10 = FUN_0043ba90(param_1,param_3);
-  if (((local_10 == 0) || (param_3 = local_10 + 0x50, param_3 == 0)) &&
-     (param_3 = param_4, param_4 == 0)) {
+  if (((local_10 == 0) || (param_3 = (void *)(local_10 + 0x50), param_3 == (void *)0x0)) &&
+     (param_3 = param_4, param_4 == (void *)0x0)) {
     return;
   }
   local_1c = param_8 & 2;
@@ -182,10 +182,10 @@ switchD_0043d742_caseD_3:
   iVar8 = iVar9 + local_2c + param_6;
   iVar6 = iVar3 + local_28 + param_7;
   param_7 = iVar6;
-  FUN_004e7194(local_84,local_80,local_7c,local_38,local_34,local_30);
+  Font_SetColorRamp(local_84,local_80,local_7c,local_38,local_34,local_30);
   if ((param_8 & 0x20000) == 0) {
     if (uVar5 == 0) {
-      FUN_004e68ae(param_2,param_3,iVar8,iVar6,0,0,0);
+      call_Font_DrawStringClipped(param_2,param_3,iVar8,iVar6,0,0,0);
     }
     else {
       FUN_0043d160(param_2,param_3,iVar8,iVar6,local_14,local_18,param_11,param_12);
@@ -222,7 +222,8 @@ switchD_0043d742_caseD_3:
     if (pcVar4 != (char *)0x0) {
       *pcVar4 = '\0';
       local_8 = FUN_004e668a(&DAT_005a41e0,param_3);
-      FUN_004e68ae(&DAT_0053fec0,param_3,iVar9 + local_8 + local_2c + param_6,iVar6,0,0,0);
+      call_Font_DrawStringClipped
+                (&DAT_0053fec0,param_3,iVar9 + local_8 + local_2c + param_6,iVar6,0,0,0);
     }
   }
   return;

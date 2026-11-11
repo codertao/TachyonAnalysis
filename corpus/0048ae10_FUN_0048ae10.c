@@ -52,7 +52,7 @@ void FUN_0048ae10(void)
       DAT_0056c350 = DAT_0056c2c8;
       DAT_0056c354 = DAT_0056c2cc;
       DAT_0056c358 = DAT_0056c2d0;
-      FUN_004e04ba(&DAT_0056c350);
+      call_Vec_Normalize((vec3 *)&DAT_0056c350);
       FUN_0048ad80(0x10000,0xffffff6a,1);
       FUN_0048ad80(0x20000,0xffffff83,2);
       FUN_0048ad80(0x30000,0x19,0);

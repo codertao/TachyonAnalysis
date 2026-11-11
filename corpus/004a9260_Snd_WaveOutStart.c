@@ -116,7 +116,7 @@ LAB_004a92f9:
   _DAT_005f9e14 = 0;
   DAT_005f9d5c = 0;
   Snd_MixerReset();
-  FUN_004cb481(1);
+  Snd_SetStereo(1);
   DAT_005f9e10 = 1;
   MVar2 = waveOutWrite(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9da0,0x20);
   if (MVar2 != 0) {

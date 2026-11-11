@@ -4,7 +4,7 @@
 void FUN_00480970(void)
 
 {
-  FUN_004e4b65(0);
+  Sw_EnableZBuffer(0);
   _DAT_005b2b24 = (float)GLBL_spacesav[0x3f] * _DAT_0052e644;
   DAT_005b2b34 = GLBL_spacesav[0x58];
   g_NextMode = g_StarbaseScreen;

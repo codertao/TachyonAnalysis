@@ -9,7 +9,7 @@ void FUN_00486180(void)
     FUN_004455f0();
     if (DAT_00564ae4 != 0) goto LAB_004861ae;
   }
-  FUN_004e4b29();
+  Sw_ClearZBuffer();
 LAB_004861ae:
   FUN_00486140();
   if (DAT_00564ae4 != 0) {

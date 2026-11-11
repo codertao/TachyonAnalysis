@@ -29,7 +29,7 @@ void MpShipCfg_Enter(void)
   if (g_PlayerVarStore == 0) {
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
   }
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   DAT_00562c78 = find_ui_elem_by_id_(&g_UiManager,s_IACFGDrag_0054765c);
   set_flag_10c_on_elem_by_id(&g_UiManager,s_IACFGDrag_0054765c,0x20000);
   set_flag_10c_on_elem_by_id(&g_UiManager,s_IACFGDrag_0054765c,0x80000);

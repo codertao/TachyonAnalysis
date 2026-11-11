@@ -2,7 +2,7 @@
 void FUN_00448d40(void)
 
 {
-  FUN_004e4b65(0);
+  Sw_EnableZBuffer(0);
   if (g_PlayerVarStore != 0) {
     VarStore_Save(&DAT_005a60a0,g_PlayerVarStore);
     VarStore_Close();

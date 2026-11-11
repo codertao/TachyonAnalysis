@@ -13,7 +13,7 @@ void FUN_00445b60(void)
   if (g_PlayerVarStore == 0) {
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
   }
-  FUN_004e4b65(1);
+  Sw_EnableZBuffer(1);
   Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
   Ui_ShowWindow(&g_UiManager,s_WndMPShipBW_00545c14,0);

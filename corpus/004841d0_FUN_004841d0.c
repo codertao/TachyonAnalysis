@@ -8,7 +8,7 @@ void FUN_004841d0(void)
   _DAT_00556e6c = 0xffffffff;
   OurFreeMem(DAT_0056363c);
   FUN_0048b6f0(0);
-  FUN_004e4b65(0);
+  Sw_EnableZBuffer(0);
   FUN_004acfa0();
   FUN_004834d0();
   return;

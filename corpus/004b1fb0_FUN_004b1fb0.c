@@ -4,6 +4,7 @@
 void FUN_004b1fb0(byte *param_1,int *param_2,int param_3)
 
 {
+  float *out;
   int iVar1;
   vec3 local_60;
   vec3 local_54;
@@ -11,7 +12,7 @@ void FUN_004b1fb0(byte *param_1,int *param_2,int param_3)
   vec3 local_3c;
   vec3 local_30;
   vec3 local_24;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   local_3c.y = 0;
   local_3c.z = 0;
@@ -25,27 +26,25 @@ void FUN_004b1fb0(byte *param_1,int *param_2,int param_3)
   else {
     local_3c.x = *(int *)(param_1 + 4);
   }
-  iVar1 = param_2[10];
+  out = (float *)param_2[10];
   local_30.y = local_3c.x;
   local_24.z = local_3c.x;
-  call_math_todo_with_rotation
-            (local_18,*(undefined4 *)(param_1 + 0x34),*(undefined4 *)(param_1 + 0x38),
-             *(undefined4 *)(param_1 + 0x3c));
-  call_math_todo_with_rotation(iVar1,param_2[1],param_2[2],param_2[3]);
-  call_copy_mathresult_to_global(iVar1);
+  call_Math_SinCos3(local_18,*(int *)(param_1 + 0x34),*(int *)(param_1 + 0x38),
+                    *(int *)(param_1 + 0x3c));
+  call_Math_SinCos3(out,param_2[1],param_2[2],param_2[3]);
+  call_Rot_SetSinCos(out);
   some_rotate_by_global(&local_3c,&local_60);
   some_rotate_by_global(&local_30,&local_54);
   some_rotate_by_global(&local_24,&local_48);
   for (iVar1 = param_2[8]; iVar1 != 0; iVar1 = *(int *)(iVar1 + 0x20)) {
-    call_math_todo_with_rotation
-              (*(undefined4 *)(iVar1 + 0x28),*(undefined4 *)(iVar1 + 4),*(undefined4 *)(iVar1 + 8),
-               *(undefined4 *)(iVar1 + 0xc));
-    call_copy_mathresult_to_global(*(undefined4 *)(iVar1 + 0x28));
+    call_Math_SinCos3(*(float **)(iVar1 + 0x28),*(int *)(iVar1 + 4),*(int *)(iVar1 + 8),
+                      *(int *)(iVar1 + 0xc));
+    call_Rot_SetSinCos(*(float **)(iVar1 + 0x28));
     some_rotate_by_global(&local_60,&local_60);
     some_rotate_by_global(&local_54,&local_54);
     some_rotate_by_global(&local_48,&local_48);
   }
-  call_copy_mathresult_to_global(local_18);
+  call_Rot_SetSinCos(local_18);
   some_rotate_by_global(&local_60,&local_60);
   some_rotate_by_global(&local_54,&local_54);
   some_rotate_by_global(&local_48,&local_48);

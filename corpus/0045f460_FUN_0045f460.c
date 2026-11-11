@@ -13,7 +13,7 @@ void FUN_0045f460(int param_1,undefined4 *param_2)
   uVar2 = FUN_0045f3f0(*param_2,&DAT_006240e8,&local_4,*(int *)(param_1 + 200) + 0x34);
   FUN_0045f3f0(param_2[1],uVar2,&local_4,*(int *)(param_1 + 200) + 0x34);
   DAT_0062c0e8 = local_4;
-  FUN_0052def7();
+  call_SortPairs_Asc();
   puVar1 = (undefined4 *)(param_1 + 0x120);
   if (*(int *)(param_1 + 0x120) != 0) {
     OurFreeMem(*(int *)(param_1 + 0x120));

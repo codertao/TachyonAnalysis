@@ -130,12 +130,12 @@ undefined4 Pak_BindTextureByName(char *param_1,int param_2)
   }
   if (DAT_00668f7c == 0) {
     if ((*(ushort *)(param_2 + 0x16) & 0x8000) != 0) {
-      FUN_004a2e60(3);
-      FUN_004a2dc0(*(undefined4 *)(pcVar5 + 0x28),DAT_00603104 * _DAT_00603100);
-      FUN_004a2e60(2);
+      Gfx_SetPalMatchMode(3);
+      Pal_RemapToGamePalette(*(undefined4 *)(pcVar5 + 0x28),DAT_00603104 * _DAT_00603100);
+      Gfx_SetPalMatchMode(2);
       return *(undefined4 *)(pcVar5 + 0x28);
     }
-    FUN_004a2dc0(*(undefined4 *)(pcVar5 + 0x28),DAT_00603104 * _DAT_00603100);
+    Pal_RemapToGamePalette(*(undefined4 *)(pcVar5 + 0x28),DAT_00603104 * _DAT_00603100);
   }
   return *(undefined4 *)(pcVar5 + 0x28);
 }

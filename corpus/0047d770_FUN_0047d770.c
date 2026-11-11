@@ -46,7 +46,7 @@ void FUN_0047d770(void)
       lVar3 = (longlong)(int)(longlong)ROUND(fVar6 * fVar1) * (longlong)DAT_005a67e4;
       lVar4 = (longlong)(int)(longlong)ROUND((float)DAT_00571fd4) * (longlong)DAT_005a67e4;
       local_1c = (int)(longlong)ROUND(fVar6 * fVar1);
-      FUN_004abf90((uint)((longlong)local_1c * (longlong)DAT_005a67e4) >> 0x10 |
+      Gfx_DrawLine((uint)((longlong)local_1c * (longlong)DAT_005a67e4) >> 0x10 |
                    (int)((ulonglong)((longlong)local_1c * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
                    (uint)lVar4 >> 0x10 | (int)((ulonglong)lVar4 >> 0x20) << 0x10,
                    (uint)lVar3 >> 0x10 | (int)((ulonglong)lVar3 >> 0x20) << 0x10,
@@ -62,7 +62,7 @@ void FUN_0047d770(void)
     lVar3 = (longlong)(int)(longlong)ROUND((float)DAT_00571720) * (longlong)DAT_005a67e4;
     lVar4 = (longlong)(int)(longlong)ROUND(fVar6 * fVar1) * (longlong)DAT_005a67e4;
     local_24 = (int)(longlong)ROUND((float)DAT_00571fd0);
-    FUN_004abf90((uint)((longlong)local_24 * (longlong)DAT_005a67e4) >> 0x10 |
+    Gfx_DrawLine((uint)((longlong)local_24 * (longlong)DAT_005a67e4) >> 0x10 |
                  (int)((ulonglong)((longlong)local_24 * (longlong)DAT_005a67e4) >> 0x20) << 0x10,
                  (uint)lVar4 >> 0x10 | (int)((ulonglong)lVar4 >> 0x20) << 0x10,
                  (uint)lVar3 >> 0x10 | (int)((ulonglong)lVar3 >> 0x20) << 0x10,

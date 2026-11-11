@@ -25,14 +25,15 @@ void FUN_004bace0(uint param_1,int param_2)
           _DAT_006c8f60 = 1;
           FUN_004ada40(*(undefined4 *)(piVar3[1] + 0x1c),0);
           if (*piVar3 == 0) {
-            FUN_004ad210(piVar3[1],*(undefined4 *)(piVar3[1] + 0xc));
+            Gfx_SetTexture(piVar3[1],*(undefined4 *)(piVar3[1] + 0xc));
           }
           else {
             FUN_004ada40(*(undefined4 *)(piVar3[2] + 0x1c),1);
             FUN_004ad240(piVar3[1],*(undefined4 *)(piVar3[1] + 0xc),piVar3[2],
                          *(undefined4 *)(piVar3[2] + 0xc),piVar3[3]);
           }
-          FUN_004ad1c0(piVar3[7],piVar3[9],piVar3[8],piVar3[10],*(undefined4 *)(piVar3[1] + 0xc));
+          Gfx_DrawPolyBatch(piVar3[7],piVar3[9],piVar3[8],piVar3[10],
+                            *(undefined4 *)(piVar3[1] + 0xc));
           iVar1 = iVar1 + piVar3[10];
           iVar2 = iVar2 + piVar3[9];
         }

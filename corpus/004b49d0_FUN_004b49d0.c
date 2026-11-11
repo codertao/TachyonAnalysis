@@ -17,11 +17,11 @@ void FUN_004b49d0(int param_1,int param_2)
   DAT_00668f48 = DAT_00666ab0 - *(int *)(param_1 + 0x1c);
   DAT_00668f4c = DAT_00666ab4 - *(int *)(param_1 + 0x20);
   DAT_00668f50 = DAT_00666ab8 - *(int *)(param_1 + 0x24);
-  FUN_004e054e(&DAT_00668f48);
+  call_Vec_NormalizeFast((vec3 *)&DAT_00668f48);
   DAT_00668f48 = DAT_00668f48 + DAT_0055ecac * 2;
   DAT_00668f4c = DAT_00668f4c + DAT_0055ecb0 * 2;
   DAT_00668f50 = DAT_00668f50 + DAT_0055ecb4 * 2;
-  FUN_004e054e(&DAT_00668f48);
+  call_Vec_NormalizeFast((vec3 *)&DAT_00668f48);
   DAT_00668f48 = DAT_00668f48 >> 1;
   DAT_00668f4c = DAT_00668f4c >> 1;
   DAT_00668f50 = DAT_00668f50 >> 1;

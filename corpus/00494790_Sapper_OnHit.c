@@ -9,26 +9,24 @@ void Sapper_OnHit(int param_1,int param_2,int *param_3)
   longlong lVar2;
   uint uVar3;
   undefined1 local_28 [24];
-  uint local_10;
-  uint local_c;
-  uint local_8;
+  vec3 local_10;
   
-  local_10 = *param_3 - *(int *)(param_2 + 0x34);
-  *(uint *)(param_1 + 0xfc) = local_10;
-  local_c = param_3[1] - *(int *)(param_2 + 0x38);
+  local_10.x = *param_3 - *(int *)(param_2 + 0x34);
+  *(int *)(param_1 + 0xfc) = local_10.x;
+  local_10.y = param_3[1] - *(int *)(param_2 + 0x38);
   iVar1 = param_1 + 0xfc;
-  *(uint *)(param_1 + 0x100) = local_c;
-  local_8 = param_3[2] - *(int *)(param_2 + 0x3c);
-  *(uint *)(param_1 + 0x104) = local_8;
-  FUN_004e054e(&local_10);
+  *(int *)(param_1 + 0x100) = local_10.y;
+  local_10.z = param_3[2] - *(int *)(param_2 + 0x3c);
+  *(int *)(param_1 + 0x104) = local_10.z;
+  call_Vec_NormalizeFast(&local_10);
   lVar2 = (longlong)*(int *)(*(int *)(param_1 + 0x58) + 0x30) * 56000;
   uVar3 = (uint)lVar2 >> 0x10 | (int)((ulonglong)lVar2 >> 0x20) << 0x10;
-  local_10 = (uint)((longlong)(int)local_10 * (longlong)(int)uVar3) >> 0x10 |
-             (int)((ulonglong)((longlong)(int)local_10 * (longlong)(int)uVar3) >> 0x20) << 0x10;
-  local_c = (uint)((longlong)(int)local_c * (longlong)(int)uVar3) >> 0x10 |
-            (int)((ulonglong)((longlong)(int)local_c * (longlong)(int)uVar3) >> 0x20) << 0x10;
-  local_8 = (uint)((longlong)(int)local_8 * (longlong)(int)uVar3) >> 0x10 |
-            (int)((ulonglong)((longlong)(int)local_8 * (longlong)(int)uVar3) >> 0x20) << 0x10;
+  local_10.x = (uint)((longlong)local_10.x * (longlong)(int)uVar3) >> 0x10 |
+               (int)((ulonglong)((longlong)local_10.x * (longlong)(int)uVar3) >> 0x20) << 0x10;
+  local_10.y = (uint)((longlong)local_10.y * (longlong)(int)uVar3) >> 0x10 |
+               (int)((ulonglong)((longlong)local_10.y * (longlong)(int)uVar3) >> 0x20) << 0x10;
+  local_10.z = (uint)((longlong)local_10.z * (longlong)(int)uVar3) >> 0x10 |
+               (int)((ulonglong)((longlong)local_10.z * (longlong)(int)uVar3) >> 0x20) << 0x10;
   *(int *)(param_1 + 0x108) =
        *(int *)(param_1 + 0x4c) * 0x80 + *(int *)(param_2 + 0x4c) * -0x80 >> 7;
   *(int *)(param_1 + 0x10c) =

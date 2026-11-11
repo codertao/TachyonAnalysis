@@ -50,7 +50,7 @@ void FUN_0041dfa0(int param_1)
         FUN_0049b480(s_IMAGE_005355d4,&local_10,0x10,0);
         FUN_0048ec90(&local_10,8,piVar4,0xcccc);
         if (*piVar4 != 0) {
-          FUN_004a2dc0(*piVar4,DAT_00603104 * _DAT_00603100);
+          Pal_RemapToGamePalette(*piVar4,DAT_00603104 * _DAT_00603100);
         }
         uVar6 = uVar6 + 1;
         piVar4 = piVar4 + 6;

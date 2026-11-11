@@ -7,7 +7,7 @@ void FUN_0045afa0(int param_1,int *param_2,int *param_3)
   code *pcVar3;
   vec3 local_30;
   vec3 local_24;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   iVar1 = *(int *)(param_1 + 0x144);
   iVar2 = *(int *)(*param_2 + 0x30);
@@ -16,10 +16,9 @@ void FUN_0045afa0(int param_1,int *param_2,int *param_3)
     local_30.y = param_2[5];
     local_30.z = param_2[6];
     if (iVar1 != 0) {
-      call_math_todo_with_rotation
-                (local_18,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
-                 *(undefined4 *)(iVar1 + 0x54));
-      call_copy_mathresult_to_global(local_18);
+      call_Math_SinCos3(local_18,*(int *)(iVar1 + 0x4c),*(int *)(iVar1 + 0x50),
+                        *(int *)(iVar1 + 0x54));
+      call_Rot_SetSinCos(local_18);
       some_rotate_by_global(&local_30,&local_30);
     }
     if ((*(byte *)(param_2 + 0xd) & 8) != 0) {

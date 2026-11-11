@@ -10,7 +10,7 @@ void FUN_0040f920(int param_1)
   float10 fVar6;
   ulonglong local_2c;
   vec3 local_24;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   local_24.x = 0;
   local_24.y = 0;
@@ -31,13 +31,12 @@ void FUN_0040f920(int param_1)
     }
   }
   local_24.z = DAT_005b9640;
-  call_math_todo_with_rotation(local_18,DAT_005b9648,DAT_005b964c,DAT_005b9650);
-  call_copy_mathresult_to_global(local_18);
+  call_Math_SinCos3(local_18,DAT_005b9648,DAT_005b964c,DAT_005b9650);
+  call_Rot_SetSinCos(local_18);
   some_rotate_by_global(&local_24,&local_24);
-  call_math_todo_with_rotation
-            (local_18,*(undefined4 *)(param_1 + 0x4c),*(undefined4 *)(param_1 + 0x50),
-             *(undefined4 *)(param_1 + 0x54));
-  call_copy_mathresult_to_global(local_18);
+  call_Math_SinCos3(local_18,*(int *)(param_1 + 0x4c),*(int *)(param_1 + 0x50),
+                    *(int *)(param_1 + 0x54));
+  call_Rot_SetSinCos(local_18);
   some_rotate_by_global(&local_24,&local_24);
   if (g_CutsceneActive == 0) {
     iVar5 = ((*(int *)(param_1 + 0xa0) * 7 + *(int *)(param_1 + 0x34)) - DAT_005b9600) - local_24.x;

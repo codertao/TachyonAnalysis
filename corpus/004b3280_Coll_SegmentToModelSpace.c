@@ -10,7 +10,7 @@ void Coll_SegmentToModelSpace(float *param_1,float *param_2,int *param_3,int *pa
   int local_24;
   int local_20;
   int local_1c;
-  undefined1 local_18 [24];
+  float local_18 [6];
   
   local_30 = *param_3 - *(int *)(param_5 + 0x1c);
   local_2c = param_3[1] - *(int *)(param_5 + 0x20);
@@ -18,10 +18,9 @@ void Coll_SegmentToModelSpace(float *param_1,float *param_2,int *param_3,int *pa
   local_24 = *param_4 - *(int *)(param_5 + 0x1c);
   local_20 = param_4[1] - *(int *)(param_5 + 0x20);
   local_1c = param_4[2] - *(int *)(param_5 + 0x24);
-  call_math_todo_with_rotation
-            (local_18,-*(int *)(param_5 + 0x34),-*(int *)(param_5 + 0x38),-*(int *)(param_5 + 0x3c))
-  ;
-  call_copy_mathresult_to_global(local_18);
+  call_Math_SinCos3(local_18,-*(int *)(param_5 + 0x34),-*(int *)(param_5 + 0x38),
+                    -*(int *)(param_5 + 0x3c));
+  call_Rot_SetSinCos(local_18);
   FUN_004b2410(&local_30,&local_30);
   FUN_004b2410(&local_24,&local_24);
   *param_1 = (float)local_30 * f_global_scalar_maybe;

@@ -17,7 +17,7 @@ void FUN_004452e0(void)
   if (*(int *)(iVar1 + 0x10) != 0) {
     if (*(int *)(iVar1 + 0xdc) != 0) goto LAB_004453e8;
     if (DAT_00564ae4 == 0) {
-      FUN_004e4b29();
+      Sw_ClearZBuffer();
       FUN_00452360(DAT_00604464,DAT_0060446c - DAT_00604464,
                    *(undefined4 *)(&DAT_005a6440 + (uint)DAT_005a632a * 4));
     }

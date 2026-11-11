@@ -28,8 +28,8 @@ void Bdf_LoadAndApply(undefined4 param_1)
     FUN_004b23a0(1,*(undefined4 *)(DAT_005b9084 + 0xe4),*(undefined4 *)(DAT_005b9084 + 0xe0));
     FUN_004ad0c0(*(undefined4 *)(DAT_005b9084 + 0xe8),*(undefined4 *)(DAT_005b9084 + 0xec),
                  *(undefined4 *)(DAT_005b9084 + 0xf0));
-    FUN_004abd30(*(undefined4 *)(DAT_005b9084 + 0xe8),*(undefined4 *)(DAT_005b9084 + 0xec),
-                 *(undefined4 *)(DAT_005b9084 + 0xf0));
+    Gfx_SetClearColor(*(undefined4 *)(DAT_005b9084 + 0xe8),*(undefined4 *)(DAT_005b9084 + 0xec),
+                      *(undefined4 *)(DAT_005b9084 + 0xf0));
     FUN_00424ee0(DAT_005b9084 + 0xdc,DAT_005b9084 + 0x124);
     return;
   }
@@ -38,7 +38,7 @@ void Bdf_LoadAndApply(undefined4 param_1)
   }
   FUN_004b23a0(1,DAT_005b2b9c,DAT_005b2b9c >> 1);
   FUN_004ad0c0(0,0,0);
-  FUN_004abd30(0,0,0);
+  Gfx_SetClearColor(0,0,0);
   return;
 }
 

@@ -10,17 +10,16 @@ void Ai_CollisionLookahead(int param_1)
   int iStack_24;
   int iStack_20;
   int iStack_1c;
-  undefined1 auStack_18 [24];
+  float afStack_18 [6];
   
   if ((((*(uint *)(param_1 + 800) ^ DAT_005897e4) & 0xf) == 0) && (*(short *)(param_1 + 0x352) == 0)
      ) {
     vStack_30.x = 0;
     vStack_30.y = 0;
     vStack_30.z = 3;
-    call_math_todo_with_rotation
-              (auStack_18,*(undefined4 *)(param_1 + 0x4c),*(undefined4 *)(param_1 + 0x50),
-               *(undefined4 *)(param_1 + 0x54));
-    call_copy_mathresult_to_global(auStack_18);
+    call_Math_SinCos3(afStack_18,*(int *)(param_1 + 0x4c),*(int *)(param_1 + 0x50),
+                      *(int *)(param_1 + 0x54));
+    call_Rot_SetSinCos(afStack_18);
     some_rotate_by_global(&vStack_30,&vStack_30);
     iStack_24 = *(int *)(param_1 + 0x34) + (*(int *)(param_1 + 0xa0) + vStack_30.x) * 0x15e;
     iStack_20 = *(int *)(param_1 + 0x38) + (*(int *)(param_1 + 0xa4) + vStack_30.y) * 0x15e;
