@@ -34,19 +34,19 @@ LAB_00451d82:
     DAT_005a6824 = 4;
   }
   else {
-    DAT_00602338 = FUN_004ad3c0(8);
-    DAT_0060233c = FUN_004ad3c0(9);
-    DAT_00602340 = FUN_004ad3c0(10);
+    DAT_00602338 = Gfx_HwControl(8);
+    DAT_0060233c = Gfx_HwControl(9);
+    DAT_00602340 = Gfx_HwControl(10);
     call_Pix_InitFormat();
     DAT_005a6824 = 2;
   }
-  FUN_00451af0(piVar1);
-  FUN_00451ab0(*piVar1,piVar1[1]);
+  Video_InitCursor(piVar1);
+  Video_SetupViewport(*piVar1,piVar1[1]);
   if (DAT_00564ae4 == 0) {
     buf = _malloc(piVar1[1] * *piVar1 * 4);
     Sw_SetZBuffer(buf);
   }
-  FUN_00458660();
+  Video_InitRenderer();
   return;
 }
 

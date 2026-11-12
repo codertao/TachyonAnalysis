@@ -1,0 +1,15 @@
+
+/* sweep */
+
+char * Quad_GetGroupName(undefined4 param_1,undefined4 param_2)
+
+{
+  int iVar1;
+  
+  iVar1 = Quad_FindGroupSlot(param_1,param_2);
+  if (iVar1 != 0) {
+    return *(char **)(iVar1 + 0x20);
+  }
+  return s_GROUP_0053fb4c;
+}
+

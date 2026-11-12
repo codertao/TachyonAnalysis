@@ -17,7 +17,7 @@ char * __cdecl _strstr(char *_Str,char *_SubStr)
     return _Str;
   }
   if (_SubStr[1] == '\0') {
-    pcVar4 = (char *)FUN_004c21a6();
+    pcVar4 = (char *)___from_strstr_to_strchr();
     return pcVar4;
   }
   do {

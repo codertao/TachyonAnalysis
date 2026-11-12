@@ -7,7 +7,7 @@ void BaseWars_UpdateRank(int param_1)
 {
   int iVar1;
   
-  iVar1 = FUN_0040c940(&g_RankPointThresholds,*(undefined4 *)(param_1 + 0x100));
+  iVar1 = Rank_FromPoints(&g_RankPointThresholds,*(undefined4 *)(param_1 + 0x100));
   if (iVar1 < 1) {
     iVar1 = 1;
   }

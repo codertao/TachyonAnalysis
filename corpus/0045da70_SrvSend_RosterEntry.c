@@ -12,7 +12,7 @@ void SrvSend_RosterEntry(undefined4 param_1)
   
   payload = (void *)NetSrv_AllocEvent();
   if (payload != (void *)0x0) {
-    FUN_0045d9f0(payload,param_1);
+    Roster_FillEntry(payload,param_1);
     iVar2 = -1;
     pcVar3 = (char *)((int)payload + 8);
     do {

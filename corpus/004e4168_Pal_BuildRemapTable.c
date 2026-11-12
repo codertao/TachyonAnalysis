@@ -14,7 +14,7 @@ void __cdecl Pal_BuildRemapTable(byte *dstPal,byte *srcPal)
   DAT_004e3007 = dstPal;
   DAT_004e3037 = srcPal;
   if (DAT_0060389c != 0) {
-    if (DAT_00603898 == PTR_FUN_004e3053) {
+    if (DAT_00603898 == PTR_PalAsm_FindNearest_004e3053) {
       pbVar5 = &DAT_00603598;
       iVar2 = 0x300;
       pbVar4 = srcPal;
@@ -35,13 +35,13 @@ void __cdecl Pal_BuildRemapTable(byte *dstPal,byte *srcPal)
       pbVar4 = pbVar4 + 1;
     }
   }
-  DAT_00603898 = PTR_FUN_004e3053;
+  DAT_00603898 = PTR_PalAsm_FindNearest_004e3053;
   _DAT_004e3023 = 0xff;
   DAT_00603484 = 0;
   puVar3 = &DAT_00603485;
   pbVar4 = DAT_004e3007;
   do {
-    uVar1 = (*(code *)PTR_FUN_004e3053)(pbVar4);
+    uVar1 = (*(code *)PTR_PalAsm_FindNearest_004e3053)(pbVar4);
     *puVar3 = uVar1;
     puVar3 = puVar3 + 1;
     _DAT_004e3023 = _DAT_004e3023 + -1;

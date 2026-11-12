@@ -23,7 +23,7 @@ int Sped_Spawn(undefined4 param_1,undefined4 param_2,int param_3,int param_4,int
       if ((iVar1 != 0) && (*(code **)(iVar1 + 0x3c) != (code *)0x0)) {
         param_5 = (**(code **)(iVar1 + 0x3c))(iVar3,iVar1,iVar2,param_5,1);
         if ((param_3 != 0) && (param_5 != 0)) {
-          FUN_004365a0(iVar2,1,*(undefined4 *)(iVar1 + 0x18));
+          Sped_MsgSpawned(iVar2,1,*(undefined4 *)(iVar1 + 0x18));
         }
         uStack_18 = 1;
         iStack_14 = param_1;

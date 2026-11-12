@@ -13,7 +13,7 @@ void Pak_FixupAnimMaterials(int param_1,uint param_2)
     do {
       if ((*(byte *)(param_1 + 0x16) & 8) != 0) {
         if (*(int *)(param_1 + 0x10) == 0) {
-          uVar2 = FUN_004af1d0(s_DUMMYPCX_0055eb9c);
+          uVar2 = TexCache_FindMaterial(s_DUMMYPCX_0055eb9c);
           *(undefined4 *)(param_1 + 0x10) = uVar2;
         }
         else if ((*(uint *)(*(int *)(param_1 + 0x10) + 0x34) & 0x7000) == 0x2000) {

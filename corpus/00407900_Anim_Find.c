@@ -12,7 +12,7 @@ int Anim_Find(int param_1,undefined4 param_2)
   iVar3 = *(int *)(param_1 + 8);
   if (*(int *)(param_1 + 4) != 0) {
     do {
-      iVar1 = str_cmp(iVar3,param_2);
+      iVar1 = __stricmp(iVar3,param_2);
       if (iVar1 == 0) {
         return iVar3;
       }

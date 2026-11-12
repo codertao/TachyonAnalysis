@@ -18,6 +18,21 @@ Layers, bottom to top:
 2. **Transport driver vtable** in space.exe: `0x55e8c8` (Netsock TCP/IP) or `0x55e800`
    (**DirectPlay over IPX** **[c]**: a lobby address with `DPAID_ServiceProvider` =
    `DPSPGUID_IPX`, `FUN_004aa260`). Picked by `FUN_004a6d00`, active pointer `0x55e458`.
+   - **Slots** (2026-11-11; the game calls them through `NetDrv_*` wrappers 0x4a6d40..0x4a7180):
+     0x00 AddSession, 0x04 FreeSession, 0x08 FreeAllSessions, 0x0c FindSessionByGuid,
+     0x10 FindSessionById, 0x14 CountSessions, 0x18 Init, 0x1c Shutdown, 0x20 connect TCP/IP,
+     0x24 modem, 0x28 serial, 0x2c IPX, 0x30 DirectPlay: recreate instance / Netsock: CloseTCPIP,
+     0x34 EnumSessions, 0x38 StopEnumSessions, 0x3c JoinSession, 0x40 HostSession,
+     0x44 CloseSession, 0x48 CreatePlayer, 0x4c DestroyPlayer, 0x50 GetMessageCount,
+     0x54 GetMessage, 0x58 SendToServer, 0x5c SendToServer guaranteed, 0x60 SendToClient,
+     0x64 SendToClient guaranteed, 0x68 SendToAll, 0x6c GetPlayerName, 0x70 SetPlayerName,
+     0x74 GetServerId, 0x78 nop, 0x7c..0x98 Netsock-only (SetPorts, SetDynamicPortUsage,
+     GetRecvPort, EnableServerCompression, GetPlayerIPAddress, SendPacket, GameCycleNotify,
+     SetOnlineAppIDString). Slots a transport lacks point at a shared return-0 stub. The Netsock
+     table reuses the DirectPlay modem/serial/IPX entries. DirectPlay is `IDirectPlay3A`; the
+     service-provider GUIDs identify TCP/IP 0x20, modem 0x24, serial 0x28 and IPX 0x2c **[c]**.
+     Sessions are filtered by the application GUID `{01aff8a1-0789-11d3-af07-00c0f0301285}` at
+     `0x52e8c0` (both enum callbacks).
    - The multiplayer menu's **LAN** button (`BtnMPSysLan`, `GLBL_spacesav[0x11]` = 0) picks
      DirectPlay/IPX. GoG ships `ipxwrapper.dll`, which tunnels IPX over **UDP 54792**, so a LAN
      host shows only that port and an ephemeral one.

@@ -1,0 +1,30 @@
+
+/* sweep */
+
+void SbJobs_ZoomOut(void)
+
+{
+  int iVar1;
+  int *piVar2;
+  
+  iVar1 = MnuImage_Find(&GLBL_UI_ELEM_LIST,s_ImageJobsBg_0054e950);
+  piVar2 = (int *)Starbase_FindFont(s_JOB_ZOOM_DST_0054e96c);
+  SbAudio_StopAll();
+  Light_ApplyDefault();
+  if ((piVar2 != (int *)0x0) && (iVar1 != 0)) {
+    Ui_DeactivateWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobs_00552160);
+    Ui_DeactivateWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobsPanel1_00552258);
+    Ui_DeactivateWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobsPanel2_00552294);
+    Ui_DeactivateWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseJobsComplete_0055227c);
+    Ui_ShowWindow(&GLBL_UI_ELEM_LIST,s_WndStarBase_0054e768,0);
+    Ui_OpenWindow(&GLBL_UI_ELEM_LIST,s_WndStarBase_0054e768);
+    MnuImage_LoadPcx(&GLBL_UI_ELEM_LIST,iVar1,0);
+    ScreenZoom_Start(&GLBL_UI_ELEM_LIST,iVar1,s_WndStarBase_0054e768,*piVar2,piVar2[1],0,0,
+                     piVar2[2] - *piVar2,piVar2[3] - piVar2[1],0x280,0x1e0,0,0x1a,Starbase_GoHub,
+                     SbLobby_Draw);
+    return;
+  }
+  Starbase_GoHub();
+  return;
+}
+

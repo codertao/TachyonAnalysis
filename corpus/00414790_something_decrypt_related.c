@@ -8,7 +8,7 @@ void something_decrypt_related(undefined4 param_1)
   undefined **ppuVar4;
   
   ppuVar4 = &PTR_s_FC_F_SMSLLBZ_00534038;
-  to_uppercase(param_1);
+  __strupr(param_1);
   puVar2 = PTR_s_FC_F_SMSLLBZ_00534038;
   while (puVar2 != (undefined *)0x0) {
     iVar3 = check_str_matches_enc_str(param_1,*ppuVar4,s_KDBPYJGDFRKNXZSAPKM_00534020);

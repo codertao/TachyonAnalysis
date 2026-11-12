@@ -15,9 +15,9 @@ void Loadout_ShowSellConfirm(void)
   char *pcVar9;
   ulonglong local_8;
   
-  iVar6 = FUN_0043bf10(&GLBL_UI_ELEM_LIST,s_CFG_SELL_QUERY_005501d4);
+  iVar6 = Mnu_FindText(&GLBL_UI_ELEM_LIST,s_CFG_SELL_QUERY_005501d4);
   if ((DAT_005635fc != 0) && (iVar1 = *(int *)(DAT_005635fc + 0x58), iVar1 != 0)) {
-    FUN_00474070(DAT_005635fc);
+    Loadout_ResetStoreScroll(DAT_005635fc);
     iVar8 = *(int *)(DAT_005635fc + 0x54);
     if (iVar8 == 0) {
       uVar2 = *(uint *)(iVar1 + 0x9c);
@@ -56,8 +56,8 @@ void Loadout_ShowSellConfirm(void)
       set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell2_00550120,8);
       set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell3_00550114,8);
       set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell4_00550108,8);
-      FUN_0043f840(&GLBL_UI_ELEM_LIST,s_IACFGCaution_00550014,0x20000);
-      FUN_0043f840(&GLBL_UI_ELEM_LIST,s_IACFGCaution2_00550004,0x20000);
+      ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,s_IACFGCaution_00550014,0x20000);
+      ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,s_IACFGCaution2_00550004,0x20000);
       if (iVar6 == 0) {
         pcVar9 = s__Sell_item_for__d_credits__loss_o_005500d8;
       }
@@ -68,7 +68,7 @@ void Loadout_ShowSellConfirm(void)
       uVar5 = (undefined4)local_8;
       local_8._0_4_ = (undefined4)(longlong)ROUND(fVar4);
       str_sprintf(0x582ac0,pcVar9,(undefined4)local_8,uVar5);
-      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,s_TxtCFGItemQuery_00550024,0x582ac0);
+      Ui_SetLabelText(&GLBL_UI_ELEM_LIST,s_TxtCFGItemQuery_00550024,0x582ac0);
       clr_label_flags_11c(&GLBL_UI_ELEM_LIST,s_TxtCFGItemQuery_00550024,0x10000);
       Ui_RefreshWindow(&GLBL_UI_ELEM_LIST,s_WndStarBaseCFG_0054ffc8,0,0);
       DAT_00562bd0 = 1;

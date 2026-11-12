@@ -9,7 +9,7 @@ void Ai_FindClearDirection(int param_1)
   vec3 local_24;
   undefined1 local_18 [24];
   
-  FUN_004b1bb0(local_18,(vec3 *)(param_1 + 0x4c));
+  Rot_FromAngles(local_18,(vec3 *)(param_1 + 0x4c));
   local_24.x = 0;
   local_24.y = 0x1388000;
   local_24.z = 0;
@@ -18,7 +18,8 @@ void Ai_FindClearDirection(int param_1)
   local_24.x = local_24.x + *(int *)(param_1 + 0x34) + *(int *)(param_1 + 0xa0) * 0x10;
   local_24.y = local_24.y + *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4) * 0x10;
   local_24.z = local_24.z + *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8) * 0x10;
-  iVar2 = FUN_00419090(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,Ai_LookaheadFilter);
+  iVar2 = Coll_LookaheadCast(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,
+                             Ai_LookaheadFilter);
   if (iVar2 != 0) {
     local_24.x = 0;
     local_24.y = -0x1388000;
@@ -27,8 +28,8 @@ void Ai_FindClearDirection(int param_1)
     local_24.x = local_24.x + *piVar1 + *(int *)(param_1 + 0xa0) * 0x10;
     local_24.y = local_24.y + *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4) * 0x10;
     local_24.z = local_24.z + *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8) * 0x10;
-    iVar2 = FUN_00419090(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,Ai_LookaheadFilter)
-    ;
+    iVar2 = Coll_LookaheadCast(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,
+                               Ai_LookaheadFilter);
     if (iVar2 != 0) {
       local_24.x = -0x1388000;
       local_24.y = 0;
@@ -37,8 +38,8 @@ void Ai_FindClearDirection(int param_1)
       local_24.x = local_24.x + *piVar1 + *(int *)(param_1 + 0xa0) * 0x10;
       local_24.y = local_24.y + *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4) * 0x10;
       local_24.z = local_24.z + *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8) * 0x10;
-      iVar2 = FUN_00419090(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,
-                           Ai_LookaheadFilter);
+      iVar2 = Coll_LookaheadCast(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,
+                                 Ai_LookaheadFilter);
       if (iVar2 != 0) {
         local_24.x = 0x1388000;
         local_24.y = 0;
@@ -47,8 +48,8 @@ void Ai_FindClearDirection(int param_1)
         local_24.x = local_24.x + *piVar1 + *(int *)(param_1 + 0xa0) * 0x10;
         local_24.y = local_24.y + *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4) * 0x10;
         local_24.z = local_24.z + *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8) * 0x10;
-        iVar2 = FUN_00419090(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,
-                             Ai_LookaheadFilter);
+        iVar2 = Coll_LookaheadCast(piVar1,&local_24,*(int *)(param_1 + 100) + 0x14,param_1,
+                                   Ai_LookaheadFilter);
         if (iVar2 != 0) {
           local_24.x = 0;
           local_24.y = 0;

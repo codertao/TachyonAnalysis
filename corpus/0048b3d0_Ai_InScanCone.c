@@ -14,7 +14,7 @@ bool Ai_InScanCone(int param_1,int param_2,uint param_3,int param_4)
   local_c.y = *(int *)(param_2 + 0x38) - *(int *)(param_1 + 0x38);
   local_c.z = *(int *)(param_2 + 0x3c) - *(int *)(param_1 + 0x3c);
   call_Vec_NormalizeFast(&local_c);
-  iVar1 = FUN_004e058e(param_4 + 0x20,&local_c);
+  iVar1 = MathAsm_DotFixed16_Fwd(param_4 + 0x20,&local_c);
   if (iVar1 < 0) {
     return false;
   }

@@ -5,10 +5,11 @@ void Anim_ParseCameraFrames(int param_1)
   int iVar1;
   uint uVar2;
   
-  iVar1 = FUN_00406580(param_1);
+  iVar1 = Anim_CountCameraFrames(param_1);
   *(int *)(param_1 + 0x20) = iVar1;
   if (iVar1 != 0) {
-    FUN_0048e3d0((int *)(param_1 + 0x24),iVar1 * 0x1c,4,s_ANIM_CAMERA_KEYFRAMES_00532830,0xcccc);
+    Mem_AllocZeroTagged((int *)(param_1 + 0x24),iVar1 * 0x1c,4,s_ANIM_CAMERA_KEYFRAMES_00532830,
+                        0xcccc);
     iVar1 = *(int *)(param_1 + 0x24);
     uVar2 = 0;
     if (*(int *)(param_1 + 0x20) != 0) {

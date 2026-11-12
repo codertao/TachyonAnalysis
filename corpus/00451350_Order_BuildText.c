@@ -18,43 +18,43 @@ void Order_BuildText(undefined4 *param_1,undefined4 param_2,undefined4 param_3,u
   param_1[0x1b] = 0;
   switch(param_2) {
   case 0:
-    FUN_00436b80(param_3,param_4,local_60);
-    FUN_00451280(local_60,0x86,param_1 + 2);
-    to_uppercase(param_1 + 2);
+    Sped_GetTextById(param_3,param_4,local_60);
+    Order_FormatObjective(local_60,0x86,param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   case 1:
-    FUN_00436bd0(param_3,param_4,local_60);
+    Group_FormatName(param_3,param_4,local_60);
     uVar6 = 0x86;
     break;
   case 2:
-    FUN_00436b80(param_3,param_4,local_60);
-    FUN_00451280(local_60,0x88,param_1 + 2);
-    to_uppercase(param_1 + 2);
+    Sped_GetTextById(param_3,param_4,local_60);
+    Order_FormatObjective(local_60,0x88,param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   case 3:
-    FUN_00436bd0(param_3,param_4,local_60);
+    Group_FormatName(param_3,param_4,local_60);
     uVar6 = 0x88;
     break;
   case 4:
-    FUN_00436b80(param_3,param_4,local_60);
-    FUN_00451280(local_60,0x8d,param_1 + 2);
-    to_uppercase(param_1 + 2);
+    Sped_GetTextById(param_3,param_4,local_60);
+    Order_FormatObjective(local_60,0x8d,param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   case 5:
-    FUN_00436bd0(param_3,param_4,local_60);
+    Group_FormatName(param_3,param_4,local_60);
     uVar6 = 0x8d;
     break;
   case 6:
-    FUN_00436b80(param_3,param_4,local_60);
-    FUN_00451280(local_60,0x8e,param_1 + 2);
-    to_uppercase(param_1 + 2);
+    Sped_GetTextById(param_3,param_4,local_60);
+    Order_FormatObjective(local_60,0x8e,param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   case 7:
-    FUN_00436bd0(param_3,param_4,local_60);
+    Group_FormatName(param_3,param_4,local_60);
     uVar6 = 0x8e;
     break;
   case 8:
-    pcVar2 = (char *)FUN_0048e800(DAT_005a6140,0x8b);
+    pcVar2 = (char *)Rtxt_GetText(DAT_005a6140,0x8b);
     uVar3 = 0xffffffff;
     do {
       pcVar5 = pcVar2;
@@ -77,26 +77,26 @@ void Order_BuildText(undefined4 *param_1,undefined4 param_2,undefined4 param_3,u
       pcVar2 = pcVar2 + 1;
       pcVar5 = pcVar5 + 1;
     }
-    to_uppercase(param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   case 9:
-    FUN_004512e0(param_3,param_1 + 2);
-    to_uppercase(param_1 + 2);
+    Order_GetSpecialText(param_3,param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   case 0xb:
-    FUN_004512e0(param_3,param_1 + 2);
+    Order_GetSpecialText(param_3,param_1 + 2);
     param_1[0x1c] = 0x800000;
-    to_uppercase(param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   case 0xc:
-    FUN_004512e0(param_3,param_1 + 2);
+    Order_GetSpecialText(param_3,param_1 + 2);
     param_1[0x1c] = 0x1e82ff;
   default:
-    to_uppercase(param_1 + 2);
+    __strupr(param_1 + 2);
     return;
   }
-  FUN_00451280(local_60,uVar6,param_1 + 2);
-  to_uppercase(param_1 + 2);
+  Order_FormatObjective(local_60,uVar6,param_1 + 2);
+  __strupr(param_1 + 2);
   return;
 }
 

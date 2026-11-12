@@ -7,7 +7,7 @@ void BaseWars_AddPoints(int param_1,int param_2)
   int iVar1;
   
   if (DAT_005b2b0c != 0) {
-    FUN_0040ce10(param_1);
+    BW_SendRankProgress(param_1);
     return;
   }
   iVar1 = *(int *)(param_1 + 0x100) + param_2;
@@ -15,9 +15,9 @@ void BaseWars_AddPoints(int param_1,int param_2)
   if (0xe74 < iVar1) {
     *(undefined4 *)(param_1 + 0x100) = 0xe74;
   }
-  FUN_0040c8f0(param_1,param_2);
+  BW_MsgGainedExp(param_1,param_2);
   BaseWars_UpdateRank(param_1);
-  FUN_0040ce10(param_1);
+  BW_SendRankProgress(param_1);
   return;
 }
 

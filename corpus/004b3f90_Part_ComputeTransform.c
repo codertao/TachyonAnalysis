@@ -28,13 +28,13 @@ void Part_ComputeTransform(uint *param_1,int param_2)
       call_Math_SinCos3((float *)&DAT_0055ed00,param_1[0xd],param_1[0xe],param_1[0xf]);
       call_Math_SinCos3((float *)(iVar1 + 0x18),-*(int *)(param_2 + 4),-*(int *)(param_2 + 8),
                         -*(int *)(param_2 + 0xc));
-      FUN_004b1bb0(iVar1,(vec3 *)(param_2 + 4));
+      Rot_FromAngles(iVar1,(vec3 *)(param_2 + 4));
       some_rotate_by_global((vec3 *)&INT_0055ecb8,(vec3 *)GLBL_3VEC3_input);
       some_rotate_by_global((vec3 *)&DAT_0055ecc4,(vec3 *)(GLBL_3VEC3_input + 3));
       some_rotate_by_global((vec3 *)&DAT_0055ecd0,(vec3 *)(GLBL_3VEC3_input + 6));
       for (iVar2 = *(int *)(param_2 + 0x20); iVar2 != 0; iVar2 = *(int *)(iVar2 + 0x20)) {
         if ((*(uint *)(iVar2 + 0x10) & 0x100) == 0) {
-          FUN_004b1bb0(*(undefined4 *)(iVar2 + 0x28),(vec3 *)(iVar2 + 4));
+          Rot_FromAngles(*(undefined4 *)(iVar2 + 0x28),(vec3 *)(iVar2 + 4));
           some_rotate_by_global((vec3 *)GLBL_3VEC3_input,(vec3 *)GLBL_3VEC3_input);
           some_rotate_by_global((vec3 *)(GLBL_3VEC3_input + 3),(vec3 *)(GLBL_3VEC3_input + 3));
           some_rotate_by_global((vec3 *)(GLBL_3VEC3_input + 6),(vec3 *)(GLBL_3VEC3_input + 6));
@@ -45,14 +45,14 @@ void Part_ComputeTransform(uint *param_1,int param_2)
       some_rotate_by_global((vec3 *)(GLBL_3VEC3_input + 3),(vec3 *)(GLBL_3VEC3_input + 3));
       some_rotate_by_global((vec3 *)(GLBL_3VEC3_input + 6),(vec3 *)(GLBL_3VEC3_input + 6));
       call_Rot_SetSinCos((float *)&DAT_00666ac8);
-      FUN_004b2410(GLBL_3VEC3_input,GLBL_3VEC3_input);
-      FUN_004b2410(0x55ece8,0x55ece8);
-      FUN_004b2410(0x55ecf4,0x55ecf4);
+      Rot_ApplyCurrent(GLBL_3VEC3_input,GLBL_3VEC3_input);
+      Rot_ApplyCurrent(0x55ece8,0x55ece8);
+      Rot_ApplyCurrent(0x55ecf4,0x55ecf4);
     }
     else {
       call_Math_SinCos3((float *)(iVar1 + 0x18),-*(int *)(param_2 + 4),-*(int *)(param_2 + 8),
                         -*(int *)(param_2 + 0xc));
-      FUN_004b1bb0(iVar1,(vec3 *)(param_2 + 4));
+      Rot_FromAngles(iVar1,(vec3 *)(param_2 + 4));
       call_Rot_AboutZ((vec3 *)&INT_0055ecb8,(vec3 *)GLBL_3VEC3_input);
       call_Rot_AboutZ((vec3 *)&DAT_0055ecc4,(vec3 *)(GLBL_3VEC3_input + 3));
       call_Rot_AboutZ((vec3 *)&DAT_0055ecd0,(vec3 *)(GLBL_3VEC3_input + 6));
@@ -62,7 +62,7 @@ void Part_ComputeTransform(uint *param_1,int param_2)
       call_Rot_AboutZ((vec3 *)(GLBL_3VEC3_input + 6),(vec3 *)(GLBL_3VEC3_input + 6));
     }
     scale_glbl_3vecs_by_global();
-    FUN_004b3eb0(param_2,iVar1 + 0x30);
+    Part_PlaceChildren(param_2,iVar1 + 0x30);
     return;
   }
   GLBL_3VEC3_output[0] = (float)INT_0055ecb8 * f_global_scalar_maybe;

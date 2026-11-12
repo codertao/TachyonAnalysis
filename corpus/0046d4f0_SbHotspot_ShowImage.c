@@ -1,0 +1,22 @@
+
+/* sweep */
+
+void SbHotspot_ShowImage(int param_1)
+
+{
+  int iVar1;
+  
+  if (*(int *)(param_1 + 200) != 0) {
+    Ui_SetImageAreaFromFile
+              (DAT_005879a0,param_1 + 0xcc,param_1 + 0xec,*(undefined4 *)(param_1 + 0x114),
+               *(undefined4 *)(param_1 + 0x10c),*(undefined4 *)(param_1 + 0x110),
+               *(undefined4 *)(param_1 + 0x118),*(undefined4 *)(param_1 + 0x11c),0xff);
+    return;
+  }
+  iVar1 = find_ui_elem_by_id_(DAT_005879a0,param_1 + 0xcc);
+  if (iVar1 != 0) {
+    set_flag_10c_on_elem_by_id(DAT_005879a0,param_1 + 0xcc,0x20000);
+  }
+  return;
+}
+

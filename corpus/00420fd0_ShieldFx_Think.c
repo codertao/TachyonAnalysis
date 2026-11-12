@@ -25,7 +25,7 @@ void ShieldFx_Think(int param_1)
     *(undefined4 *)(param_1 + 0x2c) = 0x7f;
   }
   if ((*(int *)(param_1 + 0x2c) == 0) && (iVar1 < 0)) {
-    FUN_0041b8c0(param_1);
+    Quad_Unlink(param_1);
     return;
   }
   if ((*(int *)(param_1 + 0x2c) == 0x7f) && (0 < iVar1)) {

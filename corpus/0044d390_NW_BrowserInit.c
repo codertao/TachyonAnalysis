@@ -23,13 +23,14 @@ void NW_BrowserInit(void)
       puVar5 = puVar5 + 1;
     }
     puVar4[3] = 0x30000008;
-    FUN_0048e3d0(puVar4,uVar2 << 0x10,4,s_IBROWSER_MATERIAL_005480e0,0xa000);
-    FUN_00439810(0x100,0x100,puVar4 + 2,(int)puVar4 + 9);
+    Mem_AllocZeroTagged(puVar4,uVar2 << 0x10,4,s_IBROWSER_MATERIAL_005480e0,0xa000);
+    Tex_CalcPow2Dims(0x100,0x100,puVar4 + 2,(int)puVar4 + 9);
     puVar4 = puVar4 + 0xb;
     iVar3 = iVar3 + -1;
   } while (iVar3 != 0);
   if (DAT_005927cc == 0) {
-    FUN_0048e3d0(&DAT_005927cc,(DAT_00591640 >> 3) * 0x37a50,4,s_ibrowser_buffer_005480d0,0xa000);
+    Mem_AllocZeroTagged(&DAT_005927cc,(DAT_00591640 >> 3) * 0x37a50,4,s_ibrowser_buffer_005480d0,
+                        0xa000);
   }
   if (DAT_005927c0 == 0) {
     if (DAT_00591640 == 0x20) {

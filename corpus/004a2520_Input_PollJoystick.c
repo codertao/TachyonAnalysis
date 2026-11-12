@@ -26,10 +26,10 @@ void Input_PollJoystick(int param_1)
   byte bStack_e1;
   
   if (param_1 != 0) {
-    FUN_004a1d40(param_1);
+    Joy_ResetState(param_1);
     if (*(int *)(param_1 + 8) == 1) {
       if ((*(byte *)(param_1 + 0x38) & 1) != 0) {
-        iVar2 = FUN_004a1d00(param_1);
+        iVar2 = Joy_ReadAxis(param_1);
         if (-1 < iVar2) {
           iVar2 = (**(code **)(**(int **)(param_1 + 100) + 100))(*(int **)(param_1 + 100));
           if (-1 < iVar2) {

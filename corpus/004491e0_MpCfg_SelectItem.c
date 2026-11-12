@@ -19,12 +19,12 @@ void MpCfg_SelectItem(int param_1)
       *(undefined4 *)(*(int *)(iVar1 + 0xa8) + 0xbc) =
            *(undefined4 *)(*(int *)(iVar1 + 0xa8) + 0xb8);
       if (*(int *)(*(int *)(iVar1 + 0xa8) + 0xc4) != 0) {
-        FUN_0048b6f0(0);
+        Teletype_ResetSlot(0);
       }
     }
     if (*(int *)(param_1 + 0x50) == 0) {
-      FUN_00447220(param_1);
-      FUN_00446dc0(1);
+      MpCfg_ComputeItemStats(param_1);
+      MpCfg_SetItemInfo(1);
     }
   }
   return;

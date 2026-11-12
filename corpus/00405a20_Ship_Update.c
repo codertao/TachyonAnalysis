@@ -8,19 +8,19 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
   undefined4 uVar2;
   
   if (*(short *)(param_1 + 0x76) == 1) {
-    uVar1 = FUN_00452690(param_1,param_2,param_3);
+    uVar1 = Ship_OnSystemEvent(param_1,param_2,param_3);
     return uVar1;
   }
   switch(param_2) {
   case 1:
-    FUN_00404fd0(param_1,param_3);
+    ShipCmd_SetActive(param_1,param_3);
     return 0;
   case 2:
     TrigAct_ObjDockWith(*(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x20),param_3,0,
                         *(undefined4 *)(param_1 + 100));
     return 0;
   case 3:
-    FUN_00403f70(param_1);
+    Sped_Destroy(param_1);
     return 0;
   case 4:
     return (uint)*(byte *)(param_1 + 0xf6);
@@ -35,19 +35,19 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
     Ent_SetIdentified(param_1,param_1 + 0xdc,param_3);
     return 0;
   case 8:
-    FUN_004050e0(param_1,param_3);
+    Ent_SetTeam(param_1,param_3);
     return 0;
   case 10:
-    FUN_00405470(param_1,param_3);
+    ShipCmd_DockWith(param_1,param_3);
     return 0;
   case 0xb:
-    FUN_00405580(param_1,param_3);
+    ShipCmd_Wake(param_1,param_3);
     return 0;
   case 0xc:
-    FUN_004058b0(param_1,param_3);
+    ShipCmd_UseGate(param_1,param_3);
     return 0;
   case 0xe:
-    FUN_00405000(param_1,param_3);
+    ShipCmd_SetGroupActive(param_1,param_3);
     return 0;
   case 0xf:
     Nav_ChangeRoute(param_1,param_1 + 0xdc,param_3);
@@ -70,7 +70,7 @@ uint Ship_Update(int param_1,undefined4 param_2,uint param_3)
     SrvSend_ThreatList(*(undefined4 *)(param_1 + 0x78),0x14,*(undefined4 *)(param_1 + 100));
     break;
   case 0x18:
-    FUN_00403f20(param_1);
+    Sped_Despawn(param_1);
     return 0;
   case 0x1a:
     uVar2 = FlightModel_SolveThrottle

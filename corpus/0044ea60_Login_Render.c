@@ -3,13 +3,13 @@ void Login_Render(void)
 
 {
   if (DAT_00564ae4 != 0) {
-    FUN_004455f0();
+    Ui_PresentFrame();
   }
-  FUN_0044ea50();
+  Ui_DrawAllMain();
   if (DAT_00564ae4 != 0) {
-    FUN_0043e980(DAT_006022e0,DAT_006022e4);
+    Ui_DrawCursor(DAT_006022e0,DAT_006022e4);
   }
-  FUN_004521c0();
+  Gfx_Flip();
   return;
 }
 

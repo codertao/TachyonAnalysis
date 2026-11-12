@@ -27,7 +27,7 @@ void __local_unwind2(int param_1,int param_2)
     local_14 = *(undefined4 *)(iVar1 + iVar2 * 0xc);
     *(undefined4 *)(param_1 + 0xc) = local_14;
     if (*(int *)(iVar1 + 4 + iVar2 * 0xc) == 0) {
-      FUN_004bde0e(0x101);
+      __NLG_Notify(0x101);
       (**(code **)(iVar1 + 8 + iVar2 * 0xc))();
     }
   }

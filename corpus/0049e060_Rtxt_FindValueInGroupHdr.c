@@ -19,7 +19,7 @@ undefined4 Rtxt_FindValueInGroupHdr(undefined4 param_1,undefined4 *param_2,undef
     do {
       piVar2 = (int *)Rtxt_FindKey(param_1,pcVar7);
       if ((piVar2 != (int *)0x0) && (*piVar2 != 0)) {
-        iVar3 = str_cmp(*piVar2,param_3);
+        iVar3 = __stricmp(*piVar2,param_3);
         if (iVar3 == 0) {
           uVar4 = Rtxt_KeyIndex(param_1,pcVar7);
           return uVar4;

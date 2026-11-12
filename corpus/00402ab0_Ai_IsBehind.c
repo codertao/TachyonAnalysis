@@ -15,8 +15,8 @@ undefined4 Ai_IsBehind(int param_1,int param_2,int *param_3)
   local_30 = *(int *)(param_1 + 0x34) - *(int *)(param_2 + 0x34);
   local_2c = *(int *)(param_1 + 0x38) - *(int *)(param_2 + 0x38);
   local_28 = *(int *)(param_1 + 0x3c) - *(int *)(param_2 + 0x3c);
-  FUN_004b1be0(local_18,param_2 + 0x4c);
-  FUN_004b2410(&local_30,&local_30);
+  Rot_FromAnglesInv(local_18,param_2 + 0x4c);
+  Rot_ApplyCurrent(&local_30,&local_30);
   local_30 = local_30 + *(int *)(param_2 + 0x34);
   local_2c = local_2c + *(int *)(param_2 + 0x38);
   local_28 = local_28 + *(int *)(param_2 + 0x3c);

@@ -12,8 +12,8 @@ void __cdecl Vec_BasisToAngles(vec3 *up,vec3 *fwd,vec3 *outAng)
   
   DAT_004dff88 = outAng;
   DAT_004dff8c = Math_Atan2Core();
-  DAT_004dff98 = FUN_0052d958();
-  DAT_004dff9c = FUN_0052d958();
+  DAT_004dff98 = MathAsm_TrigTableLookup();
+  DAT_004dff9c = MathAsm_TrigTableLookup();
   DAT_004dff84 = up->x;
   lVar1 = (longlong)DAT_004dff9c * (longlong)up->x;
   lVar2 = (longlong)DAT_004dff98 * (longlong)up->z;
@@ -30,8 +30,8 @@ void __cdecl Vec_BasisToAngles(vec3 *up,vec3 *fwd,vec3 *outAng)
            ((uint)((longlong)DAT_004dff98 * (longlong)DAT_004dff84) >> 0x10 |
            (int)((ulonglong)((longlong)DAT_004dff98 * (longlong)DAT_004dff84) >> 0x20) << 0x10);
   DAT_004dff90 = Math_Atan2Core();
-  DAT_004dff98 = FUN_0052d958();
-  DAT_004dff9c = FUN_0052d958();
+  DAT_004dff98 = MathAsm_TrigTableLookup();
+  DAT_004dff9c = MathAsm_TrigTableLookup();
   DAT_004dff84 = up->z;
   lVar1 = (longlong)DAT_004dff9c * (longlong)up->y;
   _DAT_004dff80 = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;

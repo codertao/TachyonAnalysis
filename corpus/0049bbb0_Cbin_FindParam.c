@@ -19,7 +19,7 @@ Cbin_FindParam(char *param_1,int param_2,undefined4 param_3,float *param_4,int p
   local_304 = DAT_0053ebb4;
   local_302[0] = DAT_0053ebb6;
   if (*(int *)(param_7 + 0x1c) != 0) {
-    uVar2 = FUN_0049b960(param_1,param_2,param_3,param_4,param_5,param_6,param_7);
+    uVar2 = Cbin_ConvertParam(param_1,param_2,param_3,param_4,param_5,param_6,param_7);
     return uVar2;
   }
   if (param_4 != (float *)0x0) {
@@ -27,7 +27,7 @@ Cbin_FindParam(char *param_1,int param_2,undefined4 param_3,float *param_4,int p
   }
   do {
     do {
-      iVar3 = FUN_0049aed0(local_200,0x100,param_7);
+      iVar3 = Cbin_NextKey(local_200,0x100,param_7);
       if (iVar3 == 0) {
         return 0;
       }
@@ -51,12 +51,12 @@ Cbin_FindParam(char *param_1,int param_2,undefined4 param_3,float *param_4,int p
       *pcVar4 = '\0';
       cVar1 = pcVar4[-1];
     }
-    if ((local_302[2] == *param_1) && (iVar3 = str_cmp(local_302 + 2,param_1), iVar3 == 0)) {
-      iVar3 = FUN_004bcef7(local_100,&local_304);
+    if ((local_302[2] == *param_1) && (iVar3 = __stricmp(local_302 + 2,param_1), iVar3 == 0)) {
+      iVar3 = _strtok(local_100,&local_304);
       param_6 = param_6 + -1;
       if (0 < param_6) {
         do {
-          iVar3 = FUN_004bcef7(0,&local_304);
+          iVar3 = _strtok(0,&local_304);
           param_6 = param_6 + -1;
         } while (param_6 != 0);
       }
@@ -64,16 +64,16 @@ Cbin_FindParam(char *param_1,int param_2,undefined4 param_3,float *param_4,int p
         return 0;
       }
       if (param_2 != 0) {
-        FUN_0049ae90(param_2,iVar3,param_3);
-        FUN_00499d00(param_2);
+        Cbin_KeyCompare(param_2,iVar3,param_3);
+        Str_Length(param_2);
       }
       if (param_4 != (float *)0x0) {
         if (param_5 == 2) {
-          fVar7 = (float10)FUN_004bd36f();
+          fVar7 = (float10)_atof();
           *param_4 = (float)fVar7;
           return 1;
         }
-        fVar5 = (float)FUN_004bd32f(iVar3);
+        fVar5 = (float)_atoi(iVar3);
         *param_4 = fVar5;
       }
       return 1;

@@ -25,14 +25,14 @@ void MusScr_Interp(void)
       pbStack_28 = unaff_ESI;
       pbStack_1c = unaff_ESI;
       puStack_18 = unaff_EBP;
-      FUN_004b62c0();
+      MusDbg_OnStep();
       unaff_EBP = puStack_18;
       unaff_ESI = pbStack_1c;
     }
     bVar3 = bVar3 && (undefined1 *)0xfffffff7 < &pbStack_28;
     bVar1 = *unaff_ESI;
     unaff_ESI = unaff_ESI + 1;
-    (*(code *)(&PTR_FUN_0055ee5c)[bVar1])();
+    (*(code *)(&PTR_MusOp_Nop_0055ee5c)[bVar1])();
     iVar2 = _DAT_0066a628;
   } while ((!bVar3) &&
           ((_DAT_0066a628 = _DAT_0066a628 + -1, _DAT_0066a628 != 0 && 0 < iVar2 ||

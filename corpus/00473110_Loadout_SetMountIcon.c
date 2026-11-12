@@ -18,8 +18,8 @@ void Loadout_SetMountIcon
       iVar1 = (param_6 / param_7 - *(int *)(param_2 + 0x1670) / *(int *)(param_2 + 0x1680)) /
               param_9;
     }
-    FUN_0043f650(&GLBL_UI_ELEM_LIST,param_1,iVar2 + param_3,iVar1 + param_4);
-    FUN_0043f840(&GLBL_UI_ELEM_LIST,param_1,0x20000);
+    ImageArea_StepFrame(&GLBL_UI_ELEM_LIST,param_1,iVar2 + param_3,iVar1 + param_4);
+    ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,param_1,0x20000);
   }
   return;
 }

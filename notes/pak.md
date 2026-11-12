@@ -59,6 +59,13 @@ main_end:
 - **LOD table** (at 0x60): `n_lods × {fx distance, u32 group_ofs}`. Distances rise, and the last is
   effectively "infinite" (e.g. Cutlass 80 / 120 / 200 / 3000; Enforcer 40 / 120 / 200 / 300 /
   10000).
+- **The file distances are not used for switching [c]** (`Pak_ComputeLodDistances 0x4afed0`, called
+  by `Pak_Load` right after the radius recompute). For every LOD except the last it writes
+  `d_i = (r + r·focal / ((screenW/4) >> i)) × LODscale`, where r = the recomputed radius, focal =
+  `0x604470` and LODscale = `0x668f88` (`Rend_SwapLodScale`, default 1.0). So LOD i+1 takes over
+  once the model's projected radius drops below a quarter of the screen width / 2^i pixels. The
+  thresholds depend on the resolution, and the exporter's numbers are ignored. **[l]** I haven't
+  fully traced how the last entry is clamped.
 - **LOD group:** `{fx scale (always 1.0), u32 n_parts, u32 parts_ofs (always 0xc, relative to the
   group)}`, followed by `n_parts` part records.
 

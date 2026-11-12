@@ -9,109 +9,109 @@ void Input_SampleAxes(void)
   
   iVar2 = DAT_005640d0;
   if (DAT_005640d0 == 0) {
-    FUN_004a1c90();
+    Joy_ResetCalibration();
     return;
   }
   Input_PollJoystick(DAT_005640d0);
   if ((*(byte *)(iVar2 + 0x38) & 1) == 0) {
-    FUN_004a1c90();
+    Joy_ResetCalibration();
     return;
   }
   if ((*(byte *)(iVar2 + 0x5c) & 1) == 0) {
-    FUN_004a1ce0(1);
+    Joy_ClearButtonFlag(1);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(byte *)(iVar2 + 0x5c) & 2) == 0) {
-    FUN_004a1ce0(2);
+    Joy_ClearButtonFlag(2);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(byte *)(iVar2 + 0x5c) & 4) == 0) {
-    FUN_004a1ce0(4);
+    Joy_ClearButtonFlag(4);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(byte *)(iVar2 + 0x5c) & 8) == 0) {
-    FUN_004a1ce0(8);
+    Joy_ClearButtonFlag(8);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(byte *)(iVar2 + 0x5c) & 0x10) == 0) {
-    FUN_004a1ce0(0x10);
+    Joy_ClearButtonFlag(0x10);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(byte *)(iVar2 + 0x5c) & 0x20) == 0) {
-    FUN_004a1ce0(0x20);
+    Joy_ClearButtonFlag(0x20);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(byte *)(iVar2 + 0x5c) & 0x40) == 0) {
-    FUN_004a1ce0(0x40);
+    Joy_ClearButtonFlag(0x40);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(byte *)(iVar2 + 0x5c) & 0x80) == 0) {
-    FUN_004a1ce0(0x80);
+    Joy_ClearButtonFlag(0x80);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x100) == 0) {
-    FUN_004a1ce0(0x100);
+    Joy_ClearButtonFlag(0x100);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x200) == 0) {
-    FUN_004a1ce0(0x200);
+    Joy_ClearButtonFlag(0x200);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x400) == 0) {
-    FUN_004a1ce0(0x400);
+    Joy_ClearButtonFlag(0x400);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x800) == 0) {
-    FUN_004a1ce0(0x800);
+    Joy_ClearButtonFlag(0x800);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x1000) == 0) {
-    FUN_004a1ce0(0x1000);
+    Joy_ClearButtonFlag(0x1000);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x2000) == 0) {
-    FUN_004a1ce0(0x2000);
+    Joy_ClearButtonFlag(0x2000);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x4000) == 0) {
-    FUN_004a1ce0(0x4000);
+    Joy_ClearButtonFlag(0x4000);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   if ((*(uint *)(iVar2 + 0x5c) & 0x8000) == 0) {
-    FUN_004a1ce0(0x8000);
+    Joy_ClearButtonFlag(0x8000);
   }
   else {
-    FUN_004a1cc0();
+    Joy_SetButtonFlag();
   }
   bVar1 = DAT_0055e0d0;
   if ((DAT_0055e0d0 & 1) == 0) {
@@ -160,16 +160,16 @@ void Input_SampleAxes(void)
     }
   }
   if ((*(byte *)(iVar2 + 0x38) & 8) != 0) {
-    FUN_004a1b20(*(undefined4 *)(iVar2 + 0x4c),0x10000);
+    Joy_ApplyDeadzone(*(undefined4 *)(iVar2 + 0x4c),0x10000);
   }
   if ((*(byte *)(iVar2 + 0x38) & 0x10) != 0) {
-    FUN_004a1b20(*(undefined4 *)(iVar2 + 0x50),0x100000);
+    Joy_ApplyDeadzone(*(undefined4 *)(iVar2 + 0x50),0x100000);
   }
   if ((*(byte *)(iVar2 + 0x38) & 0x20) != 0) {
-    FUN_004a1b20(*(undefined4 *)(iVar2 + 0x54),0x1000000);
+    Joy_ApplyDeadzone(*(undefined4 *)(iVar2 + 0x54),0x1000000);
   }
   if ((*(byte *)(iVar2 + 0x38) & 0x40) != 0) {
-    FUN_004a1b20(*(undefined4 *)(iVar2 + 0x58),0x10000000);
+    Joy_ApplyDeadzone(*(undefined4 *)(iVar2 + 0x58),0x10000000);
   }
   return;
 }

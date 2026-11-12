@@ -1,0 +1,69 @@
+
+/* sweep */
+
+void Slots_ResetPayLines(void)
+
+{
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPay1_00557fa4,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPay1_00557fa4,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPay2_00557f9c,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPay2_00557f9c,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPay3_00557f94,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPay3_00557f94,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayBar1_00557f88,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayBar1_00557f88,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayBar2_00557f7c,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayBar2_00557f7c,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayBar3_00557f70,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayBar3_00557f70,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayLine1_00557f64,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayLine1_00557f64,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayLine2_00557f58,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayLine2_00557f58,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayLine3_00557f4c,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayLine3_00557f4c,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayLine12_00557f40,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayLine12_00557f40,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayLine22_00557f34,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayLine22_00557f34,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,s_IAPayLine32_00557f28,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayLine32_00557f28,0);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPay1_00557fa4,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPay2_00557f9c,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPay3_00557f94,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayBar1_00557f88,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayBar2_00557f7c,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayBar3_00557f70,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayLine1_00557f64,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayLine2_00557f58,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayLine3_00557f4c,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayLine12_00557f40,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayLine22_00557f34,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayLine32_00557f28,0x20000);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e00c,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e00c,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e050,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e050,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e094,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e094,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e0f0,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e0f0,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e134,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e134,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e178,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e178,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e1d4,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e1d4,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e218,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e218,0);
+  ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,&DAT_0056e25c,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,&DAT_0056e25c,0);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayPanel1_00557f1c,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayPanel2_00557f10,0x20000);
+  set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,s_IAPayPanel3_00557f04,0x20000);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayPanel1_00557f1c,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayPanel2_00557f10,0);
+  ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,s_IAPayPanel3_00557f04,0);
+  return;
+}
+

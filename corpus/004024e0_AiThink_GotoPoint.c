@@ -10,7 +10,7 @@ void AiThink_GotoPoint(int param_1)
     Vec_DirAngles((vec3 *)(param_1 + 0x34),(vec3 *)(param_1 + 0x344),param_1 + 0xdc);
     uVar1 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(param_1 + 0x344));
     if (uVar1 < 0x1f4000) {
-      FUN_004024d0(param_1);
+      Ai_GotoPointArrived(param_1);
     }
   }
   return;

@@ -7,7 +7,7 @@ void __cdecl Ent_SetQuadrant(SpED *ent,TachConn *conn,Quadrant *quadrant)
 {
   byte bVar1;
   
-  FUN_00445720(ent,quadrant,s_SET_QUADRANT_00548d24);
+  Nop(ent,quadrant,s_SET_QUADRANT_00548d24);
   ent->quadrant = quadrant;
   ent->target = (SpED *)0x0;
   conn->farCursor = (SpED **)0x0;
@@ -26,7 +26,7 @@ void __cdecl Ent_SetQuadrant(SpED *ent,TachConn *conn,Quadrant *quadrant)
     conn->farRadius = 0xbb80000;
   }
   if ((g_FlightStateFlags & 4) != 0) {
-    FUN_00457790(DAT_005a5dcc,quadrant->sectorId);
+    Player_SaveLocation(DAT_005a5dcc,quadrant->sectorId);
   }
   return;
 }

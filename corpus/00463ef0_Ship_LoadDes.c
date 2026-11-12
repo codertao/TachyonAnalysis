@@ -23,17 +23,17 @@ int __cdecl Ship_LoadDes(char *desName,ShipDesc *out,int loadInterior)
   }
   iVar1 = Cbin_Open(desName);
   if (iVar1 != 0) {
-    iVar1 = FUN_0049bfc0(&PTR_g_ShipDesTemplate_shipName_0__00549728);
+    iVar1 = Cbin_ParseTemplate_Global(&PTR_g_ShipDesTemplate_shipName_0__00549728);
     if (iVar1 != 0) {
       ShipDes_ParseRotation(&out->flight);
       g_ShipDesTemplate.flight.field_78 = 20000;
       Cbin_GetParam(&DAT_00532af4,&DAT_00532c10,local_80,0x7f,0,4,1);
-      g_ShipDesTemplate.field_544 = FUN_004580c0(local_80);
+      g_ShipDesTemplate.field_544 = Race_FindByName(local_80);
       g_ShipDesTemplate.otherNameCount =
-           FUN_0048e820(DAT_005a6144,s_OTHER_SHIP_NAMES_00533a5c,&DAT_00563508);
-      g_ShipDesTemplate.field_1c = FUN_00463cf0();
+           Rtxt_LookupSafe(DAT_005a6144,s_OTHER_SHIP_NAMES_00533a5c,&DAT_00563508);
+      g_ShipDesTemplate.field_1c = ShipDes_LoadGroupClass();
       ShipDes_ParseAiClasses(&g_ShipDesTemplate);
-      FUN_00462d70(0x563254);
+      ShipDes_LoadContentScan(0x563254);
       g_ShipDesTemplate.flight.hull =
            (uint)(g_ShipDesStatScale * g_ShipDesTemplate.flight.hull) >> 8;
       g_ShipDesTemplate.flight.shieldMax =
@@ -53,30 +53,30 @@ int __cdecl Ship_LoadDes(char *desName,ShipDesc *out,int loadInterior)
         ModelPool_Load(0x562f9c,0x562fa8,0,0x562fb8,&g_ObjModelPool,1);
       }
       Object_ParseHardpoints(0x563298,g_ShipDesTemplate.extModel);
-      FUN_00463db0(0x563338);
+      ShipDes_LoadMounts(0x563338);
       iVar1 = Cbin_GetScalar(s_CONNECT_0054a20c,s_LAND_POINT_0054a214,0,0,&local_84);
       if (iVar1 != 0) {
-        FUN_00462e30(g_ShipDesTemplate.extModel,local_84,0x563298);
+        ShipDes_GetAttachPoint(g_ShipDesTemplate.extModel,local_84,0x563298);
       }
       uVar2 = 0;
       if (g_ShipDesTemplate.totalMounts != 0) {
         iVar1 = 0x563010;
         iVar5 = 0x5631d0;
         do {
-          FUN_004638a0(uVar2,iVar1,iVar5,g_ShipDesTemplate.extModel);
+          ShipDes_LoadWeapon(uVar2,iVar1,iVar5,g_ShipDesTemplate.extModel);
           uVar2 = uVar2 + 1;
           iVar5 = iVar5 + 0xc;
           iVar1 = iVar1 + 0x38;
         } while (uVar2 < (uint)g_ShipDesTemplate.totalMounts);
       }
-      FUN_004639c0(&g_ShipDesTemplate,g_ShipDesTemplate.extModel);
-      g_ShipDesTemplate.falloffCurve = FUN_00465f20(g_ShipDesTemplate.falloff1);
+      ShipDes_LoadCamera(&g_ShipDesTemplate,g_ShipDesTemplate.extModel);
+      g_ShipDesTemplate.falloffCurve = Fixed_ToFloat(g_ShipDesTemplate.falloff1);
       if (DAT_00563528 != '\0') {
         g_ShipDesTemplate.anim = (void *)Anim_LoadFile(&DAT_00563528,1);
       }
-      g_ShipDesTemplate.field_6c4 = FUN_00462c80(&DAT_00563558);
-      FUN_00462dd0(0x56332c);
-      g_ShipDesTemplate.classFlags = FUN_00463d50();
+      g_ShipDesTemplate.field_6c4 = ShipDes_ParseColor(&DAT_00563558);
+      ShipDes_LoadJammer(0x56332c);
+      g_ShipDesTemplate.classFlags = ShipDes_LoadAiHardware();
       if (g_ShipDesTemplate._1580_4_ != 0) {
         g_ShipDesTemplate.classFlags = g_ShipDesTemplate.classFlags | 0x800;
       }

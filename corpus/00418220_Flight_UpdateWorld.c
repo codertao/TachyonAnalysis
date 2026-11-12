@@ -24,25 +24,25 @@ undefined4 Flight_UpdateWorld(void)
     DAT_005b9050 = DAT_005b9050 + -1;
   }
   if ((DAT_005b3330 != 0) && (DAT_005b3330 = DAT_005b3330 + -1, DAT_005b3330 == 0)) {
-    FUN_00455960();
+    Player_Undock();
   }
   if ((*(byte *)(DAT_005b95e0 + 0xc) & 4) != 0) {
-    FUN_0042e000();
+    Hud_Update();
   }
   Net_CyclePump();
   if (g_CutsceneActive == 0) {
-    FUN_004b5500();
+    Music_Tick();
   }
-  FUN_00465e80();
+  Music_Update();
   if (DAT_005b8f4c == 0) {
-    FUN_00466dc0(&DAT_005b95e8,&DAT_005b9600);
+    Snd3D_Update(&DAT_005b95e8,&DAT_005b9600);
   }
   if (g_CutsceneActive == 0) {
-    FUN_0041da00();
-    FUN_00468320();
-    FUN_00425720();
+    DelaySnd_Update();
+    Bdf_LightningTick();
+    Rules_CallUpdate();
     Music_UpdateFlightVars();
-    FUN_0045bfa0();
+    Scene_Tick();
   }
   if (GLBL_SOME_CONTEXT != 0) {
     Camera_Update();
@@ -50,10 +50,10 @@ undefined4 Flight_UpdateWorld(void)
   if (DAT_005b90a0 != (code *)0x0) {
     (*DAT_005b90a0)();
   }
-  FUN_00450a50();
+  Orders_Update();
   DAT_005b3304 = DAT_005b3304 + 1;
   if (g_MissionEndFlag != 0) {
-    FUN_0049cb20(s_memstats_txt_00534340);
+    Mem_DumpStatsToFile(s_memstats_txt_00534340);
     return 1;
   }
   return 0;

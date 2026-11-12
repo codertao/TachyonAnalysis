@@ -11,7 +11,7 @@ void Trig_RunActions(int param_1,undefined4 param_2)
   
   if (DAT_005a6730 != 0) {
     str_sprintf(local_40,s_TRIGGER___d__OCCURED_00559cb8,g_TrigCurrentIndex);
-    FUN_0045d9d0(local_40,0);
+    SrvSend_TextSimple(local_40,0);
   }
   piVar2 = *(int **)(param_1 + 0x10);
   uVar3 = 0;

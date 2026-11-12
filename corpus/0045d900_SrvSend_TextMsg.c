@@ -16,7 +16,7 @@ void SrvSend_TextMsg(undefined4 param_1,int param_2,uint param_3,TachConn *param
   if (payload != (undefined2 *)0x0) {
     *payload = (short)param_2;
     payload[1] = (undefined2)param_7;
-    FUN_0048eda0(payload + 2,param_1,0xff);
+    Str_CountLines(payload + 2,param_1,0xff);
     uVar3 = param_3 | 0x80;
     if (param_6 != (Quadrant *)0x0) {
       uVar3 = param_3 | 0xa0;
@@ -37,7 +37,7 @@ void SrvSend_TextMsg(undefined4 param_1,int param_2,uint param_3,TachConn *param
     local_18._4_4_ = uVar3;
     NetSrv_QueueEvent(payload,0x1001,~(ushort)iVar2 + 6 & 0xfffe,&local_18);
     if ((((g_FlightStateFlags & 2) == 0) && (param_2 != 1)) && ((uVar3 & 2) == 0)) {
-      FUN_0048ce30(param_1,param_7);
+      TextBar_Add(param_1,param_7);
     }
   }
   return;

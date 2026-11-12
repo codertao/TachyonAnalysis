@@ -4,7 +4,7 @@
 void CliOn_MineRemoved(undefined4 *param_1)
 
 {
-  FUN_004985f0(&DAT_005b31c0,*param_1);
+  Mine_RemoveFromList(&DAT_005b31c0,*param_1);
   return;
 }
 

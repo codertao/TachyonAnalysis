@@ -6,7 +6,7 @@ undefined4 TitleMenu_Update(void)
 {
   MessagePump_IdleTick();
   if (g_TitleMenu_ExitFlag == 0) {
-    FUN_00445720();
+    Nop();
     Ui_Update(&g_UiManager);
     return 0;
   }

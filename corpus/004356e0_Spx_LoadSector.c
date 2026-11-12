@@ -76,7 +76,7 @@ Quadrant * Spx_LoadSector(char *param_1,undefined4 *param_2)
     q = g_Quadrants + g_SectorCount;
     g_SectorCount = g_SectorCount + 1;
     Quadrant_Init(q,rec,*(int *)((int)pvVar4 + 0xfc),*(int *)((int)pvVar4 + 0x100));
-    FUN_0045ca80(iVar1 + 0x589804,0xd100,&DAT_005897e4);
+    SectorMap_Alloc(iVar1 + 0x589804,0xd100,&DAT_005897e4);
   }
   else {
     pvVar4 = (void *)Spx_ReadFile(param_1);
@@ -108,8 +108,8 @@ Quadrant * Spx_LoadSector(char *param_1,undefined4 *param_2)
     rec = (SectorRec *)0x0;
   }
   if (pvVar4 != (void *)0x0) {
-    FUN_0049c840(pvVar4);
-    FUN_004353b0(param_1);
+    Mem_SetTag(pvVar4);
+    Spx_LogLoaded(param_1);
     iVar1 = *(int *)((int)pvVar4 + 0x1a0);
     *(int *)((int)pvVar4 + 0x10) = *(int *)((int)pvVar4 + 0x10) + iVar1;
     *(int *)((int)pvVar4 + 0x18) = *(int *)((int)pvVar4 + 0x18) + iVar1;
@@ -132,7 +132,7 @@ Quadrant * Spx_LoadSector(char *param_1,undefined4 *param_2)
     }
     return q;
   }
-  FUN_004353e0(param_1);
+  Spx_LogNotFound(param_1);
   return (Quadrant *)0x0;
 }
 

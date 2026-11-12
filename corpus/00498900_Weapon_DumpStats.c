@@ -17,7 +17,7 @@ void Weapon_DumpStats(void)
       piVar4 = &g_WeaponDefs[0].refire;
       do {
         uVar3 = WeaponId_ToName();
-        uVar3 = FUN_0048e800(DAT_005a6140,piVar4[3],uVar3);
+        uVar3 = Rtxt_GetText(DAT_005a6140,piVar4[3],uVar3);
         c_fprintf(iVar2,s_Weapon___s___s__0055d5a0,uVar3);
         c_fprintf(iVar2,s_Fire_rate__Once_every__2_2f_seco_0055d578,
                   (double)((float)*piVar4 * _DAT_0052e6d0));

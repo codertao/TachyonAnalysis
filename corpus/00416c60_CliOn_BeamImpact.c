@@ -17,7 +17,7 @@ void CliOn_BeamImpact(undefined4 *param_1)
     iVar1 = Dcb_FindById(*param_1);
     iVar2 = 0;
     if (iVar1 != 0) {
-      iVar2 = FUN_0040b260(iVar1,*(undefined2 *)((int)param_1 + 10));
+      iVar2 = PartChain_FindById_d4(iVar1,*(undefined2 *)((int)param_1 + 10));
     }
   }
   iVar1 = Dcb_FindById(param_1[1]);
@@ -25,7 +25,7 @@ void CliOn_BeamImpact(undefined4 *param_1)
     local_c = f16_Decode(*(undefined2 *)(param_1 + 3));
     local_8 = f16_Decode(*(undefined2 *)((int)param_1 + 0xe));
     local_4 = f16_Decode(*(undefined2 *)(param_1 + 4));
-    FUN_00496cc0(iVar2,iVar1,&local_c,*(undefined2 *)((int)param_1 + 0x12));
+    Beam_SpawnFromNet(iVar2,iVar1,&local_c,*(undefined2 *)((int)param_1 + 0x12));
   }
   return;
 }

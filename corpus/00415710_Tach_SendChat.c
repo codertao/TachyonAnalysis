@@ -10,7 +10,7 @@ void Tach_SendChat(undefined2 param_1,undefined2 param_2,undefined4 param_3)
   if (puVar1 != (undefined2 *)0x0) {
     *puVar1 = param_1;
     puVar1[1] = param_2;
-    FUN_0048eda0(puVar1 + 2,param_3,0xff);
+    Str_CountLines(puVar1 + 2,param_3,0xff);
     NetCli_QueueEvent(puVar1,0x2022,0x104,0x800);
   }
   return;

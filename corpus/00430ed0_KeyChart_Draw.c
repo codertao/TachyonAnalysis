@@ -42,12 +42,12 @@ void KeyChart_Draw(void)
   local_328[0] = 0x14000;
   local_328[1] = 0x14000;
   iVar5 = Text_GlyphHeight(*puVar3,DAT_005aed84,local_334 | 2,local_328);
-  FUN_0041f6e0(DAT_005aed88,0x78,0x14,0x19a,0x1ab,0x80,DAT_005aed84,*puVar3,0xff0000,0x14000,2);
+  Ui_DrawBox(DAT_005aed88,0x78,0x14,0x19a,0x1ab,0x80,DAT_005aed84,*puVar3,0xff0000,0x14000,2);
   iVar8 = iVar5 + 0x14 + iVar4;
   puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,s_key_heading_0053ebf4,s_ACTION_0053cabc);
-  FUN_0048e970(*puVar3,DAT_005aed80,0x80,iVar8,0xffffff,0xffff,0x14000,2);
+  Text_DrawAligned(*puVar3,DAT_005aed80,0x80,iVar8,0xffffff,0xffff,0x14000,2);
   puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,s_key_heading_0053ebf4,s_MAPPING_0053ebec);
-  FUN_0048e970(*puVar3,DAT_005aed80,0x20a,iVar8,0xffffff,0xffff,0x14000,10);
+  Text_DrawAligned(*puVar3,DAT_005aed80,0x20a,iVar8,0xffffff,0xffff,0x14000,10);
   iVar8 = iVar8 + iVar5;
   local_340 = 0;
   local_338 = 0;
@@ -57,12 +57,12 @@ void KeyChart_Draw(void)
       if (0x1d < local_338) break;
       if ((local_344[6] & 4) != 0) {
         if (DAT_005aed90 <= local_340) {
-          puVar3 = (undefined4 *)FUN_0042f5c0(local_344[-1]);
+          puVar3 = (undefined4 *)ActionName_FromId(local_344[-1]);
           if (puVar3 != (undefined4 *)0x0) {
             str_sprintf(local_200,s__s_text_0053ebe4,*puVar3);
             piVar6 = (int *)Rtxt_Lookup(DAT_005a6150,local_200,puVar3[1]);
             if ((piVar6 != (int *)0x0) && (*piVar6 != 0)) {
-              FUN_0048e970(*piVar6,DAT_005aed80,0x80,iVar8,0xff00ff,0xffff,0x10000,2);
+              Text_DrawAligned(*piVar6,DAT_005aed80,0x80,iVar8,0xff00ff,0xffff,0x10000,2);
             }
           }
           pcVar13 = local_300;
@@ -73,8 +73,8 @@ void KeyChart_Draw(void)
             pcVar13[3] = '\0';
             pcVar13 = pcVar13 + 4;
           }
-          if ((*local_344 != 0xffffffff) && (iVar9 = FUN_0042f4d0(*local_344), iVar9 != 0)) {
-            puVar3 = (undefined4 *)FUN_0042f540(*local_344);
+          if ((*local_344 != 0xffffffff) && (iVar9 = KeyName_FromKeyCode(*local_344), iVar9 != 0)) {
+            puVar3 = (undefined4 *)KeyName_FromModifierBits(*local_344);
             if (puVar3 != (undefined4 *)0x0) {
               str_sprintf(local_200,s__s_text_0053ebe4,*puVar3);
               puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,local_200,puVar3[1]);
@@ -154,7 +154,7 @@ void KeyChart_Draw(void)
             if (iVar9 == 1) {
               uVar2 = (ushort)local_32c;
               if (((uVar2 < 0x21) || (0x7e < uVar2)) && ((uVar2 < 0xa1 || (0xff < uVar2)))) {
-                puVar3 = (undefined4 *)FUN_0042f4d0(*local_344);
+                puVar3 = (undefined4 *)KeyName_FromKeyCode(*local_344);
                 str_sprintf(local_200,s__s_text_0053ebe4,*puVar3);
                 puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,local_200,puVar3[1]);
                 if (puVar3 != (undefined4 *)0x0) {
@@ -163,7 +163,7 @@ void KeyChart_Draw(void)
                 }
               }
               else {
-                uVar7 = FUN_004bcf9b(local_32c & 0xffff);
+                uVar7 = _toupper(local_32c & 0xffff);
                 str_sprintf(local_200,&DAT_0053ebdc,uVar7);
                 pcVar13 = local_200;
 LAB_004312a1:
@@ -202,7 +202,7 @@ LAB_004312a1:
               }
             }
             else {
-              puVar3 = (undefined4 *)FUN_0042f4d0(*local_344);
+              puVar3 = (undefined4 *)KeyName_FromKeyCode(*local_344);
               str_sprintf(local_200,s__s_text_0053ebe4,*puVar3);
               puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,local_200,puVar3[1]);
               if (puVar3 != (undefined4 *)0x0) {
@@ -213,7 +213,8 @@ joined_r0x00431299:
             }
           }
           if ((local_344[2] != 0) &&
-             (puVar3 = (undefined4 *)FUN_0042f590(local_344[2]), puVar3 != (undefined4 *)0x0)) {
+             (puVar3 = (undefined4 *)KeyName_FromMouseButton(local_344[2]),
+             puVar3 != (undefined4 *)0x0)) {
             str_sprintf(local_200,s__s_text_0053ebe4,*puVar3);
             piVar6 = (int *)Rtxt_Lookup(DAT_005a6150,local_200,puVar3[1]);
             if ((piVar6 != (int *)0x0) && (*piVar6 != 0)) {
@@ -291,7 +292,8 @@ joined_r0x00431299:
             }
           }
           if ((local_344[1] != 0xffffffff) &&
-             (puVar3 = (undefined4 *)FUN_0042f560(local_344[1]), puVar3 != (undefined4 *)0x0)) {
+             (puVar3 = (undefined4 *)KeyName_FromJoyButton(local_344[1]),
+             puVar3 != (undefined4 *)0x0)) {
             str_sprintf(local_200,s__s_text_0053ebe4,*puVar3);
             piVar6 = (int *)Rtxt_Lookup(DAT_005a6150,local_200,puVar3[1]);
             if ((piVar6 != (int *)0x0) && (*piVar6 != 0)) {
@@ -369,7 +371,7 @@ joined_r0x00431299:
             }
           }
           if (local_300[0] != '\0') {
-            FUN_0048e970(local_300,DAT_005aed80,0x20a,iVar8,0xff00ff,0xffff,0x10000,10);
+            Text_DrawAligned(local_300,DAT_005aed80,0x20a,iVar8,0xff00ff,0xffff,0x10000,10);
           }
           iVar8 = iVar8 + iVar4;
           local_338 = local_338 + 1;
@@ -381,7 +383,7 @@ joined_r0x00431299:
     } while (*puVar12 != 0);
   }
   puVar3 = (undefined4 *)Rtxt_Lookup(DAT_005a6150,s_key_misc_0053ebc4,s_FOOTER_00535eb0);
-  FUN_0048e970(*puVar3,DAT_005aed80,0x140,0x1bc - iVar5,0xff0000,0xffff,0x14000,6);
+  Text_DrawAligned(*puVar3,DAT_005aed80,0x140,0x1bc - iVar5,0xff0000,0xffff,0x14000,6);
   return;
 }
 

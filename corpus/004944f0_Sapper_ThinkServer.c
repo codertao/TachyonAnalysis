@@ -12,7 +12,7 @@ void Sapper_ThinkServer(int param_1)
   undefined1 local_18 [24];
   
   iVar3 = *(int *)(param_1 + 0xf4);
-  FUN_004b1bb0(local_18,(vec3 *)(iVar3 + 0x4c));
+  Rot_FromAngles(local_18,(vec3 *)(iVar3 + 0x4c));
   some_rotate_by_global((vec3 *)(param_1 + 0xfc),&local_24);
   *(int *)(param_1 + 0x34) = *(int *)(iVar3 + 0x34) + local_24.x;
   *(int *)(param_1 + 0x38) = *(int *)(iVar3 + 0x38) + local_24.y;
@@ -25,7 +25,7 @@ void Sapper_ThinkServer(int param_1)
   }
   if ((*(int *)(param_1 + 0xd4) != 0) &&
      (iVar3 = *(int *)(param_1 + 0xd4) + -1, *(int *)(param_1 + 0xd4) = iVar3, iVar3 == 0)) {
-    FUN_00494450(param_1);
+    Sapper_Detach(param_1);
   }
   return;
 }

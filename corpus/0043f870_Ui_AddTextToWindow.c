@@ -7,11 +7,11 @@ void Ui_AddTextToWindow(undefined4 param_1,int param_2,undefined4 param_3)
   int iVar1;
   
   if (param_2 != 0) {
-    iVar1 = FUN_0043a7a0(param_1,param_2 + 0x80);
+    iVar1 = MnuImage_Find(param_1,param_2 + 0x80);
     *(int *)(param_2 + 0xd4) = iVar1;
     if (iVar1 != 0) {
       if (*(int *)(iVar1 + 0x60) == 0) {
-        FUN_00439cc0(param_1,iVar1,*(undefined4 *)(iVar1 + 0x1680),param_3);
+        MnuImage_LoadPcxRemapped(param_1,iVar1,*(undefined4 *)(iVar1 + 0x1680),param_3);
       }
       if (*(int *)(param_2 + 0xdc) == -1) {
         *(int *)(param_2 + 0xdc) = *(int *)(*(int *)(param_2 + 0xd4) + 0x1680) + -1;

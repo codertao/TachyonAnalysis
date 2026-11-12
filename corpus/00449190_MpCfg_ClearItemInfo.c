@@ -2,11 +2,11 @@
 void MpCfg_ClearItemInfo(void)
 
 {
-  FUN_0043e6a0(&g_UiManager,s_TxtCFGItemCost_0054780c,&DAT_00562b14);
-  FUN_0043e6a0(&g_UiManager,s_TxtCFGItemLabel_005477fc,&DAT_00562b14);
-  FUN_0046dd30(0,0);
-  FUN_0048b6f0(0);
-  FUN_00446dc0(0);
+  Ui_SetLabelText(&g_UiManager,s_TxtCFGItemCost_0054780c,&DAT_00562b14);
+  Ui_SetLabelText(&g_UiManager,s_TxtCFGItemLabel_005477fc,&DAT_00562b14);
+  SbPak_SetActive(0,0);
+  Teletype_ResetSlot(0);
+  MpCfg_SetItemInfo(0);
   return;
 }
 

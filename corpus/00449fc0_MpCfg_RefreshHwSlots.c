@@ -26,7 +26,7 @@ void MpCfg_RefreshHwSlots(void)
   undefined1 local_80 [128];
   
   if (g_CfgMode == 1) {
-    FUN_004494c0();
+    MpCfg_RefreshMountSlot();
     uVar3 = Ship_GetCurrentModel(local_1ec);
     iVar4 = Cbin_LoadFile(uVar3);
     if (iVar4 != 0) {
@@ -39,7 +39,7 @@ void MpCfg_RefreshHwSlots(void)
         iVar4 = Cbin_FindSection(puVar10 + -0x40,local_1ec);
         if (iVar4 != 0) {
           Cbin_FindParam(s_MOUNT_ICON_005478dc,local_180,0x7f,0,4,1,local_1ec);
-          iVar4 = FUN_00469a30(local_180);
+          iVar4 = Starbase_FindMaterial(local_180);
           if (iVar4 != 0) {
             str_sprintf(puVar10 + 0xf8,iVar4 + 0x40);
             piVar12 = (int *)(puVar10 + 0x110);
@@ -61,10 +61,11 @@ void MpCfg_RefreshHwSlots(void)
               uVar9 = 1;
             }
             *(uint *)(puVar10 + 0xa70) = *(uint *)(iVar4 + 100) / uVar9 + *(int *)(puVar10 + 0xa68);
-            FUN_0046d770(DAT_005879a0,puVar10 + 0x78,iVar4 + 0x40,*(undefined4 *)(iVar4 + 0x68),
-                         *(undefined4 *)(iVar4 + 0x60),*(undefined4 *)(iVar4 + 100),*piVar12,*piVar2
-                         ,0);
-            FUN_0043f500(&g_UiManager,puVar10 + 0x78,*(undefined4 *)(puVar10 + 0x11c));
+            Ui_SetImageAreaFromFile
+                      (DAT_005879a0,puVar10 + 0x78,iVar4 + 0x40,*(undefined4 *)(iVar4 + 0x68),
+                       *(undefined4 *)(iVar4 + 0x60),*(undefined4 *)(iVar4 + 100),*piVar12,*piVar2,0
+                      );
+            ImageArea_SetValueE4(&g_UiManager,puVar10 + 0x78,*(undefined4 *)(puVar10 + 0x11c));
           }
         }
         Cbin_FindSection(puVar10 + -0x40,local_1ec);
@@ -75,7 +76,7 @@ void MpCfg_RefreshHwSlots(void)
           do {
             if (0x1f < uVar9) break;
             _strncpy((char *)(piVar12 + -0x11),local_180,0x3f);
-            iVar4 = FUN_004690b0(local_180);
+            iVar4 = Item_FindByName(local_180);
             *piVar12 = iVar4;
             if (iVar4 != 0) {
               uVar9 = uVar9 + 1;
@@ -86,7 +87,7 @@ void MpCfg_RefreshHwSlots(void)
         }
         if (puVar10[0xf8] != '\0') {
           *(undefined4 *)(puVar10 + 0x70) = 1;
-          FUN_0043f840(&g_UiManager,puVar10 + 0x78,0x20000);
+          ImageArea_ClearFlags(&g_UiManager,puVar10 + 0x78,0x20000);
         }
         puVar10 = puVar10 + 0xab4;
         bVar13 = local_200 < 0x10;
@@ -107,7 +108,7 @@ void MpCfg_RefreshHwSlots(void)
           iVar5 = Var_FindKey(uVar3);
           if (((local_1f0 != 0) && (iVar5 != 0)) && (*(int *)(iVar5 + 8) != 0)) {
             uVar3 = Var_GetKeyByIndex(*(int *)(iVar5 + 8),local_1f0);
-            iVar6 = FUN_004690b0(uVar3);
+            iVar6 = Item_FindByName(uVar3);
             iVar5 = 0;
             if (iVar6 != 0) {
               iVar5 = *(int *)(iVar6 + 0x58);
@@ -115,19 +116,21 @@ void MpCfg_RefreshHwSlots(void)
             iVar7 = Mount_Accepts(iVar6,pcVar11 + -0x138);
             if (iVar7 == 0) {
               if ((iVar5 != 0) && (*pcVar11 != '\0')) {
-                FUN_0046d770(DAT_005879a0,pcVar1,iVar5 + 0xb0,1,*(undefined4 *)(iVar5 + 0xc0),
-                             *(undefined4 *)(iVar5 + 0xc4),*(undefined4 *)(pcVar11 + 0x18),
-                             *(undefined4 *)(pcVar11 + 0x1c),0);
+                Ui_SetImageAreaFromFile
+                          (DAT_005879a0,pcVar1,iVar5 + 0xb0,1,*(undefined4 *)(iVar5 + 0xc0),
+                           *(undefined4 *)(iVar5 + 0xc4),*(undefined4 *)(pcVar11 + 0x18),
+                           *(undefined4 *)(pcVar11 + 0x1c),0);
                 uVar3 = find_ui_elem_by_id_(&g_UiManager,pcVar1);
                 str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar5 + 0xb0);
-                uVar8 = FUN_0043a7a0(&g_UiManager,&DAT_005a41e0,*(undefined4 *)(pcVar11 + 0x18),
-                                     *(undefined4 *)(pcVar11 + 0x1c),*(undefined4 *)(pcVar11 + 0x10)
-                                     ,*(undefined4 *)(pcVar11 + 0x14),
-                                     *(undefined4 *)(pcVar11 + 0x20),2,2);
+                uVar8 = MnuImage_Find(&g_UiManager,&DAT_005a41e0,*(undefined4 *)(pcVar11 + 0x18),
+                                      *(undefined4 *)(pcVar11 + 0x1c),
+                                      *(undefined4 *)(pcVar11 + 0x10),
+                                      *(undefined4 *)(pcVar11 + 0x14),
+                                      *(undefined4 *)(pcVar11 + 0x20),2,2);
                 MpCfg_SetMountIcon(uVar3,uVar8);
-                FUN_0043f5d0(&g_UiManager,pcVar11 + -0x80,9);
+                ImageArea_SetFrame(&g_UiManager,pcVar11 + -0x80,9);
                 *(int *)(pcVar11 + 0x964) = iVar6;
-                FUN_0043f840(&g_UiManager,pcVar1,0x20000);
+                ImageArea_ClearFlags(&g_UiManager,pcVar1,0x20000);
                 *(undefined4 *)(pcVar11 + 0x968) = *(undefined4 *)(iVar5 + 0x9c);
               }
             }
@@ -138,7 +141,7 @@ void MpCfg_RefreshHwSlots(void)
         }
         pcVar11 = pcVar11 + 0xab4;
       } while ((int)pcVar11 < 0x5a3218);
-      FUN_0049adb0(local_1ec);
+      Cbin_Free(local_1ec);
     }
   }
   return;

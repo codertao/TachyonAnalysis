@@ -23,7 +23,7 @@ void __cdecl NetSrv_InitPlayerSlot(TachConn *slot,uint connId)
     pTVar5 = (TachConn *)((int)&pTVar5->active + 1);
   }
   slot->connId = connId;
-  FUN_004b7a50(slot);
+  NetSrv_InitPlayerEvents(slot);
   slot->active = 1;
   *(undefined4 *)&slot->field_0xb4 = 1;
   *(int *)&slot->field_0xc = DAT_0055e404;
@@ -35,7 +35,8 @@ void __cdecl NetSrv_InitPlayerSlot(TachConn *slot,uint connId)
   }
   pcVar2 = DAT_006af7e4;
   if ((slot->hasRegName != 0) &&
-     (pcVar2 = (char *)FUN_004a70a0(*(undefined4 *)&slot->field_0xc), pcVar2 == (char *)0x0)) {
+     (pcVar2 = (char *)NetDrv_GetPlayerName(*(undefined4 *)&slot->field_0xc), pcVar2 == (char *)0x0)
+     ) {
     *(undefined4 *)slot->name = s_JAKE_LOGAN_0055f02c._0_4_;
     *(undefined4 *)(slot->name + 4) = s_JAKE_LOGAN_0055f02c._4_4_;
     *(undefined2 *)(slot->name + 8) = s_JAKE_LOGAN_0055f02c._8_2_;

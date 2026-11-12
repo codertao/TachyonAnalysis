@@ -35,7 +35,7 @@ void Ui_RefreshWindow(int param_1,undefined4 param_2,int *param_3,int param_4)
         *(int *)(iVar2 + 0x100) = param_3[3];
       }
       else {
-        FUN_0043b0a0(param_3,piVar4,&local_20);
+        Rect_Union(param_3,piVar4,&local_20);
         *piVar4 = local_20;
         *(undefined4 *)(iVar2 + 0xf8) = local_1c;
         *(undefined4 *)(iVar2 + 0xfc) = local_18;
@@ -61,9 +61,9 @@ void Ui_RefreshWindow(int param_1,undefined4 param_2,int *param_3,int param_4)
       local_1c = *(undefined4 *)(iVar2 + 0xf8);
       local_18 = *(undefined4 *)(iVar2 + 0xfc);
       local_14 = *(undefined4 *)(iVar2 + 0x100);
-      FUN_0043e470(param_1,iVar2,&local_20);
-      FUN_0043cb00(param_1,iVar2,&local_20);
-      FUN_0043f920(param_1,iVar2,&local_20);
+      Ui_RefreshLabelsInRect(param_1,iVar2,&local_20);
+      Ui_RefreshButtonsInRect(param_1,iVar2,&local_20);
+      Ui_RefreshImageAreasInRect(param_1,iVar2,&local_20);
       uVar1 = *(uint *)(iVar2 + 0x40);
 joined_r0x0043b25f:
       uVar1 = uVar1 + 1;
@@ -78,7 +78,7 @@ joined_r0x0043b25f:
               local_c = *(int *)(pcVar3 + 0x48);
               local_8 = *(int *)(pcVar3 + 0x4c) + local_10;
               local_4 = *(int *)(pcVar3 + 0x50) + local_c;
-              iVar2 = FUN_0043af70(&local_10,&local_20);
+              iVar2 = Rect_Overlaps(&local_10,&local_20);
               if (iVar2 != 0) {
                 Ui_RefreshWindow(param_1,pcVar3,&local_20,0);
               }

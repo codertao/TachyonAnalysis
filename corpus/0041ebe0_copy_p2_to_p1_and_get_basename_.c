@@ -32,7 +32,7 @@ void copy_p2_to_p1_and_get_basename_(char *param_1,char *param_2)
     str2 = str2 + 1;
     pcVar2 = pcVar2 + 1;
   }
-  to_uppercase(param_1);
+  __strupr(param_1);
   pcVar2 = _strstr(param_1,&DAT_00535738);
   if (pcVar2 == (char *)0x0) {
     p2Len = 0xffffffff;

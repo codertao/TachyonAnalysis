@@ -10,8 +10,8 @@ void SrvSend_RoundResult(void)
   payload = (void *)NetSrv_AllocEvent();
   if (payload != (void *)0x0) {
     *(undefined2 *)((int)payload + 0x20) = (undefined2)DAT_005b97b8;
-    FUN_0040d990(payload,&DAT_00533540);
-    FUN_0040d990((int)payload + 0x10,s_GALSPAN_00533548);
+    BW_GetTeamStats(payload,&DAT_00533540);
+    BW_GetTeamStats((int)payload + 0x10,s_GALSPAN_00533548);
     local_18.resend = 0x800;
     local_18._2_2_ = 0;
     local_18.flags = 0;

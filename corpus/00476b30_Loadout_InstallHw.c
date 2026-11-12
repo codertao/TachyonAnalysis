@@ -21,15 +21,15 @@ void Loadout_InstallHw(int param_1,undefined4 param_2,int param_3,undefined4 par
                 (uVar1,param_3,*(undefined4 *)(param_1 + 0x150),*(undefined4 *)(param_1 + 0x154),
                  *(undefined4 *)(param_1 + 0x148),*(undefined4 *)(param_1 + 0x14c),
                  *(undefined4 *)(param_1 + 0x158),2,2);
-      FUN_0043f840(&GLBL_UI_ELEM_LIST,param_1 + 0xf8,0x20000);
-      FUN_0043f5d0(&GLBL_UI_ELEM_LIST,param_1 + 0xb8,9);
+      ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,param_1 + 0xf8,0x20000);
+      ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,param_1 + 0xb8,9);
       pcVar3 = *(char **)(param_1 + 0xa9c);
       if (pcVar3 == (char *)0x0) {
         pcVar3 = s_NO_CARD_0053644c;
       }
       Var_SetStr(g_PlayerVarStore,local_80,param_1 + 0x20,pcVar3);
       Var_SetStr(g_PlayerVarStore,local_80,param_1 + 0x40,s_MOUNTED_0053648c);
-      iVar2 = str_cmp(param_2,s_AMMO_HOLD_005362c0);
+      iVar2 = __stricmp(param_2,s_AMMO_HOLD_005362c0);
       if (iVar2 == 0) {
         g_HasAmmoHold = 1;
       }

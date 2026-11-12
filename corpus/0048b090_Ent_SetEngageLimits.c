@@ -4,7 +4,7 @@
 void Ent_SetEngageLimits(int param_1,undefined2 param_2,undefined2 param_3)
 
 {
-  FUN_0048b050(param_1);
+  Ent_EnsureInQuadrant(param_1);
   *(undefined2 *)(param_1 + 0xca) = param_2;
   *(undefined2 *)(param_1 + 0xce) = param_3;
   return;

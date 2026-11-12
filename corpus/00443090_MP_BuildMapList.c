@@ -37,7 +37,7 @@ void MP_BuildMapList(void)
     uVar7 = uVar7 + 1;
   } while (uVar7 < 100);
   if (DAT_005a4000 != 0) {
-    FUN_0048e3d0(&DAT_00562c04,DAT_005a4000 * 0xb8,4,s_mnuhost_MPGameList_00540fb4,0xa000);
+    Mem_AllocZeroTagged(&DAT_00562c04,DAT_005a4000 * 0xb8,4,s_mnuhost_MPGameList_00540fb4,0xa000);
     local_70 = 0;
     iVar3 = DAT_00562c04 + 0x50;
     iVar6 = DAT_00562c04;
@@ -80,7 +80,7 @@ void MP_BuildMapList(void)
         if (*piVar1 == 0) {
           *piVar1 = *(int *)(iVar3 + 0x60);
         }
-        FUN_0049adb0(local_6c);
+        Cbin_Free(local_6c);
         iVar6 = iVar6 + 0xb8;
         iVar3 = iVar3 + 0xb8;
       }
@@ -127,7 +127,7 @@ void MP_BuildMapList(void)
         if (*piVar1 == 0) {
           *piVar1 = *(int *)(iVar3 + 0x60);
         }
-        FUN_0049adb0(local_6c);
+        Cbin_Free(local_6c);
         iVar6 = iVar6 + 0xb8;
         iVar3 = iVar3 + 0xb8;
       }

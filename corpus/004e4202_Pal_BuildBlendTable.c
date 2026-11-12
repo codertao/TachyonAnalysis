@@ -26,7 +26,7 @@ void __cdecl Pal_BuildBlendTable(byte *out)
       DAT_004e3006 = (&DAT_004e3067)
                      [(uint)(byte)(&DAT_004e3267)[*(byte *)((int)&DAT_00603180 + iVar1 + 2)] +
                       (uint)(byte)(&DAT_004e3267)[*(byte *)((int)&DAT_00603180 + iVar4 + 2)] >> 1];
-      bVar2 = (*(code *)PTR_FUN_004e3053)();
+      bVar2 = (*(code *)PTR_PalAsm_FindNearest_004e3053)();
       out[uVar5] = bVar2;
       cVar6 = (char)(uVar5 >> 8);
       out[CONCAT11((char)uVar5,cVar6)] = bVar2;

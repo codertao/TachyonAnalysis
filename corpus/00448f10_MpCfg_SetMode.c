@@ -11,7 +11,7 @@ void MpCfg_SetMode(int param_1)
       g_CfgMode = 1;
     }
     MpCfg_HideStoreUi();
-    FUN_004494c0();
+    MpCfg_RefreshMountSlot();
     Cfg_ClearScratch();
     MpCfg_ResetMountHighlights();
     if (g_CfgMode == 0) {
@@ -20,7 +20,7 @@ void MpCfg_SetMode(int param_1)
       set_button_state(&g_UiManager,s_BtnCFGModeWP_00547790,4);
       set_button_state(&g_UiManager,s_BtnCFGModeHW_00547780,1);
       MpCfg_RefreshWeaponMounts();
-      FUN_00449630();
+      MpCfg_LoadMountLines();
     }
     else if (g_CfgMode == 1) {
       DAT_00546620 = g_CfgMode;

@@ -23,7 +23,7 @@ int Proj_CreateBolt(int *param_1)
   if (iVar2 == 0) {
     return 0;
   }
-  FUN_0041b8b0(iVar2);
+  Quad_Link(iVar2);
   *(undefined4 *)(iVar2 + 0x114) = 0;
   *(undefined4 *)(iVar2 + 0x8c) = DAT_00565798;
   *(undefined2 *)(iVar2 + 0x74) = 2;

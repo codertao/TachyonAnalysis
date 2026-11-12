@@ -20,7 +20,7 @@ void Anim_StepCamera(int param_1)
       *(uint *)(param_1 + 0x2c) = uVar2;
       if ((uint)puVar1[5] <= uVar2) {
         if ((*(byte *)(puVar1 + 4) & 1) != 0) {
-          FUN_0040f5b0(*puVar1,puVar1[1],puVar1[2],puVar1[3]);
+          Camera_SetFromEntity(*puVar1,puVar1[1],puVar1[2],puVar1[3]);
         }
         uVar2 = *(int *)(param_1 + 0x30) + 1;
         *(int *)(param_1 + 0x28) = *(int *)(param_1 + 0x28) + 0x1c;
@@ -31,7 +31,7 @@ void Anim_StepCamera(int param_1)
           *(undefined4 *)(param_1 + 0x28) = 0;
           *(undefined4 *)(param_1 + 0x48) = 1;
         }
-        FUN_00407380(param_1,puVar1,*(undefined4 *)(param_1 + 0x28));
+        Anim_CameraSetupDelta(param_1,puVar1,*(undefined4 *)(param_1 + 0x28));
       }
     }
   }

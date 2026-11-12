@@ -25,7 +25,7 @@ LAB_004a1592:
       if (DAT_006038ac != 0) {
         pCVar2 = (LPCSTR)get_actual_filename_from_pff(param_1,GLBL_maybe_pff_base);
       }
-      uVar1 = FUN_004a4290(pCVar2);
+      uVar1 = Pff_GetEntrySize(pCVar2);
       if (*(int *)(GLBL_maybe_pff_base + 0xb4) == 0) {
         return uVar1;
       }
@@ -40,7 +40,7 @@ LAB_004a1592:
       if (DAT_006038ac != 0) {
         pCVar2 = (LPCSTR)get_actual_filename_from_pff(param_1,*piVar3);
       }
-      uVar1 = FUN_004a4290(pCVar2);
+      uVar1 = Pff_GetEntrySize(pCVar2);
       if (*(int *)(*piVar3 + 0xb4) == 0) {
         return uVar1;
       }

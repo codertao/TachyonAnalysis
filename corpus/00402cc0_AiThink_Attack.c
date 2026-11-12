@@ -78,7 +78,7 @@ void AiThink_Attack(int param_1)
   iStack_3c = *(int *)(iVar7 + 0xa4) * iVar8 + *(int *)(iVar7 + 0x38);
   iStack_38 = *(int *)(iVar7 + 0xa8) * iVar8 + *(int *)(iVar7 + 0x3c);
   Vec_DirAngles(param_1 + 0x34,&iStack_40,&iStack_4c);
-  FUN_0040f460(iVar7,&iStack_4c);
+  Ent_AnglesToLocal(iVar7,&iStack_4c);
   *(int *)(param_1 + 0xdc) = iStack_4c;
   *(undefined4 *)(param_1 + 0xe0) = uStack_48;
   *(undefined4 *)(param_1 + 0xe4) = uStack_44;
@@ -100,7 +100,7 @@ void AiThink_Attack(int param_1)
     if (((uVar6 < 0x280000) && ((iVar3 < 0x7530000 && (0x3e80000 < iVar3)))) &&
        (*(short *)(iVar7 + 0xcc) < *(short *)(iVar7 + 0xce))) {
       uStack_28 = 6;
-      iVar4 = FUN_004930c0(&uStack_28);
+      iVar4 = Ai_PickWeapon(&uStack_28);
       if (iVar4 != -1) {
         *(int *)(param_1 + 0x318) = iVar4;
         *(undefined1 *)(param_1 + 0x326) = 1;
@@ -112,7 +112,7 @@ void AiThink_Attack(int param_1)
     }
     if ((uVar6 < 0xa0000) && (iVar3 < 0x36b0000)) {
       uStack_28 = 0x31;
-      iVar4 = FUN_004930c0(&uStack_28);
+      iVar4 = Ai_PickWeapon(&uStack_28);
       if (iVar4 == -1) {
         *(undefined1 *)(param_1 + 0x326) = 0;
       }

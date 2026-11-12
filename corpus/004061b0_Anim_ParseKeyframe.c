@@ -39,29 +39,29 @@ void Anim_ParseKeyframe(undefined4 param_1,undefined4 *param_2,undefined4 param_
   }
   iVar2 = Cbin_GetParam(local_100,s_SOUND_00532778,local_80,0x7f,0,4,1);
   if (iVar2 != 0) {
-    uVar1 = FUN_00406170(local_80);
+    uVar1 = Anim_FindSoundLabel(local_80);
     param_2[9] = uVar1;
     Cbin_GetParam(local_100,s_SOUND_00532778,0,0,&local_10c,2,2);
     local_108 = (longlong)ROUND(local_10c * _DAT_0052e548);
     param_2[10] = (undefined4)local_108;
   }
   if (param_2[1] != 0) {
-    FUN_0048e3d0(param_2 + 2,param_2[1] * 0x1c,4,s_KEYFRAME_PART_BUFFER_005327a8,0xcccc);
+    Mem_AllocZeroTagged(param_2 + 2,param_2[1] * 0x1c,4,s_KEYFRAME_PART_BUFFER_005327a8,0xcccc);
     Cbin_SelectGroup(local_100);
     uVar3 = 0;
     puVar4 = (undefined4 *)param_2[2];
     if (param_2[1] != 0) {
       do {
-        FUN_0049bdb0(s_PART_DEST_005327e4,local_80,0x20,0,4,1);
-        uVar1 = FUN_00406130(local_80);
+        Cbin_FindParam_Global(s_PART_DEST_005327e4,local_80,0x20,0,4,1);
+        uVar1 = Anim_FindPartIndex(local_80);
         *puVar4 = uVar1;
-        FUN_0049b930(s_PART_DEST_005327e4,0,0,&local_10c,2,2);
+        Cbin_GetParamN(s_PART_DEST_005327e4,0,0,&local_10c,2,2);
         local_108 = (longlong)ROUND(local_10c * _DAT_0052e540 * (float)_DAT_0052e538);
         puVar4[1] = (undefined4)local_108;
-        FUN_0049b930(s_PART_DEST_005327e4,0,0,&local_10c,2,3);
+        Cbin_GetParamN(s_PART_DEST_005327e4,0,0,&local_10c,2,3);
         local_108 = (longlong)ROUND(local_10c * _DAT_0052e540 * (float)_DAT_0052e538);
         puVar4[2] = (undefined4)local_108;
-        FUN_0049b930(s_PART_DEST_005327e4,0,0,&local_10c,2,4);
+        Cbin_GetParamN(s_PART_DEST_005327e4,0,0,&local_10c,2,4);
         uVar3 = uVar3 + 1;
         local_108 = (longlong)ROUND(local_10c * _DAT_0052e540 * (float)_DAT_0052e538);
         puVar4[3] = (undefined4)local_108;

@@ -18,7 +18,7 @@ undefined4 some_kind_of_play_sound(undefined4 param_1,undefined4 voice_key,uint 
       uVar4 = 0;
       if (*(int *)(pPlayingSoundMaybe + 0x50) != 0) {
         do {
-          iVar1 = str_cmp(iVar3,voice_key);
+          iVar1 = __stricmp(iVar3,voice_key);
           if (iVar1 == 0) {
             if ((*(int *)(iVar3 + 0x20) != 0) &&
                ((uint)(DAT_005897e4 - *(int *)(iVar3 + 0x20)) < param_3)) {

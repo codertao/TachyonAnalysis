@@ -124,7 +124,7 @@ void __cdecl Snd_MixBlock(void)
       DAT_004cabae = uVar3;
       if (0xedcba987 < DAT_004c940e) {
         if (DAT_004c942e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -172,7 +172,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c944e + 0x12345678;
       if (0xedcba987 < DAT_004c944e) {
         if (DAT_004c946e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -220,7 +220,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c948e + 0x12345678;
       if (0xedcba987 < DAT_004c948e) {
         if (DAT_004c94ae != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -268,7 +268,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c94ce + 0x12345678;
       if (0xedcba987 < DAT_004c94ce) {
         if (DAT_004c94ee != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -316,7 +316,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c950e + 0x12345678;
       if (0xedcba987 < DAT_004c950e) {
         if (DAT_004c952e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -364,7 +364,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c954e + 0x12345678;
       if (0xedcba987 < DAT_004c954e) {
         if (DAT_004c956e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -412,7 +412,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c958e + 0x12345678;
       if (0xedcba987 < DAT_004c958e) {
         if (DAT_004c95ae != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -460,7 +460,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c95ce + 0x12345678;
       if (0xedcba987 < DAT_004c95ce) {
         if (DAT_004c95ee != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -508,7 +508,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c960e + 0x12345678;
       if (0xedcba987 < DAT_004c960e) {
         if (DAT_004c962e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -556,7 +556,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c964e + 0x12345678;
       if (0xedcba987 < DAT_004c964e) {
         if (DAT_004c966e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -604,7 +604,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c968e + 0x12345678;
       if (0xedcba987 < DAT_004c968e) {
         if (DAT_004c96ae != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -652,7 +652,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c96ce + 0x12345678;
       if (0xedcba987 < DAT_004c96ce) {
         if (DAT_004c96ee != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -700,7 +700,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c970e + 0x12345678;
       if (0xedcba987 < DAT_004c970e) {
         if (DAT_004c972e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -748,7 +748,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c974e + 0x12345678;
       if (0xedcba987 < DAT_004c974e) {
         if (DAT_004c976e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -796,7 +796,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c978e + 0x12345678;
       if (0xedcba987 < DAT_004c978e) {
         if (DAT_004c97ae != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -844,7 +844,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c97ce + 0x12345678;
       if (0xedcba987 < DAT_004c97ce) {
         if (DAT_004c97ee != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -892,7 +892,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c980e + 0x12345678;
       if (0xedcba987 < DAT_004c980e) {
         if (DAT_004c982e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -940,7 +940,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c984e + 0x12345678;
       if (0xedcba987 < DAT_004c984e) {
         if (DAT_004c986e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -988,7 +988,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c988e + 0x12345678;
       if (0xedcba987 < DAT_004c988e) {
         if (DAT_004c98ae != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -1036,7 +1036,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c98ce + 0x12345678;
       if (0xedcba987 < DAT_004c98ce) {
         if (DAT_004c98ee != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -1084,7 +1084,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c990e + 0x12345678;
       if (0xedcba987 < DAT_004c990e) {
         if (DAT_004c992e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -1132,7 +1132,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c994e + 0x12345678;
       if (0xedcba987 < DAT_004c994e) {
         if (DAT_004c996e != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -1180,7 +1180,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c998e + 0x12345678;
       if (0xedcba987 < DAT_004c998e) {
         if (DAT_004c99ae != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {
@@ -1228,7 +1228,7 @@ void __cdecl Snd_MixBlock(void)
       uVar3 = DAT_004c99ce + 0x12345678;
       if (0xedcba987 < DAT_004c99ce) {
         if (DAT_004c99ee != 0) {
-          (*(code *)PTR_FUN_004cb47c)();
+          (*(code *)PTR_SndAsm_MixRet_004cb47c)();
         }
         iVar55 = 0xe;
         do {

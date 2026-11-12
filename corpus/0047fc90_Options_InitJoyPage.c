@@ -1,0 +1,68 @@
+
+/* sweep */
+
+void Options_InitJoyPage(void)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  
+  if (GLBL_spacesav[0x3e] == 0) {
+    iVar1 = Options_RefreshJoyPage(2);
+joined_r0x0047fcc8:
+    if (iVar1 == 0) {
+      OptMenu_RefreshByVar(0);
+    }
+    if (GLBL_spacesav[0x3e] == 0) goto LAB_0047fe26;
+  }
+  else {
+    OptMenu_RefreshByVar(0);
+    if (GLBL_spacesav[0x3e] == 0) {
+      iVar1 = Options_RefreshJoyPage(1);
+      goto joined_r0x0047fcc8;
+    }
+  }
+  Ui_SetButtonFlag(DAT_00571280,s_BtnOptP3Rudder_00556b5c,0x80000);
+  Ui_SetButtonFlag(DAT_00571280,s_BtnOptP3Throttle_00556b48,0x80000);
+  Ui_SetButtonFlag(DAT_00571280,s_BtnOptP3Feedback_00556b34,0x80000);
+  set_button_state(DAT_00571280,s_BtnOptP3Rudder_00556b5c,8);
+  set_button_state(DAT_00571280,s_BtnOptP3Throttle_00556b48,8);
+  set_button_state(DAT_00571280,s_BtnOptP3Feedback_00556b34,8);
+  set_flag_10c_on_elem_by_id(DAT_00571280,s_IAP3Opt2_00556b28,0x20000);
+  set_flag_10c_on_elem_by_id(DAT_00571280,s_IAP3Opt3_00556b1c,0x20000);
+  set_flag_10c_on_elem_by_id(DAT_00571280,s_IAP3Opt4_00556b10,0x20000);
+  sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt1Banner_00556afc,0x10000);
+  sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt2Banner_00556ae8,0x10000);
+  sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt3Banner_00556ad4,0x10000);
+  sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt1_00556ac4,0x10000);
+  sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt2_00556ab4,0x10000);
+  sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt3_00556aa4,0x10000);
+LAB_0047fe26:
+  if (GLBL_spacesav[0x3e] == 1) {
+    DAT_00563d78 = 0;
+    clr_label_flags_11c(DAT_00571280,s_TxtOptP3Opt4Banner_00556bdc,0x10000);
+    clr_label_flags_11c(DAT_00571280,s_TxtOptP3Opt5_00556bcc,0x10000);
+    ImageArea_ClearFlags(DAT_00571280,s_IAP3Slide5_1_00556bbc,0x20000);
+    ImageArea_ClearFlags(DAT_00571280,s_IAP3Slide5_2_00556bac,0x20000);
+    ImageArea_ClearFlags(DAT_00571280,s_IAP3Tab5_00556ba0,0x20000);
+    clr_label_flags_11c(DAT_00571280,s_TxtOptP3Opt5Banner_00556b8c,0x10000);
+    ImageArea_ClearFlags(DAT_00571280,s_IAP3Opt6_00556b80,0x20000);
+    Ui_ClearButtonFlags(DAT_00571280,s_BtnOptP3PitchMouse_00556b6c,0x80000);
+    uVar2 = 1;
+  }
+  else {
+    DAT_00563d78 = 1;
+    sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt4Banner_00556bdc,0x10000);
+    sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt5_00556bcc,0x10000);
+    set_flag_10c_on_elem_by_id(DAT_00571280,s_IAP3Slide5_1_00556bbc,0x20000);
+    set_flag_10c_on_elem_by_id(DAT_00571280,s_IAP3Slide5_2_00556bac,0x20000);
+    set_flag_10c_on_elem_by_id(DAT_00571280,s_IAP3Tab5_00556ba0,0x20000);
+    sbi_label_flags_11c(DAT_00571280,s_TxtOptP3Opt5Banner_00556b8c,0x10000);
+    set_flag_10c_on_elem_by_id(DAT_00571280,s_IAP3Opt6_00556b80,0x20000);
+    Ui_SetButtonFlag(DAT_00571280,s_BtnOptP3PitchMouse_00556b6c,0x80000);
+    uVar2 = 8;
+  }
+  set_button_state(DAT_00571280,s_BtnOptP3PitchMouse_00556b6c,uVar2);
+  return;
+}
+

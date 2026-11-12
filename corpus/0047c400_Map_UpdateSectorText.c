@@ -15,8 +15,8 @@ void Map_UpdateSectorText(char *param_1)
   char *pcVar9;
   char *pcVar10;
   
-  iVar2 = FUN_0043bf10(g_MapUiCtx,s_MAP_HILITE_SECTOR_005527d0);
-  iVar3 = FUN_0043bf10(g_MapUiCtx,s_MAP_SECTOR_CONTENTS_005527bc);
+  iVar2 = Mnu_FindText(g_MapUiCtx,s_MAP_HILITE_SECTOR_005527d0);
+  iVar3 = Mnu_FindText(g_MapUiCtx,s_MAP_SECTOR_CONTENTS_005527bc);
   if (param_1 == (char *)0x0) {
     if (iVar2 == 0) {
       pcVar4 = s__High_Lighted_Sector_005527a4;
@@ -65,9 +65,9 @@ void Map_UpdateSectorText(char *param_1)
       pcVar4 = pcVar4 + 1;
       pcVar10 = pcVar10 + 1;
     }
-    iVar7 = str_cmp(&DAT_005a41e0,&DAT_00571b80);
+    iVar7 = __stricmp(&DAT_005a41e0,&DAT_00571b80);
     if (iVar7 != 0) {
-      FUN_0049c6e0(0xa106);
+      Mem_FreeTag(0xa106);
       DAT_00563688 = 0;
       DAT_00571b80 = 0;
       DAT_00563688 = load_rtxt_bin(&DAT_005a41e0,0xa106);
@@ -95,7 +95,7 @@ void Map_UpdateSectorText(char *param_1)
       }
     }
   }
-  FUN_0043e6a0(g_MapUiCtx,s_TxtMapSector_00552794,&DAT_00571500);
+  Ui_SetLabelText(g_MapUiCtx,s_TxtMapSector_00552794,&DAT_00571500);
   if ((param_1 == (char *)0x0) || (GLBL_ingame_rtxt == 0)) {
     if (iVar3 == 0) {
       pcVar4 = s__Sector_Contents_0055275c;
@@ -167,7 +167,7 @@ void Map_UpdateSectorText(char *param_1)
       }
     }
   }
-  FUN_0043e6a0(g_MapUiCtx,s_TxtMapContents_0055274c,&DAT_00571800);
+  Ui_SetLabelText(g_MapUiCtx,s_TxtMapContents_0055274c,&DAT_00571800);
   return;
 }
 

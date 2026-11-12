@@ -1,0 +1,58 @@
+
+/* sweep: GATE_OPEN/GATEWAY_OPEN anims */
+
+void Gate_PlayOpenCloseAnim(int param_1,undefined4 param_2,undefined4 param_3)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  
+  if (param_1 != 0) {
+    iVar1 = *(int *)(param_1 + 0x8c);
+    if (*(int *)(*(int *)(param_1 + 0xd8) + 0xe8) != 0) {
+      if (*(int *)(param_1 + 0xd0) == 0) {
+        uVar2 = Anim_LoadFile(iVar1 + 0x168,1);
+        *(undefined4 *)(param_1 + 0xd0) = uVar2;
+      }
+      if (*(int *)(*(int *)(param_1 + 0xd8) + 0xd0) == 0) {
+        uVar2 = Anim_LoadFile(iVar1 + 0x178,1);
+        *(undefined4 *)(*(int *)(param_1 + 0xd8) + 0xd0) = uVar2;
+      }
+      if (*(int *)(*(int *)(*(int *)(param_1 + 0xd8) + 0xd8) + 0xd0) == 0) {
+        uVar2 = Anim_LoadFile(iVar1 + 0x188,1);
+        *(undefined4 *)(*(int *)(*(int *)(param_1 + 0xd8) + 0xd8) + 0xd0) = uVar2;
+      }
+      Anim_Play(param_1,*(undefined4 *)(param_1 + 0xd0),s_GATE_OPEN_00536128,param_2,param_3,
+                Model_AnimUpdateCb);
+      Anim_Play(*(int *)(param_1 + 0xd8),*(undefined4 *)(*(int *)(param_1 + 0xd8) + 0xd0),
+                s_GATEWAY_OPEN_00536118,0,param_3,Model_AnimUpdateCb);
+      iVar1 = *(int *)(*(int *)(param_1 + 0xd8) + 0xd8);
+      Anim_Play(iVar1,*(undefined4 *)(iVar1 + 0xd0),s_GATEWAY_OPEN_00536118,0,param_3,
+                Model_AnimUpdateCb);
+      *(undefined4 *)(param_1 + 0xc4) = *(undefined4 *)(*(int *)(param_1 + 0x8c) + 0x160);
+      return;
+    }
+    if (*(int *)(param_1 + 0xd0) == 0) {
+      uVar2 = Anim_LoadFile(iVar1 + 0x168,1);
+      *(undefined4 *)(param_1 + 0xd0) = uVar2;
+    }
+    if (*(int *)(*(int *)(param_1 + 0xd8) + 0xd0) == 0) {
+      uVar2 = Anim_LoadFile(iVar1 + 0x178,1);
+      *(undefined4 *)(*(int *)(param_1 + 0xd8) + 0xd0) = uVar2;
+    }
+    if (*(int *)(*(int *)(*(int *)(param_1 + 0xd8) + 0xd8) + 0xd0) == 0) {
+      uVar2 = Anim_LoadFile(iVar1 + 0x188,1);
+      *(undefined4 *)(*(int *)(*(int *)(param_1 + 0xd8) + 0xd8) + 0xd0) = uVar2;
+    }
+    Anim_Play(param_1,*(undefined4 *)(param_1 + 0xd0),s_GATE_CLOSE_0053610c,param_2,param_3,
+              Model_AnimUpdateCb);
+    Anim_Play(*(int *)(param_1 + 0xd8),*(undefined4 *)(*(int *)(param_1 + 0xd8) + 0xd0),
+              s_GATEWAY_CLOSE_005360fc,0,param_3,Model_AnimUpdateCb);
+    iVar1 = *(int *)(*(int *)(param_1 + 0xd8) + 0xd8);
+    Anim_Play(iVar1,*(undefined4 *)(iVar1 + 0xd0),s_GATEWAY_CLOSE_005360fc,0,param_3,
+              Model_AnimUpdateCb);
+    *(undefined4 *)(param_1 + 0xc4) = *(undefined4 *)(*(int *)(param_1 + 0x8c) + 0x164);
+  }
+  return;
+}
+

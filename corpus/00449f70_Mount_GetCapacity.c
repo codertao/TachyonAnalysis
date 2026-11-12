@@ -14,7 +14,7 @@ undefined4 Mount_GetCapacity(int param_1,int param_2)
       if (*(int *)(param_2 + 0x44) == 0) {
         return 0;
       }
-      iVar1 = str_cmp(*(int *)(param_2 + 0x44),param_1);
+      iVar1 = __stricmp(*(int *)(param_2 + 0x44),param_1);
       if ((iVar1 == 0) || (*(int *)(param_2 + 0x44) == param_1)) {
         return *(undefined4 *)(param_2 + 0x40);
       }

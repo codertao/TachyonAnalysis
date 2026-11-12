@@ -14,18 +14,18 @@ undefined4 NW_ConnectToHost(void)
     *puVar3 = 0;
     puVar3 = puVar3 + 1;
   }
-  thunk_FUN_004aa330();
+  DPlay_RecreateInstance();
   Net_SelectTransport(1);
-  FUN_004a6de0();
-  uVar1 = FUN_004bd32f(&g_NwJoinPort,0xace);
-  FUN_004a70d0(uVar1);
-  FUN_004a70f0(1);
+  NetDrv_Init();
+  uVar1 = _atoi(&g_NwJoinPort,0xace);
+  NetDrv_SetPorts(uVar1);
+  NetDrv_SetDynamicPortUsage(1);
   local_4 = &g_NwJoinHost;
-  iVar2 = FUN_004a6e50(&local_4);
+  iVar2 = NetDrv_ConnectTCPIP(&local_4);
   if (iVar2 != 0) {
     return 0;
   }
-  FUN_004a7110(&DAT_00591250);
+  NetDrv_GetRecvPort(&DAT_00591250);
   return 1;
 }
 

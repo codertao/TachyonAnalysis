@@ -30,7 +30,7 @@ void SrvSend_EntityDestroyed
     local_18.quadrant = param_8;
     local_18._4_4_ = uVar1;
     if (param_4 == 0) {
-      param_4 = FUN_00423250(param_2);
+      param_4 = Explosion_TypeRadius(param_2);
     }
     local_18.radius = param_4;
     NetSrv_QueueEvent(payload,0x1003,0x16,&local_18);

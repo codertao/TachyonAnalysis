@@ -27,7 +27,7 @@ LPCSTR mem_GetMemEx_probably_alloc(int size_bytes,int param_2,undefined4 param_3
       pCVar5 = (LPCSTR)((int)piVar3 + param_2 + *piVar3 + 0x1f & ~(param_2 - 1U));
     }
     if (size_bytes == 0) break;
-    piVar2 = (int *)FUN_0049ce30(piVar3,pCVar5 + -0x10,iVar1 + 0x10,&local_4);
+    piVar2 = (int *)Mem_FindFree(piVar3,pCVar5 + -0x10,iVar1 + 0x10,&local_4);
     piVar4 = piVar3;
     if (local_4 != 0) {
       *(int *)(pCVar5 + -0x10) = iVar1;

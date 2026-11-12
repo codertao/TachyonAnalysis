@@ -16,7 +16,7 @@ void Mission_PostEnemyStatus(int param_1)
   *(int *)(param_1 + 0x4c) = iVar1;
   if (iVar1 == 0) {
     if (DAT_005a6730 != 0) {
-      FUN_0045d9d0(s_ALL_ENEMY_ARE_DEAD_0053fbbc,0);
+      SrvSend_TextSimple(s_ALL_ENEMY_ARE_DEAD_0053fbbc,0);
     }
     local_8 = 0xffffffff;
     local_4 = 0xffffffff;
@@ -30,7 +30,7 @@ void Mission_PostEnemyStatus(int param_1)
   local_18 = 4;
   local_14 = 0;
   local_10 = 1;
-  local_c = FUN_0048ec60(iVar1,*(undefined4 *)(param_1 + 0x50));
+  local_c = Rank_Format(iVar1,*(undefined4 *)(param_1 + 0x50));
   local_c = 100 - local_c;
   local_8 = 0xffffffff;
   local_4 = 0xffffffff;

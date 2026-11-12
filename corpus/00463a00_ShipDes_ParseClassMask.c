@@ -12,7 +12,7 @@ uint ShipDes_ParseClassMask(char *param_1)
   
   uVar5 = 0;
   ppuVar4 = &g_AiClassNames;
-  to_uppercase(param_1);
+  __strupr(param_1);
   puVar2 = g_AiClassNames;
   while (puVar2 != (undefined *)0x0) {
     pcVar3 = _strstr(param_1,*ppuVar4);

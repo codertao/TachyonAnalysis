@@ -6,7 +6,7 @@ void TachSrv_OnPartHitReport(int param_1)
 {
   int iVar1;
   
-  iVar1 = FUN_0045d680(*(undefined4 *)(param_1 + 0xc),g_SrvCurShip->quadrant);
+  iVar1 = Quad_FindEntById(*(undefined4 *)(param_1 + 0xc),g_SrvCurShip->quadrant);
   if (iVar1 != 0) {
     Weapon_StageDamage(*(undefined1 *)(param_1 + 0x12),g_SrvCurShip,0,param_1,g_SrvCurConn,0,0,
                        (uint)*(ushort *)(param_1 + 0x14) << 2,0xffffffff,

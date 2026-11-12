@@ -11,7 +11,7 @@ void Scene_SetPalParams(undefined4 param_1,undefined4 param_2,undefined4 param_3
   _DAT_005aed58 = param_3;
   _DAT_005aed5c = param_4;
   _DAT_005aed60 = param_5;
-  FUN_004af2a0(param_3,param_4,param_5);
+  Light_SetSectorTint(param_3,param_4,param_5);
   return;
 }
 

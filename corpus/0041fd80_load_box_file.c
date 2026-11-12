@@ -15,21 +15,21 @@ int load_box_file(int param_1,int param_2)
   iVar4 = Cbin_Open(param_1);
   uVar3 = param_2;
   if (iVar4 == 0) {
-    FUN_00432ee0(iVar2,s_dlg_LoadBOXFile_00535948);
+    Error_CannotOpenFile(iVar2,s_dlg_LoadBOXFile_00535948);
     return 0;
   }
-  FUN_0048e3d0(&param_1,0x140,4,s_Dialog_Box_0053593c,param_2);
+  Mem_AllocZeroTagged(&param_1,0x140,4,s_Dialog_Box_0053593c,param_2);
   iVar2 = param_1;
   piVar1 = (int *)(param_1 + 0x120);
   Cbin_GetParam(&PTR_DAT_00535938,s_IMAGE_005355d4,local_18,0x10,0,4,1);
-  iVar4 = FUN_004a2eb0(local_18);
+  iVar4 = Image_Load(local_18);
   *piVar1 = iVar4;
   if (iVar4 == 0) {
     Cbin_Close();
     return 0;
   }
   mark_alloc_memory_with_flags(iVar4,uVar3);
-  FUN_0049c840(*piVar1,s_DLGBOX_PCX_0053592c);
+  Mem_SetTag(*piVar1,s_DLGBOX_PCX_0053592c);
   Image_ToLuminance((byte *)*piVar1,(byte *)&DAT_00602e00,DAT_00603108);
   iVar4 = param_1;
   *(uint *)(iVar2 + 0x138) = _DAT_00603100;

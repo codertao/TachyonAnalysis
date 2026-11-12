@@ -20,7 +20,7 @@ void Mesh_Relocate(int param_1)
   *(int *)(param_1 + 0x58) = *(int *)(param_1 + 0x58) + param_1;
   DAT_006140c0 = DAT_006140c0 + *(int *)(param_1 + 0x34);
   if (DAT_00668f2c < DAT_006140c0) {
-    FUN_004afac0(DAT_006140c0);
+    Mesh_FaceLimitError(DAT_006140c0);
   }
   uVar5 = 0;
   uVar3 = 0;
@@ -87,12 +87,12 @@ void Mesh_Relocate(int param_1)
     iVar2 = *(int *)(param_1 + 0x44);
     DAT_00668f6c = DAT_00668f6c + *(int *)(param_1 + 0x2c);
     if (DAT_00668f70 == (undefined4 *)0x0) {
-      DAT_00668f74 = (undefined4 *)FUN_0049c5c0(DAT_00668f6c * 4);
+      DAT_00668f74 = (undefined4 *)Mem_AllocFromMain(DAT_00668f6c * 4);
       DAT_00668f70 = DAT_00668f74;
     }
     else {
       iVar4 = (int)DAT_00668f74 - (int)DAT_00668f70;
-      DAT_00668f70 = (undefined4 *)FUN_0049c740(DAT_00668f70,DAT_00668f6c * 4);
+      DAT_00668f70 = (undefined4 *)Mem_ReallocMain(DAT_00668f70,DAT_00668f6c * 4);
       DAT_00668f74 = (undefined4 *)((int)DAT_00668f70 + iVar4);
     }
     if (*(int *)(param_1 + 0x2c) != 0) {

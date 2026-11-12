@@ -7,7 +7,7 @@ void NetSrv_HandlePlayerData(int param_1)
   DAT_006af6ec = *(int *)(param_1 + 0xc);
   if (DAT_006af6ec == DAT_006af6e0) {
     if (*(int *)(DAT_006af7e0 + 0xb4) != 0) {
-      FUN_004b7e30(DAT_006af7e0);
+      NetSrv_DisconnectPlayer(DAT_006af7e0);
     }
     if (*(uint *)(DAT_006af7e0 + 0xb0) < *(uint *)(param_1 + 8)) {
       *(undefined4 *)(DAT_006af7e0 + 0xa4) = 1;

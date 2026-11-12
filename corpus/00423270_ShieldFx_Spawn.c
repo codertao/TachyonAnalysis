@@ -10,9 +10,9 @@ void ShieldFx_Spawn(int param_1,undefined4 *param_2,undefined4 *param_3,int para
   longlong lVar2;
   int iVar3;
   
-  iVar3 = FUN_0041b790(&DAT_005b32b0,9,&DAT_005b31c0);
+  iVar3 = DcbPool_AllocTyped(&DAT_005b32b0,9,&DAT_005b31c0);
   if (iVar3 != 0) {
-    FUN_0041b8b0(iVar3);
+    Quad_Link(iVar3);
     iVar1 = param_4 * 0xc;
     *(undefined2 *)(iVar3 + 0x74) = 2;
     *(undefined4 *)(iVar3 + 0x58) = *(undefined4 *)(&g_ShieldFxTable)[param_4 * 3];
@@ -50,7 +50,7 @@ void ShieldFx_Spawn(int param_1,undefined4 *param_2,undefined4 *param_3,int para
     *(undefined4 *)(iVar3 + 0x94) = 10;
     *(undefined4 *)(iVar3 + 0x8c) = 0;
     if (DAT_005b2178 < DAT_005b3304) {
-      FUN_004666e0(2,2,*(undefined4 *)(&DAT_005359cc + iVar1),iVar3,0x10000);
+      Snd_PlayAtEnt(2,2,*(undefined4 *)(&DAT_005359cc + iVar1),iVar3,0x10000);
       DAT_005b2178 = DAT_005b3304 + 0xc;
     }
   }

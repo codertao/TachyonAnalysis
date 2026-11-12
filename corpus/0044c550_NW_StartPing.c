@@ -8,7 +8,7 @@ void NW_StartPing(void)
   undefined4 uVar1;
   
   Ui_ShowWindow(&g_UiManager,s_WndMPSystemNW_00547ed0,0);
-  FUN_0043a8d0(&g_UiManager,s_WndMPSystemNW_00547ed0);
+  Ui_OpenWindow(&g_UiManager,s_WndMPSystemNW_00547ed0);
   if (DAT_00562ca8 != 0) {
     NW_OpenStartPage();
     return;
@@ -21,7 +21,7 @@ void NW_StartPing(void)
   netsock_Init();
   netsock_SetPorts(DAT_005b2b08,DAT_005b2b08);
   netsock_InitTCPIP(&GLBL_NW_PING_IP);
-  uVar1 = FUN_0044c8e0(&GLBL_NW_PING_IP,GLBL_NW_PING_PORT);
+  uVar1 = Net_ParseIpPort(&GLBL_NW_PING_IP,GLBL_NW_PING_PORT);
   netsock_Initiate_NWPing(uVar1);
   set_button_state(&g_UiManager,s_BtnNWSkip_00547f64,8);
   Ui_SetButtonFlag(&g_UiManager,s_BtnNWSkip_00547f64,0x80000);

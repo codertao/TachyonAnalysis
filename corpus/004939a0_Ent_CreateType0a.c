@@ -31,7 +31,7 @@ void Ent_CreateType0a(undefined4 param_1,undefined4 param_2)
     local_60 = &LAB_00493820;
     local_3c = 0;
     local_38 = &LAB_00493880;
-    local_34 = FUN_00445720;
+    local_34 = Nop;
     local_20 = 0;
     local_2c = 0;
     local_18 = &LAB_004938b0;

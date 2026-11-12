@@ -298,7 +298,7 @@ LAB_0047281c:
       Loadout_RefreshHwSlots();
       Loadout_HighlightMounts(g_LoadoutDragItem);
       *(undefined4 *)(g_LoadoutDragItem + 0x54) = *(undefined4 *)(iVar7 + 0x9c);
-      iVar15 = str_cmp(g_LoadoutDragItem,s_AMMO_HOLD_005362c0);
+      iVar15 = __stricmp(g_LoadoutDragItem,s_AMMO_HOLD_005362c0);
       if (iVar15 == 0) {
         g_HasAmmoHold = 0;
         Loadout_ClampMountAmmo();
@@ -382,7 +382,7 @@ LAB_0047281c:
       uVar11 = Ammo_ApplyHoldBonus(*(undefined4 *)(iVar7 + 0x9c),g_HasAmmoHold);
       uVar8 = uVar9;
       if (uVar11 < uVar9) {
-        iVar15 = str_cmp(g_LoadoutDragItem,s_GATLING_GUN_0054ffbc);
+        iVar15 = __stricmp(g_LoadoutDragItem,s_GATLING_GUN_0054ffbc);
         if (iVar15 == 0) {
           uVar8 = Ammo_ApplyHoldBonus(*(undefined4 *)(iVar7 + 0x9c),0);
         }

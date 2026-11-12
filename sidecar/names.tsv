@@ -198,7 +198,7 @@
 0x458a60	Ent_CreateSpeedRing	DESC_TYPE SPEED_RING (9)
 0x4939a0	Ent_CreateType0a	DESC_TYPE 0xa (unnamed)
 0x41b570	Ent_CreateCourse	DESC_TYPE COURSE (0xb)
-0x414e20	Ent_CreateMiscObject	DESC_TYPE MISC_OBJECT (0xc)
+0x414e20	Stub_ReturnZeroB	refine: shared return-0 body (identical-code folding): MISC_OBJECT (0xc) create slot and every unused transport-vtable slot
 0x456fc0	Ent_CreatePowerup	DESC_TYPE POWERUP (0xd)
 
 # --- sector (.SPX / SPD) data ---
@@ -1538,3 +1538,3876 @@
 0x4def47	Snd_RefreshAllVoices	re-apply vol/pan to all 24 voices, 24 aux and 24 queued records
 0x4dfed0	Asm_PostMainThreadCallback	(value@EAX) PostMessage(main window, WM_USER, 0x49ce90, value) so asm can run C code on the UI thread
 0x49cee0	Win_PostCallback	PostMessage(hwnd, 0x400, fn, arg)
+
+# --- MSVC C runtime (static LIBCMT, MSVC 5/6 era): 0x4bc160-0x4c8573 ---
+# Names follow the MSVC object symbol (C name with leading underscore). Identified from source-module structure.
+0x4bc1b2	__fpmath	CRT: FP init (cfltcvt table, P5 FDIV test, default precision)
+0x4bc1c9	Crt_nullsub	CRT: empty stub referenced from CRT tables
+0x4bc1ca	__cfltcvt_init	CRT: fills _cfltcvt_tab (_cfltcvt/_cropzeros/_fassign/_forcdecpt/_positive)
+0x4bc27f	_asctime	CRT
+0x4bc349	_store_dt	CRT: asctime helper, 2 decimal digits
+0x4bc3ad	_localtime	CRT
+0x4bc50d	_time	CRT
+0x4bc5e9	__fsopen	CRT
+0x4bcbd4	__matherr	CRT: default matherr (returns 0)
+0x4bcda0	_srand	CRT
+0x4bcef7	_strtok	CRT
+0x4bcf9b	_toupper	CRT
+0x4bd00a	__toupper_lk	CRT
+0x4bd0d6	_qsort	CRT
+0x4bd22a	_shortsort	CRT: qsort helper
+0x4bd278	_swap	CRT: qsort helper
+0x4bd2a4	_atol	CRT
+0x4bd32f	_atoi	CRT
+0x4bd340	__chkstk	CRT: _alloca_probe stack probe (size in EAX)
+0x4bd36f	_atof	CRT
+0x4bd3c6	_bsearch	CRT (was maybe_find_in_list)
+0x4bd4c4	__heap_alloc	CRT
+0x4bd512	_free	CRT
+0x4bd55a	_ceil	CRT: ctrlfp(0x1b3f = ICW|IRC_UP) + frndint; _except1 opcode 0xc = OP_CEIL
+0x4bd629	WinMainCRTStartup	CRT entry point
+0x4bd726	WinMainCRTStartup_except	CRT: __except block of WinMainCRTStartup
+0x4bd756	_fast_error_exit	CRT
+0x4bd7a3	_tolower	CRT
+0x4bd812	__tolower_lk	CRT
+0x4bd8e0	_memcpy	CRT: overlap-safe (MSVC memcpy == memmove body)
+0x4bdc15	__cinit	CRT: _fpmath + _initterm(XI) + _initterm(XC)
+0x4bdc42	_exit	CRT: exit()
+0x4bdc64	_doexit	CRT
+0x4bdd09	__lockexit	CRT
+0x4bdd12	__unlockexit	CRT
+0x4bdd1b	__initterm	CRT
+0x4bde0e	__NLG_Notify	CRT: SEH non-local-goto notify
+0x4bdeed	__unwind_handler	CRT: SEH
+0x4bdf08	__makepath	CRT
+0x4bdf99	__splitpath	CRT (was probably_find_in_pff; caller get_actual_filename_from_pff just splits the path)
+0x4be0e0	_memmove	CRT: same body as _memcpy
+0x4be543	__close	CRT
+0x4be5a0	__close_lk	CRT
+0x4be623	__read	CRT
+0x4be688	__read_lk	CRT
+0x4be861	__lseek	CRT
+0x4be8c6	__lseek_lk	CRT
+0x4be939	__sopen	CRT
+0x4bec08	__flsbuf	CRT
+0x4bf461	_write_char	CRT: _output helper
+0x4bf496	_write_multi_char	CRT: _output helper
+0x4bf4c7	_write_string	CRT: _output helper
+0x4bf4ff	_get_int_arg	CRT: _output helper
+0x4bf50c	_get_int64_arg	CRT: _output helper
+0x4bf51c	_get_short_arg	CRT: _output helper
+0x4bf52a	__setdefaultprecision	CRT: _controlfp(_PC_53,_MCW_PC)
+0x4bf53c	__ms_p5_test_fdiv	CRT: Pentium FDIV bug test
+0x4bf57a	__ms_p5_mp_test_fdiv	CRT: IsProcessorFeaturePresent(PF_FLOATING_POINT_PRECISION_ERRATA) else test
+0x4bf5a3	__forcdecpt	CRT: _cfltcvt_tab[3]
+0x4bf6a1	__cftoe	CRT
+0x4bf702	__cftoe2	CRT
+0x4bf7c4	__cftof	CRT
+0x4bf819	__cftof2	CRT
+0x4bf8c0	__cftog	CRT
+0x4bf9a4	__shift	CRT: cvt.c buffer shift
+0x4bf9c9	__initstdio	CRT: XI initializer, allocates __piob
+0x4bfa85	__lock_file	CRT
+0x4bfab4	__lock_file2	CRT
+0x4bfad7	__unlock_file	CRT
+0x4bfb06	__unlock_file2	CRT
+0x4bfb54	__fflush_lk	CRT
+0x4bfb82	__flush	CRT
+0x4bfbe7	_flsall	CRT
+0x4bfc8b	__mtinit	CRT
+0x4bfcdf	__initptd	CRT
+0x4bfcf2	__getptd	CRT: per-thread data (TLS); +0x14 rand seed, +0x18 strtok ctx, +0x38 asctime buf
+0x4bfd59	__stbuf	CRT
+0x4bfde6	__ftbuf	CRT
+0x4bfe10	___tzset	CRT
+0x4bfe3e	__tzset_lk	CRT
+0x4c00c5	__isindst	CRT
+0x4c00e6	__isindst_lk	CRT
+0x4c0292	_cvtdate	CRT
+0x4c03d2	_gmtime	CRT
+0x4c04dc	___loctotime_t	CRT
+0x4c059e	__openfile	CRT
+0x4c070e	__getstream	CRT
+0x4c07d6	___crtGetStringTypeA	CRT
+0x4c08cf	___crtGetStringTypeA_part1	CRT: mis-split tail of ___crtGetStringTypeA
+0x4c08d3	___crtGetStringTypeA_part2	CRT: mis-split tail of ___crtGetStringTypeA
+0x4c091f	___init_time	CRT
+0x4c09b0	__get_lc_time	CRT
+0x4c0cfe	__free_lc_time	CRT
+0x4c0e8e	___init_numeric	CRT
+0x4c1063	_fix_grouping	CRT
+0x4c109a	___init_monetary	CRT
+0x4c1165	__get_lc_lconv	CRT
+0x4c1287	___free_lconv_mon	CRT
+0x4c12d5	___init_ctype	CRT
+0x4c15a4	__mtinitlocks	CRT
+0x4c15cd	__lock	CRT: lock by index (also named init_andor_enter_crit_section_idx)
+0x4c162e	__unlock	CRT
+0x4c1650	_strcspn	CRT
+0x4c1750	_strpbrk	CRT
+0x4c1790	_strcpy	CRT: entry stub into strcat.asm copy loop
+0x4c17a0	_strcat	CRT
+0x4c1880	___get_qualified_locale	CRT
+0x4c19fd	_TranslateName	CRT: getqloc
+0x4c1a55	_GetLcidFromLangCountry	CRT: getqloc
+0x4c1adc	_LangCountryEnumProc	CRT: getqloc callback
+0x4c1ce0	_GetLcidFromLanguage	CRT: getqloc
+0x4c1d36	_LanguageEnumProc	CRT: getqloc callback
+0x4c1df3	_GetLcidFromCountry	CRT: getqloc
+0x4c1e2a	_CountryEnumProc	CRT: getqloc callback
+0x4c1eb0	_GetLcidFromDefault	CRT: getqloc
+0x4c1eca	_ProcessCodePage	CRT: getqloc
+0x4c1f30	_TestDefaultCountry	CRT: getqloc
+0x4c1f4f	_TestDefaultLanguage	CRT: getqloc
+0x4c1fb1	_IsThisWindowsNT	CRT: getqloc
+0x4c1fe7	_crtGetLocaleInfoA	CRT: getqloc built-in locale table fallback (Win95)
+0x4c20cd	_GetPrimaryLen	CRT: getqloc
+0x4c2106	_LcidFromHexString	CRT: getqloc
+0x4c21a0	_strchr	CRT
+0x4c21a6	___from_strstr_to_strchr	CRT: strchr body, entered from strstr
+0x4c225c	___crtLCMapStringA	CRT
+0x4c236c	___crtLCMapStringA_part1	CRT: mis-split tail
+0x4c2370	___crtLCMapStringA_part2	CRT: mis-split tail
+0x4c2420	___crtLCMapStringA_part3	CRT: mis-split tail
+0x4c2424	___crtLCMapStringA_part4	CRT: mis-split tail
+0x4c2480	_strncnt	CRT
+0x4c24e4	__fltin2	CRT
+0x4c2f88	_hextodec	CRT: _input helper
+0x4c2ff0	_whiteout	CRT: _input helper
+0x4c3014	__callnewh	CRT
+0x4c302f	__heap_init	CRT
+0x4c306b	___sbh_heap_init	CRT
+0x4c30a9	___sbh_find_block	CRT
+0x4c30d4	___sbh_free_block	CRT
+0x4c33ff	___sbh_alloc_block	CRT
+0x4c3708	___sbh_alloc_new_region	CRT
+0x4c37b9	___sbh_alloc_new_group	CRT
+0x4c38b4	___sbh_resize_block	CRT
+0x4c3baa	__handle_qnan1	CRT: fp exception
+0x4c3bfe	__except1	CRT: fp exception
+0x4c3c96	__raise_exc	CRT: fp exception
+0x4c3f49	__handle_exc	CRT: fp exception
+0x4c4160	__umatherr	CRT: fp exception
+0x4c41e8	__set_errno	CRT: fp exception
+0x4c4210	__get_fname	CRT: fp exception
+0x4c4235	__errcode	CRT: fp exception
+0x4c4274	__set_exp	CRT
+0x4c429d	__sptype	CRT: classify double (1=+inf 2=-inf 3=qnan 4=snan)
+0x4c42f7	__decomp	CRT
+0x4c43b8	__clrfp	CRT
+0x4c43c6	__statfp	CRT
+0x4c43d5	__ctrlfp	CRT
+0x4c43f8	__set_statfp	CRT
+0x4c444e	__XcptFilter	CRT
+0x4c458c	_xcptlookup	CRT
+0x4c45c6	__wincmdln	CRT
+0x4c461e	__setenvp	CRT
+0x4c46d7	__setargv	CRT
+0x4c4770	_parse_cmdline	CRT
+0x4c4924	___crtGetEnvironmentStringsA	CRT
+0x4c4a56	__ioinit	CRT
+0x4c4c12	__FF_MSGBANNER	CRT
+0x4c4c4b	__NMSG_WRITE	CRT: "Runtime Error!" R60xx messages
+0x4c4d9e	__dosmaperr	CRT
+0x4c4e11	__errno	CRT
+0x4c4e1a	___doserrno	CRT
+0x4c4e23	__write	CRT
+0x4c4e88	__write_lk	CRT
+0x4c5013	__mbsdec	CRT
+0x4c5080	__setmbcp	CRT
+0x4c522d	_getSystemCP	CRT
+0x4c5277	_CPtoLCID	CRT
+0x4c52aa	_setSBCS	CRT
+0x4c52d3	_setSBUpLow	CRT
+0x4c5458	___initmbctable	CRT
+0x4c5474	__mbsnbcpy	CRT
+0x4c550e	__alloc_osfhnd	CRT
+0x4c5631	__set_osfhnd	CRT
+0x4c56ad	__free_osfhnd	CRT
+0x4c572c	__get_osfhandle	CRT
+0x4c576e	__lock_fhandle	CRT
+0x4c57cd	__unlock_fhandle	CRT
+0x4c57ef	__chsize_lk	CRT
+0x4c5914	__getbuf	CRT
+0x4c5958	__isatty	CRT
+0x4c5981	_wctomb	CRT
+0x4c59da	__wctomb_lk	CRT
+0x4c5b35	__control87	CRT
+0x4c5b6a	__controlfp	CRT
+0x4c5b80	__abstract_cw	CRT
+0x4c5c12	__hw_cw	CRT
+0x4c5c9b	__ZeroTail	CRT: intrncvt
+0x4c5ce4	__IncMan	CRT: intrncvt
+0x4c5d3a	__RoundMan	CRT: intrncvt
+0x4c5dc6	__CopyMan	CRT: intrncvt
+0x4c5de1	__FillZeroMan	CRT: intrncvt
+0x4c5ded	__IsZeroMan	CRT: intrncvt
+0x4c5e08	__ShrMan	CRT: intrncvt
+0x4c5e95	__ld12cvt	CRT: intrncvt
+0x4c6001	__ld12tod	CRT
+0x4c6017	__ld12tof	CRT
+0x4c602d	__atodbl	CRT
+0x4c605a	__atoflt	CRT
+0x4c6087	__fptostr	CRT
+0x4c60fe	__fltout2	CRT
+0x4c615a	___dtold	CRT
+0x4c6210	__fptrap	CRT: _amsg_exit(_RT_FLOAT); FP support not linked
+0x4c6219	_calloc	CRT
+0x4c6327	__commit	CRT
+0x4c63ba	__getenv_lk	CRT
+0x4c6437	___getlocaleinfo	CRT
+0x4c656f	___crtGetStringTypeW	CRT
+0x4c665b	___crtGetStringTypeW_part1	CRT: mis-split tail
+0x4c665f	___crtGetStringTypeW_part2	CRT: mis-split tail
+0x4c66b8	___crtGetStringTypeW_part3	CRT: mis-split tail
+0x4c66bc	___crtGetStringTypeW_part4	CRT: mis-split tail
+0x4c6734	__itoa	CRT
+0x4c6761	_xtoa	CRT
+0x4c67c0	__stricmp	CRT: case-INSENSITIVE compare (was str_cmp)
+0x4c6890	__strnicmp	CRT
+0x4c6991	___strgtold12	CRT
+0x4c6e62	_mbtowc	CRT
+0x4c6ebf	__mbtowc_lk	CRT
+0x4c6fcf	__filbuf	CRT
+0x4c70ab	__ungetc_lk	CRT
+0x4c7119	__ismbblead	CRT
+0x4c712a	_x_ismbbtype	CRT
+0x4c715b	___crtMessageBoxA	CRT
+0x4c71e4	__setmode_lk	CRT
+0x4c7245	___addl	CRT: 12-byte long double helpers
+0x4c72c4	___shl_12	CRT
+0x4c72f2	___shr_12	CRT
+0x4c731f	___mtold12	CRT
+0x4c73e6	_$I10_OUTPUT	CRT: long double -> decimal digits (1#INF/1#QNAN)
+0x4c76b8	___wtomb_environ	CRT
+0x4c7726	___crtGetLocaleInfoA	CRT
+0x4c77df	___crtGetLocaleInfoA_part1	CRT: mis-split tail
+0x4c77e3	___crtGetLocaleInfoA_part2	CRT: mis-split tail
+0x4c7839	___crtGetLocaleInfoW	CRT
+0x4c78f8	___crtGetLocaleInfoW_part1	CRT: mis-split tail
+0x4c78fc	___crtGetLocaleInfoW_part2	CRT: mis-split tail
+0x4c7957	___ld12mul	CRT
+0x4c7b77	___multtenpow12	CRT
+0x4c7bf3	___crtCompareStringA	CRT
+0x4c7daa	___crtCompareStringA_part1	CRT: mis-split tail
+0x4c7dae	___crtCompareStringA_part2	CRT: mis-split tail
+0x4c7e19	___crtCompareStringA_part3	CRT: mis-split tail
+0x4c7e1d	___crtCompareStringA_part4	CRT: mis-split tail
+0x4c7e70	___crtsetenv	CRT
+0x4c7ff7	_findenv	CRT
+0x4c804f	_copy_environ	CRT
+0x4c80b6	_realloc	CRT
+0x4c81ee	__mbschr	CRT
+0x4c8285	__strdup	CRT
+0x4c83ea	__strlwr	CRT
+0x4c82b6	__strupr	CRT (was to_uppercase)
+0x4c851e	_remove	CRT
+0x4c8548	__unlink	CRT
+0x4bc6a2	_setlocale	CRT (was something_locale_related)
+0x4bc8e8	__setlocale_set_cat	CRT
+0x4bca03	__setlocale_get_all	CRT
+0x4bcabc	__expandlocale	CRT
+0x4bcbd7	__strcats	CRT
+0x4bcbfc	___lc_strtolc	CRT
+0x4bccc8	___lc_lctostr	CRT
+
+# --- FUN_ sweep (2026-11-11): game code, address order. Comments "sweep:" = named from callers/callees/body in one pass. ---
+0x401020	Nav_WaypointActionName	sweep: waypoint action enum -> string (CHANGE_WAYPOINT..FOLLOW ROUTE)
+0x401350	Ai_SteerToPointClamped	sweep: clamped (+-0x1000) yaw/pitch deltas toward a point; true when aligned
+0x401440	Ent_ApproachHeight	sweep: move pos.y toward target height, max 0x800/step; true when reached
+0x4014a0	Ai_UpdateBoostReady	sweep: sets +0x327 when power+0x18 >= desc+0x110/4
+0x401b30	Formation_GetSlotPos	sweep: formation slot position relative to leader (rotated by leader angles)
+0x401bf0	Formation_SnapToSlot	sweep: place wingman at its slot + copy leader angles
+0x401d10	Ai_FollowLeaderStep	sweep
+0x401e90	Formation_FindPrev	sweep
+0x401eb0	Formation_InsertWingman	sweep
+0x402020	Sped_Unregister	sweep: detach entity from all systems + SrvSend_EntityStateOp(8)
+0x4020a0	Sped_SendGateMessage	sweep: text msg #0x61 when a ship jumps out
+0x402210	Formation_Unlink	sweep: remove entity from wingman (+0xfc) chain
+0x402240	Sped_LeaveWorld	sweep
+0x4022a0	Ai_JumpThroughGate	sweep: mission event 7, spawn at destination gate, leave world
+0x402400	Ai_OrderDockWith	sweep: target=param_2, state 6, stateThink=Ai_ApproachTarget
+0x4024d0	Ai_GotoPointArrived	sweep
+0x402530	Ai_StartGotoPoint	sweep
+0x402560	Ai_StandoffDone	sweep
+0x402600	Ai_StartStandoff	sweep
+0x403bd0	Sped_SendDeathExplosion	sweep: SrvSend_EntityDestroyed with random variant
+0x403c10	Ai_ChatterMadeKill	sweep: "MADE_KILL" voice line
+0x403c60	Formation_PromoteLeader	sweep
+0x403cc0	Sped_PostDeathEvents	sweep: mission enemy-status + event type 2
+0x403e10	Sped_DeathFormationFixup	sweep
+0x403eb0	Sped_DespawnFormationFixup	sweep
+0x403f20	Sped_Despawn	sweep: silent removal (no explosion)
+0x403f70	Sped_Destroy	sweep: "DCB %x destroyed", explosion, kill credit
+0x404ed0	AiThink_WakeDelay	sweep: countdown +0x30c then Ai_Wake + chain
+0x404f00	Ai_ScheduleWakeChain	sweep: dormant (state 0xb) wingmen get 150-tick wake timer
+0x404f40	AiThink_WakeAnnounce	sweep
+0x404f60	Ai_Wake	sweep: leave dormant state, SrvSend_EntityStateOp(4), engage limits
+0x404fd0	ShipCmd_SetActive	sweep: 0 = go dormant (state 0xb), else return to default
+0x405000	ShipCmd_SetGroupActive	sweep: like ShipCmd_SetActive but wakes the wingman chain
+0x4050e0	Ent_SetTeam	sweep: set +0xc2 team, fix quadrant enemy counts, SrvSend_Allegiance
+0x405180	AiThink_DockFinal	sweep: dock state think (desc slot +0x58)
+0x405280	AiThink_DockApproach	sweep
+0x405360	AiThink_DockAlign	sweep
+0x405470	ShipCmd_DockWith	sweep: "NO DOCK FOUND FOR OBJECT %d"
+0x4054f0	AiThink_DockedWait	sweep
+0x405580	ShipCmd_Wake	sweep
+0x4055b0	AiThink_GateApproach	sweep: reaches gate -> Sped_LeaveWorld
+0x4056b0	AiThink_GateAlign	sweep
+0x4057b0	AiThink_GateEnter	sweep
+0x4058b0	ShipCmd_UseGate	sweep: state 7
+0x405d50	AiShip_ResetGlobals	sweep
+0x405d60	Ent_DockIsAvailable	sweep: desc slot +0x58 cmd 1
+0x4060e0	Anim_CountFrames	sweep: counts "%s_FRAME_%02d" groups
+0x406130	Anim_FindPartIndex	sweep
+0x406170	Anim_FindSoundLabel	sweep
+0x406580	Anim_CountCameraFrames	sweep
+0x4065d0	Anim_CountParticlePaths	sweep
+0x406800	Anim_FindPathDefine	sweep
+0x406840	Anim_PathComputeDeltas	sweep
+0x407030	Anim_CopyPartRotationsCb	sweep
+0x407360	Anim_CameraClearDelta	sweep
+0x407380	Anim_CameraSetupDelta	sweep
+0x407560	Anim_GetEmitterPoint	sweep
+0x407820	Anim_UpdateParticlePaths	sweep
+0x4079c0	Anim_StartCamera	sweep
+0x407a40	Anim_ResetParticlePaths	sweep
+0x407aa0	Anim_StartWithCamera	sweep
+0x407c30	Anim_FreeFrames	sweep
+0x407c80	Anim_FreeParticlePaths	sweep
+0x407cd0	Anim_Free	sweep
+0x407d40	Asteroid_HitFx	sweep
+0x407de0	Asteroid_DestroyFx	sweep
+0x407e20	Asteroid_OnDestroyedClient	sweep
+0x407e60	Asteroid_OnDamage	sweep: hp at +0xbc; destroyed -> SrvSend_EntityDestroyed type 5
+0x408020	Asteroid_ProximityThink	sweep: within desc+0xc0 of player
+0x408290	Debris_LoadModels	sweep: rdebris1.pak into g_FxModelPool
+0x4082b0	Billboard_AddFlags	sweep
+0x4082d0	Billboard_Init	sweep
+0x4082f0	Billboard_ClampUV	sweep
+0x4083d0	Billboard_BuildQuad	sweep
+0x408580	Billboard_DrawMode2	sweep
+0x408980	Billboard_DrawMode1	sweep
+0x408d40	Billboard_Draw	sweep
+0x408da0	Starbase_SetDockState	sweep: +0xfe, SrvSend_EntityStateOp(0x10)
+0x408dd0	CliEnt_SetStateParam	sweep: +0xe4
+0x408de0	Starbase_FindType	sweep: HOME_BASE / GUN_PLATFORM table
+0x408e20	Starbase_FreeParts	sweep
+0x408e40	PartList_FindFlag	sweep: 0x80-stride part array, flags +0x34
+0x408e70	PartChain_FindFlag	sweep
+0x408ea0	PartList_RotateAll	sweep
+0x408ef0	Part_UpdateWorldTransform	sweep
+0x409000	BasePart_DescribeFlags	sweep: part flag bits -> ingame text 0xad..
+0x4090c0	BaseFile_LoadPaks	sweep: "TMP DEFINES"/"base paks"
+0x4091f0	BaseFile_LoadSoundLoops	sweep: SOUND/BASE LOOPS
+0x4092f0	BaseFile_ReadPartNames	sweep: PART_%02d
+0x409370	BaseFile_FindPartByName	sweep
+0x4093c0	BaseFile_FindDefine	sweep
+0x409420	NamedList_Find	sweep
+0x409460	Ocf_ErrNoParent	sweep
+0x4099d0	BaseFile_ComputePartTransforms	sweep
+0x409b00	BaseFile_LoadParts	sweep
+0x409b80	BaseFile_Load	sweep: "base_LoadBaseFile"
+0x409c40	CapShip_InitPartTransforms	sweep
+0x409dd0	Part_AttachToParent	sweep
+0x409e80	Part_SetTransform	sweep
+0x409ee0	PartChain_SetBackPtrs	sweep
+0x409f00	BasePart_OnParentDestroyed	sweep
+0x40a010	BasePart_StartDying	sweep
+0x40a0a0	Starbase_MsgKillPart	sweep
+0x40a0b0	BaseRemovedList_Add	sweep
+0x40a0d0	BasePart_Remove	sweep: SrvSend_SubpartDestroy
+0x40a1c0	BasePart_OnDamageShielded	sweep
+0x40a2f0	BasePart_OnDamage	sweep
+0x40a590	BasePart_InitDamageable	sweep
+0x40a610	ShortArray_At	sweep
+0x40a620	BasePart_Spawn	sweep: "BASE REMOVED PART LIST"
+0x40a880	Base_SpawnParts	sweep
+0x40a900	PartList_ClearEntities	sweep
+0x40a950	BaseRemovedList_Find	sweep
+0x40a980	BaseRemovedList_Remove	sweep
+0x40a9d0	PartChain_Insert	sweep
+0x40a9f0	PartChain_CountLiveFlag2000	sweep
+0x40aa20	Base_CheckPartsRemaining	sweep
+0x40ab10	Base_SpawnFromPlacement	sweep
+0x40ab80	Ent_StartLoopSound	sweep
+0x40abf0	Part_GetAttachWorldPos	sweep
+0x40ac40	BasePart_GetAttachPos_dc	sweep
+0x40ac60	BasePart_GetAttachPos_d4	sweep
+0x40ac80	BasePart_PreRender	sweep
+0x40acd0	BasePart_CheckNearPlayer	sweep
+0x40add0	BasePart_ThinkClient	sweep
+0x40adf0	BasePart_SetDebugFocus	sweep
+0x40af90	CapPart_InitReplica	sweep
+0x40b000	IntArray_Contains	sweep
+0x40b040	BasePart_ErrNoAttach	sweep
+0x40b0b0	BasePart_SpawnReplica	sweep
+0x40b1d0	Base_SpawnReplicaParts	sweep
+0x40b260	PartChain_FindById_d4	sweep
+0x40b290	PartChain_FindById_dc	sweep
+0x40b2c0	CliBase_AttachSubpart	sweep
+0x40b340	CliBase_DestroySubpart	sweep
+0x40b360	Base_InitClientParts	sweep
+0x40b390	Base_SerializeRemovedParts	sweep
+0x40b420	Starbase_LoadDockScenes	sweep
+0x40b4f0	PartChain_SetTeam	sweep
+0x40b530	BasePart_SetGunActive	sweep
+0x40b550	PartChain_SetGunsActive	sweep
+0x40b720	BasePart_OnDestroyedRuleHook	sweep
+0x40b750	PartChain_SetTeamOnly	sweep
+0x40b7e0	BaseFile_FreeSoundLoops	sweep
+0x40b830	BaseFile_Free	sweep
+0x40b880	Starbase_FreeDesc	sweep
+0x40b8c0	Starbase_RegisterName	sweep: "STARBASES"
+0x40b8f0	Starbase_FindDockPart	sweep
+0x40ba10	BasePart_GetNetInfo	sweep
+0x40bc90	BasePartDebug_Draw	sweep
+0x40bd50	BasePart_DebugSelect	sweep
+0x40bd90	Starbase_ThrottledNotify	sweep
+0x40bfc0	BasePart_SendFiredAt	sweep
+0x40c050	BasePart_SendAttach	sweep
+0x40c0c0	BasePart_ComputeAimAngles	sweep
+0x40c140	BasePart_OnAimUpdate	sweep
+0x40c430	BW_UpgradeTreeCheck	sweep
+0x40c4e0	BW_RegisterUpgradeTree	sweep: "BW UPGRADE TREE"
+0x40c530	BW_FindUpgradeTree	sweep
+0x40c5e0	BW_MsgLifeSupportAttacked	sweep
+0x40c680	BaseWars_InitRules	sweep: GALSPAN/BORA trees + g_ActiveRules hooks
+0x40c720	BW_FindHomeQuadrant	sweep
+0x40c770	BW_PickSpawnPos	sweep
+0x40c800	BW_RespawnPlayer	sweep
+0x40c840	BW_RespawnPlayerCb	sweep
+0x40c850	BW_InitSpawn	sweep
+0x40c880	BW_GetRelation	sweep
+0x40c8f0	BW_MsgGainedExp	sweep
+0x40c940	Rank_FromPoints	sweep
+0x40c960	Rank_ThresholdAt	sweep
+0x40cbe0	Faction_SendLevelBoth	sweep
+0x40cc10	Faction_SendLevelAllSectors	sweep
+0x40cc50	BW_MsgBaseLevelUp	sweep
+0x40ccd0	BW_MsgBaseLevelDown	sweep
+0x40cd50	BW_ApplyTechLock	sweep
+0x40cd80	BW_UpdateBaseLevel	sweep
+0x40ce10	BW_SendRankProgress	sweep
+0x40ce50	BW_SendFactionProgress	sweep
+0x40ce90	BW_AddBaseCredits	sweep
+0x40cf10	BW_SubBaseCredits	sweep
+0x40cf70	BW_FindBase	sweep: by team
+0x40cff0	BW_AddCarriedCredits	sweep: capped by desc+0x6c0
+0x40d0e0	BW_DeathPenalty	sweep
+0x40d120	BW_AddTeamStat	sweep
+0x40d190	BW_OnPlayerKilled	sweep
+0x40d200	BW_RankName	sweep
+0x40d230	BW_DrawHud	sweep: RANK/EXP/CREDITS/BASE TECH
+0x40d500	BW_InitClient	sweep
+0x40d5b0	BW_GiveWeaponIfAllowed	sweep
+0x40d630	BW_ApplyUpgradeTree	sweep
+0x40d6e0	BW_NavToHomeBase	sweep
+0x40d710	BW_OnPlayerSpawn	sweep
+0x40d780	BW_OnPlayerRefresh	sweep
+0x40d7a0	BW_OnDockDropCredits	sweep
+0x40d910	BW_RegisterBase	sweep: "BASEWAR BASE"
+0x40d990	BW_GetTeamStats	sweep
+0x40da40	BW_StartCreditsForLevel	sweep
+0x40da80	BW_OnBaseSpawn	sweep
+0x40dad0	BasePart_LacksFlag2000	sweep
+0x40dae0	BW_OnCreditPlantDestroyed	sweep
+0x40db40	BW_FindOtherTeam	sweep
+0x40db60	BW_WriteStatsFile	sweep: BWSTATS.TXT
+0x40dda0	BW_EndRound	sweep
+0x40dde0	BW_OnBaseDamaged	sweep
+0x40de60	BW_FormatPlayerName	sweep
+0x40dee0	BW_SendAllFactionLevels	sweep
+0x40df00	BW_FreeBases	sweep
+0x40df30	BW_NextRound	sweep
+0x40df60	BW_RoundTimerTick	sweep
+0x40df80	BW_PickWinnerByCredits	sweep
+0x40dfd0	BW_TimeLimitReached	sweep
+0x40dff0	BW_OnPlayerReset	sweep
+0x40e0a0	BW_DrawTeamStats	sweep
+0x40e230	BW_DrawRoundResult	sweep
+0x40e310	Srv_CountPlayersOnTeam	sweep
+0x40e340	BW_AutoAssignTeam	sweep
+0x40e3e0	BW_OnPlayerJoin	sweep
+0x40e470	BW_OnPlayerEnterGame	sweep
+0x40e4e0	BW_OnClientEnterFlight	sweep
+0x40e530	BW_FormatServerInfo	sweep: "REGION=%s BORA_CNT=%d ..."
+0x40e770	Ent_PlayerInTriggerRange	sweep
+0x40e7d0	Ent_AnimateWhenNear	sweep
+0x40e840	AiDcb_SpawnFromPlacement	sweep
+0x40e950	Ent_SetActiveFlag	sweep
+0x40ec20	View_ShakeStep	sweep
+0x40ecd0	View_ResetCenter	sweep
+0x40ed40	View_ProjectBearing	sweep
+0x40edd0	Camera_SetFromAngles	sweep
+0x40eef0	Camera_LookAt	sweep
+0x40f070	Camera_ApplyAnglesFixed	sweep
+0x40f0b0	CamMode_Fixed_Update	sweep: camera-mode table callback
+0x40f220	CamMode_Fixed_Enter	sweep
+0x40f270	CamMode_Fixed_Render	sweep: CAMERA_LEFT/RIGHT/UP/BACK labels
+0x40f3f0	Angles_ToLocal	sweep
+0x40f460	Ent_AnglesToLocal	sweep
+0x40f490	CamMode_FreeFly_Update	sweep
+0x40f510	CamMode_Orbit_Update	sweep
+0x40f5b0	Camera_SetFromEntity	sweep
+0x40f6d0	Camera_ChaseStep	sweep
+0x40f920	Camera_ChaseStepCutscene	sweep
+0x40fc00	Camera_TrackTarget	sweep
+0x40fe10	Camera_LookAtEntity	sweep
+0x40fed0	Camera_LookAtEntitySnap	sweep
+0x40fef0	CamMode_Chase_Update	sweep
+0x40ffa0	CamMode_ChaseCinematic_Update	sweep
+0x410020	CamMode_Track_Update	sweep
+0x4100c0	CamMode_FlyBy_Update	sweep
+0x4101a0	CamMode_ChaseLook_Update	sweep
+0x4101c0	CamTable_SetEntity	sweep: camera mode table at 0x533ac8 (0x38 stride)
+0x410200	Camera_SetModeField4	sweep
+0x410210	Camera_BuildRotation	sweep
+0x410250	Camera_PostRender	sweep
+0x410280	Camera_SetModeRecord	sweep
+0x4102c0	Camera_SetModeById	sweep
+0x410310	Camera_RestorePrevMode	sweep
+0x410320	CamTable_MarkActive	sweep
+0x410370	CamTable_FindById	sweep
+0x4103b0	Camera_SetDefaultMode	sweep
+0x4103e0	Fade_Step	sweep
+0x4104a0	Camera_WorldToView	sweep
+0x4105c0	Camera_Reset	sweep
+0x410610	CamTable_NextMode	sweep
+0x410670	Camera_CycleMode	sweep
+0x4106f0	Camera_SetModeField34	sweep
+0x410760	Fade_SetLevel	sweep
+0x410780	Fade_Start	sweep
+0x4107b0	Fade_SetHold	sweep
+0x4107c0	Fade_StartDefault	sweep: rate 6
+0x4107e0	Ent_RenderModelTinted	sweep
+0x410910	CapShip_DeathBlastPos	sweep
+0x410a30	CapShip_RemoveAllParts	sweep
+0x410ac0	CapShip_DetachParts	sweep
+0x410b00	PartChain_FindPrev	sweep
+0x410b30	PartChain_Unlink	sweep
+0x410b50	CapShip_RemoveForHyper	sweep
+0x410b80	PartChain_PickRandom	sweep
+0x410d90	CapShip_PowerThink	sweep
+0x410df0	CapShip_ApplyThrust	sweep
+0x4110a0	MultiPart_UpdateTransforms	sweep
+0x411650	CapShip_SetTeam	sweep
+0x411aa0	Turret_Destroy	sweep
+0x411b70	CapShip_OnHullDamage	sweep
+0x411c80	CapPart_ForwardDamage	sweep
+0x411d80	CapPart_Render	sweep
+0x411dc0	CapPart_RenderNoAnim	sweep
+0x411e30	MultiPart_UpdateChildOffsets	sweep
+0x412200	CapPart_PickCollideFn	sweep
+0x412630	CapShip_TrySpawn	sweep
+0x4126b0	CapShip_SpawnFromPlacement	sweep
+0x4126f0	CapShip_SerializePartIds	sweep
+0x412730	CapShip_FillNetCreate	sweep
+0x412810	CapShipReplica_Think	sweep
+0x412840	CapPartReplica_Think	sweep
+0x412890	ReplicaChain_FindPrev	sweep
+0x4128c0	ReplicaChain_Unlink	sweep
+0x4128e0	CapShipReplica_Free	sweep
+0x412940	CapPartReplica_Setup	sweep
+0x412c40	CapShipReplica_SpawnParts	sweep
+0x412cb0	CapShipReplica_Init	sweep
+0x412ce0	CapShip_GetMountPose	sweep
+0x412da0	CapShip_GetRadius	sweep
+0x412df0	CapShip_FreeDesc	sweep
+0x412e10	CapShip_GetLabelPtr	sweep
+0x412e40	CapShip_GetText	sweep: desc getText ("FLIGHT GROUP")
+0x412f60	PartChain_FindFlag80	sweep
+0x412f90	ReplicaChain_Next	sweep
+0x412ff0	ReplicaChain_Last	sweep
+0x413010	ReplicaChain_Prev	sweep
+0x413090	CapShipReplica_Query	sweep: desc query method
+0x413170	CapShip_Query	sweep: desc query method
+0x413270	CapPart_DescribeFlags	sweep
+0x413290	CapPart_GetText	sweep
+0x4132f0	CapShip_DistanceToHull	sweep
+0x413350	PartChain_CountFlag	sweep
+0x413380	CapShipDebug_DrawStats	sweep
+0x413590	TurretDebug_DrawWeapon	sweep
+0x4135c0	CapShipDebug_Draw	sweep
+0x413630	Ent_AdjustEngageCount	sweep
+0x413680	ReplicaChain_SetTeam	sweep
+0x4136a0	CapShipReplica_OnMessage	sweep
+0x413940	Cargo_FollowRoute	sweep
+0x413a60	Cargo_PlayerInRange	sweep
+0x413a90	Cargo_Render	sweep
+0x413ad0	Cargo_Spawn	sweep
+0x413cb0	Cargo_SpawnFromPlacement	sweep
+0x413d20	CargoReplica_Init	sweep
+0x413e40	Cargo_MsgArrived	sweep
+0x413ea0	Cargo_Remove	sweep
+0x413f00	Cargo_Destroy	sweep
+0x413fa0	Cargo_ArriveAndRemove	sweep
+0x414470	Cheat_MissionWin	sweep
+0x4144a0	Cheat_AllItems	sweep
+0x4144e0	Cheat_AllShips	sweep
+0x4145e0	Cheat_AddCredits	sweep: +5000
+0x414660	Cheat_RefillEnergy	sweep
+0x4146a0	Cheat_RefillAmmo	sweep
+0x4147e0	ChatInput_OnChar	sweep
+0x414830	Str_LenInline	sweep
+0x414850	ChatInput_Init	sweep
+0x4148e0	ChatInput_Backspace	sweep
+0x414900	ChatInput_AppendChar	sweep
+0x414970	ChatInput_Send	sweep
+0x414a20	ChatInput_SetTargetLabel	sweep
+0x414a90	ChatInput_OpenAll	sweep
+0x414b30	ChatInput_OpenTeam	sweep
+0x414ba0	ChatInput_Close	sweep
+0x414be0	ChatInput_Draw	sweep
+0x414c70	KeyRepeat_Init	sweep: guess
+0x414cc0	KeyRepeat_FindSlot	sweep: guess
+0x414d20	KeyRepeat_Fire	sweep: guess
+0x414db0	KeyRepeat_Reset	sweep: guess
+0x414dc0	KeyRepeat_Update	sweep: guess
+0x414e30	MiscObj_CollideFilter	sweep: poolType 0xb/0xc/0xd
+0x414e45	Stub_ReturnZero	sweep
+0x414e60	Replica_LineOfSightCheck	sweep
+0x414ee0	NetCli_SendRulesEvent	sweep: 0x2026 -> game-mode callback +0x5c
+0x414f80	NetCli_SendName	sweep: queues a string event (caller 0x45c980)
+0x415000	Ent_TrackHostileCount	sweep: team-2 counter DAT_005b39a8
+0x415280	Music_SetVar8f68	sweep
+0x415290	Music_SetVar8f6c	sweep
+0x4152a0	Music_SetCombatTarget	sweep
+0x4152c0	Music_SetMode	sweep
+0x4152e0	EntityLabel_Store	sweep: 64 x 0x44 label slots at 0x5b7e48
+0x415330	EntityLabel_ClearAll	sweep
+0x4155d0	Replica_Extrapolate	sweep: pos/ang += vel/angVel (or follow parent +0xf4)
+0x4156d0	NetCli_SendCargoDrop	sweep: 0x2019
+0x415760	NetCli_SendAbort	sweep: 0x2024
+0x415780	NetCli_Send2025	sweep: 0x2025
+0x4157d0	NetCli_SendRespawn	sweep: 0x2011 (once)
+0x415880	NetCli_SendPickup	sweep: 0x2018
+0x4158b0	NetCli_SendInteract	sweep: 0x2014
+0x4158e0	NetCli_SendDocked	sweep: 0x2013
+0x415910	NetCli_SendTrigger8	sweep: 0x2023
+0x415940	NetCli_SendDockTrigger	sweep: 0x2016
+0x415970	NetCli_SendUndocking	sweep: 0x2015
+0x4159a0	NetCli_SendCargoOp	sweep: 0x2020
+0x4159e0	NetCli_SendState2	sweep: 0x2010
+0x415a80	NetCli_SendArrivedQuadrant	sweep: 0x2007
+0x415aa0	NetCli_SendSceneLoaded	sweep: 0x2012
+0x415af0	NetCli_SendEntityInfoReq	sweep: 0x2002
+0x415d10	CliPools_Flush	sweep
+0x415d90	CliPools_EndFrame	sweep
+0x415e50	Cli_ClearTargetRefs	sweep: drop player target/lock refs to a dying replica
+0x415ec0	ThreatList_Remove	sweep
+0x415ee0	Replica_Destroy	sweep
+0x415fa0	Replica_Kill	sweep
+0x415fc0	Replica_KillById	sweep
+0x4162c0	Replica_DestroyAll	sweep
+0x416300	Cli_ResetWorld	sweep
+0x416640	Replica_Despawn	sweep
+0x416980	ThreatList_Contains	sweep
+0x417540	TachCli_ReadPlayerInit	sweep
+0x4175a0	TachCli_ReadRules	sweep
+0x417660	TachCli_ReadPortraits	sweep
+0x417690	TachCli_ReadRoster	sweep
+0x4176d0	TachCli_ReadSessionInfo	sweep
+0x417700	TachCli_ReadTechData	sweep: "CLIENT TECH DATA"
+0x417e50	TachCli_AcceptSeq	sweep
+0x417e70	Ent_WriteNetLink	sweep
+0x417fd0	TachCli_RequestQuit	sweep
+0x417ff0	TachCli_Shutdown	sweep: CLFREE.TXT
+0x418050	TachCli_OnDisconnect	sweep: mission end reason 5/6
+0x418110	TachCli_OnServerTimeout	sweep
+0x418380	Flight_RenderScene	sweep
+0x4183a0	Flight_StopMedia	sweep
+0x4183c0	Flight_FreeAll	sweep: artram/close/sysclose/clntclos memory logs
+0x4184d0	CliPools_Init	sweep: Client DCBS / common / particle pools
+0x4186c0	Vel_AddKnockback	sweep
+0x418730	Coll_BoundSphereTest	sweep
+0x418910	Coll_SphereSweepTest	sweep
+0x418a20	Coll_SegmentVsEntity	sweep
+0x418ba0	CollList_Contains	sweep
+0x418bd0	CollList_GatherDynamic	sweep
+0x418c70	CollList_GatherStatic	sweep
+0x418e20	Coll_SegmentVsListEx	sweep
+0x418f80	Coll_ProjectileCast	sweep
+0x419090	Coll_LookaheadCast	sweep
+0x419340	Coll_FindNearInChain	sweep
+0x4193a0	Coll_CapPartProximity	sweep
+0x419660	Coll_GatherDynamicCb	sweep
+0x419690	Coll_GatherStaticCb	sweep
+0x4196c0	Coll_SphereSweepList	sweep
+0x4197f0	Coll_SphereCast	sweep
+0x419b10	Config_Load	sweep: tachyon.cfg + nw.cfg (PING_PORT/PING_IP), locale
+0x419c90	Course_PlayJakeComment	sweep: training course (2jake*.wav)
+0x419d30	Course_SetState	sweep
+0x419d50	Course_DecTargetsLeft	sweep
+0x419d70	Course_PlaceMarker	sweep
+0x419dd0	Course_SpawnGate	sweep: hyper_gate
+0x41a280	Course_ComputeTimeLimit	sweep
+0x41a2f0	Course_ClearTargets	sweep
+0x41a3b0	Course_BuildStage	sweep
+0x41a3e0	Course_AttachCamera	sweep: guess
+0x41a420	Course_ResetScore	sweep
+0x41a450	Course_Build	sweep
+0x41a4a0	Course_Advance	sweep: CURRENT_COURSE
+0x41a520	Course_AwardBonus	sweep: "Bonus All Targets Hit"
+0x41a650	Course_SaveProgress	sweep: SHIP_COURSE_NUMS
+0x41a6a0	Course_OnComplete	sweep
+0x41a740	Course_FindTarget	sweep
+0x41a830	Course_OffsetAlongDir	sweep
+0x41a8d0	CourseTarget_OnDestroyed	sweep: "Targets Left: %d"
+0x41abc0	Course_SpawnTarget	sweep
+0x41abde	Course_SpawnTarget_body	sweep: mis-split body of Course_SpawnTarget
+0x41ae00	Course_PickTargetType	sweep
+0x41ae70	Course_PlaceTargets	sweep
+0x41b120	Course_PlaceTargetsSpaced	sweep
+0x41b190	Course_LoadSound	sweep
+0x41b200	Course_GetSavedCourseNum	sweep
+0x41b280	Course_SpawnFromPlacement	sweep
+0x41b310	Course_FreeDesc	sweep
+0x41b380	Course_LoadModel	sweep
+0x41b720	Pool_InitWrapper	sweep: thin wrapper
+0x41b760	NetId_Reserve	sweep
+0x41b790	DcbPool_AllocTyped	sweep: Pool_Alloc + netId + poolType
+0x41b890	List_PushFrontW	sweep: thin wrapper
+0x41b8b0	Quad_Link	sweep: thin wrapper (0x4b7990)
+0x41b8c0	Quad_Unlink	sweep: thin wrapper (0x4b79a0)
+0x41b990	List_RemoveW	sweep: thin wrapper
+0x41b9b0	Dcb_Free	sweep: Pool_Free(*ent, ent)
+0x41b9d0	DcbList_FreeByType	sweep
+0x41ba10	DcbList_FreeByNetId	sweep
+0x41ba40	DM_InitRules	sweep: deathmatch rules setup
+0x41bab0	Rules_ClearHooks	sweep
+0x41bb00	DM_PickSpawnPos	sweep
+0x41bb90	DM_InitSpawn	sweep
+0x41bbb0	DM_GetRelation	sweep
+0x41bbd0	Round_FreezeTicks	sweep: 50*N or 1000
+0x41bbf0	DM_WriteStatsFile	sweep: DMSTATS.TXT
+0x41bd50	DM_OnPlayerKilled	sweep: max-kills check
+0x41bd90	DM_NextRound	sweep
+0x41bdd0	DM_EndRound	sweep
+0x41bdf0	DM_MsgMinutesLeft	sweep
+0x41be60	DM_RoundTimerTick	sweep
+0x41bea0	DM_RespawnPlayer	sweep
+0x41bee0	DM_RespawnPlayerCb	sweep
+0x41bef0	DM_OnPlayerReset	sweep
+0x41bf30	DM_OnPlayerEnterGame	sweep
+0x41bf50	DM_OnPlayerJoin	sweep
+0x41bfb0	DM_FormatServerInfo	sweep: "REGION=%s MAX_KILLS=%d POWERUPS=%d"
+0x41bff0	SpaceDust_Think	sweep: guess
+0x41c0e0	SpaceDust_Render	sweep: guess
+0x41c210	SpaceDust_Respawn	sweep
+0x41c2f0	SpaceDust_InitParticle	sweep
+0x41c330	SpaceDust_SpawnAll	sweep
+0x41c3e0	SpaceDust_SetEnabled	sweep
+0x41c3f0	SpaceDust_Init	sweep: moveroid.pak, "Debris DCBS"
+0x41c450	MusicDebug_Draw	sweep
+0x41cac0	ServerDebug_Draw	sweep
+0x41cbd0	VarDebug_SelectSection	sweep
+0x41cc30	VarDebug_CycleSection	sweep
+0x41cc70	VarDebug_Scroll	sweep
+0x41ccc0	VarDebug_Draw	sweep
+0x41ce20	Debug_InitOverlays	sweep
+0x41ce80	PlayerDebug_Draw	sweep
+0x41d190	RenderDebug_Draw	sweep
+0x41d470	SoundDebug_Draw	sweep
+0x41d500	CameraDebug_Draw	sweep
+0x41d860	Debug_OpenConsole	sweep: guess
+0x41d890	Target_DebugDraw	sweep
+0x41d8c0	Debug_DrawOverlays	sweep
+0x41d8f0	Debug_Printf	sweep
+0x41d930	DelaySnd_Init	sweep: "delaysnd que"
+0x41d980	DelaySnd_AllocSlot	sweep
+0x41d9b0	DelaySnd_Queue	sweep
+0x41d9e0	DelaySnd_QueueCallback	sweep
+0x41da00	DelaySnd_Update	sweep
+0x41da70	Srv_DcbPoolSize	sweep: 400
+0x41da80	Srv_CommonPoolSize	sweep
+0x41da90	Cli_CommonPoolSize	sweep
+0x41dfa0	Dialog_LoadActorImages	sweep
+0x41e100	Dialog_PickCommonLine	sweep
+0x41e1a0	Dialog_GetCommonLine	sweep
+0x41e210	Dialog_LoadCommonLines	sweep: HITBY_PLAYER/PLAYER_WATCHOUT...
+0x41e250	Dialog_FindDependant	sweep
+0x41e2a0	Dialog_LoadConvLines	sweep
+0x41e380	Dialog_LoadActorLines	sweep
+0x41e600	Dialog_LoadDependants	sweep
+0x41e6d0	Dialog_LoadActor	sweep: "DIALOG ACTOR ARRAY"
+0x41e7e0	Dialog_QueueLine	sweep
+0x41e850	Dialog_PlayWav	sweep: "Could not play [%s]"
+0x41e9c0	Dialog_PlayConvLine	sweep
+0x41ea20	Dialog_FindLine	sweep
+0x41ea70	Dialog_PlayRegionLine	sweep
+0x41eb40	Dialog_PlayNamed	sweep
+0x41ec50	Dialog_ResolveDependant	sweep
+0x41ed20	Dialog_PendDependantLine	sweep
+0x41ede0	Dialog_PendConvLines	sweep
+0x41f1b0	Dialog_ClearActive	sweep
+0x41f1c0	Dialog_FlushQuadQueue	sweep
+0x41f260	Dialog_UpdateQuadQueue	sweep
+0x41f3a0	Dialog_UpdateAllQueues	sweep
+0x41f3d0	Dialog_Update	sweep
+0x41f460	Dialog_DrawPortrait	sweep
+0x41f590	Dialog_BindActor	sweep
+0x41f5e0	Dialog_UnbindActor	sweep
+0x41f620	Dialog_Reset	sweep
+0x41f640	Dialog_InitQuadQueue	sweep: "DLG ENGINE BUFFER"/"PEND LINES"
+0x41f680	Ui_SetBoxClip	sweep
+0x41f6e0	Ui_DrawBox	sweep: framed box (load_box_file) with optional title text
+0x4206b0	Box_Free	sweep
+0x420860	InGameUi_Init	sweep: ingame.bin, borders.box
+0x420900	QuitDialog_Draw	sweep
+0x420b20	QuitFailDialog_Draw	sweep
+0x420d40	InGameUi_Free	sweep
+0x420d80	Flight_QuitNow	sweep
+0x420da0	QuitDialog_OnChoice	sweep
+0x420e10	Fx_RenderModel	sweep
+0x420e70	Fx_FreeAllType1a	sweep
+0x420ee0	FireFx_LoadModels	sweep: fire.pak
+0x421130	FireFx_EmitSparks	sweep
+0x421230	FireFx_RenderAnimated	sweep
+0x4212e0	Fx_RenderAnimSlow	sweep
+0x421320	Fx_Remove	sweep
+0x421370	FireFx_Think	sweep
+0x421450	Particle_FadeThinkA	sweep
+0x4214e0	Particle_FadeThinkB	sweep
+0x421570	Particle_FadeThinkC	sweep
+0x4216c0	Spark_SpawnAt	sweep
+0x421780	Sparks_Burst	sweep
+0x4218a0	Impact_SparksOnModel	sweep
+0x421980	Particle_Spawn	sweep
+0x421ae0	Particle_SpawnSimple	sweep
+0x421b10	Particle_SpawnTrail	sweep
+0x421c00	Particle_SpawnOrientedA	sweep
+0x421ce0	Particle_SpawnOrientedB	sweep
+0x421dc0	FxProp_OnDamage	sweep
+0x421e40	Debris_PickBehavior	sweep
+0x421e61	Debris_PickBehavior_body	sweep: mis-split body
+0x421f43	Debris_Spawn_body	sweep: mis-split body of Debris_Spawn
+0x422120	Debris_SpawnBurning	sweep: DEBRIS_FIRE_LOOP
+0x422280	Explosion_Rumble	sweep: distance-scaled force feedback
+0x4222e0	Debris_SpawnChunks	sweep
+0x422440	Explosion_SpawnSparks	sweep
+0x422580	Explosion_SpawnFireballs	sweep
+0x4227f0	Explosion_SpawnSparksA	sweep
+0x4228e0	Explosion_SpawnSparksB	sweep
+0x422aa0	Explosion_SpawnSmoke	sweep
+0x422d50	Explosion_SpawnShockwave	sweep
+0x422f80	Explosion_RenderPiece	sweep
+0x422fe0	Explosion_SpawnFlash	sweep
+0x4230f0	Explosion_Spawn	sweep: (pos, scale, flags) composite explosion
+0x4231f0	Explosion_SpawnByType	sweep: 12-entry table at 0x535a68
+0x423250	Explosion_TypeRadius	sweep
+0x4234d0	Flash_Spawn	sweep
+0x423590	Flash_SpawnDefault	sweep
+0x4235b0	Flash_Render	sweep
+0x423630	Glow_Spawn	sweep
+0x4236d0	Glow_SpawnTowardCamera	sweep
+0x423790	Debris_SpawnBurst	sweep
+0x4238c0	Explosion_ShipDeath	sweep
+0x423970	Explosion_Small	sweep
+0x423990	Explosion_RandomSmall	sweep
+0x4239b0	Explosion_CapShipDeath	sweep
+0x423ba0	Explosion_Medium	sweep
+0x423c20	Warp_SpawnStreak	sweep
+0x423cf0	Warp_EmitStreaks	sweep
+0x423e80	Ent_PointAhead	sweep
+0x423ed0	Ent_PointRight	sweep
+0x423fb0	Vel_Damp	sweep
+0x4248e0	Ent_IntegrateVelocity	sweep
+0x424940	Shake_DecayScale	sweep
+0x424970	Shake_Update	sweep
+0x4249c0	Burner_UpdateFx	sweep: guess
+0x424a60	PlayerShip_ApplySlide	sweep: guess (strafe/slide accel)
+0x424d00	PlayerShip_PhysicsStep	sweep
+0x424dd0	PlayerDcb_InitForceFeedback	sweep
+0x424e10	Fx_RandomOffsetNearCamera	sweep
+0x424e80	Fx_ScatterType11	sweep
+0x424ec0	Fog_Disable	sweep
+0x424ee0	Fog_LoadFromBdf	sweep: FOGPCX/FOGPALREF
+0x424fc0	Fog_Shutdown	sweep
+0x425000	Fog_Render	sweep
+0x424fd0	Fog_Init	sweep
+0x425030	FlightUi_InitAll	sweep: panel table 0x535b90
+0x425080	FlightUi_DispatchActive	sweep
+0x4250c0	FlightUi_AnyActive	sweep
+0x4250f0	FlightUi_SetPanelActive	sweep
+0x425180	FlightUi_FreeAll	sweep
+0x4251a0	FlightUi_CloseAll	sweep
+0x425210	OptionsPanel_Init	sweep
+0x425270	OptionsPanel_Draw	sweep: GAME_OPTIONS
+0x425500	OptionsPanel_Free	sweep
+0x425530	OptionsPanel_ChangeValue	sweep
+0x4255b0	OptionsPanel_PrevItem	sweep
+0x425620	OptionsPanel_NextItem	sweep
+0x425660	OptionsPanel_Open	sweep
+0x4256a0	OptionsPanel_Close	sweep
+0x4256d0	Options_CycleSetting33	sweep
+0x425720	Rules_CallUpdate	sweep: g_ActiveRules +8
+0x425740	Rules_CallRender	sweep: g_ActiveRules +0xc
+0x4257a0	Rules_CallHook14	sweep
+0x4257c0	Rules_CallHook18	sweep
+0x4257e0	Rules_CallHook34	sweep
+0x425800	Model_AnimUpdateCb	sweep
+0x425850	Gate_PlayOpenCloseAnim	sweep: GATE_OPEN/GATEWAY_OPEN anims
+0x425a80	Gate_SetStateClient	sweep
+0x425ba0	Gate_PreRender	sweep
+0x425c10	Gateway_PreRender	sweep
+0x425c70	GatewayPart_PreRender	sweep
+0x425d10	GateFx_Flicker	sweep
+0x425d60	GateFx_Render	sweep
+0x425e60	Gate_Render	sweep
+0x425ee0	Gateway_Render	sweep
+0x425fe0	Gate_SpawnFxPart	sweep
+0x4260c0	Gate_SpawnParts	sweep
+0x426370	Gate_SetVarOnUse	sweep
+0x4263a0	Gate_MarkUsed	sweep
+0x426570	Gate_LoadAssets	sweep
+0x4266c0	Gate_GetState	sweep
+0x4266e0	GateReplica_Think	sweep
+0x426700	GateReplica_Init	sweep
+0x426840	Gate_GetDestName	sweep
+0x426870	Gate_GetNamePtr	sweep
+0x426930	GateFx_Activate	sweep
+0x426970	GateFx_Deactivate	sweep
+0x4269b0	Gate_SendJumpFx	sweep: SrvSend_EntityDestroyed type 6
+0x426a60	Gate_OnPlayerEnter	sweep
+0x426b90	Gate_OnPlayerEnterB	sweep
+0x426f90	Gate_FindByName	sweep
+0x427010	Gate_PlaceAtExit	sweep
+0x4270f0	Gate_FreeAnims	sweep
+0x427150	Gate_FreeAllReplicas	sweep
+0x4271a0	Gate_MsgLocked	sweep
+0x427210	Nav_FindSectorPath	sweep: recursive sector route search
+0x427310	Nav_ComputeRoute	sweep
+0x427380	Systems_NameForBit	sweep: g_ShipSystemTable
+0x4273d0	Systems_FindByName	sweep
+0x427440	Systems_BitForName	sweep
+0x427480	Systems_InstallCard	sweep: SHIP_%02d_DATA / SLOT_%d_STATE
+0x427590	Systems_MountCard	sweep
+0x427600	Systems_LoadMountedHardware	sweep: PLAYER_MOUNTED_HARDWARE
+0x4277a0	Systems_Reload	sweep
+0x4277c0	Ai_RollSkillChance	sweep
+0x427810	Hud_IsFlag2000	sweep
+0x427820	Hud_DrawImage	sweep
+0x4278f0	Hud_DrawCrosshair	sweep: guess
+0x427910	Hud_DrawLeadPip	sweep: guess
+0x427930	Hud_ClearRect	sweep
+0x427960	Hud_LoadPalette	sweep: hudpal.pcx
+0x4279b0	Hud_LoadImage	sweep: "hud_LoadImage"
+0x427ab0	Hud_LoadImages	sweep
+0x427af0	HudString_InitPool	sweep: "HUDSTRING DLL ENV"
+0x427b10	Teletype_Clear	sweep
+0x427b30	Teletype_Reset	sweep: TELE_BEEP
+0x427c70	Teletype_ResetDefault	sweep
+0x427c90	Teletype_Push	sweep
+0x427d30	HudLabel_Init	sweep
+0x427d90	HudLabels_Init	sweep
+0x427ef0	Hud_LoadSounds	sweep: TRACTOR_WAVE, TARGET_LOCKED...
+0x427ff0	Hud_SetTractorSound	sweep
+0x428050	Hud_SetChargeSound	sweep
+0x4280a0	Hud_Init	sweep
+0x4280d0	Hud_LoadLayout	sweep: GALSPAN.HUD fallback
+0x428130	Hud_DrawStringId	sweep
+0x4281a0	Hud_DrawText	sweep
+0x4281f0	Hud_DrawSprite	sweep
+0x428300	Hud_DrawSpriteEx	sweep
+0x428580	HudBar_DrawCentered	sweep
+0x428680	HudBar_DrawRightToLeft	sweep
+0x428770	HudBar_DrawLeftToRight	sweep
+0x428850	HudBar_DrawBottomUp	sweep
+0x428940	HudBar_DrawRadialA	sweep
+0x428a90	HudBar_DrawRadialB	sweep
+0x428be0	HudBar_Draw	sweep: style switch at +0x2c
+0x428cf0	HudBar_DrawDefault	sweep
+0x428d20	Hud_DrawBurnerBar	sweep
+0x428d60	Hud_DrawLaserBar	sweep
+0x428d90	Hud_GetWeaponState	sweep
+0x428e30	Hud_PackColor	sweep
+0x428eb0	Hud_DrawWeaponPanel	sweep
+0x4292d0	Hud_DrawShipStatusDefault	sweep
+0x429750	Hud_TeamColorIndex	sweep
+0x429780	Hud_TeamColor	sweep
+0x429900	Radar_DrawAll	sweep
+0x429980	Hud_ScaleByFov	sweep
+0x4299a0	Hud_ColorAt	sweep
+0x4299b0	TargetBox_Draw	sweep
+0x429b60	TargetBox_DrawDual	sweep
+0x429ce0	TargetBox_DrawA	sweep
+0x429d20	TargetBox_DrawB	sweep
+0x429d60	TargetBox_DrawC	sweep
+0x429da0	Ent_GetTargetRadius	sweep
+0x429dd0	Target_ProjectToScreen	sweep
+0x429f30	Target_ProjectMode0	sweep
+0x429f50	Target_ProjectMode1	sweep
+0x429f70	Target_ProjectMode2	sweep
+0x429f90	Hud_DrawLeadIndicator	sweep
+0x42a200	Hud_DrawCompass	sweep: guess
+0x42a2b0	Radar_DrawBlip	sweep
+0x42a420	Hud_DrawTargetFrame	sweep
+0x42a500	Hud_HealthColorRGB	sweep
+0x42a550	Hud_ScaleRect	sweep
+0x42a5e0	Ent_GetIffColor	sweep: desc slot +0x74
+0x42a620	Ent_GetIffColorEx	sweep
+0x42a670	Ent_GetIffColor2	sweep
+0x42a6b0	Ent_GetBracketPoint	sweep
+0x42a760	Hud_DrawOffscreenArrow	sweep
+0x42abc0	Hud_DrawWaypointMarker	sweep
+0x42ac10	Hud_DrawTargetView	sweep: target ship view panel
+0x42af30	Hud_HealthColor	sweep
+0x42af60	Ent_GetDisplayName	sweep: desc slot +0x4c cmd 1
+0x42af90	Ent_GetAffiliation	sweep: "AFFILIATION"
+0x42b140	Hud_DrawTargetName	sweep
+0x42b5b0	Hud_DrawConnectionLost	sweep
+0x42b5f0	Hud_DrawWeaponPanelDefault	sweep
+0x42b600	Hud_DrawMissileWarning	sweep: guess
+0x42b6a0	HudString_DrawAll	sweep
+0x42b720	Hud_DrawStaticText	sweep
+0x42b770	Hud_DrawStaticImages	sweep
+0x42b7e0	HudLight_DrawColor	sweep
+0x42b830	HudLight_Draw	sweep
+0x42b850	HudLight_DrawState	sweep
+0x42b8e0	Hud_DrawWeaponLights	sweep
+0x42b990	Hud_DrawBeamLight	sweep
+0x42b9e0	Hud_SetBeamLight	sweep
+0x42ba10	Hud_DrawAmmoBar	sweep
+0x42bb20	Hud_DrawPowerRates	sweep
+0x42bcf0	Hud_RunWidgetCallbacks	sweep
+0x42bd40	Hud_DrawEnergyLabel	sweep
+0x42be60	Hud_BracketEntity	sweep
+0x42bea0	Hud_DrawEntityLabel	sweep
+0x42bf50	Hud_ArrowToTarget	sweep
+0x42bf80	Hud_ArrowToNav	sweep
+0x42bfb0	Hud_ArrowToDebugFocus	sweep
+0x42bff0	Hud_ArrowsToThreats	sweep
+0x42c030	Hud_DrawOffscreenArrows	sweep
+0x42c060	Hud_HighlightNavTargets	sweep
+0x42c0b0	HudBlink_Reset	sweep
+0x42c0e0	HudBlink_Draw	sweep
+0x42c130	HudBlink_DrawColor	sweep
+0x42c180	HudIndicator_Draw	sweep
+0x42c210	HudIndicators_DrawAll	sweep
+0x42c240	Hud_DrawWarnings	sweep: low-hull blink
+0x42c300	Hud_StopLockSound	sweep
+0x42c330	Hud_DrawLockOn	sweep
+0x42c5f0	Hud_BracketTarget	sweep
+0x42c620	Hud_BracketThreats	sweep
+0x42c670	Hud_LabelThreats	sweep
+0x42c6c0	Hud_Draw	sweep: main HUD draw
+0x42c890	Hud_ResetTargetState	sweep
+0x42c8b0	Hud_SetOffset	sweep
+0x42c8d0	HudString_Add	sweep
+0x42c960	Str_FindAnyToken	sweep
+0x42c9a0	HudFile_LoadFonts	sweep
+0x42ca50	HudFile_LoadFontColors	sweep
+0x42cb60	HudFile_LoadImages	sweep
+0x42cca0	HudFile_FindFont	sweep
+0x42cce0	HudFile_FindColor	sweep
+0x42cd20	HudFile_FindImage	sweep
+0x42cd70	HudFile_ReadTextItem	sweep
+0x42ce90	HudFile_LoadStaticText	sweep
+0x42d010	HudFile_ReadSprite	sweep
+0x42d100	HudFile_LoadPanels	sweep
+0x42d170	HudFile_ReadEnergyBar	sweep
+0x42d2c0	HudFile_LoadEnergyBars	sweep: BURNER/LASER/WEAPON_A...
+0x42d3c0	HudFile_LoadGameText	sweep
+0x42d7e0	HudFile_LoadIndicators	sweep: RADAR_DOT, CROSSHAIR, TARGET_LOCK...
+0x42da10	HudFile_LoadWarnings	sweep: MISSILE/GRAVITY/RADIATION/JAMMING...
+0x42db90	HudFile_LoadTeletype	sweep
+0x42dd00	HudFile_Load	sweep
+0x42de00	Teletype_Update	sweep
+0x42de70	Hud_ClearSpeedReadout	sweep
+0x42de80	HudScroll_UpdateA	sweep
+0x42def0	HudScroll_UpdateB	sweep
+0x42df80	Hud_UpdateScrollers	sweep
+0x42dfb0	Hud_UpdateJamNoise	sweep
+0x42e000	Hud_Update	sweep
+0x42e020	HudWidget_Queue	sweep
+0x42e060	Ent_ProjectLabelPos	sweep
+0x42e140	Hud_SetJamming	sweep
+0x42e1d0	Hud_SetWarningBits	sweep
+0x42e1f0	Hud_SetTalkingPortrait	sweep
+0x42e210	Hyper_SetMode	sweep
+0x42e4e0	HyperFx_Render	sweep
+0x42e540	HyperStar_ResetA	sweep
+0x42e5c0	HyperStar_Reset	sweep
+0x42e680	HyperStar_Spawn	sweep
+0x42e6e0	HyperStars_SpawnAll	sweep: 300 streaks
+0x42e700	HyperTunnel_Spawn	sweep
+0x42e910	Hyper_ResetState	sweep
+0x42eba0	KeyCfg_LoadActions	sweep: ACTIONS/key_press/joy_butt/mouse_butt
+0x42ee20	KeyCfg_LoadDefaults	sweep: KBCC.BIN / def_keys
+0x42eec0	KeyCfg_Load	sweep
+0x42ef10	KeyCfg_BuildStateLists	sweep: JoyStateList/KeyPressList...
+0x42f180	KeyCfg_LinkLists	sweep
+0x42f320	KeyCfg_Reload	sweep
+0x42f360	KeyCfg_LoadHelpText	sweep: helptext.bin
+0x42f470	KeyCfg_CountFlag1	sweep
+0x42f4a0	KeyCfg_FindFlag	sweep
+0x42f4d0	KeyName_FromKeyCode	sweep
+0x42f510	KeyName_FromModifier	sweep
+0x42f540	KeyName_FromModifierBits	sweep
+0x42f560	KeyName_FromJoyButton	sweep
+0x42f590	KeyName_FromMouseButton	sweep
+0x42f5c0	ActionName_FromId	sweep
+0x42f5f0	KeyCfg_WriteAction	sweep: [ACTIONS]
+0x42f670	KeyCfg_WriteActionList	sweep
+0x42f7e0	Input_MouseToAxes	sweep
+0x42f8c0	Input_JoyToAxes	sweep
+0x42f980	Input_UpdateAxes	sweep
+0x42f9c0	Input_ProcessPressBindings	sweep
+0x42fab0	Input_ProcessHoldBindings	sweep
+0x42fee0	Input_CenterCursor	sweep
+0x42ff40	Input_CaptureMouse	sweep
+0x42ffb0	Input_Init	sweep
+0x42fff0	Input_RebuildBindings	sweep
+0x4300d0	Input_FreeBindings	sweep
+0x430150	Input_PushBindingSet	sweep: key-binding set stack (21 callers)
+0x430210	Input_PopBindingSet	sweep
+0x4302b0	Input_ResetForCutscene	sweep
+0x430320	Input_ResetForFlight	sweep
+0x430390	Act_OpenQuitDialog	sweep: key action
+0x4303c0	Act_OpenCampaignCheck	sweep
+0x430400	Act_OpenWingmanPanel	sweep
+0x430450	Act_YawDelta	sweep: key action
+0x4304a0	Act_PitchDelta	sweep: key action
+0x4304f0	Act_RollDelta	sweep: key action
+0x430540	Act_RulesHotkey	sweep: g_ActiveRules +0x9c
+0x430570	Act_ToggleDebugFlag	sweep
+0x430590	Act_ToggleInt	sweep
+0x4305a0	Act_DumpFile	sweep: "Created \"%s\"."
+0x430600	Act_SetThrottle	sweep
+0x430610	Act_ThrottleDelta	sweep
+0x4306c0	Act_SetInt	sweep
+0x4306d0	Act_ToggleMusicDebug	sweep
+0x4306f0	Act_DebugFade	sweep
+0x430730	Act_SetMouseLook	sweep
+0x430740	Act_ToggleMouseCapture	sweep
+0x4307d0	Act_ToggleFlag8f4a8	sweep
+0x4307f0	Act_FlushCache	sweep: "Cache flushed"
+0x430820	Act_CycleCamera	sweep
+0x430910	Journal_GetPath	sweep
+0x430980	Journal_AddEntry	sweep: [JNL_ENTRIES]
+0x430a70	Journal_HasEntry	sweep
+0x430b70	Journal_WriteBuffer	sweep: "journal mem"
+0x430c00	Journal_StripLine	sweep
+0x430c40	Journal_RemoveEntry	sweep
+0x430de0	KeyChart_Init	sweep
+0x431510	KeyChart_Free	sweep
+0x431540	KeyChart_Open	sweep
+0x431570	KeyChart_Scroll	sweep
+0x4315f0	KeyChart_Close	sweep
+0x431620	Gfx_InitColorTable	sweep
+0x431660	Fonts_LoadTagged	sweep
+0x4317b0	ModelPool_ClearSlot	sweep
+0x431960	ModelRef_Release	sweep
+0x4319d0	ModelPool_LoadList	sweep
+0x431a10	ModelPool_LoadListDefault	sweep
+0x431a30	FxTable_Clear	sweep
+0x431a50	Sound_LoadSpacePwf	sweep: SPACE.PWF
+0x431a90	Rtxt_LoadGameText	sweep: ingame.bin + cinema.bin
+0x431ae0	Flight_LoadCommonAssets	sweep: weapmisc.pal, fx models
+0x431b70	Flight_LoadAssets	sweep
+0x431b90	Flight_LoadAssetsIfClient	sweep
+0x431bb0	Flight_InitAssets	sweep
+0x431c00	Flight_FreeAssets	sweep
+0x431e00	FontList_Free	sweep
+0x431e80	Font_Free	sweep
+0x431ea0	Act_GammaDelta	sweep
+0x431ef0	Loadout_Init	sweep
+0x431f40	LoadoutItem_SetValue	sweep
+0x431f50	Loadout_AddItem	sweep
+0x431f90	Loadout_WeaponName	sweep
+0x431fb0	WeaponName_FromId	sweep
+0x431fd0	Loadout_FindSlotWeapon	sweep
+0x432020	Loadout_AddWeapons	sweep
+0x432060	Bits_Test	sweep
+0x432070	Loadout_FindSystemSlot	sweep
+0x4320b0	Loadout_AddSystems	sweep
+0x432120	Loadout_Build	sweep
+0x432150	Loadout_WeaponLabel	sweep
+0x432170	Loadout_SystemLabel	sweep
+0x432190	Loadout_FormatItem	sweep: "WEAPON %d - %s"
+0x432210	Loadout_DrawList	sweep
+0x4322a0	Loadout_DrawChoices	sweep
+0x432370	Loadout_DrawSelectBox	sweep: "SELECT NEW ITEM"
+0x4323c0	Loadout_DrawPanel	sweep: "LOADOUT"
+0x432420	Loadout_MoveSelection	sweep
+0x4324b0	Loadout_AddChoice	sweep
+0x432510	Loadout_BuildWeaponChoices	sweep
+0x4325b0	Loadout_SystemUsed	sweep
+0x4325f0	Loadout_BuildSystemChoices	sweep
+0x432690	Loadout_CloseChoices	sweep
+0x4326c0	Loadout_OpenChoices	sweep
+0x432730	Loadout_ApplyChoice	sweep
+0x4327b0	Loadout_OnSelect	sweep
+0x4327f0	Loadout_SystemBits	sweep
+0x432830	Loadout_Commit	sweep: applies to player + Tach_SendLoadout
+0x432910	Loadout_SetOpen	sweep
+0x432960	Loadout_OnCancel	sweep
+0x432980	DebugLog_Close	sweep
+0x4329a0	DebugLog_Write	sweep
+0x4329d0	DebugLog_Printf	sweep
+0x432a30	Error_MessageBoxRes	sweep: spacemnu.bin string id
+0x432ae0	Cd_VolumeMatches	sweep
+0x432b70	Cd_Check	sweep: TACHYON.CD / tachyon.bik
+0x432e00	Error_Report	sweep
+0x432ee0	Error_CannotOpenFile	sweep
+0x432f60	Display_ClampAndApply	sweep
+0x433000	CrashDump_WriteAppData	sweep: "Last pak rendered"
+0x433090	Display_InitDevice	sweep
+0x433130	App_Init	sweep: tachyon.pff, subsystems init
+0x4333a0	App_SetVersionString	sweep: "00.36"
+0x4335d0	Mine_FireDeathMissile	sweep
+0x433640	Mine_Destroy	sweep
+0x433760	Mine_ProximityThink	sweep
+0x433910	Mine_InitWeapon	sweep: "mine mount data"
+0x4339b0	Mine_Spawn	sweep
+0x433bd0	Mine_SpawnFromPlacement	sweep
+0x433c10	Mine_Render	sweep
+0x433c40	MineReplica_Think	sweep
+0x433c90	MineReplica_Init	sweep
+0x433d80	Mine_FreeDesc	sweep
+0x433dc0	Mine_LoadSound	sweep
+0x433e00	Mine_SetArmed	sweep
+0x433fd0	Mine_InitDesc	sweep
+0x434450	Stub_Nop434450	sweep
+0x434460	SpRules_SetCampaignFlag	sweep
+0x4344a0	Ent_IsHostileToPlayer	sweep: team relation table & player mask
+0x4344d0	Team_IsHostileToPlayer	sweep
+0x4344f0	Sped_GetCollFlags	sweep
+0x434510	SpRules_ResetMissionVars	sweep
+0x434530	Sped_IsFlag40	sweep
+0x434550	Sped_CreateAlias	sweep: "AI_ALIAS"
+0x434690	Sped_SaveAliasState	sweep
+0x4346d0	Sped_SetAliasStatus	sweep
+0x434700	Spx_FindGroupByName	sweep
+0x434770	Spx_FindGroupInSector	sweep
+0x4347b0	Sped_GetGroupRecord	sweep
+0x4347f0	Sped_GetAliasStateFor	sweep
+0x434830	Quad_GetSpxForSped	sweep
+0x434850	Sped_GetSpx	sweep
+0x434890	Sped_GetActorRecord	sweep
+0x434a00	Sped_InitGroupSlot	sweep
+0x435240	Spx_FindPlayerStart	sweep
+0x4352b0	Spx_FindPlayerPlacement	sweep
+0x435390	Spx_IsLoaded	sweep
+0x4353b0	Spx_LogLoaded	sweep
+0x4353e0	Spx_LogNotFound	sweep
+0x4354e0	Var_GetTableKey	sweep
+0x4355a0	Spx_ClearDynamicLists	sweep
+0x4358f0	Spx_ForEachDecl	sweep
+0x435930	SpRules_GetPlayerSide	sweep: PLAYER_SIDE
+0x4359a0	Gate_RegionName	sweep
+0x435a30	SpRules_TickQuadrants	sweep
+0x435b90	SpRules_FlushPools	sweep
+0x435ba0	SpRules_GetRelation	sweep
+0x435bf0	Str_ToRegionKey	sweep
+0x435c50	Region_FindByName	sweep: REGION_NAMES
+0x435d10	Ingame_LoadStarbase	sweep
+0x435db0	SpRules_LoadStart	sweep
+0x435e10	PlayerShip_ResetWeapons	sweep
+0x435e60	PlayerShip_LoadMountedWeapons	sweep: PLAYER_MOUNTED_WEAPONS
+0x435f80	SpRules_SpawnPlayer	sweep: PLAYER.SCR
+0x436160	Var_GetByIndexValue	sweep
+0x436380	FlightGroup_Name	sweep: "NO GROUP"
+0x4363b0	FlightGroup_FormatWithPrefix	sweep
+0x4363e0	FlightGroup_FormatMember	sweep: "%s %s-%d"
+0x436440	FlightGroup_FormatIndex	sweep
+0x436470	Sped_FormatName	sweep: "UNKNOWN SPECIAL NAME"
+0x4364e0	Sped_BroadcastNamedMsg	sweep
+0x436560	Sped_MsgDestroyed	sweep: text #0x5f
+0x436580	Sped_MsgIdentified	sweep: text #0x60
+0x4365a0	Sped_MsgSpawned	sweep: text #0x5e
+0x436860	Trig_LogSpawnGroup	sweep
+0x4368b0	SpawnQueue_Add	sweep
+0x436b80	Sped_GetTextById	sweep
+0x436bd0	Group_FormatName	sweep
+0x436f60	Sped_MatchesLabel	sweep
+0x436fd0	Replica_FindByLabel	sweep
+0x4373b0	ShipType_ResolveDes	sweep: SHIP_TYPE table
+0x4374a0	DescList_Shutdown	sweep
+0x4374e0	Sectors_ShutdownDescs	sweep
+0x437520	Sectors_FreeMaps	sweep
+0x4375a0	Sped_FreeAliases	sweep
+0x4375c0	Sector_FindById	sweep
+0x4375f0	Sector_FindQuadrant	sweep
+0x4376f0	Nav_SetOverrideQuadrant	sweep: "OVR QUADRANT SET TO %s"
+0x437940	PlayerPower_Refill	sweep
+0x4379c0	SpRules_OnPlayerShipChanged	sweep
+0x437a60	SpRules_GetEndText	sweep
+0x437a80	Menu_RunHotkeyCallbacks	sweep
+0x437ac0	MenuHotkey_Find	sweep
+0x437af0	MenuHotkey_Set	sweep
+0x437b10	MenuHotkey_SetAccept	sweep: space + enter
+0x437b30	MenuHotkey_SetEscape	sweep
+0x437b40	MenuHotkey_SetUp	sweep
+0x437b50	MenuHotkey_SetDown	sweep
+0x437b60	MenuHotkey_SetRight	sweep
+0x437b70	MenuHotkey_SetLeft	sweep
+0x437b80	Menu_BuildFadeTable	sweep
+0x437bc0	Menu_SetVar4b40	sweep
+0x437bd0	Menu_SetVar4b38	sweep
+0x437be0	Menu_SetHotkeysDisabled	sweep
+0x437c20	Mnu_Alloc	sweep: "MNU Memory Block"
+0x437ca0	Mnu_Begin	sweep: "Menu Sentinel"
+0x437cf0	Mnu_FreeAll	sweep
+0x437dc0	Mnu_Shutdown	sweep
+0x437e00	Mnu_ShutdownKeepGfx	sweep
+0x437e40	Mnu_LoadSounds	sweep: SOUNDS / SOUNDEVENTS
+0x4380a0	Mnu_LoadCursors	sweep
+0x4381d0	Mnu_LoadTextAreas	sweep
+0x4383b0	Mnu_LoadButtons	sweep
+0x438870	Mnu_LoadStrings	sweep: {hot} {image}
+0x438ad0	Mnu_LoadImages	sweep
+0x438bd0	Mnu_LoadFonts	sweep
+0x438e10	Mnu_LoadWindows	sweep
+0x438ff0	Mnu_LoadTextEntries	sweep
+0x4391e0	Mnu_LoadPcxImages	sweep: IMAGES/IMAGE
+0x4393e0	Mnu_LoadImageAreas	sweep
+0x439560	Mnu_LoadFile	sweep: begin+load all sections
+0x439610	Mnu_LoadFileAppend	sweep: no Mnu_Begin
+0x4396c0	Mnu_LoadFileKeepGfx	sweep: map screen
+0x439810	Tex_CalcPow2Dims	sweep
+0x4398b0	MnuImage_LoadPcx	sweep: "MNU PCX_IMAGE"
+0x439cc0	MnuImage_LoadPcxRemapped	sweep: palref.mem
+0x439f70	MnuImage_Free	sweep
+0x439ff0	MnuImage_Add	sweep
+0x43a130	MnuImage_Reload	sweep
+0x43a160	MnuImage_SetFrame	sweep: guess
+0x43a280	Mnu_DrawWindowImage	sweep: guess
+0x43a470	Mnu_DrawImageRect	sweep: guess
+0x43a630	Mnu_InitStdMaterials	sweep
+0x43a680	Blit_SetSrc	sweep
+0x43a6a0	Blit_SetDst	sweep
+0x43a6c0	Blit_CopyRect	sweep
+0x43a750	MnuImage_FreeAll	sweep
+0x43a7a0	MnuImage_Find	sweep
+0x43a7f0	MnuImage_FreeTable	sweep
+0x43a820	Ui_SetWindowHandler10c	sweep
+0x43a860	Ui_SetWindowHandler110	sweep
+0x43a8a0	Ui_SetWindowFlags	sweep
+0x43a8d0	Ui_OpenWindow	sweep: flags 2|0x200 + refresh
+0x43a900	Ui_AddWindowDef	sweep
+0x43a990	Ui_CloseWindow	sweep: guess
+0x43aac0	Ui_DeactivateWindow	sweep
+0x43ab40	Ui_DeactivateAllWindows	sweep
+0x43abb0	Ui_DrawWindowContents	sweep: guess
+0x43ac90	Ui_DrawAll	sweep
+0x43af70	Rect_Overlaps	sweep
+0x43b0a0	Rect_Union	sweep
+0x43b2f0	Ui_RefreshOverlapping	sweep
+0x43b370	Ui_SetWindowPos	sweep
+0x43b3a0	Ui_StartWindowSlide	sweep: guess
+0x43b430	Ui_StepWindowSlide	sweep: guess
+0x43b7c0	Ui_FreeWindowDefs	sweep
+0x43b7f0	Mnu_FindSound	sweep: guess
+0x43b830	Mnu_AddFont	sweep
+0x43b990	Mnu_DrawText	sweep
+0x43ba10	Mnu_MeasureText	sweep
+0x43ba90	Mnu_FindFont	sweep
+0x43bac0	Mnu_FindFontByFile	sweep
+0x43bb10	Mnu_FreeFonts	sweep
+0x43bb70	Mnu_AddImageRef	sweep
+0x43bc10	Mnu_FindImageRef	sweep
+0x43bc40	Mnu_FreeImageRefs	sweep
+0x43bc70	Mnu_LoadRtxtStrings	sweep
+0x43bd30	Mnu_SetText	sweep
+0x43bec0	Mnu_FreeTexts	sweep
+0x43bf10	Mnu_FindText	sweep
+0x43bf40	Mnu_FreeTextTable	sweep
+0x43bf70	Mnu_AddButton	sweep
+0x43c030	Ui_DrawButton	sweep: guess
+0x43c0d0	Ui_DrawWindowButtons	sweep
+0x43c150	Ui_ClearButtonFlags	sweep
+0x43c180	Ui_GetInputMode_stub	sweep: guess, 6-byte stub
+0x43c190	Ui_GetInputMode2_stub	sweep: guess, 6-byte stub
+0x43c1a0	Ui_SetVar2bd8	sweep
+0x43c1b0	Ui_SetButtonValue	sweep: +0xc4
+0x43c1e0	Ui_LinkButtons	sweep: guess
+0x43c220	Ui_UpdateButtonHover	sweep: SNDEVNT_BTN_ROLL
+0x43c730	Ui_SetVar2bd4	sweep
+0x43c740	Ui_ProcessWindowInput	sweep
+0x43cac0	Ui_SetButtonText	sweep
+0x43cb00	Ui_RefreshButtonsInRect	sweep
+0x43cc80	Ui_SetButtonLabelText	sweep
+0x43ccb0	Ui_SetButtonImage	sweep: guess
+0x43cd20	Ui_SetButtonImageByName	sweep
+0x43cdb0	Ui_BindButtonToLabel	sweep: guess
+0x43ce30	Ui_GetButtonFlags	sweep
+0x43cfa0	Ui_ResetWindowButtons	sweep
+0x43d000	Ui_FreeButtons	sweep
+0x43d030	Ui_AddLabel	sweep
+0x43d160	Label_DrawLayout	sweep
+0x43d3c0	Label_DrawLine	sweep
+0x43d560	Label_DrawFormatted	sweep
+0x43d8f0	Label_DrawWrapped	sweep
+0x43db60	Label_MeasureLine	sweep
+0x43dd40	Label_MeasureFormatted	sweep
+0x43e120	Ui_DrawLabelNow	sweep
+0x43e1f0	Ui_DrawWindowLabels	sweep
+0x43e400	Ui_CountDirtyLabels	sweep: guess
+0x43e470	Ui_RefreshLabelsInRect	sweep
+0x43e580	Ui_SetLabelFont	sweep
+0x43e5c0	Ui_SetLabelColor	sweep: guess
+0x43e640	Ui_SetLabelValue100	sweep
+0x43e6a0	Ui_SetLabelText	sweep
+0x43e6f0	Ui_SetLabelTextFit	sweep: guess
+0x43e770	Ui_SetLabelTextById	sweep: text table lookup
+0x43e7b0	Ui_FreeLabels	sweep
+0x43e7e0	Mnu_AddCursor	sweep
+0x43e890	Mnu_FindCursor	sweep
+0x43e8c0	Mnu_FreeCursors	sweep
+0x43e8f0	Ui_SetCursor	sweep
+0x43e980	Ui_DrawCursor	sweep
+0x43eb30	Ui_WarpCursor	sweep: SetCursorPos
+0x43ebc0	Cursor_ClipToDesktop	sweep
+0x43ec20	Cursor_ClipToWindow	sweep
+0x43ed30	Ui_FreeCursorGfx	sweep
+0x43ed80	Ui_HideCursor	sweep
+0x43ed90	Ui_LoadCursorImage	sweep: XCursor.scratch
+0x43ef40	Ui_UpdateCursorPos	sweep
+0x43efa0	Ui_ShowCursor	sweep
+0x43efb0	Ui_SetCursorPos	sweep
+0x43efd0	Ui_SetCursorHotspot	sweep
+0x43eff0	Ui_ClearCursorHotspot	sweep
+0x43f000	Ui_AddImageArea	sweep
+0x43f0b0	Ui_DrawWindowImageAreas	sweep: guess
+0x43f190	ImageArea_Draw	sweep
+0x43f3f0	Ui_DrawWindowImageAreas2	sweep: guess
+0x43f4c0	ImageArea_SetScaled	sweep: guess
+0x43f500	ImageArea_SetValueE4	sweep
+0x43f530	ImageArea_Randomize	sweep: guess
+0x43f590	ImageArea_HitTest	sweep
+0x43f5d0	ImageArea_SetFrame	sweep: +0xe0
+0x43f650	ImageArea_StepFrame	sweep: guess
+0x43f6e0	ImageArea_SetImage	sweep
+0x43f7a0	ImageArea_GetValueDC	sweep
+0x43f7d0	ImageArea_SetRect	sweep: guess
+0x43f810	ImageArea_SetValueF4	sweep
+0x43f840	ImageArea_ClearFlags	sweep
+0x43f920	Ui_RefreshImageAreasInRect	sweep
+0x43fac0	Ui_AnimateImageAreas	sweep
+0x43fce0	ImageArea_SetHighlight	sweep
+0x43fd80	Ui_FreeImageAreas	sweep
+0x43fdb0	TextEntry_SetText	sweep: guess
+0x43fe00	TextEntry_GetLength	sweep
+0x43fe30	TextEntry_HandleKeys	sweep: guess
+0x440020	Ui_UpdateTextEntries	sweep
+0x440080	TextEntry_HitTest	sweep
+0x440170	Ui_SetTextEntryText	sweep
+0x4401f0	Ui_FocusTextEntry	sweep: guess
+0x440270	Ui_UnfocusTextEntry	sweep: guess
+0x440300	Ui_ProcessTextEntries	sweep
+0x440370	Ui_AddTextEntry	sweep
+0x440400	Ui_FindTextEntry	sweep
+0x440430	Ui_FreeTextEntries	sweep
+0x4404d0	Mnu_AddSoundEvent	sweep
+0x440580	Mnu_FindSoundEvent	sweep
+0x4405b0	Mnu_FreeSoundEvents	sweep
+0x4405e0	ScreenZoom_Start	sweep: guess
+0x4408d0	ScreenZoom_Step	sweep
+0x440b40	ScreenZoom_Draw	sweep
+0x440bd0	ScreenZoom_DrawAll	sweep
+0x440c00	ScreenZoom_Alloc	sweep: "MNU ScreenZoom Block"
+0x440c60	ScreenZoom_Reset	sweep
+0x440c80	ScreenZoom_FreeAll	sweep
+0x440cb0	ScreenZoom_FreeFinished	sweep
+0x440d20	ScreenZoom_UpdateAll	sweep
+0x440d50	Mnu_FreePolyFonts	sweep
+0x440d90	Mnu_FindPolyFont	sweep
+0x440dc0	Mnu_LoadPolyFont	sweep: "MNU POLYFONT"
+0x440e50	Credits_ResetImageAreas	sweep
+0x440ea0	Credits_Enter	sweep: mode handler
+0x441030	Credits_Tick	sweep
+0x441060	Credits_Draw	sweep
+0x4410f0	Credits_Render	sweep
+0x441130	Credits_Exit	sweep
+0x441160	Credits_ReturnToTitle	sweep
+0x441190	Credits_ShowBlockImage	sweep
+0x441200	Credits_AllocLine	sweep
+0x441260	Credits_LoadBlock	sweep
+0x441510	Credits_LoadBlocks	sweep
+0x4415c0	Credits_Load	sweep: Tachycre.txt
+0x441a70	Credits_FreeLines	sweep
+0x441ab0	Credits_Start	sweep
+0x441ac0	Credits_UpdateBlocks	sweep
+0x441b70	Credits_DrawScroll	sweep
+0x441e40	HostOpt_Enter	sweep: WndHostOpt
+0x442020	TitleMenu_Tick	sweep: shared tick
+0x442050	HostOpt_ApplyLevel	sweep: guess
+0x442070	HostOpt_Exit	sweep: guess
+0x442090	HostOpt_Refresh	sweep
+0x442330	HostOpt_OnToggle	sweep
+0x442460	Host_Enter	sweep: WndHost
+0x442700	Host_Draw	sweep
+0x442720	Host_Render	sweep
+0x442760	Host_Exit	sweep
+0x4427e0	Host_GoBack	sweep
+0x442980	Str_HashName	sweep: guess
+0x4429d0	Host_GetGameTypeChar	sweep: guess
+0x4429f0	Host_FormatRules	sweep: guess
+0x442a40	Host_ReadCdKey	sweep: cc.bin
+0x442a70	Host_BuildAdvertInfo	sweep
+0x442ba0	Host_StartSession	sweep
+0x442e90	Host_SaveEntries	sweep
+0x442ee0	Host_RefreshTypeButtons	sweep
+0x442f60	Host_OnGameTypeBtn	sweep
+0x443420	GameType_DirName	sweep: BASEWARS/DEATHMATCH
+0x443440	Host_SelectMapByName	sweep
+0x4434a0	Host_ShowMapPreview	sweep
+0x443560	Host_RefreshMapSlots	sweep
+0x443740	Host_InitMapSlider	sweep
+0x443800	Host_UpdateStatusText	sweep
+0x443870	Host_GetSelectedMap	sweep
+0x443950	Host_GoBack2	sweep
+0x443970	Host_CloseErrorDlg	sweep
+0x4439d0	Host_ShowErrorDlg	sweep: MP_ERROR_*
+0x443af0	Host_ShowConfirmDlg	sweep
+0x443bd0	Host_CloseConfirmDlg	sweep
+0x443c20	Loading_SetDone	sweep
+0x443c30	Loading_Enter	sweep: WndLoading
+0x443c90	Loading_Draw	sweep
+0x443d20	Loading_Exit	sweep
+0x443d60	Login_RefreshSlots	sweep: tachyon%d.dat
+0x443ee0	WndLogin_Enter	sweep: WndLogin
+0x444020	WndLogin_RefreshButtons	sweep
+0x444270	WndLogin_Tick	sweep
+0x444330	WndLogin_Draw	sweep
+0x444360	WndLogin_Render	sweep
+0x4443a0	WndLogin_Exit	sweep
+0x4443d0	WndLogin_GoBack	sweep
+0x444450	WndLogin_RefreshSlotPanels	sweep
+0x4444c0	Profile_EnterStarbase	sweep
+0x444500	Profile_EnterFlight	sweep
+0x444870	Login_DeleteConfirmed	sweep
+0x4448f0	Login_DeleteCancelled	sweep
+0x444960	Login_ShowDeleteDlg	sweep: LOGIN_DELWARNING
+0x444aa0	Login_OnCopy	sweep
+0x444b10	Login_OnPaste	sweep: player%02d.sav/.cfg
+0x444c4e	Login_OnPaste_part2	sweep: mis-split tail
+0x444d00	TitleMenu_InitCallbacks	sweep: guess, cbSplashVisit
+0x444d80	TitleMenu_LoadUi	sweep: space.mnu
+0x444e30	Bdf_FreeBackdrop	sweep
+0x445050	TitleCam_Advance	sweep: guess
+0x445070	TitleCam_AddTime	sweep: guess
+0x445090	TitleCam_SetRate	sweep: guess
+0x4450a0	TitleCam_SetTime	sweep: guess
+0x4450e0	TitleBg_UpdateCamera	sweep: guess
+0x4452d0	TitleBg_SetVar441c	sweep
+0x4452e0	TitleBg_Render3D	sweep
+0x4454c0	TitleBg_Draw	sweep
+0x445570	TitleMenu_Draw	sweep
+0x4455f0	Ui_PresentFrame	sweep: guess, called by all menu renders
+0x445700	TitleHover_Get_stub	sweep: guess
+0x445710	TitleHover_Clear	sweep
+0x445720	Nop	sweep: empty function, 37 callers
+0x445730	MpShip_LoadImage	sweep: IMAGE_%s
+0x445920	MpShipBW_RefreshSides	sweep: GALSPAN
+0x4459f0	MpShipBW_OnSideBtn	sweep
+0x445a30	MpShipBW_Tick	sweep
+0x445ae0	MpShipBW_ClearLists	sweep
+0x445b60	MpShipBW_Enter	sweep: WndMPShipBW
+0x445ce0	MpShipBW_GoSystem	sweep
+0x445d00	MpShipBW_GoBack	sweep
+0x445d20	MpShipBW_GoShipCfg	sweep
+0x445d40	MpShipBW_RefreshShipList1	sweep
+0x445e60	MpShipBW_RefreshShipList2	sweep
+0x445f80	MpShipBW_OnPreviewClick	sweep: guess
+0x445ff0	MpShipBW_Render	sweep
+0x446040	MpShipBW_Exit	sweep: mptach%d.dat
+0x446100	MpShip_LookupOtherName	sweep
+0x446150	MpShip_LoadPreviewModel	sweep: "mp curship"
+0x4462b0	ShipStat_FindMax	sweep: guess
+0x4463e0	ShipStat_Load	sweep
+0x446890	ShipStat_Find	sweep
+0x4468d0	MpShip_DrawStatBars	sweep: guess
+0x446a60	ShipStat_Animate	sweep: guess
+0x446ac0	MpShip_InitStatBars	sweep
+0x446d40	ShipStat_LoadAll	sweep
+0x446dc0	MpCfg_SetItemInfo	sweep
+0x446e70	CfgStat_Find	sweep
+0x446eb0	MpCfg_DrawItemBars	sweep: guess
+0x447020	CfgStat_Animate	sweep: guess
+0x447070	MpCfg_InitItemBars	sweep
+0x447220	MpCfg_ComputeItemStats	sweep
+0x4475e0	MpCfg_DrawDragSave	sweep: guess
+0x4476d0	MpCfg_DrawDragRestore	sweep: guess
+0x4478d0	MpCfg_UpdateDragIcon	sweep
+0x448250	MpCfg_SetInventoryRow	sweep
+0x4486f0	MpCfg_InitStoreItems	sweep: guess
+0x448770	MpCfg_LoadPlayerHardware	sweep: PLAYER_HARDWARE
+0x448b40	MpCfg_CloseBuySellIfIdle	sweep: guess
+0x448c40	MpCfg_Draw	sweep
+0x448c80	MpShipCfg_Render	sweep
+0x448d40	MpShipCfg_Exit	sweep
+0x448de0	MpShipCfg_GoLogin	sweep
+0x448e00	MpShipCfg_GoBack	sweep
+0x448e80	MpCfg_OnBuyBtn	sweep: guess
+0x448ff0	MpCfg_OnScrollTxt	sweep: guess
+0x449050	MpCfg_OnScrollInv	sweep: guess
+0x449160	MpCfg_DisableBuySell	sweep
+0x449290	MpCfg_OnSellBtn	sweep
+0x449350	MpCfg_LookupShipName	sweep
+0x4493d0	MpCfg_LoadCurrentShip	sweep
+0x4494c0	MpCfg_RefreshMountSlot	sweep
+0x449630	MpCfg_LoadMountLines	sweep: SEGMENT_POINT
+0x449750	MpCfg_LoadShipView	sweep: HALO_PCX
+0x44ab10	MpCfg_InitSliders	sweep
+0x44ac00	MpCfg_UpdateSliders	sweep
+0x44acd0	MpLogin_Enter	sweep: WndMPLogin
+0x44adf0	MpLogin_RefreshButtons	sweep
+0x44aef0	MpLogin_Tick	sweep
+0x44af30	MpLogin_Render	sweep
+0x44af80	MpLogin_Exit	sweep
+0x44afd0	MpLogin_GoBack	sweep
+0x44b030	MpLogin_OnPlay	sweep
+0x44b110	MpLogin_GoNext	sweep: guess
+0x44b130	MpLogin_FocusSlot	sweep
+0x44b180	MpLogin_UnfocusAll	sweep
+0x44b220	MpLogin_LoadSlotVars	sweep: mpplay%02d.sav
+0x44b350	MpLogin_SaveSlotHeader	sweep: mptach%d.dat
+0x44b3d0	MpLogin_SelectSlot	sweep
+0x44b440	MpLogin_DeleteConfirmed	sweep
+0x44b4c0	MpLogin_DeleteCancelled	sweep
+0x44b530	MpLogin_ShowDeleteDlg	sweep
+0x44b680	MpLogin_DeleteSlot	sweep
+0x44b730	MpLogin_RefreshSlots	sweep
+0x44b8c0	Faces_Load	sweep: face.def
+0x44b9b0	Faces_Free	sweep
+0x44b9d0	Ui_FindImageByName	sweep: IMAGE_%s
+0x44ba00	Faces_FindIndex	sweep
+0x44ba40	Faces_GetDefault	sweep
+0x44ba60	MpLogin_ShowFace	sweep
+0x44baf0	MpLogin_CycleFace	sweep
+0x44bb90	MpSystem_CloseErrorDlg	sweep
+0x44c390	MpSystem_Draw	sweep
+0x44c3f0	MpSystem_Render	sweep
+0x44c430	MpSystem_Exit	sweep: lstartup.htm
+0x44c480	MpSystem_GoBack	sweep
+0x44c670	MpSystem_ShowLanPanel	sweep
+0x44c710	MpSystem_RefreshLanButtons	sweep
+0x44c840	MpSystem_SetBanner	sweep
+0x44c860	MpSystem_StopLanSearch	sweep
+0x44c8b0	Net_InitAdvertTransport	sweep
+0x44c8e0	Net_ParseIpPort	sweep: guess
+0x44c9d0	MpSystem_ClearLanSlots	sweep
+0x44cab0	LanList_SetCursor	sweep: guess
+0x44cb00	MpSystem_OnLanSearch	sweep
+0x44cb30	MpSystem_OnLanCancel	sweep
+0x44cc00	MpSystem_Nop_stub	sweep: guess, 6-byte stub
+0x44cc10	PasswordDlg_Close	sweep
+0x44ccc0	PasswordDlg_Show	sweep
+0x44cdd0	MpSystem_JoinLanTick	sweep: guess
+0x44d010	MpSystem_ClearLanNames	sweep
+0x44d090	MpSystem_RefreshLanList	sweep
+0x44d1e0	MpSystem_ShowSearching	sweep
+0x44d2a0	MpSystem_PollLan	sweep
+0x44d300	NW_RemapBrowserPalette	sweep: guess
+0x44daf0	NW_BlitBrowser	sweep
+0x44db90	NW_DrawBrowserFrame	sweep: guess
+0x44de20	NW_ForwardMouse	sweep: ibrowse_*
+0x44e110	NW_RunPatcher	sweep: CreateProcessA, guess
+0x44e230	Crc_Update	sweep: guess
+0x44e270	NwLaunch_SetStatus	sweep
+0x44e300	NwLaunch_Fail	sweep
+0x44e330	NwLaunch_JoinSession	sweep
+0x44e5b0	NwLaunch_Connect	sweep
+0x44e700	NwLaunch_Enter	sweep: WndNWLaunch
+0x44e790	NwLaunch_Render	sweep
+0x44e7d0	NwLaunch_Exit	sweep
+0x44e7e0	NwLaunch_GoBack	sweep
+0x44e800	Launch_RunExternal	sweep: guess
+0x44e8d0	Launch_RunPending	sweep
+0x44e960	CmdLine_RunPendingLaunch	sweep
+0x44ea50	Ui_DrawAllMain	sweep
+0x44eaa0	Timer_PauseBegin	sweep: guess, excludes load time
+0x44eab0	Timer_PauseEnd	sweep: guess
+0x44ed00	RunOnce_Set	sweep
+0x44ed20	RunOnce_Clear	sweep
+0x44ed30	MpRules_OnHeartbeat	sweep
+0x44ed50	Str_Hash	sweep: guess
+0x44ed70	MpRegion_Hash	sweep: guess
+0x44edc0	MpRegion_FormatAdvert	sweep
+0x44ee40	MpMap_GetName	sweep: guess
+0x44ee60	MpMap_GetTitle	sweep: guess
+0x44ee6c	MpMap_GetTitle_part2	sweep: mis-split tail
+0x44eee0	MpMap_GetDesc	sweep: guess
+0x44ef00	MpRules_ShowScoreKey	sweep: guess
+0x44efa0	PlayerList_FormatEntry	sweep
+0x44f010	PlayerList_DrawRows	sweep
+0x44f0c0	PlayerList_CountActive	sweep
+0x44f0e0	PlayerList_Draw	sweep: PLAYERS ONLINE
+0x44f260	PlayerList_SetVisible	sweep
+0x44f2c0	PlayerList_Show	sweep
+0x44f2d0	Portrait_Draw	sweep
+0x44f390	Portrait_DrawAt	sweep
+0x44f3e0	Scoreboard_SetMode	sweep: guess
+0x44f3f0	Scoreboard_DrawEntry	sweep: Kills/Deaths
+0x44f530	Scoreboard_RankIndex	sweep: guess
+0x44f550	Scoreboard_DrawAll	sweep
+0x44f620	Scoreboard_DrawRoundOver	sweep
+0x44f670	Scoreboard_DrawRestart	sweep
+0x44f6d0	Portrait_LoadPalette	sweep
+0x44f720	Portrait_GetSlot	sweep: guess
+0x44f780	Portrait_FindByName	sweep
+0x44f7d0	Portrait_FreeSlot	sweep
+0x44f810	Portrait_Load	sweep: wingpal.pal / "MP FACE"
+0x44f8e0	GameType_FindIndex	sweep: DEFAULT/BASEWARS
+0x44f920	GameType_GetName	sweep
+0x44f960	MpRules_Init	sweep: desnames.cfg
+0x44f9a0	MpRules_LoadAssets	sweep
+0x44fa40	MpRules_IsGameTypeValid	sweep: guess
+0x44fa60	MpEnt_ResetAll	sweep: guess
+0x44fac0	MpEnt_ClearAll	sweep: guess
+0x44fb70	MpSector_Free	sweep
+0x44fbb0	MpSector_ApplyPlacements	sweep
+0x44fbd0	MpSectors_Reset	sweep
+0x44fc30	MpRules_ResetRound	sweep: MPRESET.TXT
+0x44fc70	MpRegion_Clamp	sweep
+0x44fc90	MpRules_LoadRegion	sweep: NOVAWORLD
+0x44fd60	MpRules_Stub	sweep: guess, 6-byte stub
+0x44fd70	MpRules_PeriodicCheck	sweep: guess
+0x44fdd0	MpRules_Tick	sweep
+0x44fdf0	Cycle_Next	sweep
+0x44fe10	Cycle_RandomOther	sweep
+0x44fe30	MpRules_PickNextMap	sweep
+0x44fe80	MpRules_CountRound	sweep
+0x44feb0	MpRules_GetTeam	sweep: +0xc2
+0x44fec0	MpRules_CopyLoadout	sweep: guess
+0x44ff20	MpRules_ClearLoadout	sweep
+0x44ff40	MpRules_OnPlayerJoin	sweep: guess
+0x44ffc0	MpRules_OnKill	sweep: guess, rules +0x1c
+0x44ffe0	MpRules_InitPlayerShip	sweep: guess
+0x4500c0	MpRules_DrawOverlay	sweep
+0x4500f0	MpRules_OnRoundStart	sweep: guess
+0x450120	MpRules_OnRespawn	sweep: guess
+0x450150	MpRules_Stub2	sweep: 8-byte stub
+0x450160	MpRules_GetGameTypeName	sweep: guess
+0x4501a0	MpRules_Hook38	sweep: forwards to game-type table +0x38
+0x4501c0	MpRules_Hook3c	sweep
+0x4501e0	MpRules_Hook40	sweep
+0x450200	MpRules_Hook44	sweep
+0x450230	MpRules_Hook48	sweep
+0x4502e0	MpRules_RefillPower	sweep
+0x4502f0	MpRules_OnDisconnect	sweep: guess
+0x450320	MpRules_OnRoundEndCleanup	sweep: guess
+0x450380	MpRules_ServerForceEndRound	sweep
+0x4503b0	PlayerList_Hide	sweep
+0x4503c0	MsgLog_CalcLines	sweep
+0x4503f0	MsgLog_Init	sweep: "MSGLOG BUFFER"
+0x4504a0	MsgLog_AdvanceHead	sweep
+0x4504e0	MsgLog_ShiftLines	sweep
+0x450520	MsgLog_Add	sweep
+0x4505c0	MsgLog_Draw	sweep
+0x450720	MusicVar_FindName	sweep: guess
+0x4507d0	MusicVar_Set	sweep
+0x4507f0	MusicVar_Get	sweep
+0x450810	Orders_InitServerPool	sweep
+0x450840	Orders_InitClientPool	sweep
+0x450870	Orders_ClearClient	sweep
+0x4508a0	Orders_Alloc	sweep
+0x4508f0	Orders_AddAndSend	sweep
+0x450940	Orders_SendAllToClient	sweep
+0x450990	Orders_AddFromNet	sweep
+0x450a50	Orders_Update	sweep
+0x450ab0	Orders_Free	sweep
+0x450ae0	Nav_SetPrimaryName	sweep
+0x450b20	Nav_SetSecondaryName	sweep
+0x450ba0	ObjDisplay_Init	sweep
+0x450bf0	ObjDisplay_IsActive	sweep: guess
+0x450c00	ObjDisplay_SetupLayout	sweep
+0x450c30	ObjDisplay_DrawHeader	sweep
+0x450ca0	ObjDisplay_DrawTitle	sweep
+0x450cc0	ObjDisplay_DrawFooter	sweep
+0x450d30	ObjDisplay_DrawTextById	sweep
+0x450d80	ObjDisplay_DrawTextUpper	sweep
+0x450e00	ObjDisplay_DrawLineAt	sweep
+0x450e30	ObjDisplay_DrawLine	sweep
+0x450e60	ObjDisplay_DrawEntry	sweep
+0x450ec0	ObjDisplay_DrawCampaign	sweep: guess
+0x450f40	ObjDisplay_DrawNav	sweep
+0x450f90	ObjDisplay_DrawBlank	sweep
+0x450fb0	ObjDisplay_DrawOrder	sweep
+0x451020	ObjDisplay_DrawOrders	sweep
+0x451070	ObjDisplay_DrawCompleted	sweep
+0x4510a0	ObjDisplay_DrawNone	sweep
+0x4510d0	ObjDisplay_ShouldShow	sweep: guess
+0x451100	ObjDisplay_Draw	sweep
+0x4511e0	Orders_FindById	sweep
+0x451210	Orders_ApplyUpdate	sweep
+0x451240	Orders_UpdateFromNet	sweep
+0x451280	Order_FormatObjective	sweep
+0x4512e0	Order_GetSpecialText	sweep
+0x4516f0	Order_FindInList	sweep
+0x451720	Order_RemoveAndSend	sweep
+0x4518d0	Orders_CompleteAllForPlayer	sweep: guess
+0x451950	Orders_RemoveAllForPlayer	sweep: guess
+0x4519d0	Video_SetVar488c	sweep
+0x451a10	Video_ClipCursor	sweep
+0x451ab0	Video_SetupViewport	sweep
+0x451af0	Video_InitCursor	sweep
+0x451b60	Video_FindModeEntry	sweep: guess
+0x451e10	Gfx_SetClipRect	sweep
+0x451e60	Video_ToggleFullscreen	sweep: guess
+0x451e80	Proj_SetupScreen	sweep
+0x451ee0	Proj_SetupMain	sweep
+0x451f20	Viewport_Compute	sweep
+0x451fc0	Viewport_SetScaled	sweep
+0x452070	Viewport_Set	sweep
+0x4520c0	Viewport_SetAndClear	sweep: guess
+0x452100	Gfx_LockSurface	sweep
+0x452150	Gfx_UnlockSurface	sweep
+0x452180	Gfx_Lock	sweep: mask & DAT_005a6800
+0x4521c0	Gfx_Flip	sweep: guess
+0x452260	Gfx_ClearLetterbox	sweep: guess
+0x452360	Gfx_FillRows	sweep
+0x4523f0	Gfx_ClearIfHw	sweep
+0x452410	Gfx_ClearScene	sweep
+0x452460	Gfx_BeginFrame	sweep
+0x4524a0	Viewport_SetHeight	sweep: guess
+0x4524d0	Viewport_SetFlight	sweep
+0x452510	Gfx_SetAmbient	sweep: guess
+0x452560	Chatter_FindSet	sweep
+0x452590	Chatter_PickLine	sweep
+0x452630	Ship_PostDamageEvent	sweep
+0x452690	Ship_OnSystemEvent	sweep: guess
+0x452780	Target_ClearLock	sweep: guess
+0x4527b0	Player_ClearTarget	sweep
+0x4527e0	Player_SetTarget	sweep
+0x452870	Target_SelectNextOfType	sweep
+0x4528a0	Target_CycleFiltered	sweep
+0x452940	Target_SelectNext	sweep: guess
+0x4529d0	Target_SelectPrev	sweep: guess
+0x452a60	Target_CycleHostile	sweep: guess
+0x452a70	Target_SelectAttacker	sweep: guess
+0x452aa0	Target_SelectNearest	sweep: guess
+0x452b20	Target_CycleFriendly	sweep: guess
+0x452e40	Weapon_JitterTick	sweep: guess
+0x452e80	WeapGroup_GetWeapon	sweep
+0x452eb0	WeapGroup_Fire	sweep
+0x452f40	Player_FireMissileLock	sweep: guess
+0x453070	WeapGroup_ToggleLink	sweep
+0x4530a0	WeapGroup_SelectNext	sweep
+0x453140	WeapGroup_Sync	sweep: guess
+0x453190	WeapGroup_FindFirst	sweep
+0x453220	WeapGroup_Cycle	sweep
+0x453240	WeapGroup_Reset	sweep
+0x453280	WeapGroup_SetState	sweep
+0x4532b0	WeapGroup_GetState	sweep
+0x4539d0	PlayerEngine_UpdateSpeedHum	internal-view speed hum (snd +0x104 at listener): pitch = INTERNAL_VELOCITY_PITCH 1 + range*speed/maxSpeed (desc +0xbc); after 100 frames of unchanged pitch it sags 8/frame toward base
+0x453ab0	PlayerEngine_UpdateSound	engine loop: volume+pitch from smoothed throttle (0x5b1ee4, slews 16/frame toward 0x5b1ee0); afterburner (0x5b1ee8) -> *_BURNER_PITCH; INTERNAL_* vs EXTERNAL_* DES values by view flag; not camera shake (that is View_ShakeStep)
+0x453c40	PlayerEngine_SlewLevel	slews ent +0x100 by <=15/frame toward throttle*130/1024 (255 on burner or 0x5b9094); also installed as ent +0x68 callback by Hyper_TintPlayerShip; reader of +0x100 not traced (engine glow?) - guess
+0x453ca0	Player_TickCountdown	sweep: guess
+0x453cd0	Player_DropDeadTarget	sweep
+0x453d20	Player_UpdateLookAt	sweep: guess
+0x453ed0	Player_UpdateTargetRange	sweep
+0x454100	Ent_CallDescHook78	sweep: desc +0x78
+0x454130	PlayerDcb_ThinkDocked	sweep: guess
+0x4541e0	PlayerDcb_ReinstallIf	sweep
+0x454341	PlayerDcb_junk_part	sweep: mis-split bytes
+0x454352	PlayerDcb_ThinkAutopilot	sweep: guess
+0x454400	Autopilot_Begin	sweep: guess
+0x454460	Autopilot_End	sweep: guess
+0x4544d0	Autopilot_Toggle	sweep: guess
+0x454540	Ship_CopyWeaponLoadout	sweep: guess
+0x454580	Ship_InitPower	sweep
+0x4545f0	PlayerDcb_InstallHandlers	sweep
+0x4546a0	Player_FindSpawnSlot	sweep: guess
+0x4546f0	Player_Respawn	sweep
+0x4547a0	Store_GetCount	sweep: STORE_%d
+0x4547e0	Player_InitWeapons	sweep
+0x454870	Player_CreateDesc	sweep
+0x4549d0	Player_LoadWeaponGroups	sweep: WEAP_A/WEAP_B
+0x454b20	Store_SetCount	sweep
+0x454b60	Player_SaveStores	sweep
+0x454bf0	Player_SaveShipData	sweep
+0x454e90	Player_Unlink	sweep
+0x454f30	Player_ResetCamera	sweep: guess
+0x454fa0	Ent_IsAutopilotTarget	sweep: guess
+0x454fd0	Autopilot_CanTargetCurrent	sweep: guess
+0x455040	Autopilot_HostilesNear	sweep: guess
+0x455090	Act_Autopilot	sweep: autopilot messages
+0x4552a0	Srv_CreatePlayerDcb	sweep
+0x455441	PlayerDeath_SpinThink_part	sweep: mis-split, guess
+0x455630	SpRules_CallHook88	sweep
+0x455650	Player_StartDeathCam	sweep: guess
+0x4556a0	Player_StartDeathCam2	sweep: guess
+0x455750	Player_DoHyperExit	sweep: guess
+0x455810	Quadrant_StartFadeIn	sweep: guess
+0x455850	Player_DockStarbase	sweep: STARBASE var
+0x4558d0	Player_FinishUndock	sweep
+0x455960	Player_Undock	sweep: "NO UNDOCK SCENE FOUND"
+0x455a00	Srv_ApplyPlayerTarget	sweep: guess
+0x455a50	Srv_ReadPlayerTarget	sweep: guess
+0x455aa0	Srv_CheckProximity	sweep: guess
+0x455b40	Srv_PlayerProximityTick	sweep: guess
+0x455b90	Cargo_GetHoldSize	sweep: PLAYER_CARGO_HOLDS
+0x4565a0	Powerup_TypeFromName	sweep
+0x456650	Powerup_IsAllowed	sweep: guess
+0x4567a0	Powerup_SpawnDefault	sweep
+0x4567c0	Powerup_Init	sweep
+0x4567f0	Powerup_GetType	sweep
+0x456850	Powerup_Respawn	sweep
+0x4568a0	Resupply_SendText	sweep
+0x4568e0	Resupply_SendRaw	sweep
+0x456910	Resupply_GiveCredits	sweep: guess
+0x4569e0	Resupply_FindAmmoSlot	sweep
+0x456a20	Resupply_GiveAmmo	sweep
+0x456ad0	Resupply_GiveShield	sweep
+0x456b60	Resupply_GiveHull	sweep
+0x456bd0	Powerup_Apply	sweep
+0x456da0	Resupply_AddLaser	sweep
+0x456df0	Resupply_AddBurner	sweep
+0x456e40	Resupply_ApplyNotice	sweep
+0x456f50	Powerup_OnPickup	sweep
+0x4572d0	SbfStream_Fill	sweep: AIL sample stream
+0x457680	SbfStream_Stop	sweep
+0x457700	SbfStream_RegisterCallbacks	sweep
+0x457730	Ent_AddAsTarget	sweep
+0x457760	Ent_RemoveAsTarget	sweep
+0x457780	Ent_SetTarget	sweep: +0x90
+0x457790	Player_SaveLocation	sweep: CURRENT_REGION/SECTOR
+0x457880	Ent_SetPosRaw	sweep: guess
+0x457890	Ent_ClearTargetRefs	sweep
+0x4578e0	Ent_DespawnFromQuadrant	sweep
+0x4579c0	Ent_LeaveAllQuadrants	sweep
+0x457a70	Wingman_LinkToQuadrant	sweep
+0x457ac0	Ent_UnlinkReset	sweep
+0x457b20	Gate_FindByNameB	sweep: guess
+0x457b60	Gate_FindOrWarn	sweep: guess
+0x457bc0	Srv_SendQuadrantName	sweep
+0x457ca0	Quad_GetOrAllocGroupSlot	sweep
+0x457ce0	Quad_ClearGroupSlot	sweep
+0x457d00	Quad_GroupSlotExists	sweep
+0x457d30	Quad_GroupSlotCount	sweep: guess
+0x457d70	Quad_GetGroupLeader	sweep: guess
+0x457da0	Quad_GetGroupOrder	sweep: guess
+0x457df0	Quad_GroupSlotAddMember	sweep: guess
+0x457e10	Quad_GetGroupName	sweep
+0x457e30	Quadrant_InitSpawnPool	sweep
+0x457ec0	Quadrant_ClearData	sweep
+0x457ee0	Quadrant_Reset	sweep
+0x457f20	Quadrant_FreeMaps	sweep
+0x457f50	Race_GetAffiliation	sweep
+0x457fa0	Races_Load	sweep: RACES
+0x458060	Race_GetName	sweep
+0x458080	Race_GetRelations	sweep
+0x4580a0	Race_GetFlags	sweep: guess
+0x4580c0	Race_FindByName	sweep
+0x458100	Race_GetRelationsByName	sweep
+0x458120	Race_LoadRelationList	sweep
+0x458180	Race_LoadRelations	sweep: ENEMY/FRIENDLY
+0x4581d0	Races_LoadAllRelations	sweep
+0x458200	Races_Init	sweep: race.cfg
+0x458230	Races_Free	sweep
+0x458260	Gfx_ClearToBlack	sweep
+0x458290	Flight_InitViewport	sweep
+0x4582e0	Flight_ResetViewport	sweep
+0x458320	Vis_CullListA	sweep: guess
+0x4583c0	Vis_CullListB	sweep: guess
+0x458600	Flight_RenderOverlays	sweep: guess
+0x458660	Video_InitRenderer	sweep
+0x458750	Sim_SetFrozen	sweep: guess, returns old
+0x458760	SpawnPoint_SpawnAi	sweep
+0x4588a0	SpawnPoint_OnPlace	sweep
+0x4588e0	SpeedRing_Orient	sweep: guess
+0x458990	SpeedRing_Think	sweep: guess
+0x458a30	SpeedRing_GetInfo	sweep
+0x458be0	Scene_RequestSkip	sweep: guess
+0x458c20	Scene_SpecialMemberIndex	sweep: _PLAYER/_INPUT_ANCHOR
+0x458c70	Scene_LoadMembers	sweep
+0x458e10	Scene_LoadTextAction	sweep
+0x459210	Scene_LoadTextActions	sweep
+0x4592e0	Scene_LoadFonts	sweep
+0x4594b0	Scene_FindFont	sweep
+0x459500	Scene_FindTextEvent	sweep: guess
+0x459550	Scene_LoadTextEvents	sweep
+0x459bf0	SceneKey_FindMoveType	sweep: %s_FLY/%s_MOVETO
+0x459c60	SceneKey_CountMoves	sweep
+0x459ca0	SceneKw_Param10	sweep: keyword parser
+0x459d30	SceneKw_Param10b	sweep: keyword parser
+0x459dc0	SceneKw_Param38	sweep: keyword parser
+0x459de0	SceneKw_Param28	sweep: keyword parser
+0x459f00	SceneKw_Angle4	sweep: keyword parser
+0x459fa0	SceneKw_Param18	sweep: keyword parser
+0x459fd0	SceneKw_Angle4b	sweep: keyword parser
+0x45a070	SceneKw_Angle4c	sweep: keyword parser
+0x45a110	SceneKey_LoadMove	sweep
+0x45a190	Scene_ApplyFxState	sweep: guess
+0x45a240	SceneKw_JoyFF	sweep: SHAKE
+0x45a310	SceneKw_JoyFF18	sweep
+0x45a370	SceneKw_JoyFFStart24	sweep
+0x45a400	SceneKw_JoyFFStart2c	sweep
+0x45a4c0	SceneKey_LoadJoyFF	sweep: JOYFF_JOLT/SHOCK
+0x45a540	SceneKey_LoadFrame	sweep: FRAME_%02d
+0x45a680	Scene_LoadKeyframes	sweep
+0x45a6f0	Scene_FindMember	sweep
+0x45a750	SceneCamKw_Time	sweep
+0x45a7f0	SceneCamKw_Param4c	sweep
+0x45a880	SceneCamKw_Duration	sweep: guess
+0x45aa40	SceneCamKw_Param58	sweep
+0x45aa70	SceneCamKw_Param5c	sweep
+0x45aaa0	SceneCamKw_Flag4000	sweep
+0x45aab0	SceneCamKw_Flag2000	sweep
+0x45aac0	SceneCamKw_AngleC	sweep
+0x45ab60	SceneCamKw_Time8a	sweep
+0x45ab90	SceneCamKw_Time8b	sweep
+0x45abc0	SceneCamKw_Time8c	sweep
+0x45abf0	Scene_LoadCameraFrame	sweep
+0x45ad90	Scene_LoadCameraFrames	sweep
+0x45adf0	Scene_LoadDialog	sweep
+0x45af40	SceneMember_Move	sweep
+0x45afa0	SceneMember_ApplyKey	sweep
+0x45b2c0	Scene_ApplyKeyframe	sweep
+0x45b340	Scene_ReleaseMembers	sweep
+0x45b3f0	Scene_RestoreMusic	sweep: guess
+0x45b520	Scene_AbortOnFreeze	sweep
+0x45b570	Scene_CheckEndMembers	sweep: guess
+0x45b640	Scene_CheckEndCamera	sweep: guess
+0x45b6b0	Scene_MoveMembers	sweep
+0x45b6f0	Scene_IsMember	sweep: guess
+0x45b750	Scene_TickMembers	sweep
+0x45b7e0	SceneCam_SetPos	sweep
+0x45b800	SceneCam_ApplyKey	sweep
+0x45bb30	SceneCam_Interpolate	sweep
+0x45bd30	Scene_TickCamera	sweep
+0x45bdc0	Scene_FireCallback	sweep
+0x45be50	Scene_DrawTexts	sweep
+0x45bed0	Scene_DrawOverlay	sweep
+0x45bf20	Scene_TickTexts	sweep
+0x45bfa0	Scene_Tick	sweep
+0x45c000	Scene_ResetState	sweep
+0x45c010	SceneMember_SnapToEnt	sweep: guess
+0x45c070	SceneMember_Resolve	sweep
+0x45c0a0	Scene_ResolveMembers	sweep
+0x45c0d0	SceneMember_InitPose	sweep
+0x45c1f0	Scene_InitMembers	sweep
+0x45c260	SceneText_Init	sweep
+0x45c300	Scene_InitTexts	sweep
+0x45c340	SceneCam_Init	sweep
+0x45c450	Scene_Begin	sweep
+0x45c480	Scene_PreloadDialog	sweep
+0x45c4b0	Scene_StartMusic	sweep: guess
+0x45c5b0	Scene_Free	sweep
+0x45c670	Scene_SetFade	sweep: guess
+0x45c6a0	Scene_RequestEnd	sweep: guess
+0x45c6f0	SceneDbg_RotateX	sweep: guess
+0x45c780	SceneDbg_RotateY	sweep: guess
+0x45c810	SceneDbg_RotateZ	sweep: guess
+0x45c8a0	SceneDbg_ResetCamera	sweep: guess
+0x45c920	SceneDbg_QuitToTitle	sweep: guess
+0x45c950	SceneDbg_Pause	sweep: guess
+0x45c980	Scene_PlayChained	sweep: CHAINED SCENE
+0x45ca80	SectorMap_Alloc	sweep: static sector map
+0x45cac0	SectorMap_Free	sweep
+0x45cae0	SectorMap_Clear	sweep
+0x45cb10	SectorMap_CellIndex	sweep
+0x45cb40	SectorMap_CellPtr	sweep
+0x45cb60	SectorMap_LargeCellIndex	sweep
+0x45cb90	SectorMap_LargeCellPtr	sweep
+0x45cbb0	Dcb_CountChain	sweep
+0x45cbd0	Quad_PushProjectile	sweep: guess, list +0xc
+0x45cbf0	SectorMap_LinkStatic	sweep
+0x45cc20	SectorMap_LinkLarge	sweep
+0x45cc50	SectorMap_LinkSized	sweep
+0x45cda0	SectorMap_LinkObject	sweep
+0x45cf80	Quad_UnlinkDynamicList	sweep: list +0x10
+0x45cfc0	Quad_DynamicContains	sweep
+0x45cff0	Quad_LinkDynamicIfAbsent	sweep
+0x45d020	Quad_UnlinkList18	sweep
+0x45d060	Quad_PushList18	sweep
+0x45d080	Quad_UnlinkDynamicHead	sweep: guess
+0x45d0b0	Quad_UnlinkProjectile	sweep
+0x45d100	SectorMap_UnlinkStatic	sweep
+0x45d160	SectorMap_UnlinkLarge	sweep
+0x45d1c0	Ent_UnlinkFromMaps	sweep
+0x45d200	Quad_PushList14	sweep
+0x45d220	Quad_MoveList14ToDynamic	sweep: guess
+0x45d260	SectorMap_QueryRadius	sweep: guess
+0x45d440	SectorMap_QueryRadiusLarge	sweep: guess
+0x45d620	Conn_ResetStats	sweep: guess
+0x45d680	Quad_FindEntById	sweep
+0x45d6c0	Srv_ForAllConns	sweep: guess
+0x45d9d0	SrvSend_TextSimple	sweep
+0x45d9f0	Roster_FillEntry	sweep
+0x45db40	SrvSend_UiSoundDefault	sweep
+0x45e010	Srv_MovePlayerToQuadrant	sweep
+0x45f150	TachSrv_OnClassInfoReq	sweep
+0x45f3c0	Ent_IsStaticVisible	sweep: guess, desc +0x58
+0x45f3f0	Srv_CollectStaticObjs	sweep
+0x45f460	Srv_SendStaticObjs	sweep: PLAYER STATIC OBJ LIST
+0x45f690	Srv_HyperToQuadrant	sweep: guess
+0x45f880	TachSrv_OnGateJump	sweep
+0x45f8e0	TachSrv_OnEnterWorld	sweep
+0x45f990	Srv_RecvPlayerChunk	sweep: guess
+0x45fa10	TachSrv_OnDataChunk	sweep: guess
+0x45faa0	Kill_SendMsgKilledBy	sweep
+0x45fb30	Kill_SendMsgKilled	sweep
+0x45fbb0	Kill_SendMsgCrashed	sweep
+0x45ff00	TachSrv_OnClientReady	sweep: guess
+0x45ff10	Srv_RespawnPlayer	sweep
+0x45ff80	TachSrv_OnRespawnReq	sweep
+0x45ffa0	TachSrv_OnQuadrantEntered	sweep: guess
+0x460000	TachSrv_OnDocked	sweep: DOCK TAG
+0x460120	TachSrv_OnTractorEvent	sweep: guess
+0x4601a0	TachSrv_OnTractorEvent2	sweep: guess
+0x460220	TachSrv_OnUndocking	sweep
+0x460300	TachSrv_OnCargoPickup	sweep: guess
+0x460460	TachSrv_OnMineHit	sweep: guess
+0x460480	TachSrv_OnMineFired	sweep: guess
+0x4604f0	TachSrv_OnDecoyDropped	sweep
+0x460530	TachSrv_OnPostEvent	sweep: guess
+0x460570	Srv_SpawnDroppedItem	sweep: guess
+0x460600	TachSrv_OnDropItem	sweep: guess
+0x460720	TachSrv_OnWingFormOnMe	sweep
+0x460770	TachSrv_OnWingCommand	sweep
+0x460790	TachSrv_OnRulesEvent	sweep: rules +0x5c
+0x460af0	Srv_CallEntReader	sweep
+0x460cb0	Srv_CallAttachedReader	sweep: guess
+0x460ce0	Srv_MineBurnOffTick	sweep
+0x460d70	Ship_GetCloakFlags	sweep: guess
+0x461100	Srv_CopyPlayerInfo	sweep
+0x461180	Srv_AllocSendQueue	sweep
+0x4611c0	Srv_FreeSendQueue	sweep
+0x4611e0	Srv_ResetConn	sweep: guess
+0x461230	Srv_BumpSession	sweep
+0x461240	Srv_ResetAllConns	sweep
+0x461a00	Srv_WriteCredits	sweep: guess
+0x461b20	TachSrv_WriteFrameNo	sweep
+0x461c10	TachSrv_WriteStage4	sweep: guess
+0x461cf0	TachSrv_WriteRulesInfo	sweep: guess
+0x461df0	TachSrv_WriteStage8	sweep: guess
+0x461e40	TachSrv_WritePortraits	sweep: guess
+0x461ea0	TachSrv_WriteRoster	sweep
+0x461f40	TachSrv_WriteStage7	sweep: guess
+0x462300	Srv_BroadcastToQuadrant	sweep: guess
+0x462380	Srv_NotifyEntityRemoved	sweep: guess
+0x4623f0	SrvStats_DrawPlayerRow	sweep
+0x4624c0	SrvStats_DrawPlayers	sweep
+0x462540	Flight_InitServerUi	sweep: *SYSOP*
+0x4625a0	SrvStats_DrawSummary	sweep: TOTAL LOGINS
+0x462840	Flight_RenderServer	sweep
+0x462890	Flight_ServerGfxShutdown	sweep
+0x462990	DcbPools_Reset	sweep
+0x462ad0	Rng_WarmUp	sweep
+0x462c20	Profile_ParseNameFields	sweep: guess
+0x462c80	ShipDes_ParseColor	sweep: "yellow"
+0x462d00	Replica_UpdateLod	sweep: guess
+0x462d70	ShipDes_LoadContentScan	sweep
+0x462dd0	ShipDes_LoadJammer	sweep
+0x462e30	ShipDes_GetAttachPoint	sweep
+0x4630e0	ShipReplica_UpdateAlpha	sweep: guess
+0x463140	ShipReplica_UpdateEngine	sweep: guess
+0x463200	Ship_SpawnDamageSmoke	sweep: guess
+0x463400	ShipReplica_SmokeTick	sweep: guess
+0x4634c0	Ent_IsAlive	sweep: +0xce == 0, guess
+0x4634e0	ShipReplica_PreRender	sweep: guess
+0x463540	ShipReplica_SetFlags	sweep
+0x463670	ShipReplica_IsCloaked	sweep: guess
+0x463790	Player_InitEngineTrails	sweep: guess
+0x463810	ShipDes_ResolvePointSlot	sweep
+0x4638a0	ShipDes_LoadWeapon	sweep: WEAP_%d
+0x4639c0	ShipDes_LoadCamera	sweep
+0x463cf0	ShipDes_LoadGroupClass	sweep
+0x463d50	ShipDes_LoadAiHardware	sweep
+0x463db0	ShipDes_LoadMounts	sweep
+0x464210	Ship_LoadFxModel	sweep
+0x464280	Ship_WarnLoopMissing	sweep
+0x4642d0	Ship_LoadSounds	sweep: guess
+0x464420	Ship_FreeExtraData	sweep
+0x464460	Ship_Destroy	sweep: guess
+0x464550	Ent_GetContentsName	sweep: CONT_UNKNOWN
+0x4645c0	Ent_FormatInfoField	sweep
+0x4646f0	Ent_FormatGroupField	sweep
+0x464860	Ent_GetDescName50	sweep: desc +0x50
+0x4648a0	EntDebug_DrawInfo	sweep
+0x464da0	AiDebug_DrawGroup	sweep
+0x464e70	AiDebug_DrawWaypoint	sweep
+0x465080	AiDebug_DrawHardware	sweep: guess
+0x465150	AiDebug_DrawJammer	sweep
+0x465320	Ship_ComputeForward	sweep: guess
+0x4655f0	Ship_ClearTargetIf	sweep
+0x465850	ShipText_Load	sweep
+0x465880	Slider_Init	sweep
+0x465970	Slider_Draw	sweep
+0x465b30	Slider_UpdateFromMouse	sweep: guess
+0x465c20	Slider_HandleMouse	sweep
+0x465d20	Music_ResetState	sweep: guess
+0x465d50	Snd_GetMasterScale	sweep
+0x465db0	Snd_ScaleVolume	sweep
+0x465df0	Snd_IsMuted	sweep: guess
+0x465e10	Music_SetTrack	sweep: guess
+0x465e80	Music_Update	sweep: guess
+0x465f20	Fixed_ToFloat	sweep: guess
+0x465f60	Cbin_GetScaledParam	sweep: guess
+0x465ff0	Snd3D_Release	sweep
+0x466000	Snd3D_Create	sweep
+0x466160	Ent_AttachSound3D	sweep
+0x4661a0	Snd3D_UpdateAt	sweep
+0x466290	Ent_UpdateSound3D	sweep
+0x466380	Snd3D_SetVolume	sweep
+0x4663d0	Ent_SetSound3DVolume	sweep
+0x4663f0	Snd3D_SetPitch	sweep
+0x466410	Ent_SetSound3DPitch	sweep
+0x466430	Snd3D_SetVar50	sweep
+0x466440	Snd_CalcAttenuation	sweep
+0x4664b0	Snd_PlaySample	sweep: guess
+0x466530	Snd_PlaySampleLoop	sweep: guess
+0x466590	Snd_Play2D	sweep: 50 callers
+0x466620	Snd_PlayAtPosEx	sweep
+0x4666e0	Snd_PlayAtEnt	sweep
+0x466710	Snd_PlayAtEntLoop	sweep: guess
+0x466740	Snd_PlayAtPos	sweep
+0x466770	Snd_PlayAtPosEx2	sweep
+0x466830	Snd_ResetState	sweep
+0x466860	Voice_Play	sweep: "Playing %s"
+0x466960	Voice_PlayQueued	sweep: guess
+0x4669a0	Snd3D_InitPool	sweep
+0x4669d0	Snd3D_InitChannels	sweep
+0x466a20	Snd3D_Init	sweep
+0x466ac0	Snd3D_Shutdown	sweep
+0x466ad0	Snd3D_Alloc	sweep
+0x466b00	Snd3D_AllocOrFail	sweep
+0x466b30	Snd3D_FindNode	sweep
+0x466b60	Snd3D_Free	sweep
+0x466ba0	Snd3D_SetParams	sweep
+0x466c30	Snd3D_FindFreeChannel	sweep
+0x466c60	Snd3D_AssignChannels	sweep
+0x466d70	Snd3D_StopAll	sweep
+0x466dc0	Snd3D_Update	sweep
+0x466ee0	Snd3D_ForEachChannel	sweep: guess
+0x466f30	Snd3D_SetPaused	sweep
+0x467330	ArtDebug_Draw	sweep: BDF EDITOR
+0x4676a0	Bdf_InitArray	sweep
+0x4676e0	Bdf_FindByName	sweep
+0x467720	Bdf_FindFree	sweep
+0x467760	Bdf_FreeScene	sweep
+0x4677d0	Bdf_FreeOldest	sweep: guess
+0x467810	Bdf_FreeAll	sweep
+0x468310	Bdf_GetAmbient	sweep: guess, +0xc0
+0x468320	Bdf_LightningTick	sweep: guess
+0x468440	Bdf_Render	sweep
+0x468770	Bdf_Reset	sweep
+0x468790	Starfield_RandomDir	sweep: guess
+0x468810	Starfield_RandomColor	sweep: guess
+0x468890	Starfield_GenStar	sweep
+0x468940	Starfield_Init	sweep: "Star buffer"
+0x468980	Starfield_InitDefault	sweep
+0x468990	Starfield_DrawStreaks	sweep: guess
+0x468c50	Starfield_DrawPoints	sweep: guess
+0x468e20	Starfield_Draw	sweep
+0x468e40	Light_SetDirection	sweep: guess
+0x468ea0	Light_ApplyDefault	sweep: guess
+0x468eb0	Starbase_FindAudioSection	sweep: BASE_LOBBY/SHIP_YARD
+0x468ef0	Starbase_PlayMusicFile	sweep
+0x468f50	Starbase_PlayMusic	sweep
+0x468fb0	Starbase_SetMusicVar	sweep
+0x468ff0	Player_SetStrVar	sweep: guess
+0x469030	Player_SetStrVar2	sweep: guess
+0x469090	Starbase_ReturnToHub	sweep
+0x4690b0	Item_FindByName	sweep
+0x469100	StoreItem_FindByName	sweep
+0x469140	Job_FindByName	sweep
+0x469190	Wingman_FindByName	sweep
+0x4691e0	Wingman_RefreshList	sweep: WINGMAN LIST
+0x4692e0	Wingman_CheckAvailability	sweep: guess
+0x469330	Wingman_GetCurrent	sweep: CURRENT_WINGMAN
+0x469570	Job_GetCompleted	sweep: guess
+0x469750	Job_MarkFailed	sweep
+0x4697c0	Job_MarkSuccess	sweep
+0x469830	Starbase_LoadCurrent	sweep: guess
+0x4698a0	Starbase_GetName	sweep: STARBASES
+0x4699f0	Starbase_FindFont	sweep: guess
+0x469a30	Starbase_FindMaterial	sweep: guess
+0x469a70	Starbase_FindLight	sweep: "Default"
+0x469ac0	Starbase_FindPalMat	sweep: guess
+0x469ca0	Job_EvalCondition	sweep: guess
+0x469d80	Job_EvalConditions	sweep: recursive
+0x469e50	Starbase_FreeImages	sweep
+0x469eb0	Starbase_FreeAll	sweep
+0x469ee0	Job_ParsePakInfo	sweep: STARBASE PAK INFO
+0x46abe0	Text_JoinLong	sweep: "long text buffer"
+0x46ad00	Job_BuildList	sweep: JOB LIST
+0x46ae30	Job_RefreshAvailable	sweep
+0x46b400	News_BuildList	sweep
+0x46b4d0	News_FindByName	sweep
+0x46b520	News_Load	sweep: %s%02d.nws
+0x46b7e0	Wingman_LoadAll	sweep: %s%02d.wng
+0x46ba50	StoreItem_Load	sweep: STARBASE ITEM
+0x46be60	Item_CountOwned	sweep: guess
+0x46bea0	Inventory_Count	sweep
+0x46bf30	Inventory_Build	sweep: INVENTORY LIST
+0x46bff0	Inventory_Reset	sweep: guess
+0x46c040	Inventory_BuildForWeaponTypes	sweep
+0x46c0d0	StoreItem_BuildAvailList	sweep
+0x46c1b0	StoreItem_LoadDefs	sweep: item.cfg ITEM_DEF
+0x46c310	Starbase_LoadBase	sweep: earth.bas
+0x46c34a	Starbase_LoadBase_part2	sweep: mis-split tail
+0x46d310	SbHotspot_ShowTooltip	sweep: TT_CLICK
+0x46d4a0	SbHotspot_PlayPak	sweep
+0x46d4f0	SbHotspot_ShowImage	sweep
+0x46d580	Ui_LoadImageCached	sweep: IMAGE_%s
+0x46d770	Ui_SetImageAreaFromFile	sweep
+0x46d870	SbAudio_StopAll	sweep
+0x46d8d0	SbAudio_Play	sweep
+0x46d900	SbAudio_Stop	sweep
+0x46d910	SbHotspot_Activate	sweep
+0x46da20	SbHotspot_Select	sweep
+0x46db30	SbHotspot_Deselect	sweep
+0x46dc50	SbPak_RenderPreview	sweep: guess
+0x46dd30	SbPak_SetActive	sweep
+0x46dd60	SbPak_FreeAll	sweep
+0x46ddd0	SbPak_LoadModel	sweep
+0x46de00	SbPak_Start	sweep
+0x46ded0	SbPak_Render	sweep
+0x46e050	SbPak_SetVar7884	sweep
+0x46e060	SbPak_UpdateTransform	sweep
+0x46e140	SbPak_MoveBy	sweep
+0x46e180	SbPak_SetPos	sweep
+0x46e1a0	SbPak_StepKeyframes	sweep
+0x46e400	SbPak_Tick	sweep
+0x46e6e0	Starbase_LoadIcons	sweep: guess
+0x46e7a0	Ship_GetExteriorPak	sweep
+0x46e850	ShipFile_GetExteriorPak	sweep
+0x46e930	Player_GetCurrentShipName	sweep
+0x46e9a0	MountLine_Add	sweep: guess
+0x46eac0	MountLine_Animate	sweep: guess
+0x46ec00	MountLine_Draw	sweep
+0x46eda0	MountLine_AddRandom	sweep
+0x46ee10	Ui_DrawRotatedArrow	sweep: guess
+0x46f080	ShipDef_FindIndex	sweep
+0x46f0c0	ShipDef_Find	sweep
+0x46f100	ShipDefs_Load	sweep: ship.def
+0x46f260	Player_GetSide	sweep: PLAYER_SIDE
+0x46f290	Rtxt_FindKeyIndex	sweep: guess
+0x46f320	Map_LoadSectorNames	sweep: guess
+0x46f390	Map_SetRegion	sweep: guess
+0x46f3f0	Map_StepRegion	sweep: guess
+0x46f430	Map_SectionExists	sweep: guess
+0x46f4c0	Starbase_InitUi	sweep
+0x46f550	Starbase_FindMenuFile	sweep: neutral.mnu
+0x46f580	SbLobby_AnimCallback	sweep: guess
+0x46f5c0	SbLobby_ResetAnims	sweep
+0x46f930	SbLobby_OnHoverLeave	sweep: guess
+0x46fba0	SbLobby_OnHoverEnter	sweep: guess
+0x46ffd0	Starbase_InitCallbacks	sweep: guess
+0x4701b0	SbLobby_InitImages	sweep
+0x4704b0	SbHelp_SetButtonImage	sweep
+0x470560	SbHelp_SetFonts	sweep
+0x4705a0	SbHelp_Show	sweep: WndStarBaseHelp
+0x470930	SbLobby_Enter	sweep: WndStarBase
+0x470db0	SbLobby_Tick	sweep
+0x470df0	SbLobby_DrawNebula	sweep: NEBULA_CLIP
+0x470f10	SbLobby_Draw	sweep
+0x471000	SbLobby_Render	sweep
+0x471060	Starbase_Shutdown	sweep
+0x4710c0	SbLobby_Exit	sweep
+0x471140	SbLobby_GoOptions	sweep
+0x471170	SbLobby_ZoomOptions	sweep: OPT_ZOOM_DST
+0x471200	SbLobby_GoSlots	sweep
+0x471230	SbLobby_ZoomSlots	sweep
+0x4712c0	SbLobby_GoJobs	sweep
+0x4712f0	SbLobby_ZoomJobs	sweep
+0x4713a0	SbLobby_GoMap	sweep
+0x4713d0	SbLobby_ZoomMap	sweep
+0x471470	SbLobby_GoNews	sweep
+0x4714a0	SbLobby_ZoomNews	sweep
+0x471530	SbLobby_GoStats	sweep
+0x471560	SbLobby_ZoomStats	sweep
+0x4715f0	SbLobby_GoShipyard	sweep: guess
+0x471610	Starbase_QuitToTitle	sweep
+0x471630	Loadout_SetItemInfo	sweep
+0x4716e0	LoadoutStat_Find	sweep
+0x471720	Loadout_DrawItemBars	sweep
+0x471890	LoadoutStat_Animate	sweep
+0x4718e0	Loadout_InitItemBars	sweep
+0x471a90	Loadout_ComputeItemStats	sweep
+0x471e50	Loadout_DrawDragSave	sweep: guess
+0x471f40	Loadout_DrawDragRestore	sweep: guess
+0x473080	Loadout_SetInventoryRow	sweep
+0x473860	Loadout_InitStoreItems	sweep
+0x4738d0	Loadout_LoadPlayerHardware	sweep
+0x473cf0	Loadout_CloseBuySellIfIdle	sweep
+0x473e00	Loadout_Draw	sweep
+0x473e30	Loadout_Render	sweep
+0x473ef0	Loadout_Exit	sweep
+0x473f70	Starbase_GoHub	sweep
+0x473fb0	Loadout_ScrollStore	sweep
+0x474070	Loadout_ResetStoreScroll	sweep: guess
+0x4740b0	Loadout_ResetInvScroll	sweep: guess
+0x474100	Loadout_OnBuyBtn	sweep: guess
+0x474270	Loadout_OnScrollAvail	sweep: guess
+0x474320	Loadout_OnScrollInv	sweep: guess
+0x474cd0	Loadout_Purchase	sweep
+0x474f46	Loadout_CallHandler_part	sweep: mis-split
+0x475390	Loadout_SellConfirmed	sweep
+0x475560	Loadout_LookupShipName	sweep
+0x4757e0	Loadout_RefreshMountSlot	sweep
+0x475950	Loadout_LoadMountLines	sweep
+0x475a60	Loadout_LoadShipView	sweep
+0x476ec0	Loadout_UpdateTooltip	sweep: TT_BG
+0x477340	Loadout_InitSliders	sweep
+0x477460	Loadout_UpdateSliders	sweep
+0x477700	SbLoading_BuildJobText	sweep
+0x4777d0	SbLoading_Enter	sweep: WndStarBaseLoading
+0x4778b0	SbLoading_Tick	sweep
+0x4778e0	SbLoading_Draw	sweep
+0x477900	SbLoading_Render	sweep
+0x477920	SbLoading_Exit	sweep: playrtmp.sav
+0x477990	SbLoading_Launch	sweep
+0x4779b0	SbInventory_Scroll	sweep
+0x477a70	SbInventory_SetItemsEnabled	sweep: guess
+0x477af0	SbInventory_SetKeysEnabled	sweep: guess
+0x477b70	SbInventory_RefreshItems	sweep
+0x477c80	SbInventory_RefreshKeys	sweep
+0x477d70	SbInventory_FreeList	sweep
+0x477db0	SbInventory_AllocItem	sweep
+0x477e10	SbInventory_Load	sweep: cargo.cfg
+0x4780f0	SbInventory_Enter	sweep: WndStarBaseInventory
+0x4781e0	SbInventory_Tick	sweep
+0x478220	SbInventory_Draw	sweep
+0x478240	SbInventory_Render	sweep
+0x478280	SbInventory_Exit	sweep
+0x4782c0	SbInventory_GoBack	sweep
+0x4782e0	SbInventory_OnItemBtn	sweep
+0x478350	SbInventory_OnKeyBtn	sweep
+0x4783a0	SbInventory_ShowItem	sweep
+0x4785c0	SbInventory_InitSliders	sweep
+0x478680	SbInventory_UpdateSliders	sweep
+0x478720	SbJobs_SelectHotspot	sweep
+0x478760	SbJobs_ClearImage	sweep
+0x4787b0	SbJobs_SelectJob	sweep
+0x4788b0	SbJobs_ClearSlots	sweep
+0x478930	SbJobs_RefreshSlots	sweep
+0x478b90	SbJobs_RefreshCurrent	sweep
+0x478c20	SbJobs_GoCompleteIfDone	sweep
+0x478c40	SbJobs_LoadImages	sweep
+0x478ca0	SbJobs_Enter	sweep: WndStarBaseJobs
+0x478fa0	SbJobs_Tick	sweep
+0x479060	SbJobs_Draw	sweep
+0x4790a0	SbJobs_Render	sweep
+0x4790e0	SbJobs_Exit	sweep
+0x479160	SbJobs_ZoomOut	sweep
+0x479260	SbJobs_SlidePanels	sweep
+0x479320	SbJobs_BreakContract	sweep
+0x4793d0	SbJobs_Launch	sweep
+0x479440	SbJobs_AcceptContract	sweep
+0x479600	SbJobs_OnTextScroll	sweep: guess
+0x479690	SbJobs_ScrollList	sweep
+0x4796f0	SbJobs_InitSliders	sweep
+0x4797e0	SbJobs_UpdateSliders	sweep
+0x4798b0	SbJobsDone_GoHub	sweep
+0x479940	SbJobsDone_Enter	sweep: WndStarBaseJobsComplete
+0x479ee0	SbJobsDone_Tick	sweep
+0x479f20	SbJobsDone_Draw	sweep
+0x479f80	SbJobsDone_Render	sweep
+0x479fc0	SbJobsDone_Exit	sweep
+0x47a030	SbJobsDone_SelectHotspot	sweep
+0x47a0d0	SbJobsDone_ShowImage1	sweep
+0x47a120	SbJobsDone_ShowImage2	sweep
+0x47a170	SbJobsDone_ShowImage3	sweep
+0x47a1c0	SbJobsDone_OnTextScroll	sweep: guess
+0x47a250	SbJobsDone_InitSliders	sweep
+0x47a310	SbJobsDone_UpdateSliders	sweep
+0x47a3a0	Map_AddConnectionLine	sweep: guess
+0x47a440	MapPath_Copy	sweep
+0x47a460	MapPath_Length	sweep
+0x47a470	MapPath_ClearBest	sweep
+0x47a490	MapPath_Push	sweep
+0x47a4b0	MapPath_Contains	sweep: guess
+0x47a500	MapPath_Truncate	sweep: guess
+0x47a530	MapNodes_Free	sweep
+0x47a560	MapNode_Find	sweep
+0x47a590	MapPath_Search	sweep: recursive
+0x47a6d0	Map_FindRoute	sweep
+0x47a740	MapNode_AddConnection	sweep: MAP CNCT NODE
+0x47a7f0	Map_FindStarbase	sweep: guess
+0x47a830	Map_FindSector	sweep
+0x47a8b0	Map_FindRegion	sweep: guess
+0x47a900	Map_FindRegionById	sweep: guess
+0x47a930	Map_Free	sweep
+0x47aa50	Map_PlayMoverSound	sweep: lmover.wav
+0x47aae0	Map_ResetMovers	sweep: guess
+0x47ab20	Map_AddRect	sweep: "Map Rect"
+0x47abe0	Map_BuildSectorRects	sweep
+0x47b9c0	Map_InitFonts	sweep
+0x47ba70	Map_GetScrollX	sweep
+0x47ba80	Map_GetScrollY	sweep
+0x47ba90	Map_ScrollX	sweep
+0x47bb00	Map_ScrollY	sweep
+0x47bb70	Map_ZoomBy	sweep
+0x47bbc0	Map_SetZoom	sweep
+0x47bc30	Map_GetZoom	sweep
+0x47bc40	Map_DrawHoverLabel	sweep: TxtMapFloating
+0x47bf00	Map_SetBounds	sweep: guess
+0x47bf50	Map_ClampScroll	sweep: guess
+0x47c0f0	Map_SetDestinationText	sweep: MAP_DST
+0x47c2b0	Map_SetCurrentText	sweep: MAP_CUR
+0x47c6d0	Map_SetRegionText	sweep
+0x47c830	Map_InitState	sweep
+0x47cad0	Map_SetInFlight	sweep: guess
+0x47cc30	Map_SetVar24d8	sweep
+0x47cc50	Map_UpdateCursor	sweep: CursorMap*
+0x47cf00	Map_HandleInput	sweep
+0x47d400	Map_ResetScratch	sweep: guess
+0x47d430	Map_UpdateBlink	sweep: guess
+0x47d4a0	Map_AnimateMovers	sweep: guess
+0x47d500	Map_Update	sweep
+0x47d730	Map_Tick	sweep
+0x47d770	Map_DrawGrid	sweep: guess
+0x47d980	Map_DrawLabels	sweep
+0x47dae0	Map_DrawSectorIcons	sweep: guess
+0x47dcd0	Map_DrawCurrentRing	sweep: MAP_RING3
+0x47de80	Map_DrawRoute	sweep: tracer.wav
+0x47e0b0	Map_DrawRegions	sweep
+0x47e270	Map_DrawStarbase	sweep: guess
+0x47e420	Map_DrawStarbases	sweep: guess
+0x47e490	Map_DrawView	sweep
+0x47e5e0	Map_Draw	sweep
+0x47e600	Map_Render	sweep
+0x47e660	Map_Exit	sweep
+0x47e6a0	Map_GoHub	sweep
+0x47e6d0	Map_ZoomOut	sweep
+0x47e7a0	Map_OnBack	sweep
+0x47e7c0	Map_ApplyDestination	sweep
+0x47e8e0	FlightMap_Open	sweep
+0x47e910	FlightMap_Close	sweep
+0x47e9a0	FlightMap_Resume	sweep: guess
+0x47e9c0	News_AddHeadline	sweep
+0x47ea80	News_StopAudio	sweep
+0x47eab0	News_FreeHeadlines	sweep
+0x47eb20	News_PlayHeadlineAudio	sweep: guess
+0x47ebf0	News_LoadImages	sweep
+0x47ec60	SbNews_SelectHotspot	sweep
+0x47eca0	SbNews_ClearImage	sweep
+0x47ecf0	SbNews_ShowItem	sweep
+0x47ed30	SbNews_SelectItem	sweep
+0x47eda0	SbNews_OnItemBtn	sweep
+0x47edc0	SbNews_OnTextScroll	sweep: guess
+0x47ee50	SbNews_ScrollList	sweep
+0x47eef0	SbNews_ClearButtons	sweep: guess
+0x47ef20	SbNews_RefreshList	sweep
+0x47f150	News_BuildTicker	sweep: NEWS_TICKER
+0x47f370	News_CountVisible	sweep: guess
+0x47f3b0	SbNews_Enter	sweep: WndStarBaseNews
+0x47f4f0	SbNews_Tick	sweep
+0x47f550	SbNews_Draw	sweep
+0x47f5c0	SbNews_Render	sweep
+0x47f610	SbNews_Exit	sweep
+0x47f650	SbNews_GoHub	sweep
+0x47f680	SbNews_ZoomOut	sweep
+0x47f750	SbNews_AddJournal	sweep
+0x47f770	SbNews_DelJournal	sweep
+0x47f790	SbNews_RefreshJournalBtns	sweep
+0x47f7f0	SbNews_InitSliders	sweep
+0x47f8e0	SbNews_UpdateSliders	sweep
+0x47f9b0	Options_RefreshJoyPage	sweep: BtnOptP3*
+0x47fc90	Options_InitJoyPage	sweep
+0x47ffd0	Options_ApplyAudio	sweep: guess
+0x480020	Options_SetTabFrame	sweep
+0x4800a0	Options_OnSliderClick	sweep: guess
+0x480220	Options_HitTestSliders	sweep: guess
+0x480290	Options_RefreshTabs	sweep
+0x480350	OptMenu_FreeItems	sweep
+0x4803a0	OptMenu_FindByVar	sweep
+0x4803d0	Difficulty_FindName	sweep
+0x480410	OptMenu_AddItem	sweep: "Option Menu Item"
+0x480490	OptMenu_AddDifficulty	sweep
+0x4804d0	OptMenu_Build	sweep
+0x480600	Options_ResetOptAreas	sweep: IAP%dOpt%d
+0x480640	SbOptions_Enter	sweep: WndStarBaseOptions
+0x480800	SbOptions_Tick	sweep
+0x480880	SbOptions_Draw	sweep
+0x4808e0	SbOptions_Render	sweep
+0x480920	OptMenu_FreeAll	sweep
+0x480970	SbOptions_Exit	sweep
+0x4809c0	SbOptions_GoBack	sweep
+0x4809f0	SbOptions_ZoomOut	sweep
+0x480ae0	SbOptions_RequestClose	sweep
+0x480af0	OptMenu_DrawItem	sweep
+0x480c00	OptMenu_Select	sweep
+0x480dc0	OptMenu_Refresh	sweep
+0x480e70	OptMenu_RefreshByVar	sweep
+0x480ea0	OptMenu_SetByVar	sweep: guess
+0x480f20	Options_HidePages	sweep
+0x480f50	Options_ShowPage	sweep
+0x481470	Voice_ApplyPlaybackVolume	sweep
+0x481480	Voice_ApplyMicGain	sweep
+0x4814a0	Options_OnVoiceTest	sweep: BtnOptP5VonTest
+0x481530	Options_StopVoiceTest	sweep
+0x481670	Options_UpdateVoiceMeter	sweep
+0x4816d0	Options_DrawVoiceMeterBar	sweep: guess
+0x481770	Options_DrawVoiceMeter	sweep: guess
+0x481880	Options_ScrollKeyMap	sweep
+0x4818c0	Options_SelectKeyMapRow	sweep: guess
+0x4819a0	Options_PollKeyRemap	sweep: INPUT_REMAPPED
+0x481b90	Options_InitKeyMapPage	sweep: helptext.bin
+0x482110	Options_ResetKeyMap	sweep: guess
+0x482170	Options_InitSliders	sweep
+0x482240	Options_UpdateSliders	sweep
+0x4822b0	Options_LoadShipPreview	sweep: OPT_PAK
+0x482440	Options_RenderShipPreview	sweep
+0x482540	ShipBuyStat_FindMax	sweep: guess
+0x482620	ShipBuyStat_Load	sweep
+0x482a00	ShipBuy_SetStatLabels	sweep
+0x482b00	ShipBuyStat_Find	sweep
+0x482b40	ShipBuy_DrawStatBars	sweep
+0x482cb0	ShipBuyStat_Animate	sweep
+0x482d00	ShipBuy_InitStatBars	sweep
+0x482f30	ShipBuyStat_LoadAll	sweep
+0x482f80	ShipBuy_ClearCallouts	sweep
+0x482fe0	ShipBuy_CountCallouts	sweep: guess
+0x483000	ShipBuy_DrawCallouts	sweep
+0x483150	ShipBuy_LoadCallouts	sweep: CALLOUT
+0x4833e0	ShipBuy_SetVar6e6c	sweep
+0x4833f0	ShipBuy_RenderPreview	sweep
+0x4834d0	ShipBuy_ReleaseModels	sweep: guess
+0x483520	ShipBuy_CalcModelScale	sweep: guess
+0x4835c0	ShipBuy_RefreshList	sweep
+0x483900	ShipBuy_FindShip	sweep
+0x483940	ShipBuy_FindOwned	sweep: guess
+0x483970	ShipBuy_FindCurrent	sweep: guess
+0x4839b0	ShipBuy_LoadShips	sweep
+0x483d70	ShipBuy_Enter	sweep: WndStarBaseShipBuy
+0x483f60	ShipBuy_AddCalloutLine	sweep
+0x484010	ShipBuy_ResetHover	sweep: guess
+0x484040	ShipBuy_UpdateHover	sweep
+0x4840f0	ShipBuy_Tick	sweep
+0x484140	ShipBuy_Draw	sweep
+0x484190	ShipBuy_Render	sweep
+0x4841d0	ShipBuy_Exit	sweep
+0x484230	ShipBuy_ClearSelection	sweep
+0x4842f0	ShipBuy_SelectShip	sweep
+0x4845f0	ShipBuy_SelectCurrent	sweep
+0x484650	ShipBuy_TransferLoadout	sweep: guess
+0x48485a	ShipBuy_Sell	sweep: guess
+0x484960	ShipBuy_Purchase	sweep
+0x484a40	ShipBuy_UpdateCredits	sweep
+0x484a90	ShipBuy_OnTextScroll	sweep: guess
+0x484b20	ShipBuy_ShowDescription	sweep
+0x484ca0	ShipBuy_InitSliders	sweep
+0x484d60	ShipBuy_UpdateSliders	sweep
+0x484df0	Shipyard_AimCameraAtBay	sweep: guess
+0x484e40	Shipyard_MoveCamera	sweep: guess
+0x484f60	Shipyard_RotateCamera	sweep: guess
+0x485060	Shipyard_CheckOwned	sweep: guess
+0x4850b0	Shipyard_UpdateLabel	sweep
+0x485160	Shipyard_StepIndex	sweep
+0x4851c0	Ship_IsPossessed	sweep: POSESS_STATE
+0x485240	Shipyard_FreeModels	sweep
+0x4852d0	Shipyard_SetCamera	sweep
+0x485330	Shipyard_LoadHangar	sweep: "mnu shipyard pak"
+0x4853e0	Shipyard_SelectCurrentShip	sweep
+0x4854e0	Shipyard_LoadShips	sweep
+0x485ae0	Shipyard_GoHub	sweep: guess
+0x485c30	Shipyard_AnimateBays	sweep: guess
+0x485f20	Shipyard_UpdateCamera	sweep
+0x485f30	Shipyard_HandleMouse	sweep
+0x486090	Shipyard_Render3D	sweep
+0x486140	Shipyard_Draw	sweep
+0x486180	Shipyard_Render	sweep
+0x4861e0	Shipyard_Exit	sweep
+0x486220	Shipyard_GoLoadout	sweep
+0x486240	Shipyard_GoShipBuy	sweep
+0x486270	Shipyard_SaveCurrentShip	sweep
+0x4862a0	Shipyard_OnShipChanged	sweep
+0x4862f0	Shipyard_Step	sweep
+0x486320	Shipyard_StepAndAim	sweep
+0x486380	Slots_UpdateCredits	sweep
+0x486480	Slots_LoadIcons	sweep
+0x486540	Slots_ResetPayLines	sweep
+0x486990	Slots_InitUi	sweep
+0x486c60	SlotWheel_Stop	sweep
+0x486c70	SlotWheel_Start	sweep
+0x486c90	Slots_CashOut	sweep
+0x486cb0	Slots_PlaceBet	sweep
+0x486e90	SlotWheel_Spin	sweep
+0x486ed0	Slots_Spin	sweep: PLAYER_SPINS
+0x486fd0	Slots_BetMax	sweep
+0x487010	Slots_BetOne	sweep
+0x487040	Slots_CheckLine	sweep: guess
+0x4870b0	Slots_ShowWinLine	sweep
+0x487350	Slots_ShowLoseLine	sweep: guess
+0x487470	Slots_EvaluateLine	sweep
+0x4874c0	Slots_EvaluateSpin	sweep
+0x4875f0	Slots_RandomizeWheels	sweep
+0x487800	Slots_Reset	sweep
+0x4878a0	Slots_RefreshButtons	sweep
+0x487ad0	Slots_CalcPayoff	sweep
+0x487b50	Slots_Payoff	sweep
+0x487b90	SlotWheel_Update	sweep
+0x487cc0	Slots_Update	sweep
+0x487de0	Slots_Enter	sweep: WndStarBaseSlots
+0x487e50	Slots_Tick	sweep
+0x487e90	Slots_Draw	sweep
+0x487ed0	Slots_Render	sweep
+0x487f10	Slots_Exit	sweep
+0x487f20	Slots_Leave	sweep: PLAYER_CASHES_OUT
+0x487f70	Slots_ToggleOdds	sweep
+0x488080	Slots_BuildTicker	sweep: SLOT_TICKER
+0x488200	SbStats_BuildText	sweep: STATS_TELETYPE
+0x488520	SbStats_FormatShip	sweep
+0x4885d0	SbStats_LoadShipModel	sweep: STATS_PAK
+0x488750	SbStats_HideLabels	sweep
+0x4888e0	SbStats_StartHologram	sweep: hologram.wav
+0x488950	SbStats_ShowLabels	sweep
+0x488aa0	SbStats_UpdateScan	sweep
+0x488b50	SbStats_Enter	sweep: WndStarBaseStats
+0x488c40	SbStats_Tick	sweep
+0x488c90	SbStats_RenderShip	sweep
+0x488d90	SbStats_Draw	sweep
+0x488de0	SbStats_Render	sweep
+0x488e20	SbStats_Exit	sweep
+0x488e60	SbStats_GoInventory	sweep: guess
+0x488e80	SbStats_GoHub	sweep
+0x488eb0	SbStats_ZoomOut	sweep
+0x488f70	WingStat_FindMax	sweep: guess
+0x489060	WingStat_Load	sweep
+0x489440	SbWing_SetStatLabels	sweep
+0x489540	WingStat_Find	sweep
+0x489580	SbWing_DrawStatBars	sweep
+0x489700	WingStat_Animate	sweep
+0x489750	SbWing_InitStatBars	sweep
+0x489980	WingStat_LoadAll	sweep
+0x4899e0	SbWing_LoadImages	sweep
+0x489a40	SbWing_Enter	sweep: WndStarBaseWingMan
+0x489c70	SbWing_Tick	sweep
+0x489d40	SbWing_Draw	sweep
+0x489d80	SbWing_Render	sweep
+0x489dc0	SbWing_Exit	sweep
+0x489e40	SbWing_GoJobs	sweep
+0x489e70	SbWing_SlidePanels	sweep
+0x489ee0	SbWing_OnTextScroll	sweep: guess
+0x489f70	SbWing_ScrollList	sweep
+0x48a060	SbWing_ClearSlots	sweep
+0x48a0c0	SbWing_RefreshSlots	sweep
+0x48a280	SbWing_DeselectHotspot	sweep
+0x48a2b0	SbWing_SelectHotspot	sweep
+0x48a490	SbWing_RefreshHireButtons	sweep
+0x48a500	SbWing_SelectWingman	sweep
+0x48a5d0	SbWing_UpdateCredits	sweep
+0x48a620	SbWing_ShowDetails	sweep
+0x48a790	SbWing_InitSliders	sweep
+0x48a890	SbWing_UpdateSliders	sweep
+0x48a960	Sun_Init	sweep: guess
+0x48aa60	Sun_TestOcclusion	sweep: guess
+0x48ab90	Sun_DrawGlow	sweep: guess
+0x48ac70	Sun_UpdateDir	sweep: guess
+0x48acd0	Sun_ComputeScreenPos	sweep: guess
+0x48ad80	Sun_SetFlare	sweep: guess
+0x48ae10	Sun_DrawFlare	sweep: guess
+0x48b000	Quad_ContainsEnt	sweep: guess
+0x48b030	Ent_InOwnQuadrant	sweep: guess
+0x48b050	Ent_EnsureInQuadrant	sweep: guess
+0x48b0c0	Quad_RemoveTargetEnt	sweep: guess
+0x48b140	Ent_RemoveFromTargets	sweep
+0x48b160	Target_FindAttacker	sweep: guess
+0x48b1b0	Target_FindNearestOfType	sweep
+0x48b240	Target_FindNearestAny	sweep: guess
+0x48b330	Ent_ClearTargetedBy	sweep: guess
+0x48b390	Ent_GetForwardVec	sweep
+0x48b5e0	Target_Filter_part	sweep: mis-split
+0x48b670	Teletype_FreeSlot	sweep: stride 0x170
+0x48b6f0	Teletype_ResetSlot	sweep
+0x48b720	Teletype_ResetAll	sweep
+0x48b740	Teletype_SetText	sweep
+0x48b770	Teletype_InitSlot	sweep
+0x48b7c0	Teletype_GetScroll	sweep
+0x48b7e0	Teletype_SetDone	sweep
+0x48b800	Teletype_SetInstant	sweep: guess
+0x48b840	Teletype_Setup	sweep
+0x48b8b0	Teletype_Advance	sweep
+0x48bae0	Teletype_UpdateAll	sweep
+0x48bbb0	Teletype_DrawWrapped	sweep
+0x48bdd0	Teletype_DrawLine	sweep
+0x48bf30	Teletype_DrawAll	sweep
+0x48c030	Teletype_AllocBuffers	sweep
+0x48c270	Teletype_LayoutText	sweep: "TELETYPE CHAR"
+0x48c4a0	Teletype_SetFontName	sweep: guess
+0x48c520	Teletype_SetPos	sweep
+0x48c550	Teletype_SetVarF4	sweep
+0x48c570	Teletype_SetRate	sweep: guess
+0x48c680	Teletype_SetDelay	sweep
+0x48c6b0	Teletype_SetFlags	sweep
+0x48c6d0	Teletype_ClearFlags	sweep
+0x48c700	Teletype_SetLooping	sweep: guess
+0x48c740	Teletype_SetVarE4	sweep
+0x48c760	Teletype_SetColor	sweep
+0x48c7b0	Teletype_SetShadowColor	sweep: guess
+0x48c800	Teletype_GetRect	sweep
+0x48c820	Teletype_SetRect	sweep: guess
+0x48c8a0	Teletype_SetClip	sweep: guess
+0x48c940	Teletype_SetLineSpacing	sweep: guess
+0x48c980	Teletype_SetString	sweep
+0x48c9f0	Teletype_SetStringList	sweep
+0x48ca60	Teletype_Configure	sweep
+0x48cc10	Teletype_GetScrollRange	sweep
+0x48cc60	Teletype_GetSliderInfo	sweep
+0x48ccc0	TextBar_CalcLines	sweep
+0x48ccf0	TextBar_Init	sweep: "TEXTBAR BUFFER"
+0x48cd90	TextBar_SetY	sweep: guess
+0x48cda0	TextBar_AdvanceHead	sweep
+0x48cdf0	TextBar_ShiftLines	sweep
+0x48ce30	TextBar_Add	sweep: 23 callers, flight message line
+0x48ced0	TextBar_AddCentered	sweep: guess
+0x48cf10	TextBar_Draw	sweep
+0x48d0a0	Ticker_Build	sweep
+0x48d180	Ticker_Free	sweep
+0x48d1c0	Ticker_GetRect	sweep
+0x48d1f0	Ticker_SetSpeed	sweep: guess
+0x48d230	Ticker_SetOffset	sweep: guess
+0x48d270	Ticker_Stub	sweep: 6-byte stub
+0x48d280	Ticker_AddString	sweep
+0x48d400	Ticker_Update	sweep
+0x48d620	Ticker_Draw	sweep
+0x48e060	Sector_InitTriggerVarConds	sweep
+0x48e090	Sectors_InitTriggerVarConds	sweep
+0x48e1f0	TrigDebug_DrawLine	sweep
+0x48e2d0	TrigDebug_Draw	sweep: TRIGGER DEBUG
+0x48e3a0	Mem_AllocTagged	sweep
+0x48e3d0	Mem_AllocZeroTagged	sweep: 106 callers
+0x48e410	Vec3i_ToFloat	sweep
+0x48e480	Vec_LengthFast	sweep: guess
+0x48e590	Vec_ToAngles	sweep: guess
+0x48e720	Vec_AnglesToward	sweep: guess
+0x48e800	Rtxt_GetText	sweep: null-safe
+0x48e820	Rtxt_LookupSafe	sweep
+0x48e850	Rtxt_FindKeySafe	sweep
+0x48e8f0	f16_EncodeVec	sweep: guess
+0x48e930	f16_DecodeVec	sweep: guess
+0x48e970	Text_DrawAligned	sweep: 66 callers
+0x48eb00	Text_DrawCentered	sweep: guess
+0x48ec30	Credits_Format	sweep: guess
+0x48ec60	Rank_Format	sweep: guess
+0x48ec90	Image_LoadWithPal	sweep: guess
+0x48ecf0	Model_RandomPoint	sweep: guess
+0x48ed70	Str_ToUpperInPlace	sweep: guess
+0x48eda0	Str_CountLines	sweep: guess
+0x48ede0	File_ExistsGlob	sweep
+0x48ee60	Snapshot_NextName	sweep: snap%4.4ld
+0x48eeb0	Snapshot_Save	sweep
+0x48f2e0	Str_ReplaceToken	sweep: guess
+0x48f400	VarEq_LoadCategory	sweep: DEFINE
+0x48f530	VarEq_LoadAll	sweep
+0x48f620	Var_FindEquate	sweep
+0x48f670	Var_LookupEquate	sweep
+0x48f720	Var_FindCategory	sweep: guess
+0x48f750	VarDef_LoadCategory	sweep
+0x48f8c0	VarDef_LoadAll	sweep
+0x48f9d0	VarDef_CountTotal	sweep: guess
+0x48fb00	Var_SkipEntries	sweep
+0x48fb20	Var_EntryPtr	sweep
+0x48fb60	Var_EntryPtr2	sweep: guess
+0x48fbf0	Var_AddInt	sweep
+0x48fd70	Var_GetStrByPath	sweep: guess
+0x48fe20	VarStore_ApplyDefaults	sweep: DEFAULTS
+0x490080	Var_SectionExists	sweep: guess
+0x4900a0	Var_SectionIndex	sweep: guess
+0x4900c0	Var_KeyIndex	sweep: guess
+0x4900f0	Var_GetEntryByIndex	sweep: guess
+0x490130	Var_ResetSection	sweep: guess
+0x490180	Voice_LoadSettings	sweep: guess
+0x490300	Voice_AddPlayer	sweep
+0x490370	Voice_RemovePlayer	sweep
+0x490430	Voice_Connect	sweep
+0x4905e0	Voice_MuteByChannel	sweep
+0x490780	Voice_UnmuteByChannel	sweep
+0x4908f0	Voice_StartTransmit	sweep
+0x490a10	Voice_StopTransmit	sweep
+0x490a80	Voice_Break	sweep
+0x490ae0	Voice_SetChannelAll	sweep: guess
+0x490b70	Voice_SetChannelTarget	sweep: guess
+0x491070	VonUi_ClearSlots	sweep
+0x4910f0	Voice_HandleCommand	sweep
+0x491330	Voice_Notify	sweep: guess
+0x491440	Voice_SetChannelDirty	sweep: guess
+0x491450	VonList_WalkA	sweep: recursive, guess
+0x491530	VonList_WalkB	sweep: recursive, guess
+0x491610	Voice_GainDown	sweep
+0x491630	Voice_GainUp	sweep
+0x491660	VonUi_DrawTalker	sweep
+0x491740	VonUi_Init	sweep: vonbox.box
+0x491820	VonUi_Draw	sweep: VON_VON
+0x491bd0	VonUi_DrawRoster	sweep
+0x491f60	VonUi_Shutdown	sweep
+0x491fa0	Voice_OnPttKey	sweep
+0x491fc0	VonUi_DrawMeter	sweep
+0x492100	VonUi_SetIconPos	sweep
+0x492130	VonUi_DrawIcons	sweep
+0x492400	VonUi_BuildRoster	sweep
+0x492620	VonMenu_Init	sweep
+0x492680	VonMenu_Draw	sweep: VON_OPTIONS
+0x492920	VonMenu_Shutdown	sweep
+0x492950	VonMenu_Select	sweep
+0x4929e0	VonMenu_Back	sweep
+0x492a50	VonMenu_Next	sweep
+0x492a90	VonMenu_Open	sweep
+0x492ad0	VonMenu_Close	sweep
+0x492b00	WeaponClass_FromName	sweep
+0x492b40	WeaponDef_GetSafe	sweep: guess
+0x492b60	WeaponList_Find	sweep: guess
+0x492ba0	Ent_ClearWeaponTargets	sweep: guess
+0x492bf0	Weapon_GetName	sweep: NO WEAPON
+0x492c30	WeapGroup_GetSlot	sweep: stride 0x38
+0x492c60	WeapGroup_GetSlotDef	sweep
+0x492d30	Proj_Think	sweep: guess
+0x492d50	Proj_ThinkTrail	sweep: guess
+0x492d90	Proj_ThinkHoming	sweep: guess
+0x492ef0	Proj_ThinkAnimated	sweep: guess
+0x4930c0	Ai_PickWeapon	sweep
+0x4930e0	Weapon_GetDef	sweep: guess
+0x493100	Weapon_GetAmmo	sweep: guess
+0x493140	WeaponDefs_RangeDps	sweep: guess
+0x493190	WeaponDefs_MaxShieldDmg	sweep: guess
+0x4931d0	WeaponDefs_MinShieldDmg	sweep: guess
+0x493210	WeaponDefs_MaxStats	sweep: guess
+0x493290	WeaponDefs_MinStats	sweep: guess
+0x4933f0	WeaponMount_InitOrient	sweep
+0x493590	WeaponSys_InitDefault	sweep
+0x4935c0	Sped_InitWeapons	sweep
+0x493650	Weapon_CalcMuzzleDir	sweep: guess
+0x4937c0	WeaponDefs_ResolveModels	sweep
+0x493910	Ent_CallDescHook7c	sweep: desc +0x7c
+0x493940	Missile_LoseTargetIf	sweep
+0x493a50	Weapons_Init	sweep: weapon_desc
+0x493aa0	Weapons_LoadModels	sweep
+0x494200	Mine_SpawnClient	sweep: guess
+0x4942a0	Mine_SpawnClientWrap	sweep
+0x4942c0	Proj_OnHitSplashWrap	sweep
+0x4942d0	Proj_OnHitStaged	sweep: guess
+0x494450	Sapper_Detach	sweep: guess
+0x4944c0	Sapper_BurnOff	sweep: guess
+0x494960	Proj_PostThinkCast	sweep: guess
+0x494e90	Proj_TrailHook	sweep
+0x494eb0	Proj_ThinkWobble	sweep: guess
+0x4954c0	Proj_ThinkLinear	sweep: guess
+0x495530	Proj_ThinkSpinGrow	sweep: guess
+0x495590	Beam_AimFromOwner	sweep: guess
+0x495640	Beam_AttachToOwner	sweep
+0x495690	Beam_ThinkFade	sweep: guess
+0x495700	Beam_ThinkCharge	sweep: guess
+0x495b00	Missile_HasLockTarget	sweep: guess
+0x495c00	Beam_ThinkTractor	sweep: guess
+0x495da0	Beam_FollowOwner	sweep
+0x495e20	Beam_Create	sweep: guess
+0x495f90	Weapon_FireBeamVisual	sweep: guess
+0x496030	Beam_ThinkAttached	sweep: guess
+0x4960f0	Guided_Create	sweep: guess
+0x4962c0	Weapon_FireGuided	sweep
+0x4964d0	Bolt_CalcLead	sweep: guess
+0x496840	Beam_CreateHit	sweep: guess
+0x496a90	Proj_AnimTick	sweep
+0x496ac0	Beam_CreateMiss	sweep: guess
+0x496b60	Beam_Resolve	sweep: guess
+0x496cc0	Beam_SpawnFromNet	sweep
+0x496d60	Ent_CanBeamHit	sweep: guess
+0x496e90	Hitscan_Create	sweep: guess
+0x497430	RemoteFire_Spawn	sweep: guess
+0x4974b0	RemoteFire_Setup	sweep
+0x497530	Weapon_HasEnergy	sweep: guess
+0x497560	Weapon_CallOnSelect	sweep: guess, +0xfc
+0x4975e0	Weapon_ConsumeHalfEnergy	sweep: guess
+0x4978e0	Weapon_ReleaseHook	sweep: guess
+0x4979d0	Weapon_DespawnOwned	sweep: guess
+0x497a40	Weapon_DespawnOwnedHook	sweep
+0x497cb0	Weapon_PreFireDefault	sweep
+0x497d00	Tractor_ApplyPull	sweep: guess
+0x497dd0	Tractor_Think	sweep: guess
+0x497e70	Tractor_ThinkGrow	sweep: guess
+0x497ed0	Proj_ThinkSeek	sweep: guess
+0x498020	Tractor_SpawnParticle	sweep: guess
+0x498150	Tractor_Init	sweep: guess
+0x4981b0	ProjReplica_Orient	sweep: guess
+0x498240	ProjReplica_Init	sweep
+0x4982c0	WeapSlot_ToggleLinked	sweep
+0x4982e0	WeapSlot_SetLinked	sweep
+0x4982f0	WeapSlot_GetLinked	sweep
+0x498300	WeapSlot_GetAmmoInfo	sweep: guess
+0x4983d0	Sapper_SpawnPredicted	sweep
+0x4984e0	Sapper_SpawnExplosion	sweep: guess
+0x498550	Sapper_ThinkAttached	sweep: guess
+0x498590	Sapper_InitThink	sweep
+0x4985b0	Mine_FindByOwnerId	sweep: guess
+0x4985f0	Mine_RemoveFromList	sweep: guess
+0x4986a0	Decoy_InitCounter	sweep: guess
+0x4986c0	Decoy_Think	sweep: guess
+0x498710	Decoy_Spawn	sweep
+0x498810	Decoy_Drop	sweep
+0x498a00	Wingman_ClearSlots	sweep
+0x498d70	Wingman_CallDescHook44	sweep
+0x498e50	Wingman_GetPlayerTarget	sweep
+0x498ef0	Wingman_CanAttackTarget	sweep: guess
+0x499030	Wingman_CanProtect	sweep: guess
+0x499140	Wingman_InOtherQuadrant	sweep: guess
+0x499170	Wingman_FormationPos	sweep
+0x499220	Wingman_FlyFormation	sweep
+0x499310	Wingman_FlyToLeader	sweep
+0x499330	AiState_Formation	sweep: guess
+0x499560	WingCmd_IsAvailable	sweep
+0x4995f0	WingCmd_Issue	sweep
+0x499620	Wingman_Remove	sweep
+0x499670	Wingman_OnKilled	sweep: guess
+0x4996e0	Wingman_RemoveWrap	sweep
+0x4996f0	Wingman_DockAtBase	sweep: guess
+0x4997e0	WingMenu_Init	sweep
+0x499880	WingMenu_Draw	sweep: WINGMAN_CMD
+0x499b40	WingMenu_Shutdown	sweep
+0x499b80	WingMenu_Close	sweep
+0x499bb0	WingMenu_Select	sweep
+0x499be0	Cbin_ClassifyValue	sweep: guess
+0x499d00	Str_Length	sweep: guess
+0x499d30	Cbin_CountSections	sweep
+0x499db0	Cbin_ParseKeyValues	sweep
+0x499ee0	Cbin_ParseKeyValuesInto	sweep: guess
+0x49a050	Cbin_CountKeyValues	sweep: guess
+0x49a110	Cbin_ParseValueList	sweep: guess
+0x49a1e0	Cbin_IndexSections	sweep: "config labels"
+0x49a340	Cbin_CountSectionsAlt	sweep: guess
+0x49a3e0	Cbin_CountAllKeys	sweep: guess
+0x49a430	Cbin_ParseAllKeys	sweep: guess
+0x49a480	Cbin_ResolveValues	sweep: guess
+0x49a590	Cbin_ConvertNumbers	sweep: guess
+0x49a900	Cbin_RelocOffsets	sweep: guess
+0x49a930	Cbin_RelocPointers	sweep: guess
+0x49adb0	Cbin_Free	sweep: 30 callers
+0x49ae90	Cbin_KeyCompare	sweep: guess
+0x49aed0	Cbin_NextKey	sweep: guess
+0x49af30	Cbin_GetValuePtr	sweep: guess
+0x49af80	Cbin_FindSectionIndex	sweep
+0x49b0e0	Cbin_ConvertField	sweep: guess
+0x49b2e0	Cbin_IterField	sweep
+0x49b480	Cbin_IterField_Global	sweep
+0x49b520	Cbin_ConvertParamN	sweep: guess
+0x49b930	Cbin_GetParamN	sweep: global ctx
+0x49b960	Cbin_ConvertParam	sweep: guess
+0x49bdb0	Cbin_FindParam_Global	sweep: global ctx
+0x49be70	Cbin_ParseTemplate	sweep: guess
+0x49bf80	Cbin_LoadAndParseTemplate	sweep
+0x49bfc0	Cbin_ParseTemplate_Global	sweep
+0x49bfe0	Cbin_LoadAndParseTemplate_Global	sweep
+0x49c060	Cbin_GetStringArray	sweep: guess
+0x49c0f0	Cbin_GetStringArray_Global	sweep
+0x49c120	Cbin_CountIndexedFrom	sweep
+0x49c190	Cbin_CountIndexed_Global	sweep
+0x49c1b0	Cbin_CountIndexedFrom_Global	sweep
+0x49c1d0	Cbin_ResetGlobalCtx	sweep
+0x49c1f0	Mem_SetDebugFlag	sweep: guess
+0x49c210	Mem_SetVar3e90	sweep
+0x49c220	Mem_InitPool	sweep: mem_Init()
+0x49c320	Mem_SetVar3f74	sweep
+0x49c330	Mem_InitMainPool	sweep
+0x49c370	Mem_InitTempPool	sweep
+0x49c4e0	Mem_Alloc	sweep
+0x49c500	Mem_AllocChecked	sweep
+0x49c5c0	Mem_AllocFromMain	sweep
+0x49c600	Mem_FreeToMain	sweep
+0x49c630	Mem_CountTagged	sweep: guess
+0x49c690	Mem_FreeByTag	sweep
+0x49c6e0	Mem_FreeTag	sweep: 23 callers
+0x49c6f0	Mem_Realloc	sweep
+0x49c740	Mem_ReallocMain	sweep
+0x49c780	Mem_GetSize	sweep
+0x49c790	Mem_AllocTemp2	sweep: guess
+0x49c7d0	Mem_AllocTemp	sweep
+0x49c810	Mem_FreeTemp	sweep
+0x49c840	Mem_SetTag	sweep
+0x49c850	Mem_FindBlock	sweep: guess
+0x49c8f0	Mem_FindOwnerPool	sweep: guess
+0x49c910	Mem_CheckPool	sweep: module_CheckMem
+0x49ca70	Mem_DumpPoolStats	sweep
+0x49cb10	Mem_DumpAll	sweep
+0x49cb20	Mem_DumpStatsToFile	sweep
+0x49cb70	Mem_DumpStatsToFile2	sweep
+0x49cc70	Mem_DumpTempToFile	sweep
+0x49cca0	Mem_DumpAllPoolsToFile	sweep
+0x49cd90	Mem_FindFreeFirst	sweep: guess
+0x49cdc0	Mem_FindFreeBest	sweep: guess
+0x49cdf0	Mem_BlockContains	sweep
+0x49ce30	Mem_FindFree	sweep
+0x49ce90	SndTrig_FreeSample	sweep: guess
+0x49cf00	SndTrig_InstallCallback	sweep
+0x49cf30	SndTrig_Load	sweep: SNDTRIG DATA
+0x49d050	SndTrig_FreeSamples	sweep
+0x49d0a0	SndTrig_TotalSize	sweep: guess
+0x49d0f0	SndTrig_Free	sweep
+0x49d150	SndTrig_FindByName	sweep
+0x49d1c0	SndTrig_Find	sweep
+0x49d1f0	SndSample_Load	sweep
+0x49d260	SndSample_LoadDefault	sweep
+0x49d270	SndTrig_PreloadAll	sweep
+0x49d2d0	SndTrig_PlaySample	sweep
+0x49d430	SndTrig_PlaySingle	sweep: guess
+0x49d460	SndTrig_PlaySet	sweep: guess
+0x49d4a0	SndTrig_Play	sweep
+0x49d530	SndTrig_PlayByName	sweep
+0x49d570	SndTrig_Preload	sweep
+0x49d5d0	SndTrig_SetVarBC	sweep
+0x49d5e0	SndTrig_SetVarC0	sweep
+0x49d5f0	SndTrig_Random	sweep
+0x49d620	SndTrig_SetFilterMask	sweep: guess
+0x49d630	SndTrig_FindEvent	sweep: guess
+0x49d6b0	SndTrig_MaskAllows	sweep: guess
+0x49d6d0	SndTrig_StopEvent	sweep: guess
+0x49d700	SndTrig_StopByName	sweep: guess
+0x49d720	SndTrig_MaskBit5	sweep: guess
+0x49d740	SndTrig_PlayEvent	sweep
+0x49da00	SndTrig_PostEvent	sweep: 12 callers
+0x49da40	SndTrig_PlayOrPost	sweep
+0x49da70	SndTrig_LoadSets	sweep: SNDTRIG SETS
+0x49dd10	SndTrig_FreeSets	sweep
+0x49de10	SndTrig_Release	sweep
+0x49de60	SndTrig_PickLayer	sweep: guess
+0x49e3a0	Input_ResetMouseState	sweep
+0x49e3d0	Cursor_HideOnce	sweep
+0x49e3e0	Cursor_ShowOnce	sweep
+0x49e3f0	Cursor_ForceHide	sweep
+0x49e410	Cursor_ForceShow	sweep
+0x49e430	Input_SetVar3e68	sweep
+0x49e440	Input_SetVar3e6c	sweep
+0x49e450	Input_OnMouseMsg	sweep
+0x49e570	Cursor_CenterInWindow	sweep: guess
+0x49e5e0	Cursor_WarpAndFlush	sweep: guess
+0x49e6e0	Audio_SelectDriver	sweep: guess
+0x49e700	Audio_SetCallback	sweep
+0x49e790	Audio_Call08	sweep: driver vtable +0x08
+0x49e7b0	Audio_StopAll	sweep: guess, vtable +0x78
+0x49e7d0	Audio_SetMasterVolume	sweep: guess, vtable +0x0c
+0x49e7f0	Audio_StreamTick	sweep: vtable +0x10
+0x49e810	Audio_Refill	sweep: vtable +0x70
+0x49e830	Audio_Call14	sweep: vtable +0x14
+0x49e850	Audio_LoadSample	sweep: vtable +0x2c
+0x49e870	Audio_LoadSampleMem	sweep: vtable +0x30
+0x49e8b0	Audio_StopAllSamples	sweep: vtable +0x24
+0x49e8d0	Audio_PlaySample	sweep: vtable +0x34
+0x49e900	Audio_PlaySampleEx	sweep: vtable +0x38
+0x49e940	Audio_PlaySample3	sweep: vtable +0x3c
+0x49e980	Audio_PlaySample4	sweep: vtable +0x40
+0x49e9c0	Audio_IsPlaying	sweep: vtable +0x4c
+0x49e9e0	Audio_ReleaseSample	sweep: vtable +0x50
+0x49ea00	Audio_StopSample	sweep: vtable +0x5c
+0x49ea20	Audio_Init	sweep: vtable +0x28
+0x49ea50	Audio_SetPostCallback	sweep: vtable +0x54
+0x49ea70	Audio_OnWaveOutDone	sweep
+0x49eaa0	Audio_Call88	sweep
+0x49ead0	Audio_Call8c	sweep
+0x49eb00	Input_OnKeyUp	sweep
+0x49eb40	Input_PushKey	sweep
+0x49ebb0	Input_OnKeyDown	sweep
+0x49ec10	Input_SetVar3e28	sweep
+0x49ec60	Input_ClearAllKeys	sweep
+0x49ec80	Input_ClearKeys	sweep
+0x49eca0	Input_FlushKeyQueue	sweep
+0x49ecb0	Input_ClearKeyboardState	sweep
+0x49ecf0	Sys_SetTimerCallback	sweep
+0x49ed00	Sys_SetShutdownCallback	sweep
+0x49ed10	Timer_Stop	sweep
+0x49ed50	Timer_OnTick	sweep: guess
+0x49ed70	Sys_OnSysCommand	sweep: guess
+0x49f5b0	Sys_SetVar39a0	sweep
+0x49f5c0	Timer_Start	sweep
+0x49f710	Sys_InitState	sweep
+0x49f770	Sys_FatalExit	sweep
+0x49f790	Sys_CallShutdown	sweep
+0x49f7a0	Sys_SetVar39a8	sweep
+0x49f7b0	Sys_SetVar39ac	sweep
+0x49f7c0	Sys_SetVar39a4	sweep
+0x49f7d0	Sys_SetVar39d4	sweep
+0x49f7e0	Sys_DumpException	sweep: SYSDUMP.TXT
+0x49f9a8	Sys_DumpException_filt1	sweep: SEH fragment
+0x49f9ae	Sys_DumpException_code	sweep: SEH fragment
+0x49fa3e	Sys_DumpException_filt2	sweep: SEH fragment
+0x49fa44	Sys_DumpException_stack	sweep: SEH fragment
+0x49fadc	Sys_DumpException_err	sweep: SEH fragment
+0x49faf3	Sys_DumpException_end	sweep: SEH fragment
+0x49fb20	Sys_WaitKey	sweep: guess
+0x49fb50	Sys_Shutdown	sweep
+0x49fbc0	Mouse_Capture	sweep
+0x49fbe0	Mouse_Release	sweep
+0x49fc00	Sys_SetVar39c0	sweep
+0x49fc10	Sys_SetVar39c4	sweep
+0x49fc20	Sys_SetVar39d8	sweep
+0x49fc30	Sys_SetVar39dc	sweep
+0x49fd48	WinMain_seh_handler	sweep: SEH fragment
+0x49fd55	WinMain_seh_part	sweep: SEH fragment
+0x49fd58	WinMain_MessageLoop	sweep
+0x49fdd0	DInput_EnumDevices	sweep: guess
+0x4a0270	DInput_FreeDevice	sweep
+0x4a0340	DInput_MatchGuid	sweep: guess
+0x4a03c0	DInput_Init	sweep: DirectInputCreateA
+0x4a0420	DInput_Shutdown	sweep
+0x4a0460	DInput_ReleaseAll	sweep: guess
+0x4a0490	DInput_FreeAllDevices	sweep
+0x4a04b0	DInput_FindDevice	sweep
+0x4a04f0	DInput_SelectDevice	sweep
+0x4a05c0	DInput_SelectByGuid	sweep
+0x4a05f0	FF_SetConstantForce	sweep: guess
+0x4a0750	FF_StopConstant	sweep
+0x4a0760	FF_PlayJolt	sweep: guess
+0x4a0990	FF_StopJolt	sweep
+0x4a09b0	FF_SetSpring	sweep: guess
+0x4a0a90	FF_StopSpring	sweep
+0x4a0aa0	FF_PlayShake	sweep: guess
+0x4a0ba0	FF_StopShake	sweep
+0x4a0bb0	FF_StopAll	sweep
+0x4a0bd0	FF_SetEnabledA	sweep: guess
+0x4a0c40	FF_SetEnabledB	sweep: guess
+0x4a0cb0	FF_SetActive	sweep
+0x4a0d20	File_ResetState	sweep
+0x4a0d40	File_SetBypassPff	sweep: guess, returns old
+0x4a0d50	File_SetErrorFlag	sweep: returns old
+0x4a0e60	File_OpenRead	sweep
+0x4a10e0	File_ReadRegion	sweep
+0x4a1210	Pff_SetBase	sweep
+0x4a1220	Fs_Close	sweep
+0x4a1310	Fs_Open	sweep: file_OpenEx
+0x4a1490	Fs_Read	sweep
+0x4a14f0	Fs_Seek	sweep
+0x4a1ae0	File_SetLogCallback	sweep
+0x4a1b20	Joy_ApplyDeadzone	sweep: guess
+0x4a1c90	Joy_ResetCalibration	sweep
+0x4a1cc0	Joy_SetButtonFlag	sweep
+0x4a1ce0	Joy_ClearButtonFlag	sweep
+0x4a1d00	Joy_ReadAxis	sweep: guess
+0x4a1d40	Joy_ResetState	sweep
+0x4a1d80	Joy_SelectDevice	sweep: guess
+0x4a23e0	Joy_FreeDevice	sweep
+0x4a2500	Joy_FreeAll	sweep
+0x4a2890	Joy_FindLast	sweep: guess
+0x4a28c0	Joy_FindByGuid	sweep
+0x4a2900	Joy_Init	sweep
+0x4a2970	Joy_Shutdown	sweep
+0x4a29b0	Joy_SetVare0d0	sweep
+0x4a2da0	Pal_ResetTables	sweep
+0x4a2de0	Pal_BuildRemap	sweep
+0x4a2e00	Pal_SetMatchColor	sweep: guess
+0x4a2e30	Pal_SetVar3584	sweep
+0x4a2e40	Pal_SetLoadRange	sweep: guess
+0x4a2e70	Pal_SetVar389c	sweep
+0x4a2e80	Pal_ClearVar3898	sweep
+0x4a2e90	Pal_ClearCurrent	sweep
+0x4a2eb0	Image_Load	sweep: PCX/BMP, 11 callers
+0x4a2ec0	Image_LoadDepth	sweep: "PCX Image"
+0x4a2f60	Image_ReadPixels	sweep
+0x4a2fc0	Pcx_BuildHeader	sweep
+0x4a3030	Pcx_FlushRle	sweep
+0x4a3070	Pcx_EncodeRow	sweep
+0x4a3170	Pcx_EncodeImage	sweep
+0x4a31e0	Pcx_WriteImage	sweep
+0x4a3200	Pcx_WritePalette	sweep
+0x4a3230	Pcx_Save	sweep
+0x4a3290	Image_FlipRows	sweep: guess
+0x4a32e0	Image_DetectFormat	sweep: guess
+0x4a3320	Image_ReadHeader	sweep
+0x4a3370	Pcx_ReadPixels	sweep
+0x4a33d0	Bmp_ReadPixels	sweep
+0x4a3430	Pcx_ReadHeader	sweep
+0x4a3510	Pcx_Expand4to16	sweep: guess
+0x4a3570	Pcx_Expand4to32	sweep: guess
+0x4a35d0	Pcx_Read8	sweep
+0x4a3620	Pcx_Read16	sweep
+0x4a3680	Pcx_Read32	sweep
+0x4a36e0	Pcx_ReadPalette	sweep
+0x4a3700	Bmp_FlipRows	sweep
+0x4a3790	Bmp_ReadHeader	sweep
+0x4a3820	Bmp_Read8	sweep
+0x4a3860	Bmp_Read16	sweep
+0x4a3910	Bmp_Read32	sweep
+0x4a39c0	Bmp_ReadPalette	sweep
+0x4a3a30	Pal_Build16Lut	sweep: guess
+0x4a3ad0	Pal_Build32Lut	sweep: guess
+0x4a3b40	Bmp_Convert16	sweep
+0x4a3b70	Bmp_Convert32	sweep
+0x4a3ba0	Bmp_Convert24to16	sweep: guess
+0x4a3c20	Bmp_Convert24to32	sweep: guess
+0x4a3c70	Image_MakeAlpha	sweep: "alpha image"
+0x4a3cc0	Image_LoadWithAlpha	sweep
+0x4a3da0	Pff_SortEntries	sweep
+0x4a3e00	Pff_Open	sweep: PFF STRUCT
+0x4a3f10	Pff_FindEntry	sweep
+0x4a3f90	Pff_Exists	sweep
+0x4a3fd0	Pff_OpenEntry	sweep
+0x004a4070	Pff_SeekToEntry	sweep: guess
+0x004a41c0	Pff_ReadWholeEntry	sweep
+0x004a4230	Pff_ReadEntryRegion	sweep
+0x004a4290	Pff_GetEntrySize	sweep
+0x004a42d0	Pff_ReadError	sweep
+0x004a4330	vid_Init	sweep
+0x004a43f0	Vid_SetSysPalNoStatic	sweep
+0x004a4420	Vid_SetFlag_602328	sweep: guess
+0x004a4430	Vid_SetFlag_60232c	sweep: guess
+0x004a4440	Vid_DDSetDisplayMode	sweep
+0x004a44c0	vid_SetResInternal	sweep
+0x004a4b50	Vid_SetResWithFallback	sweep
+0x004a4bb0	Vid_SetRes	sweep
+0x004a4bd0	Vid_SetResEx	sweep
+0x004a4c40	vid_LockOTW	sweep
+0x004a4cc0	vid_UnlockOTW	sweep
+0x004a4d10	vid_LockPrimary	sweep
+0x004a4da0	vid_UnlockPrimary	sweep
+0x004a4de0	Vid_RestorePrimaryIfLost	sweep
+0x004a4e00	Vid_SelectBlitFn	sweep
+0x004a4e20	Vid_BlitOTW_Copy	sweep: guess
+0x004a4ed0	Vid_BlitOTW_A	sweep: guess
+0x004a5000	Vid_BlitOTW_B	sweep: guess
+0x004a5220	Vid_CopyRow	sweep: guess
+0x004a5340	Vid_Present	sweep
+0x004a5350	Vid_PresentRect	sweep
+0x004a54c0	Vid_RestoreCoopLevel	sweep: guess
+0x004a5510	Vid_SetPixelScale	sweep: guess
+0x004a5520	Vid_CreatePalette	sweep
+0x004a55c0	Vid_SaveSystemPalette	sweep
+0x004a56b0	Midi_Shutdown	sweep
+0x004a5760	Midi_Close	sweep
+0x004a5850	Midi_Play	sweep
+0x004a5900	Midi_Stop	sweep
+0x004a59e0	Midi_Pause	sweep
+0x004a5a40	Midi_Resume	sweep
+0x004a5aa0	Midi_ResumeFully	sweep
+0x004a5ad0	Mixer_GetVolume	sweep
+0x004a5b50	Mixer_SetVolume	sweep
+0x004a5bf0	Midi_FreeBuffer	sweep
+0x004a5c80	Midi_FreeAllBuffers	sweep
+0x004a5ca0	Midi_OpenStream	sweep
+0x004a60d0	Mixer_Open	sweep
+0x004a62a0	Mixer_Close	sweep
+0x004a6420	Midi_IdleTick	sweep
+0x004a6470	Midi_FreeTrack	sweep
+0x004a64b0	Midi_FillStreamBuffer	sweep
+0x004a6690	Midi_CopyEvents	sweep: guess
+0x004a6770	Midi_ParseFile	sweep
+0x004a69f0	Midi_ReadEvent	sweep
+0x004a6cb0	Midi_ReadVarLen	sweep: guess
+0x004a6d40	NetDrv_AddSession	refine: transport vtable PTR_PTR_0055e458 slot 0x00 (tables: DirectPlay 0x55e800, Netsock 0x55e8c8; Net_SelectTransport)
+0x004a6d90	NetDrv_FindSessionByGuid	refine: slot 0x0c
+0x004a6db0	NetDrv_FindSessionById	refine: slot 0x10
+0x004a6de0	NetDrv_Init	refine: slot 0x18 (DPlay_Init / NetSock_Init); skipped if already up
+0x004a6e10	Net_SetSrvCallbackA	sweep
+0x004a6e20	Net_SetCliCallbackA	sweep
+0x004a6e30	Net_SetCliCallbackB	sweep
+0x004a6e40	Net_SetSrvCallbackB	sweep
+0x004a6e50	NetDrv_ConnectTCPIP	refine: slot 0x20 (DPlay_InitTCPIP / NetSock_InitTCPIP)
+0x004a6ec0	NetDrv_JoinSessionById	refine: slot 0x10 lookup then Join (slot 0x3c)
+0x004a6f00	NetDrv_JoinSession	refine: slot 0x3c
+0x004a6f20	NetDrv_HostSession	refine: slot 0x40
+0x004a6f70	NetDrv_CreatePlayer	refine: slot 0x48
+0x004a6fa0	NetDrv_CreatePlayerDefault	refine: NetDrv_CreatePlayer(a, b, 0, 0)
+0x004a7060	NetDrv_SendToClientGuaranteed	refine: slot 0x64 (DPSEND_GUARANTEED on DirectPlay; Netsock = SendToClient)
+0x004a7080	NetDrv_GetServerId	refine: slot 0x74 (DirectPlay waits up to N s for message 0x4001)
+0x004a70a0	NetDrv_GetPlayerName	refine: slot 0x6c
+0x004a70d0	NetDrv_SetPorts	refine: slot 0x7c (Netsock only)
+0x004a70f0	NetDrv_SetDynamicPortUsage	refine: slot 0x80 (Netsock only)
+0x004a7110	NetDrv_GetRecvPort	refine: slot 0x84 (Netsock only)
+0x004a7130	NetDrv_GetPlayerIPAddress	refine: slot 0x8c
+0x004a7150	NetDrv_SendPacket	refine: slot 0x90 (Netsock only)
+0x004a7180	NetDrv_SetOnlineAppIDString	refine: slot 0x98 (Netsock only)
+0x004a71a0	Audio_AcmConvertAdpcm	sweep
+0x004a73c0	Audio_CheckWaveFormat	sweep: guess
+0x004a7440	Audio_DecodeWave	sweep
+0x004a7590	Audio_SetOpt_55e45c	sweep: guess
+0x004a75a0	Mss_SetChannelPriority	sweep: guess
+0x004a75d0	Mss_SetAllChannelPriority	sweep: guess
+0x004a7600	Mss_AllocChannels	sweep
+0x004a7670	Mss_OpenWaveOutDS	sweep
+0x004a7690	Mss_OpenWaveOut	sweep
+0x004a76b0	Mss_Startup	sweep
+0x004a77d0	Mss_InitDefault	sweep
+0x004a7810	Mss_Init	sweep
+0x004a7840	Mss_SetMasterVolume	sweep
+0x004a7860	Mss_PauseResumeAll	sweep
+0x004a78f0	Mss_StopAll	sweep
+0x004a7930	Mss_FindFreeChannel	sweep
+0x004a7980	Mss_VolumeToAil	sweep: guess
+0x004a79d0	Mss_StartSample	sweep
+0x004a7ab0	Mss_PlaySample	sweep
+0x004a7af0	Mss_PlayOnChannel	sweep
+0x004a7b40	Mss_Nop	sweep
+0x004a7b50	Mss_FindPlayingChannel	sweep: guess
+0x004a7ba0	Mss_CountPlaying	sweep
+0x004a7bf0	Mss_StopChannel	sweep: guess
+0x004a7c50	Mss_GetChannelField	sweep: guess
+0x004a7c90	Mss_DecodeSample	sweep
+0x004a7e30	Mss_LoadSample	sweep
+0x004a7e80	Mss_GetWavInfo	sweep
+0x004a7ed0	Mss_Fwd_4a9760	sweep: guess
+0x004a7ef0	Mss3D_OpenProvider	sweep
+0x004a7f50	Mss3D_FindProvider	sweep
+0x004a7fd0	Mss3D_Init	sweep
+0x004a8010	Mss3D_AllocObjects	sweep
+0x004a80a0	Mss3D_SetupSample	sweep
+0x004a82a0	Mss3D_PlaySample	sweep
+0x004a82f0	Mss3D_StopSample	sweep
+0x004a8330	Mss3D_StopAll	sweep
+0x004a8390	Mss3D_Shutdown	sweep
+0x004a8400	Mss3D_IsPlaying	sweep: guess
+0x004a8450	Mss3D_PauseResumeAll	sweep
+0x004a84d0	Snd_Startup	sweep
+0x004a85f0	Snd_StartupWith	sweep
+0x004a8600	Snd_StartupDefault	sweep
+0x004a8610	Snd_Shutdown	sweep
+0x004a8650	Snd_RefreshVoicesGuarded	sweep
+0x004a8680	Snd_Fwd_4df56a	sweep: guess
+0x004a86b0	Snd_DSoundSetCoopLevel	sweep
+0x004a8920	Snd_SetStereoFwd	sweep
+0x004a8930	Snd_DSoundSetVolume	sweep: guess
+0x004a8990	Snd_StartTimer	sweep
+0x004a8b10	Snd_LoadWaveFromMem	sweep: guess
+0x004a8c20	Snd_LoadWaveFile	sweep
+0x004a8c60	Snd_SetEffectGuarded	sweep
+0x004a8c90	Snd_Guarded_8c90	sweep: guess
+0x004a8cb0	Snd_MixerResetFwd	sweep
+0x004a8cc0	Snd_Fwd_4df1ac	sweep: guess
+0x004a8d10	Snd_Fwd_4df1b8	sweep: guess
+0x004a8d60	Snd_Fwd_4df2bc	sweep: guess
+0x004a8db0	Snd_Fwd_4df2c4	sweep: guess
+0x004a8e00	Snd_Fwd_4df37b	sweep: guess
+0x004a8e50	Snd_Fwd_4dedc4	sweep: guess
+0x004a8e90	Snd_Fwd_4defc9	sweep: guess
+0x004a8ec0	Snd_Fwd_4df002	sweep: guess
+0x004a8ef0	Snd_Fwd_4df05c	sweep: guess
+0x004a8f10	Snd_Fwd_4dedba	sweep: guess
+0x004a8f40	Snd_Fwd_4df444	sweep: guess
+0x004a8f70	Snd_Fwd_4df4c9	sweep: guess
+0x004a8fb0	Snd_Fwd_4df7f1	sweep: guess
+0x004a8fd0	SndStream_Close	sweep
+0x004a9000	SndStream_Open	sweep
+0x004a9220	Snd_WaveOutCheck	sweep: guess
+0x004a9560	Snd_WaveOutStop	sweep
+0x004a96e0	Snd_GetMixPos	sweep: guess
+0x004a9740	Snd_SetFlag_9740	sweep: guess
+0x004a9760	Snd_ParseWaveChunks	sweep
+0x004a9950	CdAudio_Open	sweep
+0x004a99f0	CdAudio_Play	sweep
+0x004a9b10	CdAudio_Stop	sweep
+0x004a9b50	CdAudio_IdleTick	sweep
+0x004a9bb0	DPlay_EnumModemCb	refine: guess: address-enum callback, copies the DPAID_Modem string
+0x004a9c00	DPlay_GetModemAddress	refine: guess: lobby (DirectPlayLobbyCreate, Ordinal_1) address enumeration for the modem SP
+0x004a9cf0	DPlay_FreeAllSessions	sweep
+0x004a9d10	Net_FindSessionByGuid	refine: session list 0x55e3e8, 16-byte GUID at +0x10
+0x004a9d40	Net_FindSessionById	refine: session id at +8
+0x004a9d60	DPlay_Init	sweep
+0x004a9e50	DPlay_Shutdown	sweep
+0x004a9ec0	DPlay_InitTCPIP	refine: slot 0x20: address = DPAID_ServiceProvider TCPIP + DPAID_INet (host string)
+0x004a9fd0	DPlay_InitModem	refine: slot 0x24: DPSPGUID_MODEM + DPAID_Modem/DPAID_Phone
+0x004aa120	DPlay_InitSerial	refine: slot 0x28: DPSPGUID_SERIAL + DPAID_ComPort settings
+0x004aa260	DPlay_InitIPX	refine: slot 0x2c: DPSPGUID_IPX
+0x004aa330	DPlay_RecreateInstance	refine: slot 0x30: release + CoCreateInstance(CLSID_DirectPlay, IID_IDirectPlay3A) when flagged
+0x004aa3a0	DPlay_EnumSessionsCb	refine: keeps sessions whose application GUID = 0x52e8c0 (Tachyon)
+0x004aa420	DPlay_EnumSessions	refine: slot 0x34, IDirectPlay3A::EnumSessions
+0x004aa4b0	DPlay_StopEnumSessions	refine: slot 0x38
+0x004aa520	DPlay_JoinSession	refine: slot 0x3c
+0x004aa750	DPlay_HostSession	refine: slot 0x40
+0x004aa910	DPlay_CloseSession	refine: slot 0x44
+0x004aa930	DPlay_CreatePlayer	refine: slot 0x48
+0x004aaa00	DPlay_DestroyPlayer	refine: slot 0x4c
+0x004aaa20	DPlay_HandleSysMsg	sweep
+0x004aab70	DPlay_GetMessageCount	refine: slot 0x50, IDirectPlay3A::GetMessageCount (Netsock: stub)
+0x004aabb0	DPlay_GetMessage	sweep
+0x004aac50	DPlay_SendToServer	sweep
+0x004aace0	DPlay_SendToServerGuaranteed	refine: slot 0x5c, Send(server, DPSEND_GUARANTEED)
+0x004aad70	DPlay_SendToClient	sweep
+0x004aae00	DPlay_SendToClientGuaranteed	refine: slot 0x64
+0x004aae90	DPlay_SendToAll	refine: slot 0x68, Send(DPID_ALLPLAYERS, 0) (Netsock: stub)
+0x004aaf10	DPlay_GetPlayerName	refine: slot 0x6c
+0x004aafd0	DPlay_SetPlayerName	refine: slot 0x70, IDirectPlay3A::SetPlayerName (Netsock: stub)
+0x004ab020	DPlay_WaitForServerId	refine: slot 0x74: pump messages up to N s until 0x4001 arrives
+0x004ab090	DPlay_GetIpStub	sweep
+0x004ab0a0	Net_AddSession	sweep
+0x004ab1e0	Net_FreeSession	sweep
+0x004ab240	Net_CountSessions	sweep
+0x004ab260	NetSock_Init	sweep
+0x004ab290	NetSock_Shutdown	sweep
+0x004ab2d0	NetSock_InitTCPIP	sweep
+0x004ab2f0	NetSock_CloseTCPIP	sweep
+0x004ab320	NetSock_EnumSessionsCb	refine: keeps sessions whose app GUID (+0xe0) = 0x52e8c0
+0x004ab3a0	NetSock_EnumSessions	sweep
+0x004ab420	NetSock_JoinSession	sweep
+0x004ab570	NetSock_HostSession	sweep
+0x004ab6c0	NetSock_CreatePlayer	sweep
+0x004ab780	NetSock_DestroyPlayer	sweep
+0x004ab7a0	NetSock_HandleSysMsg	sweep
+0x004aba00	NetSock_GetPlayerName	sweep
+0x004aba70	NetSock_GetServerId	sweep
+0x004abaa0	NetSock_SetPorts	sweep
+0x004abac0	NetSock_SetDynamicPortUsage	sweep
+0x004abae0	NetSock_GetRecvPort	sweep
+0x004abb00	NetSock_EnableServerCompression	sweep
+0x004abb20	NetSock_GetPlayerIPAddress	sweep
+0x004abb50	NetSock_SendPacket	sweep
+0x004abb80	NetSock_SetOnlineAppIDString	sweep
+0x004abbb0	Gfx_InitTables	sweep: guess
+0x004abca0	Gfx_SetVar_60f870	sweep: guess
+0x004abcc0	Gfx_DefineColor	refine: colour index -> 8-bit match, packed pixel, and RGB tables (0x5a6340/63c0/6440)
+0x004abd90	Gfx_ClipLine	sweep
+0x004ac440	Gfx_DrawImageSw	refine: software path via Sw_DrawTriangleFlags (flag 0x200000 + bright mode doubles intensity)
+0x004ac6b0	Gfx_DrawImageHw	refine: hardware path (driver control 0x1010/0xf, triangle slot 0x604550)
+0x004aca50	Gfx_DrawImageHwTinted	refine: hardware tinted variant
+0x004acde0	Gfx_DrawImageTinted	refine: Gfx_DrawImage with colour arg
+0x004ace10	Gfx_DrawImage	refine: draw current image record (DAT_005a64c8) as a screen quad at rect 0x5a62d8..; sw or hw path (23 UI callers)
+0x004acf80	Gfx_ReleaseTexture	refine: driver slot 0x604538 = Hw_d3d texture uncache ("Attempted Uncache during FB Lock")
+0x004acfa0	Gfx_HwControl1	refine: guess: driver control(1) after palette/lighting changes (texture reload?)
+0x004ad0c0	Gfx_SetFogColor	refine: driver colour slot 3 (halved in bright mode); also kept at 0x60f864..
+0x004ad120	Gfx_SwClearToFogColor	refine: 32-bit software: fill viewport with fog colour
+0x004ad190	Gfx_ClearToFogColor	refine: frame clear to fog colour (sw 32-bit or driver slot 0x604540)
+0x004ad240	Gfx_SetTextureMulti	refine: two-texture set (desc2 slot 0x6044d8); software falls back to stage 0
+0x004ad290	Gfx_HwSetConstColor	refine: desc2 slot 0x6044c4 stores a constant colour (batch colour from Pipe)
+0x004ad2b0	Gfx_SetPalCurve	sweep: guess
+0x004ad380	Gfx_SetBrightMode	refine: guess: 0x60f874 + driver state 8; halves fog colour, doubles image intensity (modulate 2x?)
+0x004ad3a0	Gfx_HwControl50	refine: guess: driver control(0x50), used by fog sheets
+0x004ad3c0	Gfx_HwControl	refine: driver control/ioctl slot 0x60451c (0x1030 init with hwnd, 0xf query, 0x1010, 0x50)
+0x004ad3d0	Gfx_HwSetState	refine: driver slot 0x604578: state[idx] = value (7, 8 seen)
+0x004ad3f0	Gfx_Present	sweep
+0x004ad410	Gfx_HwSetOption	refine: guess: driver slot 0x604528 stores one flag (Video_InitHardware)
+0x004ad430	Gfx_LockOTW	sweep
+0x004ad450	Gfx_UnlockOTW	sweep
+0x004ad470	Gfx_HwSetClipRect	refine: driver slot 0x60452c sets clip rect x0,y0,x1,y1
+0x004ad4a0	Pal_SwapMemPool	refine: exchange PalRef allocation pool id 0x55e968
+0x004ad4b0	Pal_SetMemPool2	refine: guess
+0x004ad4c0	Pal_FreeAllRefs	sweep
+0x004ad4e0	Pal_SetTableDepth	refine: 16 or 32-bit lookup tables (0x55e964)
+0x004ad500	Pal_FreeRefList	sweep
+0x004ad520	PalRef_Create	sweep
+0x004ad610	PalRef_Load	sweep: guess
+0x004ad7d0	PalRef_Free	sweep
+0x004ad8b0	Pal_IdentityRemap	sweep: guess
+0x004ad9c0	Gfx_SelectPalRef	refine: select PalRef remap tables (+0x708..) for the sw rasterizer and driver stage 0 (19 callers)
+0x004ada40	Gfx_SelectPalRefStage	refine: PalRef for driver texture stage 0/1
+0x004ada90	Pal_ApplyToTexture	sweep: guess
+0x004adb70	Hw3d_LoadDriver	sweep
+0x004adc30	Hw3d_UnloadDriver	sweep
+0x004adc70	Hw3d_Activate	refine: driver slot 0x604508; on success hardware mode on (0x564ae4), 565 masks
+0x004adcb0	Hw3d_Deactivate	refine: driver slot 0x604518; hardware mode off
+0x004adcd0	Image_InitRecord	refine: image/texture record: data, w, h, bpp, centre (x128)
+0x004adda0	Image_SetSubRect	refine: x,y,w,h (x128) sub-rectangle
+0x004addf0	PolyFont_Free	sweep
+0x004ade60	PolyFont_Load	sweep
+0x004ae1a0	Text_Draw	sweep
+0x004aec10	Text_DrawClipped	sweep: guess
+0x004aecf0	Gfx_InitState	refine: default scales/masks then Gfx_InitTables
+0x004aef50	Pal_SaturateRange	sweep
+0x004af000	Gfx_SetSwClipRect	refine: software clip rect 0x604460..6c
+0x004af030	Gfx_SetBlitTarget	refine: software blit destination 0x5a62c4
+0x004af050	Gfx_SetBlitSource	refine: software blit source 0x5a62c0
+0x004af070	PolyFont_Blit	sweep
+0x004af0b0	Pak_Error	sweep
+0x004af0d0	Pak_LogMissingTexture	sweep
+0x004af180	TexCache_Alloc	sweep
+0x004af1d0	TexCache_FindMaterial	sweep: guess
+0x004af220	Light_SetLightColor	refine: LIGHT_RGB (0x6691e8..), rebuild shade ramp (ArtDebug light R/G/B, Bdf, neutral 200,255,255)
+0x004af260	Light_SetGammaParams	refine: gamma (spacesav[0x38]), brightness, contrast (0x6691f4..fc); rebuild shade ramp
+0x004af290	Light_SetAmbient	refine: ambient 0x666b00 (BDF +0xc0; neutral 0x80; reset 0x28); Ent_Draw brightness bias is relative to it
+0x004af2a0	Light_SetSectorTint	refine: sector RGB 0x669200 (Scene_SetPalParams)
+0x004af2c0	Rend_SetFlushPerEntity	refine: 0x66920c: Ent_Draw flushes the pipeline after each entity (target view)
+0x004af2d0	Rend_SetForceClip	refine: 0x669210: Ent_Draw forces all clip planes on (target view)
+0x004af2e0	Rend_ResetScene	refine: clears material/texture cache 0x62c12c, palette cache, loaded-pak table; ambient 0x28; vertex light mode 0
+0x004af3a0	Ent_DistToCamera	refine: approx |camera - entity| (duplicate of Ent_CameraDistance)
+0x004af3e0	Vec_ShortenBy	refine: v -= v * (amount/|v|)
+0x004af450	Pal_FindCached	sweep
+0x004af550	Pal_FreeCached	sweep
+0x004af8d0	Pak_BindAnimTexture	sweep: guess
+0x004afa70	Mat_RemapColorIndex	refine: material RGB +0x1c..1e -> palette index via Pal_BuildRemap
+0x004afac0	Mesh_FaceLimitError	sweep
+0x004afed0	Pak_ComputeLodDistances	refine: overwrites file LOD distances (all but last): d_i = (r + r*focal(0x604470)/((screenW/4)>>i)) * LOD scale 0x668f88, i.e. LOD i+1 once projected radius < (W/4)/2^i px; last entry clamped separately
+0x004b0180	Pak_OutOfMemory	sweep
+0x004b01d0	PakTex_DecodeImage	sweep
+0x004b0280	PakTex_BadSizeError	sweep
+0x004b0730	Pak_LogPath	sweep
+0x004b07a0	Pak_SetErrorCallback	sweep
+0x004b07f0	Pak_FindLoaded	sweep
+0x004b0840	PakTable_Add	refine: first free entry of the loaded-pak table 0x6110a0 (256 x 0x18): pointer + name
+0x004b08a0	PakClone_CalcSize	sweep: guess
+0x004b08e0	PakClone_CopyPart	sweep: guess
+0x004b0980	PakClone_CopyParts	sweep: guess
+0x004b0a20	PakClone_CopyBody	sweep: guess
+0x004b0ac0	PakClone_CalcTotalSize	refine: allocation size for a runtime clone
+0x004b0b00	StateBlock_CalcSize	refine: size of the pak state block (+0x4c)
+0x004b0b40	PakClone_CopyStateBlock	refine: copy + rebase the state block into the clone
+0x004b1450	Pak_CreateClone	refine: allocate + Model_CloneFromPak (runtime instance copy)
+0x004b1760	TexCache_Release	refine: refcount-- on a material cache entry; frees texture on zero
+0x004b17c0	Pak_FreeModel	sweep
+0x004b1810	Pak_Unload	sweep
+0x004b1840	Pak_UnloadModel	refine: Pak_Unload(model name +0x70)
+0x004b1860	Pak_SetTexturesEnabled	refine: 0x62c124: load texture sections (Mesh_Relocate binds materials only when set)
+0x004b1870	Rend_SetTickRate	refine: guess: n and 0x10000/n (init 50 = 50 Hz)
+0x004b1890	Rend_SetAnimClock	refine: guess: tick & 0xffff and tick*(1/rate) for material/state animation
+0x004b18c0	Rend_Init	refine: clears renderer globals, scale 1/65536, tick rate 50
+0x004b1940	Rend_SetCamera	refine: camera position 0x666ab0 and angles; inverse rotation sin/cos
+0x004b19a0	Ent_ToCameraSpace	refine: ent +0x28..0x30 = R_cam^-1 (pos - cam)
+0x004b19f0	Ent_Draw	refine: per-instance brightness bias (flag 0x40, +0x10), alpha (0x80, +0x14), scale (0x10) then Ent_DrawModel
+0x004b1ab0	Ent_DrawAtLod	refine: as Ent_Draw with explicit LOD
+0x004b1bb0	Rot_FromAngles	sweep
+0x004b1be0	Rot_FromAnglesInv	sweep
+0x004b1c70	Pak_SetFaceLimit	refine: 0x668f2c (default 1000, cmdline): Mesh_Relocate "Face count exceeds limit"
+0x004b1c80	Pak_SetMemPools	refine: 0x668f58/5c allocation pools for clones/textures (-1 = default)
+0x004b1ca0	Pak_SetForcedTexFlags	refine: 0x668f60 OR'd into every material's texture flags at load/bind
+0x004b1cb0	Model_GetRootMesh	refine: LOD0 group, part 0 mesh
+0x004b1cf0	Model_GetRootPart	refine: &LOD0 part 0
+0x004b1d10	Rend_SetFrustumSlopes	refine: side-cull slopes from view width/height and focal length
+0x004b1d80	Rend_SwapLodScale	refine: sets LOD distance scale 0x668f88 (init 0x10000), returns old
+0x004b1d90	Model_GetAttachCount	refine: root mesh attach point count (+0x38)
+0x004b1df0	Part_PlaceChildrenAt	refine: Part_PlaceChildren with origin from part matrix block (+0x28 -> +0x30..)
+0x004b1ee0	Part_TransformAttachPoints	refine: mesh attach points (+0x50, n +0x38) -> world, written through the loader-patched pointer in each record
+0x004b1fb0	Part_ComputeWorldTransform	refine: part matrix = ent angles x part angles x scale; places children and attach points (notes/capships.md)
+0x004b21c0	Ent_UpdatePartTransforms	refine: Part_ComputeWorldTransform for every LOD0 part
+0x004b2210	Model_ComputeRadius	refine: max vertex distance over all LOD0 parts (unit-scale temp instance); Pak_Load overwrites header radius with it
+0x004b2370	Model_ComputeRadiusAtOrigin	refine: Model_ComputeRadius with zero origin
+0x004b23a0	Fog_SetDepthRange	refine: (enable, MAX, MIN) depth fog for vertex fog alpha (notes/formats.md Fog)
+0x004b2410	Rot_ApplyCurrent	refine: rotate vector by the current sin/cos set (GLBL_fvec3_rotA/B); used as world->camera and world->model
+0x004b2a40	Model_SetPartFlags	refine: LOD0 part[i].flags |= bits (0x40 no-rot, 0x84 hidden, 0x200 roll-only)
+0x004b2a80	Model_ClearPartFlags	refine: LOD0 part[i].flags &= ~bits
+0x004b2ac0	Ent_CollisionAabb	refine: min/max of collision-block verts (+0x48) rotated by ent angles
+0x004b2c10	Ent_ComputeAabb	refine: collision AABB extended by all transformed LOD0 vertices (SectorMap_LinkObject)
+0x004b2db0	Rend_SetViewport	refine: View_SetRect then Frustum_SetPlanes(view planes, 4)
+0x004b2e00	View_ProjectPointFixed	refine: View_ProjectPoint, result <<7
+0x004b2e30	Coll_DebugDrawModel	refine: draws the collision block (+0x48) with Gfx_DrawLine
+0x004b3260	Coll_DebugDraw	refine
+0x004b33e0	Coll_PlaneDist	sweep
+0x004b3450	Vec_LerpF	refine: out = a + (b-a)*t (floats)
+0x004b34a0	Coll_ProjectToTriPlane	refine: guess: distance along tri normal and along edge axis
+0x004b3500	Coll_PointInBox	refine: point inside tri AABB (+0x28..+0x3c)
+0x004b3a10	Light_SetSunDirection	refine: normalised, halved light direction 0x55ecac
+0x004b3a70	Ent_CameraDistance	refine: approx |entity pos - camera pos|
+0x004b3ab0	Ent_SelectLod	refine: first LOD whose threshold*scale >= camera distance; returns mesh or 0 (beyond last LOD); index in DAT_0055eca8
+0x004b3b20	Cull_SphereSideTest	refine: |x|-r <= slopeX*z and |y|-r <= slopeY*z (slopes DAT_00668f64/68 from Rend_SetFrustumSlopes)
+0x004b3b80	Cull_SphereSimple	refine: near/far (R_DIST_MIN/MAX) on camera-space z +- radius*scale, then side test unless ent flag 1
+0x004b3bf0	Cull_SphereClip	refine: far test then Frustum_SphereVisible; stores plane clip mask at ent +0x1a; radius uses max per-axis scale (flag 0x200)
+0x004b3d30	Model_BuildRotScale	refine: 3x3 (GLBL_3VEC3_output) from ent angles +0x34 and scale (flag 0x10 uniform +4, 0x200 per-axis +4/+8/+c); flag 4/part 0x40 = no rotation; flag 0x100/part 0x200 = roll-only
+0x004b3eb0	Part_PlaceChildren	refine: transforms the part's attach points by the current matrix + origin into child part positions (+0x30..)
+0x004b4230	Mesh_TransformVertsNoRot	refine: scale-only variant of Mesh_TransformVerts
+0x004b43b0	Mesh_TransformVerts	refine: model->camera space per vertex (+0x24.. -> +0..), depth-fog alpha in +0x18 when DAT_00668fc8; no-rotation path -> Mesh_TransformVertsNoRot
+0x004b4630	SubPart_TransformVertsNoRot	refine: scale-only child-part variant
+0x004b47b0	SubPart_TransformVerts	refine: child-part variant (origin from part +0x28 -> +0x30..)
+0x004b49d0	Light_PrepareMesh	refine: clears vert lighting; L=sun dir, H=normalize(normalize(cam-pos)+2L)/2; both rotated into model space
+0x004b4af0	Vec_DotFixed14	sweep
+0x004b4b20	Mat_ShadeDiffuse	refine: vertex colour = shade ramp[256+bias+2d] (notes/formats.md Sector lighting)
+0x004b4b80	Mat_ShadeSpecular	refine: grey highlight from +0xd..f by material spec power -> vertex specular
+0x004b4c10	Mat_ShadeSelfLit	refine: self-lit (alpha +0x0f) grey via table 0x60f880, fog-darkened
+0x004b4cf0	Mat_ShadeVerts	refine: per-material dispatch to Mat_Shade{Diffuse,Specular,SelfLit}
+0x004b4d70	Light_ComputeVertDots	refine: per-vertex diffuse byte +0xc = clamp(N.L>>9,0,127); +0xd/e/f = (N.H)^1/^2/^4 for specular power 1/2/3; installed via fn ptr DAT_0055ed18
+0x004b4df0	Light_ComputeVertDotsLightning	refine: as Light_ComputeVertDots but diffuse scaled by lightning level DAT_00668f8c
+0x004b4ed0	Mesh_ShadeAndSubmit	refine: Light_PrepareMesh, per-vertex dots (fn ptr), then per material: anim frame, Mat_ShadeVerts, Pipe_SubmitTris
+0x004b4f40	Model_DrawSinglePart	refine: depth/frustum cull (Cull_SphereSimple), state anim, Model_BuildRotScale, transform verts, shade+submit
+0x004b4fb0	Model_DrawMultiPart	refine: plane-cull (Cull_SphereClip), root part then child parts (flags 0x84 = hidden) with attach-point placement
+0x004b5080	Ent_DrawModel	refine: distance LOD pick (Ent_SelectLod) -> single/multi part draw
+0x004b50d0	Ent_DrawModelAtLod	refine: explicit LOD index (clamped to n_lods-1)
+0x004b5120	Light_SelectVertexMode	refine: 1 = lightning-scaled per-vertex dots, else normal (fn ptrs 0x55ed18/1c)
+0x004b5500	Music_Tick	sweep
+0x004b5550	Music_Close	sweep
+0x004b5650	Music_IsOffOrMuted	refine: true if no music loaded or the spacesav music volume is 0
+0x004b5900	MusScr_FreeBin	sweep
+0x004b5920	MusScr_RelocBin	sweep
+0x004b59b0	MusScr_StartMain	sweep
+0x004b59d0	MusScr_StopMain	sweep
+0x004b59e0	MusScr_RunMain	sweep
+0x004b5af0	MusScr_Stop	sweep
+0x004b5b20	MusScr_SetVar	refine: game variable slot write (0x6695ec + slot*4)
+0x004b5b40	MusScr_GetVar	refine: game variable slot read
+0x004b5b60	MusScr_SetNativeTable	refine: (table, count): actual2_load passes the GEcho table 0x55ed28
+0x004b5c60	MusOp_Nop	refine: opcode table 0x55ee5c entries 0,13,14,31,38,39,44-47,54,55,60
+0x004b5c70	MusOp_PushU8	refine: op 1
+0x004b5c80	MusOp_PushU32	refine: op 2
+0x004b5c90	MusOp_PushGlobal	refine: op 3 (globals base 0x6695b0)
+0x004b5cb0	MusOp_PushLocal	refine: op 4 (locals base 0x669480)
+0x004b5cd0	MusOp_PushGlobalAddr	refine: op 5
+0x004b5cf0	MusOp_PushLocalAddr	refine: op 6
+0x004b5d10	MusOp_PushConst	refine: op 7 (script constant table +0x30)
+0x004b5d30	MusOp_PopGlobal	refine: op 8
+0x004b5d50	MusOp_PopLocal	refine: op 9
+0x004b5d70	MusOp_CopyToGlobal	refine: op 10 (memcpy)
+0x004b5da0	MusOp_CopyToLocal	refine: op 11 (memcpy)
+0x004b5dd0	MusOp_PushVm	refine: op 12, pushes the VM object
+0x004b5de0	MusOp_ClearStack	refine: op 15 (handler body is a bare ret; the dispatcher resets the stack)
+0x004b5df0	MusOp_Add	refine: op 16
+0x004b5e00	MusOp_Sub	refine: op 17
+0x004b5e10	MusOp_Mul	refine: op 18
+0x004b5e20	MusOp_Div	refine: op 19
+0x004b5e30	MusOp_Mod	refine: op 20
+0x004b5e40	MusOp_LogAnd	refine: op 21
+0x004b5e60	MusOp_LogOr	refine: op 22
+0x004b5e80	MusOp_And	refine: op 23
+0x004b5e90	MusOp_Or	refine: op 24
+0x004b5ea0	MusOp_Xor	refine: op 25
+0x004b5eb0	MusOp_Neg	refine: op 26
+0x004b5ec0	MusOp_Not	refine: op 27
+0x004b5ed0	MusOp_Shl	refine: op 28
+0x004b5ee0	MusOp_Sar	refine: op 29
+0x004b5ef0	MusOp_LogNot	refine: op 30 (x==0 -> -1)
+0x004b5f00	MusOp_Eq	refine: op 32 (-1/0)
+0x004b5f20	MusOp_Ne	refine: op 33
+0x004b5f40	MusOp_Ge	refine: op 34
+0x004b5f60	MusOp_Le	refine: op 35
+0x004b5f80	MusOp_Gt	refine: op 36
+0x004b5fa0	MusOp_Lt	refine: op 37
+0x004b5fc0	MusOp_IncGlobalByte	refine: op 40
+0x004b5fd0	MusOp_DecGlobalByte	refine: op 41
+0x004b5fe0	MusOp_IncLocalByte	refine: op 42
+0x004b5ff0	MusOp_DecLocalByte	refine: op 43
+0x004b6000	MusOp_Jmp	refine: op 48
+0x004b6010	MusOp_Jz	refine: op 49
+0x004b6030	MusOp_Jnz	refine: op 50
+0x004b6050	MusOp_SysCall	refine: op 51, table 0x669400 (null entry pushes 0)
+0x004b6070	MusOp_Call	refine: op 52
+0x004b6090	MusOp_Switch	refine: op 53
+0x004b6100	MusOp_ArgsToLocals	refine: op 56
+0x004b6130	MusOp_Ret	refine: op 57 (CF ends the pass)
+0x004b6140	MusOp_Yield	refine: op 58, wait for the segment to end
+0x004b6150	MusOp_GotoState	refine: op 59 (u8)
+0x004b6170	MusOp_PlaySegment16	refine: op 61, play segment (u16) and yield
+0x004b6190	MusOp_PlaySegment8	refine: op 62, play segment (u8) and yield
+0x004b61b0	MusOp_GotoStartState	refine: op 63
+0x004b61d0	MusOp_CallNative	refine: op 64, pushes result
+0x004b6240	MusNat_FSet	refine: native "FSet" (table 0x55ed28)
+0x004b6260	MusNat_FClear	refine: native "FClear"
+0x004b6280	MusNat_FIsSet	refine: native "FIsSet"
+0x004b62a0	MusNat_FIsClear	refine: native "FIsClear"
+0x004b62c0	MusDbg_OnStep	refine: debugger hook per VM step: IP -> source line (debug info +0x124/+0x128); mode 1 listbox select + watch, mode 2 text console
+0x004b63c0	MusDbg_ShowListing	refine: console: "Listing not available" / "%s not found"
+0x004b6460	MusDbg_ShowSource	refine: console: source lines around the current line
+0x004b6580	MusDbg_FormatVar	sweep
+0x004b66e0	MusDbg_ShowVars	refine: console: variable list (MusDbg_FormatVar)
+0x004b6780	MusDbg_UpdateWatch	refine: window mode: SetWindowTextA with formatted vars
+0x004b68a0	MusDbg_FindLine	refine: guess: line lookup in source text
+0x004b6910	MusDbg_ConsoleRow	refine: row pointer in the 80-column console buffer
+0x004b7780	Pool_SetVar_55effc	sweep: guess
+0x004b7790	Pool_Clear	refine: zero the pool storage and rebuild the free list
+0x004b7990	List_ResetIter	sweep: guess
+0x004b79a0	List_IterNext	sweep: guess
+0x004b79c0	List_GetCount	sweep: guess
+0x004b7a40	NetSrv_CallCb13	refine: server callback slot 13 (0x6af7bc); Tachyon registers Nop
+0x004b7a50	NetSrv_InitPlayerEvents	sweep
+0x004b7bb0	NetSrv_MarkPlayerReady	sweep: guess
+0x004b7be0	NetSrv_BumpSession	sweep: guess
+0x004b7c60	NetSrv_FreePlayerEvents	sweep: guess
+0x004b7db0	NetSrv_TickTimeouts	refine: per active conn: +0xac counter++
+0x004b7e00	NetSrv_CallWorldTick	refine: callback slot 7 (0x6af7a4) = TachSrv_WorldTick
+0x004b7e10	NetSrv_CallCb14	refine: callback slot 14 (0x6af7c0); Tachyon registers Nop
+0x004b7e30	NetSrv_DisconnectPlayer	refine: clears conn state, slot 10 (Nop) then slot 14
+0x004b7f10	NetSrv_RecordEventSeen	refine: per-player 128-entry ring of event ids (+0x7c/+0x80)
+0x004b7f50	NetSrv_HasSeenEvent	refine: event id in the player's ring -> 1 (duplicate filter)
+0x004b7f80	NetSrv_DispatchEvent1	refine: callback slot 8 (Tach_SrvDispatchEvent) with flag 1
+0x004b7fb0	NetSrv_DispatchEvent0	refine: same with flag 0
+0x004b81d0	NetSrv_ClearRecvFlags	refine: guess: conn +0xa4 = 0 for all active
+0x004b8210	NetSrv_ClearRecvFlagsIfSet	refine: guess
+0x004b82b0	NetSrv_AvgSendSize	refine: average of the 32-entry send-size ring 0x6af6fc
+0x004b82d0	NetSrv_RecordSendSize	refine: append to the send-size ring
+0x004b8780	NetSrv_SetLocalPlayer	refine: guess: local (listen-host) player params, then NetSrv_OnPlayerJoin
+0x004b8860	NetSrv_Shutdown	sweep
+0x004b8a60	NetCli_CallEndFrame	refine: client callback slot 3 (0x6af58c) = CliPools_EndFrame
+0x004b8af0	NetCli_DispatchEvent1	refine: callback slot 4 (Tach_CliDispatchEvent) with flag 1
+0x004b8b10	NetCli_DispatchEvent0	refine: same with flag 0
+0x004b8b30	NetCli_RecordEventSeen	refine: 128-entry ring 0x6af5dc
+0x004b8b60	NetCli_HasSeenEvent	refine: duplicate filter
+0x004b8f60	NetCli_Shutdown	sweep
+0x004b9020	NetCli_RaiseSessionSeq	refine: 0x6af620 = max(current, n)
+0x004b9040	NetBridge_Alloc	sweep
+0x004b9160	FogSheets_Init	refine: Math_InitSinTable (notes/formats.md Fog sheets)
+0x004b9170	FogSheets_Enable	refine: 0x564d14
+0x004b91a0	FogSheets_SetFrontRgb	refine: FRONT_RGB 0x55f1ec (sheet tint)
+0x004b91c0	FogSheets_SetBackRgb	refine: BACK_RGB 0x55f1f0 (no reader)
+0x004b91e0	FogSheets_SetDoa	refine: DOA (no reader)
+0x004b9250	FogSheets_Render	refine: up to 5 additive screen quads (notes/formats.md)
+0x004b99a0	FogSheets_SetSlotTexture	refine: slot texture + log2 dims
+0x004b9a10	FogSheets_SetSlotPalette	refine
+0x004b9a50	FogSheets_FeedTranslate	refine: camera translation -> strafe/near/scroll
+0x004b9b70	FogSheets_FeedRotate	refine: camera yaw/pitch/roll -> slot offsets
+0x004b9e90	Pipe_SetBatchColor	refine: packs ARGB into DAT_006c8f64, copied into new batches (+0x10)
+0x004b9ec0	Pipe_Init	sweep
+0x004b9f80	Pipe_BumpModelCount	sweep
+0x004b9f90	Pipe_GetBatch	refine: find/open the draw batch for a material (dedup within this flush); 0x30-byte batch records at 0x6b0f60
+0x004ba0f0	Pipe_ProjectVertex	refine: perspective-divide one camera-space vertex into the batch vertex buffer (0x28 bytes: sx,sy,z,rhw,col,spec,uv...)
+0x004ba1f0	Pipe_AddVertexDedup	refine: append screen vertex unless identical to one of the last 8
+0x004ba2b0	Pipe_SubdivideTri	refine: recursive midpoint split (depth<3) when the triangle's 1/w range is large: perspective-correct UV/colour
+0x004ba6a0	Pipe_SubmitTris	refine: flush on buffer limits, get batch, clip (Clip_PolyToFrustum), project, backface cull, emit indices
+0x004bab80	Pipe_EndFrameStats	refine: snapshot+clear 9 counters; fps from 16-frame GetTickCount ring
+0x004babf0	Pipe_FlushBatches	refine: draw all batches for passes 0..5, then reset buffers
+0x004bace0	Pipe_DrawBatchesForPass	refine: per batch with matching pass byte: set colour/material/texture(s), Gfx_DrawPolyBatch
+0x004bae10	Clip_SelectClipper	refine: picks the polygon clip routine (DAT_006b0954) for mode 1..4
+0x004bae60	Frustum_SetPlanes	refine: copy N planes (float4) to 0x6b0960
+0x004baeb0	Frustum_PointInside	refine: point inside every plane selected by mask
+0x004baf20	Frustum_SphereVisible	refine: false if sphere fully behind any of DAT_006b0950 planes
+0x004bafa0	Frustum_SphereClipMask	refine: bitmask of planes the sphere straddles
+0x004bb020	Clip_ResetScratch	refine
+0x004bb030	Clip_PolyToFrustum	refine: clip polygon successively against each frustum plane (ping-pong buffers)
+0x004bbd70	View_SetScreen	refine: view struct 0x6b0820: fov, width, height, centre; then View_ComputeFrustum
+0x004bbdc0	View_ComputeFrustum	refine: focal length from fov (+0x14), half-angles, then View_BuildFrustumPlanes
+0x004bbe50	View_SetRect	refine: viewport rect/centre and fov (sprite name was wrong)
+0x004bbfc0	View_BuildFrustumPlanes	refine: side planes from half-angles, near/far plane (far 1.6e6)
+0x004bc060	Math_InitSinTable	refine: fills sine table 0x6af800
+0x004bc0a0	Math_SinCosFromTable	refine: interpolated sin/cos from table by float bits
+0x004bc110	View_ProjectPoint	refine: camera-space point -> screen x,y
+0x418540	Snd3D_InitDefault	sweep
+
+# --- FUN_ sweep (2026-11-11): hand-written asm region 0x4cb000-0x52e000 (Snd mixer, font/line/tri rasterizers, math). ---
+0x004cb480	SndAsm_MixRet	sweep: asm, reg-passed args; guess
+0x004cc601	SndAsm_ResetStreams	sweep: asm, reg-passed args; guess
+0x004dedba	SndAsm_SetVoiceByte3f	sweep: asm, reg-passed args; guess
+0x004dedc4	SndAsm_SetAllVolPan	sweep: asm, reg-passed args; guess
+0x004defc9	SndAsm_StopAllVoices	sweep: asm, reg-passed args; guess
+0x004df002	SndAsm_PlayBuffer	sweep: asm, reg-passed args; guess
+0x004df05c	SndAsm_StartVoice	sweep: asm, reg-passed args; guess
+0x004df1ac	SndAsm_StartVoiceA_Fwd	sweep: asm, reg-passed args; guess
+0x004df1b8	SndAsm_StartVoiceA	sweep: asm, reg-passed args; guess
+0x004df2bc	SndAsm_StopVoice_Fwd	sweep: asm, reg-passed args; guess
+0x004df2c4	SndAsm_StopVoice	sweep: asm, reg-passed args; guess
+0x004df37b	SndAsm_ResetVoice	sweep: asm, reg-passed args; guess
+0x004df444	SndAsm_QueueStream	sweep: asm, reg-passed args; guess
+0x004df4ba	SndAsm_StreamQueueFree	sweep: asm, reg-passed args
+0x004df4c9	SndAsm_StreamPush	sweep: asm, reg-passed args; guess
+0x004df56a	SndAsm_MixSetup	sweep: asm, reg-passed args; guess
+0x004df7f1	SndAsm_SetMixCallback	sweep: asm, reg-passed args; guess
+0x004e03b0	MathAsm_VecLengthF	sweep: asm, reg-passed args
+0x004e046f	MathAsm_VecLengthF_Fwd	sweep: asm, reg-passed args
+0x004e055d	MathAsm_DotFixed16	sweep: asm, reg-passed args
+0x004e058e	MathAsm_DotFixed16_Fwd	sweep: asm, reg-passed args
+0x004e3c70	PalAsm_MatchColor	refine: asm: nearest palette index for RGB via PalAsm_FindNearest (fn ptr 0x4e3053)
+0x004e3d34	PalAsm_FindNearest	refine: asm: 256-entry search, distance = sq[dr]+sq[dg]+sq[db] (table 0x4e3870)
+0x004e4b12	SwAsm_Rand	sweep: asm, reg-passed args
+0x004e4f20	SwAsm_TriSelectSpanFuncs	refine: asm: texture LOD/step checks (flag 0x2000), then picks edge/span routines from the mode table (0x4e4ad8/ac8/ac4)
+0x004e5ed0	FontAsm_ScanGlyphCols	refine: asm: scan a glyph row band of the font bitmap for column markers (1/3 pixels) -> glyph widths
+0x004e6011	FontAsm_ScanGlyphRows	refine: asm: find marker rows in the font bitmap, then FontAsm_ScanGlyphCols per band
+0x004e60da	FontAsm_ScanGlyphs	refine: asm fwd to FontAsm_ScanGlyphRows
+0x004e61dc	FontAsm_AllocEntries	sweep: asm, reg-passed args
+0x004e636c	Font_GetLineHeight	refine: font +0x1c override, else bitmap header byte +0x20c
+0x004e6392	FontAsm_BlitGlyphRow8	refine: asm: glyph mask row -> 8-bpp colour (table 0x5a6340)
+0x004e646e	FontAsm_BlitGlyphRow16	refine: asm: 16-bpp (table 0x5a63c0)
+0x004e6566	FontAsm_BlitGlyphRow32	refine: asm: 32-bpp (table 0x5a6440)
+0x004e665b	FontAsm_GlyphAdvance	sweep: asm, reg-passed args
+0x004e666a	FontAsm_MeasureString	sweep: asm, reg-passed args
+0x004e668a	Font_MeasureString	sweep: asm, reg-passed args
+0x004e66a7	FontAsm_CenterX	sweep: asm, reg-passed args
+0x004e66bd	Font_CenterX	sweep: asm, reg-passed args
+0x004e66d9	FontAsm_DrawGlyph	sweep: asm, reg-passed args
+0x004e674e	FontAsm_SelectBlitter	sweep: asm, reg-passed args
+0x004e67b3	FontAsm_NextTabStop	refine: asm: advance x to the next tab stop (table 0x4e557c, 80 entries)
+0x004e6b55	FontAsm_DrawGlyphClipped	sweep: asm, reg-passed args
+0x004e6dc8	FontAsm_MeasureLine	refine: asm: width of one line; skips "~N" colour codes, stops at CR/0
+0x004e7b48	PalAsm_UseMasksA	refine: guess: select colour-mask set A (0x4e71d0..) for the Pix_* table builders
+0x004e7b69	PalAsm_UseMasksB	refine: guess: select mask set B (0x4e71e8..), used before Pix_BuildShadeTable in Pal_Remap
+0x004e87c0	GfxAsm_PackColor	sweep: asm, reg-passed args
+0x004e8c40	SwAsm_LineCore	sweep: asm, reg-passed args
+0x004e8e70	SwAsm_DrawLine	sweep: asm, reg-passed args
+0x004e9720	SwAsm_LineStyledCore	sweep: asm, reg-passed args
+0x004e9850	SwAsm_DrawLineStyledA	sweep: asm, reg-passed args; guess
+0x004e98c0	SwAsm_DrawLineStyledB	sweep: asm, reg-passed args; guess
+0x004e9ee0	SwAsm_ClipRect	sweep: asm, reg-passed args
+0x004ea8ae	Sw_FillRectColorIdx	refine: asm: fill clip rect with colour index, per bpp (8/16/32)
+0x004ea9eb	SwAsm_FillRect32	refine: asm: 32-bpp clipped rect fill
+0x004eba71	SwAsm_CirclePlot8	refine: asm: clipped 8-bpp pixel at centre+offset
+0x004ebab9	SwAsm_CirclePlot16	refine: asm: 16-bpp
+0x004ebb04	SwAsm_CirclePlot32	refine: asm: 32-bpp
+0x004ebb4d	SwAsm_CircleOctants8	refine: asm: plot 8 symmetric points (8 bpp)
+0x004ebb89	SwAsm_CircleOctants16	refine: asm: 16 bpp
+0x004ebbc5	SwAsm_CircleOctants32	refine: asm: 32 bpp
+0x00504341	NotCode_504341	sweep: guess, data disassembled as code
+0x0050434f	NotCode_50434f	sweep: guess, data disassembled as code
+0x00515545	NotCode_515545	sweep: guess, data disassembled as code
+0x00520e70	SwAsm_PatchRemapTables16	refine: asm, self-modifying: patches the PalRef table pointers (0x505650/54) into the 16-bpp span code at 0x5217xx-0x521fxx when they change
+0x0052b6c0	SwAsm_TriSortVerts	refine: asm: sort v0..v2 by y (+0x1c); 0x4e4b10 = which side the long edge is on
+0x0052b761	SwAsm_SetupEdge	refine: asm (ESI top, EDI bottom, EBP edge record): clip y to 0x604464..6c, Bresenham-style x step/error
+0x0052baa2	SwAsm_EdgeStepUV	refine: asm: edge step x + u,v (+0x1c/+0x20) with error carry
+0x0052baf8	SwAsm_EdgeStepUVRGB	refine: asm: edge step x + u,v + r,g,b
+0x0052bb5c	SwAsm_EdgeStepFlat	refine: asm: edge step x only
+0x0052bb7a	SwAsm_EdgeStepRGB	refine: asm: edge step x + r,g,b
+0x0052bbf2	SwAsm_EdgeStepZ	refine: asm: edge step x + z (+0x4c), used on the z-buffer side
+0x0052bc38	SwAsm_TriSetupColorGradients	refine: asm: colour deltas from vertex colour +0x28 (32-bpp per channel; flag 1 = gouraud); 0x4e4b00/04 = colour/alpha in use
+0x0052d958	MathAsm_TrigTableLookup	refine: asm guess: angle@EAX (25-bit) -> linear interpolation in 512-entry table 0x52bfe0 (sin/cos); used by Vec_BasisToAngles
+0x0052d996	MathAsm_TrigTable_Fwd	refine: guess: wrapper, result also in 0x52d7f4
+0x0052d9af	MathAsm_TrigTable	refine: guess: wrapper; ShipDes_Finalize / Mine_InitDesc turn a cone angle (+0x580 / +0x1b0) into its trig value

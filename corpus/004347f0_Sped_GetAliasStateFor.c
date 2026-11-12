@@ -1,0 +1,17 @@
+
+/* sweep */
+
+undefined4 Sped_GetAliasStateFor(undefined4 param_1,int param_2)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  
+  if (*(int *)(param_2 + 0x5c) == -1) {
+    return 0;
+  }
+  iVar1 = Quad_GetSpxForSped(param_1,param_2);
+  uVar2 = Sped_FindAliasState(*(int *)(iVar1 + 0xf8) + *(int *)(param_2 + 0x5c) * 0x20);
+  return uVar2;
+}
+

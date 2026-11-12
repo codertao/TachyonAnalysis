@@ -14,7 +14,7 @@ void WeaponMounts_Init(int *param_1,int param_2,int param_3,undefined4 param_4)
   iVar1 = param_2;
   for (; param_3 != 0; param_3 = param_3 + -1) {
     *(int *)(iVar1 + 0x18) = iVar1 + 0x1c;
-    FUN_004933f0(iVar1,uVar2);
+    WeaponMount_InitOrient(iVar1,uVar2);
     iVar1 = iVar1 + 0x1c;
   }
   *(int *)(iVar1 + -4) = param_2;

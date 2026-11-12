@@ -8,7 +8,7 @@ void Asteroid_SpawnAtLoad(int param_1,Desc *param_2,undefined4 param_3)
   Quadrant *pQVar2;
   SpED *ent;
   
-  ent = (SpED *)FUN_0041b790(&g_PoolRoid,0xb,param_3);
+  ent = (SpED *)DcbPool_AllocTyped(&g_PoolRoid,0xb,param_3);
   if (ent != (SpED *)0x0) {
     Quad_LinkStatic(ent);
     ent->desc = param_2;
@@ -29,13 +29,13 @@ void Asteroid_SpawnAtLoad(int param_1,Desc *param_2,undefined4 param_3)
     (ent->ang).z = *(int *)(param_1 + 0x1c) << 0x10;
     ent->think = (void *)0x0;
     ent->onCollide = (void *)0x0;
-    ent->onDamage = FUN_00407e60;
+    ent->onDamage = Asteroid_OnDamage;
     ent->netFlags = 7;
     ent->stateFlags = 0;
     ent->target = (SpED *)0x0;
     *(undefined4 *)&ent->field_0xb8 = 0;
     ent->collOverride = (void *)0x0;
-    FUN_0045cda0(ent,&pQVar2->staticSectorMap);
+    SectorMap_LinkObject(ent,&pQVar2->staticSectorMap);
   }
   return;
 }

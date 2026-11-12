@@ -12,7 +12,7 @@ int check_is_snd_playing_maybe(undefined4 name)
     iVar4 = GLBL_ACTIVE_SNDS_PTR_MAYBE + 0x10;
     iVar2 = GLBL_ACTIVE_SNDS_PTR_MAYBE;
     do {
-      iVar1 = str_cmp(iVar4,name);
+      iVar1 = __stricmp(iVar4,name);
       if (iVar1 == 0) {
         return iVar2;
       }

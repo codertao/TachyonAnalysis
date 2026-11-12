@@ -22,13 +22,13 @@ void CapShip_HyperIn(int param_1)
   } while (fVar2 <= _DAT_0052e550);
   *(float *)(param_1 + 0xd4) = fVar2;
   *(float *)(param_1 + 0xf8) = fVar1;
-  FUN_00423e80(param_1,-fVar3);
+  Ent_PointAhead(param_1,-fVar3);
   *(int *)(param_1 + 0x34) = *(int *)(param_1 + 0x34) + *(int *)(param_1 + 0xa0);
   *(int *)(param_1 + 0x38) = *(int *)(param_1 + 0x38) + *(int *)(param_1 + 0xa4);
   *(int *)(param_1 + 0x3c) = *(int *)(param_1 + 0x3c) + *(int *)(param_1 + 0xa8);
   SrvSend_EntityDestroyed((int *)(param_1 + 0x34),7,0,0,0,0,0,*(undefined4 *)(param_1 + 100));
   clr_bytes(param_1 + 0xa0,0xc);
-  FUN_00457880(*(undefined4 *)(param_1 + 100),1);
+  Ent_SetPosRaw(*(undefined4 *)(param_1 + 100),1);
   return;
 }
 

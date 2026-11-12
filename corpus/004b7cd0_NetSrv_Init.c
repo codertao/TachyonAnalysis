@@ -12,8 +12,8 @@ void NetSrv_Init(int *param_1,undefined4 param_2)
   int *piVar5;
   int *piVar6;
   
-  FUN_004a6e10(NetSrv_OnPlayerJoin);
-  FUN_004a6e40(&LAB_004b7c80);
+  Net_SetSrvCallbackA(NetSrv_OnPlayerJoin);
+  Net_SetSrvCallbackB(&LAB_004b7c80);
   puVar2 = &DAT_006af660;
   for (iVar3 = 0x65; iVar3 != 0; iVar3 = iVar3 + -1) {
     *puVar2 = 0;
@@ -30,8 +30,8 @@ void NetSrv_Init(int *param_1,undefined4 param_2)
   DAT_006af79c = DAT_006af79c + 0x3c;
   puVar2 = (undefined4 *)param_1[0x15];
   if (puVar2 == (undefined4 *)0x0) {
-    puVar2 = (undefined4 *)FUN_0049c500(param_1[1] * *param_1,4,0,s_mpPlayerBuffer_0055f060,param_2)
-    ;
+    puVar2 = (undefined4 *)
+             Mem_AllocChecked(param_1[1] * *param_1,4,0,s_mpPlayerBuffer_0055f060,param_2);
   }
   iVar3 = param_1[1];
   iVar1 = *param_1;
@@ -44,7 +44,7 @@ void NetSrv_Init(int *param_1,undefined4 param_2)
     *(undefined1 *)puVar2 = 0;
     puVar2 = (undefined4 *)((int)puVar2 + 1);
   }
-  DAT_006af668 = FUN_0049c500(param_1[2],4,0,s_Server_send_buffer_0055f04c,DAT_006af7e8);
+  DAT_006af668 = Mem_AllocChecked(param_1[2],4,0,s_Server_send_buffer_0055f04c,DAT_006af7e8);
   Pool_InitDefault(&g_NetEventPool,param_1[3],DAT_006af79c,0x55f038);
   DAT_006af674 = 100;
   NetBridge_Init(1);

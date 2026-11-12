@@ -4,7 +4,7 @@
 void CliOn_PlayerPortrait(int param_1)
 
 {
-  FUN_0044f810(param_1,*(undefined2 *)(param_1 + 0xe));
+  Portrait_Load(param_1,*(undefined2 *)(param_1 + 0xe));
   return;
 }
 

@@ -10,8 +10,9 @@ void CliOn_EntityDestroyed(int param_1)
   if (*(int *)(param_1 + 0x10) != 0) {
     uVar1 = Dcb_FindById(*(int *)(param_1 + 0x10));
   }
-  FUN_004231f0(*(undefined1 *)(param_1 + 0x14),*(undefined1 *)(param_1 + 0x15),param_1,0,uVar1);
-  FUN_00415fc0(*(undefined4 *)(param_1 + 0xc));
+  Explosion_SpawnByType
+            (*(undefined1 *)(param_1 + 0x14),*(undefined1 *)(param_1 + 0x15),param_1,0,uVar1);
+  Replica_KillById(*(undefined4 *)(param_1 + 0xc));
   return;
 }
 

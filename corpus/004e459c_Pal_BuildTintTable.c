@@ -73,7 +73,7 @@ void __cdecl Pal_BuildTintTable(byte *pal,byte *out,byte *rgb)
         }
         DAT_004e3005 = (undefined1)iVar5;
       }
-      bVar1 = (*(code *)PTR_FUN_004e3053)(pbVar6,unaff_ESI);
+      bVar1 = (*(code *)PTR_PalAsm_FindNearest_004e3053)(pbVar6,unaff_ESI);
       *out = bVar1;
       out = out + 1;
       pbVar6 = pbVar6 + 3;

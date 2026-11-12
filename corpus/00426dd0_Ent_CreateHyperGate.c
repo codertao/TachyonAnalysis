@@ -31,7 +31,7 @@ undefined4 * Ent_CreateHyperGate(undefined4 param_1,undefined4 param_2,int param
   puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 != (undefined4 *)0x0) {
     if ((param_3 != 0) || ((g_FlightStateFlags & 2) != 0)) {
-      FUN_00426570(puVar1);
+      Gate_LoadAssets(puVar1);
     }
     return puVar1;
   }
@@ -41,14 +41,14 @@ undefined4 * Ent_CreateHyperGate(undefined4 param_1,undefined4 param_2,int param
   local_68 = 0xffff;
   local_74 = param_1;
   local_58 = Gate_SpawnAndPreload;
-  local_64 = FUN_00426700;
+  local_64 = GateReplica_Init;
   local_60 = &LAB_004268a0;
   local_5c = 0;
   local_54 = &LAB_004269e0;
   local_38 = &LAB_00426880;
-  local_30 = FUN_00425ee0;
+  local_30 = Gateway_Render;
   local_2c = &LAB_00426a30;
-  local_18 = FUN_00426a60;
+  local_18 = Gate_OnPlayerEnter;
   local_10 = &LAB_00426ad0;
   local_8 = &LAB_00426b10;
   local_c = &LAB_00426b30;
@@ -58,7 +58,7 @@ undefined4 * Ent_CreateHyperGate(undefined4 param_1,undefined4 param_2,int param
   if (puVar1 == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
-  FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
+  DebugLog_Printf(s_Descriptor__s_loaded_00532b28,param_1);
   clr_bytes(&DAT_005b1c20,0x1a4);
   puVar3 = puVar1;
   puVar4 = &DAT_005b1c20;
@@ -67,7 +67,7 @@ undefined4 * Ent_CreateHyperGate(undefined4 param_1,undefined4 param_2,int param
     puVar3 = puVar3 + 1;
     puVar4 = puVar4 + 1;
   }
-  FUN_0049bfe0(param_1,&PTR_DAT_00535ec8);
+  Cbin_LoadAndParseTemplate_Global(param_1,&PTR_DAT_00535ec8);
   ModelPool_Load(&DAT_005b1d3c,&DAT_005b1cb0,&DAT_005b1cc0,&DAT_005b1cc0,&g_ObjModelPool,1);
   if (DAT_005b1d60 != '\0') {
     _DAT_005b1d80 = Pak_LoadPlain(&DAT_005b1d60);
@@ -83,7 +83,7 @@ undefined4 * Ent_CreateHyperGate(undefined4 param_1,undefined4 param_2,int param
     puVar4 = puVar4 + 1;
   }
   if (param_3 != 0) {
-    FUN_00426570(puVar1);
+    Gate_LoadAssets(puVar1);
   }
   return puVar1;
 }

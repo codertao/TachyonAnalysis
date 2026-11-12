@@ -4,12 +4,12 @@
 void TachSrv_OnShipKilled(int param_1)
 
 {
-  FUN_0048b330(param_1);
-  FUN_00457760(param_1);
+  Ent_ClearTargetedBy(param_1);
+  Ent_RemoveAsTarget(param_1);
   SrvSend_YouDied(*(undefined4 *)(param_1 + 0xdc));
-  FUN_00492ba0(param_1,*(undefined4 *)(param_1 + 100));
+  Ent_ClearWeaponTargets(param_1,*(undefined4 *)(param_1 + 100));
   *(undefined4 *)(param_1 + 0x14c) = 0;
-  FUN_00462380(param_1);
+  Srv_NotifyEntityRemoved(param_1);
   *(int *)(param_1 + 0xf8) = *(int *)(param_1 + 0xf8) + 1;
   *(undefined4 *)(*(int *)(param_1 + 0xdc) + 0x1d0) = 1;
   *(undefined4 *)(param_1 + 0x114) = 0;
@@ -25,7 +25,7 @@ void TachSrv_OnShipKilled(int param_1)
   *(undefined1 *)(param_1 + 0xc3) = 1;
   if (DAT_005653f4 == 0) {
     if (DAT_00565410 == 2) {
-      FUN_0045fbb0(*(undefined4 *)(param_1 + 0xdc));
+      Kill_SendMsgCrashed(*(undefined4 *)(param_1 + 0xdc));
     }
   }
   else if (*(short *)(DAT_005653f4 + 0x76) == 1) {
@@ -33,10 +33,10 @@ void TachSrv_OnShipKilled(int param_1)
       *(int *)(DAT_005653f4 + 0xe0) = *(int *)(DAT_005653f4 + 0xe0) + 1;
     }
     if (DAT_00565410 == 0) {
-      FUN_0045faa0(*(undefined4 *)(param_1 + 0xdc),*(undefined4 *)(DAT_005653f4 + 0xdc));
+      Kill_SendMsgKilledBy(*(undefined4 *)(param_1 + 0xdc),*(undefined4 *)(DAT_005653f4 + 0xdc));
     }
     else if (DAT_00565410 == 1) {
-      FUN_0045fb30(*(undefined4 *)(param_1 + 0xdc),*(undefined4 *)(DAT_005653f4 + 0xdc));
+      Kill_SendMsgKilled(*(undefined4 *)(param_1 + 0xdc),*(undefined4 *)(DAT_005653f4 + 0xdc));
     }
   }
   if (*(code **)(g_ActiveRules + 0x24) != (code *)0x0) {

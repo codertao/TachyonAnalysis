@@ -43,8 +43,8 @@ void Proj_SpawnRemoteVisual
       }
     }
     if ((param_5 & 2) != 0) {
-      FUN_00466620(1,1,*(undefined4 *)&g_WeaponDefs[param_3].field_0x48,iVar2,0x10000,param_6 * 2,
-                   (DAT_005b39d0 - param_4) + -1);
+      Snd_PlayAtPosEx(1,1,*(undefined4 *)&g_WeaponDefs[param_3].field_0x48,iVar2,0x10000,param_6 * 2
+                      ,(DAT_005b39d0 - param_4) + -1);
     }
   }
   return;

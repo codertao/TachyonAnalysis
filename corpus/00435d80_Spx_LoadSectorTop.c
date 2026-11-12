@@ -6,7 +6,7 @@ void Spx_LoadSectorTop(undefined4 param_1)
 
 {
   Spx_LoadSector(param_1,0);
-  FUN_004355a0();
+  Spx_ClearDynamicLists();
   DAT_0058af70 = g_SectorCount;
   return;
 }

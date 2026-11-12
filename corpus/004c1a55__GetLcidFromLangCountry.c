@@ -1,0 +1,27 @@
+
+/* CRT: getqloc */
+
+void _GetLcidFromLangCountry(void)
+
+{
+  size_t sVar1;
+  
+  sVar1 = _strlen(DAT_00565184);
+  DAT_00565180 = (uint)(sVar1 == 3);
+  sVar1 = _strlen(DAT_00565188);
+  DAT_00565178 = (uint)(sVar1 == 3);
+  DAT_00565174 = 0;
+  if (DAT_00565180 == 0) {
+    DAT_0056517c = _LcidFromHexString(DAT_00565184);
+  }
+  else {
+    DAT_0056517c = 2;
+  }
+  EnumSystemLocalesA(_LangCountryEnumProc,1);
+  if ((((DAT_0056518c & 0x100) == 0) || ((DAT_0056518c & 0x200) == 0)) || ((DAT_0056518c & 7) == 0))
+  {
+    DAT_0056518c = 0;
+  }
+  return;
+}
+

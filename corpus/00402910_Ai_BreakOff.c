@@ -17,7 +17,7 @@ void Ai_BreakOff(int param_1,int param_2)
       Ai_RejoinFormation(param_1);
     }
     if (*(int *)(*(int *)(param_1 + 0x8c) + 0x100) != 0) {
-      FUN_004014a0(param_1);
+      Ai_UpdateBoostReady(param_1);
     }
     uVar3 = global_bad_shift_rng();
     if ((uVar3 & 3) == 0) {

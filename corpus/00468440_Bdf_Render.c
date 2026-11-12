@@ -1,0 +1,101 @@
+
+/* sweep */
+
+void Bdf_Render(void)
+
+{
+  int iVar1;
+  uint uVar2;
+  int *piVar3;
+  int iVar4;
+  undefined4 uStack_4c;
+  undefined4 uStack_48;
+  int iStack_38;
+  undefined2 uStack_34;
+  undefined2 uStack_32;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  int iStack_c;
+  
+  iVar4 = DAT_005b9084;
+  Gfx_Lock(1);
+  Light_SetLightColor(0xff,0xff,0xff);
+  if (((*(int *)(iVar4 + 0x10) == 0) || (*(int *)(iVar4 + 0xdc) != 0)) || (GLBL_spacesav[0x2d] == 0)
+     ) {
+    Gfx_BeginFrame();
+    if (*(int *)(iVar4 + 0xdc) != 0) {
+      if (DAT_00564ae4 != 0) {
+        Nop();
+      }
+      goto LAB_00468582;
+    }
+  }
+  else {
+    if (DAT_00564ae4 == 0) {
+      Gfx_ClearScene();
+    }
+    else {
+      Gfx_BeginFrame();
+    }
+    set_global_near_far(&DAT_00640000,0x2ee00000);
+    clr_bytes(&uStack_4c,0x4c);
+    iStack_c = *(int *)(iVar4 + 0x10);
+    uStack_4c = 0x10;
+    uStack_48 = 0x20000;
+    uStack_18 = *(undefined4 *)(iVar4 + 0x1c);
+    uStack_14 = *(undefined4 *)(iVar4 + 0x20);
+    uStack_10 = *(undefined4 *)(iVar4 + 0x24);
+    uStack_32 = 0xffff;
+    Ent_Draw(&uStack_4c);
+    if ((*(int *)(iVar4 + 0x28) != 0) &&
+       (iVar1 = DAT_005b9088 >> 0x10, *(int *)(DAT_005b9084 + 0x34) < iVar1)) {
+      uStack_34 = DAT_005b9090;
+      iStack_38 = iVar1;
+      if (0xff < iVar1) {
+        iStack_38 = 0xff;
+      }
+      uStack_4c = 0x90;
+      uStack_48 = 0x20000;
+      iStack_c = *(int *)(iVar4 + 0x28);
+      Ent_Draw(&uStack_4c);
+    }
+    Pipe_FlushBatches();
+LAB_00468582:
+    if (*(int *)(iVar4 + 0xdc) != 0) {
+      iVar4 = DAT_00668fb4 + 0xfa0000;
+      goto LAB_00468652;
+    }
+  }
+  Starfield_Draw();
+  Sun_DrawGlow();
+  Pipe_FlushBatches();
+  Gfx_Lock(1);
+  if (GLBL_spacesav[0x32] != 0) {
+    Fog_SetDepthRange(0,0xffffffff,0xffffffff);
+    uVar2 = 0;
+    if (*(int *)(iVar4 + 200) != 0) {
+      piVar3 = (int *)(*(int *)(iVar4 + 0xcc) + 0x34);
+      do {
+        *piVar3 = piVar3[-10] + DAT_005b9600;
+        piVar3[1] = piVar3[-9] + DAT_005b9604;
+        piVar3[2] = piVar3[-8] + DAT_005b9608;
+        *(undefined2 *)((int)piVar3 + -2) = 0xffff;
+        Ent_ToCameraSpace(piVar3 + -7);
+        Ent_Draw(piVar3 + -7);
+        uVar2 = uVar2 + 1;
+        piVar3 = piVar3 + 0x19;
+      } while (uVar2 < *(uint *)(iVar4 + 200));
+    }
+    Fog_SetDepthRange(1,0xffffffff,0xffffffff);
+  }
+  DAT_00668f8c = DAT_005b9088 >> 8;
+  iVar4 = DAT_005b2b9c;
+LAB_00468652:
+  set_global_near_far(0x2000,iVar4);
+  Light_SetLightColor(*(undefined4 *)(DAT_005b9084 + 0x138),*(undefined4 *)(DAT_005b9084 + 0x13c),
+                      *(undefined4 *)(DAT_005b9084 + 0x140));
+  Pipe_FlushBatches();
+  return;
+}
+

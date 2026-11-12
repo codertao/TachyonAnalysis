@@ -42,7 +42,7 @@ bool Coll_SegmentVsSphere
   local_14 = pvVar1->x - *param_1;
   local_10 = *(int *)(param_3 + 0x38) - param_1[1];
   local_c = *(int *)(param_3 + 0x3c) - param_1[2];
-  iVar5 = FUN_004e058e(param_5,&local_14);
+  iVar5 = MathAsm_DotFixed16_Fwd(param_5,&local_14);
   if (iVar5 < (int)-uVar3) {
     return false;
   }

@@ -6,7 +6,7 @@ void handle_hit_for_voiceline(SpED *self,int param_2)
   int iVar2;
   int iVar3;
   
-  iVar2 = FUN_00434890(self[1].prev,self->quadrant);
+  iVar2 = Sped_GetActorRecord(self[1].prev,self->quadrant);
   if (iVar2 != 0) {
     if (((*(short *)(param_2 + 0x76) == 1) && (uVar1 = global_bad_shift_rng(), uVar1 < 15000)) &&
        (iVar3 = some_kind_of_play_sound(iVar2,s_HITBY_PLAYER_00532654,0x5dc,self->quadrant),

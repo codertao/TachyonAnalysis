@@ -34,14 +34,15 @@ undefined4 Cbin_FindSection(char *param_1,int param_2)
       pcVar6 = pcVar6 + 1;
       pcVar7 = pcVar7 + 1;
     }
-    FUN_004c83ea(local_80);
+    __strlwr(local_80);
     if (DAT_006040ec == 0) {
-      iVar3 = FUN_0049af80(local_80,*(undefined4 *)(param_2 + 0x28),*(undefined4 *)(param_2 + 0x28),
-                           *(undefined4 *)(param_2 + 0x18));
+      iVar3 = Cbin_FindSectionIndex
+                        (local_80,*(undefined4 *)(param_2 + 0x28),*(undefined4 *)(param_2 + 0x28),
+                         *(undefined4 *)(param_2 + 0x18));
     }
     else {
-      iVar3 = maybe_find_in_list(local_80,*(undefined4 *)(param_2 + 0x28),
-                                 *(undefined4 *)(param_2 + 0x18),0x1c,&LAB_0049af60);
+      iVar3 = _bsearch(local_80,*(undefined4 *)(param_2 + 0x28),*(undefined4 *)(param_2 + 0x18),0x1c
+                       ,&LAB_0049af60);
     }
     if (iVar3 != 0) {
       if (*(int *)(param_2 + 0x1c) != 0) {

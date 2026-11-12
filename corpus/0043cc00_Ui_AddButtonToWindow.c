@@ -6,11 +6,11 @@ void Ui_AddButtonToWindow(undefined4 param_1,int param_2,uint param_3,undefined4
 {
   int iVar1;
   
-  iVar1 = FUN_0043a7a0(param_1,param_2 + 0x80);
+  iVar1 = MnuImage_Find(param_1,param_2 + 0x80);
   *(int *)(param_2 + 0x1e8) = iVar1;
   if (iVar1 != 0) {
     if (*(int *)(iVar1 + 0x60) == 0) {
-      FUN_00439cc0(param_1,iVar1,*(undefined4 *)(iVar1 + 0x1680),param_4);
+      MnuImage_LoadPcxRemapped(param_1,iVar1,*(undefined4 *)(iVar1 + 0x1680),param_4);
     }
     iVar1 = *(int *)(param_2 + 0x1e8);
     *(undefined4 *)(param_2 + 0xc4) = 0;

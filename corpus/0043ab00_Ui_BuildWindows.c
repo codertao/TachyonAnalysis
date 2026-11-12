@@ -8,14 +8,14 @@ void Ui_BuildWindows(int param_1)
   char *pcVar2;
   
   pcVar2 = *(char **)(param_1 + 0xc);
-  FUN_0049eca0();
+  Input_FlushKeyQueue();
   uVar1 = 0;
   if (*(int *)(param_1 + 0x40) != 0) {
     do {
       if (*pcVar2 == '\0') {
         return;
       }
-      FUN_0043a990(param_1,pcVar2);
+      Ui_CloseWindow(param_1,pcVar2);
       uVar1 = uVar1 + 1;
       pcVar2 = pcVar2 + 0x114;
     } while (uVar1 < *(uint *)(param_1 + 0x40));

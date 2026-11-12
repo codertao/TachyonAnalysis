@@ -53,7 +53,7 @@ void Pak_Relocate(int param_1)
           piVar10[10] = (int)(&DAT_00666b20 + uVar9 * 0x3c);
           Mesh_Relocate(*piVar10);
           if ((*(byte *)(piVar10 + 4) & 2) != 0) {
-            FUN_004afa70(piVar10);
+            Mat_RemapColorIndex(piVar10);
           }
           iVar2 = *piVar10;
           uVar6 = 0;
@@ -87,7 +87,7 @@ void Pak_Relocate(int param_1)
   *(int *)(param_1 + 0x68) = DAT_00668f6c;
   if (bVar12) {
     puVar7 = (undefined4 *)
-             FUN_0049c500(DAT_00668f6c * 4,4,0,s_PAK_TEXTURE_PTRS_0055ebdc,DAT_00668f58);
+             Mem_AllocChecked(DAT_00668f6c * 4,4,0,s_PAK_TEXTURE_PTRS_0055ebdc,DAT_00668f58);
     *(undefined4 **)(param_1 + 0x6c) = puVar7;
     puVar8 = DAT_00668f70;
     for (iVar3 = DAT_00668f6c; iVar3 != 0; iVar3 = iVar3 + -1) {
@@ -95,7 +95,7 @@ void Pak_Relocate(int param_1)
       puVar8 = puVar8 + 1;
       puVar7 = puVar7 + 1;
     }
-    FUN_0049c600(DAT_00668f70);
+    Mem_FreeToMain(DAT_00668f70);
   }
   return;
 }

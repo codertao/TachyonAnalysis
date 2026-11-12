@@ -30,7 +30,7 @@ void Weapon_FireHitscan(undefined4 *param_1,undefined4 param_2,undefined4 param_
   iVar1 = Proj_CreateHitscan(&local_2c);
   if (iVar1 != 0) {
     if ((param_6 & 2) != 0) {
-      FUN_00466620(1,1,param_1[0x12],iVar1,0x10000,param_7 * 2);
+      Snd_PlayAtPosEx(1,1,param_1[0x12],iVar1,0x10000,param_7 * 2);
       NetCli_SendFire(iVar1 + 0x34,iVar1 + 0x4c,*param_1,param_7,DAT_0056579c);
       _DAT_005b1ed8 = _DAT_005b1ed8 + _DAT_0052e59c;
       return;

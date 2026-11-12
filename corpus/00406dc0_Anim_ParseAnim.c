@@ -8,10 +8,10 @@ void Anim_ParseAnim(undefined4 param_1,int param_2)
   int iVar2;
   uint uVar3;
   
-  iVar2 = FUN_004060e0(param_2);
+  iVar2 = Anim_CountFrames(param_2);
   piVar1 = (int *)(param_2 + 0x1c);
   *(int *)(param_2 + 0x18) = iVar2;
-  FUN_0048e3d0(piVar1,iVar2 * 0x2c,4,s_ANIM_KEYFRAMES_00532904,0xcccc);
+  Mem_AllocZeroTagged(piVar1,iVar2 * 0x2c,4,s_ANIM_KEYFRAMES_00532904,0xcccc);
   iVar2 = *piVar1;
   uVar3 = 0;
   if (*(int *)(param_2 + 0x18) != 0) {

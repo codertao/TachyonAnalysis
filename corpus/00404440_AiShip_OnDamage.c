@@ -17,7 +17,7 @@ void AiShip_OnDamage(SpED *param_1)
                                &param_1->desc[1].getText);
     if ((int)param_1[1].preRender < 1) {
       Mission_PostAttackedByPlayer(param_1[1].prev,&param_1[1].next,DAT_005653f4,param_1->quadrant);
-      FUN_00403f70(param_1);
+      Sped_Destroy(param_1);
       return;
     }
     pDVar2 = param_1->desc;

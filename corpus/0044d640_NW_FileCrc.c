@@ -14,11 +14,11 @@ undefined4 NW_FileCrc(LPCSTR param_1)
   if (hFile != (HANDLE)0xffffffff) {
     nNumberOfBytesToRead = GetFileSize(hFile,(LPDWORD)0x0);
     if (nNumberOfBytesToRead != 0xffffffff) {
-      FUN_0048e3d0(&param_1,nNumberOfBytesToRead,4,s_ibrowse_temp_crc_005480f4,0xa000);
+      Mem_AllocZeroTagged(&param_1,nNumberOfBytesToRead,4,s_ibrowse_temp_crc_005480f4,0xa000);
       if (param_1 != (LPCSTR)0x0) {
         ReadFile(hFile,param_1,nNumberOfBytesToRead,&local_4,(LPOVERLAPPED)0x0);
         if (local_4 == nNumberOfBytesToRead) {
-          uVar1 = FUN_0044e230(param_1,nNumberOfBytesToRead);
+          uVar1 = Crc_Update(param_1,nNumberOfBytesToRead);
         }
         OurFreeMem(param_1);
       }

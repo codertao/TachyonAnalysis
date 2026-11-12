@@ -16,7 +16,7 @@ uint Rtxt_KeyIndex(int param_1,undefined4 param_2)
     pcVar5 = *(char **)(*(int *)(param_1 + 4) + 4);
     if (*(int *)(param_1 + 0xc) != 0) {
       do {
-        iVar2 = str_cmp(pcVar5,param_2);
+        iVar2 = __stricmp(pcVar5,param_2);
         if (iVar2 == 0) {
           return uVar4;
         }

@@ -22,7 +22,7 @@ int Coll_SegmentCast(undefined4 param_1,undefined4 param_2,undefined4 param_3,in
      (iVar1 = Coll_SegmentVsList(*(int *)(param_4 + 0xc),param_1,param_2,param_3), iVar1 != 0)) {
     return iVar1;
   }
-  FUN_00418bd0(param_1,param_2,param_4);
+  CollList_GatherDynamic(param_1,param_2,param_4);
   uVar3 = 0;
   puVar2 = &DAT_005b2d8c;
   if (DAT_005b318c != 0) {
@@ -35,7 +35,7 @@ int Coll_SegmentCast(undefined4 param_1,undefined4 param_2,undefined4 param_3,in
       puVar2 = puVar2 + 1;
     } while (uVar3 < DAT_005b318c);
   }
-  FUN_00418c70(param_1,param_2,param_4);
+  CollList_GatherStatic(param_1,param_2,param_4);
   uVar3 = 0;
   puVar2 = &DAT_005b2d8c;
   if (DAT_005b318c != 0) {

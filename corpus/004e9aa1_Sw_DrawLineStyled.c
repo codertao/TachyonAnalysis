@@ -183,10 +183,10 @@ void __cdecl Sw_DrawLineStyled(int x0,int y0,int x1,int y1,uint pattern,int patL
   DAT_004e96ec = patLen;
   _DAT_004e9700 = flags;
   if ((flags & 8) == 0) {
-    FUN_004e9850();
+    SwAsm_DrawLineStyledA();
   }
   else {
-    FUN_004e98c0();
+    SwAsm_DrawLineStyledB();
   }
   return;
 }

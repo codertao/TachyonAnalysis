@@ -46,7 +46,7 @@ undefined4 Pak_BindTextureByName(char *param_1,int param_2)
   else {
     str_sprintf(local_28,s__s__s_0055eba8,param_1,DAT_006128a0);
   }
-  iVar3 = FUN_004af1d0(local_28);
+  iVar3 = TexCache_FindMaterial(local_28);
   DAT_0062c0f0 = iVar3;
   if (iVar3 != 0) {
     _DAT_00603100 = (uint)*(ushort *)(iVar3 + 0x20);
@@ -75,8 +75,8 @@ undefined4 Pak_BindTextureByName(char *param_1,int param_2)
     *(undefined4 *)(iVar3 + 0x34) = uVar4;
     return *(undefined4 *)(iVar3 + 0x28);
   }
-  pcVar5 = (char *)FUN_004af180();
-  uVar4 = FUN_004a2eb0(param_1);
+  pcVar5 = (char *)TexCache_Alloc();
+  uVar4 = Image_Load(param_1);
   *(undefined4 *)(pcVar5 + 0x28) = uVar4;
   *(char **)(param_2 + 0x10) = pcVar5;
   *(undefined4 *)(pcVar5 + 0x44) = DAT_00668f90;
@@ -84,7 +84,7 @@ undefined4 Pak_BindTextureByName(char *param_1,int param_2)
     mark_alloc_memory_with_flags(*(undefined4 *)(pcVar5 + 0x28),DAT_00668f5c);
   }
   if (*(int *)(pcVar5 + 0x28) == 0) {
-    FUN_004af0d0(param_1);
+    Pak_LogMissingTexture(param_1);
     *(undefined4 *)(pcVar5 + 0x28) = DAT_0062c0ec;
     _DAT_00603100 = 0x10;
     DAT_00603104 = 0x10;

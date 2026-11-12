@@ -4,8 +4,8 @@
 void Flight_Render(void)
 
 {
-  FUN_00462840();
-  FUN_00418380();
+  Flight_RenderServer();
+  Flight_RenderScene();
   return;
 }
 

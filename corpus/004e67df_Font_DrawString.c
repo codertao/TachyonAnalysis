@@ -21,7 +21,7 @@ void __cdecl Font_DrawString(char *text,void *font,int x,int y,byte color,byte s
   DAT_004e5550 = *(int *)((int)font + 0x14);
   _DAT_004e5494 = (undefined1 *)register0x00000010;
   DAT_004e54b8 = x;
-  FUN_004e674e();
+  FontAsm_SelectBlitter();
   uVar3 = extraout_ECX;
   uVar4 = extraout_EDX;
 LAB_004e6822:
@@ -40,11 +40,11 @@ LAB_004e6822:
       cVar1 = '~';
     }
     if (cVar1 == '\t') {
-      FUN_004e67b3(uVar4,uVar3,font);
+      FontAsm_NextTabStop(uVar4,uVar3,font);
       text = text + 1;
     }
     else {
-      FUN_004e66d9();
+      FontAsm_DrawGlyph();
       text = text + 1;
       iVar2 = (*(ushort *)(DAT_004e54a8 + 2) + 1) - DAT_004e5550;
       DAT_004e54b8 = DAT_004e54b8 + iVar2;

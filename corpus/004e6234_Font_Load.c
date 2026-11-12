@@ -12,12 +12,12 @@ void __cdecl Font_Load(char *src,void *font,byte flags)
   if (*(int *)font != 0) {
     OurFreeMem(*(undefined4 *)font,font,src);
   }
-  uVar1 = FUN_004a2eb0(src);
+  uVar1 = Image_Load(src);
   *(undefined4 *)font = uVar1;
   *(undefined4 *)((int)font + 8) = _DAT_00603100;
   *(undefined4 *)((int)font + 0xc) = DAT_00603104;
   if ((DAT_004e5ebd & 2) != 0) {
-    FUN_004e61dc();
+    FontAsm_AllocEntries();
   }
   if ((DAT_004e5ebd & 1) != 0) {
     Pal_RemapToGamePalette(*(undefined4 *)font,DAT_00603108);

@@ -66,7 +66,7 @@ void PlayerCmd_PowerTransfer(undefined4 param_1)
     goto switchD_00452bcd_default;
   }
   NetCli_SendPowerOp(uVar4,iVar2);
-  FUN_00466590(3,3,0,0xff);
+  Snd_Play2D(3,3,0,0xff);
 switchD_00452bcd_default:
   return;
 }

@@ -41,7 +41,7 @@ int Pak_LoadTexture(int param_1,char *param_2)
   else if (((byte)*(ushort *)(param_1 + 0xe) & 0x88) == 0x88) {
     local_8 = local_8 & 0xffffff6f | 0x10020000;
   }
-  done_for = (LPCSTR)FUN_004af180();
+  done_for = (LPCSTR)TexCache_Alloc();
   uVar5 = DAT_00668f90;
   uVar6 = 0xffffffff;
   done_for[0x24] = -1;
@@ -79,11 +79,11 @@ int Pak_LoadTexture(int param_1,char *param_2)
     }
   }
   else {
-    iVar4 = FUN_0049c5c0(*(int *)(param_1 + 0x10) * *(int *)(param_1 + 0x14));
-    FUN_0049c840(iVar4,s_ALPHA_PAL_IMAGE_0055ec48);
+    iVar4 = Mem_AllocFromMain(*(int *)(param_1 + 0x10) * *(int *)(param_1 + 0x14));
+    Mem_SetTag(iVar4,s_ALPHA_PAL_IMAGE_0055ec48);
   }
   if (iVar4 == 0) {
-    FUN_004b0180();
+    Pak_OutOfMemory();
   }
   _DAT_00603100 = *(uint *)(param_1 + 0x10);
   DAT_00603104 = *(uint *)(param_1 + 0x14);
@@ -106,7 +106,7 @@ int Pak_LoadTexture(int param_1,char *param_2)
   *(uint *)(done_for + 0x34) = DAT_00668f60 | local_8;
   done_for[0x4c] = '\0';
   if ((uVar6 < 2) || (uVar2 < 2)) {
-    FUN_004b0280(param_1,1 << ((byte)uVar6 & 0x1f),1 << ((byte)param_2 & 0x1f));
+    PakTex_BadSizeError(param_1,1 << ((byte)uVar6 & 0x1f),1 << ((byte)param_2 & 0x1f));
   }
   if (((DAT_00668f60 | local_8) & 0x800) != 0) {
     done_for[0x4c] = done_for[0x4c] + '\x01';
@@ -126,11 +126,11 @@ int Pak_LoadTexture(int param_1,char *param_2)
   if ((DAT_0062c128 != 0) && ((local_8 & 0x400) == 0)) {
     _DAT_00603100 = *(uint *)(param_1 + 0x10);
     DAT_00603104 = *(uint *)(param_1 + 0x14);
-    FUN_004a3290(iVar4);
+    Image_FlipRows(iVar4);
     if (uVar7 == 0) {
-      uVar5 = FUN_0049c6f0(*(undefined4 *)(done_for + 0x28),
-                           (uint)(*(ushort *)(done_for + 0x22) >> 1) *
-                           (uint)(*(ushort *)(done_for + 0x20) >> 1),4);
+      uVar5 = Mem_Realloc(*(undefined4 *)(done_for + 0x28),
+                          (uint)(*(ushort *)(done_for + 0x22) >> 1) *
+                          (uint)(*(ushort *)(done_for + 0x20) >> 1),4);
       *(undefined4 *)(done_for + 0x28) = uVar5;
     }
     iVar4 = 0x1f;
@@ -167,11 +167,11 @@ int Pak_LoadTexture(int param_1,char *param_2)
                      (uint)*(ushort *)(done_for + 0x22) * (uint)*(ushort *)(done_for + 0x20));
         }
         else {
-          FUN_004ada90(DAT_00668f90,2);
+          Pal_ApplyToTexture(DAT_00668f90,2);
           Pal_RemapToGamePalette
                     (*(undefined4 *)(done_for + 0x28),
                      (uint)*(ushort *)(done_for + 0x22) * (uint)*(ushort *)(done_for + 0x20));
-          FUN_004ada90(DAT_00668f90,1);
+          Pal_ApplyToTexture(DAT_00668f90,1);
         }
       }
     }
@@ -183,7 +183,7 @@ int Pak_LoadTexture(int param_1,char *param_2)
     done_for[0x2f] = '\0';
   }
   if (uVar7 != 0) {
-    param_1 = FUN_004b01d0(done_for,param_1);
+    param_1 = PakTex_DecodeImage(done_for,param_1);
   }
   if (DAT_00668f78 != (code *)0x0) {
     (*DAT_00668f78)(*(undefined4 *)(done_for + 0x28),*(undefined2 *)(done_for + 0x20),

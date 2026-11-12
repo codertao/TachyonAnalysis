@@ -21,19 +21,19 @@ void Job_ParseVarDirectives(int *param_1,undefined4 param_2)
   iVar3 = Cbin_CountEntries_Ctx(&DAT_00532af4,s_VAR_RETURN_0054ab78,param_2);
   param_1[9] = iVar3;
   if (param_1[1] != 0) {
-    FUN_0048e3d0(param_1,param_1[1] * 100,4,s_STARBASE_CVS_CHECK_0054ab64,0xa100);
+    Mem_AllocZeroTagged(param_1,param_1[1] * 100,4,s_STARBASE_CVS_CHECK_0054ab64,0xa100);
   }
   if (param_1[3] != 0) {
-    FUN_0048e3d0(param_1 + 2,param_1[3] * 0x60,4,s_STARBASE_CVS_SET_0054ab50,0xa100);
+    Mem_AllocZeroTagged(param_1 + 2,param_1[3] * 0x60,4,s_STARBASE_CVS_SET_0054ab50,0xa100);
   }
   if (param_1[5] != 0) {
-    FUN_0048e3d0(param_1 + 4,param_1[5] * 100,4,s_STARBASE_CVS_COMPLETE_0054ab38,0xa100);
+    Mem_AllocZeroTagged(param_1 + 4,param_1[5] * 100,4,s_STARBASE_CVS_COMPLETE_0054ab38,0xa100);
   }
   if (param_1[7] != 0) {
-    FUN_0048e3d0(param_1 + 6,param_1[7] * 0x60,4,s_STARBASE_CVS_RESET_0054ab24,0xa100);
+    Mem_AllocZeroTagged(param_1 + 6,param_1[7] * 0x60,4,s_STARBASE_CVS_RESET_0054ab24,0xa100);
   }
   if (param_1[9] != 0) {
-    FUN_0048e3d0(param_1 + 8,param_1[9] * 0x60,4,s_STARBASE_CVS_RETURNS_0054ab0c,0xa100);
+    Mem_AllocZeroTagged(param_1 + 8,param_1[9] * 0x60,4,s_STARBASE_CVS_RETURNS_0054ab0c,0xa100);
   }
   Cbin_FindSection(&DAT_00532af4,param_2);
   piVar1 = param_1 + 1;

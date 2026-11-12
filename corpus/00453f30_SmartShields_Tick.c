@@ -35,7 +35,7 @@ void SmartShields_Tick(void)
     uVar4 = 0x10000;
   }
   Power_SetRate(&g_PlayerPower,uVar4,0,iVar1);
-  FUN_00466590(3,3,0,0xff);
+  Snd_Play2D(3,3,0,0xff);
 LAB_00454009:
   if (g_PlayerPower.shieldRear >> 1 <= g_PlayerPower.shieldFront) {
     if (g_PlayerPower.shieldRear < g_PlayerPower.shieldFront >> 1) {

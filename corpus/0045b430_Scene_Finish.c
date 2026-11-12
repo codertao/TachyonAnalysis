@@ -9,17 +9,17 @@ void Scene_Finish(int param_1)
   int iVar2;
   
   if ((DAT_0058f1c4 & 2) == 0) {
-    FUN_0045b340(param_1);
+    Scene_ReleaseMembers(param_1);
   }
   if (DAT_0058f1d0 != 0) {
-    FUN_00466f30(0);
+    Snd3D_SetPaused(0);
   }
   DAT_0058f1c0 = 0;
   _DAT_0058f1c8 = 0;
   DAT_0058f1d0 = 0;
-  FUN_00430210(&PTR_DAT_0053e890);
+  Input_PopBindingSet(&PTR_DAT_0053e890);
   if (DAT_0058f210 != 0) {
-    FUN_0044ed20();
+    RunOnce_Clear();
   }
   uVar1 = *(uint *)(param_1 + 0x134);
   if ((uVar1 & 0x10) == 0) {
@@ -39,9 +39,9 @@ void Scene_Finish(int param_1)
     g_ReturnMode = &g_Mode_Credits;
     g_NextMode = &g_Mode_Credits;
   }
-  FUN_004a0bb0();
-  FUN_0042fee0();
-  iVar2 = FUN_0045b3f0(param_1);
+  FF_StopAll();
+  Input_CenterCursor();
+  iVar2 = Scene_RestoreMusic(param_1);
   if (iVar2 != 0) {
     set_some_glbl_scalar(GLBL_spacesav[0x53]);
     load_sbf_and_bin(s_ttfmusic_005342d8,s_ttf_music_005342e4);

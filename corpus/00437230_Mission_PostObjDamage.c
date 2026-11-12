@@ -15,7 +15,7 @@ void Mission_PostObjDamage
   local_18 = 1;
   local_14 = param_1;
   local_10 = 3;
-  local_c = FUN_0048ec60(param_2,param_3);
+  local_c = Rank_Format(param_2,param_3);
   local_c = 100 - local_c;
   local_8 = 0xffffffff;
   local_4 = 0xffffffff;

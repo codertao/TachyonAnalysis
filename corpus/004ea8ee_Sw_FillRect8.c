@@ -16,7 +16,7 @@ void __cdecl Sw_FillRect8(uint color)
   uVar2 = CONCAT11((char)color,(char)color);
   bVar7 = CONCAT22((short)(color >> 0x10),uVar2) << 0xf < 0;
   DAT_005a62e8 = CONCAT22(uVar2,uVar2);
-  FUN_004e9ee0();
+  SwAsm_ClipRect();
   uVar1 = DAT_005a62e8;
   if (!bVar7) {
     puVar6 = (undefined4 *)(DAT_005a62c4 + DAT_005a62cc * DAT_005a62dc + DAT_005a62d8);

@@ -36,7 +36,7 @@ void Dcb_InitTurret(SpED *param_1,undefined4 param_2)
   DAT_005a5540 = (void *)((int)DAT_005a5540 + 1);
   pQVar2 = param_1->quadrant;
   param_1[1].aux = *(void **)(*(int *)&param_1[1].field_0x2c + 0x60);
-  FUN_0045cff0(param_1,&pQVar2->staticSectorMap);
+  Quad_LinkDynamicIfAbsent(param_1,&pQVar2->staticSectorMap);
   Dcb_SetRangeFlags((PowerBlock *)&param_1[1].onCollide,&param_1->desc[1].getText,param_1);
   return;
 }

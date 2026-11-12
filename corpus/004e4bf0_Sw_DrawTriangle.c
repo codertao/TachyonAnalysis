@@ -39,15 +39,15 @@ void __cdecl Sw_DrawTriangle(void *v0,void *v1,void *v2,void *surface,uint color
     _DAT_004e4a48 = color & 0xff;
     DAT_004e4aa8 = color;
     if (DAT_00604488 == 0x10) {
-      FUN_00520e70();
+      SwAsm_PatchRemapTables16();
     }
     _DAT_004e4af8 = 0;
-    FUN_0052b6c0();
+    SwAsm_TriSortVerts();
     if ((DAT_004e4b11 & 1) != 0) {
       DAT_004e4b10 = DAT_004e4b10 ^ 1;
     }
-    FUN_0052bc38();
-    FUN_004e4f20();
+    SwAsm_TriSetupColorGradients();
+    SwAsm_TriSelectSpanFuncs();
     bVar2 = DAT_004e4b10 == 0;
     if (bVar2) {
       DAT_004e4a3c = (undefined4 *)&DAT_004e4898;
@@ -55,7 +55,7 @@ void __cdecl Sw_DrawTriangle(void *v0,void *v1,void *v2,void *surface,uint color
       DAT_004e4a38 = &DAT_004e48ec;
       DAT_004e4a40 = &DAT_004e4940;
       DAT_004e4984 = DAT_004e4ac4;
-      DAT_004e48dc = FUN_0052bbf2;
+      DAT_004e48dc = SwAsm_EdgeStepZ;
     }
     else {
       DAT_004e4a38 = (undefined4 *)&DAT_004e4898;
@@ -63,15 +63,15 @@ void __cdecl Sw_DrawTriangle(void *v0,void *v1,void *v2,void *surface,uint color
       DAT_004e4a3c = &DAT_004e48ec;
       DAT_004e4a44 = &DAT_004e4940;
       DAT_004e48dc = DAT_004e4ac4;
-      DAT_004e4984 = FUN_0052bbf2;
+      DAT_004e4984 = SwAsm_EdgeStepZ;
     }
     _DAT_004e4988 = (uint)bVar2;
     _DAT_004e4934 = (uint)bVar2;
     _DAT_004e48e0 = (uint)!bVar2;
     DAT_004e4930 = DAT_004e4984;
-    FUN_0052b761();
-    FUN_0052b761();
-    FUN_0052b761();
+    SwAsm_SetupEdge();
+    SwAsm_SetupEdge();
+    SwAsm_SetupEdge();
     (*DAT_004e4ad8)();
     DAT_004e4888 = (void *)((int)DAT_004e4888 + DAT_004e48a4 * DAT_00604490);
     DAT_004e4884 = DAT_004e4884 + DAT_004e48a4 * DAT_00604448 * 4;

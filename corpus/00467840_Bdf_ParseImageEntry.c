@@ -23,31 +23,31 @@ void Bdf_ParseImageEntry(float param_1,undefined4 *param_2,int param_3)
   local_50 = 0;
   local_4c = 0;
   local_48 = 0;
-  iVar3 = FUN_0049bdb0(param_1,local_28,0x10,0,4,1);
+  iVar3 = Cbin_FindParam_Global(param_1,local_28,0x10,0,4,1);
   if (iVar3 != 0) {
-    FUN_0049b930(fVar1,local_38,0x10,0,4,2);
+    Cbin_GetParamN(fVar1,local_38,0x10,0,4,2);
     iVar3 = param_3;
     if (param_3 != 0) {
-      FUN_004b1ca0(0x30000400);
+      Pak_SetForcedTexFlags(0x30000400);
     }
     puVar2 = param_2;
     ModelPool_Load(param_2,local_28,local_38,local_38,&g_FxModelPool,0);
-    FUN_004b1ca0(0);
-    FUN_0049b930(fVar1,0,0,&param_1,2,3);
+    Pak_SetForcedTexFlags(0);
+    Cbin_GetParamN(fVar1,0,0,&param_1,2,3);
     local_58 = (int)(longlong)ROUND(param_1 * _DAT_0052e540 * (float)_DAT_0052e538);
     a0 = local_58;
-    FUN_0049b930(fVar1,0,0,&param_1,2,4);
+    Cbin_GetParamN(fVar1,0,0,&param_1,2,4);
     local_58 = (int)(longlong)ROUND(param_1 * _DAT_0052e540 * (float)_DAT_0052e538);
     local_40 = local_58;
     if (iVar3 == 0) {
-      FUN_0049b930(fVar1,0,0,&param_1,2,5);
+      Cbin_GetParamN(fVar1,0,0,&param_1,2,5);
       local_58 = (int)(longlong)ROUND(param_1 * _DAT_0052e544);
       puVar2[5] = local_58;
     }
     else {
       puVar2[5] = iVar3;
     }
-    FUN_0049b930(fVar1,0,0,&param_1,2,6);
+    Cbin_GetParamN(fVar1,0,0,&param_1,2,6);
     local_58 = (int)(longlong)ROUND(param_1 * _DAT_0052e544);
     puVar2[7] = local_58;
     call_Math_SinCos3(local_18,a0,local_40,0);

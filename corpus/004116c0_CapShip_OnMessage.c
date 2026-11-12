@@ -32,7 +32,7 @@ uint CapShip_OnMessage(int param_1,undefined4 param_2,uint param_3)
     Ent_SetIdentified(param_1,param_1 + 0xec,param_3);
     return 0;
   case 8:
-    FUN_00411650(param_1,param_3);
+    CapShip_SetTeam(param_1,param_3);
     return 0;
   case 0xf:
     Nav_ChangeRoute(param_1,param_1 + 0xec,param_3);
@@ -61,9 +61,9 @@ uint CapShip_OnMessage(int param_1,undefined4 param_2,uint param_3)
     return 0;
   case 0x1d:
     *(uint *)(param_1 + 0x138) = *(uint *)(param_1 + 0x138) | 0x100;
-    uVar1 = FUN_00434830(param_1,*(int *)(param_1 + 0xd8),
-                         *(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x5c),0);
-    FUN_004346d0(uVar1);
+    uVar1 = Quad_GetSpxForSped(param_1,*(int *)(param_1 + 0xd8),
+                               *(undefined4 *)(*(int *)(param_1 + 0xd8) + 0x5c),0);
+    Sped_SetAliasStatus(uVar1);
     break;
   case 0x1e:
     CapShip_StartDeath(param_1,param_3 * 0x32);

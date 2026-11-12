@@ -9,7 +9,7 @@ void Ai_AvoidCollision(int param_1)
   }
   Ai_FindClearDirection(param_1);
   Vec_DirAngles(param_1 + 0x34,param_1 + 0x344,param_1 + 0xdc);
-  FUN_00402530(param_1);
+  Ai_StartGotoPoint(param_1);
   return;
 }
 

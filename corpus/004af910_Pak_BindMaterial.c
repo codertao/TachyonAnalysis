@@ -9,7 +9,7 @@ void Pak_BindMaterial(int param_1)
   undefined4 uVar2;
   uint uVar3;
   
-  puVar1 = (undefined1 *)FUN_004af180();
+  puVar1 = (undefined1 *)TexCache_Alloc();
   *puVar1 = 0;
   *(undefined4 *)(puVar1 + 0x28) = 0;
   *(undefined4 *)(puVar1 + 0x44) = DAT_00668f90;
@@ -42,7 +42,7 @@ void Pak_BindMaterial(int param_1)
     *(undefined1 **)(param_1 + 0x10) = puVar1;
     return;
   }
-  uVar2 = FUN_004a2de0();
+  uVar2 = Pal_BuildRemap();
   *(undefined4 *)(puVar1 + 0x2c) = uVar2;
   *(uint *)(puVar1 + 0x2c) =
        ((_DAT_00603480 & 0xff) << 8 | _DAT_00603480 >> 8 & 0xff) << 8 | _DAT_00603480 >> 0x10 & 0xff

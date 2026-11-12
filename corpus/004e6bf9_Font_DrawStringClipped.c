@@ -30,7 +30,7 @@ Font_DrawStringClipped(char *text,void *font,int x,int y,byte color,byte style,i
   if (((y < DAT_0060446c) &&
       (DAT_004e556c = (uint)*(byte *)(*(int *)((int)font + 4) + 4),
       DAT_00604464 <= (int)(y + DAT_004e556c))) && (x < DAT_00604468)) {
-    FUN_004e666a(uVar5,font);
+    FontAsm_MeasureString(uVar5,font);
     if (DAT_00604460 <= DAT_004e5570 + extraout_ECX) {
       uVar3 = uVar5 >> 8 & 0xff;
       if (DAT_00604488 == 0x20) {
@@ -51,7 +51,7 @@ Font_DrawStringClipped(char *text,void *font,int x,int y,byte color,byte style,i
         DAT_005a62e4 = DAT_004e556c + 2;
         DAT_005a62d8 = DAT_004e5570 + -1;
         DAT_005a62dc = DAT_004e5574 + -1;
-        FUN_004ea8ae(font);
+        Sw_FillRectColorIdx(font);
       }
 LAB_004e6d33:
       uVar1 = DAT_004e54bc;
@@ -69,12 +69,12 @@ LAB_004e6d33:
         }
         if (cVar2 == '\t') {
           DAT_004e54b8 = DAT_004e5570;
-          FUN_004e67b3(uVar6,uVar5,font);
+          FontAsm_NextTabStop(uVar6,uVar5,font);
           DAT_004e5570 = DAT_004e54b8;
           text = text + 1;
         }
         else {
-          FUN_004e6b55();
+          FontAsm_DrawGlyphClipped();
           text = text + 1;
           iVar4 = (*(ushort *)(DAT_004e54a8 + 2) + 1) - DAT_004e5550;
           DAT_004e5570 = DAT_004e5570 + iVar4;

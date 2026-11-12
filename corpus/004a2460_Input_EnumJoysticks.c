@@ -9,7 +9,7 @@ void Input_EnumJoysticks(void)
   int iVar3;
   undefined1 local_200 [512];
   
-  FUN_004a2500();
+  Joy_FreeAll();
   if (DAT_005640d4 != (int *)0x0) {
     (**(code **)(*DAT_005640d4 + 0x10))(DAT_005640d4,4,&LAB_004a1af0,0,0);
     return;
@@ -24,7 +24,7 @@ void Input_EnumJoysticks(void)
         return;
       }
       if ((*(byte *)(iVar3 + 0x38) & 1) == 0) {
-        FUN_004a23e0(iVar3);
+        Joy_FreeDevice(iVar3);
       }
       iVar3 = iVar1;
     } while (iVar1 < (int)UVar2);

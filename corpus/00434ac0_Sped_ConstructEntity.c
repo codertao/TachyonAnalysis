@@ -45,7 +45,7 @@ undefined4 Sped_ConstructEntity(SpED *param_1,Desc *param_2,int param_3,int *par
     else {
       *(undefined **)&ent[3].stateFlags = &g_AiStatesWingman;
     }
-    uVar5 = FUN_00434530(param_1);
+    uVar5 = Sped_IsFlag40(param_1);
     ent[1].field_0x22 = uVar5;
     uVar7 = Sped_GetDefList(param_1,param_3);
     cVar3 = (char)(param_1->pos).y;
@@ -63,7 +63,7 @@ undefined4 Sped_ConstructEntity(SpED *param_1,Desc *param_2,int param_3,int *par
     else {
       *(ushort *)&ent[3].qNext2 = bVar6 - 1;
     }
-    iVar8 = FUN_004344a0(ent);
+    iVar8 = Ent_IsHostileToPlayer(ent);
     if (iVar8 != 0) {
       *(int *)(param_3 + 0x4c) = *(int *)(param_3 + 0x4c) + 1;
       *(int *)(param_3 + 0x50) = *(int *)(param_3 + 0x50) + 1;
@@ -100,7 +100,7 @@ undefined4 Sped_ConstructEntity(SpED *param_1,Desc *param_2,int param_3,int *par
     ent->onDamage = AiShip_OnDamage;
     if ((param_1->think == (void *)0x0) && ((param_1->field_0x24 & 0x10) == 0)) {
       Ai_ReturnToDefault(ent);
-      FUN_00423e80(ent,(float)ent->desc[1].clientMessage * *(float *)&ent[1].field_0x58);
+      Ent_PointAhead(ent,(float)ent->desc[1].clientMessage * *(float *)&ent[1].field_0x58);
     }
     else {
       Ai_SetState(ent,0xb);
@@ -113,17 +113,18 @@ undefined4 Sped_ConstructEntity(SpED *param_1,Desc *param_2,int param_3,int *par
     ent->netFlags = 0;
     ent->stateFlags = 5;
     *(undefined4 *)&ent->field_0xb8 = 0x28000;
-    bVar6 = FUN_004344f0(param_1);
+    bVar6 = Sped_GetCollFlags(param_1);
     ent->stateFlags = ent->stateFlags | bVar6;
     pvVar4 = ent->desc[5].radarColour;
     if (pvVar4 != (void *)0x0) {
-      FUN_004935c0(&ent[1].think,&ent->desc[9].spawnAtLoad,pvVar4,0,0xd500,param_2[10].construct,1);
+      Sped_InitWeapons(&ent[1].think,&ent->desc[9].spawnAtLoad,pvVar4,0,0xd500,param_2[10].construct
+                       ,1);
     }
     uVar9 = Systems_ToPowerUpgradeFlags(param_2[10].construct);
     piVar2 = &ent[1].pos.y;
     Power_Init(piVar2,&ent->desc[1].getText,1,uVar9,1);
     Sped_SyncAliasPower(uVar7,param_1->preRender,piVar2);
-    FUN_0045cff0(ent,&ent->quadrant->staticSectorMap);
+    Quad_LinkDynamicIfAbsent(ent,&ent->quadrant->staticSectorMap);
     Sped_BindLabel(ent,param_1);
     Nav_InitRoute(ent,param_1,ppSVar1,param_3,&param_1->field_0x48,uVar7);
     if (param_4 == (int *)0x0) {
@@ -135,7 +136,7 @@ undefined4 Sped_ConstructEntity(SpED *param_1,Desc *param_2,int param_3,int *par
       uVar10 = 1;
     }
     Sped_JoinGroup(ent,ppSVar1,iVar8,uVar10);
-    FUN_00457df0(param_3,(param_1->ang).z,param_2->field_1c);
+    Quad_GroupSlotAddMember(param_3,(param_1->ang).z,param_2->field_1c);
     if ((param_1->field_0x24 & 0x20) == 0) {
       Ent_SetEngageLimits(ent,3,2);
     }
@@ -143,7 +144,7 @@ undefined4 Sped_ConstructEntity(SpED *param_1,Desc *param_2,int param_3,int *par
       ent->stateFlags = ent->stateFlags & 0xfe;
     }
     if (((uint)param_2[10].construct & 0x1000) != 0) {
-      FUN_004986a0(&ent[3].onDamage);
+      Decoy_InitCounter(&ent[3].onDamage);
     }
     return 1;
   }

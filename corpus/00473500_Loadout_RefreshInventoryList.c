@@ -25,8 +25,8 @@ void Loadout_RefreshInventoryList(void)
       set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,pcVar8 + 0x40,0x20000);
       sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,0x200);
       sbi_label_flags_11c(&GLBL_UI_ELEM_LIST,pcVar8,0x20000);
-      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8,&DAT_00562b14);
-      FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,&DAT_00562b14);
+      Ui_SetLabelText(&GLBL_UI_ELEM_LIST,pcVar8,&DAT_00562b14);
+      Ui_SetLabelText(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,&DAT_00562b14);
       pcVar8[0x84] = '\0';
       pcVar8[0xc4] = '\0';
       pcVar8[0x80] = '\0';
@@ -44,7 +44,7 @@ void Loadout_RefreshInventoryList(void)
       pcVar8 = pcVar8 + 0x174;
     } while (*pcVar6 != '\0');
   }
-  FUN_0046bf30();
+  Inventory_Build();
   local_c = DAT_00589744;
   iVar1 = DAT_00589748;
   if (DAT_00589748 != 0) {
@@ -73,17 +73,18 @@ void Loadout_RefreshInventoryList(void)
           }
           iVar7 = Ui_FindButton(&GLBL_UI_ELEM_LIST,pcVar6);
           if (iVar7 != 0) {
-            FUN_0046d770(&GLBL_UI_ELEM_LIST,pcVar8,iVar1 + 0xb0,1,*(undefined4 *)(iVar1 + 0xc0),
-                         *(undefined4 *)(iVar1 + 0xc4),*(undefined4 *)(iVar7 + 0xd4),
-                         *(undefined4 *)(iVar7 + 0xd8),0);
+            Ui_SetImageAreaFromFile
+                      (&GLBL_UI_ELEM_LIST,pcVar8,iVar1 + 0xb0,1,*(undefined4 *)(iVar1 + 0xc0),
+                       *(undefined4 *)(iVar1 + 0xc4),*(undefined4 *)(iVar7 + 0xd4),
+                       *(undefined4 *)(iVar7 + 0xd8),0);
             iVar3 = find_ui_elem_by_id_(&GLBL_UI_ELEM_LIST,pcVar8);
             str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar1 + 0xb0);
-            iVar4 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0);
-            iVar7 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,iVar7 + 0x80);
+            iVar4 = MnuImage_Find(&GLBL_UI_ELEM_LIST,&DAT_005a41e0);
+            iVar7 = MnuImage_Find(&GLBL_UI_ELEM_LIST,iVar7 + 0x80);
             if (((iVar3 != 0) && (iVar4 != 0)) && (iVar7 != 0)) {
               uVar5 = Player_GetVarInt(*piVar2 + 0x20,*piVar2);
               str_sprintf(pcVar8 + 0x84,s___SHADOW8r__d_SHADOW8w___005476a8,uVar5);
-              FUN_0043e6a0(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,pcVar8 + 0x84);
+              Ui_SetLabelText(&GLBL_UI_ELEM_LIST,pcVar8 + -0x40,pcVar8 + 0x84);
               if (*(undefined4 **)(iVar1 + 0x60) == (undefined4 *)0x0) {
                 pcVar6 = s__ITEM_005476a0;
               }
@@ -91,9 +92,10 @@ void Loadout_RefreshInventoryList(void)
                 pcVar6 = (char *)**(undefined4 **)(iVar1 + 0x60);
               }
               str_sprintf(pcVar8 + 0x44,&DAT_00536768,pcVar6);
-              FUN_00473080(pcVar8 + -0x80,pcVar8 + 0x44,*(undefined4 *)(iVar3 + 0xc4),
-                           *(undefined4 *)(iVar3 + 200),*(undefined4 *)(iVar7 + 0x166c),
-                           *(int *)(iVar7 + 0x1670) / *(int *)(iVar7 + 0x1680));
+              Loadout_SetInventoryRow
+                        (pcVar8 + -0x80,pcVar8 + 0x44,*(undefined4 *)(iVar3 + 0xc4),
+                         *(undefined4 *)(iVar3 + 200),*(undefined4 *)(iVar7 + 0x166c),
+                         *(int *)(iVar7 + 0x1670) / *(int *)(iVar7 + 0x1680));
               Loadout_SetMountIcon
                         (iVar3,iVar4,*(undefined4 *)(iVar3 + 0xc4),*(undefined4 *)(iVar3 + 200),
                          *(undefined4 *)(iVar7 + 0x166c),*(undefined4 *)(iVar7 + 0x1670),

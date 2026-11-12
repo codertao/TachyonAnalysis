@@ -11,17 +11,17 @@ void CliOn_EntityStateOp(undefined2 *param_1)
     switch(*param_1) {
     case 1:
       *(undefined1 *)(iVar1 + 0xf1) = 1;
-      FUN_00466590(1,0xb,0,0xff);
+      Snd_Play2D(1,0xb,0,0xff);
       return;
     case 4:
-      FUN_0048b050(iVar1);
+      Ent_EnsureInQuadrant(iVar1);
       *(byte *)(iVar1 + 0xc0) = *(byte *)(iVar1 + 0xc0) | 1;
       return;
     case 8:
-      FUN_00415fa0(iVar1,1);
+      Replica_Kill(iVar1,1);
       return;
     case 0x10:
-      FUN_00408dd0(iVar1,param_1[1]);
+      CliEnt_SetStateParam(iVar1,param_1[1]);
     }
   }
   return;

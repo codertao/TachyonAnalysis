@@ -28,11 +28,11 @@ Dialog_PlayLine(undefined4 param_1,uint param_2,undefined4 param_3,int param_4,i
   else {
     if (param_5 != 0) goto LAB_0041ef0f;
     str_sprintf(local_80,s_PENDING_DIALOG__s___line__d_00535858,param_1,param_2);
-    FUN_0045d9d0(local_80,0);
+    SrvSend_TextSimple(local_80,0);
   }
   if (*(int *)(iVar1 + 0x24) != 0) {
     if (DAT_005a6730 != 0) {
-      FUN_0045d9d0(s_Cannot_play___line_in_progress_00535838,0);
+      SrvSend_TextSimple(s_Cannot_play___line_in_progress_00535838,0);
     }
     if (param_8 == 0) {
       return 0;
@@ -47,11 +47,11 @@ Dialog_PlayLine(undefined4 param_1,uint param_2,undefined4 param_3,int param_4,i
     return 0;
   }
 LAB_0041ef0f:
-  iVar1 = FUN_0041e6d0(param_1,param_3);
+  iVar1 = Dialog_LoadActor(param_1,param_3);
   if (iVar1 == 0) {
     if (DAT_005a6730 != 0) {
       str_sprintf(local_80,s_Cannot_find__s_00535828,param_1);
-      FUN_0045d9d0(local_80,0);
+      SrvSend_TextSimple(local_80,0);
       return 0;
     }
   }
@@ -59,7 +59,7 @@ LAB_0041ef0f:
     if (param_2 < *(uint *)(iVar1 + 0x48)) {
       iVar3 = *(int *)(iVar1 + 0x4c) + param_2 * 0x40;
       if ((*(int *)(iVar3 + 0x24) == 0) ||
-         (iVar2 = FUN_0041ec50(*(int *)(iVar3 + 0x24)), iVar2 != 0)) {
+         (iVar2 = Dialog_ResolveDependant(*(int *)(iVar3 + 0x24)), iVar2 != 0)) {
         uVar6 = param_6;
         uVar7 = param_7;
         iVar2 = param_8;
@@ -82,9 +82,9 @@ LAB_0041ef0f:
             iVar4 = param_9;
           }
         }
-        FUN_0041e7e0(iVar1,iVar3,iVar4,param_10,param_4,uVar6,uVar7,iVar2);
+        Dialog_QueueLine(iVar1,iVar3,iVar4,param_10,param_4,uVar6,uVar7,iVar2);
         if ((*(int *)(iVar3 + 0x2c) != 0) && (param_5 == 0)) {
-          FUN_0041ede0(iVar1,iVar3,param_4,param_6,param_7,param_8);
+          Dialog_PendConvLines(iVar1,iVar3,param_4,param_6,param_7,param_8);
         }
         return 1;
       }
@@ -100,11 +100,11 @@ LAB_0041ef0f:
       pcVar5 = s__s_line__d_is_an_invalid_line_nu_005357cc;
     }
     str_sprintf(local_80,pcVar5,param_1,param_2);
-    FUN_0045d9d0(local_80,0);
+    SrvSend_TextSimple(local_80,0);
   }
   else if (DAT_005a6730 != 0) {
     str_sprintf(local_80,s_CANNOT_PLAY_DIALOG____s_ACTOR_IS_005357f0,iVar1 + 0x10);
-    FUN_0045d9d0(local_80,0);
+    SrvSend_TextSimple(local_80,0);
     return 0;
   }
   return 0;

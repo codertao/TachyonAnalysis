@@ -10,7 +10,7 @@ undefined4 OurFreeMem(int param_1)
     }
     return 0xffffffff;
   }
-  iVar1 = FUN_0049c8f0(param_1 + -0x10);
+  iVar1 = Mem_FindOwnerPool(param_1 + -0x10);
   if (iVar1 == 0) {
     if (1 < GLBL_mem_log_lvl) {
       str_sprintf(&DAT_00603f80,s_mem_FreeMem____Failed_to_free_po_0055d848,param_1);

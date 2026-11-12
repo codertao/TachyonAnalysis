@@ -6,22 +6,22 @@ void Sector_Transition(undefined4 param_1,undefined4 param_2)
 
 {
   DAT_005a5dcc = param_1;
-  FUN_00435c50(param_1);
-  FUN_00466d70();
-  FUN_00416300();
-  FUN_004374e0();
-  FUN_00437520();
-  FUN_00462990();
-  FUN_00467810();
-  FUN_0049c6e0(0xd500);
-  FUN_0049c6e0(0xd530);
+  Region_FindByName(param_1);
+  Snd3D_StopAll();
+  Cli_ResetWorld();
+  Sectors_ShutdownDescs();
+  Sectors_FreeMaps();
+  DcbPools_Reset();
+  Bdf_FreeAll();
+  Mem_FreeTag(0xd500);
+  Mem_FreeTag(0xd530);
   OurFreeMem(DAT_005a5dc8);
-  FUN_0041f620(&DAT_005a5dd0);
+  Dialog_Reset(&DAT_005a5dd0);
   DAT_005a5dc8 = load_rtxt_bin(&DAT_005a5530,0xd100);
   Spx_LoadSectorTop(param_2);
-  FUN_004375a0();
-  FUN_0041f590(s_PLAYER_SCR_0053fa3c,g_SrvCurShip,&DAT_005a5dd0);
-  FUN_0048e090();
+  Sped_FreeAliases();
+  Dialog_BindActor(s_PLAYER_SCR_0053fa3c,g_SrvCurShip,&DAT_005a5dd0);
+  Sectors_InitTriggerVarConds();
   return;
 }
 

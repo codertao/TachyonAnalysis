@@ -40,8 +40,8 @@ void Cbin_ParseText(undefined4 *param_1)
   param_1[0x16] = 0;
   param_1[0x18] = 0;
   param_1[0x14] = 0;
-  FUN_0049a340(param_1);
-  puVar1 = (undefined4 *)FUN_0049c7d0(param_1[0xd],s_label_strings_0055d798);
+  Cbin_CountSectionsAlt(param_1);
+  puVar1 = (undefined4 *)Mem_AllocTemp(param_1[0xd],s_label_strings_0055d798);
   uVar4 = param_1[0xd];
   param_1[0x17] = puVar1;
   param_1[0x16] = puVar1;
@@ -53,9 +53,9 @@ void Cbin_ParseText(undefined4 *param_1)
     *(undefined1 *)puVar1 = 0;
     puVar1 = (undefined4 *)((int)puVar1 + 1);
   }
-  FUN_0049a1e0(param_1);
-  FUN_0049a3e0(param_1);
-  puVar1 = (undefined4 *)FUN_0049c7d0(param_1[0xb] * 0x14,s_element_structs_0055d788);
+  Cbin_IndexSections(param_1);
+  Cbin_CountAllKeys(param_1);
+  puVar1 = (undefined4 *)Mem_AllocTemp(param_1[0xb] * 0x14,s_element_structs_0055d788);
   param_1[0x11] = puVar1;
   param_1[0x10] = puVar1;
   for (uVar4 = param_1[0xb] * 5 & 0x3fffffff; uVar4 != 0; uVar4 = uVar4 - 1) {
@@ -66,7 +66,7 @@ void Cbin_ParseText(undefined4 *param_1)
     *(undefined1 *)puVar1 = 0;
     puVar1 = (undefined4 *)((int)puVar1 + 1);
   }
-  puVar1 = (undefined4 *)FUN_0049c7d0(param_1[0xe],s_element_strings_0055d778);
+  puVar1 = (undefined4 *)Mem_AllocTemp(param_1[0xe],s_element_strings_0055d778);
   uVar4 = param_1[0xe];
   param_1[0x19] = puVar1;
   param_1[0x18] = puVar1;
@@ -78,9 +78,9 @@ void Cbin_ParseText(undefined4 *param_1)
     *(undefined1 *)puVar1 = 0;
     puVar1 = (undefined4 *)((int)puVar1 + 1);
   }
-  FUN_0049a430(param_1);
-  FUN_0049a480(param_1);
-  puVar1 = (undefined4 *)FUN_0049c7d0(param_1[0xc] * 0x14,s_data_structs_0055d768);
+  Cbin_ParseAllKeys(param_1);
+  Cbin_ResolveValues(param_1);
+  puVar1 = (undefined4 *)Mem_AllocTemp(param_1[0xc] * 0x14,s_data_structs_0055d768);
   param_1[0x13] = puVar1;
   param_1[0x12] = puVar1;
   for (uVar4 = param_1[0xc] * 5 & 0x3fffffff; uVar4 != 0; uVar4 = uVar4 - 1) {
@@ -91,7 +91,7 @@ void Cbin_ParseText(undefined4 *param_1)
     *(undefined1 *)puVar1 = 0;
     puVar1 = (undefined4 *)((int)puVar1 + 1);
   }
-  puVar1 = (undefined4 *)FUN_0049c7d0(param_1[0xf],s_data_strings_0055d758);
+  puVar1 = (undefined4 *)Mem_AllocTemp(param_1[0xf],s_data_strings_0055d758);
   uVar4 = param_1[0xc];
   param_1[0x15] = puVar1;
   param_1[0x14] = puVar1;
@@ -103,7 +103,7 @@ void Cbin_ParseText(undefined4 *param_1)
     *(undefined1 *)puVar1 = 0;
     puVar1 = (undefined4 *)((int)puVar1 + 1);
   }
-  FUN_0049a590(param_1);
+  Cbin_ConvertNumbers(param_1);
   param_1[7] = 1;
   return;
 }

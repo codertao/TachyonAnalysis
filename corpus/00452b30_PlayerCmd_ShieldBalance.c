@@ -25,7 +25,7 @@ void PlayerCmd_ShieldBalance(int param_1)
   }
   iVar2 = Power_TransferPool(uVar3,uVar4,uVar1);
   if (iVar2 != 0) {
-    FUN_00466590(3,3,0,0xff);
+    Snd_Play2D(3,3,0,0xff);
   }
   return;
 }

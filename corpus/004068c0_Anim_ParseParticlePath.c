@@ -22,10 +22,10 @@ void Anim_ParseParticlePath
   local_10c = (longlong)ROUND(local_110 * _DAT_0052e548);
   param_2[1] = (undefined4)local_10c;
   Cbin_GetParam(local_100,s_PARTICLES_005328d0,local_80,0x7f,0,4,1);
-  uVar1 = FUN_00406800(local_80,param_4);
+  uVar1 = Anim_FindPathDefine(local_80,param_4);
   param_2[2] = uVar1;
   Cbin_GetParam(local_100,s_SRC_PART_005328c4,local_80,0x7f,0,4,1);
-  uVar1 = FUN_00406130(local_80);
+  uVar1 = Anim_FindPartIndex(local_80);
   param_2[3] = uVar1;
   Cbin_GetParam(local_100,s_SRC_PART_005328c4,0,0,param_2 + 4,1,2);
   Cbin_GetParam(local_100,s_SRC_START_005328b8,0,0,&local_110,2,1);
@@ -47,7 +47,7 @@ void Anim_ParseParticlePath
   local_10c = (longlong)ROUND(local_110 * _DAT_0052e544);
   param_2[0xc] = (undefined4)local_10c;
   Cbin_GetParam(local_100,s_DEST_PART_005328a4,local_80,0x7f,0,4,1);
-  uVar1 = FUN_00406130(local_80);
+  uVar1 = Anim_FindPartIndex(local_80);
   param_2[0x14] = uVar1;
   Cbin_GetParam(local_100,s_DEST_PART_005328a4,0,0,param_2 + 0x15,1,2);
   Cbin_GetParam(local_100,s_DEST_START_00532898,0,0,&local_110,2,1);
@@ -78,7 +78,7 @@ void Anim_ParseParticlePath
   Cbin_GetParam(local_100,s_PARTICLE_LIFE_END_00532848,0,0,&local_110,2,1);
   local_10c = (longlong)ROUND(local_110 * _DAT_0052e550);
   param_2[0xe] = (undefined4)local_10c;
-  FUN_00406840(param_2);
+  Anim_PathComputeDeltas(param_2);
   return;
 }
 

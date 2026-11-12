@@ -35,7 +35,7 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
   puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 != (undefined4 *)0x0) {
     if ((param_3 != 0) || ((g_FlightStateFlags & 4) != 0)) {
-      FUN_0040b420(puVar1);
+      Starbase_LoadDockScenes(puVar1);
     }
     return puVar1;
   }
@@ -44,18 +44,18 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
   local_6c = 0x128;
   local_68 = 0xffff;
   local_74 = param_1;
-  local_58 = FUN_0040ab10;
-  local_64 = FUN_0040b360;
+  local_58 = Base_SpawnFromPlacement;
+  local_64 = Base_InitClientParts;
   local_60 = &LAB_0040b3e0;
   local_5c = 0;
   local_50 = Starbase_OnMessage;
-  local_3c = FUN_0040b880;
+  local_3c = Starbase_FreeDesc;
   local_2c = &LAB_0040b920;
   local_c = &LAB_0040ba50;
   local_38 = &LAB_0040bb60;
   local_54 = &LAB_00408f40;
   local_4c = &LAB_0040b770;
-  local_24 = FUN_004132f0;
+  local_24 = CapShip_DistanceToHull;
   local_20 = &LAB_0040bd10;
   local_18 = &LAB_0040bdf0;
   local_40 = &LAB_0040bf10;
@@ -66,7 +66,7 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
   if (puVar1 == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
-  FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
+  DebugLog_Printf(s_Descriptor__s_loaded_00532b28,param_1);
   clr_bytes(&DAT_005b98a0,0x128);
   clr_bytes(&DAT_005b9820,0x80);
   puVar3 = puVar1;
@@ -77,17 +77,17 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
     puVar4 = puVar4 + 1;
   }
   Cbin_Open(param_1);
-  FUN_0049bfc0(&PTR_DAT_00532b40);
+  Cbin_ParseTemplate_Global(&PTR_DAT_00532b40);
   Dock_PickRandomScene(&DAT_005b98a0);
-  _DAT_005b99bc = FUN_0040b8c0(&DAT_005b9820);
-  _DAT_005b99c0 = FUN_004580c0(&DAT_005b9860);
-  _DAT_005b98b8 = FUN_0048e820(DAT_005a6144,s_BASE_NAMES_00532ec8,&DAT_005b9840);
-  _DAT_005b99c4 = FUN_00408de0(&DAT_005b9880);
+  _DAT_005b99bc = Starbase_RegisterName(&DAT_005b9820);
+  _DAT_005b99c0 = Race_FindByName(&DAT_005b9860);
+  _DAT_005b98b8 = Rtxt_LookupSafe(DAT_005a6144,s_BASE_NAMES_00532ec8,&DAT_005b9840);
+  _DAT_005b99c4 = Starbase_FindType(&DAT_005b9880);
   if (puVar1[0x46] == 0) {
-    FUN_004091f0(&DAT_005b99b4);
+    BaseFile_LoadSoundLoops(&DAT_005b99b4);
   }
   Cbin_Close();
-  _DAT_005b9934 = FUN_00409b80(&DAT_005b9924,&DAT_005b99b4);
+  _DAT_005b9934 = BaseFile_Load(&DAT_005b9924,&DAT_005b99b4);
   puVar3 = &DAT_005b98a0;
   puVar4 = puVar1;
   for (iVar2 = 0x4a; iVar2 != 0; iVar2 = iVar2 + -1) {
@@ -99,7 +99,7 @@ undefined4 * Ent_CreateStarbase(undefined4 param_1,undefined4 param_2,int param_
     *(undefined4 **)(puVar1[0x25] + 8) = puVar1 + 0x45;
   }
   if (param_3 != 0) {
-    FUN_0040b420(puVar1);
+    Starbase_LoadDockScenes(puVar1);
   }
   return puVar1;
 }

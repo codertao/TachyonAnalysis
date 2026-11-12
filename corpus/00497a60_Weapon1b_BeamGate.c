@@ -10,15 +10,15 @@ Weapon1b_BeamGate(int param_1,int param_2,int param_3,undefined4 *param_4,int *p
        (*(int *)(param_1 + 0x40) + *(int *)(param_6 + 0x20) < **(int **)(param_6 + 0x1c))) {
       *param_4 = 0x10000;
       *(undefined4 *)(param_6 + 0x30) = 1;
-      FUN_00427ff0(0,1);
-      FUN_0042b9e0(1,0,0x80,0x80);
+      Hud_SetTractorSound(0,1);
+      Hud_SetBeamLight(1,0,0x80,0x80);
       return 1;
     }
   }
   else if (param_3 == 0) {
     *(undefined4 *)(param_6 + 0x30) = 0;
-    FUN_00427ff0(0,0);
-    FUN_0042b9e0(0,0,0,0);
+    Hud_SetTractorSound(0,0);
+    Hud_SetBeamLight(0,0,0,0);
     return 2;
   }
   if (*(int *)(param_6 + 0x30) != 0) {

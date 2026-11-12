@@ -14,7 +14,7 @@ void SpRules_OnPlayerDamaged(int param_1)
   undefined4 local_4;
   
   uVar1 = Shield_GetMax(param_1 + 0x11c,*(int *)(param_1 + 0x8c) + 0xd0);
-  local_c = FUN_0048ec60(*(int *)(param_1 + 300) + *(int *)(param_1 + 0x124) >> 1,uVar1);
+  local_c = Rank_Format(*(int *)(param_1 + 300) + *(int *)(param_1 + 0x124) >> 1,uVar1);
   local_c = 100 - local_c;
   local_8 = 0xffffffff;
   local_4 = 0xffffffff;

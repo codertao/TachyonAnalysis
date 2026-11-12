@@ -33,7 +33,7 @@ void Loadout_RefreshWeaponMounts(void)
   
   local_290 = Var_GetTable(s_WEAPON_TYPES_0054763c);
   if (g_CfgMode == 0) {
-    FUN_004757e0();
+    Loadout_RefreshMountSlot();
     uVar3 = Ship_GetCurrentModel(local_26c);
     iVar4 = Cbin_LoadFile(uVar3);
     if (iVar4 != 0) {
@@ -42,7 +42,7 @@ void Loadout_RefreshWeaponMounts(void)
         iVar5 = Cbin_FindSection((int)&g_LoadoutWeaponMounts + iVar4,local_26c);
         if (iVar5 != 0) {
           Cbin_FindParam(s_MOUNT_ICON_005478dc,local_100,0x7f,0,4,1,local_26c);
-          iVar5 = FUN_00469a30(local_100);
+          iVar5 = Starbase_FindMaterial(local_100);
           if (iVar5 != 0) {
             local_294 = iVar5 + 0x40;
             str_sprintf(&DAT_00572298 + iVar4,local_294);
@@ -65,16 +65,18 @@ void Loadout_RefreshWeaponMounts(void)
             }
             *(uint *)((int)&DAT_00572c10 + iVar4) =
                  *(uint *)(iVar5 + 100) / uVar9 + *(int *)((int)&DAT_00572c08 + iVar4);
-            FUN_0046d770(&GLBL_UI_ELEM_LIST,&DAT_00572218 + iVar4,local_294,
-                         *(undefined4 *)(iVar5 + 0x68),*(undefined4 *)(iVar5 + 0x60),
-                         *(undefined4 *)(iVar5 + 100),*puVar11,*puVar1,0);
-            FUN_0043f500(&GLBL_UI_ELEM_LIST,&DAT_00572218 + iVar4,
-                         *(undefined4 *)((int)&DAT_005722bc + iVar4));
+            Ui_SetImageAreaFromFile
+                      (&GLBL_UI_ELEM_LIST,&DAT_00572218 + iVar4,local_294,
+                       *(undefined4 *)(iVar5 + 0x68),*(undefined4 *)(iVar5 + 0x60),
+                       *(undefined4 *)(iVar5 + 100),*puVar11,*puVar1,0);
+            ImageArea_SetValueE4
+                      (&GLBL_UI_ELEM_LIST,&DAT_00572218 + iVar4,
+                       *(undefined4 *)((int)&DAT_005722bc + iVar4));
             local_274 = *(int *)((int)&DAT_00572c0c + iVar4);
             local_278 = *(undefined4 *)((int)&DAT_00572c08 + iVar4);
             local_27c = local_274 + -0x1c;
             local_270 = *(undefined4 *)((int)&DAT_00572c10 + iVar4);
-            FUN_0043e5c0(&GLBL_UI_ELEM_LIST,&DAT_005721c0 + iVar4,&local_27c);
+            Ui_SetLabelColor(&GLBL_UI_ELEM_LIST,&DAT_005721c0 + iVar4,&local_27c);
           }
         }
         uVar9 = 0;
@@ -84,7 +86,7 @@ void Loadout_RefreshWeaponMounts(void)
           while ((iVar5 = Cbin_FindParam(s_WEAPON_CLASS_005478cc,local_80,0x7f,0,4,1,local_26c),
                  iVar5 != 0 && (uVar9 < 0x20))) {
             local_28c = 0xffffffff;
-            FUN_0048f670(s_WEAPON_CLASS_005478cc,local_80,&local_28c);
+            Var_LookupEquate(s_WEAPON_CLASS_005478cc,local_80,&local_28c);
             if ((local_28c != 0xffffffff) && (pWVar10 = g_WeaponDefs, g_WeaponDefs[0].id != 0x1c)) {
               puVar11 = (undefined4 *)((int)&DAT_0057233c + uVar9 * 0x48 + iVar4);
               do {
@@ -92,7 +94,7 @@ void Loadout_RefreshWeaponMounts(void)
                    (pcVar6 = (char *)Var_GetKeyByIndex(local_290,pWVar10->id + 1), uVar9 = local_294
                    , pcVar6 != (char *)0x0)) {
                   _strncpy((char *)(puVar11 + -0x10),pcVar6,0x3f);
-                  iVar5 = FUN_004690b0(pcVar6);
+                  iVar5 = Item_FindByName(pcVar6);
                   puVar11[1] = iVar5;
                   if ((iVar5 == 0) || (*(int *)(iVar5 + 0x58) == 0)) {
                     *puVar11 = 1;
@@ -117,7 +119,7 @@ void Loadout_RefreshWeaponMounts(void)
         }
         if ((&DAT_00572298)[iVar4] != '\0') {
           *(undefined4 *)((int)&DAT_00572210 + iVar4) = 1;
-          FUN_0043f840(&GLBL_UI_ELEM_LIST,&DAT_00572218 + iVar4,0x20000);
+          ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,&DAT_00572218 + iVar4,0x20000);
         }
         iVar4 = iVar4 + 0xab4;
       } while (iVar4 < 0x55a0);
@@ -135,7 +137,7 @@ void Loadout_RefreshWeaponMounts(void)
           iVar4 = Var_FindKey(uVar3);
           if (((local_288 != 0) && (iVar4 != 0)) && (*(int *)(iVar4 + 8) != 0)) {
             uVar3 = Var_GetKeyByIndex(*(int *)(iVar4 + 8),local_288);
-            iVar4 = FUN_004690b0(uVar3);
+            iVar4 = Item_FindByName(uVar3);
             local_284 = CONCAT44(local_284._4_4_,iVar4);
             if (((iVar4 == 0) || (iVar5 = *(int *)(iVar4 + 0x58), iVar5 == 0)) ||
                (iVar7 = Loadout_MountCheck(iVar4,pcVar6 + -0x138), iVar7 == 0)) {
@@ -151,7 +153,7 @@ void Loadout_RefreshWeaponMounts(void)
                 Player_SetVarInt(local_200,&DAT_005a41e0,0);
               }
               else {
-                FUN_0048f670(s_WEAPON_TYPES_0054763c,iVar5,&local_294);
+                Var_LookupEquate(s_WEAPON_TYPES_0054763c,iVar5,&local_294);
                 if (((local_294 == 0) || (iVar7 = WeaponDef_Get(local_294 - 1), iVar7 == 0)) ||
                    ((*(byte *)(iVar7 + 0xd8) & 4) == 0)) {
                   uVar3 = Player_GetVarInt(local_200,&DAT_005a41e0);
@@ -164,22 +166,24 @@ void Loadout_RefreshWeaponMounts(void)
               }
               if (*(int *)(pcVar6 + 0x968) != 0) {
                 if (*pcVar6 != '\0') {
-                  FUN_0046d770(&GLBL_UI_ELEM_LIST,pcVar6 + -0x40,iVar5 + 0xb0,1,
-                               *(undefined4 *)(iVar5 + 0xc0),*(undefined4 *)(iVar5 + 0xc4),
-                               *(undefined4 *)(pcVar6 + 0x18),*(undefined4 *)(pcVar6 + 0x1c),0);
+                  Ui_SetImageAreaFromFile
+                            (&GLBL_UI_ELEM_LIST,pcVar6 + -0x40,iVar5 + 0xb0,1,
+                             *(undefined4 *)(iVar5 + 0xc0),*(undefined4 *)(iVar5 + 0xc4),
+                             *(undefined4 *)(pcVar6 + 0x18),*(undefined4 *)(pcVar6 + 0x1c),0);
                   uVar3 = find_ui_elem_by_id_(&GLBL_UI_ELEM_LIST,pcVar6 + -0x40);
                   str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar5 + 0xb0);
-                  uVar8 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,*(int *)(pcVar6 + 0x18) + -8
-                                       ,*(undefined4 *)(pcVar6 + 0x1c),
-                                       *(undefined4 *)(pcVar6 + 0x10),*(undefined4 *)(pcVar6 + 0x14)
-                                       ,*(undefined4 *)(pcVar6 + 0x20),2,2);
+                  uVar8 = MnuImage_Find(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,
+                                        *(int *)(pcVar6 + 0x18) + -8,*(undefined4 *)(pcVar6 + 0x1c),
+                                        *(undefined4 *)(pcVar6 + 0x10),
+                                        *(undefined4 *)(pcVar6 + 0x14),
+                                        *(undefined4 *)(pcVar6 + 0x20),2,2);
                   Loadout_SetMountIcon(uVar3,uVar8);
                   iVar4 = (int)local_284;
                   uVar9 = local_290;
                 }
-                FUN_0043f5d0(&GLBL_UI_ELEM_LIST,pcVar6 + -0x80,9);
+                ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,pcVar6 + -0x80,9);
                 *(int *)(pcVar6 + 0x964) = iVar4;
-                FUN_0043f840(&GLBL_UI_ELEM_LIST,pcVar6 + -0x40,0x20000);
+                ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,pcVar6 + -0x40,0x20000);
                 if (1 < *(uint *)(iVar5 + 0x9c)) {
                   str_sprintf(pcVar6 + -0x98,&DAT_00535eb8,*(undefined4 *)(pcVar6 + 0x968));
                   clr_label_flags_11c(&GLBL_UI_ELEM_LIST,pcVar6 + -0xd8,0x10000);
@@ -191,7 +195,7 @@ void Loadout_RefreshWeaponMounts(void)
         local_290 = uVar9 + 1;
         pcVar6 = pcVar6 + 0xab4;
       } while (uVar9 < 8);
-      FUN_0049adb0(local_26c);
+      Cbin_Free(local_26c);
     }
   }
   return;

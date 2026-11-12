@@ -18,7 +18,7 @@ undefined4 StreamAudio_Refill(void)
   }
   do {
     if (((DAT_005f9d48 != 0) && (DAT_0055e6e8 != 0xffffffff)) &&
-       (iVar1 = FUN_004a8f70(&DAT_005b9d40 + DAT_0055e6e8 * 0x4000,DAT_005f9d48), iVar1 == 0)) {
+       (iVar1 = Snd_Fwd_4df4c9(&DAT_005b9d40 + DAT_0055e6e8 * 0x4000,DAT_005f9d48), iVar1 == 0)) {
       return 0;
     }
     if (DAT_005f9d4c == 0x10) {

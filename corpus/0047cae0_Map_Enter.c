@@ -14,12 +14,12 @@ void Map_Enter(void)
     g_GameVarStore = g_PlayerVarStore;
   }
   else {
-    FUN_0046ffd0(&DAT_005719a0,s_cbMapExit_005524f0);
+    Starbase_InitCallbacks(&DAT_005719a0,s_cbMapExit_005524f0);
     _DAT_00571a14 = 1;
     _DAT_00571a10 = 1;
-    iVar1 = FUN_004396c0(s_map_mnu_00552868,&DAT_005719a0);
+    iVar1 = Mnu_LoadFileKeepGfx(s_map_mnu_00552868,&DAT_005719a0);
     if (iVar1 == 0) {
-      FUN_0047e7a0();
+      Map_OnBack();
       return;
     }
     g_MapUiCtx = (undefined4 *)&DAT_005719a0;
@@ -27,24 +27,24 @@ void Map_Enter(void)
   }
   Cfg_ClearScratch();
   Map_LoadConfig();
-  FUN_0047c830();
+  Map_InitState();
   if (DAT_00571340 == 0) {
     Ui_PlaySoundEvent(g_MapUiCtx,s_SNDEVNT_CHANGE_MENUS_0053ff54);
-    FUN_0043ab40(g_MapUiCtx);
+    Ui_DeactivateAllWindows(g_MapUiCtx);
   }
-  FUN_0043ab40(g_MapUiCtx);
-  FUN_0043a8d0(g_MapUiCtx,s_WndStarBaseMap_00552858);
+  Ui_DeactivateAllWindows(g_MapUiCtx);
+  Ui_OpenWindow(g_MapUiCtx,s_WndStarBaseMap_00552858);
   Ui_ShowWindow(g_MapUiCtx,s_WndStarBaseMap_00552858,0);
-  FUN_00437b10(0);
-  FUN_00437b30(FUN_0047e7a0);
-  FUN_00437af0(0x73,FUN_0047e7a0);
-  FUN_00445710();
-  FUN_0043e8f0(g_MapUiCtx,s_Cursor1_0053ff4c);
-  FUN_0043efa0();
+  MenuHotkey_SetAccept(0);
+  MenuHotkey_SetEscape(Map_OnBack);
+  MenuHotkey_Set(0x73,Map_OnBack);
+  TitleHover_Clear();
+  Ui_SetCursor(g_MapUiCtx,s_Cursor1_0053ff4c);
+  Ui_ShowCursor();
   if (DAT_00571340 == 0) {
-    FUN_00468f50(g_NextMode);
+    Starbase_PlayMusic(g_NextMode);
   }
-  FUN_0043a820(g_MapUiCtx,s_WndStarBaseMap_00552858,FUN_0047e490);
+  Ui_SetWindowHandler10c(g_MapUiCtx,s_WndStarBaseMap_00552858,Map_DrawView);
   return;
 }
 

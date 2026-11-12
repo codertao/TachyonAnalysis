@@ -29,7 +29,7 @@ undefined4 * Ent_CreatePowerup(undefined4 param_1,undefined4 param_2,int param_3
   puVar1 = (undefined4 *)DescReg_FindByName(param_1,0);
   if (puVar1 != (undefined4 *)0x0) {
     if ((param_3 != 0) || ((g_FlightStateFlags & 2) != 0)) {
-      FUN_00445720(puVar1);
+      Nop(puVar1);
     }
     return puVar1;
   }
@@ -38,23 +38,23 @@ undefined4 * Ent_CreatePowerup(undefined4 param_1,undefined4 param_2,int param_3
   local_6c = 0xb8;
   local_68 = 0xffff;
   local_74 = param_1;
-  local_58 = FUN_004567a0;
-  local_64 = FUN_004567c0;
-  local_60 = FUN_004567f0;
-  local_50 = Ent_CreateMiscObject;
+  local_58 = Powerup_SpawnDefault;
+  local_64 = Powerup_Init;
+  local_60 = Powerup_GetType;
+  local_50 = Stub_ReturnZeroB;
   local_3c = &LAB_0040e930;
-  local_38 = FUN_004645c0;
-  local_34 = FUN_004646f0;
+  local_38 = Ent_FormatInfoField;
+  local_34 = Ent_FormatGroupField;
   local_48 = 0;
   local_54 = 0;
-  local_2c = Ent_CreateMiscObject;
+  local_2c = Stub_ReturnZeroB;
   local_18 = &LAB_00456800;
-  local_14 = FUN_00456f50;
+  local_14 = Powerup_OnPickup;
   puVar1 = (undefined4 *)DescReg_Alloc(&local_74,param_2);
   if (puVar1 == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
-  FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
+  DebugLog_Printf(s_Descriptor__s_loaded_00532b28,param_1);
   clr_bytes(&DAT_0058f360,0xb8);
   clr_bytes(&DAT_0058f340,0x20);
   puVar3 = puVar1;
@@ -65,10 +65,10 @@ undefined4 * Ent_CreatePowerup(undefined4 param_1,undefined4 param_2,int param_3
     puVar4 = puVar4 + 1;
   }
   Cbin_Open(param_1);
-  FUN_0049bfc0(&PTR_DAT_00548ba0);
+  Cbin_ParseTemplate_Global(&PTR_DAT_00548ba0);
   ModelPool_Load(&DAT_0058f404,&DAT_0058f3e4,0,&DAT_0058f3f4,&g_ObjModelPool,1);
   Cbin_Close();
-  _DAT_0058f410 = FUN_004565a0(&DAT_0058f340);
+  _DAT_0058f410 = Powerup_TypeFromName(&DAT_0058f340);
   puVar3 = &DAT_0058f360;
   puVar4 = puVar1;
   for (iVar2 = 0x2e; iVar2 != 0; iVar2 = iVar2 + -1) {
@@ -77,7 +77,7 @@ undefined4 * Ent_CreatePowerup(undefined4 param_1,undefined4 param_2,int param_3
     puVar4 = puVar4 + 1;
   }
   if (param_3 != 0) {
-    FUN_00445720(puVar1);
+    Nop(puVar1);
   }
   return puVar1;
 }

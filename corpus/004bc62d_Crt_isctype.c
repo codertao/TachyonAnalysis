@@ -21,7 +21,7 @@ uint __thiscall Crt_isctype(undefined4 param_1,int param_2,uint param_3)
       local_8 = CONCAT22((short)((uint)param_1 >> 0x10),(undefined2)local_8) & 0xff00ffff;
       uVar2 = 2;
     }
-    iVar1 = FUN_004c07d6(1,&local_8,uVar2,(int)&param_2 + 2,0,0,1);
+    iVar1 = ___crtGetStringTypeA(1,&local_8,uVar2,(int)&param_2 + 2,0,0,1);
     if (iVar1 == 0) {
       return 0;
     }

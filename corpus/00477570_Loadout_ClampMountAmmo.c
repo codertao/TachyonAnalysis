@@ -28,13 +28,13 @@ void Loadout_ClampMountAmmo(void)
       iVar2 = Var_FindKey(uVar1);
       if (((local_104 != 0) && (iVar2 != 0)) && (*(int *)(iVar2 + 8) != 0)) {
         uVar1 = Var_GetKeyByIndex(*(int *)(iVar2 + 8),local_104);
-        iVar3 = FUN_004690b0(uVar1);
+        iVar3 = Item_FindByName(uVar1);
         iVar2 = 0;
         if (iVar3 != 0) {
           iVar2 = *(int *)(iVar3 + 0x58);
         }
         if (1 < *(uint *)(iVar2 + 0x9c)) {
-          FUN_0048f670(s_WEAPON_TYPES_0054763c,iVar2,&local_108);
+          Var_LookupEquate(s_WEAPON_TYPES_0054763c,iVar2,&local_108);
           if (local_108 != 0) {
             iVar4 = WeaponDef_Get(local_108 + -1);
             if ((iVar4 != 0) && ((*(byte *)(iVar4 + 0xd8) & 4) != 0)) {

@@ -22,10 +22,10 @@ void Anim_StepFrame(int param_1,int param_2)
     iVar4 = *(int *)(param_2 + 0x24);
     iVar5 = *(int *)(iVar4 + 0x24);
     if (iVar5 != 0) {
-      FUN_00466710(iVar5,param_1,0x10000);
+      Snd_PlayAtEntLoop(iVar5,param_1,0x10000);
       if (DAT_005a6730 != 0) {
         str_sprintf(local_80,s_Playing__s_00532978,*(undefined4 *)(iVar4 + 0x24));
-        FUN_0048ce30(local_80,DAT_005a632c._1_1_);
+        TextBar_Add(local_80,DAT_005a632c._1_1_);
       }
     }
     *(undefined4 *)(param_2 + 0x4c) = 1;

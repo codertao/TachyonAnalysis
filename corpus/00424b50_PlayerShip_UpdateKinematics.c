@@ -41,12 +41,12 @@ void PlayerShip_UpdateKinematics(SpED *param_1)
     Entity_ThrustToWorld(param_1,DAT_005b1ed0,DAT_005b1f0c + 0x84,&DAT_005b1ecc);
   }
   else if ((DAT_005b8f58 & 1) != 0) {
-    FUN_00423fb0(param_1,DAT_005b1f0c + 0x84,&DAT_005b1ecc);
+    Vel_Damp(param_1,DAT_005b1f0c + 0x84,&DAT_005b1ecc);
   }
   if ((DAT_005b2154 & 0x200) != 0) {
-    FUN_00424a60(param_1);
+    PlayerShip_ApplySlide(param_1);
   }
-  FUN_004248e0(param_1);
+  Ent_IntegrateVelocity(param_1);
   return;
 }
 

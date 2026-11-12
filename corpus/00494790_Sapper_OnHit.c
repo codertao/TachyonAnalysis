@@ -33,16 +33,16 @@ void Sapper_OnHit(int param_1,int param_2,int *param_3)
        *(int *)(param_1 + 0x50) * 0x80 + *(int *)(param_2 + 0x50) * -0x80 >> 7;
   *(int *)(param_1 + 0x110) =
        *(int *)(param_1 + 0x54) * 0x80 + *(int *)(param_2 + 0x54) * -0x80 >> 7;
-  FUN_004b1be0(local_28,param_2 + 0x4c);
-  FUN_004b2410(iVar1,iVar1);
+  Rot_FromAnglesInv(local_28,param_2 + 0x4c);
+  Rot_ApplyCurrent(iVar1,iVar1);
   *(undefined4 *)(param_1 + 0x6c) = 0;
-  *(code **)(param_1 + 0x70) = FUN_00492d30;
+  *(code **)(param_1 + 0x70) = Proj_Think;
   *(int *)(param_1 + 0xf4) = param_2;
   if (*(int *)(param_1 + 0xd8) == 1) {
     *(undefined1 **)(param_1 + 0x68) = &Sapper_ThinkPredicted;
     Sapper_ReportAttach(**(undefined4 **)(param_1 + 0xdc),iVar1,param_1 + 0x108,param_2,
                         *(undefined4 *)(param_1 + 0x78));
-    FUN_004666e0(0xc,0xf,0,param_1,0x10000);
+    Snd_PlayAtEnt(0xc,0xf,0,param_1,0x10000);
     return;
   }
   *(code **)(param_1 + 0x68) = Sapper_ThinkServer;

@@ -20,18 +20,18 @@ undefined4 PlayerCfg_WriteActions(undefined4 param_1)
   uint *local_8;
   
   ppuVar10 = &PTR_s_key_press_00537688;
-  iVar4 = str_cmp(PTR_s_key_press_00537688,s_joy_butt_00536d48);
+  iVar4 = __stricmp(PTR_s_key_press_00537688,s_joy_butt_00536d48);
   while (iVar4 != 0) {
     ppuVar11 = ppuVar10 + 4;
     ppuVar10 = ppuVar10 + 4;
-    iVar4 = str_cmp(*ppuVar11,s_joy_butt_00536d48);
+    iVar4 = __stricmp(*ppuVar11,s_joy_butt_00536d48);
   }
-  iVar4 = str_cmp(*ppuVar10,s_mouse_butt_00536d54);
+  iVar4 = __stricmp(*ppuVar10,s_mouse_butt_00536d54);
   ppuVar11 = ppuVar10;
   while (iVar4 != 0) {
     ppuVar5 = ppuVar11 + 4;
     ppuVar11 = ppuVar11 + 4;
-    iVar4 = str_cmp(*ppuVar5,s_mouse_butt_00536d54);
+    iVar4 = __stricmp(*ppuVar5,s_mouse_butt_00536d54);
   }
   iVar4 = c_fopen(param_1,&DAT_0053cab8);
   if (iVar4 == 0) {
@@ -41,7 +41,7 @@ undefined4 PlayerCfg_WriteActions(undefined4 param_1)
   if (DAT_0053cbc8 == 0) {
 LAB_0042eb78:
     c_fclose(iVar4);
-    FUN_0042f320(param_1);
+    KeyCfg_Reload(param_1);
     return 1;
   }
   local_8 = &DAT_0053cbcc;

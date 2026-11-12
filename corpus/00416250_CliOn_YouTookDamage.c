@@ -8,8 +8,8 @@ void CliOn_YouTookDamage(void)
   if (0xf0 < DAT_005b1efc) {
     DAT_005b1efc = 0xf0;
   }
-  FUN_004666e0(2,2,2,GLBL_SOME_CONTEXT,0x10000);
-  FUN_004a0aa0(5000,250000);
+  Snd_PlayAtEnt(2,2,2,GLBL_SOME_CONTEXT,0x10000);
+  FF_PlayShake(5000,250000);
   return;
 }
 

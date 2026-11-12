@@ -31,7 +31,7 @@ undefined4 Loadout_MountCheck(int param_1,int param_2)
     if (*piVar2 == 0) {
       return 0;
     }
-    iVar1 = str_cmp(*piVar2,param_1);
+    iVar1 = __stricmp(*piVar2,param_1);
     if (iVar1 == 0) {
       return 1;
     }

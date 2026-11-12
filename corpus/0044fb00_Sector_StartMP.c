@@ -4,22 +4,22 @@
 void Sector_StartMP(undefined4 param_1)
 
 {
-  FUN_0044fac0();
-  FUN_0044fa40(param_1);
-  FUN_004374e0();
-  FUN_00437520();
-  FUN_00462990();
-  FUN_0041f620(&DAT_005a5dd0);
-  FUN_0049c6e0(0xd500);
-  FUN_0049c6e0(0xd530);
-  FUN_00445720();
+  MpEnt_ClearAll();
+  MpRules_IsGameTypeValid(param_1);
+  Sectors_ShutdownDescs();
+  Sectors_FreeMaps();
+  DcbPools_Reset();
+  Dialog_Reset(&DAT_005a5dd0);
+  Mem_FreeTag(0xd500);
+  Mem_FreeTag(0xd530);
+  Nop();
   Spx_LoadSectorTop(&DAT_00590208);
   if (*(code **)(DAT_00590238 + 0x50) != (code *)0x0) {
     (**(code **)(DAT_00590238 + 0x50))();
   }
-  FUN_00461240();
-  FUN_00445720();
-  FUN_0044fa60(0);
+  Srv_ResetAllConns();
+  Nop();
+  MpEnt_ResetAll(0);
   return;
 }
 

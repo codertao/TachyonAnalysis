@@ -28,7 +28,7 @@ undefined4 Ent_SpawnAiDcb(SpED *param_1,Desc *param_2,undefined4 param_3,int *pa
   ent->field_0x7e = *(undefined1 *)&param_2[1].m24;
   *(undefined4 *)&ent->field_0x18 = 0;
   ent->scale = 0x10000;
-  ent->onDamage = FUN_00445720;
+  ent->onDamage = Nop;
   ent->think = &LAB_0040a570;
   *(SpED **)&param_1->field_0x28 = ent;
   *(undefined4 *)&param_1->field_0x2c = 1;
@@ -56,9 +56,9 @@ undefined4 Ent_SpawnAiDcb(SpED *param_1,Desc *param_2,undefined4 param_3,int *pa
     ent[1].pos.y = 1;
     ent->stateFlags = 5;
   }
-  bVar1 = FUN_004344f0(param_1);
+  bVar1 = Sped_GetCollFlags(param_1);
   ent->stateFlags = ent->stateFlags | bVar1;
-  FUN_0045cbf0(ent,&ent->quadrant->staticSectorMap);
+  SectorMap_LinkStatic(ent,&ent->quadrant->staticSectorMap);
   return 1;
 }
 

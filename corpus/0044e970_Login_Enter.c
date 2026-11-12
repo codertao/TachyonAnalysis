@@ -13,12 +13,12 @@ void Login_Enter(void)
   if ((iVar1 != 0) && (DAT_005a6620 == 0)) {
     Ui_BuildWindows(&g_UiManager);
     Ui_ShowWindow(&g_UiManager,s_WndSplash_00548334,0);
-    FUN_0043a8d0(&g_UiManager,s_WndSplash_00548334);
-    FUN_00437b30(Login_DismissSplash);
-    FUN_00437b10(Login_DismissSplash);
-    FUN_00445710();
-    FUN_0043e8f0(&g_UiManager,s_Cursor1_0053ff4c);
-    FUN_0043efa0();
+    Ui_OpenWindow(&g_UiManager,s_WndSplash_00548334);
+    MenuHotkey_SetEscape(Login_DismissSplash);
+    MenuHotkey_SetAccept(Login_DismissSplash);
+    TitleHover_Clear();
+    Ui_SetCursor(&g_UiManager,s_Cursor1_0053ff4c);
+    Ui_ShowCursor();
     _DAT_00590ee0 = 3000;
     return;
   }

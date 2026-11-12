@@ -13,8 +13,8 @@ undefined4 VarStore_ParseDefaults(undefined4 param_1,undefined4 param_2,undefine
   }
   DAT_0056aa90 = param_2;
   DAT_0056aa94 = param_3;
-  FUN_0048f530();
-  FUN_0048f8c0();
+  VarEq_LoadAll();
+  VarDef_LoadAll();
   Cbin_Close();
   return 1;
 }

@@ -18,7 +18,7 @@ void Gate_JumpToSector(int param_1,int param_2)
   char local_10 [16];
   
   iVar2 = param_1;
-  FUN_004263a0(param_1);
+  Gate_MarkUsed(param_1);
   uVar3 = 0xffffffff;
   pcVar5 = (char *)(*(int *)(iVar2 + 0xf0) + 0x38);
   do {
@@ -65,17 +65,17 @@ void Gate_JumpToSector(int param_1,int param_2)
     pcVar5 = pcVar5 + 1;
     pcVar6 = pcVar6 + 1;
   }
-  FUN_0044eaa0();
+  Timer_PauseBegin();
   Sector_Transition(*(undefined4 *)(*(int *)(iVar2 + 0xf0) + 0x5c),local_20);
   Desc_CreateByType(&DAT_005b8f74,&DAT_005b1f0c,1,&param_1,1,0xffffffff);
   *(undefined4 *)(GLBL_SOME_CONTEXT + 0x8c) = DAT_005b1f0c;
-  FUN_0044eab0();
-  FUN_0045d9d0(s_ENTERING_REGIONAL_GATE_005493dc,0);
-  quadrant = (Quadrant *)FUN_00435390(local_20);
+  Timer_PauseEnd();
+  SrvSend_TextSimple(s_ENTERING_REGIONAL_GATE_005493dc,0);
+  quadrant = (Quadrant *)Spx_IsLoaded(local_20);
   if (quadrant != (Quadrant *)0x0) {
     Ent_SetQuadrant((SpED *)g_SrvCurShip,g_SrvCurConn,quadrant);
-    FUN_0045f460(g_SrvCurConn,quadrant);
-    FUN_00427010(local_10,quadrant,local_2c,local_34,0);
+    Srv_SendStaticObjs(g_SrvCurConn,quadrant);
+    Gate_PlaceAtExit(local_10,quadrant,local_2c,local_34,0);
     SrvSend_EnterQuadrant(local_2c,local_34,quadrant,0,1,1,g_SrvCurConn);
     g_SrvCurConn->state = 1;
   }

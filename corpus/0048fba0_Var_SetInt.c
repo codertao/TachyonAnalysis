@@ -15,7 +15,7 @@ void Var_SetInt(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefin
   if (iVar2 == 0) {
     return;
   }
-  FUN_0048fb20(param_1,*(undefined4 *)(iVar1 + 0x30),*(undefined4 *)(iVar2 + 4),param_4);
+  Var_EntryPtr(param_1,*(undefined4 *)(iVar1 + 0x30),*(undefined4 *)(iVar2 + 4),param_4);
   return;
 }
 

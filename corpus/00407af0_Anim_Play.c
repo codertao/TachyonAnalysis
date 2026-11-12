@@ -12,7 +12,7 @@ void Anim_Play(int param_1,undefined4 *param_2,undefined4 param_3,undefined4 par
   if (iVar1 != 0) {
     param_2[0x14] = param_5;
     *param_2 = param_4;
-    FUN_00407aa0(param_2,param_1);
+    Anim_StartWithCamera(param_2,param_1);
     param_2[0xe] = *(undefined4 *)(param_1 + 0x68);
     param_2[0xf] = *(undefined4 *)(param_1 + 0x5c);
     *(code **)(param_1 + 0x68) = Anim_Think;

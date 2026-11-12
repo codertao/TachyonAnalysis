@@ -44,7 +44,7 @@ void TachSrv_PlayerThink(SpED *param_1)
   (param_1->ang).y = (((int)pSVar5 - iVar4) * 0x80 >> 10) + iVar4 & 0x1ffffff;
   (param_1->ang).z = (((int)pSVar3 - iVar1) * 0x80 >> 10) + iVar1 & 0x1ffffff;
   if ((pSVar6 != (SpED *)0x0) && (pSVar6->poolType == 1)) {
-    FUN_00460d70(pSVar6);
+    Ship_GetCloakFlags(pSVar6);
   }
   if (((param_1[1].pos.y ^ DAT_005897e4) & 0xf) == 0) {
     Power_Regen(&param_1[1].field_0x48,&param_1->desc[1].getText,0x12,
@@ -53,14 +53,14 @@ void TachSrv_PlayerThink(SpED *param_1)
       Power_SapperDrain(&param_1[1].field_0x48,param_1[1].netId,2);
     }
   }
-  FUN_00460ce0(param_1);
+  Srv_MineBurnOffTick(param_1);
   Dcb_SetRangeFlags((PowerBlock *)&param_1[1].field_0x48,&param_1->desc[1].getText,param_1);
   if (param_1->target != (SpED *)0x0) {
-    FUN_00455b40(param_1,param_1->target);
+    Srv_PlayerProximityTick(param_1,param_1->target);
   }
   Sector_RadiationTick(param_1);
   if (param_1[1].pos.z != 0) {
-    FUN_00460cb0(param_1);
+    Srv_CallAttachedReader(param_1);
   }
   return;
 }

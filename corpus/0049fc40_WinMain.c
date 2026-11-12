@@ -33,22 +33,22 @@ void WinMain(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4
   DAT_00603954 = 0x100000;
   DAT_00603958 = 0x100000;
   DAT_0060394c = 1;
-  FUN_004333a0();
+  App_SetVersionString();
   iVar1 = App_WindowDisplayInit(param_1,param_4);
   if (iVar1 == 0) {
     *unaff_FS_OFFSET = local_14;
     return;
   }
-  FUN_0049f710();
+  Sys_InitState();
   if (DAT_0060394c != 0) {
-    FUN_0049f5c0(GLBL_WindowHandle_);
+    Timer_Start(GLBL_WindowHandle_);
   }
   local_8 = 1;
   pCVar2 = GetCommandLineA();
   CmdLine_Dispatch(pCVar2);
   local_8 = 0;
   Timer_Teardown();
-  FUN_0049fd58();
+  WinMain_MessageLoop();
   return;
 }
 

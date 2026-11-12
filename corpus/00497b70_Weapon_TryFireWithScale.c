@@ -35,10 +35,10 @@ Weapon_TryFireWithScale
           _DAT_0055e058 = 0;
           if (1 < DAT_00565790) {
             DAT_0056578c = DAT_0056578c + (DAT_0056578c >> 1);
-            FUN_004a0760(0,DAT_0056578c,DAT_00565788,1);
+            FF_PlayJolt(0,DAT_0056578c,DAT_00565788,1);
             return uVar4;
           }
-          FUN_004a0760(0,DAT_0056578c,DAT_00565788,0);
+          FF_PlayJolt(0,DAT_0056578c,DAT_00565788,0);
         }
         return uVar4;
       }

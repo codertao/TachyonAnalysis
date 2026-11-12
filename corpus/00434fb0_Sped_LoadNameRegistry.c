@@ -16,11 +16,11 @@ void Sped_LoadNameRegistry(undefined4 param_1,undefined4 param_2)
   iVar2 = Cbin_Open(param_1);
   if (iVar2 != 0) {
     DAT_005a5df8 = Cbin_CountEntries(&DAT_00532af4,&PTR_DAT_0053f91c);
-    uVar3 = FUN_0049c0f0(&DAT_00532af4,&PTR_DAT_0053f91c,0x40,1);
-    uVar4 = FUN_0049c0f0(&DAT_00532af4,&PTR_DAT_0053f91c,0x40,2);
-    FUN_0048e3a0(&DAT_005a5dfc,uVar3,4,s_DES_NAMES_0053f910,param_2);
-    FUN_0048e3a0(&DAT_005a5e00,uVar4,4,s_DES_NAMES_0053f910,param_2);
-    FUN_0048e3a0(&DAT_005a5e04,DAT_005a5df8 * 8,4,s_SPEDNAMES_0053f904,param_2);
+    uVar3 = Cbin_GetStringArray_Global(&DAT_00532af4,&PTR_DAT_0053f91c,0x40,1);
+    uVar4 = Cbin_GetStringArray_Global(&DAT_00532af4,&PTR_DAT_0053f91c,0x40,2);
+    Mem_AllocTagged(&DAT_005a5dfc,uVar3,4,s_DES_NAMES_0053f910,param_2);
+    Mem_AllocTagged(&DAT_005a5e00,uVar4,4,s_DES_NAMES_0053f910,param_2);
+    Mem_AllocTagged(&DAT_005a5e04,DAT_005a5df8 * 8,4,s_SPEDNAMES_0053f904,param_2);
     Cbin_SelectGroup(&DAT_00532af4);
     iVar2 = 0;
     puVar6 = DAT_005a5e04;
@@ -28,7 +28,7 @@ void Sped_LoadNameRegistry(undefined4 param_1,undefined4 param_2)
     if (0 < DAT_005a5df8) {
       do {
         *puVar6 = pcVar7;
-        FUN_0049bdb0(&PTR_DAT_0053f91c,pcVar7,0x40,0,4,1);
+        Cbin_FindParam_Global(&PTR_DAT_0053f91c,pcVar7,0x40,0,4,1);
         uVar5 = 0xffffffff;
         pcVar8 = pcVar7;
         do {
@@ -49,7 +49,7 @@ void Sped_LoadNameRegistry(undefined4 param_1,undefined4 param_2)
       pcVar7 = DAT_005a5e00;
       do {
         *puVar6 = pcVar7;
-        FUN_0049bdb0(&PTR_DAT_0053f91c,pcVar7,0x40,0,4,2);
+        Cbin_FindParam_Global(&PTR_DAT_0053f91c,pcVar7,0x40,0,4,2);
         uVar5 = 0xffffffff;
         pcVar8 = pcVar7;
         do {

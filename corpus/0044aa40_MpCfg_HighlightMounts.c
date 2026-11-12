@@ -34,8 +34,8 @@ void MpCfg_HighlightMounts(undefined4 param_1)
           uVar2 = (uint)(iVar1 == 0);
         }
         if (uVar2 != 0) {
-          FUN_0043fce0(&g_UiManager,puVar4,1,puVar4[0x28] + -2);
-          FUN_0043f810(&g_UiManager,puVar4,1);
+          ImageArea_SetHighlight(&g_UiManager,puVar4,1,puVar4[0x28] + -2);
+          ImageArea_SetValueF4(&g_UiManager,puVar4,1);
           set_flag_10c_on_elem_by_id(&g_UiManager,puVar4 + 0x10,0x80000);
         }
       }

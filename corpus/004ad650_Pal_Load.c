@@ -18,11 +18,11 @@ int Pal_Load(char *param_1)
   undefined1 local_210 [264];
   undefined1 local_108 [264];
   
-  iVar3 = FUN_004a2eb0(param_1);
+  iVar3 = Image_Load(param_1);
   if (iVar3 == 0) {
     return 0;
   }
-  iVar4 = FUN_004ad520(&DAT_00602e00);
+  iVar4 = PalRef_Create(&DAT_00602e00);
   if (iVar4 == 0) {
     return 0;
   }
@@ -57,7 +57,7 @@ int Pal_Load(char *param_1)
     pcVar9 = pcVar9 + 1;
     pcVar10 = pcVar10 + 1;
   }
-  uVar6 = FUN_004bcef7(&DAT_006045a0,&DAT_00548004);
+  uVar6 = _strtok(&DAT_006045a0,&DAT_00548004);
   str_sprintf(local_210,s__s_CR1_0055e9bc,uVar6);
   uVar5 = 0xffffffff;
   do {
@@ -81,7 +81,7 @@ int Pal_Load(char *param_1)
     pcVar9 = pcVar9 + 1;
     pcVar10 = pcVar10 + 1;
   }
-  uVar6 = FUN_004bcef7(&DAT_006045a0,&DAT_00548004);
+  uVar6 = _strtok(&DAT_006045a0,&DAT_00548004);
   str_sprintf(local_108,s__s_CR2_0055e9b4,uVar6);
   iVar7 = Fs_Exists(local_210);
   if ((iVar7 != 0) && (iVar7 = Fs_Exists(local_108), iVar7 != 0)) {

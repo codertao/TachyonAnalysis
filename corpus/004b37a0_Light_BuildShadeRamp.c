@@ -69,7 +69,7 @@ void Light_BuildShadeRamp(void)
     else {
       local_c = 0xff;
     }
-    FUN_004aef50(&local_14,&local_10,&local_c);
+    Pal_SaturateRange(&local_14,&local_10,&local_c);
     if (local_14 < 0xfd) {
       if (local_14 < 4) {
         local_14 = 4;
@@ -108,7 +108,7 @@ void Light_BuildShadeRamp(void)
     }
     local_10 = local_14;
     local_c = local_14;
-    FUN_004aef50(&local_14,&local_10,&local_c);
+    Pal_SaturateRange(&local_14,&local_10,&local_c);
     (&DAT_0060f882)[iVar7] = (undefined1)local_14;
     (&DAT_0060f881)[iVar7] = (undefined1)local_10;
     (&DAT_0060f880)[iVar7] = (undefined1)local_c;

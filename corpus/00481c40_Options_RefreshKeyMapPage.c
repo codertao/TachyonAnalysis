@@ -49,7 +49,7 @@ void Options_RefreshKeyMapPage(void)
     *pcVar13 = '\0';
     if (bVar18) {
       puVar8 = *(undefined4 **)(DAT_00563d64 + uVar11 * 4);
-      puVar5 = (undefined4 *)FUN_0042f5c0(*puVar8);
+      puVar5 = (undefined4 *)ActionName_FromId(*puVar8);
       if (puVar5 != (undefined4 *)0x0) {
         str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
         puVar5 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
@@ -57,10 +57,10 @@ void Options_RefreshKeyMapPage(void)
            (puVar9 = (undefined1 *)*puVar5, puVar9 == (undefined1 *)0x0)) {
           puVar9 = &DAT_00562b14;
         }
-        FUN_0043e6a0(DAT_00571280,local_140,puVar9);
+        Ui_SetLabelText(DAT_00571280,local_140,puVar9);
       }
       if ((puVar8[1] != -1) &&
-         (puVar5 = (undefined4 *)FUN_0042f4d0(puVar8[1]), puVar5 != (undefined4 *)0x0)) {
+         (puVar5 = (undefined4 *)KeyName_FromKeyCode(puVar8[1]), puVar5 != (undefined4 *)0x0)) {
         iVar10 = ToAscii(puVar8[1] & 0x1ff,0,local_100,(LPWORD)&local_144,0);
         if (iVar10 == 1) {
           uVar2 = (ushort)local_144;
@@ -73,11 +73,11 @@ void Options_RefreshKeyMapPage(void)
             }
           }
           else {
-            uVar6 = FUN_004bcf9b(local_144 & 0xffff);
+            uVar6 = _toupper(local_144 & 0xffff);
             str_sprintf(&DAT_005a41e0,&DAT_0053ebdc,uVar6);
             str_sprintf(pcVar13,&DAT_005a41e0);
 LAB_00481e5f:
-            puVar5 = (undefined4 *)FUN_0042f540(puVar8[1]);
+            puVar5 = (undefined4 *)KeyName_FromModifierBits(puVar8[1]);
             if (puVar5 != (undefined4 *)0x0) {
               str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
               piVar7 = (int *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
@@ -130,7 +130,7 @@ joined_r0x00481e4f:
         }
       }
       if ((puVar8[3] != 0) &&
-         (puVar5 = (undefined4 *)FUN_0042f590(puVar8[3]), puVar5 != (undefined4 *)0x0)) {
+         (puVar5 = (undefined4 *)KeyName_FromMouseButton(puVar8[3]), puVar5 != (undefined4 *)0x0)) {
         str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar5);
         puVar5 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar5[1]);
         if ((puVar5 != (undefined4 *)0x0) && (pcVar14 = (char *)*puVar5, pcVar14 != (char *)0x0)) {
@@ -206,7 +206,7 @@ joined_r0x00481e4f:
         }
       }
       if ((puVar8[2] != -1) &&
-         (puVar8 = (undefined4 *)FUN_0042f560(puVar8[2]), puVar8 != (undefined4 *)0x0)) {
+         (puVar8 = (undefined4 *)KeyName_FromJoyButton(puVar8[2]), puVar8 != (undefined4 *)0x0)) {
         str_sprintf(&DAT_005a41e0,s__s_text_0053ebe4,*puVar8);
         puVar8 = (undefined4 *)Rtxt_Lookup(DAT_00563d68,&DAT_005a41e0,puVar8[1]);
         if ((puVar8 != (undefined4 *)0x0) && (pcVar14 = (char *)*puVar8, pcVar14 != (char *)0x0)) {
@@ -281,11 +281,11 @@ joined_r0x00481e4f:
           }
         }
       }
-      FUN_0043cc80(DAT_00571280,local_120,pcVar13);
+      Ui_SetButtonLabelText(DAT_00571280,local_120,pcVar13);
     }
     else {
-      FUN_0043e6a0(DAT_00571280,local_140,&DAT_00562b14);
-      FUN_0043cc80(DAT_00571280,local_120,&DAT_00562b14);
+      Ui_SetLabelText(DAT_00571280,local_140,&DAT_00562b14);
+      Ui_SetButtonLabelText(DAT_00571280,local_120,&DAT_00562b14);
     }
     local_14c = local_14c + 1;
     pcVar13 = pcVar13 + 0x80;

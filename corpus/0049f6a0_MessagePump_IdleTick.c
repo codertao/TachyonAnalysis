@@ -10,9 +10,9 @@ void MessagePump_IdleTick(void)
   iVar1 = PeekMessageA(&local_1c,(HWND)0x0,0,0,1);
   while( true ) {
     if (iVar1 == 0) {
-      FUN_004a9b50();
-      FUN_0049e810();
-      FUN_004a6420();
+      CdAudio_IdleTick();
+      Audio_Refill();
+      Midi_IdleTick();
       return;
     }
     if (local_1c.message == 0x12) break;

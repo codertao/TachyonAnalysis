@@ -12,18 +12,19 @@ undefined4 Music_StreamTick(void)
     return 0;
   }
   if (DAT_006af514 < 1) {
-    FUN_004b59e0();
+    MusScr_RunMain();
   }
   else {
-    uVar1 = FUN_004df4ba();
+    uVar1 = SndAsm_StreamQueueFree();
     if (uVar1 < 0xd) {
       BVar2 = ReadFile(GLBL_sbf_file_handle,&DAT_0066f4e0 + DAT_0055ed20 * 0x4000,DAT_006af510,
                        &local_8,(LPOVERLAPPED)0x0);
       if (BVar2 == 0) {
         return 0;
       }
-      FUN_0049e7f0((GLBL_some_scalar_from_spacesav_in_fixed >> 0x10) * (DAT_006af520 >> 0x10) >> 8);
-      FUN_004df4c9();
+      Audio_StreamTick((GLBL_some_scalar_from_spacesav_in_fixed >> 0x10) * (DAT_006af520 >> 0x10) >>
+                       8);
+      SndAsm_StreamPush();
       DAT_006af514 = DAT_006af514 - DAT_006af510;
       DAT_0055ed20 = DAT_0055ed20 + 1 & 0xf;
       DAT_006af520 = DAT_006af520 + DAT_006af528;

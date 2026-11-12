@@ -42,7 +42,7 @@ void AiState_Defend(int param_1)
       *(code **)(param_1 + 0x304) = AiThink_Approach;
       return;
     }
-    FUN_00499220(param_1,iVar2);
+    Wingman_FlyFormation(param_1,iVar2);
   }
   return;
 }

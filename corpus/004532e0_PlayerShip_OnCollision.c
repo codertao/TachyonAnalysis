@@ -23,7 +23,7 @@ void PlayerShip_OnCollision(int param_1,float param_2)
      (iVar3 = (*pcVar2)(param_2,param_1,&local_c), iVar3 == 0)) {
     return;
   }
-  if (*(code **)(param_1 + 0x68) != FUN_00454f30) {
+  if (*(code **)(param_1 + 0x68) != Player_ResetCamera) {
     *(undefined4 *)(param_1 + 0x34) = *(undefined4 *)(param_1 + 0xe0);
     *(undefined4 *)(param_1 + 0x38) = *(undefined4 *)(param_1 + 0xe4);
     *(undefined4 *)(param_1 + 0x3c) = *(undefined4 *)(param_1 + 0xe8);
@@ -46,7 +46,7 @@ void PlayerShip_OnCollision(int param_1,float param_2)
         fVar6 = (float10)_DAT_0052ea74;
       }
       _DAT_005b1ed8 = (float)((float10)_DAT_005b1ed8 + fVar6);
-      FUN_004666e0(1,2,1,param_1,0x10000);
+      Snd_PlayAtEnt(1,2,1,param_1,0x10000);
       pcVar2 = *(code **)(iVar4 + 0x88);
       if (pcVar2 == (code *)0x0) {
         if (local_c != 0) {
@@ -73,7 +73,7 @@ void PlayerShip_OnCollision(int param_1,float param_2)
           lStack_8 = (longlong)ROUND((float)*(int *)(param_1 + 0xa8) * _DAT_0052ea68);
           *(undefined4 *)(param_1 + 0xa8) = (undefined4)lStack_8;
           DAT_005b2118 = 100;
-          FUN_004a0760(0,0xffffd8f0,500000,1);
+          FF_PlayJolt(0,0xffffd8f0,500000,1);
           return;
         }
       }
@@ -83,7 +83,7 @@ void PlayerShip_OnCollision(int param_1,float param_2)
       *(undefined4 *)(param_1 + 0xa4) = (undefined4)lStack_8;
       lStack_8 = (longlong)ROUND((float)*(int *)(param_1 + 0xa8) * _DAT_0052ea70);
       *(undefined4 *)(param_1 + 0xa8) = (undefined4)lStack_8;
-      FUN_004a0760(0,0xffffd8f0,500000,1);
+      FF_PlayJolt(0,0xffffd8f0,500000,1);
       _DAT_005b1e98 = -_DAT_005b1e98;
       DAT_005b2118 = 0x32;
       _DAT_005b1e9c = -_DAT_005b1e9c;

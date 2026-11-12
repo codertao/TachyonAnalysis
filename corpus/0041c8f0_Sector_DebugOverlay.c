@@ -21,12 +21,12 @@ void Sector_DebugOverlay(void)
   char local_100 [128];
   char local_80 [128];
   
-  FUN_00452180(1);
+  Gfx_Lock(1);
   uVar7 = (uint)*(byte *)(*DAT_005b2770 + 4);
-  FUN_0041f6e0(DAT_005b276c,0x14,0x14,500,400,0x80,DAT_005b2770,s_REGION_DEBUG_00534e54,0xffff00,
-               80000,2);
+  Ui_DrawBox(DAT_005b276c,0x14,0x14,500,400,0x80,DAT_005b2770,s_REGION_DEBUG_00534e54,0xffff00,80000
+             ,2);
   str_sprintf(local_100,s_Region__d_Sector__d_00534e3c,DAT_005b39ac,DAT_005b39b0);
-  FUN_0048e970(local_100,DAT_005b2770,0x1c,0x2c,0xffffff,0xffff,0x10000,2);
+  Text_DrawAligned(local_100,DAT_005b2770,0x1c,0x2c,0xffffff,0xffff,0x10000,2);
   iVar9 = uVar7 + 0x2c;
   local_10c = 0;
   if (g_SectorCount != 0) {
@@ -35,7 +35,7 @@ void Sector_DebugOverlay(void)
       iVar3 = (((Quadrant *)piVar8[-2] != g_SrvCurShip->quadrant) - 1 & 0xdeffe0) + 0x20ff20;
       uVar2 = Sector_GetQuadrantName((Quadrant *)piVar8[-2]);
       str_sprintf(local_100,&DAT_00534e38,uVar2);
-      FUN_0048e970(local_100,DAT_005b2770,0x1c,iVar9,iVar3,0xffff,0x10000,2);
+      Text_DrawAligned(local_100,DAT_005b2770,0x1c,iVar9,iVar3,0xffff,0x10000,2);
       str_sprintf(local_100,s_Main_SPX__s_00534e24,piVar8 + 1);
       if (*piVar8 != 0) {
         str_sprintf(local_80,s_Sub_SPX__s_00534e18,piVar8 + 5);
@@ -73,7 +73,7 @@ void Sector_DebugOverlay(void)
           pcVar12 = pcVar12 + 1;
         }
       }
-      FUN_0048e970(local_100,DAT_005b2770,0x1c,iVar9 + uVar7,iVar3,0xffff,0x10000,2);
+      Text_DrawAligned(local_100,DAT_005b2770,0x1c,iVar9 + uVar7,iVar3,0xffff,0x10000,2);
       iVar9 = iVar9 + uVar7 + uVar7;
       local_10c = local_10c + 1;
       piVar8 = piVar8 + 0x11;

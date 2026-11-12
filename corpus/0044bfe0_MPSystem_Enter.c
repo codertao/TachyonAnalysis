@@ -16,17 +16,17 @@ void MPSystem_Enter(void)
   if (g_PlayerVarStore == 0) {
     VarStore_Load(s_vars_cfg_005343c0,&DAT_005a60a0,&g_PlayerVarStore,0xa010,1);
   }
-  FUN_00444d80();
+  TitleMenu_LoadUi();
   DAT_005927e0 = 1;
   g_NwJoinPending = 0;
   Ui_BuildWindows(&g_UiManager);
-  FUN_00437b30(0);
-  FUN_00437b10(0);
-  FUN_0043e8f0(&g_UiManager,s_Cursor1_0053ff4c);
-  FUN_00445710();
-  FUN_0043efa0();
+  MenuHotkey_SetEscape(0);
+  MenuHotkey_SetAccept(0);
+  Ui_SetCursor(&g_UiManager,s_Cursor1_0053ff4c);
+  TitleHover_Clear();
+  Ui_ShowCursor();
   Ui_ShowWindow(&g_UiManager,s_WndMPSystem_00547ea8,0);
-  FUN_0043a8d0(&g_UiManager,s_WndMPSystem_00547ea8);
+  Ui_OpenWindow(&g_UiManager,s_WndMPSystem_00547ea8);
   set_button_state(&g_UiManager,s_BtnMPSysLan_00547f3c,1);
   set_button_state(&g_UiManager,s_BtnMPSysNW_00547f30,1);
   Ui_SetButtonFlag(&g_UiManager,s_BtnMPSysLan_00547f3c,4);
@@ -36,9 +36,9 @@ void MPSystem_Enter(void)
   Ui_SetButtonFlag(&g_UiManager,s_BtnMPSystemUp_00547f20,0x100000);
   Ui_SetButtonFlag(&g_UiManager,s_BtnMPSystemDn_00547f10,0x100000);
   NW_BrowserInit();
-  FUN_00458200();
+  Races_Init();
   Profile_LoadoutInit(0);
-  FUN_00458230();
+  Races_Free();
   if (DAT_00547a9c == 0) {
     pcVar2 = s_BtnMPSysLan_00547f3c;
   }
@@ -46,15 +46,15 @@ void MPSystem_Enter(void)
     pcVar2 = s_BtnMPSysNW_00547f30;
   }
   set_button_state(&g_UiManager,pcVar2,0x10);
-  FUN_0044c670(DAT_00547a9c);
-  FUN_0044c710();
+  MpSystem_ShowLanPanel(DAT_00547a9c);
+  MpSystem_RefreshLanButtons();
   DAT_00562cb4 = 0;
   if (g_MissionEndReason != 0) {
     dialog_mp_error_reason();
   }
-  iVar1 = FUN_00432b70(0);
+  iVar1 = Cd_Check(0);
   if (iVar1 == 0) {
-    FUN_0044c480();
+    MpSystem_GoBack();
     return;
   }
   return;

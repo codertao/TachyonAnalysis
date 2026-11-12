@@ -28,7 +28,7 @@ void Gfx_DrawLine(float param_1,float param_2,float param_3,float param_4,uint p
     param_2 = (float)((int)param_4 << 7);
     param_3 = (float)iVar4;
     param_4 = (float)iVar3;
-    iVar3 = FUN_004abd90(&param_4,&param_3,&param_1,&param_2);
+    iVar3 = Gfx_ClipLine(&param_4,&param_3,&param_1,&param_2);
     uVar2 = param_5;
     if (iVar3 == 0) {
       uVar1 = *(uint *)(&DAT_005a6440 + param_5 * 4);

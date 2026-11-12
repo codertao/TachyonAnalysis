@@ -20,7 +20,7 @@ undefined4 Fs_ReadRegion(LPCSTR param_1,undefined4 param_2,int param_3,int *para
   }
   else {
 LAB_004a190f:
-    uVar3 = FUN_004a10e0(param_1,param_2,param_3,param_4);
+    uVar3 = File_ReadRegion(param_1,param_2,param_3,param_4);
     if (GLBL_some_file_failure == 0) {
       return uVar3;
     }
@@ -32,7 +32,7 @@ LAB_004a1937:
         pCVar4 = (LPCSTR)get_actual_filename_from_pff
                                    (param_1,param_2,param_3,param_4,GLBL_maybe_pff_base);
       }
-      uVar3 = FUN_004a4230(pCVar4,uVar3);
+      uVar3 = Pff_ReadEntryRegion(pCVar4,uVar3);
       if (*(int *)(GLBL_maybe_pff_base + 0xb4) == 0) {
         iVar5 = GLBL_maybe_pff_base;
         if (GLBL_cb_log_file_io_probably == (code *)0x0) {
@@ -54,7 +54,7 @@ LAB_004a1a41:
       if (DAT_006038ac != 0) {
         pCVar4 = (LPCSTR)get_actual_filename_from_pff(param_1,param_2,uVar1,uVar2,*param_4);
       }
-      uVar3 = FUN_004a4230(pCVar4,uVar3);
+      uVar3 = Pff_ReadEntryRegion(pCVar4,uVar3);
       if (*(int *)(*param_4 + 0xb4) == 0) {
         if (GLBL_cb_log_file_io_probably == (code *)0x0) {
           return uVar3;

@@ -14,7 +14,7 @@ void Impact_Missile(int param_1,int param_2,undefined4 param_3,int param_4)
   }
   else {
     if (param_1 != 0) {
-      FUN_004231f0(0,0,&DAT_005653cc,0,DAT_005653f0);
+      Explosion_SpawnByType(0,0,&DAT_005653cc,0,DAT_005653f0);
       return;
     }
     SrvSend_EntityDestroyed

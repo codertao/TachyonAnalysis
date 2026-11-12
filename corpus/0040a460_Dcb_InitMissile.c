@@ -32,7 +32,7 @@ void Dcb_InitMissile(SpED *param_1,int param_2)
   iVar1 = param_1->scale;
   *(undefined4 *)&param_1->field_0xb8 = 0x20000;
   param_1[1].angVel.x = 5000;
-  param_1->onDamage = FUN_0040a1c0;
+  param_1->onDamage = BasePart_OnDamageShielded;
   Turret_SetupWeapon(&param_1[1].field_0x2c,local_c,1,1,*(undefined4 *)&param_1->field_0x58,
                      *(undefined4 *)(&g_TurretSubtypeWeapon + *(int *)&pSVar4->field_0x60 * 4),iVar1
                     );
@@ -40,7 +40,7 @@ void Dcb_InitMissile(SpED *param_1,int param_2)
   DAT_005a5540 = (void *)((int)DAT_005a5540 + 1);
   pQVar2 = param_1->quadrant;
   param_1[1].aux = *(void **)(*(int *)&param_1[1].field_0x2c + 0x60);
-  FUN_0045cff0(param_1,&pQVar2->staticSectorMap);
+  Quad_LinkDynamicIfAbsent(param_1,&pQVar2->staticSectorMap);
   Dcb_SetRangeFlags((PowerBlock *)&param_1[1].onCollide,&param_1->desc[1].isTargetable,param_1);
   return;
 }

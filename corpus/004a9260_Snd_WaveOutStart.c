@@ -38,7 +38,7 @@ LAB_004a92f9:
   waveOutReset(DAT_005f9e00);
   DAT_005f9d54 = 0x15888;
   DAT_005f9d80 = 0x5622;
-  DAT_005f9e04 = (undefined4 *)FUN_0049c7d0(0x15888,s_Audio_buffer_1_0055e7dc);
+  DAT_005f9e04 = (undefined4 *)Mem_AllocTemp(0x15888,s_Audio_buffer_1_0055e7dc);
   uVar5 = DAT_005f9d54;
   puVar7 = DAT_005f9e04;
   for (uVar4 = DAT_005f9d54 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {
@@ -49,7 +49,7 @@ LAB_004a92f9:
     *(undefined1 *)puVar7 = 0;
     puVar7 = (undefined4 *)((int)puVar7 + 1);
   }
-  DAT_005f9e08 = (undefined4 *)FUN_0049c7d0(DAT_005f9d54,s_Audio_buffer_2_0055e7cc);
+  DAT_005f9e08 = (undefined4 *)Mem_AllocTemp(DAT_005f9d54,s_Audio_buffer_2_0055e7cc);
   uVar5 = DAT_005f9d54;
   puVar7 = DAT_005f9e08;
   for (uVar4 = DAT_005f9d54 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {
@@ -60,7 +60,7 @@ LAB_004a92f9:
     *(undefined1 *)puVar7 = 0;
     puVar7 = (undefined4 *)((int)puVar7 + 1);
   }
-  DAT_005f9e0c = (undefined4 *)FUN_0049c7d0(DAT_005f9d54,s_Audio_buffer_3_0055e7bc);
+  DAT_005f9e0c = (undefined4 *)Mem_AllocTemp(DAT_005f9d54,s_Audio_buffer_3_0055e7bc);
   uVar5 = DAT_005f9d54;
   puVar7 = DAT_005f9e0c;
   for (uVar4 = DAT_005f9d54 >> 2; uVar4 != 0; uVar4 = uVar4 - 1) {
@@ -108,11 +108,11 @@ LAB_004a92f9:
     MessageBoxA(GLBL_WindowHandle_,s_Could_not_prep_audio_0055e798,s_Audio_Error_0055e7b0,0);
     waveOutClose(DAT_005f9e00);
     GLBL_audio_running = 0;
-    FUN_0049f770();
+    Sys_FatalExit();
   }
   waveOutPrepareHeader(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9dc0,0x20);
   waveOutPrepareHeader(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9de0,0x20);
-  FUN_004a9220(1);
+  Snd_WaveOutCheck(1);
   _DAT_005f9e14 = 0;
   DAT_005f9d5c = 0;
   Snd_MixerReset();
@@ -123,7 +123,7 @@ LAB_004a92f9:
     MessageBoxA(GLBL_WindowHandle_,s_Could_not_play_audio_0055e780,s_Audio_Error_0055e7b0,0);
     waveOutClose(DAT_005f9e00);
     GLBL_audio_running = 0;
-    FUN_0049f770();
+    Sys_FatalExit();
   }
   waveOutWrite(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9dc0,0x20);
   waveOutWrite(DAT_005f9e00,(LPWAVEHDR)&DAT_005f9de0,0x20);

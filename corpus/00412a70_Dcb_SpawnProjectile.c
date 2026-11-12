@@ -35,11 +35,11 @@ void Dcb_SpawnProjectile(int param_1,undefined4 *param_2,undefined4 param_3,unde
     *(undefined1 **)(iVar2 + 0x84) = &LAB_00412920;
     *(undefined2 *)(iVar2 + 0x76) = 0xd;
     *(undefined2 *)(iVar2 + 0x74) = 0;
-    FUN_0045cbd0(iVar2,*(int *)(iVar2 + 100) + 0x14);
+    Quad_PushProjectile(iVar2,*(int *)(iVar2 + 100) + 0x14);
     if ((param_2[0xd] & 6) == 0) {
       if ((param_2[0xd] & 0x118) == 0) {
         *(undefined4 *)(iVar2 + 0xb8) = 0;
-        *(code **)(iVar2 + 0x68) = FUN_00412840;
+        *(code **)(iVar2 + 0x68) = CapPartReplica_Think;
       }
       else {
         *(undefined4 *)(iVar2 + 0xb8) = 0x20000;
@@ -47,13 +47,13 @@ void Dcb_SpawnProjectile(int param_1,undefined4 *param_2,undefined4 param_3,unde
     }
     else {
       *(undefined4 *)(iVar2 + 0xb8) = 0x20000;
-      *(code **)(iVar2 + 0x68) = FUN_00445720;
+      *(code **)(iVar2 + 0x68) = Nop;
       *(undefined1 **)(iVar2 + 0x5c) = &LAB_00411f10;
     }
     if ((*(byte *)(param_2 + 0xd) & 0x20) == 0) {
       *(undefined2 *)(iVar2 + 0x74) = 0;
       if ((param_2[0xd] & 0x91e) == 0) {
-        *(code **)(iVar2 + 0x70) = FUN_00411dc0;
+        *(code **)(iVar2 + 0x70) = CapPart_RenderNoAnim;
       }
       else {
         *(undefined1 **)(iVar2 + 0x70) = &LAB_00412a30;
@@ -70,13 +70,13 @@ void Dcb_SpawnProjectile(int param_1,undefined4 *param_2,undefined4 param_3,unde
       *(undefined4 *)(iVar2 + 0xf4) = 0;
     }
     else {
-      uVar3 = FUN_0045d680(param_3,g_SrvCurShip->quadrant);
+      uVar3 = Quad_FindEntById(param_3,g_SrvCurShip->quadrant);
       *(undefined4 *)(iVar2 + 0xf4) = uVar3;
     }
     *(undefined1 *)(iVar2 + 0xf0) = 1;
     *(undefined4 *)(iVar2 + 0xec) = 0xffffffff;
-    FUN_0040ab80(iVar2,param_2);
-    FUN_0041b890(iVar2,&DAT_005b3280);
+    Ent_StartLoopSound(iVar2,param_2);
+    List_PushFrontW(iVar2,&DAT_005b3280);
   }
   return;
 }

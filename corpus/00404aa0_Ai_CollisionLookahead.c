@@ -24,8 +24,8 @@ void Ai_CollisionLookahead(int param_1)
     iStack_24 = *(int *)(param_1 + 0x34) + (*(int *)(param_1 + 0xa0) + vStack_30.x) * 0x15e;
     iStack_20 = *(int *)(param_1 + 0x38) + (*(int *)(param_1 + 0xa4) + vStack_30.y) * 0x15e;
     iStack_1c = *(int *)(param_1 + 0x3c) + (*(int *)(param_1 + 0xa8) + vStack_30.z) * 0x15e;
-    iVar1 = FUN_00419090(param_1 + 0x34,&iStack_24,*(int *)(param_1 + 100) + 0x14,param_1,
-                         Ai_LookaheadFilter);
+    iVar1 = Coll_LookaheadCast(param_1 + 0x34,&iStack_24,*(int *)(param_1 + 100) + 0x14,param_1,
+                               Ai_LookaheadFilter);
     if (iVar1 != 0) {
       Ai_AvoidCollision(param_1);
     }

@@ -29,7 +29,7 @@ void Ai_PickStandoffPoint(int param_1)
   *(int *)(param_1 + 0x344) = local_10.x + pvVar1->x;
   *(int *)(param_1 + 0x348) = local_10.y + *(int *)(param_1 + 0x38);
   *(int *)(param_1 + 0x34c) = *(int *)(param_1 + 0x3c) + local_10.z;
-  FUN_00402600(param_1);
+  Ai_StartStandoff(param_1);
   return;
 }
 

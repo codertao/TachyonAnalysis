@@ -4,11 +4,11 @@
 void CliOn_RoundFreeze(void)
 
 {
-  FUN_0049e8b0();
-  FUN_0045b520();
-  FUN_00416300();
+  Audio_StopAllSamples();
+  Scene_AbortOnFreeze();
+  Cli_ResetWorld();
   DAT_005b905c = 1;
-  FUN_00458750(&LAB_004585a0);
+  Sim_SetFrozen(&LAB_004585a0);
   *(undefined4 *)(GLBL_SOME_CONTEXT + 0x68) = 0;
   *(undefined4 *)(GLBL_SOME_CONTEXT + 0x6c) = 0;
   DAT_005b9054 = 1;

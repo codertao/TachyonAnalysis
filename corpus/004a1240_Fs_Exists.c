@@ -20,7 +20,7 @@ LAB_004a1284:
     if (DAT_006038ac != 0) {
       uVar1 = get_actual_filename_from_pff(param_1,GLBL_maybe_pff_base);
     }
-    uVar1 = FUN_004a3f90(uVar1);
+    uVar1 = Pff_Exists(uVar1);
     if (*(int *)(GLBL_maybe_pff_base + 0xb4) == 0) {
       return uVar1;
     }
@@ -45,7 +45,7 @@ LAB_004a12c0:
       if (DAT_006038ac != 0) {
         uVar1 = get_actual_filename_from_pff(param_1,*piVar2);
       }
-      uVar1 = FUN_004a3f90(uVar1);
+      uVar1 = Pff_Exists(uVar1);
       if (*(int *)(*piVar2 + 0xb4) == 0) {
         return uVar1;
       }

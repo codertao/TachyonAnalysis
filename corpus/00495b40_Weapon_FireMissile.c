@@ -17,9 +17,9 @@ void Weapon_FireMissile(undefined4 *param_1,undefined4 param_2,int param_3,undef
   undefined4 local_10;
   undefined4 local_8;
   
-  uVar1 = FUN_00495b00(param_3);
+  uVar1 = Missile_HasLockTarget(param_3);
   if ((param_6 & 2) != 0) {
-    FUN_00466770(1,1,param_1[0x12],param_4,0x10000,param_7 * 2,0);
+    Snd_PlayAtPosEx2(1,1,param_1[0x12],param_4,0x10000,param_7 * 2,0);
     NetCli_SendFireGuided(param_4,param_5,*param_1,param_7,param_2,uVar1,DAT_0056579c);
     return;
   }

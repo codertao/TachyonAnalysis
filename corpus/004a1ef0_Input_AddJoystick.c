@@ -145,7 +145,7 @@ int * Input_AddJoystick(int param_1,char *param_2,char *param_3,int *param_4,int
                 piVar4[0x19] = (int)piStack_1f0;
                 piVar4[0x1a] = 0;
                 piStack_208 = (int *)0x4a20ce;
-                FUN_004a1d40();
+                Joy_ResetState();
                 piVar11 = DAT_005640c8;
                 piVar4[1] = (int)DAT_005640c8;
                 *piVar4 = 0;
@@ -301,7 +301,7 @@ int * Input_AddJoystick(int param_1,char *param_2,char *param_3,int *param_4,int
         piVar5[0xe] = 0;
         piVar5[0x19] = 0;
         piVar5[0x1a] = 0;
-        FUN_004a1d40();
+        Joy_ResetState();
         piVar4 = DAT_005640c8;
         bVar13 = DAT_005640c8 != (int *)0x0;
         piVar5[1] = (int)DAT_005640c8;

@@ -7,43 +7,43 @@ void init_flight_start(void)
   clr_bytes(&DAT_005b31c0,0x5ea0);
   clr_bytes(local_34,0x34);
   clr_bytes(&g_MissionEndFlag,0xc);
-  FUN_004ad380(1);
+  Gfx_SetBrightMode(1);
   g_MissionEndReason = 0;
   DAT_005b8f48 = 1;
-  FUN_00466830();
+  Snd_ResetState();
   NetCli_RegisterGameCallbacks(local_34);
-  FUN_00458290();
-  FUN_004184d0();
-  FUN_0042ffb0();
-  FUN_004676a0(0xcccc);
+  Flight_InitViewport();
+  CliPools_Init();
+  Input_Init();
+  Bdf_InitArray(0xcccc);
   if ((g_FlightStateFlags & 1) == 0) {
     VarStore_Load(s_vars_cfg_005343c0,&g_CurrentSavPath,&DAT_005a6148,0xcccc,1);
     Rules_Init();
-    FUN_00458200();
+    Races_Init();
   }
-  FUN_00431bb0();
-  FUN_0041d930(0x10,0xcccc,&DAT_005a61e0);
-  FUN_00418540();
-  FUN_0045c000();
-  FUN_0049c630(0xffff,0xcccc);
+  Flight_InitAssets();
+  DelaySnd_Init(0x10,0xcccc,&DAT_005a61e0);
+  Snd3D_InitDefault();
+  Scene_ResetState();
+  Mem_CountTagged(0xffff,0xcccc);
   if ((g_FlightStateFlags & 1) != 0) {
     Voice_ClientInit();
-    FUN_004b8780(0x5b2c18,DAT_005a64f4,DAT_005a64f8);
+    NetSrv_SetLocalPlayer(0x5b2c18,DAT_005a64f4,DAT_005a64f8);
   }
-  FUN_00414850(0x5b2c18);
-  FUN_0041ce20();
-  FUN_004280a0();
-  FUN_00425030();
+  ChatInput_Init(0x5b2c18);
+  Debug_InitOverlays();
+  Hud_Init();
+  FlightUi_InitAll();
   g_NextMode = &g_Mode_StarbaseHub;
-  FUN_0042e910();
-  FUN_0041c3f0();
-  FUN_00424fd0();
+  Hyper_ResetState();
+  SpaceDust_Init();
+  Fog_Init();
   Sw_EnableZBuffer(1);
   DAT_005a6820 = 1;
-  FUN_0049e7d0(0);
-  FUN_004524a0(0xf1);
-  FUN_00410760(0xf1);
-  FUN_0047e8e0();
+  Audio_SetMasterVolume(0);
+  Viewport_SetHeight(0xf1);
+  Fade_SetLevel(0xf1);
+  FlightMap_Open();
   return;
 }
 

@@ -6,7 +6,7 @@ undefined4 Flight_Update_Phase1(void)
 {
   NetSrv_Tick();
   if (g_CutsceneActive == 0) {
-    FUN_00445720();
+    Nop();
     Rules_Tick();
   }
   DAT_005897e4 = DAT_005897e4 + 1;

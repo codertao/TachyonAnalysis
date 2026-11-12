@@ -15,7 +15,7 @@ void Dcb_ApplySnapshot(ushort *param_1)
   if (DAT_005b9054 == 0) {
     DAT_005b3a18 = (uint)param_1[1];
     DAT_005b3a20 = 0;
-    FUN_00445720();
+    Nop();
     DAT_005b39c0 = *(undefined4 *)(param_1 + 3);
     _DAT_005b39c4 = *(undefined4 *)(param_1 + 5);
     _DAT_005b39c8 = *(undefined4 *)(param_1 + 7);

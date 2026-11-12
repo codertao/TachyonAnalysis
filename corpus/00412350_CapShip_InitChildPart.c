@@ -11,9 +11,9 @@ void CapShip_InitChildPart(int param_1,undefined4 param_2,int param_3)
   iVar1 = *(int *)(param_1 + 0xe4);
   *(undefined1 *)(param_1 + 0xc0) = 4;
   *(undefined4 *)(param_1 + 0xe0) = 0;
-  *(code **)(param_1 + 0x80) = FUN_00411c80;
+  *(code **)(param_1 + 0x80) = CapPart_ForwardDamage;
   *(undefined1 *)(param_1 + 0xc3) = 1;
-  *(code **)(param_1 + 0x68) = FUN_00410d90;
+  *(code **)(param_1 + 0x68) = CapShip_PowerThink;
   *(undefined4 *)(param_1 + 0x88) = 0;
   *(int *)(param_1 + 0xdc) = param_3;
   if ((*(uint *)(iVar1 + 0x34) & 0x91e) != 0) {

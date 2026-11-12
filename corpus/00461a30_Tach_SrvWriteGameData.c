@@ -28,7 +28,7 @@ void __cdecl Tach_SrvWriteGameData(TachConn *conn,uint *out)
   else {
     *out = (uint)pSVar2[1].pool;
     if (pSVar2->poolType == 1) {
-      uVar4 = FUN_00461a00(pSVar2);
+      uVar4 = Srv_WriteCredits(pSVar2);
       *(undefined1 *)((int)out + 6) = uVar4;
     }
     *(undefined1 *)(out + 1) = 100;

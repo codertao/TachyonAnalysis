@@ -45,7 +45,7 @@ void TachCli_ReplicaThink(int param_1)
     *(undefined4 *)(param_1 + 0xa8) = *(undefined4 *)(iVar1 + 0xa8);
   }
   if (*(int *)(param_1 + 200) != 0) {
-    FUN_00466290(param_1);
+    Ent_UpdateSound3D(param_1);
   }
   iVar1 = *(int *)(param_1 + 0xf8);
   iVar2 = *(int *)(param_1 + 0xac) * 0x80 + iVar1 * -0x80 >> 7;

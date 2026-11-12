@@ -20,7 +20,7 @@ undefined4 Cbin_LoadFile(undefined4 param_1,int *param_2)
     param_2[1] = 0;
     return 0;
   }
-  puVar3 = (undefined4 *)FUN_0049c5c0(iVar2 + 2);
+  puVar3 = (undefined4 *)Mem_AllocFromMain(iVar2 + 2);
   iVar2 = param_2[1];
   *param_2 = (int)puVar3;
   for (uVar5 = iVar2 + 2U >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {
@@ -32,7 +32,7 @@ undefined4 Cbin_LoadFile(undefined4 param_1,int *param_2)
     puVar3 = (undefined4 *)((int)puVar3 + 1);
   }
   *(undefined1 *)(param_2[1] + *param_2) = 10;
-  FUN_0049c840(*param_2,param_1);
+  Mem_SetTag(*param_2,param_1);
   if (*param_2 == 0) {
     param_2[1] = 0;
     return 0;

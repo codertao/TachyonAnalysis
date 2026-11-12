@@ -19,7 +19,7 @@ void Trig_SpawnGroup(int param_1,int param_2,undefined4 param_3,int param_4)
   local_c = 0;
   if (iVar1 != 0) {
     if (DAT_005a6730 != 0) {
-      FUN_00436860(param_1);
+      Trig_LogSpawnGroup(param_1);
     }
     psVar4 = *(short **)(*(int *)(iVar2 + 0x54) + 0x18);
     local_8 = 0;
@@ -34,7 +34,7 @@ void Trig_SpawnGroup(int param_1,int param_2,undefined4 param_3,int param_4)
             local_4 = Sped_SpawnSimple(*(undefined4 *)(psVar4 + 0x10),0,0,iVar2);
           }
           else {
-            FUN_004368b0(*(undefined4 *)(psVar4 + 0x10),param_2,uVar3);
+            SpawnQueue_Add(*(undefined4 *)(psVar4 + 0x10),param_2,uVar3);
             uVar3 = 0x96;
           }
           if (local_4 != 0) {
@@ -45,7 +45,7 @@ void Trig_SpawnGroup(int param_1,int param_2,undefined4 param_3,int param_4)
         local_8 = local_8 + 1;
       } while (local_8 < *(uint *)(iVar1 + 0x14));
       if (param_4 != 0) {
-        FUN_004365a0(iVar2,param_4,local_c);
+        Sped_MsgSpawned(iVar2,param_4,local_c);
       }
     }
   }

@@ -22,7 +22,7 @@ int Loadout_TakeFromMount(int param_1,uint param_2)
   if (1 < *(uint *)(iVar5 + 0x9c)) {
     uVar2 = Player_GetVarInt(local_80,param_1 + 0x40);
     if (param_2 <= uVar2) {
-      iVar3 = str_cmp(*(undefined4 *)(param_1 + 0xa9c),s_GATLING_GUN_0054ffbc);
+      iVar3 = __stricmp(*(undefined4 *)(param_1 + 0xa9c),s_GATLING_GUN_0054ffbc);
       uVar6 = param_2;
       if (iVar3 != 0) goto LAB_004767ff;
     }
@@ -30,7 +30,7 @@ int Loadout_TakeFromMount(int param_1,uint param_2)
   }
 LAB_004767ff:
   iVar3 = *(int *)(param_1 + 0xa9c);
-  iVar4 = str_cmp(iVar3,s_GATLING_GUN_0054ffbc);
+  iVar4 = __stricmp(iVar3,s_GATLING_GUN_0054ffbc);
   if (iVar4 == 0) {
     *(undefined4 *)(iVar3 + 0x54) = *(undefined4 *)(iVar5 + 0x9c);
   }

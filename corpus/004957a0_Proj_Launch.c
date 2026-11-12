@@ -15,7 +15,7 @@ void Proj_Launch(int param_1,vec3 *param_2,int *param_3,int param_4)
   fvec->x = 0;
   *(undefined4 *)(param_1 + 0xa4) = 0;
   *(undefined4 *)(param_1 + 0xa8) = *(undefined4 *)(iVar2 + 0x54);
-  FUN_004b1bb0(local_18,param_2);
+  Rot_FromAngles(local_18,param_2);
   some_rotate_by_global(fvec,fvec);
   if (param_3 == (int *)0x0) {
     *(undefined4 *)(param_1 + 0xe0) = *(undefined4 *)(param_1 + 0x34);

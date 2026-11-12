@@ -4,7 +4,7 @@
 void CliOn_VoiceWav(undefined4 param_1)
 
 {
-  FUN_00466860(param_1,GLBL_spacesav[0x54]);
+  Voice_Play(param_1,GLBL_spacesav[0x54]);
   return;
 }
 

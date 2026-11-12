@@ -14,7 +14,7 @@ undefined4 Spx_ResolveDesName(char *param_1)
       if (DAT_005a5e04 == (undefined4 *)0x0) {
         Sped_LoadNameRegistry(s_desnames_cfg_0053f928,0xd100);
       }
-      FUN_0048ed70(param_1,0x20,0x5f);
+      Str_ToUpperInPlace(param_1,0x20,0x5f);
       if (param_1 != (char *)0x0) break;
       param_1 = s_DEFAULT_0053f920;
     }
@@ -22,7 +22,7 @@ undefined4 Spx_ResolveDesName(char *param_1)
     puVar2 = DAT_005a5e04;
     if (0 < DAT_005a5df8) {
       do {
-        iVar1 = str_cmp(param_1,*puVar2);
+        iVar1 = __stricmp(param_1,*puVar2);
         if (iVar1 == 0) {
           return puVar2[1];
         }

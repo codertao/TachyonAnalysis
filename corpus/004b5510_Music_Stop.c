@@ -13,8 +13,8 @@ undefined4 Music_Stop(void)
   if (DAT_006af504 != 0) {
     DAT_006af504 = 0;
     DAT_0055ed20 = 0xffffffff;
-    FUN_004cc601();
-    FUN_004b59d0();
+    SndAsm_ResetStreams();
+    MusScr_StopMain();
     return 1;
   }
   return 0;

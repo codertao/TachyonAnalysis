@@ -12,7 +12,7 @@ void initialize_loadout_ui(void)
       if (*(int *)(DAT_005635fc + 0x54) != 0) {
         Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_TEXTCLICK_0054ffa8);
         Player_AddVarInt(DAT_005635fc + 0x20,DAT_005635fc,*(undefined4 *)(DAT_005635fc + 0x54));
-        FUN_0043c150(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,0x80000);
+        Ui_ClearButtonFlags(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,0x80000);
         set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGSell_00547774,1);
         Loadout_RefreshInventoryList();
       }
@@ -22,7 +22,7 @@ void initialize_loadout_ui(void)
         return;
       }
       Ui_PlaySoundEvent(&GLBL_UI_ELEM_LIST,s_SNDEVNT_LOADOUT_TAKE_00547688);
-      FUN_00475390();
+      Loadout_SellConfirmed();
     }
     DAT_00562bd0 = 0;
     DAT_00563614 = 0;

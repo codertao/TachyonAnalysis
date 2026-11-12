@@ -26,10 +26,10 @@ void Anim_ParseCameraFrame(undefined4 param_1,undefined4 *param_2,undefined4 par
   Cbin_GetParam(local_80,s_CAMERA_DEST_00532820,0,0,&local_90,2,1);
   local_8c = (longlong)ROUND(local_90 * _DAT_0052e54c);
   *param_2 = (undefined4)local_8c;
-  FUN_0049b930(s_CAMERA_DEST_00532820,0,0,&local_90,2,2);
+  Cbin_GetParamN(s_CAMERA_DEST_00532820,0,0,&local_90,2,2);
   local_8c = (longlong)ROUND(local_90 * _DAT_0052e540 * (float)_DAT_0052e538);
   param_2[1] = (undefined4)local_8c;
-  FUN_0049b930(s_CAMERA_DEST_00532820,0,0,&local_90,2,3);
+  Cbin_GetParamN(s_CAMERA_DEST_00532820,0,0,&local_90,2,3);
   local_8c._0_4_ = (undefined4)(longlong)ROUND(local_90 * _DAT_0052e540 * (float)_DAT_0052e538);
   param_2[2] = (undefined4)local_8c;
   return;

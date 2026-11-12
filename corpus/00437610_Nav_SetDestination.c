@@ -8,7 +8,7 @@ void Nav_SetDestination(undefined4 param_1,undefined4 param_2,undefined4 param_3
   int iVar1;
   undefined1 local_40 [64];
   
-  iVar1 = FUN_004375f0(param_2);
+  iVar1 = Sector_FindQuadrant(param_2);
   if (iVar1 == 0) {
     DAT_005a5e24 = s_UNKNOWN_QUADRANT_0053fc1c;
   }
@@ -27,7 +27,7 @@ void Nav_SetDestination(undefined4 param_1,undefined4 param_2,undefined4 param_3
     Var_SetInt(DAT_005a6148,s_PLAYER_MAIN_VARS_00534198,s_DESTINATION_SECTOR_0053fbf4,param_2);
     if (DAT_005a6730 != 0) {
       str_sprintf(local_40,s_DEST_QUADRANT_SET_TO__s_0053fbdc,DAT_005a5e24);
-      FUN_0045d9d0(local_40,0);
+      SrvSend_TextSimple(local_40,0);
     }
   }
   SrvSend_NavPrimary(param_4,param_3,param_1,param_2);

@@ -16,7 +16,7 @@ void Proj_SteerToward(int param_1,undefined4 param_2,undefined4 param_3,undefine
   undefined1 local_18 [24];
   
   Vec_DirAngles(param_1 + 0x34,param_2,&local_24);
-  FUN_0040f3f0(param_3,&local_24);
+  Angles_ToLocal(param_3,&local_24);
   pvVar1 = (vec3 *)(param_1 + 0x4c);
   DAT_005656bc = local_24 * 0x80 + *(int *)(param_1 + 0x4c) * -0x80 >> 7;
   iVar2 = param_5;
@@ -36,7 +36,7 @@ void Proj_SteerToward(int param_1,undefined4 param_2,undefined4 param_3,undefine
   fvec->x = 0;
   *(undefined4 *)(param_1 + 0xa4) = 0;
   *(undefined4 *)(param_1 + 0xa8) = param_4;
-  FUN_004b1bb0(local_18,pvVar1);
+  Rot_FromAngles(local_18,pvVar1);
   some_rotate_by_global(fvec,fvec);
   return;
 }

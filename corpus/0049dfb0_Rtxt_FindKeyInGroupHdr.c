@@ -17,7 +17,7 @@ Rtxt_FindKeyInGroupHdr(undefined4 param_1,undefined4 *param_2,undefined4 param_3
   pcVar6 = (char *)*param_2;
   if (param_2[1] != 0) {
     do {
-      iVar2 = str_cmp(pcVar6,param_3);
+      iVar2 = __stricmp(pcVar6,param_3);
       if (iVar2 == 0) {
         uVar3 = Rtxt_GetRecord(param_1,param_4);
         return uVar3;

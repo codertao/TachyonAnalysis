@@ -23,15 +23,15 @@ void __cdecl Sw_DrawCircle(int cx,int cy,int r,int colorIdx)
     _DAT_004eba5c = cy;
     DAT_004eba60 = r;
     if (DAT_00604488 == 0x10) {
-      iVar1 = FUN_004ebb89();
+      iVar1 = SwAsm_CircleOctants16();
       iVar2 = extraout_ECX;
     }
     else if (DAT_00604488 == 0x20) {
-      iVar1 = FUN_004ebbc5();
+      iVar1 = SwAsm_CircleOctants32();
       iVar2 = extraout_ECX_00;
     }
     else {
-      iVar1 = FUN_004ebb4d();
+      iVar1 = SwAsm_CircleOctants8();
       iVar2 = extraout_ECX_01;
     }
     while (iVar1 <= r) {
@@ -39,15 +39,15 @@ void __cdecl Sw_DrawCircle(int cx,int cy,int r,int colorIdx)
         r = r + -1;
       }
       if (DAT_00604488 == 0x10) {
-        iVar1 = FUN_004ebb89();
+        iVar1 = SwAsm_CircleOctants16();
         iVar2 = extraout_ECX_02;
       }
       else if (DAT_00604488 == 0x20) {
-        iVar1 = FUN_004ebbc5();
+        iVar1 = SwAsm_CircleOctants32();
         iVar2 = extraout_ECX_03;
       }
       else {
-        iVar1 = FUN_004ebb4d();
+        iVar1 = SwAsm_CircleOctants8();
         iVar2 = extraout_ECX_04;
       }
     }

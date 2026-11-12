@@ -15,7 +15,7 @@ void MpShipCfg_Enter(void)
   local_c = 0xe8;
   local_8 = 0x8e;
   local_4 = 0x15e;
-  iVar1 = FUN_00469a70(s_DefaultLight_0053ff6c);
+  iVar1 = Starbase_FindLight(s_DefaultLight_0053ff6c);
   g_TitleMenu_ExitFlag = 0;
   _DAT_00562c60 = 1;
   g_CfgMode = 1;
@@ -37,48 +37,48 @@ void MpShipCfg_Enter(void)
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGModeHW_00547780,0x2004);
   Ui_PlaySoundEvent(&g_UiManager,s_SNDEVNT_CHANGE_MENUS_0053ff54);
   Ui_BuildWindows(&g_UiManager);
-  FUN_004486f0();
-  FUN_00448770();
+  MpCfg_InitStoreItems();
+  MpCfg_LoadPlayerHardware();
   Ui_ShowWindow(&g_UiManager,s_WndMPShipDM_0054767c,0);
-  FUN_0043a8d0(&g_UiManager,s_WndMPShipDM_0054767c);
-  FUN_00437b30(FUN_00448de0);
-  FUN_00437b10(FUN_00448de0);
-  FUN_00445710();
-  FUN_0043e8f0(&g_UiManager,s_Cursor1_0053ff4c);
-  FUN_0043efa0();
-  FUN_0043e6a0(&g_UiManager,s_TxtCFGDragQty_0054764c,&DAT_00598590);
+  Ui_OpenWindow(&g_UiManager,s_WndMPShipDM_0054767c);
+  MenuHotkey_SetEscape(MpShipCfg_GoLogin);
+  MenuHotkey_SetAccept(MpShipCfg_GoLogin);
+  TitleHover_Clear();
+  Ui_SetCursor(&g_UiManager,s_Cursor1_0053ff4c);
+  Ui_ShowCursor();
+  Ui_SetLabelText(&g_UiManager,s_TxtCFGDragQty_0054764c,&DAT_00598590);
   sbi_label_flags_11c(&g_UiManager,s_TxtCFGDragQty_0054764c,0x10000);
   set_button_state(&g_UiManager,s_BtnCFGSell_00547774,8);
   set_button_state(&g_UiManager,s_BtnCFGPurchase_00547764,8);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGSell_00547774,0x80000);
-  FUN_0043c150(&g_UiManager,s_BtnCFGPurchase_00547764,0x80000);
-  FUN_0043cac0(&g_UiManager,s_BtnItemBuy1_00547744,s_SNDEVNT_ITEM_ROLL_00547750);
-  FUN_0043cac0(&g_UiManager,s_BtnItemBuy2_00547738,s_SNDEVNT_ITEM_ROLL_00547750);
-  FUN_0043cac0(&g_UiManager,s_BtnItemBuy3_0054772c,s_SNDEVNT_ITEM_ROLL_00547750);
-  FUN_0043cac0(&g_UiManager,s_BtnItemBuy4_00547720,s_SNDEVNT_ITEM_ROLL_00547750);
-  FUN_0043cac0(&g_UiManager,s_BtnItemSell1_00547710,s_SNDEVNT_ITEM_ROLL_00547750);
-  FUN_0043cac0(&g_UiManager,s_BtnItemSell2_00547700,s_SNDEVNT_ITEM_ROLL_00547750);
-  FUN_0043cac0(&g_UiManager,s_BtnItemSell3_005476f0,s_SNDEVNT_ITEM_ROLL_00547750);
-  FUN_0043cac0(&g_UiManager,s_BtnItemSell4_005476e0,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_ClearButtonFlags(&g_UiManager,s_BtnCFGPurchase_00547764,0x80000);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemBuy1_00547744,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemBuy2_00547738,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemBuy3_0054772c,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemBuy4_00547720,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemSell1_00547710,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemSell2_00547700,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemSell3_005476f0,s_SNDEVNT_ITEM_ROLL_00547750);
+  Ui_SetButtonText(&g_UiManager,s_BtnItemSell4_005476e0,s_SNDEVNT_ITEM_ROLL_00547750);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGModeWP_00547790,0x2004);
   Ui_SetButtonFlag(&g_UiManager,s_BtnCFGModeHW_00547780,0x2004);
   set_button_state(&g_UiManager,s_BtnOption0_005476d4,4);
   MpCfg_SetMode(0);
   MpCfg_SelectItem(0,0);
-  FUN_004493d0(0);
-  FUN_00447070();
-  FUN_00446ac0(&DAT_00546c38);
+  MpCfg_LoadCurrentShip(0);
+  MpCfg_InitItemBars();
+  MpShip_InitStatBars(&DAT_00546c38);
   WeaponDefs_DeriveStats();
-  FUN_00446dc0(0);
-  FUN_0043a820(&g_UiManager,s_WndMPShipDM_0054767c,&LAB_00448c10);
-  FUN_004af2e0();
+  MpCfg_SetItemInfo(0);
+  Ui_SetWindowHandler10c(&g_UiManager,s_WndMPShipDM_0054767c,&LAB_00448c10);
+  Rend_ResetScene();
   Pak_SetLoadPalParams
             (g_PalBrightness,0x80,*(undefined4 *)(iVar1 + 0x4c),*(undefined4 *)(iVar1 + 0x50),
              *(undefined4 *)(iVar1 + 0x54));
-  FUN_00468e40(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
-               *(undefined4 *)(iVar1 + 0x48));
-  FUN_0044ab10();
-  FUN_0046e060(&local_10);
+  Light_SetDirection(*(undefined4 *)(iVar1 + 0x40),*(undefined4 *)(iVar1 + 0x44),
+                     *(undefined4 *)(iVar1 + 0x48));
+  MpCfg_InitSliders();
+  SbPak_UpdateTransform(&local_10);
   return;
 }
 

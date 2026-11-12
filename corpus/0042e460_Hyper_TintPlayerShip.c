@@ -11,7 +11,7 @@ void Hyper_TintPlayerShip(int param_1)
   *(undefined4 *)(param_1 + 0x4c) = 0;
   *(undefined4 *)(param_1 + 0x50) = 0;
   *(undefined4 *)(param_1 + 0x54) = 0;
-  *(code **)(param_1 + 0x68) = FUN_00453c40;
+  *(code **)(param_1 + 0x68) = PlayerEngine_SlewLevel;
   Pal_Remap(*(undefined4 *)(*(int *)(param_1 + 0x58) + 100),g_PalBrightness,0x80,100,100,0x80);
   DAT_005b00b8 = *(undefined4 *)(param_1 + 0x70);
   *(undefined1 **)(param_1 + 0x70) = &LAB_0042e3b0;

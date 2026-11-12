@@ -62,7 +62,7 @@ int * load_bin_scr_file(char *bin_file)
     do {
       iVar2 = *piVar8;
       *piVar8 = iVar2 + (int)piVar4;
-      FUN_004b5920(iVar2 + (int)piVar4);
+      MusScr_RelocBin(iVar2 + (int)piVar4);
       piVar8 = piVar8 + 1;
       iVar3 = iVar3 + 1;
     } while (iVar3 < GLBL_bin_content[2]);

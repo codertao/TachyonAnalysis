@@ -30,7 +30,7 @@ SpED * CapShip_SpawnPart(int param_1,undefined4 *param_2,undefined4 param_3,Desc
   local_c = *(int *)(param_1 + 0x14) << 0x10;
   local_8 = *(int *)(param_1 + 0x18) << 0x10;
   local_4 = *(int *)(param_1 + 0x1c) << 0x10;
-  FUN_00409e80(ent,param_2,param_1 + 8,&local_c);
+  Part_SetTransform(ent,param_2,param_1 + 8,&local_c);
   if (param_2[7] == 0) {
     Dcb_InitMultiPart(ent,param_1,param_3);
   }
@@ -56,7 +56,7 @@ SpED * CapShip_SpawnPart(int param_1,undefined4 *param_2,undefined4 param_3,Desc
     iVar1 = (ent->ang).z;
     ent[1].ang.x = (ent->ang).y;
     ent[1].ang.y = iVar1;
-    FUN_0045cbd0(ent,&ent->quadrant->staticSectorMap);
+    Quad_PushProjectile(ent,&ent->quadrant->staticSectorMap);
     Dcb_SetRangeFlags((PowerBlock *)&ent[1].render,&ent->desc[1].getText,ent);
     if (param_2[7] != 0) {
       Power_Init(&ent[1].render,&ent->desc[1].getText,1,0,1);
@@ -65,7 +65,7 @@ SpED * CapShip_SpawnPart(int param_1,undefined4 *param_2,undefined4 param_3,Desc
   else {
     Dcb_InitTurret(ent,param_4[2].targetFilter);
   }
-  pvVar2 = (void *)FUN_00412200(param_2[0xd]);
+  pvVar2 = (void *)CapPart_PickCollideFn(param_2[0xd]);
   ent->postThink = pvVar2;
   if (((param_2[0xd] & 0x20) == 0) && ((param_2[0xd] & 0x118) == 0)) {
     Ent_SetEngageLimits(ent,8,7);

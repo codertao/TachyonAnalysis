@@ -65,7 +65,7 @@ undefined4 Snd_DSoundStart(void)
   Snd_SetStereo(1);
   Snd_DSoundFill();
   Snd_DSoundFill();
-  FUN_004a8990();
+  Snd_StartTimer();
   (**(code **)(*DAT_005b9d24 + 0x40))(DAT_005b9d24,0);
   (**(code **)(*DAT_005b9d24 + 0x44))(DAT_005b9d24,0x5622);
   (**(code **)(*DAT_005b9d24 + 0x3c))(DAT_005b9d24,0);

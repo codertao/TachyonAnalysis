@@ -19,22 +19,22 @@ void __cdecl Tach_SrvDispatchEvent(int type,void *data,TachConn *conn,int live)
         TachSrv_OnFireGuided(data);
         break;
       case 0x2006:
-        FUN_0045f880(data);
+        TachSrv_OnGateJump(data);
         break;
       case 0x2009:
         TachSrv_OnCollision(data);
         break;
       case 0x2018:
-        FUN_00460460(data);
+        TachSrv_OnMineHit(data);
         break;
       case 0x2019:
-        FUN_00460480(data);
+        TachSrv_OnMineFired(data);
         break;
       case 0x2020:
-        FUN_004604f0(data);
+        TachSrv_OnDecoyDropped(data);
         break;
       case 0x2026:
-        FUN_00460790(data);
+        TachSrv_OnRulesEvent(data);
         break;
       case 0x2027:
         TachSrv_OnPartHitReport(data);
@@ -45,12 +45,12 @@ void __cdecl Tach_SrvDispatchEvent(int type,void *data,TachConn *conn,int live)
     }
     if ((uint)type < 0x2015) {
       if (type == 0x2014) {
-        FUN_00460300(data);
+        TachSrv_OnCargoPickup(data);
         return;
       }
       if ((uint)type < 0x2009) {
         if (type == 0x2008) {
-          FUN_0045fa10(data);
+          TachSrv_OnDataChunk(data);
           return;
         }
         if ((uint)type < 0x2006) {
@@ -63,28 +63,28 @@ void __cdecl Tach_SrvDispatchEvent(int type,void *data,TachConn *conn,int live)
             return;
           }
           if (type == 0x2002) {
-            FUN_0045f150(data);
+            TachSrv_OnClassInfoReq(data);
             return;
           }
         }
         else if (type == 0x2007) {
-          FUN_0045f8e0(data);
+          TachSrv_OnEnterWorld(data);
           return;
         }
       }
       else {
         switch(type) {
         case 0x2010:
-          FUN_0045ff00(data);
+          TachSrv_OnClientReady(data);
           return;
         case 0x2011:
-          FUN_0045ff80(data);
+          TachSrv_OnRespawnReq(data);
           return;
         case 0x2012:
-          FUN_0045ffa0(data);
+          TachSrv_OnQuadrantEntered(data);
           return;
         case 0x2013:
-          FUN_00460000(data);
+          TachSrv_OnDocked(data);
           return;
         }
       }
@@ -92,28 +92,28 @@ void __cdecl Tach_SrvDispatchEvent(int type,void *data,TachConn *conn,int live)
     else {
       switch(type) {
       case 0x2015:
-        FUN_00460220(data);
+        TachSrv_OnUndocking(data);
         return;
       case 0x2016:
-        FUN_004601a0(data);
+        TachSrv_OnTractorEvent2(data);
         return;
       case 0x2017:
         TachSrv_OnAttach(data);
         return;
       case 0x2021:
-        FUN_00460530(data);
+        TachSrv_OnPostEvent(data);
         return;
       case 0x2022:
-        FUN_00460600(data);
+        TachSrv_OnDropItem(data);
         return;
       case 0x2023:
-        FUN_00460120(data);
+        TachSrv_OnTractorEvent(data);
         return;
       case 0x2024:
-        FUN_00460720(data);
+        TachSrv_OnWingFormOnMe(data);
         return;
       case 0x2025:
-        FUN_00460770(data);
+        TachSrv_OnWingCommand(data);
       }
     }
   }

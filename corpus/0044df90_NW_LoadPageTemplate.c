@@ -20,7 +20,7 @@ void NW_LoadPageTemplate(LPCSTR param_1,char *param_2,undefined4 *param_3,DWORD 
   puVar3 = param_3;
   if (hFile != (HANDLE)0xffffffff) {
     nNumberOfBytesToRead = (LPCSTR)GetFileSize(hFile,(LPDWORD)0x0);
-    FUN_0048e3d0(puVar3,nNumberOfBytesToRead,4,s_CC_bin_buf_005481f8,0xa000);
+    Mem_AllocZeroTagged(puVar3,nNumberOfBytesToRead,4,s_CC_bin_buf_005481f8,0xa000);
     *param_4 = (DWORD)nNumberOfBytesToRead;
     ReadFile(hFile,(LPVOID)*puVar3,(DWORD)nNumberOfBytesToRead,(LPDWORD)&param_1,(LPOVERLAPPED)0x0);
     pcVar8 = param_2;
@@ -40,9 +40,9 @@ void NW_LoadPageTemplate(LPCSTR param_1,char *param_2,undefined4 *param_3,DWORD 
       return;
     }
   }
-  iVar5 = FUN_0043bf10(&g_UiManager,s_MULTI_NW_ERROR1_005481e8);
+  iVar5 = Mnu_FindText(&g_UiManager,s_MULTI_NW_ERROR1_005481e8);
   if (iVar5 == 0) {
-    uVar6 = FUN_004c8285(s_<HTML>_<BODY>_<H1>_Fatal_Error<__0054818c);
+    uVar6 = __strdup(s_<HTML>_<BODY>_<H1>_Fatal_Error<__0054818c);
     *puVar3 = uVar6;
   }
   else {

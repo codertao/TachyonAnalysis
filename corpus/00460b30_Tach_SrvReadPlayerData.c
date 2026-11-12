@@ -22,13 +22,13 @@ void __cdecl Tach_SrvReadPlayerData(TachConn *conn,uint *pd)
   (conn->camera).y = pd[4];
   (conn->camera).z = pd[5];
   conn->clientFrame = pd[6];
-  FUN_00455a50(pSVar1,pd);
+  Srv_ReadPlayerTarget(pSVar1,pd);
   pSVar1->speed = (float)pd[9];
   (pSVar1->power).shieldFrontRate = pd[0xb];
   (pSVar1->power).shieldRearRate = pd[0xb];
   pSVar1->throttle = (byte)((int)pd[10] >> 3);
   if (pd[0xd] != 0) {
-    FUN_00460af0(pd[0xd],pd[0xe],pSVar1->quadrant);
+    Srv_CallEntReader(pd[0xd],pd[0xe],pSVar1->quadrant);
   }
   return;
 }

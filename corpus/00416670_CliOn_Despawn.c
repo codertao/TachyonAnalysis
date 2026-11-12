@@ -8,7 +8,7 @@ void CliOn_Despawn(undefined4 *param_1)
   
   iVar1 = Dcb_FindById(*param_1);
   if (iVar1 != 0) {
-    FUN_00416640(iVar1);
+    Replica_Despawn(iVar1);
   }
   return;
 }

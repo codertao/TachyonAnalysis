@@ -4,7 +4,7 @@
 void CliOn_SessionBump(undefined4 *param_1)
 
 {
-  FUN_004b9020(*param_1);
+  NetCli_RaiseSessionSeq(*param_1);
   return;
 }
 

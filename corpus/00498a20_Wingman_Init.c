@@ -132,11 +132,11 @@ void Wingman_Init(void)
               if ((char)local_10 != '\0') {
                 iVar4 = Desc_CreateByType(&local_10,&local_34,0,0,0,0xffffffff);
                 if (iVar4 == 0) {
-                  cVar1 = FUN_00435930(s_PLAYER_MAIN_VARS_00534198,s_PLAYER_SIDE_0053f968);
+                  cVar1 = SpRules_GetPlayerSide(s_PLAYER_MAIN_VARS_00534198,s_PLAYER_SIDE_0053f968);
                   DAT_00565358 = cVar1 + '\x01';
-                  iVar4 = FUN_00435240(&DAT_00563e78,&DAT_00563e84);
+                  iVar4 = Spx_FindPlayerStart(&DAT_00563e78,&DAT_00563e84);
                   if (iVar4 == 0) {
-                    FUN_00432e00(s_No_Wingman_Start_Position_Found_0055d648,
+                    Error_Report(s_No_Wingman_Start_Position_Found_0055d648,
                                  s_wingman_Init___0055d668);
                     puVar8 = &DAT_00563e78;
                     for (iVar4 = 6; iVar4 != 0; iVar4 = iVar4 + -1) {
@@ -150,7 +150,7 @@ void Wingman_Init(void)
                   g_Wingman = DAT_00565348;
                   DAT_005653a4 = &DAT_00565320;
                   if ((char)local_30 != '\0') {
-                    FUN_0041f590(&local_30,DAT_00565348,&DAT_005a5dd0);
+                    Dialog_BindActor(&local_30,DAT_00565348,&DAT_005a5dd0);
                   }
                   DAT_005653ac = 0;
                   iVar3 = *(int *)(*(int *)(iVar4 + 0x8c) + 0x308);

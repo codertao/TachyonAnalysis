@@ -12,9 +12,9 @@ void Anim_Finish(int param_1)
   *(int *)(param_1 + 0x1c) = piVar1[0xc];
   *(int *)(param_1 + 0x2c) = piVar1[0xd] >> 0x10;
   if (*piVar1 != 0) {
-    FUN_004107c0(0,0);
-    FUN_00410310();
-    FUN_0041c3e0(1);
+    Fade_StartDefault(0,0);
+    Camera_RestorePrevMode();
+    SpaceDust_SetEnabled(1);
   }
   return;
 }

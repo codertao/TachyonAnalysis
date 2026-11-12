@@ -7,7 +7,7 @@ void ModelPool_Relight(int param_1)
   int *piVar1;
   int iVar2;
   
-  FUN_0044eaa0();
+  Timer_PauseBegin();
   piVar1 = (int *)(param_1 + 8);
   iVar2 = 0x100;
   do {
@@ -17,7 +17,7 @@ void ModelPool_Relight(int param_1)
     piVar1 = piVar1 + 10;
     iVar2 = iVar2 + -1;
   } while (iVar2 != 0);
-  FUN_0044eab0();
+  Timer_PauseEnd();
   return;
 }
 

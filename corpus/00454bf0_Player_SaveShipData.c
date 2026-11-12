@@ -1,0 +1,25 @@
+
+/* sweep */
+
+void Player_SaveShipData(void)
+
+{
+  undefined4 uVar1;
+  
+  uVar1 = Power_GetRate(&g_PlayerPower,1);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_LASER_RECHARGE_RATE_005488fc,uVar1);
+  uVar1 = Power_GetRate(&g_PlayerPower,0);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_SHIELD_RECHARGE_RATE_005488d0,uVar1);
+  uVar1 = Power_GetRate(&g_PlayerPower,2);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_BURNER_RECHARGE_RATE_005488b8,uVar1);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_WEAP_DOUBLEFIRE_00548940,DAT_005b20dc);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_WEAP_A_00548938,DAT_005b20d4);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_WEAP_B_00548930,DAT_005b20d8);
+  uVar1 = WeapGroup_GetState(0);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_WEAP_A_LINKED_00548920,uVar1);
+  uVar1 = WeapGroup_GetState(1);
+  Var_SetInt(DAT_005a6148,s_PLAYER_SHIP_DATA_005488e8,s_WEAP_B_LINKED_00548910,uVar1);
+  Player_SaveStores();
+  return;
+}
+

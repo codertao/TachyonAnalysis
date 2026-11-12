@@ -25,17 +25,17 @@ void Pal_Remap(undefined4 *param_1,undefined4 param_2,undefined4 param_3,undefin
     if (DAT_0055e964 == 0x10) {
       call_Pix_PaletteToNative(pal,(void *)param_1[0x1c2]);
       if (param_1[0x1c3] != 0) {
-        FUN_004e7b69();
+        PalAsm_UseMasksB();
         call_Pix_BuildShadeTable(pal,(void *)param_1[0x1c3]);
       }
       if (param_1[0x1c4] != 0) {
-        FUN_004e7b48();
+        PalAsm_UseMasksA();
         call_Pix_BuildShadeTable(pal,(void *)param_1[0x1c4]);
         return;
       }
     }
     else {
-      FUN_004ad8b0();
+      Pal_IdentityRemap();
     }
   }
   return;

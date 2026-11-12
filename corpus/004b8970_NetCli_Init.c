@@ -9,8 +9,8 @@ void NetCli_Init(undefined4 *param_1,undefined4 param_2)
   undefined4 *puVar2;
   undefined4 *puVar3;
   
-  FUN_004a6e20(&LAB_004b8940);
-  FUN_004a6e30(&LAB_004b8950);
+  Net_SetCliCallbackA(&LAB_004b8940);
+  Net_SetCliCallbackB(&LAB_004b8950);
   puVar2 = &DAT_006af580;
   for (iVar1 = 0x36; iVar1 != 0; iVar1 = iVar1 + -1) {
     *puVar2 = 0;
@@ -25,9 +25,9 @@ void NetCli_Init(undefined4 *param_1,undefined4 param_2)
     puVar3 = puVar3 + 1;
   }
   DAT_006af588 = DAT_006af588 + 0x28;
-  DAT_006af5d0 = FUN_0049c500(*param_1,4,0,s_Client_send_buffer_0055f1bc,param_2);
+  DAT_006af5d0 = Mem_AllocChecked(*param_1,4,0,s_Client_send_buffer_0055f1bc,param_2);
   DAT_006af5dc = (undefined4 *)
-                 FUN_0049c500(0x200,4,0,s_mpClient_event_tag_buffer_0055f1a0,DAT_006af644);
+                 Mem_AllocChecked(0x200,4,0,s_mpClient_event_tag_buffer_0055f1a0,DAT_006af644);
   puVar2 = DAT_006af5dc;
   for (iVar1 = 0x80; iVar1 != 0; iVar1 = iVar1 + -1) {
     *puVar2 = 0;

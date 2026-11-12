@@ -15,7 +15,7 @@ void Dcb_RenderPass(void)
   uVar2 = 0;
   DAT_0058f2d8 = 0;
   _DAT_0058f2d4 = 0;
-  FUN_00452180(1);
+  Gfx_Lock(1);
   uVar3 = 0;
   do {
     Dcb_BuildVisibleList(uVar3);
@@ -40,7 +40,7 @@ void Dcb_RenderPass(void)
       } while (uVar5 < DAT_0062c0e8);
     }
     if (uVar3 != 0) {
-      FUN_004babf0();
+      Pipe_FlushBatches();
     }
     uVar3 = uVar3 + 1;
   } while (uVar3 < 3);

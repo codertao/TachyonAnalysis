@@ -20,7 +20,7 @@ undefined4 * Tach_WritePlayerData(undefined4 *param_1)
       param_1[7] = 0;
     }
     else {
-      FUN_00417e70(*(int *)(iVar1 + 0x90),param_1);
+      Ent_WriteNetLink(*(int *)(iVar1 + 0x90),param_1);
     }
     param_1[0xf] = *(undefined4 *)(iVar1 + 0xa0);
     param_1[0x10] = *(undefined4 *)(iVar1 + 0xa4);

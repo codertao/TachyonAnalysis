@@ -4,13 +4,13 @@
 void CapShip_StartDeath(int param_1,undefined4 param_2)
 
 {
-  FUN_0048b330(param_1);
-  FUN_0048b140(param_1);
-  FUN_00410ac0(param_1);
+  Ent_ClearTargetedBy(param_1);
+  Ent_RemoveFromTargets(param_1);
+  CapShip_DetachParts(param_1);
   *(code **)(param_1 + 0x68) = CapShip_DeathThink;
   *(undefined4 *)(param_1 + 300) = param_2;
-  FUN_00403cc0(param_1,*(undefined4 *)(param_1 + 0xd8));
-  FUN_00492ba0(param_1,*(undefined4 *)(param_1 + 100));
+  Sped_PostDeathEvents(param_1,*(undefined4 *)(param_1 + 0xd8));
+  Ent_ClearWeaponTargets(param_1,*(undefined4 *)(param_1 + 100));
   return;
 }
 

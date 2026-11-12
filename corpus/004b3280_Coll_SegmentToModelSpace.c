@@ -21,8 +21,8 @@ void Coll_SegmentToModelSpace(float *param_1,float *param_2,int *param_3,int *pa
   call_Math_SinCos3(local_18,-*(int *)(param_5 + 0x34),-*(int *)(param_5 + 0x38),
                     -*(int *)(param_5 + 0x3c));
   call_Rot_SetSinCos(local_18);
-  FUN_004b2410(&local_30,&local_30);
-  FUN_004b2410(&local_24,&local_24);
+  Rot_ApplyCurrent(&local_30,&local_30);
+  Rot_ApplyCurrent(&local_24,&local_24);
   *param_1 = (float)local_30 * f_global_scalar_maybe;
   param_1[1] = (float)local_2c * f_global_scalar_maybe;
   param_1[2] = (float)local_28 * f_global_scalar_maybe;

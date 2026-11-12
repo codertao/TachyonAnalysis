@@ -12,7 +12,7 @@ int Var_FindKey(int param_1,undefined4 param_2)
   if (*(int *)(param_1 + 0x20) != 0) {
     iVar2 = 0;
     do {
-      iVar1 = str_cmp(*(undefined4 *)(iVar2 + *(int *)(param_1 + 0x28)),param_2);
+      iVar1 = __stricmp(*(undefined4 *)(iVar2 + *(int *)(param_1 + 0x28)),param_2);
       if (iVar1 == 0) {
         return *(int *)(param_1 + 0x28) + uVar3 * 0xc;
       }

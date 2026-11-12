@@ -51,15 +51,15 @@ int TachCli_SpawnReplica(undefined4 *param_1)
     *(undefined4 *)(iVar2 + 0x18) = 0x10;
   }
   else {
-    FUN_00498240(iVar2,(int)*(char *)((int)param_1 + 6));
+    ProjReplica_Init(iVar2,(int)*(char *)((int)param_1 + 6));
     *(code **)(iVar2 + 0x80) = Replica_ReportHitHull;
-    FUN_0045cff0(iVar2,&DAT_005b31d4);
+    Quad_LinkDynamicIfAbsent(iVar2,&DAT_005b31d4);
   }
   if ((*(byte *)((int)param_1 + 5) & 0x20) != 0) {
-    FUN_00416980(iVar2);
+    ThreatList_Contains(iVar2);
   }
   if ((*(byte *)((int)param_1 + 5) & 1) != 0) {
-    FUN_0048b050(iVar2);
+    Ent_EnsureInQuadrant(iVar2);
   }
   uVar4 = *param_1;
   *(undefined4 *)(iVar2 + 0xe8) = uVar4;
@@ -67,12 +67,12 @@ int TachCli_SpawnReplica(undefined4 *param_1)
     *(undefined4 *)(iVar2 + 0xf4) = 0;
   }
   else {
-    uVar4 = FUN_0045d680(uVar4,g_SrvCurShip->quadrant);
+    uVar4 = Quad_FindEntById(uVar4,g_SrvCurShip->quadrant);
     *(undefined4 *)(iVar2 + 0xf4) = uVar4;
   }
   if ((*(byte *)((int)param_1 + 5) & 4) != 0) {
     *(undefined1 *)(iVar2 + 0xf0) = 0;
-    FUN_00415af0(*(undefined4 *)(iVar2 + 0xe8));
+    NetCli_SendEntityInfoReq(*(undefined4 *)(iVar2 + 0xe8));
   }
   if (*(char *)((int)param_1 + 7) == '\x02') {
     _DAT_005b3310 = _DAT_005b3310 + 1;

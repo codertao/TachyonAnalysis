@@ -52,7 +52,7 @@ void Quadrant_OnEnter(undefined4 *param_1)
     pcVar7 = pcVar7 + 1;
   }
   DAT_005b3308 = DAT_005b3308 + 1;
-  FUN_00416300();
+  Cli_ResetWorld();
   iVar2 = GLBL_SOME_CONTEXT;
   if (DAT_005b39a0 == 0) {
     *(undefined4 *)(GLBL_SOME_CONTEXT + 0xa0) = 0;
@@ -61,14 +61,14 @@ void Quadrant_OnEnter(undefined4 *param_1)
   }
   if (*(char *)(param_1 + 9) == '\0') {
     if (*(char *)(param_1 + 5) != '\0') {
-      FUN_0042e210(*(undefined1 *)((int)param_1 + 0x15));
-      FUN_00455810();
+      Hyper_SetMode(*(undefined1 *)((int)param_1 + 0x15));
+      Quadrant_StartFadeIn();
     }
   }
   else {
     if (DAT_005a6730 != 0) {
       str_sprintf(auStack_40,s_NEWQUADRANT__SCENE_PLAY__s__005342bc,param_1 + 9);
-      FUN_0045d9d0(auStack_40,0);
+      SrvSend_TextSimple(auStack_40,0);
     }
     Bdf_LoadAndApply(&DAT_005b3a04);
     uVar3 = Scene_Load(param_1 + 9,0,0x3c,&LAB_004165e0,0,0);

@@ -16,7 +16,7 @@ undefined4 MPSystem_Update(void)
   Ui_Update(&g_UiManager);
   if (DAT_00547a9c == 1) {
     if (DAT_00562ca4 == 0) {
-      FUN_0044de20();
+      NW_ForwardMouse();
     }
     else {
       DAT_00562cb8 = DAT_00562cb8 + 1;
@@ -24,7 +24,7 @@ undefined4 MPSystem_Update(void)
         DAT_00562cb0 = 1;
         clr_label_flags_11c(&g_UiManager,s_TxtMPNWPing1_00547f70,0x10000);
         set_button_state(&g_UiManager,s_BtnNWSkip_00547f64,1);
-        FUN_0043c150(&g_UiManager,s_BtnNWSkip_00547f64,0x80000);
+        Ui_ClearButtonFlags(&g_UiManager,s_BtnNWSkip_00547f64,0x80000);
       }
       local_4 = 0;
       iVar1 = netsock_Status_NWPing(&local_4);
@@ -40,7 +40,7 @@ undefined4 MPSystem_Update(void)
         set_button_state(&g_UiManager,s_BtnNWSkip_00547f64,8);
         Ui_SetButtonFlag(&g_UiManager,s_BtnNWSkip_00547f64,0x80000);
         set_button_state(&g_UiManager,s_BtnNWCont_00547f58,1);
-        FUN_0043c150(&g_UiManager,s_BtnNWCont_00547f58,0x80000);
+        Ui_ClearButtonFlags(&g_UiManager,s_BtnNWCont_00547f58,0x80000);
         clr_label_flags_11c(&g_UiManager,s_TxtMPNWPing2_00547f48,0x10000);
         Ui_RefreshWindow(&g_UiManager,s_WndMPSystem_00547ea8,0,0);
         Ui_RefreshWindow(&g_UiManager,s_WndMPSystemNW_00547ed0,0,0);
@@ -48,13 +48,13 @@ undefined4 MPSystem_Update(void)
     }
   }
   else {
-    FUN_0044c710();
+    MpSystem_RefreshLanButtons();
     if (DAT_00591100 == 0) {
-      FUN_0044d2a0();
+      MpSystem_PollLan();
     }
   }
   if (g_NwJoinPending == 1) {
-    g_StarbaseScreen = &PTR_FUN_00548210;
+    g_StarbaseScreen = &PTR_NwLaunch_Enter_00548210;
     g_TitleMenu_ExitFlag = 1;
   }
   else if (g_NwJoinPending == 2) {

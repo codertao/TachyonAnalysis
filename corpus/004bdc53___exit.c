@@ -7,7 +7,7 @@
 void __cdecl __exit(int _Code)
 
 {
-  FUN_004bdc64(_Code,1,0);
+  _doexit(_Code,1,0);
   return;
 }
 

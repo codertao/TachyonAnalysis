@@ -21,21 +21,21 @@ void CapPart_Destroyed(int param_1)
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
         *(uint *)(iVar2 + 0x138) = *(uint *)(iVar2 + 0x138) & 0xfffffeff;
-        uVar3 = FUN_00434830(param_1,*(int *)(iVar2 + 0xd8),
-                             *(undefined4 *)(*(int *)(iVar2 + 0xd8) + 0x5c),1);
-        FUN_004346d0(uVar3);
+        uVar3 = Quad_GetSpxForSped(param_1,*(int *)(iVar2 + 0xd8),
+                                   *(undefined4 *)(*(int *)(iVar2 + 0xd8) + 0x5c),1);
+        Sped_SetAliasStatus(uVar3);
       }
     }
   }
   SrvSend_EntityDestroyed(param_1 + 0x34,3,0,0,0,0,0,*(undefined4 *)(param_1 + 100));
-  FUN_0048b330(param_1);
-  FUN_0048b140(param_1);
-  FUN_00410b30(param_1);
-  FUN_0041b8c0(param_1);
+  Ent_ClearTargetedBy(param_1);
+  Ent_RemoveFromTargets(param_1);
+  PartChain_Unlink(param_1);
+  Quad_Unlink(param_1);
   SrvSend_Despawn(param_1);
-  FUN_0045d1c0(param_1,*(int *)(param_1 + 100) + 0x14);
-  FUN_0045cf80(param_1,*(int *)(param_1 + 100) + 0x14);
-  FUN_00492ba0(param_1,*(undefined4 *)(param_1 + 100));
+  Ent_UnlinkFromMaps(param_1,*(int *)(param_1 + 100) + 0x14);
+  Quad_UnlinkDynamicList(param_1,*(int *)(param_1 + 100) + 0x14);
+  Ent_ClearWeaponTargets(param_1,*(undefined4 *)(param_1 + 100));
   return;
 }
 

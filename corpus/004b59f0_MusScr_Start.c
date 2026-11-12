@@ -19,7 +19,7 @@ void MusScr_Start(undefined4 *param_1,byte *param_2)
   undefined4 *puVar13;
   bool bVar14;
   
-  *param_1 = FUN_00445720;
+  *param_1 = Nop;
   iVar2 = *(int *)(GLBL_bin_content + 8);
   if (iVar2 != 0) {
     iVar12 = 0;

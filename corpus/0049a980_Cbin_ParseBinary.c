@@ -46,7 +46,7 @@ undefined4 Cbin_ParseBinary(int *param_1)
                iVar16 + 0x10);
   pcVar13 = (char *)(*(int *)(iVar16 + 4) + iVar16);
   uVar8 = *(uint *)(iVar16 + 0xc);
-  piVar4 = (int *)FUN_0049c7d0(uVar8 * 4,s_string_table_0055d748);
+  piVar4 = (int *)Mem_AllocTemp(uVar8 * 4,s_string_table_0055d748);
   uVar11 = 0;
   param_1 = piVar4;
   if (uVar8 != 0) {
@@ -69,7 +69,7 @@ undefined4 Cbin_ParseBinary(int *param_1)
   }
   iVar19 = *(int *)(iVar16 + 0x14);
   piVar3[6] = iVar19;
-  piVar5 = (int *)FUN_0049c7d0(iVar19 * 0x1c,s_config_labels_0055d738);
+  piVar5 = (int *)Mem_AllocTemp(iVar19 * 0x1c,s_config_labels_0055d738);
   piVar3[10] = (int)piVar5;
   piVar14 = piVar5;
   for (uVar8 = (uint)(iVar19 * 0x1c) >> 2; uVar8 != 0; uVar8 = uVar8 - 1) {
@@ -86,7 +86,7 @@ undefined4 Cbin_ParseBinary(int *param_1)
     if (*piVar12 != 0) {
       iVar9 = piVar4[*piVar12 + -1];
       *piVar5 = iVar9;
-      FUN_004c83ea(iVar9);
+      __strlwr(iVar9);
     }
     piVar5 = piVar5 + 7;
     piVar12 = piVar12 + 2;
@@ -94,8 +94,8 @@ undefined4 Cbin_ParseBinary(int *param_1)
   local_c = piVar3[6];
   param_1 = (int *)(iVar16 + 0x18) + iVar19 * 2;
   iVar16 = piVar3[10];
-  uVar8 = FUN_0049a900(iVar16,local_c);
-  puVar6 = (undefined4 *)FUN_0049c7d0(uVar8,s_config_elements_0055d7a8);
+  uVar8 = Cbin_RelocOffsets(iVar16,local_c);
+  puVar6 = (undefined4 *)Mem_AllocTemp(uVar8,s_config_elements_0055d7a8);
   piVar3[0x10] = (int)puVar6;
   for (uVar11 = uVar8 >> 2; uVar11 != 0; uVar11 = uVar11 - 1) {
     *puVar6 = 0;
@@ -134,8 +134,8 @@ undefined4 Cbin_ParseBinary(int *param_1)
   }
   iVar16 = piVar3[6];
   piVar5 = (int *)piVar3[10];
-  uVar8 = FUN_0049a930(piVar5,iVar16);
-  puVar6 = (undefined4 *)FUN_0049c7d0(uVar8,s_config_elements_0055d7a8);
+  uVar8 = Cbin_RelocPointers(piVar5,iVar16);
+  puVar6 = (undefined4 *)Mem_AllocTemp(uVar8,s_config_elements_0055d7a8);
   piVar3[0x12] = (int)puVar6;
   for (uVar11 = uVar8 >> 2; uVar11 != 0; uVar11 = uVar11 - 1) {
     *puVar6 = 0;
@@ -177,10 +177,10 @@ undefined4 Cbin_ParseBinary(int *param_1)
     piVar5 = piVar5 + 7;
   }
   if (piVar4 != (int *)0x0) {
-    FUN_0049c810(piVar4);
+    Mem_FreeTemp(piVar4);
   }
   if (DAT_006040ec != 0) {
-    FUN_004bd0d6(piVar3[10],piVar3[6],0x1c,&LAB_0049a1a0);
+    _qsort(piVar3[10],piVar3[6],0x1c,&LAB_0049a1a0);
   }
   return 1;
 }

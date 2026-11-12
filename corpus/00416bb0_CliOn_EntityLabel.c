@@ -9,7 +9,7 @@ void CliOn_EntityLabel(undefined4 *param_1)
   
   iVar1 = Dcb_FindById(*param_1);
   if (iVar1 != 0) {
-    uVar2 = FUN_004152e0(param_1 + 1);
+    uVar2 = EntityLabel_Store(param_1 + 1);
     *(undefined4 *)(iVar1 + 0x118) = uVar2;
   }
   return;

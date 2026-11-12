@@ -22,10 +22,10 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
   undefined1 local_20 [16];
   undefined1 local_10 [16];
   
-  FUN_00469eb0();
+  Starbase_FreeAll();
   DAT_005879a0 = param_2;
   Sped_LoadNameRegistry(s_desnames_cfg_0053f928,0xa100);
-  FUN_004698a0(param_1,local_20,0x10,8);
+  Starbase_GetName(param_1,local_20,0x10,8);
   str_sprintf(local_10,s__s_bas_0054b068,local_20);
   iVar2 = Cbin_LoadFile(local_10,local_b4);
   if (iVar2 == 0) {
@@ -72,8 +72,8 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
   iVar2 = Cbin_CountEntries_Ctx(s_ICONS_0054aed8,&DAT_0054aee0,local_b4);
   iVar3 = Cbin_FindSection(s_ICONS_0054aed8,local_b4);
   if (((iVar3 != 0) && (iVar2 != 0)) &&
-     (FUN_0048e3d0(&DAT_005896fc,iVar2 * 0x74,4,s_STARBASE_ICONS_0054aec8,0xa100), DAT_005896fc != 0
-     )) {
+     (Mem_AllocZeroTagged(&DAT_005896fc,iVar2 * 0x74,4,s_STARBASE_ICONS_0054aec8,0xa100),
+     DAT_005896fc != 0)) {
     iVar3 = DAT_005896fc + 0x60;
     iVar6 = DAT_005896fc;
     DAT_005896f8 = iVar2;
@@ -98,8 +98,8 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
   iVar2 = Cbin_CountEntries_Ctx(s_LIGHTING_0054afc0,s_LIGHT_0054afcc,local_b4);
   iVar3 = Cbin_FindSection(s_LIGHTING_0054afc0,local_b4);
   if (((iVar3 != 0) && (iVar2 != 0)) &&
-     (FUN_0048e3d0(&DAT_0058970c,iVar2 * 0x58,4,s_STARBASE_ICONS_0054aec8,0xa100), DAT_0058970c != 0
-     )) {
+     (Mem_AllocZeroTagged(&DAT_0058970c,iVar2 * 0x58,4,s_STARBASE_ICONS_0054aec8,0xa100),
+     DAT_0058970c != 0)) {
     iVar3 = DAT_0058970c + 0x44;
     iVar6 = DAT_0058970c;
     DAT_00589708 = iVar2;
@@ -120,8 +120,8 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
   iVar2 = Cbin_CountEntries_Ctx(s_COLORS_0054aec0,s_COLOR_0053681c,local_b4);
   iVar3 = Cbin_FindSection(s_COLORS_0054aec0,local_b4);
   if (((iVar3 != 0) && (iVar2 != 0)) &&
-     (FUN_0048e3d0(&DAT_00589704,iVar2 * 0x4c,4,s_STARBASE_ICONS_0054aec8,0xa100), DAT_00589704 != 0
-     )) {
+     (Mem_AllocZeroTagged(&DAT_00589704,iVar2 * 0x4c,4,s_STARBASE_ICONS_0054aec8,0xa100),
+     DAT_00589704 != 0)) {
     iVar3 = DAT_00589704 + 0x44;
     iVar6 = DAT_00589704;
     DAT_00589700 = iVar2;
@@ -139,7 +139,7 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
   iVar2 = Cbin_CountEntries_Ctx(s_LOBBY_0054afb4,&DAT_0054afbc,local_b4);
   iVar3 = Cbin_FindSection(s_LOBBY_0054afb4,local_b4);
   if (((iVar3 != 0) && (iVar2 != 0)) &&
-     (FUN_0048e3d0(&DAT_00589714,iVar2 * 0xd4,4,s_STARBASE_IA_OVR_0054afa4,0xa100),
+     (Mem_AllocZeroTagged(&DAT_00589714,iVar2 * 0xd4,4,s_STARBASE_IA_OVR_0054afa4,0xa100),
      DAT_00589714 != 0)) {
     iVar3 = DAT_00589714 + 0x80;
     iVar6 = DAT_00589714;
@@ -165,7 +165,7 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
   iVar2 = Cbin_CountEntries_Ctx(s_LOBBY_0054afb4,&DAT_0054afa0,local_b4);
   iVar3 = Cbin_FindSection(s_LOBBY_0054afb4,local_b4);
   if (((iVar3 != 0) && (iVar2 != 0)) &&
-     (FUN_0048e3d0(&DAT_0058971c,iVar2 * 0x88,4,s_STARBASE_BTN_OVR_0054af8c,0xa100),
+     (Mem_AllocZeroTagged(&DAT_0058971c,iVar2 * 0x88,4,s_STARBASE_BTN_OVR_0054af8c,0xa100),
      DAT_0058971c != 0)) {
     iVar3 = DAT_0058971c + 0x80;
     iVar6 = DAT_0058971c;
@@ -185,10 +185,10 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
   DAT_005879ac = load_rtxt_bin(&DAT_005879e4,0xa100);
   DAT_005879b0 = load_rtxt_bin(&DAT_005879c4,0xa100);
   DAT_005879b4 = load_rtxt_bin(&DAT_005879f4,0xa100);
-  FUN_0046c1b0(s_item_cfg_0054aeb4,0);
-  FUN_0046c0d0();
-  FUN_00468eb0(local_b4);
-  FUN_0049adb0(local_b4);
+  StoreItem_LoadDefs(s_item_cfg_0054aeb4,0);
+  StoreItem_BuildAvailList();
+  Starbase_FindAudioSection(local_b4);
+  Cbin_Free(local_b4);
   uVar8 = 0;
   do {
     str_sprintf(&DAT_005a41e0,s__s_02d_job_0054ad10,local_40,uVar8);
@@ -204,14 +204,14 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
     uVar8 = uVar8 + 1;
   } while (uVar8 < 100);
   if (DAT_00589728 != 0) {
-    FUN_0048e3d0(&DAT_00589730,DAT_00589728 * 0x1b8,4,s_STARBASE_JOB_0054af6c,0xa100);
+    Mem_AllocZeroTagged(&DAT_00589730,DAT_00589728 * 0x1b8,4,s_STARBASE_JOB_0054af6c,0xa100);
     if (DAT_00589730 == 0) {
       DAT_00589728 = 0;
     }
     else {
       uVar5 = Job_LoadAll(s_GLOBAL_00540098,DAT_00589730);
       Job_LoadAll(local_40,uVar5);
-      FUN_0046ae30();
+      Job_RefreshAvailable();
     }
   }
   uVar8 = 0;
@@ -229,16 +229,16 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
     uVar8 = uVar8 + 1;
   } while (uVar8 < 100);
   if (DAT_00589734 != 0) {
-    FUN_0048e3d0(&DAT_00589738,DAT_00589734 << 8,4,s_STARBASE_NEWS_0054af4c,0xa100);
+    Mem_AllocZeroTagged(&DAT_00589738,DAT_00589734 << 8,4,s_STARBASE_NEWS_0054af4c,0xa100);
     if (DAT_00589738 == 0) {
       DAT_00589734 = 0;
     }
     else {
-      uVar5 = FUN_0046b520(s_GLOBAL_00540098,DAT_00589738);
-      FUN_0046b520(local_40,uVar5);
+      uVar5 = News_Load(s_GLOBAL_00540098,DAT_00589738);
+      News_Load(local_40,uVar5);
     }
   }
-  FUN_0046b400();
+  News_BuildList();
   uVar8 = 0;
   do {
     str_sprintf(&DAT_005a41e0,s__s_02d_wng_0054adcc,local_40,uVar8);
@@ -254,16 +254,16 @@ undefined4 Starbase_LoadConfig(undefined4 param_1,undefined4 param_2)
     uVar8 = uVar8 + 1;
   } while (uVar8 < 100);
   if (DAT_00589720 != 0) {
-    FUN_0048e3d0(&DAT_00589724,DAT_00589720 * 0xe0,4,s_STARBASE_WINGMAN_0054af28,0xa100);
+    Mem_AllocZeroTagged(&DAT_00589724,DAT_00589720 * 0xe0,4,s_STARBASE_WINGMAN_0054af28,0xa100);
     if (DAT_00589724 != 0) {
-      uVar5 = FUN_0046b7e0(s_GLOBAL_00540098,DAT_00589724);
-      FUN_0046b7e0(local_40,uVar5);
-      FUN_0046e6e0();
+      uVar5 = Wingman_LoadAll(s_GLOBAL_00540098,DAT_00589724);
+      Wingman_LoadAll(local_40,uVar5);
+      Starbase_LoadIcons();
       return 1;
     }
     DAT_00589720 = 0;
   }
-  FUN_0046e6e0();
+  Starbase_LoadIcons();
   return 1;
 }
 

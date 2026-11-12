@@ -23,7 +23,7 @@ undefined4 Rtxt_Lookup(int param_1,undefined4 param_2,undefined4 param_3)
     puVar6 = puVar1 + 1;
     if (*puVar1 != 0) {
       do {
-        iVar3 = str_cmp(puVar8,param_2);
+        iVar3 = __stricmp(puVar8,param_2);
         if (iVar3 == 0) {
           uVar4 = Rtxt_FindKeyInGroupHdr(param_1,puVar6,param_3,local_8);
           return uVar4;

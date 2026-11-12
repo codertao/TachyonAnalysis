@@ -34,7 +34,7 @@ void Weapon_FireBolt(int *param_1,int param_2,int param_3,undefined4 param_4,und
     local_38 = *(undefined4 *)(param_2 + 0xc);
     local_34 = *(undefined4 *)(param_2 + 0x10);
     local_30 = *(undefined4 *)(param_2 + 0x14);
-    FUN_004964d0(param_3,param_1,*(int *)(param_3 + 0x90),&local_38,param_2);
+    Bolt_CalcLead(param_3,param_1,*(int *)(param_3 + 0x90),&local_38,param_2);
     Vec_RotateByOrientation(&local_38,&local_44);
   }
   local_20 = &local_44;
@@ -60,7 +60,7 @@ void Weapon_FireBolt(int *param_1,int param_2,int param_3,undefined4 param_4,und
       *(int *)(iVar1 + 0x6c) = param_1[0x3a];
     }
     if ((param_6 & 2) != 0) {
-      FUN_00466620(1,1,param_1[0x12],iVar1,0x10000,param_7 * 2,0);
+      Snd_PlayAtPosEx(1,1,param_1[0x12],iVar1,0x10000,param_7 * 2,0);
       NetCli_SendFire(iVar1 + 0x34,iVar1 + 0x4c,*param_1,param_7,DAT_0056579c);
       return;
     }

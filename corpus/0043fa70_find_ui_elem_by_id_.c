@@ -10,7 +10,7 @@ int find_ui_elem_by_id_(int ui_ctx,undefined4 name)
   iVar3 = *(int *)(ui_ctx + 0x14);
   if (*(int *)(ui_ctx + 0x48) != 0) {
     do {
-      iVar1 = str_cmp(name,iVar3);
+      iVar1 = __stricmp(name,iVar3);
       if (iVar1 == 0) {
         return iVar3;
       }

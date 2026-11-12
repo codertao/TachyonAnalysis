@@ -13,7 +13,8 @@ void ShipDes_ParseRotation(float *param_1)
   
   clr_bytes(0x562d84,0x9c);
   if ((param_1 != (float *)0x0) &&
-     (iVar1 = FUN_0049bfc0(&PTR_g_ShipDesTemplate_flight_yawAccel_00549b78), iVar1 != 0)) {
+     (iVar1 = Cbin_ParseTemplate_Global(&PTR_g_ShipDesTemplate_flight_yawAccel_00549b78), iVar1 != 0
+     )) {
     local_8 = (float)(longlong)ROUND(g_ShipDesTemplate.flight.maxSpeed);
     iVar1 = Speed_HudToRaw(local_8);
     g_ShipDesTemplate.flight.maxSpeed = (float)iVar1;

@@ -14,7 +14,7 @@ int Pal_GetCached(char *param_1)
   char *pcVar7;
   int *piVar8;
   
-  piVar2 = (int *)FUN_004af450(param_1);
+  piVar2 = (int *)Pal_FindCached(param_1);
   if (piVar2 != (int *)0x0) {
     piVar2[5] = piVar2[5] + 1;
     return *piVar2;

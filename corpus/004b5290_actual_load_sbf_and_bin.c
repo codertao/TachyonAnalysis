@@ -13,7 +13,7 @@ undefined4 actual_load_sbf_and_bin(undefined4 sbf_name,LPCSTR bin_name,undefined
   if (iVar2 == 0) {
     return 0;
   }
-  FUN_004b59b0(param_3);
+  MusScr_StartMain(param_3);
   DAT_006af504 = 1;
   DAT_006af514 = 0;
   GLBL_some_scalar_from_spacesav_in_fixed = 0xff0000;
@@ -22,7 +22,7 @@ undefined4 actual_load_sbf_and_bin(undefined4 sbf_name,LPCSTR bin_name,undefined
   DAT_006af528 = 0;
   DAT_006af52c = 0;
   DAT_0055ed20 = 0;
-  FUN_004cc601();
+  SndAsm_ResetStreams();
   return 1;
 }
 

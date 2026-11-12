@@ -33,7 +33,7 @@ undefined4 * Ent_CreateAsteroid(undefined4 param_1,undefined4 param_2)
     if (puVar1 == (undefined4 *)0x0) {
       return (undefined4 *)0x0;
     }
-    FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
+    DebugLog_Printf(s_Descriptor__s_loaded_00532b28,param_1);
     clr_bytes(&DAT_005b99e0,0xcc);
     puVar3 = puVar1;
     puVar4 = &DAT_005b99e0;
@@ -42,7 +42,7 @@ undefined4 * Ent_CreateAsteroid(undefined4 param_1,undefined4 param_2)
       puVar3 = puVar3 + 1;
       puVar4 = puVar4 + 1;
     }
-    FUN_0049bfe0(param_1,&PTR_DAT_005329c8);
+    Cbin_LoadAndParseTemplate_Global(param_1,&PTR_DAT_005329c8);
     ModelPool_Load(&DAT_005b9a8c,&DAT_005b9a6c,&DAT_005b9a7c,&DAT_005b9a7c,&g_ObjModelPool,1);
     DAT_005b9aa0 = DAT_005b9aa0 << 0xd;
     if (DAT_005b9aa0 != 0) {

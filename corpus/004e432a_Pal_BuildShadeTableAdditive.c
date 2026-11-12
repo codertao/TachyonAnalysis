@@ -43,7 +43,7 @@ void __cdecl Pal_BuildShadeTableAdditive(byte *pal,byte *out)
       }
       DAT_004e3005 = (&DAT_004e3067)[uVar4];
       pbVar6 = pbVar5;
-      bVar3 = (*(code *)PTR_FUN_004e3053)(pbVar5,unaff_ESI);
+      bVar3 = (*(code *)PTR_PalAsm_FindNearest_004e3053)(pbVar5,unaff_ESI);
       *out = bVar3;
       out = out + 1;
       _DAT_004e3023 = _DAT_004e3023 + -1;
@@ -92,7 +92,7 @@ void __cdecl Pal_BuildShadeTableAdditive(byte *pal,byte *out)
       DAT_004e3005 = (&DAT_004e3067)[uVar4];
       DAT_004e301b = iVar1;
       pbVar6 = pbVar5;
-      bVar3 = (*(code *)PTR_FUN_004e3053)(pbVar5,unaff_ESI);
+      bVar3 = (*(code *)PTR_PalAsm_FindNearest_004e3053)(pbVar5,unaff_ESI);
       *out = bVar3;
       out = out + 1;
       _DAT_004e3023 = _DAT_004e3023 + -1;

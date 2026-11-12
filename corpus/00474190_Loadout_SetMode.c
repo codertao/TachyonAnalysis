@@ -13,7 +13,7 @@ void Loadout_SetMode(int param_1)
       g_CfgMode = 0;
     }
     Loadout_DisableBuySell();
-    FUN_004757e0();
+    Loadout_RefreshMountSlot();
     Cfg_ClearScratch();
     Loadout_ResetMountHighlights();
     if (g_CfgMode == 0) {
@@ -22,7 +22,7 @@ void Loadout_SetMode(int param_1)
       set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGModeWP_00547790,4);
       set_button_state(&GLBL_UI_ELEM_LIST,s_BtnCFGModeHW_00547780,1);
       Loadout_RefreshWeaponMounts();
-      FUN_00475950();
+      Loadout_LoadMountLines();
     }
     else if (g_CfgMode == 1) {
       DAT_0054f884 = g_CfgMode;

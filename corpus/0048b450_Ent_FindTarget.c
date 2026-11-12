@@ -25,7 +25,7 @@ int Ent_FindTarget(uint param_1,uint *param_2,uint *param_3)
   local_c = 0;
   local_10 = 0;
   local_14 = param_2[3];
-  FUN_0048b390(param_1 + 0x4c,param_2 + 8);
+  Ent_GetForwardVec(param_1 + 0x4c,param_2 + 8);
   iVar8 = *(int *)(*(int *)(param_1 + 100) + 8);
   param_2 = (uint *)local_14;
   if (iVar8 != 0) {

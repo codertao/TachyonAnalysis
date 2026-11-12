@@ -7,7 +7,7 @@ void TrigAct_GateSet(undefined4 param_1,undefined4 param_2,int param_3,undefined
   short sVar1;
   int iVar2;
   
-  iVar2 = FUN_00457b60(param_4,param_1);
+  iVar2 = Gate_FindOrWarn(param_4,param_1);
   if (iVar2 != 0) {
     *(int *)(iVar2 + 0xe8) = param_3;
     sVar1 = *(short *)(*(int *)(iVar2 + 0xf0) + 0x48);

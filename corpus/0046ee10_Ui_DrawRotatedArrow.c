@@ -1,0 +1,107 @@
+
+/* sweep: guess */
+
+void Ui_DrawRotatedArrow(int param_1,int *param_2,int param_3,undefined4 param_4)
+
+{
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  vec3 local_f4;
+  undefined4 local_e8;
+  vec3 local_e4;
+  int local_d8;
+  int local_d4;
+  undefined1 local_c8 [20];
+  undefined4 local_b4;
+  int local_b0;
+  int local_ac;
+  undefined4 local_a8;
+  undefined4 local_a4;
+  undefined4 local_a0;
+  undefined1 local_9c [20];
+  undefined4 local_88;
+  int local_84;
+  int local_80;
+  undefined4 local_7c;
+  undefined4 local_78;
+  undefined4 local_74;
+  undefined1 local_70 [20];
+  undefined4 local_5c;
+  int local_58;
+  int local_54;
+  undefined4 local_50;
+  undefined4 local_4c;
+  undefined4 local_48;
+  undefined1 local_44 [20];
+  undefined4 local_30;
+  int local_2c;
+  int local_28;
+  undefined4 local_24;
+  undefined4 local_20;
+  undefined4 local_1c;
+  undefined1 local_18 [24];
+  
+  local_e4.z = param_3 << 0x10;
+  local_e8 = DAT_005a6810;
+  local_e4.x = 0;
+  local_e4.y = 0;
+  Gfx_Lock(1);
+  Rot_FromAngles(local_18,&local_e4);
+  local_1c = 0xffff00;
+  local_a0 = 0xffff00;
+  local_74 = 0xffff00;
+  local_48 = 0xffff00;
+  local_30 = 0x10000;
+  local_b4 = 0x10000;
+  local_88 = 0x10000;
+  local_5c = 0x10000;
+  local_a4 = 0xffff;
+  local_7c = 0xffff;
+  local_50 = 0xffff;
+  local_4c = 0xffff;
+  local_24 = 0;
+  local_20 = 0;
+  local_a8 = 0;
+  local_78 = 0;
+  iVar4 = param_2[3] - param_2[1] >> 1;
+  iVar3 = param_2[2] - *param_2 >> 1;
+  local_f4.y = iVar4 * -0x80;
+  local_f4.x = iVar3 * -0x80;
+  iVar1 = (*param_2 + iVar3) * 0x80;
+  iVar2 = (param_2[1] + iVar4) * 0x80;
+  local_f4.z = 0;
+  local_d8 = local_f4.x;
+  local_d4 = local_f4.y;
+  call_Rot_AboutZ(&local_f4,&local_f4);
+  local_2c = local_f4.x + iVar1;
+  local_28 = local_f4.y + iVar2;
+  local_f4.x = local_d8;
+  local_f4.z = 0;
+  local_f4.y = iVar4 * 0x80;
+  call_Rot_AboutZ(&local_f4,&local_f4);
+  local_b0 = local_f4.x + iVar1;
+  local_ac = local_f4.y + iVar2;
+  local_f4.y = local_d4;
+  local_f4.z = 0;
+  local_f4.x = iVar3 * 0x80;
+  call_Rot_AboutZ(&local_f4,&local_f4);
+  local_84 = local_f4.x + iVar1;
+  local_80 = local_f4.y + iVar2;
+  local_f4.z = 0;
+  local_f4.x = iVar3 * 0x80;
+  local_f4.y = iVar4 * 0x80;
+  call_Rot_AboutZ(&local_f4,&local_f4);
+  DAT_004e4a2c = *(undefined4 *)(param_1 + 4);
+  local_58 = local_f4.x + iVar1;
+  local_54 = local_f4.y + iVar2;
+  DAT_004e4a34 = *(undefined4 *)(param_1 + 4);
+  DAT_004e4adc = (uint)*(byte *)(param_1 + 8);
+  DAT_004e4ae0 = (uint)*(byte *)(param_1 + 9);
+  Gfx_DrawTriangleFlags(local_44,local_c8,local_9c,DAT_005a680c,param_1,param_4);
+  Gfx_DrawTriangleFlags(local_9c,local_c8,local_70,DAT_005a680c,param_1,param_4);
+  Gfx_Lock(local_e8);
+  return;
+}
+

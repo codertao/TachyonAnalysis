@@ -1,0 +1,26 @@
+
+/* sweep */
+
+void CamMode_Orbit_Update(int param_1)
+
+{
+  vec3 local_24;
+  float local_18 [6];
+  
+  local_24.x = -0x400000;
+  local_24.y = 0x800000;
+  local_24.z = 0x800000;
+  if (param_1 != 0) {
+    call_Math_SinCos3(local_18,*(int *)(param_1 + 0x4c),*(int *)(param_1 + 0x50),
+                      *(int *)(param_1 + 0x54));
+    call_Rot_SetSinCos(local_18);
+    some_rotate_by_global(&local_24,&local_24);
+    DAT_005b9600 = *(int *)(param_1 + 0x34) + local_24.x;
+    DAT_005b9604 = *(int *)(param_1 + 0x38) + local_24.y;
+    DAT_005b9608 = *(int *)(param_1 + 0x3c) + local_24.z;
+    Vec_DirAngles(&DAT_005b9600,param_1 + 0x34,&DAT_005b95e8);
+    Ent_AnglesToLocal(param_1,&DAT_005b95e8);
+  }
+  return;
+}
+

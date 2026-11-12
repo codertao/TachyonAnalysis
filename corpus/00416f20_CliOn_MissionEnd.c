@@ -10,9 +10,9 @@ void CliOn_MissionEnd(int *param_1)
     g_NextMode = g_ReturnMode;
     return;
   }
-  FUN_00445720(*param_1);
-  FUN_00445720(param_1[1]);
-  FUN_00445720(param_1[2]);
+  Nop(*param_1);
+  Nop(param_1[1]);
+  Nop(param_1[2]);
   return;
 }
 

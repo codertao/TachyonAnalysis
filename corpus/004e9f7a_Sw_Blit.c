@@ -15,7 +15,7 @@ void __cdecl Sw_Blit(void)
   
   bVar7 = false;
   if (DAT_005a62c4 != 0) {
-    FUN_004e9ee0();
+    SwAsm_ClipRect();
     if (!bVar7) {
       iVar2 = DAT_005a62c8 * DAT_005a62d4 + DAT_005a62d0;
       if (DAT_005a62fc < 0x11) {

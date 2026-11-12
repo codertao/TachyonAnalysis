@@ -24,7 +24,7 @@ void NetCli_SendFireGuided
     *(undefined1 *)((int)puVar2 + 0x21) = param_4;
     *(undefined1 *)((int)puVar2 + 0x22) = DAT_005b2140;
     *(undefined1 *)((int)puVar2 + 0x23) = param_7;
-    FUN_0048e8f0(param_5,(int)puVar2 + 0x12);
+    f16_EncodeVec(param_5,(int)puVar2 + 0x12);
     NetCli_QueueEvent(puVar2,0x2004,0x24,0x800);
   }
   return;

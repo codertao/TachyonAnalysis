@@ -44,7 +44,7 @@ void Gate_SpawnAndPreload(int param_1,Desc *param_2,undefined4 param_3)
     }
     *(undefined4 *)&ent->field_0xb8 = 0;
     *(undefined4 *)&ent->field_0xbc = 0;
-    FUN_0045cbf0(ent,&ent->quadrant->staticSectorMap);
+    SectorMap_LinkStatic(ent,&ent->quadrant->staticSectorMap);
     if ((*(char *)(param_1 + 0x38) == '\0') || (*(int *)(param_1 + 0x58) != 0)) {
       Gate_InitRegional(ent,param_1);
       ent[1].pos.z = -1;

@@ -28,23 +28,23 @@ int Job_LoadAll(undefined4 param_1,uint param_2)
         uVar2 = Cbin_CountIndexed_Ctx(s_PARTIAL_WIN_BLOCK_d_0054ace0,local_6c);
         *(undefined4 *)(iVar3 + 0x1a8) = uVar2;
         if (*(int *)(iVar3 + 0x178) != 0) {
-          FUN_0048e3d0((undefined4 *)(iVar3 + 0x17c),*(int *)(iVar3 + 0x178) * 0x128,4,
-                       s_STARBASE_BLOCK_0054acd0,0xa100);
+          Mem_AllocZeroTagged((undefined4 *)(iVar3 + 0x17c),*(int *)(iVar3 + 0x178) * 0x128,4,
+                              s_STARBASE_BLOCK_0054acd0,0xa100);
           *(undefined4 *)(iVar3 + 0x180) = *(undefined4 *)(iVar3 + 0x17c);
         }
         if (*(int *)(iVar3 + 0x188) != 0) {
-          FUN_0048e3d0((undefined4 *)(iVar3 + 0x18c),*(int *)(iVar3 + 0x188) * 0x128,4,
-                       s_STARBASE_MSGBLOCK_0054acbc,0xa100);
+          Mem_AllocZeroTagged((undefined4 *)(iVar3 + 0x18c),*(int *)(iVar3 + 0x188) * 0x128,4,
+                              s_STARBASE_MSGBLOCK_0054acbc,0xa100);
           *(undefined4 *)(iVar3 + 400) = *(undefined4 *)(iVar3 + 0x18c);
         }
         if (*(int *)(iVar3 + 0x198) != 0) {
-          FUN_0048e3d0((undefined4 *)(iVar3 + 0x19c),*(int *)(iVar3 + 0x198) * 0x128,4,
-                       s_STARBASE_WINBLOCK_0054aca8,0xa100);
+          Mem_AllocZeroTagged((undefined4 *)(iVar3 + 0x19c),*(int *)(iVar3 + 0x198) * 0x128,4,
+                              s_STARBASE_WINBLOCK_0054aca8,0xa100);
           *(undefined4 *)(iVar3 + 0x1a0) = *(undefined4 *)(iVar3 + 0x19c);
         }
         if (*(int *)(iVar3 + 0x1a8) != 0) {
-          FUN_0048e3d0((undefined4 *)(iVar3 + 0x1ac),*(int *)(iVar3 + 0x1a8) * 0x128,4,
-                       s_STARBASE_PARTIALWINBLOCK_0054ac8c,0xa100);
+          Mem_AllocZeroTagged((undefined4 *)(iVar3 + 0x1ac),*(int *)(iVar3 + 0x1a8) * 0x128,4,
+                              s_STARBASE_PARTIALWINBLOCK_0054ac8c,0xa100);
           *(undefined4 *)(iVar3 + 0x1b0) = *(undefined4 *)(iVar3 + 0x1ac);
         }
         Cbin_GetField_Ctx(&DAT_00532af4,s_TT_ID_SHORT_0054ac80,iVar3 + 0x94,0x1f,0,local_6c);
@@ -71,8 +71,8 @@ int Job_LoadAll(undefined4 param_1,uint param_2)
         if (*(int *)(iVar3 + 0x178) != 0) {
           do {
             str_sprintf(&DAT_005a41e0,s_BLOCK_d_00540018,uVar4);
-            uVar2 = FUN_004699f0(s_JOB_PAK_0054ac08);
-            uVar2 = FUN_004699f0(s_JOB_TEXT_0054abfc,uVar2);
+            uVar2 = Starbase_FindFont(s_JOB_PAK_0054ac08);
+            uVar2 = Starbase_FindFont(s_JOB_TEXT_0054abfc,uVar2);
             Job_ParseBriefingBlock(iVar1,&DAT_005a41e0,DAT_005879a8,local_6c,&DAT_005882e8,uVar2);
             iVar1 = iVar1 + 0x128;
             uVar4 = uVar4 + 1;
@@ -83,8 +83,8 @@ int Job_LoadAll(undefined4 param_1,uint param_2)
         if (*(int *)(iVar3 + 0x188) != 0) {
           do {
             str_sprintf(&DAT_005a41e0,s_LOSE_BLOCK_d_0054ad00,uVar4);
-            uVar2 = FUN_004699f0(s_JOBWIN_PAK_0054abf0);
-            uVar2 = FUN_004699f0(s_JOBWIN_TEXT_0054abe4,uVar2);
+            uVar2 = Starbase_FindFont(s_JOBWIN_PAK_0054abf0);
+            uVar2 = Starbase_FindFont(s_JOBWIN_TEXT_0054abe4,uVar2);
             Job_ParseBriefingBlock(iVar1,&DAT_005a41e0,DAT_005879a8,local_6c,&DAT_005882e8,uVar2);
             iVar1 = iVar1 + 0x128;
             uVar4 = uVar4 + 1;
@@ -95,8 +95,8 @@ int Job_LoadAll(undefined4 param_1,uint param_2)
         if (*(int *)(iVar3 + 0x198) != 0) {
           do {
             str_sprintf(&DAT_005a41e0,s_WIN_BLOCK_d_0054acf4,uVar4);
-            uVar2 = FUN_004699f0(s_JOBWIN_PAK_0054abf0);
-            uVar2 = FUN_004699f0(s_JOBWIN_TEXT_0054abe4,uVar2);
+            uVar2 = Starbase_FindFont(s_JOBWIN_PAK_0054abf0);
+            uVar2 = Starbase_FindFont(s_JOBWIN_TEXT_0054abe4,uVar2);
             Job_ParseBriefingBlock(iVar1,&DAT_005a41e0,DAT_005879a8,local_6c,&DAT_005882e8,uVar2);
             iVar1 = iVar1 + 0x128;
             uVar4 = uVar4 + 1;
@@ -107,14 +107,14 @@ int Job_LoadAll(undefined4 param_1,uint param_2)
         if (*(int *)(iVar3 + 0x1a8) != 0) {
           do {
             str_sprintf(&DAT_005a41e0,s_PARTIAL_WIN_BLOCK_d_0054ace0,uVar4);
-            uVar2 = FUN_004699f0(s_JOBWIN_PAK_0054abf0);
-            uVar2 = FUN_004699f0(s_JOBWIN_TEXT_0054abe4,uVar2);
+            uVar2 = Starbase_FindFont(s_JOBWIN_PAK_0054abf0);
+            uVar2 = Starbase_FindFont(s_JOBWIN_TEXT_0054abe4,uVar2);
             Job_ParseBriefingBlock(iVar1,&DAT_005a41e0,DAT_005879a8,local_6c,&DAT_005882e8,uVar2);
             iVar1 = iVar1 + 0x128;
             uVar4 = uVar4 + 1;
           } while (uVar4 < *(uint *)(iVar3 + 0x1a8));
         }
-        FUN_0049adb0(local_6c);
+        Cbin_Free(local_6c);
         iVar3 = iVar3 + 0x1b8;
       }
     }

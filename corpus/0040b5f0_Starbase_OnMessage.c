@@ -6,13 +6,13 @@ undefined4 Starbase_OnMessage(int param_1,undefined4 param_2,undefined4 param_3)
 {
   switch(param_2) {
   case 1:
-    FUN_0040b550(param_1,param_3);
+    PartChain_SetGunsActive(param_1,param_3);
     return 0;
   case 3:
-    FUN_0040a0a0(param_1);
+    Starbase_MsgKillPart(param_1);
     return 0;
   case 8:
-    FUN_0040b4f0(param_1,param_3);
+    PartChain_SetTeam(param_1,param_3);
     return 0;
   case 9:
     return *(undefined4 *)(param_1 + 0xd8);

@@ -17,7 +17,7 @@ undefined4 NetSock_GetMessage(void)
     if (iVar1 == 0) {
       DAT_0055e414 = DAT_0055e414 + 1;
       if (DAT_0055e404 == 0) {
-        FUN_004ab7a0(DAT_005649a0);
+        NetSock_HandleSysMsg(DAT_005649a0);
         uVar2 = NetSock_GetMessage();
         return uVar2;
       }

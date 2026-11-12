@@ -21,7 +21,7 @@ void TachSrv_OnCollision(int *param_1)
   if (((GLBL_cheat_related1 == 0) || ((g_FlightStateFlags & 4) == 0)) && (g_SrvCurConn->dead == 0))
   {
     DAT_005653f4 = (SpED_SrvPlayer *)0x0;
-    iVar7 = FUN_0045d680(param_1[1],g_SrvCurShip->quadrant);
+    iVar7 = Quad_FindEntById(param_1[1],g_SrvCurShip->quadrant);
     if (((iVar7 != 0) && (*(int *)(iVar7 + 0x8c) != 0)) &&
        (pcVar2 = *(code **)(*(int *)(iVar7 + 0x8c) + 0x70), pcVar2 != (code *)0x0)) {
       (*pcVar2)(iVar7,pSVar6,local_4);

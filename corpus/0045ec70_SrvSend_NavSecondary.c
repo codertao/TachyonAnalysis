@@ -39,7 +39,7 @@ void SrvSend_NavSecondary(TachConn *param_1,Quadrant *param_2,undefined4 param_3
         pcVar5 = pcVar5 + 1;
         pcVar6 = pcVar6 + 1;
       }
-      uVar2 = FUN_00427310(param_3,param_4,param_2,payload + 1);
+      uVar2 = Nav_ComputeRoute(param_3,param_4,param_2,payload + 1);
       *payload = uVar2;
       local_18.quadrant = param_2;
       local_18.resend = 0x800;

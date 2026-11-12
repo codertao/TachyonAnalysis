@@ -16,13 +16,13 @@ void Anim_ReadSoundLabels(int param_1)
   iVar6 = 0;
   DAT_005b9ab8 = Cbin_CountEntries(s_SOUND_LABELS_00532768,s_SOUND_00532778);
   if (DAT_005b9ab8 != 0) {
-    FUN_0048e3a0(&DAT_005b9abc,DAT_005b9ab8 * 0x24,4,s_SOUND_DEFINE_TMP_BUFFER_00532750,0xcccc);
+    Mem_AllocTagged(&DAT_005b9abc,DAT_005b9ab8 * 0x24,4,s_SOUND_DEFINE_TMP_BUFFER_00532750,0xcccc);
     iVar2 = Cbin_SelectGroup(s_SOUND_LABELS_00532768);
     if (iVar2 != 0) {
       uVar4 = 0;
       if (DAT_005b9ab8 != 0) {
         do {
-          FUN_0049bdb0(s_SOUND_00532778,local_20,0x20,0,4,2);
+          Cbin_FindParam_Global(s_SOUND_00532778,local_20,0x20,0,4,2);
           uVar3 = 0xffffffff;
           pcVar5 = local_20;
           do {
@@ -35,8 +35,8 @@ void Anim_ReadSoundLabels(int param_1)
           iVar6 = iVar6 + ~uVar3;
         } while (uVar4 < DAT_005b9ab8);
       }
-      FUN_0048e3d0((undefined4 *)(param_1 + 0x44),iVar6,4,s_ANIM_SOUND_LABEL_BUFFER_00532738,0xcccc)
-      ;
+      Mem_AllocZeroTagged((undefined4 *)(param_1 + 0x44),iVar6,4,s_ANIM_SOUND_LABEL_BUFFER_00532738,
+                          0xcccc);
       pcVar5 = *(char **)(param_1 + 0x44);
       iVar6 = Cbin_SelectGroup(s_SOUND_LABELS_00532768);
       if (iVar6 != 0) {
@@ -44,8 +44,8 @@ void Anim_ReadSoundLabels(int param_1)
         iVar6 = DAT_005b9abc;
         if (DAT_005b9ab8 != 0) {
           do {
-            FUN_0049bdb0(s_SOUND_00532778,iVar6,0x20,0,4,1);
-            FUN_0049b930(s_SOUND_00532778,local_20,0x20,0,4,2);
+            Cbin_FindParam_Global(s_SOUND_00532778,iVar6,0x20,0,4,1);
+            Cbin_GetParamN(s_SOUND_00532778,local_20,0x20,0,4,2);
             uVar4 = 0xffffffff;
             *(char **)(iVar6 + 0x20) = pcVar5;
             pcVar7 = local_20;

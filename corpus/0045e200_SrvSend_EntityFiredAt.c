@@ -16,8 +16,8 @@ void SrvSend_EntityFiredAt
     *(undefined4 *)(payload + 0xe) = param_4;
     payload[1] = param_7;
     *(undefined4 *)(payload + 0x12) = param_5;
-    FUN_0048e8f0(param_2,payload + 2);
-    FUN_0048e8f0(param_3,payload + 8);
+    f16_EncodeVec(param_2,payload + 2);
+    f16_EncodeVec(param_3,payload + 8);
     local_18.resend = 0x800;
     local_18._2_2_ = 0;
     local_18.flags = 0x20;

@@ -15,7 +15,7 @@ void Gate_InitRegional(int param_1,int param_2)
   if (iVar2 == 1) {
     *(uint *)(param_1 + 0xe4) = *(uint *)(param_1 + 0xe4) | 1;
   }
-  pcVar3 = (char *)FUN_004359a0(*(undefined4 *)(param_2 + 0x5c));
+  pcVar3 = (char *)Gate_RegionName(*(undefined4 *)(param_2 + 0x5c));
   if (pcVar3 == (char *)0x0) {
     pcVar3 = &DAT_00536134;
   }

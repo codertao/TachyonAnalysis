@@ -14,7 +14,7 @@ void __cdecl Sw_DrawLine(int x0,int y0,int x1,int y1)
     }
   }
   else {
-    DAT_004e8c30 = FUN_004e8e70;
+    DAT_004e8c30 = SwAsm_DrawLine;
   }
   if (x0 < DAT_00604460) {
     if (x1 < DAT_00604460) {

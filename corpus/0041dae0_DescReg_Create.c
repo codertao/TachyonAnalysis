@@ -14,7 +14,7 @@ void DescReg_Create(int *param_1,undefined4 *param_2,undefined4 param_3)
   char *pcVar8;
   undefined4 *puVar9;
   
-  FUN_0048e3d0(param_1,param_2[2],4,s_object_descriptor_00535200,param_2[3]);
+  Mem_AllocZeroTagged(param_1,param_2[2],4,s_object_descriptor_00535200,param_2[3]);
   pcVar8 = (char *)*param_1;
   uVar2 = 0xffffffff;
   pcVar5 = (char *)*param_2;

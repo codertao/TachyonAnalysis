@@ -22,7 +22,7 @@ int Rtxt_GroupBaseIndex(uint *param_1,undefined4 param_2)
     if (*puVar1 != 0) {
       do {
         param_1 = param_1 + 2;
-        iVar3 = str_cmp(puVar6,param_2);
+        iVar3 = __stricmp(puVar6,param_2);
         if (iVar3 == 0) {
           return iVar7;
         }

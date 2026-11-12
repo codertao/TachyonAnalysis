@@ -26,7 +26,7 @@ void TachSrv_BuildScoreboard(int param_1)
       piVar1 = piVar1 + 0x82;
     } while (uVar3 < DAT_005897e0);
   }
-  FUN_004bd0d6(param_1,iVar4,6,&LAB_0045e8e0);
+  _qsort(param_1,iVar4,6,&LAB_0045e8e0);
   return;
 }
 

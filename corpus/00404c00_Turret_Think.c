@@ -81,9 +81,9 @@ void Turret_Think(SpED_Turret *self)
     local_30.x = -(self->mountAng).x;
     local_30.y = -(self->mountAng).y;
     local_30.z = -(self->mountAng).z;
-    FUN_004b1bb0(local_18,&local_30);
-    FUN_004b2410(&tgt_offset,&tgt_offset);
-    FUN_004b2410(&tgt->vel,&local_24);
+    Rot_FromAngles(local_18,&local_30);
+    Rot_ApplyCurrent(&tgt_offset,&tgt_offset);
+    Rot_ApplyCurrent(&tgt->vel,&local_24);
     iVar1 = (self->pos).z;
     tgt_offset.x = tgt_offset.x + my_position->x;
     iVar4 = (self->pos).y;
@@ -99,7 +99,7 @@ void Turret_Think(SpED_Turret *self)
       (self->aimPoint).x = local_3c.x;
       (self->aimPoint).y = local_3c.y;
       (self->aimPoint).z = local_3c.z;
-      FUN_0048e720(&local_3c,&self->mountAng,&self->aimAng);
+      Vec_AnglesToward(&local_3c,&self->mountAng,&self->aimAng);
       self->hasSolution = 1;
       return;
     }

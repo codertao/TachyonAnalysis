@@ -13,7 +13,7 @@ void TrigAct_ObjDockWith(undefined4 param_1,undefined4 param_2,undefined4 param_
     iVar2 = Sped_FindDef(param_4,param_2,0);
     if ((((iVar2 != 0) && (iVar1 = *(int *)(iVar1 + 0x28), iVar1 != 0)) &&
         (*(int *)(iVar2 + 0x28) != 0)) && (*(short *)(iVar1 + 0x76) == 2)) {
-      FUN_00402400(iVar1,*(int *)(iVar2 + 0x28));
+      Ai_OrderDockWith(iVar1,*(int *)(iVar2 + 0x28));
     }
   }
   return;

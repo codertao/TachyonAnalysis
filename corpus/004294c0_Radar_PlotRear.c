@@ -49,10 +49,10 @@ void Radar_PlotRear(int param_1,int param_2,undefined4 param_3,int param_4)
            >> 7) + DAT_005b0144) * (longlong)DAT_005a67e4;
   uVar4 = (uint)lVar1 >> 0x10 | (int)((ulonglong)lVar1 >> 0x20) << 0x10;
   if (DAT_005b0984 != 0) {
-    FUN_0042a2b0(&DAT_005b01e0,uVar3,uVar4,param_3,param_4);
+    Radar_DrawBlip(&DAT_005b01e0,uVar3,uVar4,param_3,param_4);
     return;
   }
-  FUN_00452180(2);
+  Gfx_Lock(2);
   Gfx_DrawLine(uVar3,uVar4,uVar3 + 1,uVar4,param_3);
   iVar2 = uVar4 + 1;
   Gfx_DrawLine(uVar3,iVar2,uVar3 + 1,iVar2,param_3);

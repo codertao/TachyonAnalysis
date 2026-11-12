@@ -14,10 +14,10 @@ int Debris_Spawn(int *param_1,undefined4 param_2,int *param_3,undefined4 param_4
   if (iVar2 == 0) {
     return 0;
   }
-  FUN_0041b8b0(iVar2);
+  Quad_Link(iVar2);
   *(undefined4 *)(iVar2 + 0x58) = param_2;
   *(undefined4 *)(iVar2 + 0xc4) = 0;
-  *(code **)(iVar2 + 0x70) = FUN_00421230;
+  *(code **)(iVar2 + 0x70) = FireFx_RenderAnimated;
   *(undefined4 *)(iVar2 + 0x5c) = 0;
   piVar1 = (int *)(iVar2 + 0x34);
   *piVar1 = *param_1;
@@ -25,14 +25,14 @@ int Debris_Spawn(int *param_1,undefined4 param_2,int *param_3,undefined4 param_4
   *(int *)(iVar2 + 0x3c) = param_1[2];
   *(undefined4 *)(iVar2 + 0x1c) = param_5;
   *(undefined4 *)(iVar2 + 0x6c) = param_6;
-  *(code **)(iVar2 + 0x68) = FUN_00421370;
+  *(code **)(iVar2 + 0x68) = FireFx_Think;
   *(undefined4 *)(iVar2 + 0x18) = 0x10;
   *(undefined2 *)(iVar2 + 0x30) = 0;
   *(undefined4 *)(iVar2 + 0xd4) = param_7;
   *(int *)(iVar2 + 0xd8) = *param_3;
   *(int *)(iVar2 + 0xdc) = param_3[1];
   *(int *)(iVar2 + 0xe0) = param_3[2];
-  *(code **)(iVar2 + 0x80) = FUN_00421dc0;
+  *(code **)(iVar2 + 0x80) = FxProp_OnDamage;
   *(undefined1 **)(iVar2 + 0x88) = &Debris_OnPlayerCollide;
   *(undefined4 *)(iVar2 + 0xbc) = param_4;
   uVar3 = global_bad_shift_rng();
@@ -81,8 +81,8 @@ LAB_00422079:
     *(undefined4 *)(iVar2 + 0x104) = 0;
   }
   else {
-    FUN_0045d200(iVar2,&DAT_005b31d4);
-    FUN_00421e40(iVar2);
+    Quad_PushList14(iVar2,&DAT_005b31d4);
+    Debris_PickBehavior(iVar2);
   }
   if (0 < param_8) {
     *piVar1 = *piVar1 + *(int *)(iVar2 + 0xd8) * param_8;

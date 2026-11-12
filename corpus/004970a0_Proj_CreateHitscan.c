@@ -29,7 +29,7 @@ int Proj_CreateHitscan(int *param_1)
   local_20 = piVar1[1];
   local_1c = piVar1[2];
   local_38 = 0;
-  FUN_004b1bb0(local_18,(vec3 *)param_1[3]);
+  Rot_FromAngles(local_18,(vec3 *)param_1[3]);
   local_30.z = *(int *)(*param_1 + 0x9c);
   some_rotate_by_global(&local_30,&local_30);
   iVar4 = 0;
@@ -40,7 +40,7 @@ int Proj_CreateHitscan(int *param_1)
   else {
     while( true ) {
       param_1[2] = (int)&local_24;
-      iVar3 = FUN_00496e90(param_1,&local_30,&local_34,iVar6,iVar5);
+      iVar3 = Hitscan_Create(param_1,&local_30,&local_34,iVar6,iVar5);
       if (local_38 == 0) {
         local_38 = iVar3;
       }

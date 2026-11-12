@@ -4,7 +4,7 @@
 void NetSrv_SendPacketToPlayer(int param_1)
 
 {
-  FUN_004b82d0(DAT_006af66c);
+  NetSrv_RecordSendSize(DAT_006af66c);
   if (DAT_006af790 <= DAT_006af66c) {
     Net_DumpPacket(s_server_txt_0055f070,DAT_006af668);
   }

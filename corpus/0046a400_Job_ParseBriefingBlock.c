@@ -82,7 +82,7 @@ void Job_ParseBriefingBlock
   Cbin_GetParamN_Ctx(s_IMAGE_AREA_0053fe24,0,0,param_1 + 0x114,1,5,fVar2);
   Cbin_GetParamN_Ctx(s_IMAGE_AREA_0053fe24,0,0,(undefined4 *)(param_1 + 0x118),1,6,fVar2);
   Cbin_GetParamN_Ctx(s_IMAGE_AREA_0053fe24,0,0,param_1 + 0x11c,1,7,fVar2);
-  FUN_00469ee0(uVar1,param_1 + 0xc0,fVar2,param_7);
+  Job_ParsePakInfo(uVar1,param_1 + 0xc0,fVar2,param_7);
   return;
 }
 

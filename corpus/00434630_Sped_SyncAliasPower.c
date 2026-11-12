@@ -20,7 +20,7 @@ void Sped_SyncAliasPower(int param_1,int param_2,undefined4 *param_3)
       }
       return;
     }
-    iVar1 = FUN_00434550(iVar2);
+    iVar1 = Sped_CreateAlias(iVar2);
     puVar3 = (undefined4 *)(iVar1 + 8);
     for (iVar2 = 0xc; iVar2 != 0; iVar2 = iVar2 + -1) {
       *puVar3 = *param_3;

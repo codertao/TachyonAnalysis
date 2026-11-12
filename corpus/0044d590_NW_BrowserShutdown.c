@@ -21,7 +21,7 @@ void NW_BrowserShutdown(void)
   iVar2 = 6;
   DAT_00562c98 = 0;
   do {
-    FUN_004acf80(puVar3);
+    Gfx_ReleaseTexture(puVar3);
     OurFreeMem(*puVar3);
     puVar4 = puVar3 + -4;
     puVar3 = puVar3 + 0xb;
@@ -35,7 +35,7 @@ void NW_BrowserShutdown(void)
     OurFreeMem(DAT_005927cc);
     DAT_005927cc = 0;
   }
-  FUN_0044d300(0);
+  NW_RemapBrowserPalette(0);
   return;
 }
 

@@ -16,7 +16,7 @@ void Ai_RejoinFormation(int param_1)
     iVar3 = iVar2;
     if (iVar3 == 0) {
       if (iVar1 != 0) {
-        FUN_00401eb0(param_1,iVar1);
+        Formation_InsertWingman(param_1,iVar1);
       }
       return;
     }
@@ -24,7 +24,7 @@ void Ai_RejoinFormation(int param_1)
     iVar2 = *(int *)(iVar3 + 0xfc);
   }
 LAB_00401fd5:
-  FUN_00401eb0(param_1,iVar3);
+  Formation_InsertWingman(param_1,iVar3);
   return;
 }
 

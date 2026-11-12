@@ -14,12 +14,12 @@ void NW_OnBrowserRender(void)
     DAT_00562c98 = DAT_00562c98 + 1;
     if (DAT_005927cc != 0) {
       ibrowse_RenderEx(DAT_005927cc,&DAT_00591740,0x400);
-      FUN_0044d300(1);
+      NW_RemapBrowserPalette(1);
       DAT_005927e0 = 1;
       puVar1 = &DAT_00591150;
       iVar2 = 6;
       do {
-        FUN_004acf80(puVar1);
+        Gfx_ReleaseTexture(puVar1);
         puVar1 = puVar1 + 0xb;
         iVar2 = iVar2 + -1;
       } while (iVar2 != 0);

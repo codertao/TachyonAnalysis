@@ -19,10 +19,10 @@ void Radar_DrawEntity(SpED *self)
     vStack_c.x = (self->pos).x - *(int *)(GLBL_SOME_CONTEXT + 0x34);
     vStack_c.y = (self->pos).y - *(int *)(GLBL_SOME_CONTEXT + 0x38);
     vStack_c.z = (self->pos).z - *(int *)(GLBL_SOME_CONTEXT + 0x3c);
-    FUN_004b2410(&vStack_c,&vStack_c);
+    Rot_ApplyCurrent(&vStack_c,&vStack_c);
     pcVar1 = self->desc->radarColour;
     if (pcVar1 == (code *)0x0) {
-      uVar3 = FUN_00429750(self->team);
+      uVar3 = Hud_TeamColorIndex(self->team);
     }
     else {
       uVar3 = (*pcVar1)(self,0);

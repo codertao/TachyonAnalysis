@@ -31,13 +31,13 @@ void Weapon_FireBeam(undefined4 *param_1,undefined4 param_2,int param_3,undefine
   local_24 = param_4;
   local_2c = param_1;
   local_c = 1;
-  iVar4 = FUN_00496b60(&local_2c);
+  iVar4 = Beam_Resolve(&local_2c);
   if (iVar4 != 0) {
     if ((param_6 & 2) != 0) {
-      FUN_00466620(1,1,param_1[0x12],iVar4,0x10000,param_7 * 2,0);
+      Snd_PlayAtPosEx(1,1,param_1[0x12],iVar4,0x10000,param_7 * 2,0);
       return;
     }
-    FUN_00496d60(iVar3,&param_2,&param_3,&param_5);
+    Ent_CanBeamHit(iVar3,&param_2,&param_3,&param_5);
     SrvSend_BeamImpact(param_2,*(undefined4 *)(iVar1 + 0x78),param_3,param_5,*param_1,uVar2,
                        *(undefined4 *)(iVar3 + 100));
   }

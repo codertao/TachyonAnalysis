@@ -37,8 +37,8 @@ void Loadout_HighlightMounts(int param_1)
             uVar2 = (uint)(iVar1 == 0);
           }
           if (uVar2 != 0) {
-            FUN_0043fce0(&GLBL_UI_ELEM_LIST,puVar4,1,puVar4[0x28] + -2);
-            FUN_0043f810(&GLBL_UI_ELEM_LIST,puVar4,1);
+            ImageArea_SetHighlight(&GLBL_UI_ELEM_LIST,puVar4,1,puVar4[0x28] + -2);
+            ImageArea_SetValueF4(&GLBL_UI_ELEM_LIST,puVar4,1);
             set_flag_10c_on_elem_by_id(&GLBL_UI_ELEM_LIST,puVar4 + 0x10,0x80000);
           }
         }

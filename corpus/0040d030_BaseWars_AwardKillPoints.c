@@ -23,7 +23,7 @@ void BaseWars_AwardKillPoints(int param_1,int param_2)
     fVar3 = ((float)(iVar1 - iVar2) * _DAT_0052e594 + _DAT_0052e59c) * (float)GLBL_spacesav[0x6e];
   }
   local_8 = (int)(longlong)ROUND(fVar3);
-  FUN_0040cff0(param_1,local_8 * 10);
+  BW_AddCarriedCredits(param_1,local_8 * 10);
   BaseWars_AddPoints(param_1,local_8);
   return;
 }

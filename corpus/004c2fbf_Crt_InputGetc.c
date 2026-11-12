@@ -15,7 +15,7 @@ uint Crt_InputGetc(undefined4 *param_1)
     *param_1 = (byte *)*param_1 + 1;
     return (uint)bVar2;
   }
-  uVar3 = FUN_004c6fcf(param_1);
+  uVar3 = __filbuf(param_1);
   return uVar3;
 }
 

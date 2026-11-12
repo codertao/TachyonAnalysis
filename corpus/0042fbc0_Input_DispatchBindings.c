@@ -28,12 +28,12 @@ void Input_DispatchBindings(void)
     DAT_0053cbc0 = -1;
   }
   if (GLBL_spacesav[0x3e] == 1) {
-    FUN_0042fab0();
-    FUN_0042f980();
+    Input_ProcessHoldBindings();
+    Input_UpdateAxes();
     DAT_005b1edc = DAT_005aefd4 + DAT_005aefd8;
     return;
   }
-  FUN_0042f9c0(uVar1);
+  Input_ProcessPressBindings(uVar1);
   Flight_ReadControlAxes();
   DAT_005b1edc = DAT_005aefd4 + DAT_005aefd8;
   return;

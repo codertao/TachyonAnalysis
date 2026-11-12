@@ -22,14 +22,14 @@ void CapPartReplica_Init(int param_1,int param_2)
   }
   else {
     *(code **)(param_1 + 0x80) = CapPartReplica_ReportHit;
-    *(code **)(param_1 + 0x70) = FUN_0040ac80;
+    *(code **)(param_1 + 0x70) = BasePart_PreRender;
   }
   if ((*(uint *)(param_2 + 0x34) & 0x280) != 0) {
-    *(code **)(param_1 + 0x68) = FUN_0040add0;
+    *(code **)(param_1 + 0x68) = BasePart_ThinkClient;
   }
   if ((*(byte *)(param_2 + 0x34) & 1) != 0) {
     if (DAT_005b3318 == 0) {
-      FUN_0040adf0(param_1,param_2);
+      BasePart_SetDebugFocus(param_1,param_2);
     }
     if (DAT_005b332c == 0) {
       DAT_005b3330 = 100;
@@ -48,8 +48,8 @@ void CapPartReplica_Init(int param_1,int param_2)
     *(undefined1 **)(param_1 + 0x5c) = &LAB_00411f10;
     *(int *)(param_1 + 0x60) = param_1;
   }
-  FUN_0045cda0(param_1,*(int *)(param_1 + 100) + 0x14);
-  FUN_0040ab80(param_1,param_2);
+  SectorMap_LinkObject(param_1,*(int *)(param_1 + 100) + 0x14);
+  Ent_StartLoopSound(param_1,param_2);
   return;
 }
 

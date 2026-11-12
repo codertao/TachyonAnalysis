@@ -25,7 +25,7 @@ void TachSrv_OnFireGuided(undefined4 *param_1)
     _DAT_00565440 = (uint)*(ushort *)((int)param_1 + 0xe) << 0x10;
     DAT_00565458 = 0x10000;
     _DAT_00565444 = (uint)*(ushort *)(param_1 + 4) << 0x10;
-    FUN_0048e930((int)param_1 + 0x12,&DAT_00565430);
+    f16_DecodeVec((int)param_1 + 0x12,&DAT_00565430);
     DAT_0056544c = (uint)*(byte *)(param_1 + 8);
     DAT_00565448 = g_SrvCurConn->clientFrame - param_1[6];
     DAT_00565420 = g_SrvCurConn->ship;
@@ -33,7 +33,7 @@ void TachSrv_OnFireGuided(undefined4 *param_1)
       pSVar3 = g_SrvCurShip->target;
     }
     else {
-      pSVar3 = (SpED *)FUN_0045d680(param_1[7],g_SrvCurConn->ship->quadrant);
+      pSVar3 = (SpED *)Quad_FindEntById(param_1[7],g_SrvCurConn->ship->quadrant);
     }
     DAT_00565450 = -(uint)(*(char *)((int)param_1 + 0x22) != '\0') & (uint)pSVar3;
     Proj_SpawnFromClientMissile();

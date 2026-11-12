@@ -12,7 +12,7 @@ void AiState_TightFormation(int param_1)
   int local_4;
   
   iVar1 = *(int *)(param_1 + 0xf8);
-  FUN_00401b30(param_1,&local_c);
+  Formation_GetSlotPos(param_1,&local_c);
   *(undefined1 *)(param_1 + 0x327) = 0;
   *(undefined1 *)(param_1 + 0x326) = 0;
   *(undefined4 *)(param_1 + 0xd4) = *(undefined4 *)(iVar1 + 0xd4);

@@ -23,7 +23,7 @@ void Model_CloneFromPak(undefined4 *param_1,undefined4 *param_2)
     puVar4 = (undefined4 *)((int)puVar4 + 1);
     puVar5 = (undefined4 *)((int)puVar5 + 1);
   }
-  uVar1 = FUN_004b0b40((undefined1 *)((int)param_1 + param_2[0xe]),param_1,param_2);
+  uVar1 = PakClone_CopyStateBlock((undefined1 *)((int)param_1 + param_2[0xe]),param_1,param_2);
   uVar1 = Model_CopyCollision(uVar1,param_1,param_2);
   ModelClone_CopyLods(uVar1,param_1,param_2);
   return;

@@ -15,7 +15,7 @@ void __cdecl Font_LayoutText(char *text,void *font,void *layout)
   DAT_004e54d4 = *(undefined1 **)layout;
 LAB_004e6e53:
   do {
-    iVar2 = FUN_004e6dc8();
+    iVar2 = FontAsm_MeasureLine();
     iVar3 = iVar2 + DAT_004e54cc;
     if (*(short *)((int)layout + 4) < (short)iVar3) {
       *(short *)((int)layout + 6) = *(short *)((int)layout + 6) + 1;
@@ -28,7 +28,7 @@ LAB_004e6e53:
         {
           DAT_004e5498 = extraout_ECX;
           *DAT_004e54d4 = 0;
-          FUN_004be0e0(puVar1 + 1,text,iVar2,font);
+          _memmove(puVar1 + 1,text,iVar2,font);
         }
         iVar2 = DAT_004e5498 + 1;
         if (DAT_004e5ec4 != '\0') {
@@ -44,7 +44,7 @@ LAB_004e6e53:
       if ((DAT_004e5ec4 == '\0') ||
          (iVar2 = extraout_ECX + -2, DAT_004e5498 = extraout_ECX, iVar2 != 0 && 1 < extraout_ECX)) {
         DAT_004e5498 = extraout_ECX;
-        FUN_004be0e0(DAT_004e54d4,text,iVar2,font);
+        _memmove(DAT_004e54d4,text,iVar2,font);
       }
       iVar2 = DAT_004e5498;
       if (DAT_004e5ec4 != '\0') {

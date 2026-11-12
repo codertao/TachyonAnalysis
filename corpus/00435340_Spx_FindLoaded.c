@@ -14,7 +14,7 @@ SectorRec * Spx_FindLoaded(undefined4 param_1)
   if (g_SectorCount != 0) {
     iVar4 = 0x5a5554;
     do {
-      iVar1 = str_cmp(param_1,iVar4);
+      iVar1 = __stricmp(param_1,iVar4);
       if (iVar1 == 0) {
         return pSVar2;
       }

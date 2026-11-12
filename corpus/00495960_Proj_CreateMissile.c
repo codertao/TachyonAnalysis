@@ -11,11 +11,11 @@ int Proj_CreateMissile(undefined4 *param_1)
   int iVar4;
   
   puVar1 = (undefined1 *)*param_1;
-  iVar4 = FUN_0041b790(&g_PoolCommon,3,*(undefined4 *)(param_1[1] + 100));
+  iVar4 = DcbPool_AllocTyped(&g_PoolCommon,3,*(undefined4 *)(param_1[1] + 100));
   if (iVar4 == 0) {
     return 0;
   }
-  FUN_0041b8b0(iVar4);
+  Quad_Link(iVar4);
   iVar2 = *(int *)(puVar1 + 0x84);
   *(undefined4 *)(iVar4 + 0x114) = 0;
   *(undefined2 *)(iVar4 + 0x74) = 2;
@@ -48,7 +48,7 @@ int Proj_CreateMissile(undefined4 *param_1)
   *(undefined1 *)(iVar4 + 0xc1) = *puVar1;
   *(undefined4 *)(iVar4 + 0x90) = param_1[7];
   if (param_1[7] != 0) {
-    FUN_00493910(param_1[7],1);
+    Ent_CallDescHook7c(param_1[7],1);
   }
   *(int *)(iVar4 + 0xd0) = DAT_00565460;
   DAT_00565460 = DAT_00565460 + 1;

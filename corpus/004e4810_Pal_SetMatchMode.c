@@ -6,16 +6,16 @@ void __cdecl Pal_SetMatchMode(int mode)
 
 {
   if (mode == 1) {
-    PTR_FUN_004e3053 = &LAB_004e3c94;
+    PTR_PalAsm_FindNearest_004e3053 = &LAB_004e3c94;
   }
   else if (mode == 2) {
-    PTR_FUN_004e3053 = &LAB_004e3dbb;
+    PTR_PalAsm_FindNearest_004e3053 = &LAB_004e3dbb;
   }
   else if (mode == 3) {
-    PTR_FUN_004e3053 = &LAB_004e3e58;
+    PTR_PalAsm_FindNearest_004e3053 = &LAB_004e3e58;
   }
   else {
-    PTR_FUN_004e3053 = FUN_004e3d34;
+    PTR_PalAsm_FindNearest_004e3053 = PalAsm_FindNearest;
   }
   return;
 }

@@ -10,22 +10,22 @@ void PlayerCmd_FireGroup(int param_1,undefined4 param_2,undefined4 param_3)
   
   if (GLBL_SOME_CONTEXT != 0) {
     if (DAT_005b20dc == 0) {
-      uVar1 = FUN_00492c30(&DAT_005b1f10,DAT_005b20d0,(&DAT_005b20d4)[param_1],&g_PlayerPower,
-                           param_3,param_2,DAT_005b2154);
+      uVar1 = WeapGroup_GetSlot(&DAT_005b1f10,DAT_005b20d0,(&DAT_005b20d4)[param_1],&g_PlayerPower,
+                                param_3,param_2,DAT_005b2154);
       iVar2 = Weapon_TryFireWithScale(GLBL_SOME_CONTEXT,uVar1);
     }
     else {
-      uVar1 = FUN_00492c30(&DAT_005b1f10,DAT_005b20d0,DAT_005b20d4,&g_PlayerPower,param_3,param_2,
-                           DAT_005b2154);
+      uVar1 = WeapGroup_GetSlot(&DAT_005b1f10,DAT_005b20d0,DAT_005b20d4,&g_PlayerPower,param_3,
+                                param_2,DAT_005b2154);
       iVar2 = Weapon_TryFireWithScale(GLBL_SOME_CONTEXT,uVar1);
-      uVar1 = FUN_00492c30(&DAT_005b1f10,DAT_005b20d0,DAT_005b20d8,&g_PlayerPower,param_3,param_2,
-                           DAT_005b2154);
+      uVar1 = WeapGroup_GetSlot(&DAT_005b1f10,DAT_005b20d0,DAT_005b20d8,&g_PlayerPower,param_3,
+                                param_2,DAT_005b2154);
       iVar3 = Weapon_TryFireWithScale(GLBL_SOME_CONTEXT,uVar1);
       iVar2 = iVar2 + iVar3;
     }
     if (iVar2 != 0) {
       DAT_005b2110 = 0x8c;
-      FUN_00452eb0();
+      WeapGroup_Fire();
       return;
     }
   }

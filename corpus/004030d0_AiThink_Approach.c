@@ -17,7 +17,7 @@ void AiThink_Approach(int param_1)
       return;
     }
     Vec_DirAngles(param_1 + 0x34,(vec3 *)(iVar1 + 0x34),param_1 + 0xdc);
-    FUN_0040f460(iVar1,param_1 + 0xdc);
+    Ent_AnglesToLocal(iVar1,param_1 + 0xdc);
     if ((*(int *)(iVar1 + 0x8c) == 0) ||
        (pcVar2 = *(code **)(*(int *)(iVar1 + 0x8c) + 0x60), pcVar2 == (code *)0x0)) {
       uVar3 = distance_between((vec3 *)(param_1 + 0x34),(vec3 *)(iVar1 + 0x34));

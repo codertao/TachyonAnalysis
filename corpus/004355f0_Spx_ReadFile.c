@@ -11,11 +11,11 @@ int * Spx_ReadFile(int *param_1)
   int iVar3;
   
   piVar1 = param_1;
-  FUN_0048e3d0(&param_1,0x1a4,4,param_1,0xd100);
+  Mem_AllocZeroTagged(&param_1,0x1a4,4,param_1,0xd100);
   Fs_ReadRegion(piVar1,param_1,0,4);
   Fs_ReadRegion(piVar1,param_1,0,*param_1);
   iVar2 = Fs_GetSize(piVar1);
-  param_1 = (int *)FUN_0049c6f0(param_1,iVar2 + (0x1a4 - *param_1),4);
+  param_1 = (int *)Mem_Realloc(param_1,iVar2 + (0x1a4 - *param_1),4);
   iVar2 = *param_1;
   iVar3 = Fs_GetSize(piVar1);
   Fs_ReadRegion(piVar1,param_1 + 0x69,iVar2,iVar3 - iVar2);

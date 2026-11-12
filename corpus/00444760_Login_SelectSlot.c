@@ -8,7 +8,7 @@ void Login_SelectSlot(int param_1)
     g_CurrentProfileSlot = 0xffffffff;
   }
   else {
-    FUN_00444450();
+    WndLogin_RefreshSlotPanels();
     Profile_Select(param_1);
     if ((DAT_00541184 == -1) && (g_CurrentProfile == '\0')) {
       Profile_CreateNew(param_1);

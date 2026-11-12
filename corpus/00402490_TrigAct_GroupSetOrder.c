@@ -7,7 +7,7 @@ void TrigAct_GroupSetOrder
 {
   int iVar1;
   
-  for (iVar1 = FUN_00457da0(param_4,param_1); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xfc)) {
+  for (iVar1 = Quad_GetGroupOrder(param_4,param_1); iVar1 != 0; iVar1 = *(int *)(iVar1 + 0xfc)) {
     Ship_Update(iVar1,2,param_2);
   }
   return;

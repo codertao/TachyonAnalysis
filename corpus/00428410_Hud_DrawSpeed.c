@@ -16,24 +16,24 @@ void Hud_DrawSpeed(int param_1)
   undefined4 local_48;
   char local_40 [64];
   
-  FUN_0048e800(DAT_005a6140,*(undefined4 *)(param_1 + 0x4a4));
+  Rtxt_GetText(DAT_005a6140,*(undefined4 *)(param_1 + 0x4a4));
   if (DAT_005b1edc == 0) {
     if (DAT_005b1ee8 == 0) {
       local_48 = (undefined4)(longlong)ROUND((float)DAT_005b1ee0 * _DAT_0052e81c);
       str_sprintf(local_40,&DAT_00535eb8,local_48);
       goto LAB_004284a4;
     }
-    uVar2 = FUN_0048e800(DAT_005a6140,0x1f);
+    uVar2 = Rtxt_GetText(DAT_005a6140,0x1f);
   }
   else {
-    uVar2 = FUN_0048e800(DAT_005a6140,0x22);
+    uVar2 = Rtxt_GetText(DAT_005a6140,0x22);
   }
   str_sprintf(local_40,&DAT_00536768,uVar2);
 LAB_004284a4:
-  FUN_004281a0(local_40,*(undefined4 *)(param_1 + 0x4b0),*(undefined4 *)(param_1 + 0x4a8),
+  Hud_DrawText(local_40,*(undefined4 *)(param_1 + 0x4b0),*(undefined4 *)(param_1 + 0x4a8),
                *(undefined4 *)(param_1 + 0x4ac),*(undefined4 *)(param_1 + 0x4bc),0,
                *(undefined4 *)(param_1 + 0x4b8));
-  FUN_0048e800(DAT_005a6140,*(undefined4 *)(param_1 + 0x4c0));
+  Rtxt_GetText(DAT_005a6140,*(undefined4 *)(param_1 + 0x4c0));
   local_48 = (undefined4)(longlong)ROUND(DAT_005b1ecc * _DAT_0052e818);
   str_sprintf(local_40,&DAT_00535eb8,local_48);
   if (DAT_005b1f00 != 0) {
@@ -71,7 +71,7 @@ LAB_004284a4:
       pcVar8 = pcVar8 + 1;
     }
   }
-  FUN_004281a0(local_40,*(undefined4 *)(param_1 + 0x4cc),*(undefined4 *)(param_1 + 0x4c4),
+  Hud_DrawText(local_40,*(undefined4 *)(param_1 + 0x4cc),*(undefined4 *)(param_1 + 0x4c4),
                *(undefined4 *)(param_1 + 0x4c8),*(undefined4 *)(param_1 + 0x4d8),0,
                *(undefined4 *)(param_1 + 0x4d4));
   return;

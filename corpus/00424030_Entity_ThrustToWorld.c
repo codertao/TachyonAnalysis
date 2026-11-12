@@ -20,7 +20,7 @@ void Entity_ThrustToWorld(SpED *self,float param_2,int param_3,float *param_4)
   local_24.x = 0;
   local_24.y = 0;
   local_24.z = (int)local_34;
-  FUN_004b1bb0(local_18,&self->ang);
+  Rot_FromAngles(local_18,&self->ang);
   some_rotate_by_global(&local_24,&local_24);
   iVar3 = (self->vel).x + local_24.x;
   pvVar1 = &self->vel;
@@ -36,7 +36,7 @@ void Entity_ThrustToWorld(SpED *self,float param_2,int param_3,float *param_4)
   local_2c = (int)(longlong)ROUND((float)iVar5 * *(float *)(param_3 + 0x3c));
   (self->vel).z = local_2c;
   if (param_4 != (float *)0x0) {
-    uVar2 = FUN_004e046f(pvVar1);
+    uVar2 = MathAsm_VecLengthF_Fwd(pvVar1);
     local_34 = (ulonglong)uVar2;
     *param_4 = (float)local_34;
   }

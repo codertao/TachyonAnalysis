@@ -33,10 +33,10 @@ ShipDesc * Ent_CreateShip(char *param_1,undefined4 param_2,int param_3,int param
   pSVar1 = (ShipDesc *)DescReg_FindByName(param_1,0);
   if (pSVar1 != (ShipDesc *)0x0) {
     if (param_3 != 0) {
-      FUN_00464210(pSVar1);
+      Ship_LoadFxModel(pSVar1);
     }
     if (param_4 != 0) {
-      FUN_004642d0(pSVar1,param_3);
+      Ship_LoadSounds(pSVar1,param_3);
     }
     return pSVar1;
   }
@@ -52,16 +52,16 @@ ShipDesc * Ent_CreateShip(char *param_1,undefined4 param_2,int param_3,int param
   local_48 = Sped_ConstructEntity;
   local_44 = &LAB_00462fb0;
   local_50 = Ship_Update;
-  local_3c = FUN_00464460;
-  local_38 = FUN_004645c0;
-  local_34 = FUN_004646f0;
+  local_3c = Ship_Destroy;
+  local_38 = Ent_FormatInfoField;
+  local_34 = Ent_FormatGroupField;
   local_54 = &LAB_004647f0;
   local_24 = &LAB_004647c0;
   local_20 = &LAB_004651f0;
   local_2c = &LAB_004653d0;
   local_c = &LAB_00465380;
   local_1c = &LAB_00465500;
-  local_28 = FUN_004634c0;
+  local_28 = Ent_IsAlive;
   local_4c = &LAB_00465590;
   local_8 = &LAB_00465630;
   pSVar1 = (ShipDesc *)DescReg_Alloc(&local_74,param_2);
@@ -69,9 +69,9 @@ ShipDesc * Ent_CreateShip(char *param_1,undefined4 param_2,int param_3,int param
     return (ShipDesc *)0x0;
   }
   Ship_LoadDes(param_1,pSVar1,param_3);
-  FUN_004329d0(s_Descriptor__s_loaded_00532b28,param_1);
+  DebugLog_Printf(s_Descriptor__s_loaded_00532b28,param_1);
   if (param_4 != 0) {
-    FUN_004642d0(pSVar1,param_3);
+    Ship_LoadSounds(pSVar1,param_3);
   }
   return pSVar1;
 }

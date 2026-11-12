@@ -24,8 +24,8 @@ void MpCfg_RefreshInventoryList(void)
       set_flag_10c_on_elem_by_id(&g_UiManager,pcVar9 + 0x40,0x20000);
       sbi_label_flags_11c(&g_UiManager,pcVar9 + -0x40,0x200);
       sbi_label_flags_11c(&g_UiManager,pcVar9,0x20000);
-      FUN_0043e6a0(&g_UiManager,pcVar9,&DAT_00562b14);
-      FUN_0043e6a0(&g_UiManager,pcVar9 + -0x40,&DAT_00562b14);
+      Ui_SetLabelText(&g_UiManager,pcVar9,&DAT_00562b14);
+      Ui_SetLabelText(&g_UiManager,pcVar9 + -0x40,&DAT_00562b14);
       pcVar9[0x84] = '\0';
       pcVar9[0xc4] = '\0';
       pcVar9[0x80] = '\0';
@@ -43,8 +43,8 @@ void MpCfg_RefreshInventoryList(void)
       pcVar9 = pcVar9 + 0x174;
     } while (*pcVar7 != '\0');
   }
-  uVar3 = FUN_0046e930();
-  iVar2 = FUN_0046f080(uVar3);
+  uVar3 = Player_GetCurrentShipName();
+  iVar2 = ShipDef_FindIndex(uVar3);
   if (iVar2 == 0) {
     uVar3 = 7;
   }
@@ -63,7 +63,7 @@ void MpCfg_RefreshInventoryList(void)
       uVar3 = 1;
     }
   }
-  FUN_0046c040(uVar3,1);
+  Inventory_BuildForWeaponTypes(uVar3,1);
 LAB_004484c0:
   local_c = DAT_00589744;
   iVar2 = DAT_00589748;
@@ -93,17 +93,18 @@ LAB_004484c0:
           }
           iVar8 = Ui_FindButton(&g_UiManager,pcVar7);
           if (iVar8 != 0) {
-            FUN_0046d770(DAT_005879a0,pcVar9,iVar2 + 0xb0,1,*(undefined4 *)(iVar2 + 0xc0),
-                         *(undefined4 *)(iVar2 + 0xc4),*(undefined4 *)(iVar8 + 0xd4),
-                         *(undefined4 *)(iVar8 + 0xd8),0);
+            Ui_SetImageAreaFromFile
+                      (DAT_005879a0,pcVar9,iVar2 + 0xb0,1,*(undefined4 *)(iVar2 + 0xc0),
+                       *(undefined4 *)(iVar2 + 0xc4),*(undefined4 *)(iVar8 + 0xd4),
+                       *(undefined4 *)(iVar8 + 0xd8),0);
             iVar5 = find_ui_elem_by_id_(&g_UiManager,pcVar9);
             str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar2 + 0xb0);
-            iVar6 = FUN_0043a7a0(&g_UiManager,&DAT_005a41e0);
-            iVar8 = FUN_0043a7a0(&g_UiManager,iVar8 + 0x80);
+            iVar6 = MnuImage_Find(&g_UiManager,&DAT_005a41e0);
+            iVar8 = MnuImage_Find(&g_UiManager,iVar8 + 0x80);
             if (((iVar5 != 0) && (iVar6 != 0)) && (iVar8 != 0)) {
               uVar3 = Player_GetVarInt(*piVar4 + 0x20,*piVar4);
               str_sprintf(pcVar9 + 0x84,s___SHADOW8r__d_SHADOW8w___005476a8,uVar3);
-              FUN_0043e6a0(&g_UiManager,pcVar9 + -0x40,pcVar9 + 0x84);
+              Ui_SetLabelText(&g_UiManager,pcVar9 + -0x40,pcVar9 + 0x84);
               if (*(undefined4 **)(iVar2 + 0x60) == (undefined4 *)0x0) {
                 pcVar7 = s__ITEM_005476a0;
               }
@@ -111,9 +112,10 @@ LAB_004484c0:
                 pcVar7 = (char *)**(undefined4 **)(iVar2 + 0x60);
               }
               str_sprintf(pcVar9 + 0x44,&DAT_00536768,pcVar7);
-              FUN_00448250(pcVar9 + -0x80,pcVar9 + 0x44,*(undefined4 *)(iVar5 + 0xc4),
-                           *(undefined4 *)(iVar5 + 200),*(undefined4 *)(iVar8 + 0x166c),
-                           *(int *)(iVar8 + 0x1670) / *(int *)(iVar8 + 0x1680));
+              MpCfg_SetInventoryRow
+                        (pcVar9 + -0x80,pcVar9 + 0x44,*(undefined4 *)(iVar5 + 0xc4),
+                         *(undefined4 *)(iVar5 + 200),*(undefined4 *)(iVar8 + 0x166c),
+                         *(int *)(iVar8 + 0x1670) / *(int *)(iVar8 + 0x1680));
               MpCfg_SetMountIcon(iVar5,iVar6,*(undefined4 *)(iVar5 + 0xc4),
                                  *(undefined4 *)(iVar5 + 200),*(undefined4 *)(iVar8 + 0x166c),
                                  *(undefined4 *)(iVar8 + 0x1670),*(undefined4 *)(iVar8 + 0x1680),2,4

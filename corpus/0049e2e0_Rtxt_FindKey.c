@@ -17,7 +17,7 @@ undefined4 Rtxt_FindKey(int param_1,undefined4 param_2)
     pcVar6 = *(char **)(*(int *)(param_1 + 4) + 4);
     if (*(int *)(param_1 + 0xc) != 0) {
       do {
-        iVar2 = str_cmp(pcVar6,param_2);
+        iVar2 = __stricmp(pcVar6,param_2);
         if (iVar2 == 0) {
           uVar3 = Rtxt_GetRecord(param_1,uVar5);
           return uVar3;

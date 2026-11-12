@@ -15,8 +15,8 @@ void MpCfg_SetMountIcon(int param_1,int param_2,int param_3,int param_4,int para
       iVar1 = (param_6 / param_7 - *(int *)(param_2 + 0x1670) / *(int *)(param_2 + 0x1680)) /
               param_9;
     }
-    FUN_0043f650(&g_UiManager,param_1,iVar2 + param_3,iVar1 + param_4);
-    FUN_0043f840(&g_UiManager,param_1,0x20000);
+    ImageArea_StepFrame(&g_UiManager,param_1,iVar2 + param_3,iVar1 + param_4);
+    ImageArea_ClearFlags(&g_UiManager,param_1,0x20000);
   }
   return;
 }

@@ -28,7 +28,7 @@ void Loadout_RefreshHwSlots(void)
   undefined1 local_80 [128];
   
   if (g_CfgMode == 1) {
-    FUN_004757e0();
+    Loadout_RefreshMountSlot();
     uVar4 = Ship_GetCurrentModel(local_1ec);
     iVar5 = Cbin_LoadFile(uVar4);
     if (iVar5 != 0) {
@@ -41,7 +41,7 @@ void Loadout_RefreshHwSlots(void)
         iVar5 = Cbin_FindSection(puVar11 + -0x40,local_1ec);
         if (iVar5 != 0) {
           Cbin_FindParam(s_MOUNT_ICON_005478dc,local_180,0x7f,0,4,1,local_1ec);
-          iVar5 = FUN_00469a30(local_180);
+          iVar5 = Starbase_FindMaterial(local_180);
           if (iVar5 != 0) {
             str_sprintf(puVar11 + 0xf8,iVar5 + 0x40);
             puVar2 = (undefined4 *)(puVar11 + 0x110);
@@ -62,10 +62,12 @@ void Loadout_RefreshHwSlots(void)
             }
             *(uint *)(puVar11 + 0xa70) = *(uint *)(iVar5 + 100) / uVar10 + *(int *)(puVar11 + 0xa68)
             ;
-            FUN_0046d770(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,iVar5 + 0x40,
-                         *(undefined4 *)(iVar5 + 0x68),*(undefined4 *)(iVar5 + 0x60),
-                         *(undefined4 *)(iVar5 + 100),*puVar2,*puVar3,0);
-            FUN_0043f500(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,*(undefined4 *)(puVar11 + 0x11c));
+            Ui_SetImageAreaFromFile
+                      (&GLBL_UI_ELEM_LIST,puVar11 + 0x78,iVar5 + 0x40,*(undefined4 *)(iVar5 + 0x68),
+                       *(undefined4 *)(iVar5 + 0x60),*(undefined4 *)(iVar5 + 100),*puVar2,*puVar3,0)
+            ;
+            ImageArea_SetValueE4(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,*(undefined4 *)(puVar11 + 0x11c))
+            ;
           }
         }
         Cbin_FindSection(puVar11 + -0x40,local_1ec);
@@ -76,7 +78,7 @@ void Loadout_RefreshHwSlots(void)
           do {
             if (0x1f < uVar10) break;
             _strncpy((char *)(piVar13 + -0x11),local_180,0x3f);
-            iVar5 = FUN_004690b0(local_180);
+            iVar5 = Item_FindByName(local_180);
             *piVar13 = iVar5;
             if (iVar5 != 0) {
               uVar10 = uVar10 + 1;
@@ -87,7 +89,7 @@ void Loadout_RefreshHwSlots(void)
         }
         if (puVar11[0xf8] != '\0') {
           *(undefined4 *)(puVar11 + 0x70) = 1;
-          FUN_0043f840(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,0x20000);
+          ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,puVar11 + 0x78,0x20000);
         }
         puVar11 = puVar11 + 0xab4;
         bVar14 = local_200 < 0x10;
@@ -108,7 +110,7 @@ void Loadout_RefreshHwSlots(void)
           iVar6 = Var_FindKey(uVar4);
           if (((local_1f0 != 0) && (iVar6 != 0)) && (*(int *)(iVar6 + 8) != 0)) {
             uVar4 = Var_GetKeyByIndex(*(int *)(iVar6 + 8),local_1f0);
-            iVar7 = FUN_004690b0(uVar4);
+            iVar7 = Item_FindByName(uVar4);
             iVar6 = 0;
             if (iVar7 != 0) {
               iVar6 = *(int *)(iVar7 + 0x58);
@@ -116,20 +118,22 @@ void Loadout_RefreshHwSlots(void)
             iVar8 = Loadout_MountCheck(iVar7,pcVar12 + -0x138);
             if (iVar8 == 0) {
               if ((iVar6 != 0) && (*pcVar12 != '\0')) {
-                FUN_0046d770(&GLBL_UI_ELEM_LIST,pcVar1,iVar6 + 0xb0,1,*(undefined4 *)(iVar6 + 0xc0),
-                             *(undefined4 *)(iVar6 + 0xc4),*(undefined4 *)(pcVar12 + 0x18),
-                             *(undefined4 *)(pcVar12 + 0x1c),0);
+                Ui_SetImageAreaFromFile
+                          (&GLBL_UI_ELEM_LIST,pcVar1,iVar6 + 0xb0,1,*(undefined4 *)(iVar6 + 0xc0),
+                           *(undefined4 *)(iVar6 + 0xc4),*(undefined4 *)(pcVar12 + 0x18),
+                           *(undefined4 *)(pcVar12 + 0x1c),0);
                 uVar4 = find_ui_elem_by_id_(&GLBL_UI_ELEM_LIST,pcVar1);
                 str_sprintf(&DAT_005a41e0,s_IMAGE__s_005444a8,iVar6 + 0xb0);
-                uVar9 = FUN_0043a7a0(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,
-                                     *(undefined4 *)(pcVar12 + 0x18),*(undefined4 *)(pcVar12 + 0x1c)
-                                     ,*(undefined4 *)(pcVar12 + 0x10),
-                                     *(undefined4 *)(pcVar12 + 0x14),*(undefined4 *)(pcVar12 + 0x20)
-                                     ,2,2);
+                uVar9 = MnuImage_Find(&GLBL_UI_ELEM_LIST,&DAT_005a41e0,
+                                      *(undefined4 *)(pcVar12 + 0x18),
+                                      *(undefined4 *)(pcVar12 + 0x1c),
+                                      *(undefined4 *)(pcVar12 + 0x10),
+                                      *(undefined4 *)(pcVar12 + 0x14),
+                                      *(undefined4 *)(pcVar12 + 0x20),2,2);
                 Loadout_SetMountIcon(uVar4,uVar9);
-                FUN_0043f5d0(&GLBL_UI_ELEM_LIST,pcVar12 + -0x80,9);
+                ImageArea_SetFrame(&GLBL_UI_ELEM_LIST,pcVar12 + -0x80,9);
                 *(int *)(pcVar12 + 0x964) = iVar7;
-                FUN_0043f840(&GLBL_UI_ELEM_LIST,pcVar1,0x20000);
+                ImageArea_ClearFlags(&GLBL_UI_ELEM_LIST,pcVar1,0x20000);
                 *(undefined4 *)(pcVar12 + 0x968) = *(undefined4 *)(iVar6 + 0x9c);
               }
             }
@@ -140,7 +144,7 @@ void Loadout_RefreshHwSlots(void)
         }
         pcVar12 = pcVar12 + 0xab4;
       } while ((int)pcVar12 < 0x582bf8);
-      FUN_0049adb0(local_1ec);
+      Cbin_Free(local_1ec);
     }
   }
   return;

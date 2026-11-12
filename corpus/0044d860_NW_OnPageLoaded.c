@@ -29,7 +29,7 @@ void NW_OnPageLoaded(void)
       pcVar1 = _strstr(acStack_900,&DAT_00548110);
       if (pcVar1 != (char *)0x0) {
         NW_DecodeJoinTitle(acStack_900,&g_NwJoinHost,&g_NwJoinPort,&g_NwJoinKey,0x20);
-        _DAT_005916d8 = FUN_004bd32f(&g_NwJoinKey);
+        _DAT_005916d8 = _atoi(&g_NwJoinKey);
         g_NwJoinPending = 1;
       }
     }
@@ -60,7 +60,7 @@ void NW_OnPageLoaded(void)
   else if (DAT_005927c8 == 0) {
     DAT_005927c8 = 1;
     str_sprintf(&DAT_005a41e0,s_update_exe__lu__force__log_0054815c,GLBL_WindowHandle_);
-    FUN_0044e110(&DAT_005a41e0,1,0,s___TMPEXE____00548150);
+    NW_RunPatcher(&DAT_005a41e0,1,0,s___TMPEXE____00548150);
     return;
   }
   return;

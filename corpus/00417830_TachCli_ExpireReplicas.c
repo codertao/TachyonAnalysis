@@ -19,10 +19,10 @@ void TachCli_ExpireReplicas(void)
     iVar1 = *(int *)(iVar3 + 8);
     if ((*(int *)(iVar3 + 0xec) == -1) ||
        (iVar4 = *(int *)(iVar3 + 0xec) + -1, *(int *)(iVar3 + 0xec) = iVar4, -1 < iVar4)) {
-      FUN_0041b890(iVar3,&DAT_005b3284);
+      List_PushFrontW(iVar3,&DAT_005b3284);
     }
     else {
-      FUN_00415ee0(iVar3,1);
+      Replica_Destroy(iVar3,1);
     }
     uVar2 = DAT_005b3284;
     iVar3 = iVar1;

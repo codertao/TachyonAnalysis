@@ -31,7 +31,7 @@ LAB_00403a0d:
   }
   pSVar3 = param_1->target;
   if ((pSVar3 != (SpED *)0x0) && (pSVar3->poolType == 1)) {
-    FUN_00460d70(pSVar3);
+    Ship_GetCloakFlags(pSVar3);
   }
   pDVar4 = param_1->desc;
   if ((*(char *)((int)&param_1[3].vel.z + 2) != '\0') &&
@@ -56,11 +56,11 @@ LAB_00403a0d:
   }
   if (((((param_1[3].vel.y ^ DAT_005897e4) & 0x3f) == 0) && (param_1->engageCount != 0)) &&
      (((uint)pDVar1[10].construct & 0x1000) != 0)) {
-    FUN_00498810(param_1,&param_1[3].onDamage,&pDVar1[0xb].name,0);
+    Decoy_Drop(param_1,&param_1[3].onDamage,&pDVar1[0xb].name,0);
   }
   if (((param_1[3].vel.y ^ DAT_005897e4) & 0x1f) == 0) {
     if ((*(int *)&param_1[3].field_0xbc != 0) && (((uint)pDVar1[10].construct & 0x10000) != 0)) {
-      FUN_004277c0(param_1,1);
+      Ai_RollSkillChance(param_1,1);
     }
     *(undefined4 *)&param_1[3].field_0xbc = 0;
   }

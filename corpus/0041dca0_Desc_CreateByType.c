@@ -75,7 +75,7 @@ Desc_CreateByType(int param_1,undefined4 *param_2,undefined4 param_3,undefined4 
       *param_2 = uVar3;
       return 0;
     case 0xc:
-      uVar3 = Ent_CreateMiscObject(param_1,param_6,param_5);
+      uVar3 = Stub_ReturnZeroB(param_1,param_6,param_5);
       *param_2 = uVar3;
       return 0;
     case 0xd:

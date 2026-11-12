@@ -12,8 +12,8 @@ void Gate_UpdateCollideState(int param_1)
   undefined4 local_8;
   undefined4 local_4;
   
-  local_10 = FUN_00436160((int)*(short *)(*(int *)(param_1 + 0xf0) + 0x48),
-                          *(undefined2 *)(*(int *)(param_1 + 0xf0) + 0x4a));
+  local_10 = Var_GetByIndexValue((int)*(short *)(*(int *)(param_1 + 0xf0) + 0x48),
+                                 *(undefined2 *)(*(int *)(param_1 + 0xf0) + 0x4a));
   if (local_10 < 1) {
     *(undefined4 *)(param_1 + 0xc4) = *(undefined4 *)(*(int *)(param_1 + 0x8c) + 0x160);
     *(undefined4 *)(param_1 + 0xe8) = 1;

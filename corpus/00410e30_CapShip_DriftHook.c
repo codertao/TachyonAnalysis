@@ -11,7 +11,7 @@ void CapShip_DriftHook(int param_1)
             (0,*(float *)(param_1 + 0xd4),(float *)(param_1 + 0xf8),
              (ShipFlight *)(*(int *)(param_1 + 0x8c) + 0x84),0,(PowerBlock *)(param_1 + 0x144),0,
              1.4013e-45);
-  FUN_00410df0(param_1);
+  CapShip_ApplyThrust(param_1);
   return;
 }
 

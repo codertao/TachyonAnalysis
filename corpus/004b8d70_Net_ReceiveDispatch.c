@@ -11,7 +11,7 @@ void Net_ReceiveDispatch(void)
     while( true ) {
       bVar1 = false;
       if (((byte)GLBL_some_game_mode & 2) == 0) {
-        iVar2 = thunk_FUN_004aabb0();
+        iVar2 = DPlay_GetMessage();
         if (iVar2 != 0) {
           NetCli_ProcessPacket(iVar2,DAT_0055e420);
           bVar1 = true;

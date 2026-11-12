@@ -12,7 +12,7 @@ void CapShip_HyperInHook(int param_1)
   undefined4 uStack_8;
   undefined4 uStack_4;
   
-  FUN_00423e80(param_1,*(undefined4 *)(param_1 + 0xd4));
+  Ent_PointAhead(param_1,*(undefined4 *)(param_1 + 0xd4));
   *(float *)(param_1 + 0xd4) = *(float *)(param_1 + 0xd4) - *(float *)(param_1 + 0xf8);
   *(float *)(param_1 + 0xf8) = *(float *)(param_1 + 0xf8) - _DAT_0052e5ec;
   if (*(float *)(param_1 + 0xd4) <= _DAT_0052e598) {

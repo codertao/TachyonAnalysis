@@ -13,7 +13,7 @@ undefined4 actual2_load_sbf_and_bin(LPCSTR sbf_file,LPCSTR bin_file)
     DAT_006af504 = 0;
   }
   if (DAT_006af508 != 0) {
-    FUN_004b5550();
+    Music_Close();
     DAT_006af504 = 0;
   }
   if (GLBL_audio_running == 0) {
@@ -24,7 +24,7 @@ undefined4 actual2_load_sbf_and_bin(LPCSTR sbf_file,LPCSTR bin_file)
   if (GLBL_sbf_file_handle == (HANDLE)0xffffffff) {
     return 0;
   }
-  FUN_004b5b60(s_GEcho_0055ed28,DAT_0055ee48);
+  MusScr_SetNativeTable(s_GEcho_0055ed28,DAT_0055ee48);
   iVar1 = load_bin_scr_file(bin_file);
   if (iVar1 != 0) {
     ReadFile(GLBL_sbf_file_handle,&DAT_006af4e0,0x18,&local_4,(LPOVERLAPPED)0x0);

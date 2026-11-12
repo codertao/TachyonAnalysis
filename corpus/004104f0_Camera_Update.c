@@ -10,7 +10,7 @@ void Camera_Update(void)
   int local_4;
   
   if ((*DAT_005b95e0 == 0) && ((*(byte *)(DAT_005b95e0 + 3) & 8) == 0)) {
-    FUN_004103b0();
+    Camera_SetDefaultMode();
     Camera_Update();
     return;
   }
@@ -24,7 +24,7 @@ void Camera_Update(void)
   local_c = DAT_005b9600 - DAT_005b960c;
   local_4 = DAT_005b9608 - DAT_005b9614;
   DAT_005b9624 = call_approx_vec_length(&local_c);
-  FUN_004103e0();
+  Fade_Step();
   call_Math_SinCos3((float *)&DAT_005b9628,-DAT_005b95e8,-DAT_005b95ec,-DAT_005b95f0);
   return;
 }

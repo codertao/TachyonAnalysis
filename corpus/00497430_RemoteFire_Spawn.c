@@ -1,0 +1,31 @@
+
+/* sweep: guess */
+
+void RemoteFire_Spawn(void)
+
+{
+  WeaponDef *local_2c;
+  undefined4 local_28;
+  undefined *local_24;
+  undefined *local_20;
+  undefined4 local_1c;
+  undefined *local_18;
+  undefined4 local_14;
+  undefined4 local_10;
+  undefined4 local_8;
+  undefined4 local_4;
+  
+  local_14 = DAT_00565448;
+  local_28 = DAT_00565420;
+  local_8 = DAT_00565458;
+  local_10 = DAT_00565450;
+  local_2c = g_WeaponDefs + DAT_0056544c;
+  local_20 = &DAT_0056543c;
+  local_1c = 2;
+  local_18 = &DAT_00565430;
+  local_24 = &DAT_00565424;
+  local_4 = DAT_0056545c;
+  (*g_WeaponDefs[DAT_0056544c].create)(&local_2c);
+  return;
+}
+

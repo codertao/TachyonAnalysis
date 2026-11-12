@@ -86,7 +86,7 @@ void SrvSend_EnterQuadrant
     if ((g_FlightStateFlags & 4) != 0) {
       SrvSend_NavPrimary(param_7,param_3,DAT_005a5e0c,DAT_005a5e10);
       SrvSend_NavSecondary(param_7,param_3,DAT_005a5e14,DAT_005a5e18);
-      FUN_00450940(param_3);
+      Orders_SendAllToClient(param_3);
       return;
     }
     SrvSend_NavPrimary(param_7,param_3,param_7->navPrimary,param_7->navSecondary);

@@ -5,13 +5,13 @@
 void Ui_Update(undefined4 param_1)
 
 {
-  FUN_00414dc0(&DAT_005a6160);
-  FUN_0043c740(param_1);
-  FUN_00440300(param_1);
-  FUN_0043fac0(param_1,1);
-  FUN_00437a80();
-  FUN_0043ef40();
-  FUN_00440d20();
+  KeyRepeat_Update(&DAT_005a6160);
+  Ui_ProcessWindowInput(param_1);
+  Ui_ProcessTextEntries(param_1);
+  Ui_AnimateImageAreas(param_1,1);
+  Menu_RunHotkeyCallbacks();
+  Ui_UpdateCursorPos();
+  ScreenZoom_UpdateAll();
   if (DAT_005a4b38 != (code *)0x0) {
     (*DAT_005a4b38)(param_1);
   }

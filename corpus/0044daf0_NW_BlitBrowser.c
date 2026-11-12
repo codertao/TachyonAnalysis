@@ -1,0 +1,18 @@
+
+/* sweep */
+
+void NW_BlitBrowser(void)
+
+{
+  if (((DAT_00562c98 == 0) && (DAT_005927cc != 0)) && (DAT_005927e0 != 0)) {
+    DAT_00562c9c = DAT_00562c9c + 1;
+    DAT_005927e0 = 0;
+    Blit_SetSrc(DAT_005927cc,DAT_00591640,0x268);
+    Blit_SetDst(DAT_005a680c,DAT_00591640,0x280);
+    Blit_CopyRect(DAT_005927d0,DAT_005927d4,DAT_005927d8 - DAT_005927d0,DAT_005927dc - DAT_005927d4,
+                  0,0);
+    DAT_00562c9c = DAT_00562c9c + -1;
+  }
+  return;
+}
+

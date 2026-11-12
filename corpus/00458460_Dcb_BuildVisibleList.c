@@ -9,13 +9,13 @@ void Dcb_BuildVisibleList(int param_1)
   
   DAT_0062c0e8 = 0;
   if (param_1 == 2) {
-    uVar1 = FUN_00458320(DAT_005b31c0,&DAT_006240e8,2);
-    FUN_00458320(DAT_005b3280,uVar1,2);
+    uVar1 = Vis_CullListA(DAT_005b31c0,&DAT_006240e8,2);
+    Vis_CullListA(DAT_005b3280,uVar1,2);
     call_SortPairs_Desc();
     return;
   }
-  uVar1 = FUN_004583c0(DAT_005b31c0,&DAT_006240e8,param_1);
-  FUN_004583c0(DAT_005b3280,uVar1,param_1);
+  uVar1 = Vis_CullListB(DAT_005b31c0,&DAT_006240e8,param_1);
+  Vis_CullListB(DAT_005b3280,uVar1,param_1);
   call_SortPairs_Desc();
   return;
 }

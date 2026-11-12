@@ -32,12 +32,12 @@ void Profile_StartGame(void)
         g_PlayerVarStore = 0;
       }
     }
-    FUN_0042f320(&g_CurrentCfgPath);
+    KeyCfg_Reload(&g_CurrentCfgPath);
     if (local_4 != 0) {
-      FUN_004444c0();
+      Profile_EnterStarbase();
       return;
     }
-    FUN_00444500();
+    Profile_EnterFlight();
   }
   return;
 }

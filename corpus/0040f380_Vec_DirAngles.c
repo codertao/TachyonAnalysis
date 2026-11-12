@@ -16,7 +16,7 @@ void Vec_DirAngles(int *param_1,int *param_2,undefined4 *param_3)
   local_c[1] = 0;
   local_c[0] = iVar2;
   local_c[2] = iVar3;
-  iVar2 = FUN_004e046f(local_c);
+  iVar2 = MathAsm_VecLengthF_Fwd(local_c);
   uVar1 = Math_Atan2(param_1[1] - param_2[1] >> 1,-iVar2);
   param_3[2] = 0;
   param_3[1] = uVar1;

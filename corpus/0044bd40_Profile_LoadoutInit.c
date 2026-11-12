@@ -24,17 +24,17 @@ void Profile_LoadoutInit(void)
   }
   DAT_005a64f4 = &g_JoinBlob;
   DAT_005a64f8 = 0xc4;
-  _DAT_005916d8 = FUN_004bd32f(&g_NwJoinKey);
+  _DAT_005916d8 = _atoi(&g_NwJoinKey);
   if (g_PlayerVarStore != 0) {
     DAT_005a6148 = g_PlayerVarStore;
-    FUN_004277a0(0);
+    Systems_Reload(0);
     DAT_005a6148 = 0;
   }
   uVar1 = Ship_GetCurrentModel();
   str_sprintf(&DAT_005a6114,uVar1);
   str_sprintf(&DAT_00591704,s_GALSPAN_ORION_00547f00);
-  _DAT_00591700 = FUN_004580c0(s_GALSPAN_00533548);
-  iVar5 = FUN_0046f0c0(&DAT_005a6114);
+  _DAT_00591700 = Race_FindByName(s_GALSPAN_00533548);
+  iVar5 = ShipDef_Find(&DAT_005a6114);
   if (iVar5 != 0) {
     _strncpy(&DAT_00591704,(char *)(iVar5 + 0x20),0x1f);
     if ((*(uint *)(iVar5 + 0x44) & 1) == 0) {
@@ -44,7 +44,7 @@ void Profile_LoadoutInit(void)
     else {
       pcVar8 = s_GALSPAN_00533548;
     }
-    _DAT_00591700 = FUN_004580c0(pcVar8);
+    _DAT_00591700 = Race_FindByName(pcVar8);
   }
 LAB_0044be16:
   uVar1 = Player_GetCurrentShip();
@@ -70,15 +70,15 @@ LAB_0044be16:
       iVar5 = Var_FindKey(uVar1);
       if (((local_104 != 0) && (iVar5 != 0)) && (*(int *)(iVar5 + 8) != 0)) {
         uVar1 = Var_GetKeyByIndex(*(int *)(iVar5 + 8),local_104);
-        uVar4 = FUN_004273d0(uVar1);
+        uVar4 = Systems_FindByName(uVar1);
         DAT_005916b4 = DAT_005916b4 | uVar4;
       }
     }
   } while (uVar3 < 0x10);
   _DAT_005916a0 = DAT_00545bd0;
   DAT_005a6134 = DAT_00545bd0;
-  iVar5 = FUN_0046f0c0(&DAT_005a60d4);
-  iVar2 = FUN_0046f0c0(&DAT_005a60f4);
+  iVar5 = ShipDef_Find(&DAT_005a60d4);
+  iVar2 = ShipDef_Find(&DAT_005a60f4);
   if (iVar5 == 0) {
     str_sprintf(&g_JoinBlob,s_GALSPAN_ORION_00547f00);
   }
@@ -92,9 +92,9 @@ LAB_0044be16:
     _strncpy(&DAT_00591680,(char *)(iVar2 + 0x20),0x1f);
   }
   _strncpy(&DAT_005916a4,&DAT_005a60c4,0xf);
-  _DAT_005916d0 = Ent_CreateMiscObject();
-  _DAT_005916d4 = Ent_CreateMiscObject();
-  _DAT_005916cc = Ent_CreateMiscObject();
+  _DAT_005916d0 = Stub_ReturnZeroB();
+  _DAT_005916d4 = Stub_ReturnZeroB();
+  _DAT_005916cc = Stub_ReturnZeroB();
   _DAT_005916dc = 0x1002;
   DAT_005916e0 = 0;
   return;

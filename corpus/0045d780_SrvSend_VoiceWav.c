@@ -44,7 +44,7 @@ void SrvSend_VoiceWav(char *param_1)
     NetSrv_QueueEvent(payload,0x1115,0x20,&local_58);
     if (DAT_005a6730 != 0) {
       str_sprintf(local_40,s_WAV_EVENT____s_005493b4,payload);
-      FUN_0045d9d0(local_40,0);
+      SrvSend_TextSimple(local_40,0);
     }
   }
   return;

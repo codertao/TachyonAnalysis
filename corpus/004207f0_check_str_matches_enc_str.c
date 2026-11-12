@@ -33,7 +33,7 @@ bool check_str_matches_enc_str(undefined4 param_1,char *param_2,undefined4 enc_k
     pcVar6 = pcVar6 + 1;
   }
   decrypt_str_with_key(local_200,enc_key);
-  iVar2 = str_cmp(param_1,local_200);
+  iVar2 = __stricmp(param_1,local_200);
   return iVar2 == 0;
 }
 

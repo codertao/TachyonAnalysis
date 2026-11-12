@@ -10,7 +10,7 @@ void Net_SendSessionNotify(undefined4 param_1)
   if (DAT_0055e3e0 != 0) {
     local_8[0] = 0x4001;
     local_4 = DAT_0055e400;
-    FUN_004a7060(local_8,8,param_1);
+    NetDrv_SendToClientGuaranteed(local_8,8,param_1);
   }
   return;
 }

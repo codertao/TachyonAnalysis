@@ -11,12 +11,12 @@ void __cdecl __fassign(int flag,char *argument,char *number)
   undefined4 local_8;
   
   if (flag != 0) {
-    FUN_004c602d(&local_c);
+    __atodbl(&local_c);
     *(undefined4 *)argument = local_c;
     *(undefined4 *)(argument + 4) = local_8;
     return;
   }
-  FUN_004c605a(&number,number);
+  __atoflt(&number,number);
   *(char **)argument = number;
   return;
 }

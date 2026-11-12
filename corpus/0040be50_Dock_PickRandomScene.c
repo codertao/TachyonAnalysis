@@ -15,7 +15,7 @@ void Dock_PickRandomScene(int param_1)
     Cbin_SelectGroup(&DAT_00532af4);
     if (iVar3 != 0) {
       do {
-        FUN_0049bdb0(s_DOCK_SCENE_00532ebc,param_1 + 0x9c,0x10,0,4,1);
+        Cbin_FindParam_Global(s_DOCK_SCENE_00532ebc,param_1 + 0x9c,0x10,0,4,1);
         iVar3 = iVar3 + -1;
       } while (iVar3 != 0);
     }
@@ -27,7 +27,7 @@ void Dock_PickRandomScene(int param_1)
     Cbin_SelectGroup(&DAT_00532af4);
     if (iVar3 != 0) {
       do {
-        FUN_0049bdb0(s_UNDOCK_SCENE_00532eac,param_1 + 0xac,0x10,0,4,1);
+        Cbin_FindParam_Global(s_UNDOCK_SCENE_00532eac,param_1 + 0xac,0x10,0,4,1);
         iVar3 = iVar3 + -1;
       } while (iVar3 != 0);
     }

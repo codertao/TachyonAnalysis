@@ -17,7 +17,7 @@ void CliOn_SpawnEntity(undefined4 *param_1)
       *(undefined1 *)(iVar1 + 0xc0) = *(undefined1 *)((int)param_1 + 5);
       *(undefined1 *)(iVar1 + 0xc2) = *(undefined1 *)((int)param_1 + 7);
       *(undefined1 *)(iVar1 + 0xc1) = *(undefined1 *)((int)param_1 + 6);
-      FUN_0041b890(iVar1,&DAT_005b3280);
+      List_PushFrontW(iVar1,&DAT_005b3280);
     }
   }
   return;

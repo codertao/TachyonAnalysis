@@ -21,7 +21,7 @@ void Ocf_ParsePart(int param_1,float param_2,int param_3)
   Cbin_SelectGroup(local_60);
   iVar3 = Cbin_GetScalar(local_60,&DAT_00532c58,local_40,0x1f,0);
   if (iVar3 != 0) {
-    FUN_004093c0(param_1,local_40);
+    BaseFile_FindDefine(param_1,local_40);
   }
   *(float *)(param_1 + 0x44) = fVar2;
   Cbin_GetParam(local_60,s_SCALE_005327cc,0,0,&param_2,2,1);
@@ -101,17 +101,17 @@ void Ocf_ParsePart(int param_1,float param_2,int param_3)
   iVar4 = Cbin_GetParam(local_60,s_ATTACH_00532cd8,local_40,0x40,0,4,1);
   iVar3 = param_3;
   if (iVar4 != 0) {
-    iVar4 = FUN_00409370(param_3,local_40);
+    iVar4 = BaseFile_FindPartByName(param_3,local_40);
     *(int *)(param_1 + 0x1c) = iVar4;
     if (iVar4 == 0) {
-      FUN_00409460(param_1,local_40,iVar3);
+      Ocf_ErrNoParent(param_1,local_40,iVar3);
     }
     Cbin_GetParam(local_60,s_ATTACH_00532cd8,0,0,param_1 + 0x20,1,2);
     Cbin_GetParam(local_60,s_ATTACH_00532cd8,0,0,param_1 + 0x24,1,3);
   }
   iVar4 = Cbin_GetParam(local_60,s_SOUND_LOOP_00532ccc,local_40,0x40,0,4,1);
   if (iVar4 != 0) {
-    uVar5 = FUN_00409420(*(undefined4 *)(iVar3 + 8),local_40);
+    uVar5 = NamedList_Find(*(undefined4 *)(iVar3 + 8),local_40);
     *(undefined4 *)(param_1 + 0x48) = uVar5;
   }
   return;

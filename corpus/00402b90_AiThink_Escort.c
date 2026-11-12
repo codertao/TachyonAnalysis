@@ -23,14 +23,14 @@ void AiThink_Escort(int param_1)
     vStack_30.x = 0;
     vStack_30.y = 0x258000;
     vStack_30.z = -0xfa0000;
-    FUN_004b1bb0(auStack_18,(vec3 *)(iVar3 + 0x4c));
+    Rot_FromAngles(auStack_18,(vec3 *)(iVar3 + 0x4c));
     some_rotate_by_global(&vStack_30,&vStack_30);
     vStack_24.x = *(int *)(iVar3 + 0x34) + vStack_30.x;
     vStack_24.y = *(int *)(iVar3 + 0x38) + vStack_30.y;
     vStack_24.z = *(int *)(iVar3 + 0x3c) + vStack_30.z;
     pvVar1 = (vec3 *)(param_1 + 0x34);
     Vec_DirAngles(pvVar1,&vStack_24,param_1 + 0xdc);
-    FUN_0040f460(iVar3,param_1 + 0xdc);
+    Ent_AnglesToLocal(iVar3,param_1 + 0xdc);
     uVar2 = distance_between(pvVar1,&vStack_24);
     if (uVar2 < 0x258000) {
       Ai_SetState(param_1,1);

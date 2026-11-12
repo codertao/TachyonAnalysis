@@ -19,8 +19,8 @@ void ArtDebug_AdjBlue(int param_1)
   ModelPool_Relight(&g_FxModelPool);
   ModelPool_Relight(&g_ObjModelPool);
   ModelPool_Relight(&g_BasePakPool);
-  FUN_004af290(*(undefined4 *)(iVar1 + 0xc0));
-  FUN_004acfa0();
+  Light_SetAmbient(*(undefined4 *)(iVar1 + 0xc0));
+  Gfx_HwControl1();
   return;
 }
 

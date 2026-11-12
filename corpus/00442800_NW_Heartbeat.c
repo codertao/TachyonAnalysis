@@ -31,7 +31,7 @@ void NW_Heartbeat(undefined4 param_1)
     }
     str_sprintf(local_400,pcVar7);
     local_500[0] = '\0';
-    FUN_0044ed30(local_500,0x100);
+    MpRules_OnHeartbeat(local_500,0x100);
     str_sprintf(local_300,s__s_ServerName__s_GameType__s_Pla_00540e60,local_400,&DAT_005a4054,
                 &DAT_005a4094,DAT_005a404c,DAT_005a4050,g_NwGameId);
     uVar2 = 0xffffffff;
@@ -75,7 +75,7 @@ void NW_Heartbeat(undefined4 param_1)
       cVar1 = *pcVar7;
       pcVar7 = pcVar7 + 1;
     } while (cVar1 != '\0');
-    FUN_004a7150(local_300,~uVar2 - 1,g_NwMasterIp,0xf23);
+    NetDrv_SendPacket(local_300,~uVar2 - 1,g_NwMasterIp,0xf23);
   }
   return;
 }

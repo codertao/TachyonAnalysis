@@ -22,7 +22,7 @@ void CapShip_DeathThink(SpED *param_1)
   uVar1 = *(int *)&param_1[1].field_0x58 - 1;
   *(uint *)&param_1[1].field_0x58 = uVar1;
   if (uVar1 == 0) {
-    FUN_00410a30(param_1);
+    CapShip_RemoveAllParts(param_1);
     SrvSend_EntityDestroyed(&param_1->pos,4,2,0,0,0xffffffff,0,param_1->quadrant);
     uStack_14 = *(undefined4 *)&(param_1[1].prev)->field_0x20;
     uStack_18 = 1;
@@ -61,7 +61,7 @@ void CapShip_DeathThink(SpED *param_1)
     uVar5 = 0xf;
   }
 LAB_00410cb1:
-  iVar2 = FUN_00412da0(param_1,param_1->desc,0);
+  iVar2 = CapShip_GetRadius(param_1,param_1->desc,0);
   uVar3 = iVar2 >> 0xd;
   if (uVar3 < 0xfa1) {
     if (uVar3 < 0xbb9) {
@@ -85,8 +85,8 @@ LAB_00410cb1:
   for (; iVar2 != 0; iVar2 = iVar2 + -1) {
     uVar3 = global_bad_shift_rng();
     if ((uVar5 & uVar3 >> 8) == 0) {
-      uVar4 = FUN_00410b80(param_1,auStack_24);
-      FUN_00410910(uVar4);
+      uVar4 = PartChain_PickRandom(param_1,auStack_24);
+      CapShip_DeathBlastPos(uVar4);
       SrvSend_EntityDestroyed(auStack_24,4,uVar1,0,0,0xffffffff,0,param_1->quadrant);
     }
   }

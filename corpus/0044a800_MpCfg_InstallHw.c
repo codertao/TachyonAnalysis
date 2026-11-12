@@ -18,8 +18,8 @@ void MpCfg_InstallHw(int param_1,undefined4 param_2,int param_3,undefined4 param
       MpCfg_SetMountIcon(uVar1,param_3,*(undefined4 *)(param_1 + 0x150),
                          *(undefined4 *)(param_1 + 0x154),*(undefined4 *)(param_1 + 0x148),
                          *(undefined4 *)(param_1 + 0x14c),*(undefined4 *)(param_1 + 0x158),2,2);
-      FUN_0043f840(&g_UiManager,param_1 + 0xf8,0x20000);
-      FUN_0043f5d0(&g_UiManager,param_1 + 0xb8,9);
+      ImageArea_ClearFlags(&g_UiManager,param_1 + 0xf8,0x20000);
+      ImageArea_SetFrame(&g_UiManager,param_1 + 0xb8,9);
       pcVar3 = *(char **)(param_1 + 0xa9c);
       if (pcVar3 == (char *)0x0) {
         pcVar3 = s_NO_CARD_0053644c;

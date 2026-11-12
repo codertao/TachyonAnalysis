@@ -38,9 +38,9 @@ undefined4 Powerup_Spawn(SpED *param_1,Desc *param_2,undefined4 param_3,int *par
   ent->netFlags = 3;
   ent->stateFlags = 4;
   *(undefined4 *)&ent->field_0xb8 = 0x28000;
-  pSVar1 = (SpED *)FUN_00456650((param_1->pos).y * 0x32,param_2[1].spawnAtLoad);
+  pSVar1 = (SpED *)Powerup_IsAllowed((param_1->pos).y * 0x32,param_2[1].spawnAtLoad);
   ent[1].pendingNext = pSVar1;
-  FUN_0045cbf0(ent,&ent->quadrant->staticSectorMap);
+  SectorMap_LinkStatic(ent,&ent->quadrant->staticSectorMap);
   return 1;
 }
 
