@@ -1,7 +1,7 @@
 
-/* sweep: guess */
+/* refine: startup kind 7 (0xc): voice server u32 ip, u16 port, u8 flag (0 ip = no voice) */
 
-void TachSrv_WriteStage7(undefined4 param_1,undefined2 *param_2,short *param_3)
+void TachSrv_WriteSessionInfo(undefined4 param_1,undefined2 *param_2,short *param_3)
 
 {
   *param_2 = 7;

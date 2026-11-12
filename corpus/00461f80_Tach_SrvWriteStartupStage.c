@@ -18,8 +18,8 @@ void Tach_SrvWriteStartupStage(undefined4 param_1,undefined2 *param_2,undefined4
     return;
   case 2:
     uVar2 = TachSrv_WriteRulesInfo(param_1,puVar1,param_2);
-    uVar2 = TachSrv_WriteStage4(param_1,uVar2,param_2);
-    TachSrv_WriteStage8(param_1,uVar2,param_2);
+    uVar2 = TachSrv_WritePlayerInit(param_1,uVar2,param_2);
+    TachSrv_WriteTechData(param_1,uVar2,param_2);
     return;
   case 3:
     TachSrv_WritePortraits(param_1,puVar1,param_2);
@@ -28,7 +28,7 @@ void Tach_SrvWriteStartupStage(undefined4 param_1,undefined2 *param_2,undefined4
     TachSrv_WriteRoster(param_1,puVar1,param_2);
     return;
   case 5:
-    TachSrv_WriteStage7(param_1,puVar1,param_2);
+    TachSrv_WriteSessionInfo(param_1,puVar1,param_2);
   }
   return;
 }

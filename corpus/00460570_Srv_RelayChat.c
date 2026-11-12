@@ -1,9 +1,9 @@
 
-/* sweep: guess */
+/* refine: chat echo to sender (flag 4) and, unless Stub_ReturnZeroB (server-command hook) claims
+   it, relay to others (flag 2|mode) + UI sound */
 
-void Srv_SpawnDroppedItem
-               (undefined4 param_1,undefined4 param_2,uint param_3,undefined4 param_4,
-               undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8)
+void Srv_RelayChat(undefined4 param_1,undefined4 param_2,uint param_3,undefined4 param_4,
+                  undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8)
 
 {
   int iVar1;

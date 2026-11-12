@@ -1,7 +1,7 @@
 
-/* sweep: guess */
+/* refine: startup kind 4 (0x50): rules +0x34 = MpRules_InitPlayerShip */
 
-int TachSrv_WriteStage4(undefined4 param_1,undefined2 *param_2,short *param_3)
+int TachSrv_WritePlayerInit(undefined4 param_1,undefined2 *param_2,short *param_3)
 
 {
   *param_2 = 4;

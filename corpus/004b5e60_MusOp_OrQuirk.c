@@ -1,7 +1,7 @@
 
-/* refine: op 22 */
+/* refine: op 22: same quirk, raw OR (= op 24) */
 
-void MusOp_LogOr(void)
+void MusOp_OrQuirk(void)
 
 {
   int unaff_EBP;

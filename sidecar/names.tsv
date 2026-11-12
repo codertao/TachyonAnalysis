@@ -3280,8 +3280,8 @@
 0x4500c0	MpRules_DrawOverlay	sweep
 0x4500f0	MpRules_OnRoundStart	sweep: guess
 0x450120	MpRules_OnRespawn	sweep: guess
-0x450150	MpRules_Stub2	sweep: 8-byte stub
-0x450160	MpRules_GetGameTypeName	sweep: guess
+0x450150	MpRules_GetGameTypeId	refine: startup kind 1 +0x32 = game-mode id (*mode table: DM 1, BW 0)
+0x450160	MpRules_SelectGameType	refine: client, from kind 1 +0x32: pick the mode table by id (once), call its client init +0xc
 0x4501a0	MpRules_Hook38	sweep: forwards to game-type table +0x38
 0x4501c0	MpRules_Hook3c	sweep
 0x4501e0	MpRules_Hook40	sweep
@@ -3656,8 +3656,8 @@
 0x460480	TachSrv_OnMineFired	sweep: guess
 0x4604f0	TachSrv_OnDecoyDropped	sweep
 0x460530	TachSrv_OnPostEvent	sweep: guess
-0x460570	Srv_SpawnDroppedItem	sweep: guess
-0x460600	TachSrv_OnDropItem	sweep: guess
+0x460570	Srv_RelayChat	refine: chat echo to sender (flag 4) and, unless Stub_ReturnZeroB (server-command hook) claims it, relay to others (flag 2|mode) + UI sound
+0x460600	TachSrv_OnChat	refine: C->S 0x2022 {u16 mode, u16 target, char text[]}: 0 all, 1 one player, 4 team, 8 group; 50-frame flood counter conn+0x204
 0x460720	TachSrv_OnWingFormOnMe	sweep
 0x460770	TachSrv_OnWingCommand	sweep
 0x460790	TachSrv_OnRulesEvent	sweep: rules +0x5c
@@ -3673,12 +3673,12 @@
 0x461240	Srv_ResetAllConns	sweep
 0x461a00	Srv_WriteCredits	sweep: guess
 0x461b20	TachSrv_WriteFrameNo	sweep
-0x461c10	TachSrv_WriteStage4	sweep: guess
-0x461cf0	TachSrv_WriteRulesInfo	sweep: guess
-0x461df0	TachSrv_WriteStage8	sweep: guess
-0x461e40	TachSrv_WritePortraits	sweep: guess
+0x461c10	TachSrv_WritePlayerInit	refine: startup kind 4 (0x50): rules +0x34 = MpRules_InitPlayerShip
+0x461cf0	TachSrv_WriteRulesInfo	refine: startup kind 1 (0x34): BDF name @4, region name @0x12, entity id @0x22, rules +0x38 @0x26, region idx @0x2a, quadrant id @0x2c, slot @0x2e, max slots @0x30, game-mode id @0x32
+0x461df0	TachSrv_WriteTechData	refine: startup kind 8 via rules +0x74 (NULL in MP, so never sent); client TachCli_ReadTechData
+0x461e40	TachSrv_WritePortraits	refine: startup kind 6: u32 n @4, n x {char name[14], u16 slot} from the portrait table 0x590258
 0x461ea0	TachSrv_WriteRoster	sweep
-0x461f40	TachSrv_WriteStage7	sweep: guess
+0x461f40	TachSrv_WriteSessionInfo	refine: startup kind 7 (0xc): voice server u32 ip, u16 port, u8 flag (0 ip = no voice)
 0x462300	Srv_BroadcastToQuadrant	sweep: guess
 0x462380	Srv_NotifyEntityRemoved	sweep: guess
 0x4623f0	SrvStats_DrawPlayerRow	sweep
@@ -5220,8 +5220,8 @@
 0x004b5e10	MusOp_Mul	refine: op 18
 0x004b5e20	MusOp_Div	refine: op 19
 0x004b5e30	MusOp_Mod	refine: op 20
-0x004b5e40	MusOp_LogAnd	refine: op 21
-0x004b5e60	MusOp_LogOr	refine: op 22
+0x004b5e40	MusOp_AndQuirk	refine: op 21: computes -1/0 booleans of both operands but never uses them, then ANDs the raw values (= bitwise &, same as op 23)
+0x004b5e60	MusOp_OrQuirk	refine: op 22: same quirk, raw OR (= op 24)
 0x004b5e80	MusOp_And	refine: op 23
 0x004b5e90	MusOp_Or	refine: op 24
 0x004b5ea0	MusOp_Xor	refine: op 25

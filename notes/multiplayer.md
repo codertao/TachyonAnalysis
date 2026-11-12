@@ -395,8 +395,8 @@ is just position, velocity and angles, taken as "now".
    - stage 0: kind 3, **model table** (see "Startup name tables" below)
    - stage 1: kind 2, **object-descriptor table** (see below)
    - stage 2: kind 1 (your entity id + sector name), kind 4 (0x50-byte player/ship state),
-     kind 8 (game-mode callback)
-   - stage 3: kind 6 (descriptor data, `FUN_0044f720`)
+     kind 8 (rules `+0x74`; NULL in MP, so never sent)
+   - stage 3: kind 6, player portraits (`TachSrv_WritePortraits`, `Portrait_GetSlot 0x44f720`)
    - stage 4: kind 5, player roster (names)
    - stage 5: kind 7, session settings (`u32,u16,u8` @ `0x6af7ec`)
 3. After the stage 5 ack the server sends app event **0x1111** (startup complete) and normal
@@ -495,6 +495,74 @@ count x {
 
 Ordering matters: stage 0 is sent first so that by the time descriptors (stage 1) and the player's
 own ship (stage 2) are created, every model slot they reference already exists on the client.
+
+### Server-side startup details (static RE, 2026-11-12) **[c]**
+Written up for `TachyonServer` from `Tach_SrvWriteStartupStage 0x461f80`, the `NetSrv_*` layer
+(`0x4b79d0..0x4b8860`) and the client readers (`TachCli_ReadStartupBlob 0x417780`).
+
+**Join order** (`Tach_SrvPlacePlayer 0x461280`, run on Netsock create-player, *before* any stage):
+copy join-blob fields (team `+0x40`, systems `+0x54`, voice port `+0x68`; magic/game-id kicks),
+create the player DCB (`Srv_CreatePlayerDcb`: rules `+0x20` = `MpRules_OnPlayerJoin` → mode
+`+0x5c` join hook, mode `+0x10` spawn, portrait, loadout with max ammo, mode `+0x34`), build the
+static list, `Ent_SetQuadrant`, conn state = 3, broadcast "%s is entering the game" (colour 4,
+except the joiner), UI sound, roster entry 0x1110, scoreboard 0x1112.
+- **Mode table** (`DAT_00590238`, chosen by `GameType_FindIndex`): `+0 u32 id` (BW 0 at `0x533458`,
+  DM 1 at `0x534b50`), `+4 name` ("BASEWARS" / "ARENA MATCH"), `+8` init, `+0xc` client init,
+  `+0x10` spawn, …, `+0x5c` join. DM join (`DM_OnPlayerJoin`): team = blob `+0xa0`, ship = blob
+  `+0xa4` → `Desc_CreateByType` → 0x1107 to all. DM spawn (`DM_InitSpawn` → `DM_PickSpawnPos`):
+  sector 0's quadrant, position (0, 625, 2500) rotated about Y by a random yaw, facing the origin.
+- **Entity ids**: `DcbPool_Alloc` gives every DCB `counter | 1`, counter += 2 (odd ids).
+
+**Stage numbering:** the wire stage (`STARTUPDATA +4`, conn `+0x8c`) starts at **1**; the blob
+index (conn `+0x90`) at 0. An ack `{u16 1, u32 stage}` advances only if `stage == conn+0x8c`;
+after blob 5 the server sends 0x1111 (flag 4, to that player), sets conn state (`+0x13c`) = 0 and
+leaves startup. **While in startup a packet holds only the header and STARTUPDATA**: no
+PLAYERINFO, no GAMEDATA, no queued events (so events queued meanwhile, with flags 0 or
+otherwise passing the filter, wait in the conn's list and go out after 0x1111).
+
+**Stage records** (all `{u16 kind, u16 size}` first):
+- kind 1 (0x34): `char bdf[14] @4` (sector record `+0x2c`, which `Spx_LoadSector` fills from SPX
+  `+0x78`; the client calls `Bdf_LoadAndApply` on it), `char region[16] @0x12` ("NOVAWORLD",
+  `MpRules_LoadRegion`), `u32 entityId @0x22`, `u32 @0x26` = rules `+0x38` (`TargetRule_Any` → 1),
+  `u16 regionIdx @0x2a` (9 = NOVAWORLD in `vars.cfg` REGION_NAMES), `u16 quadrantId @0x2c`
+  (quadrant `+0x30` = SPX `+0x100`), `u16 slot @0x2e`, `u16 maxSlots @0x30`, `u16 gameModeId @0x32`
+  (`MpRules_GetGameTypeId`; client `MpRules_SelectGameType`).
+- kind 4 (0x50, `MpRules_InitPlayerShip 0x44ffe0`): `char desName[14] @4` (desc `+4`, the `.des`
+  file name), `u16 team @0x12` (conn `+0x140`), `u32 systems @0x14` (conn `+0x158`), `vec3 pos @0x18`,
+  `vec3 angles @0x24` (16.16, 512/turn), `8 x {u16 weapon+1, u16 maxAmmo} @0x30` (from the conn's
+  mount slots `+0x164`, stride 0xc; ammo via `WeaponDef_GetSafe(def, systems & 0x100000)`).
+- kind 6 (stage 3): `u32 n @4`, then n × `{char name[14], u16 slot}` (16 bytes) from the portrait
+  table `0x590258` (64 × 0x2c). n = 0 when `g_FlightStateFlags & 4`.
+- kind 5 (stage 4, roster): `u16 n @4`, then entries `{u16 slot, u16 portrait (conn +0x1c8),
+  u8 dcb+0xfc, u8 conn+0x10c, u8 team (dcb+0xc2, 0xff if no ship), u8 ?, char name[]}` each
+  `(strlen + 11) & ~1` bytes (same as event 0x1110, `Roster_FillEntry 0x45d9f0`).
+- kind 7 (stage 5, 0xc): `u32 voiceIp, u16 voicePort, u8 flag`; ip 0 = no voice chat
+  (`Voice_Connect`).
+- kind 8: only when rules `+0x74` is set; MP and DM clear it, so never sent.
+
+**Model pool entries** (stage 0) come from `ModelPool_Load` in the class loaders: the
+`EXTERIOR_PAK` pair for SHIP, ASTEROID, HYPER_GATE, MINE, CARGO, BEACON, SPEED_RING, POWERUP, and
+CAPITOL_SHIP without an OCF. STARBASE and OCF capital ships load their parts into the client-local
+`g_BasePakPool` instead. A pak named `NULL` is skipped. Ships load `INTERIOR_PAK` only when the
+loader's `loadInterior` argument is set (not for server-side player or AI ships).
+
+**Conn state** (`+0x13c`): 3 after placement, 0 after startup / on 0x2007, 2 on 0x2010
+("loading": near cap 2, static page 12), 1 = send empty snapshots. Default static page is 4.
+
+**Static pages:** `Srv_SendStaticObjs` lists the quadrant's dynamic + static entities with
+`+0xc3 & 3 == 3`, sorted by distance; page id = `(id + 1) | 1`. Every snapshot repeats the
+current page (`u16 pageId, u16 count` in the snapshot header, extended records) until 0x2008
+`{u16 1, u32 pageId, u16 count}` advances the cursor by `count` and bumps the id
+(`Srv_RecvPlayerChunk`). 0x2008 kind 2 only sets conn `inQuadrant` (already 1 after placement).
+There is no 0x1007 at join: 0x2012 just re-runs `Ent_EnterQuadrant` and posts mission event 2.
+
+**Chat** (0x2022 → `TachSrv_OnChat 0x460600`, previously mis-named): `{u16 mode, u16 target,
+char text[]}`. A flood counter (conn `+0x204`, +50 per message) drops messages while positive.
+Mode 0: 0x1001 echo to the sender (flag 4) and, unless the server-command hook
+(`Stub_ReturnZeroB`, a stub returning 0) claims the text, to everyone else (flag 2), colour 0.
+Mode 1: to player `target` only, colour 11. Mode 4: team `target` (flag 8), colour 12. Mode 8:
+group `target` (flag 0x10), colour 9. 0x1001 size is `(strlen + 7) & ~1`. Colour bytes are plain
+indices (`Gfx_DefineColor` stores `i` at `0x5a6320 + i`).
 
 ## Ship-to-ship collisions and death **[c]**
 **Collisions:** each client tests only **its own ship** against its replicas (see `collision.md`,

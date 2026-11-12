@@ -104,7 +104,7 @@ void __cdecl Tach_SrvDispatchEvent(int type,void *data,TachConn *conn,int live)
         TachSrv_OnPostEvent(data);
         return;
       case 0x2022:
-        TachSrv_OnDropItem(data);
+        TachSrv_OnChat(data);
         return;
       case 0x2023:
         TachSrv_OnTractorEvent(data);

@@ -107,6 +107,13 @@ Natives read the stack in place and their arguments stay pushed.
 
 The rest are nops.
 
+**Quirk, ops 21/22 [c]** (`MusOp_AndQuirk 0x4b5e40`, `MusOp_OrQuirk 0x4b5e60`): these are the compiler's
+logical `&&`/`||`. The handlers compute −1/0 booleans of both operands, then discard them and
+AND/OR the **raw** values. So they behave exactly like the bitwise ops 23/24. This only matters when
+an operand isn't already −1/0. TTFMUSIC.BIN has one such spot: state for job I30 tests
+`job_status == (2 || 3)`, which the VM evaluates as `job_status == 3`. Both outcomes of that test go
+to state 52, so it makes no audible difference. (`musscr.py` prints it as `(2 or 3)`.)
+
 **Variables** (`Music_UpdateFlightVars 0x415060`, in flight; menus set slot 0 to a theme
 number via `FUN_00468fb0`):
 

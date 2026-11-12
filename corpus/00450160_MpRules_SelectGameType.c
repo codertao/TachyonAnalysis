@@ -1,7 +1,7 @@
 
-/* sweep: guess */
+/* refine: client, from kind 1 +0x32: pick the mode table by id (once), call its client init +0xc */
 
-void MpRules_GetGameTypeName(undefined4 param_1)
+void MpRules_SelectGameType(undefined4 param_1)
 
 {
   if (DAT_00590d78 == 0) {

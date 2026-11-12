@@ -1,5 +1,6 @@
 
-/* sweep: guess */
+/* refine: startup kind 6: u32 n @4, n x {char name[14], u16 slot} from the portrait table 0x590258
+    */
 
 void TachSrv_WritePortraits(undefined4 param_1,undefined2 *param_2,short *param_3)
 

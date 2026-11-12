@@ -1,7 +1,8 @@
 
-/* sweep: guess */
+/* refine: startup kind 8 via rules +0x74 (NULL in MP, so never sent); client TachCli_ReadTechData
+    */
 
-void TachSrv_WriteStage8(undefined4 param_1,undefined2 *param_2,short *param_3)
+void TachSrv_WriteTechData(undefined4 param_1,undefined2 *param_2,short *param_3)
 
 {
   short sVar1;

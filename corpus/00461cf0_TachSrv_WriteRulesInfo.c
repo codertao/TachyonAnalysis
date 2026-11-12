@@ -1,5 +1,6 @@
 
-/* sweep: guess */
+/* refine: startup kind 1 (0x34): BDF name @4, region name @0x12, entity id @0x22, rules +0x38
+   @0x26, region idx @0x2a, quadrant id @0x2c, slot @0x2e, max slots @0x30, game-mode id @0x32 */
 
 char * TachSrv_WriteRulesInfo(int param_1,char *param_2,short *param_3)
 
